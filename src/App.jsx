@@ -1,4 +1,5 @@
-// App.jsx
+// App.jsx 
+
 import React, { useState } from 'react';
 
 const lessons = [
