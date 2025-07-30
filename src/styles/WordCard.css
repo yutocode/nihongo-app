@@ -1,0 +1,37 @@
+.word-card {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 300px;
+  text-align: center;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.kanji {
+  font-size: 2rem;
+}
+
+.reading {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.meaning-box {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px dashed #888;
+  cursor: pointer;
+  background: #fff;
+}
+
+.navigation {
+  margin-top: 20px;
+}
+
+.navigation button {
+  margin: 0 10px;
+}
+

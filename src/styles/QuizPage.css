@@ -1,0 +1,13 @@
+.quiz-page {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.quiz-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}

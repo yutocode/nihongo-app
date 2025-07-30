@@ -1,0 +1,23 @@
+{
+  "selectLanguage": "Please select your language",
+  "next": "Next →",
+  "prev": "← Back",
+  "clickToShow": "Click to show meaning",
+  "meaning": "Meaning",
+  "resultTitle": "🎉 Results!",
+  "score": "Score",
+  "accuracy": "Accuracy",
+  "question": "Question",
+  "timeLeft": "Time Left",
+  "correct": "Correct!",
+  "wrong": "Wrong!",
+  "start": "Start",
+  "part": "Lesson {{num}}",
+  "ranking": {
+    "title": "Ranking Page",
+    "description": "The ranking feature is under development."
+  },
+  "footer": {
+    "madeWithLove": "Made with ❤️ for language learners"
+  }
+}

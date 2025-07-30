@@ -1,0 +1,24 @@
+{
+  "selectLanguage": "Silakan pilih bahasa Anda",
+  "next": "Lanjut →",
+  "prev": "← Kembali",
+  "clickToShow": "Klik untuk melihat arti",
+  "meaning": "Arti",
+  "resultTitle": "🎉 Hasil!",
+  "score": "Skor",
+  "accuracy": "Akurasi",
+  "question": "Pertanyaan",
+  "timeLeft": "Sisa waktu",
+  "correct": "Benar!",
+  "wrong": "Salah!",
+  "start": "Mulai",
+  "part": "Pelajaran {{num}}",
+  "ranking": {
+    "title": "Papan Peringkat",
+    "description": "Fitur peringkat sedang dalam pengembangan."
+  },
+  "footer": {
+    "madeWithLove": "Dibuat dengan ❤️ untuk para pelajar bahasa"
+  }
+}
+

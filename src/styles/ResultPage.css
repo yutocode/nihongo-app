@@ -1,0 +1,65 @@
+.result-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fefefe;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.result-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.score {
+  font-size: 1.5rem;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.xp-earned {
+  font-size: 1.2rem;
+  color: #2196f3;
+  margin-bottom: 10px;
+}
+
+.level-info {
+  font-size: 1rem;
+  color: #ff9800;
+  margin-bottom: 20px;
+}
+
+.retry-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.retry-button:hover {
+  background-color: #43a047;
+}
+
+.celebrate-emoji {
+  font-size: 3rem;
+  animation: pop 0.4s ease-out forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}

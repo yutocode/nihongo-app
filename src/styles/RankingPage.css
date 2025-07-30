@@ -1,0 +1,43 @@
+.ranking-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.ranking-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ranking-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.ranking-list {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: auto;
+}
+
+.ranking-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+  background-color: #e6e6e6;
+}
+
+.first-place {
+  background-color: gold;
+  font-weight: bold;
+  border: 2px solid #ffa500;
+}
