@@ -1,10 +1,13 @@
-//src/pages/AuthPage.jsx
+// src/pages/AuthPage.jsx
 import React, { useState, useEffect } from 'react'
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
+} from 'firebase/auth'
 import { auth } from '../firebase/firebase-config'
 import { useNavigate } from 'react-router-dom'
 import { useAppStore } from '../store/useAppStore'
-//import '../styles/AuthPage.css'
+import '../styles/AuthPage.css'
 
 const AuthPage = () => {
   const [loginEmail, setLoginEmail] = useState('')
@@ -12,12 +15,13 @@ const AuthPage = () => {
   const [registerEmail, setRegisterEmail] = useState('')
   const [registerPassword, setRegisterPassword] = useState('')
   const navigate = useNavigate()
-  const setUser = useAppStore(state => state.setUser)
+  const setUser = useAppStore((state) => state.setUser)
 
-  // ✅ useEffect は関数の中に書く！
+  // Google翻訳スクリプトの読み込み（ログインページのみ表示）
   useEffect(() => {
     const script = document.createElement('script')
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+    script.src =
+      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
     script.async = true
     document.body.appendChild(script)
 
@@ -26,16 +30,33 @@ const AuthPage = () => {
         {
           pageLanguage: 'ja',
           includedLanguages: 'id,en,zh-CN,zh-TW',
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
         },
         'google_translate_element'
       )
+    }
+
+    // ログイン後にスクリプトと翻訳バッジを消す
+    return () => {
+      const widget = document.getElementById('google_translate_element')
+      if (widget) widget.innerHTML = ''
+
+      const scriptTag = document.querySelector(
+        'script[src*="translate_a/element.js"]'
+      )
+      if (scriptTag) scriptTag.remove()
+
+      delete window.googleTranslateElementInit
     }
   }, [])
 
   const handleLogin = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      )
       setUser(userCredential.user)
       navigate('/home')
     } catch (error) {
@@ -45,7 +66,11 @@ const AuthPage = () => {
 
   const handleRegister = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      )
       setUser(userCredential.user)
       alert('登録成功！')
       navigate('/home')
@@ -57,7 +82,10 @@ const AuthPage = () => {
   return (
     <div className="auth-page">
       {/* 🔠 Google翻訳バッジ */}
-      <div id="google_translate_element" style={{ textAlign: 'right', marginBottom: '10px' }}></div>
+      <div
+        id="google_translate_element"
+        style={{ textAlign: 'right', marginBottom: '10px' }}
+      ></div>
 
       <div className="auth-box login-box">
         <h2>ログイン</h2>
@@ -97,6 +125,7 @@ const AuthPage = () => {
 }
 
 export default AuthPage
+
 
 
 
