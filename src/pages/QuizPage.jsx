@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { n5WordSets } from "../data/n5WordSets";
 import "../styles/QuizPage.css";
 
+
 const QuizPage = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
