@@ -1,4 +1,5 @@
 // src/pages/QuizPage.jsx
+
 import React, { useState, useEffect } from "react";
 import QuizCard from "../components/QuizCard";
 import { useTranslation } from "react-i18next";
