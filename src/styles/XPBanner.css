@@ -1,0 +1,125 @@
+:root {
+  --xp-green-dark: #0b3d2e; /* 深緑 */
+  --xp-green-light: #1ca77c; /* エメラルド */
+}
+
+.xp-banner {
+  display: flex;
+  align-items: center;
+  background: #111;
+  padding: 10px 16px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 640px; /* 横幅広め */
+}
+
+.xp-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--xp-green-dark), #06231a);
+  outline: 1px solid rgba(28, 167, 124, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25), 0 8px 20px rgba(0, 0, 0, .35);
+  color: var(--xp-green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.xp-main {
+  flex: 1;
+  margin-left: 14px;
+}
+
+.xp-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.xp-levelchip {
+  background: linear-gradient(120deg, var(--xp-green-light), var(--xp-green-dark));
+  padding: 2px 8px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(28, 167, 124, .28);
+  color: white;
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.xp-numbers {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.xp-per {
+  color: var(--xp-green-light);
+}
+
+.xp-rail {
+  height: 6px; /* 細め */
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--xp-green-light), var(--xp-green-dark));
+  box-shadow: 0 0 16px rgba(28, 167, 124, .35);
+  transition: width 0.5s ease-out;
+}
+
+.levelup-pop {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: linear-gradient(120deg, var(--xp-green-light), var(--xp-green-dark));
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(28, 167, 124, .35);
+  color: white;
+  font-weight: bold;
+  animation: popUp 1s ease-out forwards;
+}
+
+@keyframes popUp {
+  0% { transform: translateY(-20px); opacity: 0; }
+  40% { transform: translateY(0); opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.confetti {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.confetti span {
+  position: absolute;
+  top: -10px;
+  width: 6px; height: 6px;
+  background: var(--xp-green-light);
+  animation: fall 1.5s linear forwards;
+}
+
+.confetti span:nth-child(odd) {
+  background: var(--xp-green-dark);
+}
+
+.confetti span {
+  left: calc(var(--i) * 8%);
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(60px) rotate(360deg); opacity: 0; }
+}

@@ -1,22 +1,55 @@
 {
-  "selectLanguage": "Please select your language",
-  "next": "Next →",
-  "prev": "← Back",
-  "clickToShow": "Click to show meaning",
-  "meaning": "Meaning",
-  "resultTitle": "🎉 Results!",
-  "score": "Score",
-  "accuracy": "Accuracy",
-  "question": "Question",
-  "timeLeft": "Time Left",
-  "correct": "Correct!",
-  "wrong": "Wrong!",
-  "start": "Start",
-  "part": "Lesson {{num}}",
+  "common": {
+    "next": "Next →",
+    "prev": "← Back",
+    "start": "Start",
+    "clickToShow": "Click to show meaning",
+    "meaning": "Meaning",
+    "progress": "Progress",
+    "logout": "Logout",
+    "premium": "Premium",
+    "settings": "Settings",
+    "profile": "Profile",
+    "language": "Language",
+    "noWordsFound": "No words found"
+  },
+
+  "nav": {
+    "home": "Home",
+    "wordbook": "Wordbook",
+    "quiz": "Quiz",
+    "listening": "Listening",
+    "challenge": "Challenge"
+  },
+
+  "level": {
+    "title": "Select Level",
+    "subtitle": "Please select a level",
+    "selectLanguage": "Please select your language"
+  },
+
+  "lesson": {
+    "title": "Select Lesson",
+    "subtitle": "Please select a lesson",
+    "part": "Lesson {{num}}",
+    "lesson": "Lesson"
+  },
+
+  "quiz": {
+    "resultTitle": "🎉 Results!",
+    "score": "Score",
+    "accuracy": "Accuracy",
+    "question": "Question",
+    "timeLeft": "Time Left",
+    "correct": "Correct!",
+    "wrong": "Wrong!"
+  },
+
   "ranking": {
-    "title": "Ranking Page",
+    "title": "Ranking",
     "description": "The ranking feature is under development."
   },
+
   "footer": {
     "madeWithLove": "Made with ❤️ for language learners"
   }

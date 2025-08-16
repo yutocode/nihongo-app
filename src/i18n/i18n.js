@@ -1,4 +1,3 @@
-// src/i18n/i18n.js
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -15,13 +14,27 @@ const resources = {
   tw: { translation: translation_tw },
 };
 
+// ✅ ローカルストレージから言語取得（なければ英語）
+const savedLang = localStorage.getItem("appLang") || "en";
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
+    lng: savedLang, // ✅ ここで明示的に設定！
     fallbackLng: "en",
-    interpolation: { escapeValue: false },
+    detection: {
+      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
+      caches: ["localStorage"],
+    },
+    debug: false,
+    interpolation: {
+      escapeValue: false,
+    },
+    react: {
+      useSuspense: false,
+    },
   });
 
 export default i18n;

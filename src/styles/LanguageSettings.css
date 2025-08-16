@@ -1,0 +1,32 @@
+.language-settings {
+  padding: 20px;
+  text-align: center;
+}
+
+.language-settings h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.language-settings ul {
+  list-style: none;
+  padding: 0;
+}
+
+.language-settings li {
+  margin: 10px 0;
+}
+
+.language-settings button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.language-settings button.active {
+  background-color: #d1eaff;
+  font-weight: bold;
+}

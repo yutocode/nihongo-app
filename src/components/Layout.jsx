@@ -1,24 +1,24 @@
 // src/components/Layout.jsx
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import BottomNav from "./BottomNav"; // 🔥 追加！
 
 const Layout = () => {
+  const location = useLocation();
+  const isAuthPage = ["/", "/login", "/register"].includes(location.pathname);
+
   return (
     <div className="layout-container">
-      <Header />
+      {!isAuthPage && <Header />}
       <main className="layout-main">
-        <Outlet /> {/* 🔥 これがないと中身が表示されません！ */}
+        <Outlet /> {/* 🔥 メインのページコンテンツがここに表示される */}
       </main>
-      <Footer />
+      {!isAuthPage && <BottomNav />} {/* 🔥 すべての画面にナビ表示したくない時はここで調整 */}
+      {!isAuthPage && <Footer />}
     </div>
   );
 };
 
 export default Layout;
-
-
-
-
-

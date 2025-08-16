@@ -1,0 +1,27 @@
+.level-select-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.level-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.level-buttons button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.level-buttons button:hover {
+  background-color: #45a049;
+}

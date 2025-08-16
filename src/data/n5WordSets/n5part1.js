@@ -53,5 +53,4 @@ export const n5part1 = {
     { kanji: "青", reading: "あお", meanings: { id: "biru", en: "blue", zh: "蓝", tw: "藍" } }
   ]
 
- // ← ここに55語まで自由に追加してOK！
 } 
