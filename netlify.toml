@@ -1,0 +1,13 @@
+# netlify.toml
+[build]
+  command = "npm run build" # → package.json の "build": "vite build"
+  publish = "dist"          # → Vite の出力先
+
+[build.environment]
+  NODE_VERSION = "20"       # ローカルと合わせる（18でもOK）
+
+# SPA（React Router）の深いURLを全部 index.html にフォールバック
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
