@@ -1,0 +1,47 @@
+.lesson-select-page {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f8f9fa; /* 明るい背景 */
+  min-height: 100vh;
+}
+
+.lesson-select-page h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.lesson-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.lesson-buttons button {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #4f46e5; /* Indigo */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.lesson-buttons button:hover {
+  background-color: #3730a3;
+  transform: scale(1.03); /* ちょっと拡大してアニメーション */
+}
+
+.lesson-buttons button:active {
+  transform: scale(0.97); /* 押した時の縮小効果 */
+}
+
+@media (max-width: 600px) {
+  .lesson-buttons button {
+    width: 100%;
+    max-width: 280px;
+  }
+}

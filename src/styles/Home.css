@@ -1,49 +1,111 @@
-/* Home.css */
+.home-wrap {
+  padding: 20px;
+  padding-top: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-.home-page {
+/* ヘッダー部分（左メッセージ + 右メーター） */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.daily-message {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.goal-meters {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
-  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
-  font-family: 'Arial Rounded MT Bold', 'Helvetica', sans-serif;
+  gap: 10px;
 }
 
-.home-page h1 {
-  font-size: 3rem;
-  color: #00796b;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 2px #bbb;
+.goal-card {
+  background: var(--surface);
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: var(--elev-1);
+  min-width: 180px;
 }
 
-.home-page p {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 2rem;
+.goal-card p {
+  font-size: 0.9rem;
+  margin: 0 0 4px;
 }
 
-.home-buttons {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.progress-bar {
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.home-buttons button {
-  background-color: #00bfa5;
-  color: white;
+.progress-fill {
+  height: 100%;
+  background: #4cafef;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.progress-fill.quiz {
+  background: #f77f00;
+}
+
+.goal-card span {
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* サブタイトル */
+.home-subtitle {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: var(--text-sub);
+}
+
+/* セクション */
+.section {
+  margin-top: 18px;
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--elev-1);
+}
+
+/* 4列グリッド */
+.grid-four {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 720px) {
+  .grid-four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* CTAボタン */
+.cta-big {
+  width: 100%;
+  margin: 28px 0 8vh;
+  padding: 18px 22px;
+  font-weight: 800;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-size: 1.1rem;
+  border-radius: 40px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 191, 165, 0.3);
+  background: linear-gradient(120deg, var(--surface-hi), var(--surface));
+  color: var(--gold);
+  outline: 1px solid rgba(217, 180, 94, 0.35);
+  box-shadow: var(--elev-2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-
-.home-buttons button:hover {
-  background-color: #00796b;
-  transform: scale(1.05);
+.cta-big:hover {
+  transform: translateY(-1px);
 }

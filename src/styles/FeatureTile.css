@@ -1,0 +1,24 @@
+.tile{
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  width:100%; padding:18px 12px; border:none; cursor:pointer;
+  color:var(--text); background: var(--surface); border-radius: var(--radius-lg);
+  box-shadow: var(--elev-1);
+  transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+}
+.tile:hover{ background: var(--surface-hi); box-shadow: var(--elev-2); transform: translateY(-1px); }
+
+.tile-ico{
+  width:56px; height:56px; border-radius:14px; display:grid; place-items:center;
+  background: linear-gradient(150deg, #173a35, #0f2a26);
+  outline: 1px solid rgba(217,180,94,.45);       /* 金の縁 */
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.22),   /* 内側の締まり */
+              0 10px 22px rgba(0,0,0,.38);      /* 外側の浮き */
+}
+
+/* アイコン自体を“金インク”に */
+.tile-ico svg{
+  color: var(--gold);                 /* stroke/fill両方に効く */
+  filter: drop-shadow(0 0 6px rgba(217,180,94,.25));
+}
+.tile-label{ font-weight:700; letter-spacing:.2px }
+

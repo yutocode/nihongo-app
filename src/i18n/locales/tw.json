@@ -1,24 +1,56 @@
 {
-  "selectLanguage": "請選擇您的語言",
-  "next": "下一個 →",
-  "prev": "← 返回",
-  "clickToShow": "點擊顯示意思",
-  "meaning": "意思",
-  "resultTitle": "🎉 成績公布！",
-  "score": "得分",
-  "accuracy": "正確率",
-  "question": "問題",
-  "timeLeft": "剩餘時間",
-  "correct": "正確！",
-  "wrong": "錯誤！",
-  "start": "開始",
-  "part": "第 {{num}} 課",
+  "common": {
+    "next": "下一步 →",
+    "prev": "← 返回",
+    "start": "開始",
+    "clickToShow": "點擊顯示意思",
+    "meaning": "意思",
+    "progress": "進度",
+    "logout": "登出",
+    "premium": "進階版",
+    "settings": "設定",
+    "profile": "個人資料",
+    "language": "語言設定",
+    "noWordsFound": "找不到相關單字"
+  },
+
+  "nav": {
+    "home": "首頁",
+    "wordbook": "單字本",
+    "quiz": "測驗",
+    "listening": "聽力",
+    "challenge": "挑戰"
+  },
+
+  "level": {
+    "title": "選擇等級",
+    "subtitle": "請選擇等級",
+    "selectLanguage": "請選擇您的語言"
+  },
+
+  "lesson": {
+    "title": "選擇課程",
+    "subtitle": "請選擇課程",
+    "part": "第 {{num}} 課",
+    "lesson": "課程"
+  },
+
+  "quiz": {
+    "resultTitle": "🎉 成績公布！",
+    "score": "得分",
+    "accuracy": "正確率",
+    "question": "題目",
+    "timeLeft": "剩餘時間",
+    "correct": "答對！",
+    "wrong": "答錯！"
+  },
+
   "ranking": {
     "title": "排行榜",
     "description": "排行榜功能正在開發中。"
   },
+
   "footer": {
-    "madeWithLove": "為語言學習者用 ❤️ 製作"
+    "madeWithLove": "用 ❤️ 為語言學習者製作"
   }
 }
-
