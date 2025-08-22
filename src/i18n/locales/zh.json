@@ -1,17 +1,21 @@
 {
   "common": {
-    "next": "下一个 →",
-    "prev": "← 返回",
+    "next": "下一题 →",
+    "prev": "← 上一题",
     "start": "开始",
-    "clickToShow": "点击显示意思",
+    "clickToShow": "点击查看意思",
     "meaning": "意思",
     "progress": "进度",
+    "progressCheck": "检查进度",
     "logout": "登出",
     "premium": "高级功能",
     "settings": "设置",
     "profile": "个人资料",
-    "language": "语言设置",
-    "noWordsFound": "找不到相关单词"
+    "language": "语言",
+    "languageSettings": "语言设置",
+    "noWordsFound": "未找到单词",
+    "backToPrev" : "返回上一页",
+    "backHome" : "戻返回首页"
   },
 
   "nav": {
@@ -19,38 +23,114 @@
     "wordbook": "单词本",
     "quiz": "测验",
     "listening": "听力",
-    "challenge": "挑战"
+    "challenge": "挑战",
+    "grammarQuiz": "语法测验"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "单词本",
+      "grammar": "语法",
+      "grammarQuiz": "语法测验",
+      "ranking": "排行榜",
+      "listening": "听力",
+      "challenge": "挑战",
+      "examStructure": "考试结构",
+      "alphabet": "字母",
+      "practice": "模拟考试"
+    },
+    "cta": {
+      "startN5": "从 N5 开始学习"
+    }
   },
 
   "level": {
-    "title": "选择等级",
-    "subtitle": "请选择等级",
-    "selectLanguage": "请选择您的语言"
+    "title": "选择级别",
+    "subtitle": "请选择级别",
+    "selectLanguage": "请选择语言"
   },
 
   "lesson": {
     "title": "选择课程",
     "subtitle": "请选择课程",
-    "part": "第 {{num}} 课",
+    "part": "课程 {{num}}",
     "lesson": "课程"
   },
 
   "quiz": {
-    "resultTitle": "🎉 成绩公布！",
-    "score": "得分",
+    "resultTitle": "🎉 测验结果",
+    "score": "分数",
     "accuracy": "正确率",
-    "question": "问题",
+    "question": "题目",
     "timeLeft": "剩余时间",
     "correct": "正确！",
-    "wrong": "错误！"
+    "wrong": "错误"
   },
 
   "ranking": {
     "title": "排行榜",
-    "description": "排行榜功能正在开发中。"
+    "description": "排行榜功能开发中"
   },
 
   "footer": {
-    "madeWithLove": "为语言学习者用 ❤️ 制作"
+    "madeWithLove": "为学习者用 ❤️ 制作"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "选择语法级别",
+      "backHome": "返回首页",
+      "backToLevels": "返回级别"
+    },
+    "categories": {
+      "title": "选择 {{level}} 语法分类",
+      "particles": "助词",
+      "verbForms": "动词形",
+      "adjectives": "形容词",
+      "existHave": "存在 / 拥有",
+      "compare": "比较与程度",
+      "intentPlan": "意图・计划・推测",
+      "askPermit": "请求・许可",
+      "basic": "其他基础",
+      "backToLevels": "返回级别",
+      "comingSoon": "即将推出"
+    },
+    "lessons": {
+      "title": "{{level}} 课程选择 ({{category}})",
+      "titleWithLabel": "{{level}} 课程选择 ({{categoryLabel}})",
+      "hint": "选择课程开始测验。如果数据不存在，会显示『未找到』。",
+      "backToCategories": "返回分类",
+      "open": "课程 {{num}}",
+      "back": "← 返回",
+      "toCategories": "到分类列表",
+      "toHome": "回首页"
+    },
+    "quiz": {
+      "title": "{{level}} 语法 {{lesson}}",
+      "notFound": "该课程没有测验数据。",
+      "back": "返回",
+      "backToLessons": "返回课程列表",
+      "retry": "再试一次",
+      "score": "分数: {{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "上一题",
+        "lessonList": "课程列表",
+        "home": "首页"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "{{level}} 形容词二选一测验",
+    "counter": "{{current}} / {{total}}",
+    "i": "い形容词",
+    "na": "な形容词",
+    "backOne": "← 返回上一题",
+    "toCategoryList": "到分类列表",
+    "toLessonList": "到课程列表",
+    "score": "分数: {{score}} / {{total}}",
+    "notFound": "未找到课程数据。",
+    "retry": "再试一次"
   }
 }

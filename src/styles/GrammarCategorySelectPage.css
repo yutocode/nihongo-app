@@ -1,0 +1,49 @@
+/* 全体ラップ */
+.grammar-wrap {
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+/* タイトル */
+.grammar-wrap h1 {
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* カテゴリボタンのグリッド配置 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* ボタン共通デザイン */
+.grammar-btn {
+  background: #2563eb;  /* 青系 */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.grammar-btn:hover:not(.is-disabled) {
+  filter: brightness(1.1);
+}
+
+.grammar-btn:active:not(.is-disabled) {
+  transform: translateY(1px);
+}
+
+/* 無効化ボタン */
+.grammar-btn.is-disabled {
+  background: #4b5563;  /* グレー */
+  cursor: not-allowed;
+  opacity: 0.6;
+}

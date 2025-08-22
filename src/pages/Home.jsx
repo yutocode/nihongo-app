@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import FeatureTile from "../components/FeatureTile";
-// Daily widgets は将来追加：
-// import DailyGreeting from "../components/DailyGreeting";
-// import DailyMeters from "../components/DailyMeters";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -23,11 +20,14 @@ const Home = () => {
             label={t("home.menu.wordbook", "単語帳")}
             onClick={() => navigate("/level")}
           />
+
+          {/* 文法 → レベル選択ページへ */}
           <FeatureTile
-            iconName="quiz"
-            label={t("home.menu.quiz", "クイズ")}
-            onClick={() => navigate("/quiz")}
+            iconName="question" 
+            label={t("home.menu.grammarQuiz", "文法クイズ")}
+            onClick={() => navigate("/grammar")} // ★レベル選択に飛ぶ
           />
+
           <FeatureTile
             iconName="trophy"
             label={t("home.menu.ranking", "ランキング")}
@@ -69,7 +69,7 @@ const Home = () => {
 
       {/* CTA */}
       <button className="cta-big" onClick={() => navigate("/level")}>
-        {t("home.cta.startN5", "Start conquering JLPT N5")}
+        {t("home.cta.startN5", "N5から学習を始める")}
       </button>
     </div>
   );

@@ -1,17 +1,21 @@
 {
   "common": {
-    "next": "下一步 →",
-    "prev": "← 返回",
+    "next": "下一題 →",
+    "prev": "← 上一題",
     "start": "開始",
-    "clickToShow": "點擊顯示意思",
+    "clickToShow": "點擊查看意思",
     "meaning": "意思",
     "progress": "進度",
+    "progressCheck": "檢查進度",
     "logout": "登出",
-    "premium": "進階版",
+    "premium": "高級功能",
     "settings": "設定",
     "profile": "個人資料",
-    "language": "語言設定",
-    "noWordsFound": "找不到相關單字"
+    "language": "語言",
+    "languageSettings": "語言設定",
+    "noWordsFound": "找不到單字",
+    "backToPrev" : "返回上一頁",
+    "backHome" : "返回首頁"
   },
 
   "nav": {
@@ -19,38 +23,114 @@
     "wordbook": "單字本",
     "quiz": "測驗",
     "listening": "聽力",
-    "challenge": "挑戰"
+    "challenge": "挑戰",
+    "grammarQuiz": "文法測驗"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "單字本",
+      "grammar": "文法",
+      "grammarQuiz": "文法測驗",
+      "ranking": "排行榜",
+      "listening": "聽力",
+      "challenge": "挑戰",
+      "examStructure": "考試結構",
+      "alphabet": "字母",
+      "practice": "模擬考"
+    },
+    "cta": {
+      "startN5": "從 N5 開始學習"
+    }
   },
 
   "level": {
-    "title": "選擇等級",
-    "subtitle": "請選擇等級",
-    "selectLanguage": "請選擇您的語言"
+    "title": "選擇級別",
+    "subtitle": "請選擇級別",
+    "selectLanguage": "請選擇語言"
   },
 
   "lesson": {
     "title": "選擇課程",
     "subtitle": "請選擇課程",
-    "part": "第 {{num}} 課",
+    "part": "課程 {{num}}",
     "lesson": "課程"
   },
 
   "quiz": {
-    "resultTitle": "🎉 成績公布！",
-    "score": "得分",
+    "resultTitle": "🎉 測驗結果",
+    "score": "分數",
     "accuracy": "正確率",
     "question": "題目",
     "timeLeft": "剩餘時間",
-    "correct": "答對！",
-    "wrong": "答錯！"
+    "correct": "正確！",
+    "wrong": "錯誤"
   },
 
   "ranking": {
     "title": "排行榜",
-    "description": "排行榜功能正在開發中。"
+    "description": "排行榜功能開發中"
   },
 
   "footer": {
-    "madeWithLove": "用 ❤️ 為語言學習者製作"
+    "madeWithLove": "為學習者用 ❤️ 製作"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "選擇文法級別",
+      "backHome": "返回首頁",
+      "backToLevels": "返回級別"
+    },
+    "categories": {
+      "title": "選擇 {{level}} 文法分類",
+      "particles": "助詞",
+      "verbForms": "動詞形",
+      "adjectives": "形容詞",
+      "existHave": "存在 / 擁有",
+      "compare": "比較與程度",
+      "intentPlan": "意圖・計劃・推測",
+      "askPermit": "請求・許可",
+      "basic": "其他基礎",
+      "backToLevels": "返回級別",
+      "comingSoon": "即將推出"
+    },
+    "lessons": {
+      "title": "{{level}} 課程選擇 ({{category}})",
+      "titleWithLabel": "{{level}} 課程選擇 ({{categoryLabel}})",
+      "hint": "選擇課程開始測驗。如果資料不存在，會顯示『找不到』。",
+      "backToCategories": "返回分類",
+      "open": "課程 {{num}}",
+      "back": "← 返回",
+      "toCategories": "到分類列表",
+      "toHome": "回首頁"
+    },
+    "quiz": {
+      "title": "{{level}} 文法 {{lesson}}",
+      "notFound": "此課程沒有測驗資料。",
+      "back": "返回",
+      "backToLessons": "返回課程列表",
+      "retry": "再試一次",
+      "score": "分數: {{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "上一題",
+        "lessonList": "課程列表",
+        "home": "首頁"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "{{level}} 形容詞二選一測驗",
+    "counter": "{{current}} / {{total}}",
+    "i": "い形容詞",
+    "na": "な形容詞",
+    "backOne": "← 返回上一題",
+    "toCategoryList": "到分類列表",
+    "toLessonList": "到課程列表",
+    "score": "分數: {{score}} / {{total}}",
+    "notFound": "找不到課程資料。",
+    "retry": "再試一次"
   }
 }

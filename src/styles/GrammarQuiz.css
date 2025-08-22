@@ -1,0 +1,130 @@
+/* ===== クイズ画面共通 ===== */
+.quiz-wrap {
+  text-align: center;
+  color: white;
+  background-color: #242424;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.counter { opacity: 0.8; }
+
+.question {
+  margin: 1rem auto 0.5rem;
+  max-width: 720px;
+  line-height: 1.9;
+  font-size: 1.4rem;
+}
+
+/* ここがポイント：クイズ画面内の漢字＋ルビは白で固定 */
+.quiz-wrap ruby,
+.quiz-wrap rb,
+.quiz-wrap rt,
+.quiz-wrap span {
+  color: #fff !important;
+}
+.quiz-wrap ruby { ruby-position: over; }
+.quiz-wrap rt {
+  font-size: 0.6em;
+  opacity: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem auto;
+  max-width: 540px;
+}
+
+.choice-btn {
+  background: #333;
+  border: 1px solid #646cff;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  font-size: 1.15rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.2s, box-shadow 0.2s;
+}
+.choice-btn:hover { background: #535bf2; transform: translateY(-1px); }
+.choice-btn.correct { background: #2e8b57; box-shadow: 0 0 10px rgba(46,139,87,.6); }
+.choice-btn.wrong   { background: #b22222; box-shadow: 0 0 10px rgba(178,34,34,.6); }
+
+/* ○×アニメ */
+.judge-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 50;
+}
+.judge-circle {
+  width: 180px;
+  height: 180px;
+  filter: drop-shadow(0 0 12px rgba(100,108,255,.7));
+}
+.judge-circle .ring,
+.judge-circle .ring2 {
+  fill: none;
+  stroke: #6a6fff;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transform-origin: 60px 60px;
+  animation: draw-circle .5s ease-out forwards, pop .5s ease-out forwards;
+}
+.judge-circle .ring2 {
+  stroke: #9aa0ff;
+  stroke-width: 6;
+  stroke-dasharray: 188;
+  stroke-dashoffset: 188;
+  animation-delay: .05s;
+}
+@keyframes draw-circle { to { stroke-dashoffset: 0; } }
+@keyframes pop {
+  0% { transform: scale(.9); }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.judge-cross {
+  width: 180px;
+  height: 180px;
+  filter: drop-shadow(0 0 12px rgba(255,90,90,.7));
+}
+.judge-cross .bar1,
+.judge-cross .bar2 {
+  stroke: #ff5a5a;
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 85;
+  stroke-dashoffset: 85;
+  animation: draw-line .35s ease-out forwards, shake .5s ease-out forwards;
+}
+.judge-cross .bar2 { animation-delay: .08s, .08s; }
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+@keyframes shake {
+  0%   { transform: translateX(0) }
+  35%  { transform: translateX(-2px) }
+  70%  { transform: translateX(2px) }
+  100% { transform: translateX(0) }
+}
+
+.quiz-toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin: 8px 0 12px;
+}
+.choice-btn.ghost {
+  background: transparent;
+  border: 1px solid var(--fg-muted, #7aa);
+  opacity: 0.9;
+}
+.choice-btn.ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

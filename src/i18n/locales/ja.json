@@ -1,0 +1,136 @@
+{
+  "common": {
+    "next": "次へ →",
+    "prev": "← 戻る",
+    "start": "開始",
+    "clickToShow": "クリックして意味を表示",
+    "meaning": "意味",
+    "progress": "進捗",
+    "progressCheck": "進捗確認",
+    "logout": "ログアウト",
+    "premium": "プレミアム機能",
+    "settings": "設定",
+    "profile": "プロフィール",
+    "language": "言語",
+    "languageSettings": "言語設定",
+    "noWordsFound": "単語が見つかりません",
+    "backToPrev" : "前へ戻る",
+    "backHome" : "ホームに戻る"
+  },
+
+  "nav": {
+    "home": "ホーム",
+    "wordbook": "単語帳",
+    "quiz": "クイズ",
+    "listening": "リスニング",
+    "challenge": "チャレンジ",
+    "grammarQuiz": "文法クイズ"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "単語帳",
+      "grammar": "文法",
+      "grammarQuiz": "文法クイズ",
+      "ranking": "ランキング",
+      "listening": "リスニング",
+      "challenge": "チャレンジ",
+      "examStructure": "試験構成",
+      "alphabet": "文字",
+      "practice": "模擬試験"
+    },
+    "cta": {
+      "startN5": "N5から学習を始める"
+    }
+  },
+
+  "level": {
+    "title": "レベルを選択",
+    "subtitle": "レベルを選んでください",
+    "selectLanguage": "言語を選んでください"
+  },
+
+  "lesson": {
+    "title": "課を選択",
+    "subtitle": "課を選んでください",
+    "part": "第 {{num}} 課",
+    "lesson": "課"
+  },
+
+  "quiz": {
+    "resultTitle": "🎉 結果",
+    "score": "スコア",
+    "accuracy": "正答率",
+    "question": "問題",
+    "timeLeft": "残り時間",
+    "correct": "正解！",
+    "wrong": "不正解"
+  },
+
+  "ranking": {
+    "title": "ランキング",
+    "description": "ランキング機能は開発中です"
+  },
+
+  "footer": {
+    "madeWithLove": "学習者のために ❤️ を込めて作成"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "文法レベルを選択",
+      "backHome": "ホームに戻る",
+      "backToLevels": "レベル選択に戻る"
+    },
+    "categories": {
+      "title": "{{level}} の文法カテゴリを選択",
+      "particles": "助詞",
+      "verbForms": "動詞の活用",
+      "adjectives": "形容詞の活用",
+      "existHave": "存在・所有（ある／いる／持っている）",
+      "compare": "比較・程度（より・いちばん）",
+      "intentPlan": "意志・予定・推量（〜たい・〜つもり・〜でしょう）",
+      "askPermit": "依頼・許可（〜てください／〜てもいい）",
+      "basic": "その他の基礎文法",
+      "backToLevels": "レベルに戻る",
+      "comingSoon": "近日公開"
+    },
+    "lessons": {
+      "title": "{{level}} レッスン選択（{{category}}）",
+      "titleWithLabel": "{{level}} レッスン選択（{{categoryLabel}}）",
+      "hint": "課を選択してクイズを開始してください。データが未準備の場合は「見つかりません」と表示されます。",
+      "backToCategories": "カテゴリに戻る",
+      "open": "第 {{num}} 課",
+      "back": "前へ戻る",
+      "toCategories": "カテゴリ一覧へ",
+      "toHome": "ホームへ"
+    },
+    "quiz": {
+      "title": "{{level}} {{lesson}} の文法",
+      "notFound": "この課のクイズデータは見つかりません。",
+      "back": "戻る",
+      "backToLessons": "課一覧に戻る",
+      "retry": "もう一度",
+      "score": "スコア：{{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "前の問題",
+        "lessonList": "課一覧",
+        "home": "ホーム"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "{{level}} 形容詞 二択クイズ",
+    "counter": "{{current}} / {{total}}",
+    "i": "い形容詞",
+    "na": "な形容詞",
+    "backOne": "← 前へ戻る",
+    "toCategoryList": "カテゴリ一覧へ",
+    "toLessonList": "レッスン一覧へ",
+    "score": "スコア：{{score}} / {{total}}",
+    "notFound": "レッスンデータが見つかりません。",
+    "retry": "もう一度"
+  }
+}

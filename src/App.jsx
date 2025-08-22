@@ -4,8 +4,10 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   useNavigate,
   useLocation,
+  useParams,
 } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase-config";
@@ -28,13 +30,29 @@ import LessonSelectPage from "./pages/LessonSelectPage";
 import Settings from "./pages/Settings";
 import LanguageSettings from "./pages/LanguageSettings";
 
-// ★ XP 永続化ユーティリティ
+// 文法ページ群
+import GrammarLevelSelectPage from "./pages/GrammarLevelSelectPage";
+import GrammarCategorySelectPage from "./pages/GrammarCategorySelectPage";
+import GrammarLessonSelectPage from "./pages/GrammarLessonSelectPage";
+import GrammarQuizPage from "./pages/GrammarQuizPage";
+import ExistHaveQuizPage from "./pages/ExistHaveQuizPage"; // ★ 追加
+
+// 形容詞（い/な）二択クイズ
+import AdjTypeQuizPage from "./pages/AdjTypeQuizPage";
+
+// XP 永続化ユーティリティ
 import { initUserXP, stopAutoSave } from "./utils/xpPersistence";
+
+// /adj/:level → /adj/:level/lesson1 に安全リダイレクト
+function AdjLevelRedirect() {
+  const { level = "n5" } = useParams();
+  return <Navigate to={`/adj/${level}/lesson1`} replace />;
+}
 
 const App = () => {
   return (
     <Router>
-      <AppInitializer /> {/* ログイン状態 & XP/デイリー復元 */}
+      <AppInitializer />
       <Routes>
         {/* 公開ルート */}
         <Route path="/" element={<AuthPage />} />
@@ -42,7 +60,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/auth" element={<AuthPage />} />
 
-        {/* 認証後ルート */}
+        {/* 認証後ルート（共通レイアウト配下） */}
         <Route
           element={
             <AuthGuard>
@@ -59,10 +77,32 @@ const App = () => {
           <Route path="/words/:level/:lesson" element={<WordPage />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/language" element={<LanguageSettings />} />
+
+          {/* 文法：レベル → カテゴリ → レッスン → クイズ */}
+          <Route path="/grammar" element={<GrammarLevelSelectPage />} />
+          <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
+          <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
+
+          {/* ★ 存在・所有（ある/いる/持つ）は専用クイズページへ */}
+          <Route
+            path="/grammar/:level/exist-have/:lesson"
+            element={<ExistHaveQuizPage />}
+          />
+
+          {/* その他カテゴリのクイズ（従来汎用） */}
+          <Route
+            path="/grammar/:level/:category/:lesson"
+            element={<GrammarQuizPage />}
+          />
+
+          {/* ★ 形容詞二択クイズ */}
+          <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
+          <Route path="/adj/:level" element={<AdjLevelRedirect />} />
+          <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
         </Route>
 
-        {/* 404 フォールバック */}
-        <Route path="*" element={<AuthPage />} />
+        {/* 404 */}
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </Router>
   );
@@ -87,11 +127,14 @@ const AppInitializer = () => {
     "/words",
     "/settings",
     "/language",
+    "/grammar",
+    "/adj",
   ];
 
   // 重複遷移防止
   const lastNavRef = useRef("");
   const navigateOnce = (to) => {
+    if (!to) return;
     if (lastNavRef.current === to) return;
     lastNavRef.current = to;
     navigate(to, { replace: true });
@@ -99,39 +142,38 @@ const AppInitializer = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      const path = location.pathname;
+      const path = location.pathname || "/";
 
       if (user) {
         setUser(user);
 
-        // ★ XP復元はノンブロッキング（体感を速く）
+        // XP / デイリーの復元
         try {
-          initUserXP(user.uid);
+          initUserXP?.(user.uid);
         } catch (e) {
-          console.warn("initUserXP fire-and-forget failed:", e);
+          console.warn("initUserXP failed:", e);
         }
-
-        // ★ デイリー（今日のノルマ）もユーザー別に復元
         try {
-          const st = useAppStore.getState();
-          st.loadDailyForUser(user.uid);
-          st.ensureDailyToday(user.uid);
+          const st = useAppStore.getState?.();
+          st?.loadDailyForUser?.(user.uid);
+          st?.ensureDailyToday?.(user.uid);
         } catch (e) {
           console.warn("daily restore failed:", e);
         }
 
-        // 公開ページに居たらホームへ
+        // 公開ページにいるなら /home へ
         if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
       } else {
         clearUser();
-        stopAutoSave(); // XPの自動保存監視を解除
+        try {
+          stopAutoSave?.();
+        } catch {}
 
-        // 未ログインで私的ページに居たら公開トップへ
+        // 未ログインで私的ページなら公開トップへ
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
         if (onPrivate) navigateOnce("/");
       }
 
-      // 画面表示OK
       setAuthReady(true);
     });
 

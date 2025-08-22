@@ -6,26 +6,48 @@
     "clickToShow": "Klik untuk melihat arti",
     "meaning": "Arti",
     "progress": "Kemajuan",
+    "progressCheck": "Cek Kemajuan",
     "logout": "Keluar",
-    "premium": "Premium",
+    "premium": "Fitur Premium",
     "settings": "Pengaturan",
     "profile": "Profil",
     "language": "Bahasa",
-    "noWordsFound": "Tidak ada kata ditemukan"
+    "languageSettings": "Pengaturan Bahasa",
+    "noWordsFound": "Kata tidak ditemukan",
+    "backToPrev" : "Kembali ke sebelumnya",
+    "backHome" : "Kembali ke Beranda"
   },
 
   "nav": {
     "home": "Beranda",
-    "wordbook": "Buku Kosakata",
+    "wordbook": "Kosakata",
     "quiz": "Kuis",
     "listening": "Mendengarkan",
-    "challenge": "Tantangan"
+    "challenge": "Tantangan",
+    "grammarQuiz": "Kuis Tata Bahasa"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "Kosakata",
+      "grammar": "Tata Bahasa",
+      "grammarQuiz": "Kuis Tata Bahasa",
+      "ranking": "Peringkat",
+      "listening": "Mendengarkan",
+      "challenge": "Tantangan",
+      "examStructure": "Struktur Ujian",
+      "alphabet": "Huruf",
+      "practice": "Ujian Simulasi"
+    },
+    "cta": {
+      "startN5": "Mulai belajar dari N5"
+    }
   },
 
   "level": {
-    "title": "Pilih Tingkat",
-    "subtitle": "Silakan pilih tingkat",
-    "selectLanguage": "Silakan pilih bahasa Anda"
+    "title": "Pilih Level",
+    "subtitle": "Silakan pilih level",
+    "selectLanguage": "Silakan pilih bahasa"
   },
 
   "lesson": {
@@ -36,21 +58,79 @@
   },
 
   "quiz": {
-    "resultTitle": "🎉 Hasil!",
+    "resultTitle": "🎉 Hasil",
     "score": "Skor",
     "accuracy": "Akurasi",
-    "question": "Pertanyaan",
-    "timeLeft": "Sisa waktu",
+    "question": "Soal",
+    "timeLeft": "Waktu tersisa",
     "correct": "Benar!",
-    "wrong": "Salah!"
+    "wrong": "Salah"
   },
 
   "ranking": {
-    "title": "Papan Peringkat",
-    "description": "Fitur peringkat sedang dalam pengembangan."
+    "title": "Peringkat",
+    "description": "Fitur peringkat sedang dalam pengembangan"
   },
 
   "footer": {
-    "madeWithLove": "Dibuat dengan ❤️ untuk para pelajar bahasa"
+    "madeWithLove": "Dibuat dengan ❤️ untuk pelajar"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "Pilih Level Tata Bahasa",
+      "backHome": "Kembali ke Beranda",
+      "backToLevels": "Kembali ke Level"
+    },
+    "categories": {
+      "title": "Pilih kategori tata bahasa {{level}}",
+      "particles": "Partikel",
+      "verbForms": "Bentuk kata kerja",
+      "adjectives": "Kata sifat",
+      "existHave": "Ada / Punya",
+      "compare": "Perbandingan & Tingkat",
+      "intentPlan": "Niat & Rencana",
+      "askPermit": "Permintaan & Izin",
+      "basic": "Dasar lainnya",
+      "backToLevels": "Kembali ke Level",
+      "comingSoon": "Segera hadir"
+    },
+    "lessons": {
+      "title": "Pilih Pelajaran {{level}} ({{category}})",
+      "titleWithLabel": "Pilih Pelajaran {{level}} ({{categoryLabel}})",
+      "hint": "Pilih pelajaran untuk mulai kuis. Jika data tidak ada, akan muncul pesan 'tidak ditemukan'.",
+      "backToCategories": "Kembali ke Kategori",
+      "open": "Pelajaran {{num}}",
+      "back": "← Kembali",
+      "toCategories": "Ke daftar kategori",
+      "toHome": "Ke Beranda"
+    },
+    "quiz": {
+      "title": "Tata Bahasa {{level}} {{lesson}}",
+      "notFound": "Data kuis untuk pelajaran ini tidak ditemukan.",
+      "back": "Kembali",
+      "backToLessons": "Kembali ke Daftar Pelajaran",
+      "retry": "Coba lagi",
+      "score": "Skor: {{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "Soal sebelumnya",
+        "lessonList": "Daftar Pelajaran",
+        "home": "Beranda"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "Kuis Dua Pilihan Kata Sifat {{level}}",
+    "counter": "{{current}} / {{total}}",
+    "i": "Kata sifat -i",
+    "na": "Kata sifat -na",
+    "backOne": "← Kembali ke soal sebelumnya",
+    "toCategoryList": "Ke daftar kategori",
+    "toLessonList": "Ke daftar pelajaran",
+    "score": "Skor: {{score}} / {{total}}",
+    "notFound": "Data pelajaran tidak ditemukan.",
+    "retry": "Coba lagi"
   }
 }

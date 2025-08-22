@@ -3,9 +3,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* ダークモード固定 */
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87); /* 明るい文字色 */
+  background-color: #242424;        /* ダーク背景 */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,6 +29,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #242424;       /* ダーク背景固定 */
+  color: rgba(255, 255, 255, 0.87); /* テキストも固定 */
 }
 
 h1 {
@@ -42,7 +45,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a;       /* ダークボタン */
+  color: rgba(255, 255, 255, 0.87);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -54,15 +58,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ✅ ライトモード無効化（強制的にダークに上書き） */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
   }
-  a:hover {
-    color: #747bff;
+  body {
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.87);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.87);
   }
 }

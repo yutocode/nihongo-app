@@ -6,12 +6,16 @@
     "clickToShow": "Click to show meaning",
     "meaning": "Meaning",
     "progress": "Progress",
+    "progressCheck": "Check Progress",
     "logout": "Logout",
-    "premium": "Premium",
+    "premium": "Premium Features",
     "settings": "Settings",
     "profile": "Profile",
     "language": "Language",
-    "noWordsFound": "No words found"
+    "languageSettings": "Language Settings",
+    "noWordsFound": "No words found",
+    "backToPrev" : "Back to Previous",
+    "backHome" : "Back to Home"
   },
 
   "nav": {
@@ -19,13 +23,31 @@
     "wordbook": "Wordbook",
     "quiz": "Quiz",
     "listening": "Listening",
-    "challenge": "Challenge"
+    "challenge": "Challenge",
+    "grammarQuiz": "Grammar Quiz"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "Wordbook",
+      "grammar": "Grammar",
+      "grammarQuiz": "Grammar Quiz",
+      "ranking": "Ranking",
+      "listening": "Listening",
+      "challenge": "Challenge",
+      "examStructure": "Exam Structure",
+      "alphabet": "Alphabet",
+      "practice": "Mock Exam"
+    },
+    "cta": {
+      "startN5": "Start learning from N5"
+    }
   },
 
   "level": {
     "title": "Select Level",
     "subtitle": "Please select a level",
-    "selectLanguage": "Please select your language"
+    "selectLanguage": "Please select a language"
   },
 
   "lesson": {
@@ -36,21 +58,79 @@
   },
 
   "quiz": {
-    "resultTitle": "🎉 Results!",
+    "resultTitle": "🎉 Results",
     "score": "Score",
     "accuracy": "Accuracy",
     "question": "Question",
     "timeLeft": "Time Left",
     "correct": "Correct!",
-    "wrong": "Wrong!"
+    "wrong": "Wrong"
   },
 
   "ranking": {
     "title": "Ranking",
-    "description": "The ranking feature is under development."
+    "description": "Ranking feature is under development"
   },
 
   "footer": {
-    "madeWithLove": "Made with ❤️ for language learners"
+    "madeWithLove": "Made with ❤️ for learners"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "Select Grammar Level",
+      "backHome": "Back to Home",
+      "backToLevels": "Back to Levels"
+    },
+    "categories": {
+      "title": "Select {{level}} grammar category",
+      "particles": "Particles",
+      "verbForms": "Verb forms",
+      "adjectives": "Adjectives",
+      "existHave": "Existence / Possession",
+      "compare": "Comparison & Degree",
+      "intentPlan": "Intention / Plan / Guess",
+      "askPermit": "Request / Permission",
+      "basic": "Other Basics",
+      "backToLevels": "Back to Levels",
+      "comingSoon": "Coming soon"
+    },
+    "lessons": {
+      "title": "{{level}} Lesson Selection ({{category}})",
+      "titleWithLabel": "{{level}} Lesson Selection ({{categoryLabel}})",
+      "hint": "Select a lesson to start the quiz. If data is not available, 'Not Found' will be shown.",
+      "backToCategories": "Back to Categories",
+      "open": "Lesson {{num}}",
+      "back": "← Back",
+      "toCategories": "To Category List",
+      "toHome": "To Home"
+    },
+    "quiz": {
+      "title": "{{level}} Grammar {{lesson}}",
+      "notFound": "Quiz data for this lesson not found.",
+      "back": "Back",
+      "backToLessons": "Back to Lesson List",
+      "retry": "Retry",
+      "score": "Score: {{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "Previous Question",
+        "lessonList": "Lesson List",
+        "home": "Home"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "{{level}} Adjective Two-choice Quiz",
+    "counter": "{{current}} / {{total}}",
+    "i": "i-adjective",
+    "na": "na-adjective",
+    "backOne": "← Back to previous question",
+    "toCategoryList": "To Category List",
+    "toLessonList": "To Lesson List",
+    "score": "Score: {{score}} / {{total}}",
+    "notFound": "Lesson data not found.",
+    "retry": "Retry"
   }
 }

@@ -1,0 +1,23 @@
+/* 左上ナビ（常に左上。ヘッダーの下に来る想定） */
+.quiz-top-nav {
+  position: sticky;      /* スクロールしても上部に追従 */
+  top: 8px;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 5;
+}
+
+/* 小さめで主張し過ぎない戻るボタン */
+.nav-btn {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #2f7d32;
+  color: #fff;
+  cursor: pointer;
+}
+.nav-btn:hover { filter: brightness(1.08); }

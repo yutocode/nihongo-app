@@ -9,7 +9,6 @@ const LessonSelectPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // ✅ JLPTレベルに応じたレッスン数を定義
   const lessonCounts = {
     n5: 2,
     n4: 8,
@@ -20,21 +19,18 @@ const LessonSelectPage = () => {
 
   const lessonCount = lessonCounts[level?.toLowerCase()] || 0;
 
-  // ✅ レッスン配列を生成（例: Lesson1〜Lesson40）
-  const lessons = Array.from({ length: lessonCount }, (_, i) => `Lesson${i + 1}`);
-
   return (
     <div className="lesson-select-page">
       <h2>
-        {t("selectLesson", "レッスンを選んでください")} ({level?.toUpperCase()})
+        {t("lesson.title")} ({level?.toUpperCase()})
       </h2>
       <div className="lesson-buttons">
-        {lessons.map((lesson) => (
+        {Array.from({ length: lessonCount }, (_, i) => (
           <button
-            key={lesson}
-            onClick={() => navigate(`/words/${level}/${lesson}`)}
+            key={i + 1}
+            onClick={() => navigate(`/words/${level}/Lesson${i + 1}`)}
           >
-            {t("lesson", "レッスン")} {lesson.replace("Lesson", "")}
+            {t("lesson.part", { num: i + 1 })}
           </button>
         ))}
       </div>

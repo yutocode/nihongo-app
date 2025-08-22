@@ -1,34 +1,65 @@
-/* ヘッダー本体（タイトルは無し、中央にXPバナー） */
-.app-header{
-  position: sticky; top: 0; z-index: 100;
+/* ヘッダー全体 */
+.app-header {
   display: grid;
-  grid-template-columns: 48px 1fr 48px;
+  grid-template-columns: 1fr auto 1fr; /* 左: ホーム+戻る / 中央: XP / 右: 設定 */
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #0e0e0f; /* ダーク基調 */
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 56px;
+}
+
+/* 左エリア（ホーム＋戻る） */
+.hdr-left {
+  display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
-  background: var(--bg);             /* Global.css の色変数を使用 */
-  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  justify-self: flex-start;
 }
 
-/* 中央ブロック：XPバナーが左右に当たらないように少し余白 */
-.hdr-center{
-  display:flex; align-items:center; justify-content:center;
-  padding: 4px;
+/* 中央エリア（XPバナー） */
+.hdr-center {
+  justify-self: center;
+  display: flex;
+  align-items: center;
 }
 
-/* 左右の丸ボタン */
-.hdr-btn{
-  width: 40px; height: 40px; border: none; cursor: pointer;
-  border-radius: 12px;
-  background: var(--surface);
-  color: var(--text);
-  font-size: 1.05rem;
-  box-shadow: var(--elev-1);
+/* 右エリア（設定） */
+.hdr-right {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
 }
-.hdr-btn:hover{ background: var(--surface-hi) }
-.hdr-btn:focus-visible{ outline: 3px solid rgba(217,180,94,.6); outline-offset: 2px }
 
-/* 大画面で少しゆったり */
-@media (min-width: 900px){
-  .app-header{ padding: 12px 16px; grid-template-columns: 56px 1fr 56px; }
+/* 共通ボタン */
+.hdr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background: #2f7d32;  /* 緑ベース */
+  color: #fff;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.hdr-btn:hover {
+  filter: brightness(1.1);
+}
+
+.hdr-btn:active {
+  transform: translateY(1px);
+}
+
+/* 戻るボタン内のテキスト */
+.hdr-btn-text {
+  font-size: 13px;
+  font-weight: 400;
 }

@@ -1,0 +1,19 @@
+.back-home {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.home-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.home-btn:hover {
+  background-color: #45a049;
+}
