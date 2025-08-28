@@ -5,23 +5,36 @@
 }
 
 .settings-page h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 26px;
+  margin-bottom: 24px;
+  color: #ffffff; /* タイトルは白文字でコントラスト強化 */
+  font-weight: bold;
 }
 
+/* ボタンデザイン */
 .settings-buttons button {
   display: block;
-  width: 80%;
-  margin: 10px auto;
-  padding: 12px;
-  font-size: 16px;
+  width: 85%;
+  margin: 12px auto;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
-  background-color: #f0f0f0;
-  border-radius: 8px;
+  background-color: #2d2d2d; /* ダーク背景に合わせる */
+  color: #ffffff;            /* 白文字で視認性UP */
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s, transform 0.1s;
 }
 
+/* ホバー（PC用） */
 .settings-buttons button:hover {
-  background-color: #e0e0e0;
+  background-color: #4cafef; /* 水色に変化 */
+  transform: scale(1.02);
+}
+
+/* 押した時のフィードバック */
+.settings-buttons button:active {
+  background-color: #388edc;
+  transform: scale(0.98);
 }

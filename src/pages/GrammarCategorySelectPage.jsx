@@ -8,9 +8,9 @@ const CATEGORIES = [
   { slug: "verb-forms",  tkey: "grammar.categories.verbForms",   enabled: true  },
   { slug: "adjectives",  tkey: "grammar.categories.adjectives",  enabled: true },
   { slug: "exist-have",  tkey: "grammar.categories.existHave",   enabled: true },
-  { slug: "compare",     tkey: "grammar.categories.compare",     enabled: false },
-  { slug: "intent-plan", tkey: "grammar.categories.intentPlan",  enabled: false },
-  { slug: "ask-permit",  tkey: "grammar.categories.askPermit",   enabled: false },
+  { slug: "compare",     tkey: "grammar.categories.compare",     enabled: true },
+  { slug: "intent-plan", tkey: "grammar.categories.intentPlan",  enabled: true },
+  { slug: "ask-permit",  tkey: "grammar.categories.askPermit",   enabled: true },
   { slug: "basic",       tkey: "grammar.categories.basic",       enabled: false },
 ];
 

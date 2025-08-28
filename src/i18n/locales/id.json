@@ -14,8 +14,8 @@
     "language": "Bahasa",
     "languageSettings": "Pengaturan Bahasa",
     "noWordsFound": "Kata tidak ditemukan",
-    "backToPrev" : "Kembali ke sebelumnya",
-    "backHome" : "Kembali ke Beranda"
+    "backToPrev": "Kembali ke sebelumnya",
+    "backHome": "Kembali ke Beranda"
   },
 
   "nav": {
@@ -32,7 +32,7 @@
       "wordbook": "Kosakata",
       "grammar": "Tata Bahasa",
       "grammarQuiz": "Kuis Tata Bahasa",
-      "ranking": "Peringkat",
+      "text": "teks",
       "listening": "Mendengarkan",
       "challenge": "Tantangan",
       "examStructure": "Struktur Ujian",
@@ -62,7 +62,7 @@
     "score": "Skor",
     "accuracy": "Akurasi",
     "question": "Soal",
-    "timeLeft": "Waktu tersisa",
+    "timeLeft": "Sisa Waktu",
     "correct": "Benar!",
     "wrong": "Salah"
   },
@@ -85,24 +85,25 @@
     "categories": {
       "title": "Pilih kategori tata bahasa {{level}}",
       "particles": "Partikel",
-      "verbForms": "Bentuk kata kerja",
-      "adjectives": "Kata sifat",
+      "verbForms": "Bentuk Kata Kerja",
+      "adjectives": "Kata Sifat",
       "existHave": "Ada / Punya",
       "compare": "Perbandingan & Tingkat",
       "intentPlan": "Niat & Rencana",
       "askPermit": "Permintaan & Izin",
-      "basic": "Dasar lainnya",
+      "basic": "Dasar Lainnya",
       "backToLevels": "Kembali ke Level",
-      "comingSoon": "Segera hadir"
+      "comingSoon": "Segera Hadir"
     },
     "lessons": {
       "title": "Pilih Pelajaran {{level}} ({{category}})",
       "titleWithLabel": "Pilih Pelajaran {{level}} ({{categoryLabel}})",
-      "hint": "Pilih pelajaran untuk mulai kuis. Jika data tidak ada, akan muncul pesan 'tidak ditemukan'.",
+      "hint": "Pilih pelajaran untuk mulai kuis. Jika data tidak ada, akan muncul pesan 'Tidak ditemukan'.",
       "backToCategories": "Kembali ke Kategori",
+      "backToList": "Ke Daftar Pelajaran",
       "open": "Pelajaran {{num}}",
       "back": "← Kembali",
-      "toCategories": "Ke daftar kategori",
+      "toCategories": "Ke Daftar Kategori",
       "toHome": "Ke Beranda"
     },
     "quiz": {
@@ -114,7 +115,7 @@
       "score": "Skor: {{score}} / {{total}}",
       "counter": "{{current}} / {{total}}",
       "toolbar": {
-        "prevOne": "Soal sebelumnya",
+        "prevOne": "Soal Sebelumnya",
         "lessonList": "Daftar Pelajaran",
         "home": "Beranda"
       }
@@ -127,10 +128,38 @@
     "i": "Kata sifat -i",
     "na": "Kata sifat -na",
     "backOne": "← Kembali ke soal sebelumnya",
-    "toCategoryList": "Ke daftar kategori",
-    "toLessonList": "Ke daftar pelajaran",
+    "toCategoryList": "Ke Daftar Kategori",
+    "toLessonList": "Ke Daftar Pelajaran",
     "score": "Skor: {{score}} / {{total}}",
     "notFound": "Data pelajaran tidak ditemukan.",
     "retry": "Coba lagi"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "Ubah kalimat ini menjadi bentuk permintaan.",
+      "permission": "Ubah kalimat ini menjadi bentuk izin.",
+      "prohibition": "Ubah kalimat ini menjadi bentuk larangan.",
+      "obligation": "Ubah kalimat ini menjadi bentuk keharusan.",
+      "unnecessary": "Ubah kalimat ini menjadi bentuk tidak perlu.",
+      "default": "Pilih bentuk yang benar."
+    }
+  },
+
+  "text": {
+    "categories": {
+      "title": "Pilih Kategori Teks N5",
+      "particles": "Partikel",
+      "verbForms": "Bentuk Kata Kerja",
+      "adjectives": "Kata Sifat",
+      "existHave": "Keberadaan / Kepemilikan",
+      "compare": "Perbandingan / Tingkat",
+      "intentPlan": "Niat / Rencana / Perkiraan",
+      "askPermit": "Permintaan / Izin",
+      "basic": "Dasar Lainnya",
+      "comingSoon": "Segera Hadir"
+    }
   }
+
+
 }

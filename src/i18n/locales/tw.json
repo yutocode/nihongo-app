@@ -14,8 +14,8 @@
     "language": "語言",
     "languageSettings": "語言設定",
     "noWordsFound": "找不到單字",
-    "backToPrev" : "返回上一頁",
-    "backHome" : "返回首頁"
+    "backToPrev": "返回上一頁",
+    "backHome": "返回首頁"
   },
 
   "nav": {
@@ -32,7 +32,7 @@
       "wordbook": "單字本",
       "grammar": "文法",
       "grammarQuiz": "文法測驗",
-      "ranking": "排行榜",
+      "text": "課文",
       "listening": "聽力",
       "challenge": "挑戰",
       "examStructure": "考試結構",
@@ -53,7 +53,7 @@
   "lesson": {
     "title": "選擇課程",
     "subtitle": "請選擇課程",
-    "part": "課程 {{num}}",
+    "part": "第 {{num}} 課",
     "lesson": "課程"
   },
 
@@ -85,9 +85,9 @@
     "categories": {
       "title": "選擇 {{level}} 文法分類",
       "particles": "助詞",
-      "verbForms": "動詞形",
+      "verbForms": "動詞變化",
       "adjectives": "形容詞",
-      "existHave": "存在 / 擁有",
+      "existHave": "存在／擁有",
       "compare": "比較與程度",
       "intentPlan": "意圖・計劃・推測",
       "askPermit": "請求・許可",
@@ -96,11 +96,12 @@
       "comingSoon": "即將推出"
     },
     "lessons": {
-      "title": "{{level}} 課程選擇 ({{category}})",
-      "titleWithLabel": "{{level}} 課程選擇 ({{categoryLabel}})",
-      "hint": "選擇課程開始測驗。如果資料不存在，會顯示『找不到』。",
+      "title": "{{level}} 課程選擇（{{category}}）",
+      "titleWithLabel": "{{level}} 課程選擇（{{categoryLabel}}）",
+      "hint": "請選擇課程開始測驗。如果資料不存在，會顯示「找不到」。",
       "backToCategories": "返回分類",
-      "open": "課程 {{num}}",
+      "backToList": "返回課程列表",
+      "open": "第 {{num}} 課",
       "back": "← 返回",
       "toCategories": "到分類列表",
       "toHome": "回首頁"
@@ -111,7 +112,7 @@
       "back": "返回",
       "backToLessons": "返回課程列表",
       "retry": "再試一次",
-      "score": "分數: {{score}} / {{total}}",
+      "score": "分數：{{score}} / {{total}}",
       "counter": "{{current}} / {{total}}",
       "toolbar": {
         "prevOne": "上一題",
@@ -129,8 +130,35 @@
     "backOne": "← 返回上一題",
     "toCategoryList": "到分類列表",
     "toLessonList": "到課程列表",
-    "score": "分數: {{score}} / {{total}}",
+    "score": "分數：{{score}} / {{total}}",
     "notFound": "找不到課程資料。",
     "retry": "再試一次"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "請把這句話改成『請求形』。",
+      "permission": "請把這句話改成『許可形』。",
+      "prohibition": "請把這句話改成『禁止形』。",
+      "obligation": "請把這句話改成『義務形』。",
+      "unnecessary": "請把這句話改成『不必要形』。",
+      "default": "請改成正確的形式。"
+    }
+  },
+
+  "text": {
+    "categories": {
+      "title": "選擇 N5 課文分類",
+      "particles": "助詞",
+      "verbForms": "動詞變化",
+      "adjectives": "形容詞",
+      "existHave": "存在・擁有",
+      "compare": "比較・程度",
+      "intentPlan": "意圖・計劃・推測",
+      "askPermit": "請求・許可",
+      "basic": "其他基礎",
+      "comingSoon": "即將推出"
+    }
   }
+
 }

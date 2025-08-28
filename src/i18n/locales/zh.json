@@ -14,8 +14,8 @@
     "language": "语言",
     "languageSettings": "语言设置",
     "noWordsFound": "未找到单词",
-    "backToPrev" : "返回上一页",
-    "backHome" : "戻返回首页"
+    "backToPrev": "返回上一页",
+    "backHome": "返回首页"
   },
 
   "nav": {
@@ -32,7 +32,7 @@
       "wordbook": "单词本",
       "grammar": "语法",
       "grammarQuiz": "语法测验",
-      "ranking": "排行榜",
+      "text": "课文",
       "listening": "听力",
       "challenge": "挑战",
       "examStructure": "考试结构",
@@ -100,6 +100,7 @@
       "titleWithLabel": "{{level}} 课程选择 ({{categoryLabel}})",
       "hint": "选择课程开始测验。如果数据不存在，会显示『未找到』。",
       "backToCategories": "返回分类",
+      "backToList": "返回课程列表",
       "open": "课程 {{num}}",
       "back": "← 返回",
       "toCategories": "到分类列表",
@@ -132,5 +133,31 @@
     "score": "分数: {{score}} / {{total}}",
     "notFound": "未找到课程数据。",
     "retry": "再试一次"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "请把这个句子改成请求形式。",
+      "permission": "请把这个句子改成许可形式。",
+      "prohibition": "请把这个句子改成禁止形式。",
+      "obligation": "请把这个句子改成必须形式。",
+      "unnecessary": "请把这个句子改成不需要形式。",
+      "default": "请选择正确的形式。"
+    }
+  },
+  
+  "text": {
+    "categories": {
+      "title": "选择 N5 课文分类",
+      "particles": "助词",
+      "verbForms": "动词变化",
+      "adjectives": "形容词",
+      "existHave": "存在・拥有",
+      "compare": "比较・程度",
+      "intentPlan": "意图・计划・推测",
+      "askPermit": "请求・许可",
+      "basic": "其他基础",
+      "comingSoon": "即将推出"
+    }
   }
 }

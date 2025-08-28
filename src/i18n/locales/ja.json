@@ -14,8 +14,8 @@
     "language": "言語",
     "languageSettings": "言語設定",
     "noWordsFound": "単語が見つかりません",
-    "backToPrev" : "前へ戻る",
-    "backHome" : "ホームに戻る"
+    "backToPrev": "前へ戻る",
+    "backHome": "ホームに戻る"
   },
 
   "nav": {
@@ -32,7 +32,7 @@
       "wordbook": "単語帳",
       "grammar": "文法",
       "grammarQuiz": "文法クイズ",
-      "ranking": "ランキング",
+      "text": "テキスト",
       "listening": "リスニング",
       "challenge": "チャレンジ",
       "examStructure": "試験構成",
@@ -99,7 +99,10 @@
       "title": "{{level}} レッスン選択（{{category}}）",
       "titleWithLabel": "{{level}} レッスン選択（{{categoryLabel}}）",
       "hint": "課を選択してクイズを開始してください。データが未準備の場合は「見つかりません」と表示されます。",
+
       "backToCategories": "カテゴリに戻る",
+      "backToList": "レッスン一覧へ",
+
       "open": "第 {{num}} 課",
       "back": "前へ戻る",
       "toCategories": "カテゴリ一覧へ",
@@ -132,5 +135,34 @@
     "score": "スコア：{{score}} / {{total}}",
     "notFound": "レッスンデータが見つかりません。",
     "retry": "もう一度"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "この文を依頼形にしてください。",
+      "permission": "この文を許可形にしてください。",
+      "prohibition": "この文を禁止形にしてください。",
+      "obligation": "この文を義務形にしてください。",
+      "unnecessary": "この文を不要形にしてください。",
+      "default": "正しい形にしてください。"
+    }
+  },
+  
+  "text": {
+    "categories": {
+      "title": "選擇 N5 テキスト分類",
+      "particles": "助詞",
+      "verbForms": "動詞變化",
+      "adjectives": "形容詞",
+      "existHave": "存在・擁有",
+      "compare": "比較與程度",
+      "intentPlan": "意圖・計劃・推測",
+      "askPermit": "請求・許可",
+      "basic": "其他基礎",
+      "comingSoon": "準備中"
+    }
   }
+
 }
+
+

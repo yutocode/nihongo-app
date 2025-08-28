@@ -14,8 +14,8 @@
     "language": "Language",
     "languageSettings": "Language Settings",
     "noWordsFound": "No words found",
-    "backToPrev" : "Back to Previous",
-    "backHome" : "Back to Home"
+    "backToPrev": "Back to Previous",
+    "backHome": "Back to Home"
   },
 
   "nav": {
@@ -32,7 +32,7 @@
       "wordbook": "Wordbook",
       "grammar": "Grammar",
       "grammarQuiz": "Grammar Quiz",
-      "ranking": "Ranking",
+      "text": "text",
       "listening": "Listening",
       "challenge": "Challenge",
       "examStructure": "Exam Structure",
@@ -100,6 +100,7 @@
       "titleWithLabel": "{{level}} Lesson Selection ({{categoryLabel}})",
       "hint": "Select a lesson to start the quiz. If data is not available, 'Not Found' will be shown.",
       "backToCategories": "Back to Categories",
+      "backToList": "Back to Lesson List",
       "open": "Lesson {{num}}",
       "back": "← Back",
       "toCategories": "To Category List",
@@ -132,5 +133,31 @@
     "score": "Score: {{score}} / {{total}}",
     "notFound": "Lesson data not found.",
     "retry": "Retry"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "Change this sentence to the request form.",
+      "permission": "Change this sentence to the permission form.",
+      "prohibition": "Change this sentence to the prohibition form.",
+      "obligation": "Change this sentence to the obligation form.",
+      "unnecessary": "Change this sentence to the unnecessary form.",
+      "default": "Choose the correct form."
+    }
+  },
+
+  "text": {
+    "categories": {
+      "title": "Select N5 Text Categories",
+      "particles": "Particles",
+      "verbForms": "Verb Forms",
+      "adjectives": "Adjectives",
+      "existHave": "Existence / Possession",
+      "compare": "Comparison / Degree",
+      "intentPlan": "Intention / Plan / Guess",
+      "askPermit": "Request / Permission",
+      "basic": "Other Basics",
+      "comingSoon": "Coming Soon"
+    }
   }
 }

@@ -1,0 +1,39 @@
+.text-content {
+  font-family: "Noto Sans JP", "Noto Sans TC", "Roboto", sans-serif;
+  line-height: 1.8;
+  color: #2c3e50;
+  background-color: #faf9f6; /* 柔らかい背景色 */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.text-content h1 {
+  font-size: 22px;
+  color: #2c3e50;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 6px;
+}
+
+.text-content h2 {
+  font-size: 18px;
+  color: #4a90e2;
+  margin-top: 20px;
+}
+
+.text-content p {
+  font-size: 15px;
+  margin: 8px 0;
+  color: #2c3e50;
+}
+
+.text-content strong {
+  color: #e67e73;
+}
+
+.text-content ul li {
+  margin: 6px 0;
+}
+
+.text-content .example {
+  color: #6abf8f;
+}

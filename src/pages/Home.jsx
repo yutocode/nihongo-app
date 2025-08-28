@@ -30,8 +30,8 @@ const Home = () => {
 
           <FeatureTile
             iconName="trophy"
-            label={t("home.menu.ranking", "ランキング")}
-            onClick={() => navigate("/ranking")}
+            label={t("home.menu.text", "テキスト")}
+            onClick={() => navigate("/text")}
           />
           <FeatureTile
             iconName="headphones"

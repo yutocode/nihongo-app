@@ -128,3 +128,20 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* 空欄表示（既存） */
+.blank {
+  display: inline-block;
+  min-width: 3em;
+  border-bottom: 2px dashed #888;
+  padding: 0 4px;
+}
+
+/* 部分正解時のパルス（複数空欄向け） */
+.blank.blink {
+  animation: blank-glow .4s ease-out;
+}
+@keyframes blank-glow {
+  0%   { background: rgba(106,111,255,0.00); box-shadow: 0 0 0 rgba(106,111,255,0); transform: scale(1); }
+  40%  { background: rgba(106,111,255,0.20); box-shadow: 0 0 10px rgba(106,111,255,.6); transform: scale(1.03); }
+  100% { background: rgba(106,111,255,0.00); box-shadow: 0 0 0 rgba(106,111,255,0); transform: scale(1); }
+}

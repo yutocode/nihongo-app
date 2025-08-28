@@ -24,29 +24,60 @@ import Home from "./pages/Home";
 import QuizPage from "./pages/QuizPage";
 import WordPage from "./pages/WordPage";
 import ResultPage from "./pages/ResultPage";
-import RankingPage from "./pages/RankingPage";
 import LevelSelectPage from "./pages/LevelSelectPage";
 import LessonSelectPage from "./pages/LessonSelectPage";
 import Settings from "./pages/Settings";
 import LanguageSettings from "./pages/LanguageSettings";
+
+// ★ テキスト関連ページ
+import TextLevelSelectPage from "./pages/TextLevelSelectPage";
+import TextCategorySelectPage from "./pages/TextCategorySelectPage";
+import TextLessonSelectPage from "./pages/TextLessonSelectPage";
+import TextLessonPage from "./pages/TextLessonPage";
 
 // 文法ページ群
 import GrammarLevelSelectPage from "./pages/GrammarLevelSelectPage";
 import GrammarCategorySelectPage from "./pages/GrammarCategorySelectPage";
 import GrammarLessonSelectPage from "./pages/GrammarLessonSelectPage";
 import GrammarQuizPage from "./pages/GrammarQuizPage";
-import ExistHaveQuizPage from "./pages/ExistHaveQuizPage"; // ★ 追加
 
-// 形容詞（い/な）二択クイズ
+// 専用クイズページ
+import ExistHaveQuizPage from "./pages/ExistHaveQuizPage";
+import N5ComparisonBlankQuizPage from "./pages/N5ComparisonBlankQuizPage";
+import N5IntentPlanQuizPage from "./pages/N5IntentPlanQuizPage";
+import N5AskPermitQuizPage from "./pages/N5AskPermitQuizPage";
+
+// 形容詞（い/な）二択
 import AdjTypeQuizPage from "./pages/AdjTypeQuizPage";
 
-// XP 永続化ユーティリティ
+// XP 永続化
 import { initUserXP, stopAutoSave } from "./utils/xpPersistence";
 
-// /adj/:level → /adj/:level/lesson1 に安全リダイレクト
+// ---- helpers ----
 function AdjLevelRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
+}
+
+function CompareAliasRedirect() {
+  const { level = "n5" } = useParams();
+  return <Navigate to={`/grammar/${level}/comparison`} replace />;
+}
+
+function normalizeLesson(key) {
+  if (!key) return "Lesson1";
+  const m = String(key).match(/lesson\s*(\d+)/i);
+  return m ? `Lesson${m[1]}` : key;
+}
+
+function CompareLessonAliasRedirect() {
+  const { level = "n5", lesson = "Lesson1" } = useParams();
+  return (
+    <Navigate
+      to={`/grammar/${level}/comparison/${normalizeLesson(lesson)}`}
+      replace
+    />
+  );
 }
 
 const App = () => {
@@ -60,7 +91,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/auth" element={<AuthPage />} />
 
-        {/* 認証後ルート（共通レイアウト配下） */}
+        {/* 認証後ルート */}
         <Route
           element={
             <AuthGuard>
@@ -71,31 +102,38 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/result" element={<ResultPage />} />
-          <Route path="/ranking" element={<RankingPage />} />
+
+          {/* ★ テキスト関連 */}
+          <Route path="/text" element={<TextLevelSelectPage />} />
+          <Route path="/text/:level" element={<TextCategorySelectPage />} />
+          <Route path="/text/:level/:category" element={<TextLessonSelectPage />} />
+          {/* 👇 修正済み */}
+          <Route path="/text/:level/:category/:pageId" element={<TextLessonPage />} />
+
+          {/* 単語・クイズ */}
           <Route path="/level" element={<LevelSelectPage />} />
           <Route path="/lessons/:level" element={<LessonSelectPage />} />
           <Route path="/words/:level/:lesson" element={<WordPage />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/language" element={<LanguageSettings />} />
 
-          {/* 文法：レベル → カテゴリ → レッスン → クイズ */}
+          {/* 文法 */}
           <Route path="/grammar" element={<GrammarLevelSelectPage />} />
           <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
           <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
+          <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
 
-          {/* ★ 存在・所有（ある/いる/持つ）は専用クイズページへ */}
-          <Route
-            path="/grammar/:level/exist-have/:lesson"
-            element={<ExistHaveQuizPage />}
-          />
+          {/* 専用クイズ */}
+          <Route path="/grammar/:level/comparison/:lesson" element={<N5ComparisonBlankQuizPage />} />
+          <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
+          <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
+          <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
 
-          {/* その他カテゴリのクイズ（従来汎用） */}
-          <Route
-            path="/grammar/:level/:category/:lesson"
-            element={<GrammarQuizPage />}
-          />
+          {/* エイリアス */}
+          <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
+          <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
 
-          {/* ★ 形容詞二択クイズ */}
+          {/* 形容詞二択 */}
           <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
           <Route path="/adj/:level" element={<AdjLevelRedirect />} />
           <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
@@ -121,7 +159,7 @@ const AppInitializer = () => {
     "/home",
     "/quiz",
     "/result",
-    "/ranking",
+    "/text",
     "/level",
     "/lessons",
     "/words",
@@ -131,7 +169,6 @@ const AppInitializer = () => {
     "/adj",
   ];
 
-  // 重複遷移防止
   const lastNavRef = useRef("");
   const navigateOnce = (to) => {
     if (!to) return;
@@ -146,30 +183,17 @@ const AppInitializer = () => {
 
       if (user) {
         setUser(user);
-
-        // XP / デイリーの復元
-        try {
-          initUserXP?.(user.uid);
-        } catch (e) {
-          console.warn("initUserXP failed:", e);
-        }
+        try { initUserXP?.(user.uid); } catch (e) { console.warn("initUserXP failed:", e); }
         try {
           const st = useAppStore.getState?.();
           st?.loadDailyForUser?.(user.uid);
           st?.ensureDailyToday?.(user.uid);
-        } catch (e) {
-          console.warn("daily restore failed:", e);
-        }
+        } catch (e) { console.warn("daily restore failed:", e); }
 
-        // 公開ページにいるなら /home へ
         if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
       } else {
         clearUser();
-        try {
-          stopAutoSave?.();
-        } catch {}
-
-        // 未ログインで私的ページなら公開トップへ
+        try { stopAutoSave?.(); } catch {}
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
         if (onPrivate) navigateOnce("/");
       }
@@ -178,7 +202,6 @@ const AppInitializer = () => {
     });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return null;
