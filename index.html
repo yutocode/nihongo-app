@@ -2,16 +2,39 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- iPhone/Safari でのレイアウト崩れ対策（safe-area + 文字自動拡大OFF） -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- 色など -->
+    <meta name="theme-color" content="#111318" />
+    <meta name="description" content="日本語学習アプリ（単語・文法クイズ・聴解など）" />
+
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>日本語学習アプリ</title>
+
+    <!-- 最低限の安定用スタイル（初期チラつき/自動文字拡大対策） -->
+    <style>
+      html, body, #root { height: 100%; }
+      html { -webkit-text-size-adjust: 100%; } /* iOSの勝手な文字拡大を止める */
+      body {
+        margin: 0;
+        background: #111318;
+        color: #fff;
+        font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Reactのルート -->
     <div id="root"></div>
-
-    <!-- ✅ Reactを起動する -->
-    <script type="module" src="./src/main.jsx"></script>
+    <!-- Vite エントリ -->
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,78 +1,133 @@
-.word-card {
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  padding: 20px;
+/* ===== WordCard ===== */
+.word-card{
+  width: min(92vw, 360px);
   margin: 20px auto;
-  width: 300px;
+  padding: 18px 16px 20px;
+  background: #f9f9f9;
+  color: #000;
+  border: 2px solid #d9b45e;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
   text-align: center;
-  background: #f9f9f9; /* カード背景は白系 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  font-family: sans-serif;
-  color: #000; /* ← デフォルトは黒文字に */
+  position: relative;
+  font-family: "Noto Sans JP", system-ui, -apple-system, Segoe UI, sans-serif;
 }
 
-/* 漢字部分（大きく黒） */
-.kanji {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #222; /* ← 黒で強調 */
-  margin-bottom: 6px;
+/* ===== Header (左=詳しく / 中央=Lesson / 右=追加) ===== */
+.wc-head{
+  position: relative;
+  height: 36px;
+  margin-bottom: 8px;
+}
+.wc-head-title{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  line-height: 36px;
+  font-weight: 700;
+  color: #4b5563;
+  letter-spacing: .2px;
+}
+.wc-head-btn{
+  position: absolute;
+  top: 0;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #1111;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  line-height: 34px;
+  cursor: pointer;
+  transition: transform .12s ease, filter .15s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.wc-head-btn:hover{ transform: translateY(-1px); }
+.wc-head-btn:active{ transform: translateY(0); }
+
+.wc-head-btn.left{ left: 0; }
+.wc-head-btn.right{ right: 0; }
+
+/* 追加済みの見た目 */
+.wc-head-btn.right.is-added{
+  background: #0f5132;
+  border-color: #0f5132;
+  box-shadow: 0 0 0 2px #b6e3c6 inset;
 }
 
-/* 読みがな */
-.reading {
-  font-size: 1.2rem;
-  color: #555;
+/* ===== Body ===== */
+.kanji{
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #222;
+  margin: 6px 0 2px;
 }
-
-/* ふりがな用 ruby の調整 */
-ruby {
-  color: #222; /* ベース漢字を黒 */
-}
-
-rt {
-  color: #666; /* ふりがなはグレー */
-  font-size: 0.7em;
-  font-weight: 400;
+.reading{
+  font-size: 1.3rem;
+  color: #444;
+  margin-bottom: 10px;
 }
 
 /* 意味ボックス */
-.meaning-box {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px dashed #888;
-  cursor: pointer;
+.meaning-box{
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px dashed #aaa;
   background: #fff;
-  color: #333; /* 意味テキストは濃いグレー */
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
 }
+.meaning-box:hover{ background: #f1f1f1; }
+
+/* 音声 */
+.audio-area{ margin-top: 12px; }
+.audio-button{
+  font-size: 1rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  color: #222;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease;
+}
+.audio-button:hover{ background: #e5e5e5; transform: translateY(-1px); }
 
 /* ナビゲーション */
-.navigation {
-  margin-top: 20px;
+.navigation{
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
-
-.navigation button {
-  margin: 0 10px;
-}
-
-/* 音声ボタン */
-.audio-area {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.audio-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: #333;
+.navigation button{
   padding: 6px 12px;
   border-radius: 6px;
-  background-color: #f0f0f0;
-  transition: background-color 0.2s;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  color: #222;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease;
+}
+.navigation button:hover{ background: #eee; transform: translateY(-1px); }
+
+/* Safari 対策：disabled でも文字は読めるように */
+button:disabled{
+  opacity: .55;
+  color: #222 !important;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
-.audio-button:hover {
-  background-color: #e0e0e0;
+/* 小さい端末の微調整 */
+@media (max-width: 360px){
+  .word-card{ padding: 16px 12px 18px; }
+  .wc-head{ height: 34px; }
+  .wc-head-btn{ height: 34px; line-height: 32px; padding: 0 10px; }
+  .kanji{ font-size: 2rem; }
+  .reading{ font-size: 1.1rem; }
 }

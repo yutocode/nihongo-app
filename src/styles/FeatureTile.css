@@ -1,24 +1,71 @@
+/* iOS の自動拡大抑制（index.html にも入れてある前提だけど保険で） */
+:root { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* ボタン自体は背景なし（クリック領域のラッパー） */
 .tile{
-  display:flex; flex-direction:column; align-items:center; gap:10px;
-  width:100%; padding:18px 12px; border:none; cursor:pointer;
-  color:var(--text); background: var(--surface); border-radius: var(--radius-lg);
-  box-shadow: var(--elev-1);
-  transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:0;                /* 余計な高さを入れない */
+  border:none;
+  background:transparent;
+  -webkit-tap-highlight-color: transparent;
 }
-.tile:hover{ background: var(--surface-hi); box-shadow: var(--elev-2); transform: translateY(-1px); }
 
+/* ---- 正方形の“緑タイル”はここだけに適用 ---- */
+.tile-surface{
+  width: clamp(68px, 18vw, 90px);  /* 端末に応じて拡縮 */
+  aspect-ratio: 1/1;               /* 常に正方形（スマホでも長方形化しない） */
+  display:grid;
+  place-items:center;
+  border-radius: 18px;              /* 昔の丸み */
+  /* 深緑グラデ & 内側の落ち影で立体感 */
+  background: radial-gradient(100% 120% at 30% 20%, #0f3a32 0%, #0b2a25 60%, #0a2320 100%);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),   /* 外側の影 */
+    inset 0 1px 0 rgba(255,255,255,.06); /* ほんのり天面 */
+  /* 金色の縁（やや太め） */
+  outline: 2px solid #967d47;
+  outline-offset: -2px;
+  border: 1px solid rgba(0,0,0,.35);
+  transition: transform .15s ease, box-shadow .2s ease, outline-color .2s ease;
+}
+
+.tile:hover .tile-surface{ transform: translateY(-1px); }
+.tile:active .tile-surface{ transform: translateY(0); }
+
+/* アイコン（白・少し大きめ） */
 .tile-ico{
-  width:56px; height:56px; border-radius:14px; display:grid; place-items:center;
-  background: linear-gradient(150deg, #173a35, #0f2a26);
-  outline: 1px solid rgba(217,180,94,.45);       /* 金の縁 */
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.22),   /* 内側の締まり */
-              0 10px 22px rgba(0,0,0,.38);      /* 外側の浮き */
+  font-size: clamp(22px, 6vw, 28px);
+  line-height: 1;
+  color: #eaf2ef; /* ほんのり緑がかった白 */
 }
 
-/* アイコン自体を“金インク”に */
-.tile-ico svg{
-  color: var(--gold);                 /* stroke/fill両方に効く */
-  filter: drop-shadow(0 0 6px rgba(217,180,94,.25));
-}
-.tile-label{ font-weight:700; letter-spacing:.2px }
+/* ---- ラベルは“外側”に置く（最大2行・省略しない） ---- */
+.tile-label{
+  margin-top: 2px;
+  max-width: 10ch;                   /* 2行×5～6文字目安。必要なら 12ch などに調整 */
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: clamp(12px, 3.2vw, 14px);
+  line-height: 1.2;
 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;             /* 2行まで表示 */
+  overflow: hidden;                   /* 3行目は切る（…は出さない）*/
+  white-space: normal;
+  word-break: keep-all;               /* CJKは自然改行、英語は単語境界 */
+}
+
+/* 翻訳文字列内の <br> をそのまま改行として使いたければ以下を有効化 */
+.tile-label br { display:inline; }
+
+/* すごく狭い端末の微調整 */
+@media (max-width: 360px){
+  .tile-surface{ width:72px; }
+  .tile-ico{ font-size:22px; }
+  .tile-label{ font-size:12px; max-width: 9.5ch; }
+}

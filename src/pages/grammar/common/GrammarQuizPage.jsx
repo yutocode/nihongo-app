@@ -1,16 +1,16 @@
-// src/pages/GrammarQuizPage.jsx
+// src/pages/grammar/common/GrammarQuizPage.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarQuiz.css";
+import "../../../styles/GrammarQuiz.css";
 
-import { conjugate, generateDistractors, shuffle, TARGETS } from "../utils/conjugation";
-import TextWithRuby from "../components/TextWithRuby";
-import { stripRuby, makeRubyValue } from "../utils/autoRuby";
+import { conjugate, generateDistractors, shuffle, TARGETS } from "../../../utils/conjugation";
+import TextWithRuby from "../../../components/TextWithRuby";
+import { stripRuby, makeRubyValue } from "../../../utils/autoRuby";
 
-import { LESSON_MAP } from "../utils/loadLessons";
-import { TARGET_LABELS } from "../constants/grammarLabels";
-import { prepareRuntime } from "../utils/quizRuntime";
+import { LESSON_MAP } from "../../../utils/loadLessons";
+import { TARGET_LABELS } from "../../../constants/grammarLabels";
+import { prepareRuntime } from "../../../utils/quizRuntime";
 
 /** rubies: [{base:"財布", yomi:"さいふ"}, ...] をベース文字列に適用して segments を作る */
 function applyWordRubies(base, rubies) {
@@ -20,7 +20,10 @@ function applyWordRubies(base, rubies) {
   while (i < base.length) {
     let hit = null;
     for (const r of dict) {
-      if (r?.base && base.startsWith(r.base, i)) { hit = r; break; }
+      if (r?.base && base.startsWith(r.base, i)) {
+        hit = r;
+        break;
+      }
     }
     if (hit) {
       segs.push({ t: hit.base, y: hit.yomi });
@@ -104,28 +107,24 @@ export default function GrammarQuizPage() {
     setFinished(false);
   };
 
-  // ── 文タイプの質問文にルビを適用（segments → furigana → rubies → 自動 → 生文）
+  // ── 文タイプの質問文にルビを適用
   const sentenceWithRuby = useMemo(() => {
     if (!q || !q.question) return "";
 
-    // a) segments
     if (Array.isArray(q.segments) && q.segments.length) {
       return { segments: q.segments.map((s) => ({ t: s.t, y: s.y ?? s.r })) };
     }
 
-    // b) furigana（<ruby>…</ruby>）
     if (typeof q.furigana === "string" && q.furigana.includes("<ruby")) {
-      return q.furigana; // TextWithRuby がパースして描画
+      return q.furigana;
     }
 
     const baseRaw = String(q.question);
 
-    // c) rubies（base/yomi 配列）
     if (Array.isArray(q.rubies) && q.rubies.length) {
       return applyWordRubies(baseRaw, q.rubies);
     }
 
-    // d) 自動ルビ（kanjiOnly）。空欄「＿＿」保護
     const marker = "◻◻";
     const base = stripRuby(baseRaw).replace(/＿+/g, marker);
     const yomi = String(q.yomi || "").replace(/＿+/g, marker);
@@ -138,12 +137,6 @@ export default function GrammarQuizPage() {
         y: s.y ? String(s.y).replaceAll(marker, "＿＿") : s.y,
       })),
     });
-    const toPlain = (v) =>
-      typeof v === "string"
-        ? v
-        : Array.isArray(v?.segments)
-        ? v.segments.map((s) => s.t || "").join("")
-        : "";
 
     if (typeof val === "string") {
       const restored = val.replaceAll(marker, "＿＿");
@@ -152,14 +145,11 @@ export default function GrammarQuizPage() {
     }
     if (val && Array.isArray(val.segments)) {
       const restored = restoreObj(val);
-      const plain = toPlain(restored);
-      if (/^[、。，．・]/.test(plain) || plain.includes(marker)) return baseRaw;
       return restored;
     }
     return baseRaw;
   }, [q]);
 
-  // ── 見出し：活用タイプなら base に漢字だけルビ
   const renderTop = () => {
     if (!q) return null;
 
@@ -182,7 +172,6 @@ export default function GrammarQuizPage() {
       );
     }
 
-    // 文章タイプ
     return (
       <div className="jp">
         <TextWithRuby value={sentenceWithRuby} />
@@ -190,7 +179,6 @@ export default function GrammarQuizPage() {
     );
   };
 
-  // 選択肢：{segments:[...]} を優先
   const renderChoiceContent = (c) => {
     if (c && typeof c === "object" && Array.isArray(c.segments)) {
       return <TextWithRuby value={{ segments: c.segments }} />;
@@ -285,7 +273,6 @@ export default function GrammarQuizPage() {
         </div>
       )}
 
-      {/* 画面下は「前へ」のみ。リストへはヘッダー左上に任せる */}
       <div className="quiz-footer-nav">
         <button
           className="choice-btn"

@@ -1,11 +1,13 @@
-// src/pages/ExistHaveQuizPage.jsx
+// src/pages/grammar/n5/ExistHaveQuizPage.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarQuiz.css";
-import { getN5ExistHaveLesson } from "../data/grammar/n5/exist-have";
-import TextWithRuby from "../components/TextWithRuby";
-import { makeRubyValue, stripRuby } from "../utils/autoRuby";
+import "../../../styles/GrammarQuiz.css";
+
+import { getN5ExistHaveLesson } from "../../../data/grammar/n5/exist-have";
+import TextWithRuby from "../../../components/TextWithRuby";
+import { makeRubyValue, stripRuby } from "../../../utils/autoRuby";
+
 
 /** rubies: [{base:"財布", yomi:"さいふ"}, ...] をベース文字列に適用して segments を作る */
 function applyWordRubies(base, rubies) {

@@ -1,41 +1,75 @@
 // src/pages/LessonSelectPage.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "../styles/LessonSelectPage.css";
 import { useTranslation } from "react-i18next";
+import "../styles/LessonSelectPage.css";
 
-const LessonSelectPage = () => {
-  const { level } = useParams(); // 例: "n5"
+const LESSON_COUNTS = {
+  n5: 2,
+  n4: 8,
+  n3: 13,
+  n2: 20,
+  n1: 40,
+};
+
+export default function LessonSelectPage() {
+  const { level = "n5" } = useParams();               // ex) "n5"
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const lessonCounts = {
-    n5: 2,
-    n4: 8,
-    n3: 13,
-    n2: 20,
-    n1: 40,
-  };
+  const normLevel = String(level).toLowerCase();
+  const lessonCount = LESSON_COUNTS[normLevel] ?? 0;
 
-  const lessonCount = lessonCounts[level?.toLowerCase()] || 0;
+  const lessons = useMemo(
+    () => Array.from({ length: Math.max(lessonCount, 0) }, (_, i) => i + 1),
+    [lessonCount]
+  );
+
+  const go = (lessonNo) => navigate(`/words/${normLevel}/Lesson${lessonNo}`);
+
+  // タイトル: 「Select Lesson (N5)」※各言語に selectTitle を用意
+  const title = t("lesson.selectTitle", {
+    level: normLevel.toUpperCase(),
+    defaultValue: `Select Lesson (${normLevel.toUpperCase()})`,
+  });
+
+  // サブタイトル（辞書に無ければ非表示）
+  const subtitle = t("lesson.subtitle", { defaultValue: "" });
 
   return (
-    <div className="lesson-select-page">
-      <h2>
-        {t("lesson.title")} ({level?.toUpperCase()})
-      </h2>
-      <div className="lesson-buttons">
-        {Array.from({ length: lessonCount }, (_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => navigate(`/words/${level}/Lesson${i + 1}`)}
-          >
-            {t("lesson.part", { num: i + 1 })}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-};
+    <main className="lesson-select-page">
+      <header className="lesson-select-head">
+        <h2 className="lesson-title">{title}</h2>
+        {subtitle && <p className="lesson-sub">{subtitle}</p>}
+      </header>
 
-export default LessonSelectPage;
+      {lessonCount <= 0 ? (
+        <div className="lesson-empty">
+          {t("common.notFound", "No lessons are available for this level.")}
+        </div>
+      ) : (
+        <div className="lesson-buttons" role="list">
+          {lessons.map((no) => {
+            // ボタン表示：各言語の "lesson.part"（例：第 {{num}} 課 / Lesson {{num}}）
+            const label = t("lesson.part", {
+              num: no,
+              defaultValue: `Lesson ${no}`,
+            });
+            return (
+              <button
+                key={no}
+                role="listitem"
+                className="lesson-btn"
+                type="button"
+                onClick={() => go(no)}
+                aria-label={label}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </main>
+  );
+}

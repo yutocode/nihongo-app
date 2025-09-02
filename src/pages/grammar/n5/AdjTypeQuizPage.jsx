@@ -1,8 +1,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarQuiz.css";
-import { getN5AdjLessonMixed } from "../data/grammar/n5/adjectives";
+
+// ← ここを修正（n5配下 → 2階層上）
+import "../../../styles/GrammarQuiz.css";
+
+// ← ここも修正（n5配下なので 3階層上）
+import { getN5AdjLessonMixed } from "../../../data/grammar/n5/adjectives";
 
 const LABEL_I = "い形容詞";
 const LABEL_NA = "な形容詞";
@@ -15,7 +19,9 @@ function shuffle(arr) {
   }
   return a;
 }
-function makeOrder(n) { return shuffle([...Array(n).keys()]); }
+function makeOrder(n) {
+  return shuffle([...Array(n).keys()]);
+}
 
 function subLabel(type, lang) {
   const L = (lang || "ja").toLowerCase();
@@ -29,6 +35,7 @@ function subLabel(type, lang) {
   if (isTw) return type === "i" ? "い形容詞" : "な形容詞";
   return type === "i" ? "い形容詞" : "な形容詞";
 }
+
 function ChoiceFace({ kind, lang }) {
   const prefix = kind === "i" ? "い" : "な";
   const sub = subLabel(kind, lang);
@@ -120,14 +127,13 @@ export default function AdjTypeQuizPage() {
     }
   };
 
-  const goLessonList = () => navigate(`/adj/${level}`);       // 形容詞レッスン一覧
-  const goCategoryList = () => navigate(`/grammar/${level}`); // 文法 N5 トップ
+  const goLessonList = () => navigate(`/adj/${level}`);
+  const goCategoryList = () => navigate(`/grammar/${level}`);
 
   // ======= レイアウト =======
   if (!current && !finished) {
     return (
       <div className="quiz-wrap">
-        {/* 左上ナビ */}
         <div className="quiz-top-nav">
           <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
           <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>
@@ -142,7 +148,6 @@ export default function AdjTypeQuizPage() {
   if (finished) {
     return (
       <div className="quiz-wrap">
-        {/* 左上ナビ */}
         <div className="quiz-top-nav">
           <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
           <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>
@@ -168,7 +173,6 @@ export default function AdjTypeQuizPage() {
 
   return (
     <div className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}>
-      {/* ★ 左上固定ナビ（写真のように左上） */}
       <div className="quiz-top-nav">
         <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
         <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>

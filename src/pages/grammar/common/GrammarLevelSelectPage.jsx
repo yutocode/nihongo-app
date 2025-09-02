@@ -1,8 +1,9 @@
-// src/pages/GrammarLevelSelectPage.jsx
+// src/pages/grammar/common/GrammarLevelSelectPage.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarLesson.css";
+import "../../../styles/GrammarLesson.css";
+
 
 /**
  * レベル選択ページ（汎用）

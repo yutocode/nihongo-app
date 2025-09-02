@@ -2,9 +2,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarLesson.css";
-
-import { n5ComparisonLessons } from "../data/grammar/n5/comparison";
+import "../../../styles/GrammarLesson.css";
+import { n5ComparisonLessons } from "../../../data/grammar/n5/comparison";
 
 const LEVEL_LABELS = { n5: "N5", n4: "N4", n3: "N3", n2: "N2", n1: "N1" };
 

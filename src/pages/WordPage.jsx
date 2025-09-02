@@ -15,11 +15,16 @@ import { n1WordSets } from "../data/n1WordSets";
 import { useAppStore } from "../store/useAppStore";
 import { useTranslation } from "react-i18next";
 
-const WordPage = () => {
-  const { level, lesson } = useParams();
-  const selectedLanguage = useAppStore((state) => state.language);
-  const { t } = useTranslation(); // ✅ 翻訳フックを追加
+export default function WordPage() {
+  const { level = "", lesson = "" } = useParams();
+  const selectedLanguage = useAppStore((s) => s.language);
+  const { t } = useTranslation();
 
+  // level/lesson を安全に正規化
+  const normLevel = String(level).toLowerCase();
+  const lessonNo = (lesson.match(/\d+/)?.[0] ?? "").toString();
+
+  // レベル→データの対応（キーは小文字に統一）
   const wordSetsMap = {
     n5: n5WordSets,
     n4: n4WordSets,
@@ -28,27 +33,36 @@ const WordPage = () => {
     n1: n1WordSets,
   };
 
-  const levelWordSet = wordSetsMap[level];
-  const wordList = levelWordSet?.[lesson];
+  const levelWordSet = wordSetsMap[normLevel];
+
+  // "Lesson1" 形式とそのままの両方を許容
+  const wordList =
+    levelWordSet?.[`Lesson${lessonNo}`] ??
+    levelWordSet?.[lesson] ??
+    null;
 
   return (
     <div className="word-page">
       {wordList ? (
         <>
-          {/* ✅ 翻訳対応されたレッスンタイトル表示 */}
-          <h2 className="word-page-title">
-            {t("lesson", "レッスン")} {lesson.replace("Lesson", "")}
-          </h2>
+          {/* タイトル（例: "課 1"）— 翻訳キーが無くてもフォールバック */}
+          <header className="word-page-head">
+            <h2 className="word-page-title">
+              {t("lesson.lesson", { defaultValue: "課" })} {lessonNo || "?"}
+            </h2>
+          </header>
 
           <WordCard wordList={wordList} selectedLanguage={selectedLanguage} />
         </>
       ) : (
         <p className="error-text">
-          ❌ {t("noWordsFound", "該当する単語が見つかりません")} ({level} - {lesson})
+          ❌{" "}
+          {t("common.noWordsFound", {
+            defaultValue: "該当する単語が見つかりません",
+          })}{" "}
+          ({normLevel.toUpperCase()} - {lesson || `Lesson${lessonNo || "?"}`})
         </p>
       )}
     </div>
   );
-};
-
-export default WordPage;
+}

@@ -1,8 +1,8 @@
-// src/pages/N5ComparisonBlankQuizPage.jsx
+// src/pages/grammar/n5/N5ComparisonBlankQuizPage.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { n5ComparisonLessons } from "../data/grammar/n5/comparison";
-import "../styles/GrammarQuiz.css";
+import { n5ComparisonLessons } from "../../../data/grammar/n5/comparison";
+import "../../../styles/GrammarQuiz.css";
 
 const range = (n) => Array.from({ length: n }, (_, i) => i);
 const shuffle = (arr) => {
@@ -51,8 +51,8 @@ export default function N5ComparisonBlankQuizPage() {
   const [score, setScore] = useState(0);
   const [judge, setJudge] = useState(null);    // "ok" | "ng" | null（○×）
   const [lock, setLock] = useState(false);
-  const [picked, setPicked] = useState([]);    // 複数空所の選択履歴（インデックス）
-  const [blinkAt, setBlinkAt] = useState(-1);  // どの空欄を点滅させるか（0→1）
+  const [picked, setPicked] = useState([]);    // 複数空所の選択履歴
+  const [blinkAt, setBlinkAt] = useState(-1);  // 点滅する空欄の番号
 
   const q = questions[idx];
   const isMulti = Array.isArray(q?.correct);
@@ -80,7 +80,6 @@ export default function N5ComparisonBlankQuizPage() {
   const handlePick = (choiceIndex) => {
     if (lock) return;
 
-    // 単一空欄：即判定
     if (!isMulti) {
       const ok = choiceIndex === q.correct;
       setLock(true); setJudge(ok ? "ok" : "ng");
@@ -89,11 +88,9 @@ export default function N5ComparisonBlankQuizPage() {
       return;
     }
 
-    // 複数空欄：段階判定
-    const step = picked.length;           // 0 → 1 → ... （今回選ぶのは step 番目の空欄）
-    const expected = q.correct[step];     // この段階の正解インデックス
+    const step = picked.length;
+    const expected = q.correct[step];
 
-    // 間違い：×を出してこの問題をリセット（次の問題へは進まない）
     if (choiceIndex !== expected) {
       setLock(true); setJudge("ng");
       setTimeout(() => {
@@ -103,21 +100,17 @@ export default function N5ComparisonBlankQuizPage() {
       return;
     }
 
-    // 正解：部分的に確定 → 空欄を点滅させる
     const nextPicked = [...picked, choiceIndex];
     setPicked(nextPicked);
-    setBlinkAt(step);                 // step 番目の空欄をピカッ
+    setBlinkAt(step);
     setTimeout(() => setBlinkAt(-1), 400);
 
-    // まだ続きがあるなら継続
-    if (nextPicked.length < need) return;
-
-    // すべて正解：○を出して次の問題へ
-    setLock(true); setJudge("ok"); setScore((s) => s + 1);
-    setTimeout(nextQuestion, 650);
+    if (nextPicked.length >= need) {
+      setLock(true); setJudge("ok"); setScore((s) => s + 1);
+      setTimeout(nextQuestion, 650);
+    }
   };
 
-  // 文を「___」で分割して空欄 span を個別に描画（どの空欄を光らせるか制御できる）
   const parts = String(q.sentence_ja || "").split("___");
 
   const finished =
@@ -159,7 +152,6 @@ export default function N5ComparisonBlankQuizPage() {
         </div>
       )}
 
-      {/* ← 前の問題（採点は巻き戻さず。必要なら調整可） */}
       {idx > 0 && !lock && !judge && (
         <div style={{ marginTop: 12 }}>
           <button
@@ -171,7 +163,6 @@ export default function N5ComparisonBlankQuizPage() {
         </div>
       )}
 
-      {/* ○×アニメ */}
       <div className="judge-overlay" aria-hidden>
         {judge === "ok" && (
           <svg className="judge-circle" viewBox="0 0 120 120">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../styles/GrammarLesson.css";
+import "../../../styles/GrammarQuiz.css";
 
 const CATEGORIES = [
   { slug: "particles",   tkey: "grammar.categories.particles",   enabled: true  },

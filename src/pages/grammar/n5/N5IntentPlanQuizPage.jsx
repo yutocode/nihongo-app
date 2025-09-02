@@ -1,7 +1,9 @@
+// src/pages/grammar/n5/N5IntentPlanQuizPage.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { n5IntentPlanLessons } from "../data/grammar/n5/intent-plan";
-import "../styles/GrammarQuiz.css";
+import { n5IntentPlanLessons } from "../../../data/grammar/n5/intent-plan";
+import "../../../styles/GrammarQuiz.css";
+
 
 // ---- utils ----
 const range = (n) => Array.from({ length: n }, (_, i) => i);
@@ -15,7 +17,6 @@ function shuffle(arr) {
   return a;
 }
 
-// 正解インデックスを、シャッフル後の新しい位置にマップ
 function remapCorrect(originalCorrect, orderMap) {
   if (Array.isArray(originalCorrect)) {
     return originalCorrect.map((idx) => orderMap.indexOf(idx));
@@ -24,10 +25,9 @@ function remapCorrect(originalCorrect, orderMap) {
 }
 
 export default function N5IntentPlanQuizPage() {
-  const { lesson } = useParams(); // "Lesson1" など
+  const { lesson } = useParams();
   const pool = n5IntentPlanLessons?.[lesson] ?? n5IntentPlanLessons?.Lesson1 ?? [];
 
-  // 出題と選択肢をシャッフル（毎回ランダム）
   const questions = useMemo(() => {
     const withShuffledChoices = pool.map((q) => {
       const order = shuffle(range(q.choices_ja.length));
@@ -40,7 +40,7 @@ export default function N5IntentPlanQuizPage() {
 
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
-  const [fx, setFx] = useState(null); // "ok" | "ng" | null
+  const [fx, setFx] = useState(null);
   const [lock, setLock] = useState(false);
   const [selected, setSelected] = useState(null);
 
@@ -65,7 +65,6 @@ export default function N5IntentPlanQuizPage() {
     );
   }
 
-  // 空所「___」を見やすいボックスに
   const sentenceHtml = (q.sentence_ja || "").replaceAll(
     "___",
     "<span class='gq-blank'>___</span>"
@@ -112,7 +111,6 @@ export default function N5IntentPlanQuizPage() {
       </div>
 
       <div className={`gq-card ${fx ? `fx-${fx}` : ""}`}>
-        {/* ○/× エフェクト */}
         <div className={`gq-fx ${fx === "ok" ? "show ok" : ""}`}>○</div>
         <div className={`gq-fx ${fx === "ng" ? "show ng" : ""}`}>×</div>
 
@@ -149,7 +147,6 @@ export default function N5IntentPlanQuizPage() {
         </div>
       </div>
 
-      {/* アニメSVG（比較と同じ） */}
       {fx && (
         <div className="judge-overlay" aria-hidden>
           {fx === "ok" ? (

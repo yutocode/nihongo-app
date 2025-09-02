@@ -23,9 +23,9 @@ const Home = () => {
 
           {/* 文法 → レベル選択ページへ */}
           <FeatureTile
-            iconName="question" 
+            iconName="question"
             label={t("home.menu.grammarQuiz", "文法クイズ")}
-            onClick={() => navigate("/grammar")} // ★レベル選択に飛ぶ
+            onClick={() => navigate("/grammar")}
           />
 
           <FeatureTile
@@ -33,6 +33,7 @@ const Home = () => {
             label={t("home.menu.text", "テキスト")}
             onClick={() => navigate("/text")}
           />
+
           <FeatureTile
             iconName="headphones"
             label={t("home.menu.listening", "リスニング")}
@@ -44,21 +45,25 @@ const Home = () => {
       {/* ===== 下段（4ボタン） ===== */}
       <section className="section">
         <div className="grid-four">
+          {/* ★ Challenge → My Wordbook に差し替え */}
           <FeatureTile
             iconName="target"
-            label={t("home.menu.challenge", "チャレンジ")}
-            onClick={() => navigate("/challenge")}
+            label={t("home.menu.myWordbook", "My単語帳")}
+            onClick={() => navigate("/my-words")}
           />
+
           <FeatureTile
             iconName="quiz"
             label={t("home.menu.examStructure", "試験構成")}
             onClick={() => navigate("/exam-structure")}
           />
+
           <FeatureTile
             iconName="book"
             label={t("home.menu.alphabet", "アルファベット")}
             onClick={() => navigate("/alphabet")}
           />
+
           <FeatureTile
             iconName="trophy"
             label={t("home.menu.practice", "模擬テスト")}

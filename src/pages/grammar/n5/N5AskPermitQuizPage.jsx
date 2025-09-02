@@ -1,9 +1,9 @@
-// src/pages/N5AskPermitQuizPage.jsx
+// src/pages/grammar/n5/N5AskPermitQuizPage.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { n5AskPermitLessons } from "../data/grammar/n5/ask-permit";
-import "../styles/GrammarQuiz.css";
+import { n5AskPermitLessons } from "../../../data/grammar/n5/ask-permit";
+import "../../../styles/GrammarQuiz.css";
 
 const range = (n) => Array.from({ length: n }, (_, i) => i);
 const shuffle = (arr) => {
@@ -19,7 +19,7 @@ const remapCorrect = (orig, order) =>
 
 export default function N5AskPermitQuizPage() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { level = "n5", lesson } = useParams();
 
   const pool = n5AskPermitLessons?.[lesson] ?? n5AskPermitLessons?.Lesson1 ?? [];
@@ -39,7 +39,7 @@ export default function N5AskPermitQuizPage() {
 
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
-  const [fx, setFx] = useState(null); // "ok" | "ng" | null
+  const [fx, setFx] = useState(null);
   const [lock, setLock] = useState(false);
   const [selected, setSelected] = useState(null);
 
@@ -67,7 +67,7 @@ export default function N5AskPermitQuizPage() {
   const total = questions.length;
   const progress = Math.floor((idx / Math.max(1, total)) * 100);
 
-  // ── 指示文（i18n）: 受け取った form を正規化 → 翻訳 → 未登録なら日本語にフォールバック
+  // ── 指示文（翻訳 or 日本語フォールバック）
   const RAW_FORM = String(q.form ?? "").trim().toLowerCase();
   const FORM_ALIAS = {
     req: "request",
@@ -143,9 +143,7 @@ export default function N5AskPermitQuizPage() {
 
         <div className="gq-qnum">Q{idx + 1}/{total}</div>
 
-        {/* 指示文 */}
         {instruction && <p className="gq-instruction">{instruction}</p>}
-
         <p className="gq-sentence" dangerouslySetInnerHTML={{ __html: sentenceHtml }} />
 
         <div className="choices">
@@ -165,7 +163,6 @@ export default function N5AskPermitQuizPage() {
                 className={classes}
                 onClick={() => pick(i)}
                 disabled={lock}
-                // 自前データのみを想定して HTML を描画
                 dangerouslySetInnerHTML={{ __html: c }}
               />
             );

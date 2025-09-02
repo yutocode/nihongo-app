@@ -34,7 +34,7 @@
       "grammarQuiz": "Kuis Tata Bahasa",
       "text": "teks",
       "listening": "Mendengarkan",
-      "challenge": "Tantangan",
+      "myWordbook": "Kamus Saya",
       "examStructure": "Struktur Ujian",
       "alphabet": "Huruf",
       "practice": "Ujian Simulasi"
@@ -51,10 +51,11 @@
   },
 
   "lesson": {
-    "title": "Pilih Pelajaran",
-    "subtitle": "Silakan pilih pelajaran",
-    "part": "Pelajaran {{num}}",
-    "lesson": "Pelajaran"
+  "selectTitle": "Pilih Pelajaran ({{level}})",
+  "title": "Pilih Pelajaran",
+  "subtitle": "Silakan pilih pelajaran",
+  "part": "Pelajaran {{num}}",
+  "lesson": "Pelajaran"
   },
 
   "quiz": {
@@ -159,6 +160,16 @@
       "basic": "Dasar Lainnya",
       "comingSoon": "Segera Hadir"
     }
+  },
+  "wordcard": {
+    "back": "← Kembali",
+    "next": "Lanjut →",
+    "showMeaning": "Klik untuk melihat arti",
+    "meaning": "Arti",
+    "play": "🔊 Putar audio",
+    "detail": "Detail",
+    "add": "Tambah",
+    "notFound": "❌ Terjemahan tidak ditemukan"
   }
 
 

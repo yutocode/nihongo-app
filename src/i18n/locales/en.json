@@ -34,7 +34,7 @@
       "grammarQuiz": "Grammar Quiz",
       "text": "text",
       "listening": "Listening",
-      "challenge": "Challenge",
+      "myWordbook": "My Wordbook",
       "examStructure": "Exam Structure",
       "alphabet": "Alphabet",
       "practice": "Mock Exam"
@@ -51,10 +51,11 @@
   },
 
   "lesson": {
-    "title": "Select Lesson",
-    "subtitle": "Please select a lesson",
-    "part": "Lesson {{num}}",
-    "lesson": "Lesson"
+  "selectTitle": "Select Lesson ({{level}})",
+  "title": "Select Lesson",
+  "subtitle": "Please select a lesson",
+  "part": "Lesson {{num}}",
+  "lesson": "Lesson"
   },
 
   "quiz": {
@@ -159,5 +160,16 @@
       "basic": "Other Basics",
       "comingSoon": "Coming Soon"
     }
+  },
+
+  "wordcard": {
+    "back": "← Back",
+    "next": "Next →",
+    "showMeaning": "Click to show meaning",
+    "meaning": "Meaning",
+    "play": "🔊 Play audio",
+    "detail": "Details",
+    "add": "Add",
+    "notFound": "❌ Translation not found"
   }
 }

@@ -29,47 +29,41 @@ import LessonSelectPage from "./pages/LessonSelectPage";
 import Settings from "./pages/Settings";
 import LanguageSettings from "./pages/LanguageSettings";
 
-// ★ テキスト関連ページ
-import TextLevelSelectPage from "./pages/TextLevelSelectPage";
-import TextCategorySelectPage from "./pages/TextCategorySelectPage";
-import TextLessonSelectPage from "./pages/TextLessonSelectPage";
-import TextLessonPage from "./pages/TextLessonPage";
+// My Wordbook
+import MyWordbookPage from "./pages/MyWordbookPage";
 
-// 文法ページ群
-import GrammarLevelSelectPage from "./pages/GrammarLevelSelectPage";
-import GrammarCategorySelectPage from "./pages/GrammarCategorySelectPage";
-import GrammarLessonSelectPage from "./pages/GrammarLessonSelectPage";
-import GrammarQuizPage from "./pages/GrammarQuizPage";
+// Grammar (common)
+import GrammarLevelSelectPage from "./pages/grammar/common/GrammarLevelSelectPage";
+import GrammarCategorySelectPage from "./pages/grammar/common/GrammarCategorySelectPage";
+import GrammarLessonSelectPage from "./pages/grammar/common/GrammarLessonSelectPage";
+import GrammarQuizPage from "./pages/grammar/common/GrammarQuizPage";
 
-// 専用クイズページ
-import ExistHaveQuizPage from "./pages/ExistHaveQuizPage";
-import N5ComparisonBlankQuizPage from "./pages/N5ComparisonBlankQuizPage";
-import N5IntentPlanQuizPage from "./pages/N5IntentPlanQuizPage";
-import N5AskPermitQuizPage from "./pages/N5AskPermitQuizPage";
+// N5 special quizzes
+import ExistHaveQuizPage from "./pages/grammar/n5/ExistHaveQuizPage";
+import N5ComparisonBlankQuizPage from "./pages/grammar/n5/N5ComparisonBlankQuizPage";
+import N5IntentPlanQuizPage from "./pages/grammar/n5/N5IntentPlanQuizPage";
+import N5AskPermitQuizPage from "./pages/grammar/n5/N5AskPermitQuizPage";
 
-// 形容詞（い/な）二択
-import AdjTypeQuizPage from "./pages/AdjTypeQuizPage";
+// Adj quiz
+import AdjTypeQuizPage from "./pages/grammar/n5/AdjTypeQuizPage";
 
-// XP 永続化
+// XP persistence
 import { initUserXP, stopAutoSave } from "./utils/xpPersistence";
 
-// ---- helpers ----
+/* ========= helpers ========= */
 function AdjLevelRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
 }
-
 function CompareAliasRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/grammar/${level}/comparison`} replace />;
 }
-
 function normalizeLesson(key) {
   if (!key) return "Lesson1";
   const m = String(key).match(/lesson\s*(\d+)/i);
   return m ? `Lesson${m[1]}` : key;
 }
-
 function CompareLessonAliasRedirect() {
   const { level = "n5", lesson = "Lesson1" } = useParams();
   return (
@@ -80,18 +74,19 @@ function CompareLessonAliasRedirect() {
   );
 }
 
+/* ========= App ========= */
 const App = () => {
   return (
     <Router>
       <AppInitializer />
       <Routes>
-        {/* 公開ルート */}
+        {/* public */}
         <Route path="/" element={<AuthPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/auth" element={<AuthPage />} />
 
-        {/* 認証後ルート */}
+        {/* protected */}
         <Route
           element={
             <AuthGuard>
@@ -99,41 +94,41 @@ const App = () => {
             </AuthGuard>
           }
         >
+          {/* home */}
           <Route path="/home" element={<Home />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/result" element={<ResultPage />} />
 
-          {/* ★ テキスト関連 */}
-          <Route path="/text" element={<TextLevelSelectPage />} />
-          <Route path="/text/:level" element={<TextCategorySelectPage />} />
-          <Route path="/text/:level/:category" element={<TextLessonSelectPage />} />
-          {/* 👇 修正済み */}
-          <Route path="/text/:level/:category/:pageId" element={<TextLessonPage />} />
-
-          {/* 単語・クイズ */}
+          {/* words & lessons */}
           <Route path="/level" element={<LevelSelectPage />} />
           <Route path="/lessons/:level" element={<LessonSelectPage />} />
           <Route path="/words/:level/:lesson" element={<WordPage />} />
+
+          {/* my wordbook */}
+          <Route path="/my-words" element={<MyWordbookPage />} />
+          <Route path="/my" element={<Navigate to="/my-words" replace />} />
+
+          {/* settings */}
           <Route path="/settings" element={<Settings />} />
           <Route path="/language" element={<LanguageSettings />} />
 
-          {/* 文法 */}
+          {/* grammar */}
           <Route path="/grammar" element={<GrammarLevelSelectPage />} />
           <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
           <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
           <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
 
-          {/* 専用クイズ */}
+          {/* n5 special */}
           <Route path="/grammar/:level/comparison/:lesson" element={<N5ComparisonBlankQuizPage />} />
           <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
           <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
           <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
 
-          {/* エイリアス */}
+          {/* legacy aliases */}
           <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
           <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
 
-          {/* 形容詞二択 */}
+          {/* adjective quiz */}
           <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
           <Route path="/adj/:level" element={<AdjLevelRedirect />} />
           <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
@@ -146,6 +141,7 @@ const App = () => {
   );
 };
 
+/* ========= Auth & XP init ========= */
 const AppInitializer = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -159,10 +155,10 @@ const AppInitializer = () => {
     "/home",
     "/quiz",
     "/result",
-    "/text",
     "/level",
     "/lessons",
     "/words",
+    "/my-words", // protect my wordbook
     "/settings",
     "/language",
     "/grammar",
@@ -188,8 +184,9 @@ const AppInitializer = () => {
           const st = useAppStore.getState?.();
           st?.loadDailyForUser?.(user.uid);
           st?.ensureDailyToday?.(user.uid);
-        } catch (e) { console.warn("daily restore failed:", e); }
-
+        } catch (e) {
+          console.warn("daily restore failed:", e);
+        }
         if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
       } else {
         clearUser();
