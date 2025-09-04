@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part6.js
 export const n4part6 = {
-    lesson: [
+    Lesson6: [
     { kanji: "問題", reading: "もんだい", meanings: { id: "", en: "problem", zh: "", tw: "" } },
     { kanji: "準備", reading: "じゅんび", meanings: { id: "", en: "preparation", zh: "", tw: "" } },
     { kanji: "会社", reading: "かいしゃ", meanings: { id: "", en: "company", zh: "", tw: "" } },

@@ -13,9 +13,9 @@ export const n4WordSets = {
   Lesson2: n4part2.Lesson2,
   Lesson3: n4part3.Lesson3,
   Lesson4: n4part4.Lesson4,
-  Lesson4: n4part5.Lesson4,
-  Lesson4: n4part6.Lesson4,
-  Lesson4: n4part7.Lesson4,
-  Lesson4: n4part8.Lesson4,
+  Lesson5: n4part5.Lesson5,
+  Lesson6: n4part6.Lesson6,
+  Lesson7: n4part7.Lesson7,
+  Lesson8: n4part8.Lesson8,
 };
 

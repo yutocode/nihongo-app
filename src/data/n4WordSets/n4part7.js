@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part7.js
 export const n4part7 = {
-    lesson7: [
+    Lesson7: [
     { kanji: "計画", reading: "けいかく", meanings: { id: "", en: "plan", zh: "", tw: "" } },
     { kanji: "最近", reading: "さいきん", meanings: { id: "", en: "recently", zh: "", tw: "" } },
     { kanji: "元気", reading: "げんき", meanings: { id: "", en: "healthy", zh: "", tw: "" } },

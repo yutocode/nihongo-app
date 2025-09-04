@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part4.js
 export const n4part4 = {
-    lesson4: [
+    Lesson4: [
     { kanji: "宿題", reading: "しゅくだい", meanings: { id: "", en: "homework", zh: "", tw: "" } },
     { kanji: "作文", reading: "さくぶん", meanings: { id: "", en: "composition", zh: "", tw: "" } },
     { kanji: "旅行", reading: "りょこう", meanings: { id: "", en: "travel", zh: "", tw: "" } },

@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part3.js
 export const n4part3 = {
-    lesson3: [
+    Lesson3: [
     { kanji: "毎日", reading: "まいにち", meanings: { id: "", en: "every day", zh: "", tw: "" } },
     { kanji: "嬉しい", reading: "うれしい", meanings: { id: "", en: "happy", zh: "", tw: "" } },
     { kanji: "意味", reading: "いみ", meanings: { id: "", en: "meaning", zh: "", tw: "" } },

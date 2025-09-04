@@ -1,15 +1,130 @@
-.mybook-wrap{max-width:820px;margin:20px auto;padding:0 16px;}
-.mybook-wrap h2{font-size:1.6rem;margin:8px 0 16px;}
-.empty{opacity:.75;margin:24px 0;}
-.mybook-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;list-style:none;padding:0;margin:0;}
-.mybook-item{background:var(--surface,#1c1f26);border:1px solid var(--color-border,rgba(255,255,255,.1));
-  border-radius:14px;padding:14px;display:flex;justify-content:space-between;gap:8px;}
-.kanji{font-size:1.7rem;font-weight:800;margin-bottom:6px;}
-.readings{font-weight:600;opacity:.9;}
-.meanings{font-size:.95rem;opacity:.9;margin-top:6px;}
-.meta{font-size:.8rem;opacity:.6;margin-top:4px}
-.actions{display:flex;align-items:flex-start;gap:8px}
-.btn{border:1px solid rgba(255,255,255,.15);background:transparent;color:inherit;border-radius:10px;padding:6px 10px;cursor:pointer}
-.btn:hover{background:rgba(255,255,255,.06)}
-.btn.danger{border-color:rgba(255,0,0,.25)}
-.btn.danger:hover{background:rgba(255,0,0,.08)}
+/* My Wordbook page (supports both .mybook-* and .mywb-* aliases) */
+.mybook-wrap, .mywb-wrap {
+  max-width: 820px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.mybook-wrap h2, .mywb-wrap .mywb-title {
+  font-size: 1.6rem;
+  margin: 8px 0 16px;
+  font-weight: 800;
+}
+
+.empty, .mywb-empty {
+  opacity: .75;
+  margin: 24px 0;
+}
+
+/* Grid of cards */
+.mybook-list, .mywb-grid, .mywb-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Card container */
+.mybook-item, .mywb-item {
+  background: var(--surface, #f9f9f9);
+  border: 1px solid var(--color-border, rgba(0,0,0,.12));
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--fg, #111);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+/* Dark mode friendly */
+@media (prefers-color-scheme: dark) {
+  .mybook-item, .mywb-item {
+    background: var(--surface, #1c1f26);
+    border-color: var(--color-border, rgba(255,255,255,.1));
+    color: var(--fg, #eee);
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  }
+}
+
+/* Card content */
+.kanji, .mywb-kanji {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.readings, .mywb-reading {
+  font-weight: 600;
+  opacity: .9;
+}
+
+.meanings {
+  font-size: .95rem;
+  opacity: .9;
+  margin-top: 6px;
+}
+
+.meta, .mywb-meta {
+  font-size: .8rem;
+  opacity: .65;
+  margin-top: 4px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mywb-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border, rgba(0,0,0,.15));
+  background: rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  .mywb-tag { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06); }
+}
+
+/* Actions */
+.actions, .mywb-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* Buttons */
+.btn, .mywb-remove, .mywb-clear {
+  border: 1px solid rgba(0,0,0,.15);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .btn, .mywb-remove, .mywb-clear { border-color: rgba(255,255,255,.15); }
+}
+
+.btn:hover, .mywb-remove:hover, .mywb-clear:hover {
+  background: rgba(0,0,0,.06);
+  transform: translateY(-1px);
+}
+@media (prefers-color-scheme: dark) {
+  .btn:hover, .mywb-remove:hover, .mywb-clear:hover { background: rgba(255,255,255,.08); }
+}
+
+.btn.danger, .mywb-remove {
+  border-color: rgba(255,0,0,.25);
+}
+.btn.danger:hover, .mywb-remove:hover {
+  background: rgba(255,0,0,.08);
+}
+
+/* Clear-all button spans full width on mobile */
+.mywb-clear {
+  width: 100%;
+  margin-top: 8px;
+}

@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part5.js
 export const n4part5 = {
-    lesson5: [
+    Lesson5: [
     { kanji: "作文", reading: "さくぶん", meanings: { id: "", en: "composition", zh: "", tw: "" } },
     { kanji: "準備", reading: "じゅんび", meanings: { id: "", en: "preparation", zh: "", tw: "" } },
     { kanji: "自動車", reading: "じどうしゃ", meanings: { id: "", en: "automobile", zh: "", tw: "" } },

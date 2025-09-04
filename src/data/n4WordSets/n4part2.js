@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part2.js
 export const n4part2 = {
-    lesson2: [
+    Lesson2: [
     { kanji: "有名", reading: "ゆうめい", meanings: { id: "", en: "famous", zh: "", tw: "" } },
     { kanji: "天気", reading: "てんき", meanings: { id: "", en: "weather", zh: "", tw: "" } },
     { kanji: "嬉しい", reading: "うれしい", meanings: { id: "", en: "happy", zh: "", tw: "" } },

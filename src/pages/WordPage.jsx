@@ -45,14 +45,20 @@ export default function WordPage() {
     <div className="word-page">
       {wordList ? (
         <>
-          {/* タイトル（例: "課 1"）— 翻訳キーが無くてもフォールバック */}
+          {/* タイトル（例: "課 1"） */}
           <header className="word-page-head">
             <h2 className="word-page-title">
               {t("lesson.lesson", { defaultValue: "課" })} {lessonNo || "?"}
             </h2>
           </header>
 
-          <WordCard wordList={wordList} selectedLanguage={selectedLanguage} />
+          {/* ★ WordCard に level / lesson を必ず渡す */}
+          <WordCard
+            wordList={wordList}
+            level={normLevel}
+            lesson={`Lesson${lessonNo}`}
+            selectedLanguage={selectedLanguage}
+          />
         </>
       ) : (
         <p className="error-text">

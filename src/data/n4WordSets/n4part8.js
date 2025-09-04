@@ -1,6 +1,6 @@
 // src/data/n4WordSets/n4part8.js
 export const n4part8 = {
-    lesson8:[
+    Lesson8:[
     { kanji: "複雑", reading: "ふくざつ", meanings: { id: "", en: "complicated", zh: "", tw: "" } },
     { kanji: "安全", reading: "あんぜん", meanings: { id: "", en: "safe", zh: "", tw: "" } },
     { kanji: "計画", reading: "けいかく", meanings: { id: "", en: "plan", zh: "", tw: "" } },
