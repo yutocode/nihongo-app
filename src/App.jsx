@@ -17,6 +17,7 @@ import "./styles/Global.css";
 import Layout from "./components/Layout";
 import AuthGuard from "./components/AuthGuard";
 
+// pages
 import AuthPage from "./pages/AuthPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -28,11 +29,9 @@ import LevelSelectPage from "./pages/LevelSelectPage";
 import LessonSelectPage from "./pages/LessonSelectPage";
 import Settings from "./pages/Settings";
 import LanguageSettings from "./pages/LanguageSettings";
-
-// My Wordbook
 import MyWordbookPage from "./pages/MyWordbookPage";
 
-// Grammar (common)
+// grammar (common)
 import GrammarLevelSelectPage from "./pages/grammar/common/GrammarLevelSelectPage";
 import GrammarCategorySelectPage from "./pages/grammar/common/GrammarCategorySelectPage";
 import GrammarLessonSelectPage from "./pages/grammar/common/GrammarLessonSelectPage";
@@ -44,8 +43,13 @@ import N5ComparisonBlankQuizPage from "./pages/grammar/n5/N5ComparisonBlankQuizP
 import N5IntentPlanQuizPage from "./pages/grammar/n5/N5IntentPlanQuizPage";
 import N5AskPermitQuizPage from "./pages/grammar/n5/N5AskPermitQuizPage";
 
-// Adj quiz
+// adj quiz
 import AdjTypeQuizPage from "./pages/grammar/n5/AdjTypeQuizPage";
+
+// word quiz
+import WordQuizLevelSelectPage from "./pages/WordQuizLevelSelectPage";
+import WordQuizLessonSelectPage from "./pages/WordQuizLessonSelectPage";
+import WordQuizPage from "./pages/WordQuizPage";
 
 // XP persistence
 import { initUserXP, stopAutoSave } from "./utils/xpPersistence";
@@ -55,15 +59,18 @@ function AdjLevelRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
 }
+
 function CompareAliasRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/grammar/${level}/comparison`} replace />;
 }
+
 function normalizeLesson(key) {
   if (!key) return "Lesson1";
   const m = String(key).match(/lesson\s*(\d+)/i);
   return m ? `Lesson${m[1]}` : key;
 }
+
 function CompareLessonAliasRedirect() {
   const { level = "n5", lesson = "Lesson1" } = useParams();
   return (
@@ -75,71 +82,74 @@ function CompareLessonAliasRedirect() {
 }
 
 /* ========= App ========= */
-const App = () => {
-  return (
-    <Router>
-      <AppInitializer />
-      <Routes>
-        {/* public */}
-        <Route path="/" element={<AuthPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/auth" element={<AuthPage />} />
+const App = () => (
+  <Router>
+    <AppInitializer />
+    <Routes>
+      {/* public */}
+      <Route path="/" element={<AuthPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/auth" element={<AuthPage />} />
 
-        {/* protected */}
-        <Route
-          element={
-            <AuthGuard>
-              <Layout />
-            </AuthGuard>
-          }
-        >
-          {/* home */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/result" element={<ResultPage />} />
+      {/* protected */}
+      <Route
+        element={
+          <AuthGuard>
+            <Layout />
+          </AuthGuard>
+        }
+      >
+        {/* home */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/result" element={<ResultPage />} />
 
-          {/* words & lessons */}
-          <Route path="/level" element={<LevelSelectPage />} />
-          <Route path="/lessons/:level" element={<LessonSelectPage />} />
-          <Route path="/words/:level/:lesson" element={<WordPage />} />
+        {/* words & lessons (単語カード系) */}
+        <Route path="/level" element={<LevelSelectPage />} />
+        <Route path="/lessons/:level" element={<LessonSelectPage />} />
+        <Route path="/words/:level/:lesson" element={<WordPage />} />
 
-          {/* my wordbook */}
-          <Route path="/my-words" element={<MyWordbookPage />} />
-          <Route path="/my" element={<Navigate to="/my-words" replace />} />
+        {/* my wordbook */}
+        <Route path="/my-words" element={<MyWordbookPage />} />
+        <Route path="/my" element={<Navigate to="/my-words" replace />} />
 
-          {/* settings */}
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/language" element={<LanguageSettings />} />
+        {/* settings */}
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/language" element={<LanguageSettings />} />
 
-          {/* grammar */}
-          <Route path="/grammar" element={<GrammarLevelSelectPage />} />
-          <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
-          <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
-          <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
+        {/* grammar */}
+        <Route path="/grammar" element={<GrammarLevelSelectPage />} />
+        <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
+        <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
+        <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
 
-          {/* n5 special */}
-          <Route path="/grammar/:level/comparison/:lesson" element={<N5ComparisonBlankQuizPage />} />
-          <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
-          <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
-          <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
+        {/* n5 special */}
+        <Route path="/grammar/:level/comparison/:lesson" element={<N5ComparisonBlankQuizPage />} />
+        <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
+        <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
+        <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
 
-          {/* legacy aliases */}
-          <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
-          <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
+        {/* legacy aliases */}
+        <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
+        <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
 
-          {/* adjective quiz */}
-          <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
-          <Route path="/adj/:level" element={<AdjLevelRedirect />} />
-          <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
-        </Route>
+        {/* adjective quiz */}
+        <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
+        <Route path="/adj/:level" element={<AdjLevelRedirect />} />
+        <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
 
-        {/* 404 */}
-        <Route path="*" element={<div>404 Not Found</div>} />
-      </Routes>
-    </Router>
-  );
-};
+        {/* word quiz（クイズ系の独立ルーティング） */}
+        <Route path="/word-quiz" element={<WordQuizLevelSelectPage />} />
+        <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
+        <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
+      </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<div>404 Not Found</div>} />
+    </Routes>
+  </Router>
+);
 
 /* ========= Auth & XP init ========= */
 const AppInitializer = () => {
@@ -158,7 +168,8 @@ const AppInitializer = () => {
     "/level",
     "/lessons",
     "/words",
-    "/my-words", // protect my wordbook
+    "/my-words",
+    "/word-quiz", // クイズ配下も保護
     "/settings",
     "/language",
     "/grammar",
@@ -167,8 +178,7 @@ const AppInitializer = () => {
 
   const lastNavRef = useRef("");
   const navigateOnce = (to) => {
-    if (!to) return;
-    if (lastNavRef.current === to) return;
+    if (!to || lastNavRef.current === to) return;
     lastNavRef.current = to;
     navigate(to, { replace: true });
   };
@@ -179,7 +189,11 @@ const AppInitializer = () => {
 
       if (user) {
         setUser(user);
-        try { initUserXP?.(user.uid); } catch (e) { console.warn("initUserXP failed:", e); }
+        try {
+          initUserXP?.(user.uid);
+        } catch (e) {
+          console.warn("initUserXP failed:", e);
+        }
         try {
           const st = useAppStore.getState?.();
           st?.loadDailyForUser?.(user.uid);
@@ -190,7 +204,9 @@ const AppInitializer = () => {
         if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
       } else {
         clearUser();
-        try { stopAutoSave?.(); } catch {}
+        try {
+          stopAutoSave?.();
+        } catch {}
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
         if (onPrivate) navigateOnce("/");
       }
@@ -199,7 +215,7 @@ const AppInitializer = () => {
     });
 
     return () => unsubscribe();
-  }, [location.pathname]);
+  }, [location.pathname, navigate]);
 
   return null;
 };

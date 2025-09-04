@@ -1,3 +1,4 @@
+// src/components/Header.jsx
 import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -11,9 +12,11 @@ const Header = () => {
   const location = useLocation();
   const { t } = useTranslation();
 
-  // 現在パスからレベル推定
+  // 現在パスからレベル推定（Word Quiz も対象に）
   const currentLevel = useMemo(() => {
-    const m = location.pathname.match(/^\/(?:lessons|words|grammar|adj)\/(n[1-5])/i);
+    const m = location.pathname.match(
+      /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i
+    );
     return m ? m[1].toUpperCase() : "N5";
   }, [location.pathname]);
 
@@ -21,48 +24,71 @@ const Header = () => {
   const backTarget = useMemo(() => {
     const p = location.pathname;
 
-    // 単語：/words/nX/.. → /lessons/nX
+    // ----- 単語カード系 -----
     if (/^\/words\/n[1-5]\//i.test(p)) {
       const m = p.match(/^\/words\/(n[1-5])/i);
       if (m) return { path: `/lessons/${m[1]}`, label: t("nav.toLessonSelect", "課程選択へ") };
     }
-    // /lessons/nX → /level
     if (/^\/lessons\/n[1-5]/i.test(p)) {
       return { path: "/level", label: t("nav.toLevelSelect", "レベル選択へ") };
     }
 
-    // 文法：/grammar/nX/:cat/lessonY → /grammar/nX/:cat
+    // ----- 文法 -----
     let m = p.match(/^\/grammar\/(n[1-5])\/([^/]+)\/lesson[0-9]+$/i);
-    if (m) return {
-      path: `/grammar/${m[1].toLowerCase()}/${m[2]}`,
-      label: t("grammar.lessons.backToLessons", "レッスン一覧へ"),
-    };
-
-    // /grammar/nX/:cat → /grammar/nX
+    if (m) {
+      return {
+        path: `/grammar/${m[1].toLowerCase()}/${m[2]}`,
+        label: t("grammar.lessons.backToLessons", "レッスン一覧へ"),
+      };
+    }
     m = p.match(/^\/grammar\/(n[1-5])\/([^/]+)$/i);
-    if (m) return {
-      path: `/grammar/${m[1].toLowerCase()}`,
-      label: t("grammar.lessons.backToCategories", "返回分類"),
-    };
-
-    // /grammar/nX → /grammar
+    if (m) {
+      return {
+        path: `/grammar/${m[1].toLowerCase()}`,
+        label: t("grammar.lessons.backToCategories", "返回分類"),
+      };
+    }
     if (/^\/grammar\/n[1-5]$/i.test(p)) {
       return { path: "/grammar", label: t("grammar.level.backToLevels", "返回級別") };
     }
 
-    // 形容詞：/adj/nX/lessonY → /grammar/nX
+    // ----- 形容詞特別クイズ -----
     m = p.match(/^\/adj\/(n[1-5])\/lesson[0-9]+$/i);
-    if (m) return {
-      path: `/grammar/${m[1].toLowerCase()}`,
-      label: t("adj.backToLessons", "レッスン一覧へ"),
-    };
-
-    // /adj/nX → /grammar/nX
+    if (m) {
+      return {
+        path: `/grammar/${m[1].toLowerCase()}`,
+        label: t("adj.backToLessons", "レッスン一覧へ"),
+      };
+    }
     m = p.match(/^\/adj\/(n[1-5])$/i);
-    if (m) return {
-      path: `/grammar/${m[1].toLowerCase()}`,
-      label: t("adj.backToCategories", "文法トップへ"),
-    };
+    if (m) {
+      return {
+        path: `/grammar/${m[1].toLowerCase()}`,
+        label: t("adj.backToCategories", "文法トップへ"),
+      };
+    }
+
+    // ----- Word Quiz 追加 -----
+    // /word-quiz/nX/LessonY -> /word-quiz/nX
+    m = p.match(/^\/word-quiz\/(n[1-5])\/Lesson[0-9]+$/i);
+    if (m) {
+      return {
+        path: `/word-quiz/${m[1].toLowerCase()}`,
+        label: t("wordquiz.backToLessonSelect", "レッスン選択へ"),
+      };
+    }
+    // /word-quiz/nX -> /word-quiz
+    m = p.match(/^\/word-quiz\/(n[1-5])$/i);
+    if (m) {
+      return {
+        path: `/word-quiz`,
+        label: t("wordquiz.backToLevelSelect", "レベル選択へ"),
+      };
+    }
+    // /word-quiz -> /home
+    if (/^\/word-quiz$/i.test(p)) {
+      return { path: "/home", label: t("common.backToHome", "ホームへ") };
+    }
 
     return null;
   }, [location.pathname, t]);

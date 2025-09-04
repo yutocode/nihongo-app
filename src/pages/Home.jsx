@@ -45,17 +45,18 @@ const Home = () => {
       {/* ===== 下段（4ボタン） ===== */}
       <section className="section">
         <div className="grid-four">
-          {/* ★ Challenge → My Wordbook に差し替え */}
+          {/* Challenge → My Wordbook */}
           <FeatureTile
             iconName="target"
             label={t("home.menu.myWordbook", "My単語帳")}
             onClick={() => navigate("/my-words")}
           />
 
+          {/* Exam Structure → Word Quiz (→ レベル選択ページ) */}
           <FeatureTile
             iconName="quiz"
-            label={t("home.menu.examStructure", "試験構成")}
-            onClick={() => navigate("/exam-structure")}
+            label={t("home.menu.wordQuiz", "Word Quiz")}
+            onClick={() => navigate("/word-quiz")}
           />
 
           <FeatureTile

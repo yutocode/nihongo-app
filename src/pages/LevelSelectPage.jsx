@@ -17,7 +17,7 @@ const LevelSelectPage = () => {
         {levels.map((level) => (
           <button
             key={level}
-            onClick={() => navigate(`/lessons/${level}`)} // ✅ 正しくパラメータ渡してるか
+            onClick={() => navigate(`/lessons/${level}`)}
           >
             {level.toUpperCase()}
           </button>
