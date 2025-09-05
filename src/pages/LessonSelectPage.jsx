@@ -6,7 +6,7 @@ import "../styles/LessonSelectPage.css";
 
 const LESSON_COUNTS = {
   n5: 2,
-  n4: 8,
+  n4: 12,
   n3: 13,
   n2: 20,
   n1: 40,

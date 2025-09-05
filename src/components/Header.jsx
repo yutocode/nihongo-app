@@ -68,7 +68,7 @@ const Header = () => {
       };
     }
 
-    // ----- Word Quiz 追加 -----
+    // ----- Word Quiz -----
     // /word-quiz/nX/LessonY -> /word-quiz/nX
     m = p.match(/^\/word-quiz\/(n[1-5])\/Lesson[0-9]+$/i);
     if (m) {
@@ -93,30 +93,41 @@ const Header = () => {
     return null;
   }, [location.pathname, t]);
 
+  // 同時表示しないロジック
+  const showBack = !!backTarget;
+  const onBack = () => navigate(backTarget.path);
+
+  // トップ階層や一覧などで戻り先が無いときだけホーム表示
+  const showHome = !showBack && location.pathname !== "/home";
+  const onHome = () => navigate("/home");
+
   return (
     <header className="app-header" role="banner">
-      {/* 左：ホーム＋戻る */}
+      {/* 左：ホーム or 戻る（どちらか一方のみ） */}
       <div className="hdr-left">
-        <button
-          className="hdr-btn is-ghost home-btn"
-          aria-label={t("nav.home", "Home")}
-          title={t("nav.home", "Home")}
-          onClick={() => navigate("/home")}
-        >
-          <FaHome className="hdr-ic" />
-          <span className="hdr-btn-text">{t("nav.homeLabel", "ホーム")}</span>
-        </button>
-
-        {backTarget && (
+        {showBack ? (
           <button
             className="hdr-btn is-primary back-btn"
             aria-label={t("nav.back", "Back")}
             title={backTarget.label}
-            onClick={() => navigate(backTarget.path)}
+            onClick={onBack}
           >
             <FaArrowLeft className="hdr-ic" />
             <span className="hdr-btn-text">{backTarget.label}</span>
           </button>
+        ) : showHome ? (
+          <button
+            className="hdr-btn is-ghost home-btn"
+            aria-label={t("nav.home", "Home")}
+            title={t("nav.home", "Home")}
+            onClick={onHome}
+          >
+            <FaHome className="hdr-ic" />
+            <span className="hdr-btn-text">{t("nav.homeLabel", "ホーム")}</span>
+          </button>
+        ) : (
+          // どちらも出さない時のレイアウト崩れ防止
+          <span className="hdr-left-spacer" />
         )}
       </div>
 

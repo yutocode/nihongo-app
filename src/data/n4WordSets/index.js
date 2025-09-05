@@ -7,6 +7,11 @@ import { n4part5 } from "./n4part5.js";
 import { n4part6 } from "./n4part6.js";
 import { n4part7 } from "./n4part7.js";
 import { n4part8 } from "./n4part8.js";
+import { n4part9 } from "./n4part9.js";
+import { n4part10 } from "./n4part10.js";
+import { n4part11 } from "./n4part11.js";
+import { n4part12 } from "./n4part12.js";
+
 
 export const n4WordSets = {
   Lesson1: n4part1.Lesson1,
@@ -17,5 +22,10 @@ export const n4WordSets = {
   Lesson6: n4part6.Lesson6,
   Lesson7: n4part7.Lesson7,
   Lesson8: n4part8.Lesson8,
+  Lesson9: n4part9.Lesson9,
+  Lesson10: n4part10.Lesson10,
+  Lesson11: n4part11.Lesson11,
+  Lesson12: n4part12.Lesson12,
 };
+
 

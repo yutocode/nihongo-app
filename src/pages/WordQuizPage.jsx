@@ -58,6 +58,25 @@ export default function WordQuizPage() {
     setJudge(null);
   }, [lesson]);
 
+  // 問題が存在しないときは即座に前ページへ戻す（余計な「戻る」ボタンを出さない）
+  useEffect(() => {
+    if (!total) {
+      // 一瞬だけ「読み込み中」を出してから戻すとUXが自然
+      const timer = setTimeout(() => nav(-1), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [total, nav]);
+
+  if (!q) {
+    // 自動で戻るので実描画は最小限
+    return (
+      <div className="quiz-wrap">
+        <h1>{`${level.toUpperCase()} ${lesson}`}</h1>
+        <p>{t("common.noWordsFound", { defaultValue: "問題が見つかりません。自動で戻ります…" })}</p>
+      </div>
+    );
+  }
+
   const handleAnswer = (i) => {
     if (selected !== null) return;
     setSelected(i);
@@ -70,7 +89,8 @@ export default function WordQuizPage() {
         setSelected(null);
         setJudge(null);
       } else {
-        nav(-1); // 終了：レッスン一覧へ戻る
+        // 終了：レッスン一覧へ戻る
+        nav(-1);
       }
     }, 900);
   };
@@ -91,18 +111,6 @@ export default function WordQuizPage() {
       nav(-1);
     }
   };
-
-  if (!q) {
-    return (
-      <div className="quiz-wrap">
-        <h1>{`${level.toUpperCase()} ${lesson}`}</h1>
-        <p>{t("common.noWordsFound", { defaultValue: "問題が見つかりません。" })}</p>
-        <button className="choice-btn" onClick={() => nav(-1)}>
-          {t("common.back", { defaultValue: "戻る" })}
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -140,7 +148,7 @@ export default function WordQuizPage() {
         })}
       </div>
 
-      {/* 下部ナビ：前へ／次へ */}
+      {/* 下部ナビ：前へ／次へ（ホーム系は出さない） */}
       <div className="wq-actions">
         <button
           className="wq-prev"
@@ -153,7 +161,7 @@ export default function WordQuizPage() {
         <button
           className="wq-next"
           onClick={goNext}
-          disabled={selected !== null} // 解答待ちの自動進行に任せる／任意で false にして常時可でもOK
+          disabled={selected !== null}
         >
           {index < total - 1 ? t("quiz.next", "次へ") : t("quiz.finish", "終了")}
         </button>

@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/LevelSelectPage.css";
-import "../styles/WordQuiz.css"; // ← ボタン用スタイルを使う
+import "../styles/WordQuiz.css"; // ボタン用スタイル
 
 export default function WordQuizLevelSelectPage() {
   const { t } = useTranslation();
@@ -12,13 +12,6 @@ export default function WordQuizLevelSelectPage() {
 
   return (
     <div className="level-select-page">
-      {/* ← 追加：左上の戻る */}
-      <div className="wq-topbar">
-        <button className="wq-back-btn" onClick={() => navigate("/home")}>
-          ← {t("common.backToHome", "ホームへ")}
-        </button>
-      </div>
-
       <h2>{t("wordquiz.selectLevel", "Word Quiz — レベルを選ぶ")}</h2>
       <div className="level-buttons">
         {levels.map((lv) => (
