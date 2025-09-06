@@ -1,11 +1,15 @@
+// src/pages/WordQuizPage.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/WordQuiz.css";
 
+// N5 / N4 を読み込み（index は “export { LessonX } …” 形式でOK）
 import * as n5Quiz from "../data/wordquiz/n5";
+import * as n4Quiz from "../data/wordquiz/n4";
 
-const MAP = { n5: n5Quiz };
+// レベル→データの対応表を拡張
+const MAP = { n5: n5Quiz, n4: n4Quiz };
 
 const normalizeLesson = (x) => {
   if (!x) return "Lesson1";
@@ -28,6 +32,7 @@ export default function WordQuizPage() {
   const nav = useNavigate();
   const { t } = useTranslation();
 
+  // 選択レベルの該当レッスン配列（未定義なら []）
   const data = MAP[level]?.[lesson] || [];
 
   // 出題順・選択肢はランダムのまま
@@ -37,8 +42,8 @@ export default function WordQuizPage() {
       const correctIndex = shuffledChoices.indexOf(item.choices_ja[item.correct]);
       return {
         id: item.id ?? idx,
-        sentence: item.question_ja,  // ルビ付きHTML
-        options: shuffledChoices,    // 4択（ひらがな）
+        sentence: item.question_ja, // ルビ付きHTML
+        options: shuffledChoices,   // 4択（ひらがな）
         correctIndex,
       };
     });
@@ -56,23 +61,25 @@ export default function WordQuizPage() {
     setIndex(0);
     setSelected(null);
     setJudge(null);
-  }, [lesson]);
+  }, [lesson, level]);
 
-  // 問題が存在しないときは即座に前ページへ戻す（余計な「戻る」ボタンを出さない）
+  // 問題が存在しないときは一覧へ自動で戻す
   useEffect(() => {
     if (!total) {
-      // 一瞬だけ「読み込み中」を出してから戻すとUXが自然
       const timer = setTimeout(() => nav(-1), 50);
       return () => clearTimeout(timer);
     }
   }, [total, nav]);
 
   if (!q) {
-    // 自動で戻るので実描画は最小限
     return (
       <div className="quiz-wrap">
-        <h1>{`${level.toUpperCase()} ${lesson}`}</h1>
-        <p>{t("common.noWordsFound", { defaultValue: "問題が見つかりません。自動で戻ります…" })}</p>
+        <h1>{`${(level || "").toUpperCase()} ${lesson}`}</h1>
+        <p>
+          {t("common.noWordsFound", {
+            defaultValue: "問題が見つかりません。自動で戻ります…",
+          })}
+        </p>
       </div>
     );
   }
@@ -114,13 +121,17 @@ export default function WordQuizPage() {
 
   return (
     <div
-      className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}
+      className={`quiz-wrap ${
+        judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""
+      }`}
       key={q.id}
     >
       <h1>{`${level.toUpperCase()} ${lesson}`}</h1>
-      <p className="counter">{index + 1} / {total}</p>
+      <p className="counter">
+        {index + 1} / {total}
+      </p>
 
-      {/* 例文（漢字にルビ、ターゲットに下線などはデータ側でHTML化） */}
+      {/* 例文（漢字にルビ、ターゲット下線などはデータ側HTML） */}
       <h2 className="question">
         <span dangerouslySetInnerHTML={{ __html: q.sentence }} />
       </h2>
@@ -148,7 +159,7 @@ export default function WordQuizPage() {
         })}
       </div>
 
-      {/* 下部ナビ：前へ／次へ（ホーム系は出さない） */}
+      {/* 下部ナビ：前へ／次へ */}
       <div className="wq-actions">
         <button
           className="wq-prev"
@@ -158,11 +169,7 @@ export default function WordQuizPage() {
           ← {t("common.prev", "前へ")}
         </button>
 
-        <button
-          className="wq-next"
-          onClick={goNext}
-          disabled={selected !== null}
-        >
+        <button className="wq-next" onClick={goNext} disabled={selected !== null}>
           {index < total - 1 ? t("quiz.next", "次へ") : t("quiz.finish", "終了")}
         </button>
       </div>

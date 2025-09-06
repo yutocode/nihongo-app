@@ -3,8 +3,9 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// N5 だけ先行対応
+// N5 / N4 に対応
 import * as n5Quiz from "../data/wordquiz/n5";
+import * as n4Quiz from "../data/wordquiz/n4";
 
 // 見た目を文法のレッスン選択と同じにする
 import "../styles/GrammarLesson.css";
@@ -23,27 +24,36 @@ export default function WordQuizLessonSelectPage() {
   const nav = useNavigate();
   const { t } = useTranslation();
 
-  // レベルごとのレッスンキーを取得（いまは n5 のみ）
-  const lessons =
-    level === "n5"
-      ? Object.keys(n5Quiz || {}).sort(sortByLessonNumber)
-      : [];
+  // レベルごとのクイズデータをマップ
+  const levelMap = {
+    n5: n5Quiz,
+    n4: n4Quiz,
+    // n3/n2/n1 は今後追加
+  };
+
+  const dataset = levelMap[level] || {};
+  const lessons = Object.keys(dataset).sort(sortByLessonNumber);
 
   return (
     <div className="grammar-wrap">
       {/* タイトルも文法ページと同じトーン */}
-      <h1>Word Quiz Lesson Select ({LEVEL_LABELS[level] || level.toUpperCase()})</h1>
+      <h1>
+        Word Quiz Lesson Select ({LEVEL_LABELS[level] || level.toUpperCase()})
+      </h1>
 
       <div className="grid">
-        {lessons.map((lesson) => (
+        {lessons.map((lessonKey) => (
           <button
-            key={lesson}
+            key={lessonKey}
             type="button"
             className="grammar-btn"
-            title={t("grammar.lessons.open", { num: lesson.replace(/\D/g, "") })}
-            onClick={() => nav(`/word-quiz/${level}/${lesson}`)}
+            title={t("grammar.lessons.open", {
+              num: lessonKey.replace(/\D/g, ""),
+              defaultValue: `レッスンを開く`,
+            })}
+            onClick={() => nav(`/word-quiz/${level}/${lessonKey}`)}
           >
-            {lesson}
+            {lessonKey}
           </button>
         ))}
       </div>

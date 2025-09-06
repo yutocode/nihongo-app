@@ -121,25 +121,49 @@ const App = () => (
         {/* grammar */}
         <Route path="/grammar" element={<GrammarLevelSelectPage />} />
         <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
-        <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
-        <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
+        <Route
+          path="/grammar/:level/:category"
+          element={<GrammarLessonSelectPage />}
+        />
+        <Route
+          path="/grammar/:level/:category/:lesson"
+          element={<GrammarQuizPage />}
+        />
 
         {/* n5 special */}
-        <Route path="/grammar/:level/comparison/:lesson" element={<N5ComparisonBlankQuizPage />} />
-        <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
-        <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
-        <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
+        <Route
+          path="/grammar/:level/comparison/:lesson"
+          element={<N5ComparisonBlankQuizPage />}
+        />
+        <Route
+          path="/grammar/:level/intent-plan/:lesson"
+          element={<N5IntentPlanQuizPage />}
+        />
+        <Route
+          path="/grammar/:level/exist-have/:lesson"
+          element={<ExistHaveQuizPage />}
+        />
+        <Route
+          path="/grammar/:level/ask-permit/:lesson"
+          element={<N5AskPermitQuizPage />}
+        />
 
         {/* legacy aliases */}
-        <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
-        <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
+        <Route
+          path="/grammar/:level/compare"
+          element={<CompareAliasRedirect />}
+        />
+        <Route
+          path="/grammar/:level/compare/:lesson"
+          element={<CompareLessonAliasRedirect />}
+        />
 
         {/* adjective quiz */}
         <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
         <Route path="/adj/:level" element={<AdjLevelRedirect />} />
         <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
 
-        {/* word quiz（クイズ系の独立ルーティング） */}
+        {/* word quiz（独立ルーティング） */}
         <Route path="/word-quiz" element={<WordQuizLevelSelectPage />} />
         <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
         <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
@@ -215,7 +239,7 @@ const AppInitializer = () => {
     });
 
     return () => unsubscribe();
-  }, [location.pathname, navigate]);
+  }, [location.pathname, navigate, setUser, clearUser, setAuthReady]);
 
   return null;
 };
