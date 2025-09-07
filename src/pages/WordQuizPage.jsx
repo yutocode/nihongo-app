@@ -4,12 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/WordQuiz.css";
 
-// N5 / N4 を読み込み（index は “export { LessonX } …” 形式でOK）
+// N5 / N4 / N3 を読み込み（各 index は “export { LessonX } …” 形式）
 import * as n5Quiz from "../data/wordquiz/n5";
 import * as n4Quiz from "../data/wordquiz/n4";
+import * as n3Quiz from "../data/wordquiz/n3";
 
-// レベル→データの対応表を拡張
-const MAP = { n5: n5Quiz, n4: n4Quiz };
+// レベル→データの対応表
+const MAP = { n5: n5Quiz, n4: n4Quiz, n3: n3Quiz };
 
 const normalizeLesson = (x) => {
   if (!x) return "Lesson1";
@@ -35,19 +36,31 @@ export default function WordQuizPage() {
   // 選択レベルの該当レッスン配列（未定義なら []）
   const data = MAP[level]?.[lesson] || [];
 
-  // 出題順・選択肢はランダムのまま
+  // レッスン番号（数値）
+  const lessonNum = Number((lesson.match(/\d+/) || [])[0]);
+  const QUIZ_SIZE = 10;
+
+  // レッスン内 60問 → ランダム10問（N3は index.js の専用関数があれば優先）
+  const pool = useMemo(() => {
+    if (level === "n3" && typeof n3Quiz.getN3LessonRandom === "function" && lessonNum) {
+      return n3Quiz.getN3LessonRandom(lessonNum, QUIZ_SIZE);
+    }
+    return shuffle(data).slice(0, QUIZ_SIZE);
+  }, [level, lessonNum, data]);
+
+  // 出題順・選択肢もランダム
   const questions = useMemo(() => {
-    return shuffle(data).map((item, idx) => {
+    return pool.map((item, idx) => {
       const shuffledChoices = shuffle(item.choices_ja);
       const correctIndex = shuffledChoices.indexOf(item.choices_ja[item.correct]);
       return {
         id: item.id ?? idx,
-        sentence: item.question_ja, // ルビ付きHTML
+        sentence: item.question_ja, // ルビ付きHTML可
         options: shuffledChoices,   // 4択（ひらがな）
         correctIndex,
       };
     });
-  }, [data]);
+  }, [pool]);
 
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null); // number|null
@@ -121,9 +134,7 @@ export default function WordQuizPage() {
 
   return (
     <div
-      className={`quiz-wrap ${
-        judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""
-      }`}
+      className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}
       key={q.id}
     >
       <h1>{`${level.toUpperCase()} ${lesson}`}</h1>

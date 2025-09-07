@@ -3,14 +3,16 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// N5 / N4 に対応
+// N5 / N4 / N3 に対応
 import * as n5Quiz from "../data/wordquiz/n5";
 import * as n4Quiz from "../data/wordquiz/n4";
+import * as n3Quiz from "../data/wordquiz/n3";
 
 // 見た目を文法のレッスン選択と同じにする
 import "../styles/GrammarLesson.css";
 
 const LEVEL_LABELS = { n5: "N5", n4: "N4", n3: "N3", n2: "N2", n1: "N1" };
+const LESSON_KEY_REGEX = /^Lesson\d+$/i;
 
 // "Lesson10" が "Lesson2" より先に来ないよう数値でソート
 const sortByLessonNumber = (a, b) => {
@@ -28,11 +30,16 @@ export default function WordQuizLessonSelectPage() {
   const levelMap = {
     n5: n5Quiz,
     n4: n4Quiz,
-    // n3/n2/n1 は今後追加
+    n3: n3Quiz, // ← 修正：重複していた n4 を n3 に
+    // n2/n1 は今後追加
   };
 
   const dataset = levelMap[level] || {};
-  const lessons = Object.keys(dataset).sort(sortByLessonNumber);
+
+  // LessonXX だけ抽出して番号順に
+  const lessons = Object.keys(dataset)
+    .filter((k) => LESSON_KEY_REGEX.test(k))
+    .sort(sortByLessonNumber);
 
   return (
     <div className="grammar-wrap">

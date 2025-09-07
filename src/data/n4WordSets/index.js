@@ -1,4 +1,3 @@
-// src/data/n4WordSets/index.js
 import { n4part1 } from "./n4part1.js";
 import { n4part2 } from "./n4part2.js";
 import { n4part3 } from "./n4part3.js";
@@ -12,7 +11,7 @@ import { n4part10 } from "./n4part10.js";
 import { n4part11 } from "./n4part11.js";
 import { n4part12 } from "./n4part12.js";
 
-
+// 元の全セット
 export const n4WordSets = {
   Lesson1: n4part1.Lesson1,
   Lesson2: n4part2.Lesson2,
@@ -28,4 +27,20 @@ export const n4WordSets = {
   Lesson12: n4part12.Lesson12,
 };
 
+// ---- Helpers ----
+const shuffle = (arr) => {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
 
+// 各レッスンからランダムに n 問（デフォルト10問）
+export const getN4LessonRandom = (lessonNumber, n = 10) => {
+  const lessonKey = `Lesson${lessonNumber}`;
+  const lesson = n4WordSets[lessonKey];
+  if (!lesson) return [];
+  return shuffle(lesson).slice(0, n);
+};

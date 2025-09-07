@@ -23,17 +23,16 @@ export const n3part1 = {
     { id: 20, kanji: "洗う", reading: "あらう", meanings: { id: "mencuci", en: "to wash", zh: "洗", tw: "洗", ko: "씻다/빨다", vi: "rửa; giặt", th: "ล้าง; ซัก", my: "လျှော်/ဆေးသည်" } },
     { id: 21, kanji: "嵐", reading: "あらし", meanings: { id: "badai", en: "storm", zh: "暴风雨", tw: "暴風雨", ko: "폭풍", vi: "bão tố", th: "พายุ", my: "လေမိုးအမုန်" } },
     { id: 22, kanji: "改める", reading: "あらためる", meanings: { id: "memperbaiki; mengubah", en: "to change; to reform; to correct", zh: "改正/改变", tw: "改正/改變", ko: "고치다; 바꾸다", vi: "sửa đổi; thay đổi", th: "แก้ไข; ปรับเปลี่ยน", my: "ပြင်ဆင်ပြောင်းလဲ" } },
-    { id: 23, kanji: "あらゆる", reading: "あらゆる", meanings: { id: "segala; segala macam", en: "all; every (kind of)", zh: "各种各样的；一切的", tw: "各式各樣的；一切的", ko: "온갖; 모든", vi: "mọi; đủ loại", th: "ทุกๆ แบบ; ทุกชนิด", my: "အမျိုးမျိုးသော/အားလုံး" } },
+    
     { id: 24, kanji: "表す", reading: "あらわす", meanings: { id: "menyatakan; menunjukkan", en: "to express; to show", zh: "表达；表示", tw: "表達；表示", ko: "나타내다", vi: "biểu thị; diễn đạt", th: "แสดง; สื่อ", my: "ဖော်ပြသည်" } },
     { id: 25, kanji: "現れる", reading: "あらわれる", meanings: { id: "muncul; tampak", en: "to appear; to show up", zh: "出现", tw: "出現", ko: "나타나다", vi: "xuất hiện", th: "ปรากฏ", my: "ပေါ်ပေါက်သည်" } },
     { id: 26, kanji: "歩く", reading: "あるく", meanings: { id: "berjalan", en: "to walk", zh: "走路", tw: "走路", ko: "걷다", vi: "đi bộ", th: "เดิน", my: "လမ်းလျှောက်သည်" } },
     { id: 27, kanji: "合わせる", reading: "あわせる", meanings: { id: "menyesuaikan; mencocokkan; menggabungkan", en: "to match; to put together", zh: "配合；合在一起", tw: "配合；合在一起", ko: "맞추다; 합치다", vi: "ghép; điều chỉnh cho hợp", th: "ให้เข้ากัน; ประกอบรวม", my: "ကိုက်ညီစေ/ပေါင်းစည်း" } },
     { id: 28, kanji: "安心", reading: "あんしん", meanings: { id: "lega; merasa tenang", en: "relief; peace of mind", zh: "安心；放心", tw: "安心；放心", ko: "안심", vi: "an tâm", th: "สบายใจ; โล่งใจ", my: "စိတ်ချရမှု" } },
     { id: 29, kanji: "安全", reading: "あんぜん", meanings: { id: "aman", en: "safety; safe", zh: "安全", tw: "安全", ko: "안전", vi: "an toàn", th: "ความปลอดภัย", my: "အန္တရာယ်ကင်းမှု" } },
-    { id: 30, kanji: "あんなに", reading: "あんなに", meanings: { id: "sebegitu; sebanyak itu", en: "that much; so (to that extent)", zh: "那麼；那樣地", tw: "那麼；那樣地", ko: "그렇게나", vi: "đến mức đó; như thế kia", th: "ขนาดนั้น", my: "အဲဒီလောက်အထိ" } },
-    { id: 31, kanji: "以外", reading: "いがい", meanings: { id: "selain", en: "except; other than", zh: "以外；除…之外", tw: "以外；除…之外", ko: "이외; …빼고", vi: "ngoài; trừ", th: "นอกเหนือจาก; ยกเว้น", my: "အပြင်/…ကိုမထည့်သွင်းဘဲ" } },
+    
     { id: 32, kanji: "息", reading: "いき", meanings: { id: "napas", en: "breath", zh: "呼吸；气息", tw: "呼吸；氣息", ko: "숨", vi: "hơi thở", th: "ลมหายใจ", my: "အသက်ရှု" } },
-    { id: 33, kanji: "いきなり", reading: "いきなり", meanings: { id: "tiba-tiba", en: "suddenly; all of a sudden", zh: "突然/猛然", tw: "突然/猛然", ko: "갑자기", vi: "đột ngột", th: "กะทันหัน; ทันทีทันใด", my: "ချက်ချင်း/ရုတ်တရက်" } },
+    
     { id: 34, kanji: "生き物", reading: "いきもの", meanings: { id: "makhluk hidup", en: "living thing; creature", zh: "生物", tw: "生物", ko: "생물", vi: "sinh vật", th: "สิ่งมีชีวิต", my: "အသက်ရှိသတ္တဝါ" } },
     { id: 35, kanji: "意見", reading: "いけん", meanings: { id: "pendapat", en: "opinion", zh: "意见", tw: "意見", ko: "의견", vi: "ý kiến", th: "ความเห็น", my: "အမြင်/အယူအဆ" } },
     { id: 36, kanji: "石", reading: "いし", meanings: { id: "batu", en: "stone", zh: "石头", tw: "石頭", ko: "돌", vi: "đá", th: "หิน", my: "ကျောက်" } },
@@ -46,7 +45,7 @@ export const n3part1 = {
     { id: 43, kanji: "一度に", reading: "いちどに", meanings: { id: "sekaligus", en: "at once; all at once", zh: "一下子；同时", tw: "一下子；同時", ko: "한꺼번에", vi: "một lượt; cùng lúc", th: "พร้อมกัน; ทีเดียว", my: "တစ်ခါတည်း" } },
     { id: 44, kanji: "市場", reading: "いちば", meanings: { id: "pasar", en: "market (bazaar)", zh: "市场/菜市场", tw: "市場/菜市場", ko: "시장", vi: "chợ", th: "ตลาด", my: "စျေးကွက်" } },
     { id: 45, kanji: "一般", reading: "いっぱん", meanings: { id: "umum; biasanya", en: "general; common", zh: "一般；普遍", tw: "一般；普遍", ko: "일반", vi: "thông thường", th: "ทั่วไป", my: "အထွေထွေ" } },
-    { id: 46, kanji: "いつか", reading: "いつか", meanings: { id: "suatu saat", en: "someday; at some point", zh: "总有一天；什么时候", tw: "總有一天；什麼時候", ko: "언젠가", vi: "một ngày nào đó", th: "สักวันหนึ่ง", my: "တစ်ခါတစ်ချိန်" } },
+    
     { id: 47, kanji: "移動", reading: "いどう", meanings: { id: "pindah; bergerak", en: "movement; transfer", zh: "移动；转移", tw: "移動；轉移", ko: "이동", vi: "di chuyển", th: "การย้าย/เคลื่อนย้าย", my: "ရွှေ့ပြောင်းခြင်း" } },
     { id: 48, kanji: "田舎", reading: "いなか", meanings: { id: "desa; kampung", en: "countryside", zh: "乡下；农村", tw: "鄉下；鄉間", ko: "시골", vi: "nông thôn", th: "ชนบท", my: "ကျေးရွာ" } },
     { id: 49, kanji: "祈る", reading: "いのる", meanings: { id: "berdoa", en: "to pray", zh: "祈祷", tw: "祈禱", ko: "기도하다", vi: "cầu nguyện", th: "อธิษฐาน; ภาวนา", my: "ဆုတောင်းသည်" } },

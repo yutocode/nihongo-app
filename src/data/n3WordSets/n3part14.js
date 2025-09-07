@@ -9,9 +9,9 @@ export const n3part14 = {
     { id: 656, kanji: "空港", reading: "くうこう", meanings: { id: "bandara", en: "airport", zh: "机场", tw: "機場", ko: "공항", vi: "sân bay", th: "สนามบิน", my: "လေဆိပ်" } },
     { id: 657, kanji: "空間", reading: "くうかん", meanings: { id: "ruang", en: "space; room", zh: "空间", tw: "空間", ko: "공간", vi: "không gian", th: "พื้นที่ว่าง", my: "နေရာ" } },
     { id: 658, kanji: "偶然", reading: "ぐうぜん", meanings: { id: "kebetulan", en: "by chance; coincidence", zh: "偶然", tw: "偶然", ko: "우연", vi: "tình cờ", th: "บังเอิญ", my: "ထပ်တူမတူဖြစ်သည့်" } },
-    { id: 659, kanji: "ぐっすり", reading: "ぐっすり", meanings: { id: "nyenyak", en: "sound asleep", zh: "熟睡", tw: "熟睡", ko: "푹", vi: "ngủ say", th: "หลับสนิท", my: "အိပ်စက်ချင်" } },
-    { id: 660, kanji: "くっつく", reading: "くっつく", meanings: { id: "melekat; menempel", en: "to stick; to cling", zh: "粘住", tw: "黏住", ko: "들러붙다", vi: "dính vào", th: "ติดแน่น", my: "ကပ်၍နီးစပ်" } },
-    { id: 661, kanji: "くれぐれも", reading: "くれぐれも", meanings: { id: "sungguh-sungguh; benar-benar", en: "earnestly; sincerely", zh: "务必", tw: "務必", ko: "부디; 제발", vi: "xin hãy; thành thật", th: "กรุณา; โปรด", my: "ကျေးဇူးပြုပြီး" } },
+    
+
+    
     { id: 662, kanji: "経営", reading: "けいえい", meanings: { id: "manajemen; pengelolaan", en: "management; administration", zh: "经营", tw: "經營", ko: "경영", vi: "kinh doanh", th: "การบริหาร", my: "စီမံခန့်ခွဲမှု" } },
     { id: 663, kanji: "経験", reading: "けいけん", meanings: { id: "pengalaman", en: "experience", zh: "经验", tw: "經驗", ko: "경험", vi: "kinh nghiệm", th: "ประสบการณ์", my: "အတွေ့အကြုံ" } },
     { id: 664, kanji: "経済", reading: "けいざい", meanings: { id: "ekonomi", en: "economy", zh: "经济", tw: "經濟", ko: "경제", vi: "kinh tế", th: "เศรษฐกิจ", my: "စီးပွားရေး" } },

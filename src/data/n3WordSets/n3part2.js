@@ -35,8 +35,8 @@ export const n3part2 = {
     { id: 82, kanji: "売れる", reading: "うれる", meanings: { id: "laris; terjual", en: "to sell well", zh: "畅销", tw: "暢銷", ko: "잘 팔리다", vi: "bán chạy", th: "ขายดี", my: "ရောင်းကောင်းသည်" } },
     { id: 83, kanji: "噂", reading: "うわさ", meanings: { id: "gosip; kabar", en: "rumor; gossip", zh: "传闻", tw: "傳聞", ko: "소문", vi: "tin đồn", th: "ข่าวลือ", my: "သတင်းလွှမ်း" } },
     { id: 84, kanji: "運", reading: "うん", meanings: { id: "nasib; keberuntungan", en: "luck; fortune", zh: "运气", tw: "運氣", ko: "운", vi: "vận may", th: "โชค", my: "ကံ" } },
-    { id: 85, kanji: "うなずく", reading: "うなずく", meanings: { id: "mengangguk", en: "to nod", zh: "点头", tw: "點頭", ko: "고개를 끄덕이다", vi: "gật đầu", th: "พยักหน้า", my: "ဦးခေါင်းညှိသည်" } },
-    { id: 86, kanji: "うらやましい", reading: "うらやましい", meanings: { id: "iri hati", en: "envious; jealous", zh: "羡慕", tw: "羨慕", ko: "부럽다", vi: "ghen tị", th: "อิจฉา", my: "စိတ်ချွတ်" } },
+   
+    
     { id: 87, kanji: "売り場", reading: "うりば", meanings: { id: "bagian penjualan; counter toko", en: "sales floor; department (store)", zh: "卖场", tw: "賣場", ko: "매장", vi: "quầy bán hàng", th: "แผนกขายของ", my: "ရောင်းခန်း" } },
     { id: 88, kanji: "運賃", reading: "うんちん", meanings: { id: "ongkos transportasi", en: "fare (transport)", zh: "车费", tw: "車資", ko: "운임", vi: "tiền vé", th: "ค่าโดยสาร", my: "အပို့ခ" } },
     { id: 89, kanji: "雨", reading: "あめ", meanings: { id: "hujan", en: "rain", zh: "雨", tw: "雨", ko: "비", vi: "mưa", th: "ฝน", my: "မိုး" } },
