@@ -4,13 +4,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/WordQuiz.css";
 
-// N5 / N4 / N3 を読み込み（各 index は “export { LessonX } …” 形式）
+// N5 / N4 / N3 / N2 を読み込み（各 index は “export { LessonX } …” 形式）
 import * as n5Quiz from "../data/wordquiz/n5";
 import * as n4Quiz from "../data/wordquiz/n4";
 import * as n3Quiz from "../data/wordquiz/n3";
+import * as n2Quiz from "../data/wordquiz/n2"; // ← 追加
 
 // レベル→データの対応表
-const MAP = { n5: n5Quiz, n4: n4Quiz, n3: n3Quiz };
+const MAP = { n5: n5Quiz, n4: n4Quiz, n3: n3Quiz, n2: n2Quiz }; // ← N2 対応
 
 const normalizeLesson = (x) => {
   if (!x) return "Lesson1";
@@ -76,7 +77,7 @@ export default function WordQuizPage() {
     setJudge(null);
   }, [lesson, level]);
 
-  // 問題が存在しないときは一覧へ自動で戻す
+  // 問題が存在しないときは一覧へ自動で戻る
   useEffect(() => {
     if (!total) {
       const timer = setTimeout(() => nav(-1), 50);

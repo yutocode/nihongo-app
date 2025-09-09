@@ -3,10 +3,11 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// N5 / N4 / N3 に対応
+// N5 / N4 / N3 / N2 に対応
 import * as n5Quiz from "../data/wordquiz/n5";
 import * as n4Quiz from "../data/wordquiz/n4";
 import * as n3Quiz from "../data/wordquiz/n3";
+import * as n2Quiz from "../data/wordquiz/n2"; // ← 追加
 
 // 見た目を文法のレッスン選択と同じにする
 import "../styles/GrammarLesson.css";
@@ -30,8 +31,9 @@ export default function WordQuizLessonSelectPage() {
   const levelMap = {
     n5: n5Quiz,
     n4: n4Quiz,
-    n3: n3Quiz, // ← 修正：重複していた n4 を n3 に
-    // n2/n1 は今後追加
+    n3: n3Quiz,
+    n2: n2Quiz, // ← 追加：N2対応
+    // n1 は今後追加
   };
 
   const dataset = levelMap[level] || {};
