@@ -1,0 +1,6 @@
+.trace-wrap { margin: 0 auto; }
+.trace-toolbar { display:flex; gap: .5rem; align-items:center; margin-bottom: .5rem; flex-wrap: wrap; }
+.trace-toolbar label { display:flex; align-items:center; gap:.25rem; font-size:.9rem; }
+.trace-toolbar input[type="range"] { width: 120px; }
+.trace-stage { border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; background: #fff; }
+.trace-base { pointer-events: none; }

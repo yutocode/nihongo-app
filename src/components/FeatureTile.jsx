@@ -1,5 +1,6 @@
 import React from "react";
-import IconGlyph from "./IconGlyph";
+import PropTypes from "prop-types";
+import IconGlyph from "./IconGlyph.jsx";
 import "../styles/FeatureTile.css";
 
 /**
@@ -8,9 +9,23 @@ import "../styles/FeatureTile.css";
  * - ラベルは箱の外、下に配置
  */
 export default function FeatureTile({ iconName, label, onClick }) {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
-    <button className="tile" onClick={onClick} aria-label={label}>
-      <span className="tile-surface" aria-hidden>
+    <button
+      type="button"
+      className="tile"
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      aria-label={label}
+      aria-pressed="false"
+    >
+      <span className="tile-surface" aria-hidden="true">
         <span className="tile-ico">
           <IconGlyph name={iconName} />
         </span>
@@ -19,3 +34,13 @@ export default function FeatureTile({ iconName, label, onClick }) {
     </button>
   );
 }
+
+FeatureTile.propTypes = {
+  iconName: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
+
+FeatureTile.defaultProps = {
+  onClick: () => {},
+};

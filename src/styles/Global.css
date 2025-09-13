@@ -1,4 +1,45 @@
 /* ===================== */
+/* Reset & Base          */
+/* ===================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, 'Noto Sans JP', 'Roboto', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* iOSノッチ等のセーフエリア */
+  padding-left:  max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+  padding-top:   max(0px, env(safe-area-inset-top));
+  padding-bottom:max(0px, env(safe-area-inset-bottom));
+}
+
+/* hidden 属性を確実に隠す（ローディング対策） */
+[hidden] { display: none !important; }
+.app-loading[hidden] { display: none !important; }
+
+/* 画面高の安定化（index.htmlの --vh スクリプト併用） */
+#root {
+  min-height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  display: contents;
+}
+
+/* ===================== */
 /* Theme Colors          */
 /* ===================== */
 :root {
@@ -7,88 +48,164 @@
   --color-card: #1c1f26;       /* カード背景 */
   --color-accent: #ff9900;     /* アクセント（オレンジ） */
   --color-success: #2ecc71;    /* 成功カラー（緑） */
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255,255,255,0.1);
+  --ring: 0 0 0 3px rgba(255,153,0,0.35); /* フォーカスリング */
+}
+
+/* ライトモードの配色（必要なら） */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #111318;
+    --color-card: #f5f6f8;
+    --color-border: rgba(0,0,0,0.08);
+  }
 }
 
 /* ===================== */
-/* Body 基本設定         */
+/* Typography            */
 /* ===================== */
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+:root {
+  --fs-sm: clamp(12px, 1.6vw, 14px);
+  --fs-md: clamp(14px, 1.9vw, 16px);
+  --fs-lg: clamp(16px, 2.3vw, 20px);
+  --fs-xl: clamp(20px, 4.5vw, 28px);
 }
 
+body { font-size: var(--fs-md); }
+h1, h2, h3, h4, h5 { margin: 0 0 0.6em; line-height: 1.25; }
+h1 { font-size: var(--fs-xl); }
+h2 { font-size: clamp(18px, 3.6vw, 24px); }
+p  { font-size: var(--fs-md); margin: 0 0 1em; }
+
+/* ルビ（文法ページ用の見やすさ） */
+ruby { ruby-position: over; }
+rt { font-size: 0.6em; opacity: 0.9; letter-spacing: 0.02em; }
+
 /* ===================== */
-/* カード                 */
+/* Cards                 */
 /* ===================== */
 .card {
   background-color: var(--color-card);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: clamp(12px, 3.5vw, 24px);
   border: 1px solid var(--color-border);
-
   box-shadow: 0 6px 24px rgba(0,0,0,0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.7);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.7);
+  }
 }
 
+/* 画像の伸縮安定 */
+img { max-width: 100%; height: auto; display: block; border-radius: 12px; }
+
 /* ===================== */
-/* ボタン（共通）         */
+/* Buttons (Common)      */
 /* ===================== */
-.btn-primary,
-.btn-success {
+button, .btn-primary, .btn-success {
   display: inline-block;
   text-align: center;
-  font-weight: bold;
+  font-weight: 700;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  -webkit-tap-highlight-color: transparent; /* iOSタップ時の青枠を消す */
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+  -webkit-tap-highlight-color: transparent; /* iOSの青枠OFF */
+  min-height: 44px; /* HIG: タップ領域確保 */
+  padding: 0.8rem 1.6rem;
+  font-size: var(--fs-md);
 }
 
-/* プライマリボタン */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-accent), #ffcc00);
   color: #000;
-  padding: 0.8rem 1.6rem;
 }
-.btn-primary:hover {
-  background: linear-gradient(135deg, #ffcc00, var(--color-accent));
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #ffcc00, var(--color-accent));
+    transform: scale(1.05);
+  }
 }
 
-/* 成功ボタン */
 .btn-success {
   background-color: var(--color-success);
   color: #fff;
-  padding: 0.7rem 1.4rem;
 }
-.btn-success:hover {
-  background-color: #27ae60;
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .btn-success:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+  }
+}
+
+/* フォーカスアクセシビリティ */
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-success:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* 無効状態 */
+button:disabled,
+.btn-primary:disabled,
+.btn-success:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* ===================== */
-/* レスポンシブ調整       */
+/* Layout Utilities      */
 /* ===================== */
-@media (max-width: 768px) {
-  .card {
-    padding: 1rem;
-  }
+.container {
+  width: min(100% - 32px, 960px);
+  margin-inline: auto;
+}
 
-  .btn-primary,
-  .btn-success {
-    width: 100%;           /* スマホは幅いっぱいに */
-    padding: 1rem;
-    font-size: 1rem;
-  }
+.grid {
+  display: grid;
+  gap: clamp(10px, 2.8vw, 16px);
+}
+
+/* 自動段組（カード一覧などに便利） */
+.grid.auto {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+/* セーフエリア込みの内側パディング */
+.app-wrap {
+  padding: clamp(12px, 3vw, 24px);
+  padding-left:  max(clamp(12px, 3vw, 24px), env(safe-area-inset-left));
+  padding-right: max(clamp(12px, 3vw, 24px), env(safe-area-inset-right));
+  padding-top:   max(clamp(12px, 3vw, 24px), env(safe-area-inset-top));
+  padding-bottom:max(clamp(12px, 3vw, 24px), env(safe-area-inset-bottom));
+}
+
+/* ===================== */
+/* Responsive            */
+/* ===================== */
+/* iPhone幅の段階分け（目安） */
+@media (max-width: 374px) {      /* 旧小型/極小幅 */
+  .grid.cols { grid-template-columns: 1fr; }
+}
+@media (min-width: 375px) and (max-width: 399px) { /* iPhone SE~ */
+  .grid.cols { grid-template-columns: 1fr; }
+}
+@media (min-width: 400px) and (max-width: 429px) {
+  .grid.cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 430px) {      /* Pro Max 等 */
+  .grid.cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .container { width: min(100% - 40px, 1000px); }
+}
+
+/* ===================== */
+/* Motion Preferences    */
+/* ===================== */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }

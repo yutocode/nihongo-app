@@ -5,6 +5,7 @@ import {
   updateDoc,
   serverTimestamp,
   increment,
+  getDoc,               // ★ 追加
 } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 import { useAppStore } from "../store/useAppStore";
@@ -19,32 +20,51 @@ const legacyUserRefPath = (uid) => `users/${uid}`;                        // 旧
 const progressDocPath = (uid) => `users/${uid}/stats/progress`;
 
 /* =========================
+ *  初回ユーザードキュメント作成（404防止）
+ * ========================= */
+export async function ensureUserDoc(uid) {
+  if (!uid) return;
+  try {
+    const userRef = doc(db, "users", uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+      await setDoc(userRef, {
+        createdAt: serverTimestamp(),
+        xpTotal: 0,
+        level: "N5",
+        daily: {},
+      }, { merge: true });
+      console.log("[XP] ensureUserDoc created for", uid);
+    }
+  } catch (e) {
+    console.error("[XP] ensureUserDoc failed", e?.code || e?.message || e);
+  }
+}
+
+/* =========================
  *  REST ヘルパ（Listenを完全回避）
  * ========================= */
 async function restGetDoc(path) {
-  // Firestore REST：GET v1/projects/{project}/databases/(default)/documents/{path}
   const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID || "app-4db93";
   const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/${path}`;
 
   const user = auth.currentUser;
   const headers = { "Content-Type": "application/json" };
   if (user) {
-    const token = await user.getIdToken(/* forceRefresh= */ false);
+    const token = await user.getIdToken(false);
     headers["Authorization"] = `Bearer ${token}`;
   }
 
   const res = await fetch(url, { headers });
-  if (res.status === 404) return null; // ドキュメントなし
+  if (res.status === 404) return null;
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`REST get failed ${res.status}: ${text}`);
   }
-  return await res.json(); // Firestore REST の document 形式
+  return await res.json();
 }
 
 function getNumberFieldFromRestDoc(restDoc, field) {
-  // restDoc.fields[field] の Firestore REST 表現から number を読む
-  // numberValue / integerValue のどちらかを想定
   const f = restDoc?.fields?.[field];
   if (!f) return 0;
   if (typeof f.doubleValue !== "undefined") return Number(f.doubleValue) || 0;
@@ -68,7 +88,6 @@ async function withRetry(fn, tries = 3, base = 400) {
         await sleep(base * (i + 1));
         continue;
       }
-      // REST の 5xx もリトライ対象に
       if (code.match?.(/\b(5\d\d)\b/)) {
         await sleep(base * (i + 1));
         continue;
@@ -108,10 +127,8 @@ export function saveXPToLocal(uid, total) {
  *  Firestore 読み（REST）
  * ========================= */
 export async function loadXPFromServer(uid) {
-  // progress を REST で取得
   const docJson = await withRetry(() => restGetDoc(progressDocPath(uid)));
   if (!docJson) {
-    // なければ作る（SDKでOK：Commit RPCのみ）
     await withRetry(() =>
       setDoc(progressRef(uid), { [FIELD]: 0, updatedAt: serverTimestamp() })
     );
@@ -120,16 +137,14 @@ export async function loadXPFromServer(uid) {
   return getNumberFieldFromRestDoc(docJson, FIELD);
 }
 
-// 旧: users/{uid} の totalXP を併合（存在すれば）
 async function loadLegacyIfAny(uid) {
   const docJson = await withRetry(() => restGetDoc(legacyUserRefPath(uid)));
   if (!docJson) return 0;
-  // 旧スキーマ totalXP は number か integer の想定
   return getNumberFieldFromRestDoc(docJson, "totalXP");
 }
 
 /* =========================
- *  Firestore 書き（SDK Commit RPC）
+ *  Firestore 書き
  * ========================= */
 export async function incrementXPOnServer(uid, delta) {
   if (!delta) return;
@@ -150,7 +165,7 @@ export async function incrementXPOnServer(uid, delta) {
 }
 
 /* =========================
- *  初期化：ローカル即適用 → autosave開始 → サーバ統合
+ *  初期化
  * ========================= */
 export async function initUserXP(uid) {
   if (!uid) {
@@ -158,12 +173,12 @@ export async function initUserXP(uid) {
     return;
   }
 
+  // ★ 最初に ensureUserDoc を呼んで 404 を防止
+  await ensureUserDoc(uid);
+
   const local = loadXPFromLocal(uid);
   if (local != null) {
-    console.log("[XP] apply local", local);
     useAppStore.getState().setXPTotal(local);
-  } else {
-    console.log("[XP] local none");
   }
 
   startAutoSave(uid);
@@ -177,7 +192,6 @@ export async function initUserXP(uid) {
 
       const current = useAppStore.getState().xp.total;
       const adopted = Math.max(progress, legacy, current);
-      console.log("[XP] server", progress, "legacy", legacy, "current", current, "adopted", adopted);
 
       if (adopted !== current) useAppStore.getState().setXPTotal(adopted);
       saveXPToLocal(uid, adopted);
@@ -191,8 +205,7 @@ export async function initUserXP(uid) {
 }
 
 /* =========================
- *  自動保存（差分を500msデバウンス）
- *  + ページ離脱時に flush
+ *  自動保存
  * ========================= */
 let unsub = null;
 let last = { uid: null, total: 0 };
@@ -203,7 +216,6 @@ let boundVisHandler = null;
 export function startAutoSave(uid) {
   stopAutoSave();
   last = { uid, total: useAppStore.getState().xp.total };
-  console.log("[XP] autosave start", uid, "base", last.total);
 
   unsub = useAppStore.subscribe(
     (s) => s.xp.total,
@@ -231,7 +243,6 @@ export function startAutoSave(uid) {
       try {
         await incrementXPOnServer(uid, delta);
         last.total = cur;
-        console.log("[XP] flush sent", delta);
       } catch (e) {
         console.error("[XP] flush fail", e?.code || e?.message || e);
       }
@@ -265,11 +276,10 @@ export function stopAutoSave() {
     boundFlush = null;
   }
   last = { uid: null, total: 0 };
-  console.log("[XP] autosave stop");
 }
 
 /* =========================
- *  手動同期（必要なら）
+ *  手動同期
  * ========================= */
 export async function syncXPNow(uid) {
   if (!uid) return;
@@ -280,5 +290,4 @@ export async function syncXPNow(uid) {
   saveXPToLocal(uid, adopted);
   const delta = adopted - server;
   if (delta > 0) await incrementXPOnServer(uid, delta);
-  console.log("[XP] manual sync complete. cur:", cur, "server:", server, "adopted:", adopted);
 }

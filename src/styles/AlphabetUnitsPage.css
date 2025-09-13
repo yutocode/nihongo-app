@@ -1,0 +1,119 @@
+:root{
+  --teal:#35b4a6;          /* ヘッダー/CTAの色 */
+  --teal-dark:#2f997f;     /* セグメント右側 */
+  --bg:#f3f4f6;            /* ページ背景 */
+  --card:#ffffff;          /* カード背景 */
+  --text:#2b2b2b;          /* 見出しの文字 */
+  --muted:#9aa0a6;         /* サブ文字 */
+  --shadow:0 6px 16px rgba(0,0,0,.08);
+}
+
+.alpha-page{
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 12px 14px 80px;
+  box-sizing: border-box;
+}
+
+/* ヘッダー */
+.alpha-header{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  margin: 6px 4px 12px;
+}
+.alpha-header h1{
+  font-size: 20px;
+  color: #fff;
+  background: var(--teal);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+/* セグメント切替 */
+.segment{
+  background: var(--teal-dark);
+  border-radius: 999px;
+  padding: 3px;
+  display:flex;
+  gap: 4px;
+}
+.seg-btn{
+  min-width: 66px;
+  padding: 8px 12px;
+  border:0;
+  border-radius: 999px;
+  background: transparent;
+  color: #e9fffb;
+  font-weight: 600;
+  cursor:pointer;
+}
+.seg-btn.active{
+  background:#e7fbf7;
+  color: var(--teal-dark);
+}
+
+/* ユニットカード */
+.unit-list{ display:flex; flex-direction:column; gap: 12px; }
+.unit-card{
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.unit-card.locked{ opacity:.72; }
+.unit-card:active{ transform: translateY(1px); }
+
+.unit-left{ display:flex; flex-direction:column; gap: 6px; }
+.unit-title{
+  color: #7a7f85;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.row{ font-size: 16px; letter-spacing: .08em; }
+.row.primary{ color: var(--text); }
+.row.secondary{ color: var(--muted); }
+
+.unit-right{ display:flex; align-items:center; }
+.unit-icon{ font-size: 20px; color:#b9c0c5; }
+
+.go-btn{
+  width: 38px; height: 38px;
+  display:grid; place-items:center;
+  background: var(--teal);
+  color:#fff; border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+/* 大きい丸いCTA */
+.cta-wrap{
+  position: sticky; bottom: 68px; /* リスト中ほどに重なる感じ */
+  display:flex; justify-content:center;
+  margin-top: 10px; margin-bottom: 6px;
+}
+.cta-pill{
+  border:0; cursor:pointer;
+  background: var(--teal);
+  color:#fff; font-weight: 800; letter-spacing:.08em;
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+/* 画面下広告のダミー */
+.ad-slot{
+  height: 64px;
+  background:#e8eaed;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+/* スマホ最適化（基本モバイル前提） */
+@media (min-width: 768px){
+  .alpha-page{ padding: 16px 24px 120px; }
+  .row{ font-size: 18px; }
+  .unit-card{ padding: 16px 20px; }
+}

@@ -3,38 +3,107 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- iPhone/Safari でのレイアウト崩れ対策（safe-area + 文字自動拡大OFF） -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
+    <!-- iPhone / Safari 最適化 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <!-- iOS 旧来（互換のため残す） -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 推奨：Chrome/Android 等 -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="日本語学習アプリ" />
 
-    <!-- 色など -->
-    <meta name="theme-color" content="#111318" />
+    <!-- 基本情報 -->
+    <meta name="application-name" content="日本語学習アプリ" />
     <meta name="description" content="日本語学習アプリ（単語・文法クイズ・聴解など）" />
 
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- テーマカラー（ライト/ダーク） -->
+    <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- アイコン -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+
     <title>日本語学習アプリ</title>
 
-    <!-- 最低限の安定用スタイル（初期チラつき/自動文字拡大対策） -->
+    <!-- 初期のチラつき/拡大対策・セーフエリア・100dvh -->
     <style>
+      :root { color-scheme: light dark; --vh: 1vh; }
       html, body, #root { height: 100%; }
-      html { -webkit-text-size-adjust: 100%; } /* iOSの勝手な文字拡大を止める */
+      html { -webkit-text-size-adjust: 100%; }
+
       body {
         margin: 0;
-        background: #111318;
-        color: #fff;
         font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
+        background: #111318; color: #fff;
+        padding-left:  max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-top:   max(0px, env(safe-area-inset-top));
+        padding-bottom:max(0px, env(safe-area-inset-bottom));
       }
+
+      #root {
+        min-height: 100dvh;
+        min-height: calc(var(--vh) * 100);
+        display: contents;
+      }
+
+      @media (prefers-color-scheme: light) {
+        body { background: #ffffff; color: #111318; }
+      }
+
+      .app-loading {
+        position: fixed; inset: 0; display: grid; place-items: center;
+        background: inherit; color: inherit; z-index: 9999; font-size: 14px;
+      }
+
+      /* hidden が確実に効くように */
+      [hidden] { display: none !important; }
     </style>
   </head>
 
   <body>
+    <div id="app-loading" class="app-loading" hidden>Loading…</div>
     <div id="root"></div>
+
+    <!-- 古いAndroidの100vh問題フォールバック -->
+    <script>
+      (function () {
+        var setVh = function () {
+          var vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', vh + 'px');
+        };
+        setVh();
+        window.addEventListener('resize', setVh);
+        window.addEventListener('orientationchange', setVh);
+      }());
+    </script>
+
     <!-- Vite エントリ -->
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module">
+      const loading = document.getElementById('app-loading');
+      const show = () => { if (loading) loading.hidden = false; };
+      const hide = () => { if (loading) loading.hidden = true; };
+
+      // 短時間なら出さない。0.2秒以上かかったら表示。
+      let timer = setTimeout(show, 200);
+
+      // 未捕捉エラーを必ず表示
+      window.addEventListener("error", (e) => console.error("Window error:", e.error || e));
+      window.addEventListener("unhandledrejection", (e) => console.error("Unhandled:", e.reason || e));
+
+      import("/src/main.jsx")
+        .catch((e) => console.error("Failed to load /src/main.jsx:", e))
+        .finally(() => {
+          clearTimeout(timer);
+          hide();
+        });
+    </script>
   </body>
 </html>
