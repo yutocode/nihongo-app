@@ -302,13 +302,10 @@ export default function TracingCanvas({
         />
         <canvas
           ref={drawRef}
-          onMouseDown={onDown}
-          onMouseMove={onMove}
-          onMouseUp={onUp}
-          onMouseLeave={onUp}
-          onTouchStart={onDown}
-          onTouchMove={onMove}
-          onTouchEnd={onUp}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
           width={Math.floor(width * dpr)}
           height={Math.floor(height * dpr)}
           style={{ position: "absolute", inset: 0, width, height }}
