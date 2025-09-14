@@ -204,7 +204,6 @@ export default function TracingCanvas({
 
   // ===== Path utilities =====
   function directionFromTail(tail) {
-    // 末尾方向ベクトル（正規化）
     const a = tail[0], b = tail[tail.length - 1];
     const dx = b.x - a.x, dy = b.y - a.y;
     const len = Math.hypot(dx, dy) || 1;
@@ -212,11 +211,8 @@ export default function TracingCanvas({
   }
 
   function beautifyPath(points) {
-    // 1) 等間隔リサンプル
-    const resampled = resample(points, 2.2); // px間隔
-    // 2) DP簡略化
+    const resampled = resample(points, 2.2); 
     const simplified = douglasPeucker(resampled, 1.4);
-    // 3) Catmull-Romで滑らか化（折返しを守るため軽め）
     const smooth = catmullRom2poly(simplified, 8);
     return smooth;
   }
@@ -285,7 +281,6 @@ export default function TracingCanvas({
         out.push({ x, y });
       }
     }
-    // 最後の点で終わるように調整
     out.push(pts[pts.length - 1]);
     return out;
   }
@@ -302,10 +297,11 @@ export default function TracingCanvas({
         />
         <canvas
           ref={drawRef}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerUp}
+          onPointerDown={onDown}
+          onPointerMove={onMove}
+          onPointerUp={onUp}
+          onPointerCancel={onUp}
+          onPointerLeave={onUp}   // 追加: 外に出たら終了
           width={Math.floor(width * dpr)}
           height={Math.floor(height * dpr)}
           style={{ position: "absolute", inset: 0, width, height }}

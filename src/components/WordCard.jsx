@@ -3,11 +3,11 @@ import React, { useMemo, useRef, useState, useEffect, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { useAppStore } from "../store/useAppStore";
 import { useMyWordsStore } from "../store/useMyWordsStore";
+import { getPosByLesson } from "../data/n5WordSets/posMap";   // ★ 追加
 import "../styles/WordCard.css";
 
 const buildId = (w) =>
-  w?.id ??
-  `${w?.level ?? "n?"}:${w?.lesson ?? "Lesson?"}:${w?.idx ?? w?.kanji ?? ""}`;
+  w?.id ?? `${w?.level ?? "n?"}:${w?.lesson ?? "Lesson?"}:${w?.idx ?? w?.kanji ?? ""}`;
 
 export default function WordCard({
   wordList = [],
@@ -15,10 +15,10 @@ export default function WordCard({
   lesson = "Lesson1",
   audioBase = "/audio",
   onIndexChange,
-  onAdd,       // 任意: 追加時フック
-  onDetail,    // 任意: 詳細時フック
-  mode = "learn", // "learn"（通常）| "my"（My単語帳表示）
-  onRemove,    // 任意: mode="my" のとき削除フック
+  onAdd,
+  onDetail,
+  mode = "learn",
+  onRemove,
 }) {
   const isMy = mode === "my";
 
@@ -31,11 +31,9 @@ export default function WordCard({
   const addXP = useAppStore((s) => s.addXP);
   const awardedRef = useRef(new Set());
 
-  // --- My単語帳 store
   const addToMyBook = useMyWordsStore((s) => s.add);
   const removeWord  = useMyWordsStore((s) => s.removeWord);
 
-  // --- 表示言語
   const currentLang = useMemo(() => {
     const lower = String(i18n.language || "ja").toLowerCase();
     if (lower.startsWith("tw")) return "tw";
@@ -45,55 +43,37 @@ export default function WordCard({
     return "ja";
   }, [i18n.language]);
 
-  // --- 多言語ラベル
-  const L = useMemo(
-    () => ({
-      back:     t("wordcard.back", "← 戻る"),
-      next:     t("wordcard.next", "次へ →"),
-      show:     t("wordcard.showMeaning", "クリックして意味を表示"),
-      meaning:  t("wordcard.meaning", "意味"),
-      play:     t("wordcard.play", "🔊 音声を再生"),
-      detail:   t("wordcard.detail", "詳しく"),
-      add:      t("wordcard.add", "追加"),
-      added:    t("wordcard.added", "追加済み"),
-      remove:   t("mywb.remove", "削除"),
+  const L = useMemo(() => ({
+      back: t("wordcard.back", "← 戻る"),
+      next: t("wordcard.next", "次へ →"),
+      show: t("wordcard.showMeaning", "クリックして意味を表示"),
+      meaning: t("wordcard.meaning", "意味"),
+      play: t("wordcard.play", "🔊 音声を再生"),
+      detail: t("wordcard.detail", "詳しく"),
+      add: t("wordcard.add", "追加"),
+      added: t("wordcard.added", "追加済み"),
+      remove: t("mywb.remove", "削除"),
       notFound: t("wordcard.notFound", "❌ 翻訳が見つかりません"),
-    }),
-    [t]
-  );
+    }), [t]);
 
-  // --- データなしガード
   if (!Array.isArray(wordList) || wordList.length === 0) {
-    return (
-      <div className="word-card">
-        <p>{t("common.noWordsFound", "単語が見つかりません")}</p>
-      </div>
-    );
+    return <div className="word-card"><p>{t("common.noWordsFound", "単語が見つかりません")}</p></div>;
   }
 
   const word = wordList[index] ?? {};
   const currentMeaning = word?.meanings?.[currentLang] || L.notFound;
 
-  // --- 保存用メタ
-  const enriched = useMemo(
-    () => ({ ...word, level, lesson, idx: index }),
-    [word, level, lesson, index]
-  );
+  const enriched = useMemo(() => ({ ...word, level, lesson, idx: index }), [word, level, lesson, index]);
 
-  // ✅ Zustand selector で購読 → 追加済みが即反映される
   const isAdded = useMyWordsStore(
-    useCallback(
-      (s) => s.items.some((w) => buildId(w) === buildId(enriched)),
-      [enriched]
-    )
+    useCallback((s) => s.items.some((w) => buildId(w) === buildId(enriched)), [enriched])
   );
 
-  // --- 音声候補
   const audioCandidates = useMemo(() => {
     const join = (...p) =>
-      p.filter(Boolean).map((x) =>
-        typeof x === "string" ? x.replace(/^\/+|\/+$/g, "") : x
-      ).join("/");
+      p.filter(Boolean)
+        .map((x) => (typeof x === "string" ? x.replace(/^\/+|\/+$/g, "") : x))
+        .join("/");
     const enc = (s) => encodeURIComponent(s || "");
     const r = word?.reading || "";
     const arr = [];
@@ -105,16 +85,12 @@ export default function WordCard({
     return arr;
   }, [word, index, level, lesson, audioBase]);
 
-  // --- ページ移動
-  const goto = useCallback(
-    (next) => {
-      setShowMeaning(false);
-      setIsPlaying(false);
-      setIndex(next);
-      onIndexChange?.(next);
-    },
-    [onIndexChange]
-  );
+  const goto = useCallback((next) => {
+    setShowMeaning(false);
+    setIsPlaying(false);
+    setIndex(next);
+    onIndexChange?.(next);
+  }, [onIndexChange]);
 
   const handleNext = useCallback(() => {
     if (!awardedRef.current.has(index)) {
@@ -128,7 +104,6 @@ export default function WordCard({
     if (index > 0) goto(index - 1);
   }, [index, goto]);
 
-  // --- 音声再生
   const playAudio = useCallback(async () => {
     if (!audioCandidates.length) return;
     setIsPlaying(true);
@@ -151,19 +126,14 @@ export default function WordCard({
     setIsPlaying(false);
   }, [audioCandidates]);
 
-  // --- クリーンアップ
-  useEffect(
-    () => () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-        audioRef.current = null;
-      }
-    },
-    []
-  );
+  useEffect(() => () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = "";
+      audioRef.current = null;
+    }
+  }, []);
 
-  // --- キー操作
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowRight") handleNext();
@@ -177,7 +147,6 @@ export default function WordCard({
     return () => window.removeEventListener("keydown", onKey);
   }, [handleNext, handlePrev, playAudio]);
 
-  // --- 意味表示でXP加点
   const onToggleMeaning = () => {
     if (!showMeaning && !awardedRef.current.has(index)) {
       awardedRef.current.add(index);
@@ -186,13 +155,25 @@ export default function WordCard({
     setShowMeaning(true);
   };
 
-  // --- レッスン見出し
-  const lessonTitle = useMemo(() => {
+  const lessonNo = useMemo(() => {
     const m = String(lesson).match(/\d+/);
-    return `Lesson ${m ? m[0] : ""}`.trim();
+    return m ? Number(m[0]) : NaN;
   }, [lesson]);
 
-  // --- 右上ボタン動作
+  const pos = getPosByLesson(lessonNo);                 // ★ 追加
+  const lessonTitle = `Lesson ${Number.isFinite(lessonNo) ? lessonNo : ""}`.trim();
+
+  const posClass = (p) => {
+    if (p.includes("名詞")) return "noun";
+    if (p.includes("動詞")) return "verb";
+    if (p.includes("い形容詞")) return "iadj";
+    if (p.includes("な形容詞")) return "naadj";
+    if (p.includes("副詞")) return "adv";
+    if (p.includes("助詞")) return "particle";
+    if (p.includes("助数詞")) return "counter";
+    return "default";
+  };
+
   const handleRight = () => {
     if (isMy) {
       onRemove?.(enriched);
@@ -207,15 +188,14 @@ export default function WordCard({
     <div className="word-card" role="group" aria-label="Word card">
       {/* ヘッダー */}
       <div className="wc-head">
-        <button
-          type="button"
-          className="wc-head-btn left"
-          onClick={() => onDetail?.(enriched)}
-        >
+        <button type="button" className="wc-head-btn left" onClick={() => onDetail?.(enriched)}>
           {L.detail}
         </button>
 
-        <div className="wc-head-title">{lessonTitle}</div>
+        <div className="wc-head-title">
+          <span className={`pos-badge ${posClass(pos)}`}>{pos || "—"}</span>
+          <span className="lesson-title">{lessonTitle}</span>
+        </div>
 
         <button
           type="button"
@@ -231,12 +211,7 @@ export default function WordCard({
       <div className="kanji">{word?.kanji || "—"}</div>
       <div className="reading">{word?.reading || "—"}</div>
 
-      <button
-        type="button"
-        className="meaning-box"
-        onClick={onToggleMeaning}
-        aria-expanded={showMeaning}
-      >
+      <button type="button" className="meaning-box" onClick={onToggleMeaning} aria-expanded={showMeaning}>
         {showMeaning ? (
           <p>
             <b>{L.meaning}:</b> {currentMeaning}
@@ -260,16 +235,8 @@ export default function WordCard({
 
       {/* ナビゲーション */}
       <div className="navigation">
-        <button type="button" onClick={handlePrev} disabled={index === 0}>
-          {L.back}
-        </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={index === wordList.length - 1}
-        >
-          {L.next}
-        </button>
+        <button type="button" onClick={handlePrev} disabled={index === 0}>{L.back}</button>
+        <button type="button" onClick={handleNext} disabled={index === wordList.length - 1}>{L.next}</button>
       </div>
     </div>
   );
