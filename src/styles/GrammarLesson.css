@@ -29,3 +29,48 @@
     flex: 0 0 100%;
   }
 }
+
+/* レベルボタン用の上書き/拡張 */
+.grammar-btn--level {
+  position: relative;
+  padding: 1rem 1.1rem .9rem;
+  background: linear-gradient(135deg,#5c5cff,#6f65ff);
+  color: #f6fbff;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: left;
+}
+
+.gbtn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .75rem;
+}
+
+.gbtn-label {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+}
+
+.gbtn-badge {
+  font-weight: 700;
+  font-size: .9rem;
+  color: #eaf1ff;
+}
+.gbtn-badge .gbtn-pct { opacity: .9; margin-left: .15rem; }
+
+.gbtn-meter {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.18);
+  overflow: hidden;
+  margin-top: .55rem;
+}
+.gbtn-fill {
+  height: 100%;
+  width: 0%;
+  background: #ffffff;
+  transition: width .35s ease;
+}

@@ -13,22 +13,33 @@
   font-family: "Noto Sans JP", system-ui, -apple-system, Segoe UI, sans-serif;
 }
 
-/* ===== Header (左=詳しく / 中央=Lesson / 右=追加) ===== */
+/* ===== Header（左=詳しく / 中央=品詞+Lesson / 右=追加） ===== */
 .wc-head{
   position: relative;
   height: 36px;
   margin-bottom: 8px;
 }
+
+/* 中央のタイトル行を「品詞バッジ + Lesson」で横並び */
 .wc-head-title{
   position: absolute;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  line-height: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 700;
   color: #4b5563;
   letter-spacing: .2px;
 }
+
+.lesson-title{
+  line-height: 36px;
+}
+
+/* 角丸ボタン（詳しく / 追加） */
 .wc-head-btn{
   position: absolute;
   top: 0;
@@ -46,7 +57,6 @@
 }
 .wc-head-btn:hover{ transform: translateY(-1px); }
 .wc-head-btn:active{ transform: translateY(0); }
-
 .wc-head-btn.left{ left: 0; }
 .wc-head-btn.right{ right: 0; }
 
@@ -55,6 +65,50 @@
   background: #0f5132;
   border-color: #0f5132;
   box-shadow: 0 0 0 2px #b6e3c6 inset;
+}
+
+/* ===== 品詞バッジ ===== */
+/* ベース（やさしい色・角丸の四角） */
+.pos-badge{
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06) inset, 0 1px 6px rgba(0,0,0,.06);
+}
+
+/* 品詞ごとのパステルカラー */
+.pos-badge.noun{      /* 名詞 */
+  background: #81c784;       /* パステルグリーン */
+  border-color: #6bbd72;
+}
+.pos-badge.verb{      /* 動詞 */
+  background: #64b5f6;       /* パステルブルー */
+  border-color: #52a6ec;
+}
+.pos-badge.adj{       /* 形容詞（い/な共通） */
+  background: #ffb74d;       /* パステルオレンジ */
+  border-color: #f2a73a;
+}
+.pos-badge.adv{       /* 副詞 */
+  background: #ba68c8;       /* パステルパープル */
+  border-color: #ab59bb;
+}
+.pos-badge.particle{  /* 助詞 */
+  background: #4db6ac;       /* ティール */
+  border-color: #44a79e;
+}
+.pos-badge.counter{   /* 助数詞 */
+  background: #f06292;       /* ピンク */
+  border-color: #e65587;
+}
+.pos-badge.default{   /* 未分類 */
+  background: #90a4ae;       /* グレー */
+  border-color: #8296a0;
 }
 
 /* ===== Body ===== */
@@ -127,7 +181,9 @@ button:disabled{
 @media (max-width: 360px){
   .word-card{ padding: 16px 12px 18px; }
   .wc-head{ height: 34px; }
+  .wc-head-title{ gap: 6px; }
   .wc-head-btn{ height: 34px; line-height: 32px; padding: 0 10px; }
+  .pos-badge{ padding: 3px 8px; font-size: .8rem; }
   .kanji{ font-size: 2rem; }
   .reading{ font-size: 1.1rem; }
 }

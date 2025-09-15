@@ -1,0 +1,60 @@
+.dm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.dm-modal {
+  width: min(720px, 92vw);
+  max-height: 86vh;
+  background: #1f1f1f;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.dm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+}
+
+.dm-title {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: .3px;
+}
+
+.dm-close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.dm-close:hover { background: rgba(255,255,255,.1); }
+
+.dm-body {
+  padding: 16px;
+  overflow: auto;
+}
+
+.dm-footer {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}

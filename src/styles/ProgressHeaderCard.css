@@ -1,0 +1,52 @@
+/* ダーク基調 + 僅かなガラス感 */
+.phc {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 1rem;
+  background: rgba(25, 30, 33, 0.9);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25) inset,
+              0 2px 8px rgba(0,0,0,.25);
+  color: #e8f5f5;
+}
+
+.phc__ghost {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.04);
+  color: #9fe5c8;
+  display: grid; place-items: center;
+}
+
+.phc__content { display: grid; gap: .25rem; }
+.phc__level {
+  display: inline-block;
+  font-weight: 800;
+  font-size: .8rem;
+  padding: .2rem .55rem;
+  border-radius: 8px;
+  color: #0b231b;
+  background: linear-gradient(180deg,#3be58f,#0bd47b);
+  width: fit-content;
+}
+.phc__title { font-weight: 700; letter-spacing: .01em; opacity: .95; }
+.phc__numbers { color: #cfe8de; }
+.phc__numbers strong { font-weight: 900; color: #ffffff; }
+.phc__numbers .slash { opacity: .7; padding: 0 .15rem; }
+.phc__numbers .pct { color: #49e0a7; margin-left: .25rem; }
+
+.phc__bar {
+  height: 8px; border-radius: 999px; overflow: hidden;
+  background: #20342b;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.phc__fill {
+  height: 100%;
+  background: linear-gradient(90deg,#38ef7d,#11998e);
+  width: 0%;
+  transition: width .35s ease;
+}

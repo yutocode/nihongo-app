@@ -1,0 +1,11 @@
+.sectile{
+  width:100%;text-align:left;padding:1rem 1.1rem .9rem;margin:.5rem 0;
+  border-radius:16px;border:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(135deg,#5c5cff,#6f65ff);color:#f6fbff;
+  box-shadow:0 10px 24px rgba(34,20,70,.35)
+}
+.sectile__label{font-weight:800;letter-spacing:.02em;margin-bottom:.55rem}
+.sectile__meter{height:8px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.16)}
+.sectile__fill{height:100%;background:#fff;width:0;transition:width .35s ease}
+.sectile__nums{font-size:.9rem;margin-top:.35rem;color:#e7edff}
+.sectile__nums .muted{opacity:.8}

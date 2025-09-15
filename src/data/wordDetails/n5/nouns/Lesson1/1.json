@@ -1,0 +1,68 @@
+{
+  "id": 1,
+  "jlpt": "N5",
+  "pos": "名詞",
+  "kanji": "人",
+  "reading": "ひと",
+  "radicals": ["人"],
+  "strokes": 2,
+  "strokeOrder": "/strokes/n5/nouns/Lesson1/1.svg",
+
+  "mean": {
+    "ja": "人間",
+    "en": "person",
+    "zh": "人",
+    "tw": "人",
+    "id": "orang",
+    "vi": "người",
+    "th": "คน",
+    "my": "လူ"
+  },
+
+  "explain": [
+    "「人」は訓読み『ひと』。単独で人間を表す。音読み『じん／にん』は熟語（日本人・三人）で使う。単独＝訓読み、熟語＝音読みが基本。"
+  ],
+
+  "examples": [
+    {
+      "jp": "あの人は先生です。",
+      "yomi": "あの ひと は せんせい です。",
+      "en": "That person is a teacher.",
+      "id": "Orang itu adalah guru.",
+      "zh": "那个人是老师。",
+      "tw": "那個人是老師。",
+      "vi": "Người kia là giáo viên.",
+      "th": "คนนั้นเป็นครู",
+      "my": "အဲဒီလူက ဆရာပါ။"
+    },
+    {
+      "jp": "三人で映画を見ました。",
+      "yomi": "さんにん で えいが を みました。",
+      "en": "We watched a movie with three people.",
+      "id": "Kami menonton film bertiga.",
+      "zh": "我们三个人一起看了电影。",
+      "tw": "我們三個人一起看了電影。",
+      "vi": "Chúng tôi xem phim ba người.",
+      "th": "พวกเราดูหนังกันสามคน",
+      "my": "လူ သုံးယောက်နဲ့ ရုပ်ရှင်ကြည့်ခဲ့ကြတယ်။"
+    }
+  ],
+
+  "readingGroups": {
+    "onyomi": [
+      { "head": "じん", "items": [
+        { "w": "日本人", "y": "にほんじん", "gloss": { "en": "Japanese person", "vi": "người Nhật", "th": "คนญี่ปุ่น", "my": "ဂျပန်လူမျိုး" } },
+        { "w": "人類",   "y": "じんるい",   "gloss": { "en": "humankind",      "vi": "nhân loại",     "th": "มนุษยชาติ",   "my": "လူသားအမျိုးအစား" } }
+      ]},
+      { "head": "にん", "items": [
+        { "w": "三人", "y": "さんにん", "gloss": { "en": "three people", "vi": "ba người", "th": "สามคน", "my": "လူ သုံးယောက်" } },
+        { "w": "人間", "y": "にんげん", "gloss": { "en": "human being", "vi": "con người", "th": "มนุษย์", "my": "လူသား" } }
+      ]}
+    ],
+    "kunyomi": [
+      { "head": "ひと", "items": [
+        { "w": "人々", "y": "ひとびと", "gloss": { "en": "people", "vi": "mọi người", "th": "ผู้คน", "my": "လူအများ" } }
+      ]}
+    ]
+  }
+}
