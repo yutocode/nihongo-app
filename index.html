@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
@@ -6,9 +6,7 @@
     <!-- iPhone / Safari 最適化 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no,email=no,address=no" />
-    <!-- iOS 旧来（互換のため残す） -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!-- 推奨：Chrome/Android 等 -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="日本語学習アプリ" />
@@ -19,15 +17,15 @@
 
     <!-- テーマカラー（ライト/ダーク） -->
     <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- PWA（base:'./' 環境で壊れないよう相対パス） -->
+    <link rel="manifest" href="./manifest.webmanifest" />
 
-    <!-- アイコン -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- アイコン（相対パス） -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png" />
     <meta name="msapplication-TileColor" content="#2d89ef" />
 
     <title>日本語学習アプリ</title>
@@ -63,7 +61,6 @@
         background: inherit; color: inherit; z-index: 9999; font-size: 14px;
       }
 
-      /* hidden が確実に効くように */
       [hidden] { display: none !important; }
     </style>
   </head>
@@ -85,25 +82,7 @@
       }());
     </script>
 
-    <!-- Vite エントリ -->
-    <script type="module">
-      const loading = document.getElementById('app-loading');
-      const show = () => { if (loading) loading.hidden = false; };
-      const hide = () => { if (loading) loading.hidden = true; };
-
-      // 短時間なら出さない。0.2秒以上かかったら表示。
-      let timer = setTimeout(show, 200);
-
-      // 未捕捉エラーを必ず表示
-      window.addEventListener("error", (e) => console.error("Window error:", e.error || e));
-      window.addEventListener("unhandledrejection", (e) => console.error("Unhandled:", e.reason || e));
-
-      import("/src/main.jsx")
-        .catch((e) => console.error("Failed to load /src/main.jsx:", e))
-        .finally(() => {
-          clearTimeout(timer);
-          hide();
-        });
-    </script>
+    <!-- ✅ Vite エントリはこの1行で十分 -->
+    <script type="module" src="./src/main.jsx"></script>
   </body>
 </html>

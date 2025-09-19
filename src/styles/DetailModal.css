@@ -1,60 +1,106 @@
-.dm-backdrop {
+/* 背景の半透明オーバーレイ */
+.detail-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.45);
-  display: grid;
-  place-items: center;
-  z-index: 1000;
-}
-
-.dm-modal {
-  width: min(720px, 92vw);
-  max-height: 86vh;
-  background: #1f1f1f;
-  color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.4);
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-.dm-header {
+  background: rgba(0,0,0,0.6);
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+  z-index: 2000;
 }
 
-.dm-title {
-  margin: 0;
-  font-size: 1.05rem;
-  letter-spacing: .3px;
+/* モーダル本体 */
+.detail-modal {
+  background: #fff;
+  padding: 20px;
+  width: min(92vw, 480px);
+  max-height: 85vh;
+  border-radius: 16px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  animation: fadeInUp 0.25s ease;
 }
 
-.dm-close {
+/* 閉じるボタン */
+.detail-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.6rem;
+  background: none;
   border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 1.4rem;
-  line-height: 1;
   cursor: pointer;
-  padding: 4px 8px;
+  color: #333;
+}
+
+/* 見出し部分 */
+.detail-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.detail-kanji {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #222;
+}
+.detail-reading {
+  font-size: 1.3rem;
+  color: #444;
+  margin-top: 4px;
+}
+.detail-pos {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: #64b5f6;
+  color: #fff;
   border-radius: 8px;
-}
-.dm-close:hover { background: rgba(255,255,255,.1); }
-
-.dm-body {
-  padding: 16px;
-  overflow: auto;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-.dm-footer {
-  padding: 12px 16px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
+/* 意味部分 */
+.detail-meanings {
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+.detail-meaning {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+/* 例文部分 */
+.detail-examples h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 4px;
+}
+.example-block {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fdfdfd;
+}
+.example-block p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

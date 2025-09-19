@@ -34,10 +34,7 @@
   color: #4b5563;
   letter-spacing: .2px;
 }
-
-.lesson-title{
-  line-height: 36px;
-}
+.lesson-title{ line-height: 36px; }
 
 /* 角丸ボタン（詳しく / 追加） */
 .wc-head-btn{
@@ -68,7 +65,6 @@
 }
 
 /* ===== 品詞バッジ ===== */
-/* ベース（やさしい色・角丸の四角） */
 .pos-badge{
   display: inline-block;
   padding: 4px 10px;
@@ -80,36 +76,13 @@
   border: 1px solid transparent;
   box-shadow: 0 1px 0 rgba(0,0,0,.06) inset, 0 1px 6px rgba(0,0,0,.06);
 }
-
-/* 品詞ごとのパステルカラー */
-.pos-badge.noun{      /* 名詞 */
-  background: #81c784;       /* パステルグリーン */
-  border-color: #6bbd72;
-}
-.pos-badge.verb{      /* 動詞 */
-  background: #64b5f6;       /* パステルブルー */
-  border-color: #52a6ec;
-}
-.pos-badge.adj{       /* 形容詞（い/な共通） */
-  background: #ffb74d;       /* パステルオレンジ */
-  border-color: #f2a73a;
-}
-.pos-badge.adv{       /* 副詞 */
-  background: #ba68c8;       /* パステルパープル */
-  border-color: #ab59bb;
-}
-.pos-badge.particle{  /* 助詞 */
-  background: #4db6ac;       /* ティール */
-  border-color: #44a79e;
-}
-.pos-badge.counter{   /* 助数詞 */
-  background: #f06292;       /* ピンク */
-  border-color: #e65587;
-}
-.pos-badge.default{   /* 未分類 */
-  background: #90a4ae;       /* グレー */
-  border-color: #8296a0;
-}
+.pos-badge.noun{      background: #81c784; border-color: #6bbd72; }
+.pos-badge.verb{      background: #64b5f6; border-color: #52a6ec; }
+.pos-badge.adj{       background: #ffb74d; border-color: #f2a73a; }
+.pos-badge.adv{       background: #ba68c8; border-color: #ab59bb; }
+.pos-badge.particle{  background: #4db6ac; border-color: #44a79e; }
+.pos-badge.counter{   background: #f06292; border-color: #e65587; }
+.pos-badge.default{   background: #90a4ae; border-color: #8296a0; }
 
 /* ===== Body ===== */
 .kanji{
@@ -137,39 +110,50 @@
 }
 .meaning-box:hover{ background: #f1f1f1; }
 
-/* 音声 */
+/* ===== アイコンのみボタン（共通） ===== */
+.icon-btn{
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.08);
+  color: #111;
+  cursor: pointer;
+  transition: transform .08s ease, background .15s ease, opacity .2s ease;
+}
+.icon-btn:hover{ background: rgba(0,0,0,0.12); }
+.icon-btn:active{ transform: translateY(1px) scale(0.98); }
+.icon-btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== 音声（スピーカーはアイコンのみ） ===== */
 .audio-area{ margin-top: 12px; }
 .audio-button{
-  font-size: 1rem;
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #f5f5f5;
-  color: #222;
-  cursor: pointer;
-  transition: background .2s ease, transform .1s ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.06);
 }
-.audio-button:hover{ background: #e5e5e5; transform: translateY(-1px); }
+.audio-button:hover{ background: rgba(0,0,0,0.12); }
 
-/* ナビゲーション */
+/* ===== ナビゲーション（戻る/次はアイコンのみ） ===== */
 .navigation{
   margin-top: 18px;
   display: flex;
   gap: 12px;
   justify-content: center;
+  align-items: center;
 }
-.navigation button{
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #fafafa;
-  color: #222;
-  cursor: pointer;
-  transition: background .2s ease, transform .1s ease;
-}
-.navigation button:hover{ background: #eee; transform: translateY(-1px); }
 
-/* Safari 対策：disabled でも文字は読めるように */
+/* 旧：.navigation button { padding:.. } は不要（アイコン化のため削除） */
+
+/* ===== Safari 対策：disabled でもアイコンが見えるように ===== */
 button:disabled{
   opacity: .55;
   color: #222 !important;
@@ -177,7 +161,7 @@ button:disabled{
   transform: none !important;
 }
 
-/* 小さい端末の微調整 */
+/* ===== 小さい端末の微調整 ===== */
 @media (max-width: 360px){
   .word-card{ padding: 16px 12px 18px; }
   .wc-head{ height: 34px; }

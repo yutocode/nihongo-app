@@ -2,6 +2,7 @@
 import React, { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+// ← ページ内ホームを消すので FiHome は不要
 import "../styles/LessonSelectPage.css";
 
 const LESSON_COUNTS = {
@@ -13,7 +14,7 @@ const LESSON_COUNTS = {
 };
 
 export default function LessonSelectPage() {
-  const { level = "n5" } = useParams();               // ex) "n5"
+  const { level = "n5" } = useParams(); // /lessons/:level
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -25,43 +26,32 @@ export default function LessonSelectPage() {
     [lessonCount]
   );
 
-  const go = (lessonNo) => navigate(`/words/${normLevel}/Lesson${lessonNo}`);
+  const goLesson = (no) => navigate(`/words/${normLevel}/Lesson${no}`);
 
-  // タイトル: 「Select Lesson (N5)」※各言語に selectTitle を用意
   const title = t("lesson.selectTitle", {
     level: normLevel.toUpperCase(),
-    defaultValue: `Select Lesson (${normLevel.toUpperCase()})`,
+    defaultValue: `選択 ${normLevel.toUpperCase()} レッスン`,
   });
 
-  // サブタイトル（辞書に無ければ非表示）
-  const subtitle = t("lesson.subtitle", { defaultValue: "" });
-
   return (
-    <main className="lesson-select-page">
-      <header className="lesson-select-head">
-        <h2 className="lesson-title">{title}</h2>
-        {subtitle && <p className="lesson-sub">{subtitle}</p>}
-      </header>
+    <main className="lesson-select-page" role="main" aria-label={title}>
+      {/* ← ここにあった黒帯内ホームは削除。共通 Header 側のホームだけ表示 */}
 
       {lessonCount <= 0 ? (
         <div className="lesson-empty">
-          {t("common.notFound", "No lessons are available for this level.")}
+          {t("common.notFound", "このレベルのレッスンは見つかりませんでした。")}
         </div>
       ) : (
         <div className="lesson-buttons" role="list">
           {lessons.map((no) => {
-            // ボタン表示：各言語の "lesson.part"（例：第 {{num}} 課 / Lesson {{num}}）
-            const label = t("lesson.part", {
-              num: no,
-              defaultValue: `Lesson ${no}`,
-            });
+            const label = t("lesson.part", { num: no, defaultValue: `第 ${no} 課` });
             return (
               <button
                 key={no}
-                role="listitem"
                 className="lesson-btn"
                 type="button"
-                onClick={() => go(no)}
+                role="listitem"
+                onClick={() => goLesson(no)}
                 aria-label={label}
               >
                 {label}

@@ -1,4 +1,3 @@
-// src/store/useAppStore.jsx
 import { create } from "zustand";
 
 /** localStorage 安全取得 */
@@ -78,7 +77,9 @@ export const useAppStore = create((set, get) => ({
   /* ===== 言語設定 ===== */
   selectedLanguage: safeGet("lang", "ja"),
   setLanguage: (lang) => {
-    try { window?.localStorage?.setItem("lang", lang); } catch {}
+    try {
+      window?.localStorage?.setItem("lang", lang);
+    } catch {}
     set({ selectedLanguage: lang });
   },
 
@@ -86,6 +87,18 @@ export const useAppStore = create((set, get) => ({
   user: null,
   setUser: (user) => set({ user }),
   clearUser: () => set({ user: null }),
+
+  /* ===== レベル ===== */
+  level: safeGet("app.level", ""), // ← 初回は空
+  setLevel: (lvl) => {
+    try {
+      const v = String(lvl).toLowerCase();
+      window?.localStorage?.setItem("app.level", v);
+      set({ level: v });
+    } catch {
+      set({ level: String(lvl).toLowerCase() });
+    }
+  },
 
   /* ===== XP ===== */
   xp: computeProgress(0),
@@ -136,14 +149,12 @@ export const useAppStore = create((set, get) => ({
     } catch {}
   },
 
-  /** ✅ きょうの日付に整える（存在しなければリセット） */
   ensureDailyToday: (uid) => {
     const d = get().daily;
     if (d.dateKey !== todayKey()) {
       get().resetDaily(uid, d);
     }
   },
-  /** ✅ 後方互換：古い呼び出し名 ensureToday() にも対応 */
   ensureToday: (uid) => {
     const d = get().daily;
     if (d.dateKey !== todayKey()) {
@@ -212,7 +223,7 @@ export const useAppStore = create((set, get) => ({
     const denom = d.targetWords | 0;
     if (denom <= 0) return 0;
     return Math.round((Math.max(0, d.wordsDone | 0) / denom) * 100);
-    },
+  },
   getQuizProgress: () => {
     const d = get().daily;
     const denom = d.targetQuizzes | 0;

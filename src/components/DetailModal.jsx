@@ -1,51 +1,49 @@
-import React, { useEffect, useRef } from "react";
+// src/components/DetailModal.jsx
+import React from "react";
 import "../styles/DetailModal.css";
 
-export default function DetailModal({
-  open = false,
-  onClose = () => {},
-  title,
-  content,
-  footer,
-}) {
-  const backdropRef = useRef(null);
-
-  // ESC で閉じる
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
-
-  // バックドロップクリックで閉じる（中クリックは無効）
-  const onBackdropClick = (e) => {
-    if (e.target === backdropRef.current) onClose();
-  };
-
+export default function DetailModal({ open, onClose, data }) {
   if (!open) return null;
+  if (!data) return null;
 
   return (
-    <div
-      className="dm-backdrop"
-      ref={backdropRef}
-      onMouseDown={onBackdropClick}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div className="dm-modal" onMouseDown={(e) => e.stopPropagation()}>
-        <header className="dm-header">
-          <h3 className="dm-title">{title ?? "Detail"}</h3>
-          <button className="dm-close" onClick={onClose} aria-label="Close">
-            ×
-          </button>
-        </header>
+    <div className="detail-overlay" onClick={onClose}>
+      <div className="detail-modal" onClick={(e) => e.stopPropagation()}>
+        {/* 閉じるボタン */}
+        <button className="detail-close" onClick={onClose}>×</button>
 
-        <div className="dm-body">
-          {typeof content === "string" ? <p>{content}</p> : content}
+        {/* 単語見出し */}
+        <div className="detail-header">
+          <div className="detail-kanji">{data.kanji || "—"}</div>
+          <div className="detail-reading">{data.reading || ""}</div>
+          <div className="detail-pos">{data.pos || ""}</div>
         </div>
 
-        {footer ? <footer className="dm-footer">{footer}</footer> : null}
+        {/* 意味（多言語） */}
+        <div className="detail-meanings">
+          {data.meanings &&
+            Object.entries(data.meanings).map(([lang, val]) => (
+              <div key={lang} className="detail-meaning">
+                <b>{lang.toUpperCase()}:</b> {val || "—"}
+              </div>
+            ))}
+        </div>
+
+        {/* 例文 */}
+        {data.examples && data.examples.length > 0 && (
+          <div className="detail-examples">
+            <h3>例文</h3>
+            {data.examples.map((ex, idx) => (
+              <div key={idx} className="example-block">
+                <p><b>JA:</b> {ex.ja}</p>
+                <p><b>EN:</b> {ex.en}</p>
+                <p><b>ID:</b> {ex.id}</p>
+                <p><b>ZH:</b> {ex.zh}</p>
+                <p><b>TW:</b> {ex.tw}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

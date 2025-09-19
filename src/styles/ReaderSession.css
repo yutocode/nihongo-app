@@ -1,0 +1,49 @@
+/* === WordPopup === */
+.wp-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.35);
+  opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:40;
+}
+.wp-overlay.open{ opacity:1; pointer-events:auto; }
+
+.wp-sheet{
+  position:fixed; left:0; right:0; bottom:0; z-index:41;
+  background:#171717; color:#eee;
+  border-top-left-radius:18px; border-top-right-radius:18px;
+  box-shadow:0 -22px 30px rgba(0,0,0,.5);
+  transform:translateY(100%); transition:transform .22s ease-out;
+  padding-bottom:env(safe-area-inset-bottom);
+  will-change:transform; -webkit-backface-visibility:hidden; backface-visibility:hidden;
+}
+.wp-sheet.open{ transform:translateY(0); }
+
+.wp-grip{ display:flex; justify-content:center; padding-top:10px; }
+.wp-grip-bar{ width:42px; height:5px; border-radius:999px; background:#2a2a2c; }
+
+.wp-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 14px 6px; gap:10px;
+}
+.wp-title{ font-size:22px; margin:0; }
+.wp-actions{ display:flex; gap:8px; }
+.wp-btn{
+  width:36px; height:36px; border:none; border-radius:10px; background:#262628; color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.wp-btn.close{ background:#2b2b2d; color:#ff8a8a; }
+
+.wp-body{ padding:8px 14px 16px; max-height:60vh; overflow:auto; }
+
+.wp-posrow{ display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 10px; }
+.wp-pos{ background:#5a4200; color:#ffd88a; border-radius:10px; padding:2px 8px; font-size:12px; }
+
+.wp-sub{ margin:12px 0 6px; font-size:14px; color:#e6e6e6; }
+.wp-def{ background:#0f2818; color:#d3f2df; padding:10px; border-radius:10px; }
+.wp-def.more{ margin-top:6px; }
+
+.wp-roma{ background:#0f1d38; color:#cfe0ff; padding:10px; border-radius:10px; }
+
+.wp-exlist{ display:flex; flex-direction:column; gap:10px; }
+.wp-ex{ background:#452362; color:#eee; border-radius:12px; padding:10px 12px; }
+.wp-ex-en{ opacity:.9; font-size:13px; margin-top:4px; }
+
+.wp-notes{ background:#222; border-radius:10px; padding:10px; color:#ddd; }

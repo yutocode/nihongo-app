@@ -1,30 +1,25 @@
-// src/pages/LevelSelectPage.jsx
-import React from "react";
+import { useAppStore } from "../store/useAppStore";
 import { useNavigate } from "react-router-dom";
-import "../styles/LevelSelectPage.css";
-import { useTranslation } from "react-i18next";
 
-const LevelSelectPage = () => {
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+export default function LevelSelectPage() {
+  const setLevel = useAppStore((s) => s.setLevel);
+  const nav = useNavigate();
 
-  const levels = ["n5", "n4", "n3", "n2", "n1"];
+  const choose = (lv) => {
+    setLevel(lv);           // 'n5' でも 'N5' でもOK
+    nav("/home", { replace: true });   // ← 右側のホームに即戻す
+  };
 
   return (
-    <div className="level-select-page">
-      <h2>{t("selectLevel", "レベルを選んでください")}</h2>
-      <div className="level-buttons">
-        {levels.map((level) => (
-          <button
-            key={level}
-            onClick={() => navigate(`/lessons/${level}`)}
-          >
-            {level.toUpperCase()}
-          </button>
-        ))}
+    <div className="level-page">
+      <h2>レベルを選んでください</h2>
+      <div className="row">
+        <button onClick={() => choose("n5")}>N5</button>
+        <button onClick={() => choose("n4")}>N4</button>
+        <button onClick={() => choose("n3")}>N3</button>
+        <button onClick={() => choose("n2")}>N2</button>
+        <button onClick={() => choose("n1")}>N1</button>
       </div>
     </div>
   );
-};
-
-export default LevelSelectPage;
+}

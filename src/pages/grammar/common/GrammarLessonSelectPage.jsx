@@ -1,20 +1,21 @@
 // src/pages/GrammarLessonSelectPage.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../../../styles/GrammarLesson.css";
 import { n5ComparisonLessons } from "../../../data/grammar/n5/comparison";
+import { useAppStore } from "../../../store/useAppStore";
 
 const LEVEL_LABELS = { n5: "N5", n4: "N4", n3: "N3", n2: "N2", n1: "N1" };
 
-// 既定レッスン数（比較は下で上書き）
+// 既定レッスン数（N5）
 const N5_CATEGORY_COUNTS = {
   particles: 10,
   "verb-forms": 6,
   adjectives: 6,
   "exist-have": 6,
   compare: 0,
-  comparison: 8, // compare と同義
+  comparison: 8,
   "intent-plan": 8,
   "ask-permit": 6,
   basic: 0,
@@ -48,31 +49,14 @@ export default function GrammarLessonSelectPage() {
   const { t } = useTranslation();
   const { level: rawLevel = "", category: rawCat = "" } = useParams();
 
-  const level = String(rawLevel).toLowerCase();
+  // ★ URL優先、無ければストアの現在レベルを使用
+  const storeLevel = useAppStore((s) => s.level) || "n5";
+  const level = useMemo(() => {
+    const lv = String(rawLevel || storeLevel).toLowerCase();
+    return LEVEL_LABELS[lv] ? lv : storeLevel;
+  }, [rawLevel, storeLevel]);
+
   const category = String(rawCat).toLowerCase();
-
-  const isKnownLevel = level in LEVEL_LABELS;
-
-  if (!isKnownLevel) {
-    return (
-      <div className="grammar-wrap">
-        <h1>{t("grammar.level.title")}</h1>
-        <div className="grid">
-          {Object.keys(LEVEL_LABELS).map((lv) => (
-            <button
-              key={lv}
-              type="button"
-              className="grammar-btn"
-              onClick={() => navigate(`/grammar/${lv}`)}
-              title={LEVEL_LABELS[lv]}
-            >
-              {LEVEL_LABELS[lv]}
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   if (!category) {
     return (
@@ -84,10 +68,9 @@ export default function GrammarLessonSelectPage() {
   }
 
   const isComparison = category === "compare" || category === "comparison";
-  const comparisonCount =
-    Object.keys(n5ComparisonLessons || {}).length || 8; // フォールバック8
+  const comparisonCount = Object.keys(n5ComparisonLessons || {}).length || 8;
 
-  // レッスン数の決定
+  // N5のみ実データ、他は将来拡張（0ならComing soon）
   const total =
     level === "n5"
       ? isComparison
@@ -95,7 +78,7 @@ export default function GrammarLessonSelectPage() {
         : (N5_CATEGORY_COUNTS[category] ?? 0)
       : 0;
 
-  // 未知カテゴリは Coming soon
+  // 未知・未実装カテゴリ
   if (total === 0) {
     return (
       <div className="grammar-wrap">

@@ -1,0 +1,57 @@
+/* src/styles/HeaderRight.css */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 100;
+}
+
+.level-select-btn {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  color: #333; /* 濃くする */
+  cursor: pointer;
+}
+
+.level-select-modal {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  width: 180px;
+}
+
+.level-select-modal h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.level-select-modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.level-select-modal li {
+  padding: 6px 0;
+  cursor: pointer;
+}
+.level-select-modal li:hover {
+  background: #f0f0f0;
+}

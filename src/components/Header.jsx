@@ -2,7 +2,7 @@
 import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaCog, FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaCog, FaHome, FaLayerGroup } from "react-icons/fa"; // ← FaArrowLeft 削除
 import XPBanner from "./XPBanner";
 import "../styles/XPBanner.css";
 import "../styles/Header.css";
@@ -12,7 +12,7 @@ const Header = () => {
   const location = useLocation();
   const { t } = useTranslation();
 
-  // 現在パスからレベル推定（Word Quiz も対象に）
+  // 現在パスからレベル推定
   const currentLevel = useMemo(() => {
     const m = location.pathname.match(
       /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i
@@ -24,95 +24,76 @@ const Header = () => {
   const backTarget = useMemo(() => {
     const p = location.pathname;
 
-    // ----- 単語カード系 -----
+    // 単語帳：単語レッスン → レッスン一覧へ
     if (/^\/words\/n[1-5]\//i.test(p)) {
       const m = p.match(/^\/words\/(n[1-5])/i);
-      if (m) return { path: `/lessons/${m[1]}`, label: t("nav.toLessonSelect", "課程選択へ") };
-    }
-    if (/^\/lessons\/n[1-5]/i.test(p)) {
-      return { path: "/level", label: t("nav.toLevelSelect", "レベル選択へ") };
+      if (m) {
+        return { path: `/lessons/${m[1]}`, label: t("nav.toLessonSelect", "レッスン選択") };
+      }
     }
 
-    // ----- 文法 -----
+    // レッスン選択ページ → ホーム
+    if (/^\/lessons\/n[1-5]/i.test(p)) {
+      return { path: "/home", label: t("common.home", "ホーム") };
+    }
+
+    // 文法レッスンページ → カテゴリ内一覧
     let m = p.match(/^\/grammar\/(n[1-5])\/([^/]+)\/lesson[0-9]+$/i);
     if (m) {
       return {
         path: `/grammar/${m[1].toLowerCase()}/${m[2]}`,
-        label: t("grammar.lessons.backToLessons", "レッスン一覧へ"),
+        label: t("grammar.lessons.backToLessons", "レッスン一覧"),
       };
     }
+
+    // 文法カテゴリ内一覧 → カテゴリ選択
     m = p.match(/^\/grammar\/(n[1-5])\/([^/]+)$/i);
     if (m) {
       return {
         path: `/grammar/${m[1].toLowerCase()}`,
-        label: t("grammar.lessons.backToCategories", "返回分類"),
-      };
-    }
-    if (/^\/grammar\/n[1-5]$/i.test(p)) {
-      return { path: "/grammar", label: t("grammar.level.backToLevels", "返回級別") };
-    }
-
-    // ----- 形容詞特別クイズ -----
-    m = p.match(/^\/adj\/(n[1-5])\/lesson[0-9]+$/i);
-    if (m) {
-      return {
-        path: `/grammar/${m[1].toLowerCase()}`,
-        label: t("adj.backToLessons", "レッスン一覧へ"),
-      };
-    }
-    m = p.match(/^\/adj\/(n[1-5])$/i);
-    if (m) {
-      return {
-        path: `/grammar/${m[1].toLowerCase()}`,
-        label: t("adj.backToCategories", "文法トップへ"),
+        label: t("grammar.lessons.backToCategories", "カテゴリ選択"),
       };
     }
 
-    // ----- Word Quiz -----
-    // /word-quiz/nX/LessonY -> /word-quiz/nX
+    // 文法カテゴリ選択 → ホーム
+    if (/^\/grammar\/(n[1-5])$/i.test(p)) {
+      return { path: "/home", label: t("common.home", "ホーム") };
+    }
+
+    // WordQuiz レッスン → レッスン選択
     m = p.match(/^\/word-quiz\/(n[1-5])\/Lesson[0-9]+$/i);
     if (m) {
       return {
         path: `/word-quiz/${m[1].toLowerCase()}`,
-        label: t("wordquiz.backToLessonSelect", "レッスン選択へ"),
+        label: t("wordquiz.backToLessonSelect", "レッスン選択"),
       };
     }
-    // /word-quiz/nX -> /word-quiz
-    m = p.match(/^\/word-quiz\/(n[1-5])$/i);
-    if (m) {
-      return {
-        path: `/word-quiz`,
-        label: t("wordquiz.backToLevelSelect", "レベル選択へ"),
-      };
-    }
-    // /word-quiz -> /home
-    if (/^\/word-quiz$/i.test(p)) {
-      return { path: "/home", label: t("common.backToHome", "ホームへ") };
+
+    // WordQuiz レベル or 一覧 → ホーム
+    if (/^\/word-quiz(\/n[1-5])?$/i.test(p)) {
+      return { path: "/home", label: t("common.home", "ホーム") };
     }
 
     return null;
   }, [location.pathname, t]);
 
-  // 同時表示しないロジック
   const showBack = !!backTarget;
   const onBack = () => navigate(backTarget.path);
-
-  // トップ階層や一覧などで戻り先が無いときだけホーム表示
   const showHome = !showBack && location.pathname !== "/home";
   const onHome = () => navigate("/home");
 
   return (
     <header className="app-header" role="banner">
-      {/* 左：ホーム or 戻る（どちらか一方のみ） */}
+      {/* 左：ホーム or 戻る */}
       <div className="hdr-left">
         {showBack ? (
           <button
             className="hdr-btn is-primary back-btn"
-            aria-label={t("nav.back", "Back")}
+            aria-label={backTarget.label}
             title={backTarget.label}
             onClick={onBack}
           >
-            <FaArrowLeft className="hdr-ic" />
+            {/* ← アイコン削除、テキストだけに変更 */}
             <span className="hdr-btn-text">{backTarget.label}</span>
           </button>
         ) : showHome ? (
@@ -123,10 +104,9 @@ const Header = () => {
             onClick={onHome}
           >
             <FaHome className="hdr-ic" />
-            <span className="hdr-btn-text">{t("nav.homeLabel", "ホーム")}</span>
+            <span className="hdr-btn-text">{t("common.home", "ホーム")}</span>
           </button>
         ) : (
-          // どちらも出さない時のレイアウト崩れ防止
           <span className="hdr-left-spacer" />
         )}
       </div>
@@ -136,16 +116,23 @@ const Header = () => {
         <XPBanner levelLabel={currentLevel} percent={45} compact />
       </div>
 
-      {/* 右：設定 */}
+      {/* 右：レベル設定とその他 */}
       <div className="hdr-right">
         <button
-          className="hdr-btn is-ghost"
+          className="hdr-icon-btn level-icon-btn"
+          aria-label={t("nav.level", "Level")}
+          title={t("nav.level", "レベル設定")}
+          onClick={() => navigate("/level")}
+        >
+          <FaLayerGroup className="hdr-ic" />
+        </button>
+        <button
+          className="hdr-icon-btn settings-icon-btn"
           aria-label={t("nav.settings", "Settings")}
-          title={t("nav.settings", "Settings")}
+          title={t("nav.settings", "設定")}
           onClick={() => navigate("/settings")}
         >
           <FaCog className="hdr-ic" />
-          <span className="hdr-btn-text">{t("nav.settings", "設定")}</span>
         </button>
       </div>
     </header>

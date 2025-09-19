@@ -6,6 +6,7 @@ import { useMyWordsStore } from "../store/useMyWordsStore";
 import { getPosByLesson } from "../data/n5WordSets/posMap";
 import { loadDetail } from "@/data/wordDetails/loader";
 import DetailModal from "@/components/DetailModal.jsx";
+import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi"; // ★ アイコン追加
 import "../styles/WordCard.css";
 
 const buildId = (w) =>
@@ -15,11 +16,11 @@ export default function WordCard({
   wordList = [],
   level = "n5",
   lesson = "Lesson1",
-  category = "nouns",       // ★ 追加：名詞/動詞/形容詞など
+  category = "nouns",
   audioBase = "/audio",
   onIndexChange,
   onAdd,
-  onDetail,                 // 既存の外部詳細ハンドラ（残しておく）
+  onDetail,
   mode = "learn",
   onRemove,
 }) {
@@ -30,7 +31,7 @@ export default function WordCard({
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-  // ★ 詳細モーダル用
+  // 詳細モーダル用
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailData, setDetailData] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
@@ -50,17 +51,14 @@ export default function WordCard({
     if (lower.startsWith("id")) return "id";
     if (lower.startsWith("vi")) return "vi";   // 🇻🇳
     if (lower.startsWith("th")) return "th";   // 🇹🇭
-    if (lower.startsWith("my")) return "my";   // 🇲🇲 (Burmese)
+    if (lower.startsWith("my")) return "my";   // 🇲🇲
     return "ja";
   }, [i18n.language]);
 
   const L = useMemo(
     () => ({
-      back: t("wordcard.back", "← 戻る"),
-      next: t("wordcard.next", "次へ →"),
       show: t("wordcard.showMeaning", "クリックして意味を表示"),
       meaning: t("wordcard.meaning", "意味"),
-      play: t("wordcard.play", "🔊 音声を再生"),
       detail: t("wordcard.detail", "詳しく"),
       add: t("wordcard.add", "追加"),
       added: t("wordcard.added", "追加済み"),
@@ -168,19 +166,6 @@ export default function WordCard({
     []
   );
 
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") handleNext();
-      else if (e.key === "ArrowLeft") handlePrev();
-      else if (e.key === " " || e.key === "Enter") {
-        e.preventDefault();
-        playAudio();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [handleNext, handlePrev, playAudio]);
-
   const onToggleMeaning = () => {
     if (!showMeaning && !awardedRef.current.has(index)) {
       awardedRef.current.add(index);
@@ -217,7 +202,6 @@ export default function WordCard({
     }
   };
 
-  // ★ 詳しく：id を鍵に詳細JSONを遅延ロード
   const openDetail = useCallback(async () => {
     setDetailLoading(true);
     try {
@@ -234,9 +218,7 @@ export default function WordCard({
       setDetailLoading(false);
       setDetailOpen(true);
     }
-    // 外部ハンドラも呼びたい場合はコメント解除
-    // onDetail?.(enriched);
-  }, [level, category, lesson, word?.id, word?.kanji, word?.reading, word?.meanings, pos, enriched]);
+  }, [level, category, lesson, word?.id, word?.kanji, word?.reading, word?.meanings, pos]);
 
   const closeDetail = () => setDetailOpen(false);
 
@@ -244,11 +226,7 @@ export default function WordCard({
     <div className="word-card" role="group" aria-label="Word card">
       {/* ヘッダー */}
       <div className="wc-head">
-        <button
-          type="button"
-          className="wc-head-btn left"
-          onClick={openDetail}
-        >
+        <button type="button" className="wc-head-btn left" onClick={openDetail}>
           {detailLoading ? L.loading : L.detail}
         </button>
 
@@ -286,33 +264,46 @@ export default function WordCard({
         )}
       </button>
 
+      {/* スピーカー（アイコンのみ） */}
       <div className="audio-area">
         <button
           type="button"
-          className="audio-button"
+          className="icon-btn audio-button"
           onClick={playAudio}
           disabled={isPlaying || !word?.reading}
           aria-busy={isPlaying}
+          aria-label="音声を再生"
+          title="音声を再生"
         >
-          {L.play}
+          <FiVolume2 size={20} />
         </button>
       </div>
 
-      {/* ナビゲーション */}
+      {/* ナビゲーション（アイコンのみ） */}
       <div className="navigation">
-        <button type="button" onClick={handlePrev} disabled={index === 0}>
-          {L.back}
+        <button
+          type="button"
+          className="icon-btn nav-btn"
+          onClick={handlePrev}
+          disabled={index === 0}
+          aria-label="戻る"
+          title="戻る"
+        >
+          <FiChevronLeft size={22} />
         </button>
         <button
           type="button"
+          className="icon-btn nav-btn"
           onClick={handleNext}
           disabled={index === wordList.length - 1}
+          aria-label="次へ"
+          title="次へ"
         >
-          {L.next}
+          <FiChevronRight size={22} />
         </button>
       </div>
 
-      {/* ★ 詳細モーダル */}
+      {/* 詳細モーダル */}
       <DetailModal open={detailOpen} onClose={closeDetail} data={detailData} />
     </div>
   );
