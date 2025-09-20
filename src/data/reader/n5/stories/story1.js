@@ -3,7 +3,7 @@ export const story1 = {
   id: "story1",
   level: "n5",
   title: "温泉に行きます",
-  cover: "/images/reader/n5/story1/cover.jpg",
+  cover: "/images/reader/n5/story1/cover.jpg", //もしstory2なら cover: "/images/reader/n5/story2/cover.jpg",
   audioBase: "/audio/reader/n5/story1",
   sentences: [
     {
