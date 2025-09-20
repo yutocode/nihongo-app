@@ -1,27 +1,102 @@
-.level-select-page {
-  padding: 2rem;
+/* src/styles/LevelSelectPage.css */
+
+.lvl-wrap {
+  position: relative;
+  min-height: 100vh;
+  background: #f5f9f8; /* 薄い背景 */
+  padding: 40px 20px;
+  font-family: "Segoe UI", sans-serif;
   text-align: center;
 }
 
-.level-buttons {
+/* 背景の装飾（丸や模様） */
+.bg-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top left, #d1fae5 0%, transparent 70%),
+              radial-gradient(circle at bottom right, #bfdbfe 0%, transparent 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.lvl-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  color: #222;
+}
+
+.lvl-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.level-buttons button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  border: none;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 8px;
+.lvl-item {
+  width: 100%;
+  max-width: 350px;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.level-buttons button:hover {
-  background-color: #45a049;
+.lvl-item:hover {
+  border-color: #10b981;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.lvl-item.is-checked {
+  border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+/* 本来のラジオは隠す */
+.lvl-item input[type="radio"] {
+  display: none;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lvl-item.is-checked .radio {
+  border-color: #10b981;
+}
+
+.lvl-item.is-checked .radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
 }

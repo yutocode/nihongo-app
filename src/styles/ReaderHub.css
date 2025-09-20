@@ -5,25 +5,10 @@
   --purple:#9b59b6; --yellow:#f4c542;
 }
 
-/* ベース */
-.reader-hub{ background:#0f0f10; color:var(--text); min-height:100vh; padding-bottom:92px; }
+/* ベース（下部ナビを消したので余白は小さめ） */
+.reader-hub{ background:#0f0f10; color:var(--text); min-height:100vh; padding-bottom:24px; }
 
-/* ======= ① ステータスバー ======= */
-.stats-bar{
-  display:flex; gap:14px; padding:10px 16px; align-items:center;
-  position:sticky; top:0; z-index:5; background:linear-gradient(#141415, #111);
-  -webkit-backdrop-filter:none; backdrop-filter:none; border-bottom:1px solid rgba(255,255,255,.05);
-}
-.stat-pill{
-  display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px;
-  background:#202022; color:#8aa; font-weight:700; font-size:14px;
-}
-.stat-pill.red{ color:#ffc1c1; }
-.stat-pill.green{ color:#c1ffd8; }
-.stat-pill.gold{ color:#ffe8a3; }
-.stat-pill .num{ font-variant-numeric:tabular-nums; }
-
-/* ======= ② ステージ（Beginner） ======= */
+/* ======= ステージ（「Beginner」→ React側で「N5」に表示） ======= */
 .stage.stage--compact{
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.06);
@@ -36,7 +21,7 @@
 .stage-right{ display:flex; align-items:center; gap:6px; }
 .stage .chev{ opacity:.8; }
 
-/* ======= ③ レベル見出し行 ======= */
+/* ======= レベル見出し行 ======= */
 .level-section{ padding:10px 12px 4px; }
 .level-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .level-title{ display:flex; align-items:center; gap:12px; }
@@ -45,7 +30,7 @@
 .progress-dots{ display:flex; gap:6px; }
 .progress-dots .dot{ width:10px; height:10px; border-radius:50%; background:var(--green); opacity:.95; }
 
-/* ======= ④ カード行（点滅対策含む） ======= */
+/* ======= カード行（点滅対策含む） ======= */
 .cards-row{
   display:flex; gap:14px; overflow-x:auto; padding:12px 2px 8px;
   contain:layout paint; transform:translateZ(0); -webkit-transform:translateZ(0);
@@ -53,7 +38,7 @@
 .cards-row::-webkit-scrollbar{ height:6px; }
 .cards-row::-webkit-scrollbar-thumb{ background:#2a2a2b; border-radius:8px; }
 
-/* ======= ⑤ ストーリーカード ======= */
+/* ======= ストーリーカード ======= */
 .story-card{
   width:260px; min-width:260px; background:var(--card); border-radius:18px;
   box-shadow:0 1px 0 rgba(255,255,255,.04), 0 12px 24px rgba(0,0,0,.35);
@@ -78,18 +63,5 @@
 .card-title{ font-size:16px; font-weight:700; line-height:1.35; margin:2px 0 6px; color:#eee; }
 .time{ color:#bcbcbc; font-size:12px; }
 
-/* ======= ⑥ 下部ナビ（丸ボタン） ======= */
-.bottom-nav.bottom-nav--pill{
-  position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-  background:linear-gradient(to top, #101010, #1111); display:flex; justify-content:space-around; gap:14px;
-  border-top:1px solid rgba(255,255,255,.06); z-index:10;
-}
-.bottom-nav .nav-btn{
-  width:48px; height:48px; border:none; border-radius:16px; font-size:22px; background:#242424; color:#fff;
-  display:flex; align-items:center; justify-content:center; box-shadow:0 8px 16px rgba(0,0,0,.35);
-}
-.bottom-nav .blue{   background:#2a72ff; }
-.bottom-nav .green{  background:#2fbf71; }
-.bottom-nav .red{    background:#ff5a63; }
-.bottom-nav .yellow{ background:#f2c744; color:#2b2100; }
-.bottom-nav .purple{ background:#8a5bd3; }
+/* ======= （削除済み）①ステータスバー & ⑥下部ナビ =======
+   .stats-bar, .stat-pill, .bottom-nav, .nav-btn などのスタイルは完全撤去しました。 */

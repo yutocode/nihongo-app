@@ -110,6 +110,8 @@ const App = () => (
 
         {/* lessons & words */}
         <Route path="/level" element={<LevelSelectPage />} />
+        {/* エイリアス（/levels でも開ける） */}
+        <Route path="/levels" element={<LevelSelectPage />} />
         <Route path="/lessons/:level" element={<LessonSelectPage />} />
         <Route path="/words/:level/:lesson" element={<WordPage />} />
 
@@ -152,11 +154,13 @@ const App = () => (
         <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
 
         {/* reader */}
+        {/* /reader → 直で来たら n5 へ */}
+        <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
         <Route path="/reader/:level" element={<ReaderHubPage />} />
         <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
       </Route>
 
-      {/* fallback: redirect to home */}
+      {/* fallback */}
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   </Router>
@@ -174,7 +178,7 @@ const AppInitializer = () => {
   const PUBLIC_PATHS = ["/", "/login", "/register", "/auth"];
   const PRIVATE_PREFIXES = [
     "/home", "/quiz", "/result",
-    "/level", "/lessons", "/words",
+    "/level", "/levels", "/lessons", "/words",
     "/my-words", "/word-quiz",
     "/settings", "/language",
     "/grammar", "/adj",
@@ -197,18 +201,10 @@ const AppInitializer = () => {
         setUser(user);
 
         (async () => {
-          try {
-            await ensureUserDoc?.(user.uid);
-          } catch (e) {
-            console.warn(e);
-          }
+          try { await ensureUserDoc?.(user.uid); } catch (e) { console.warn(e); }
         })();
 
-        try {
-          initUserXP?.(user.uid);
-        } catch (e) {
-          console.warn("initUserXP failed:", e);
-        }
+        try { initUserXP?.(user.uid); } catch (e) { console.warn("initUserXP failed:", e); }
 
         try {
           const st = useAppStore.getState?.();

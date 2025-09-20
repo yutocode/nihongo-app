@@ -13,7 +13,6 @@
   box-sizing: border-box;
   overscroll-behavior-y: contain;
 
-  /* 下部固定タブぶん（無ければ 0 に） */
   --bottom-nav-h: 64px;
   padding-bottom: calc(20px + env(safe-area-inset-bottom) + var(--bottom-nav-h));
 }
@@ -54,7 +53,7 @@
 .progress-fill.quiz { background: linear-gradient(90deg,#f77f00,#ffc371); }
 .goal-card span { font-size: .78rem; margin-top: 6px; display: block; text-align: right; color: var(--text-sub,#a4a6ad); }
 
-/* ---- セクション（外枠削除） ---- */
+/* ---- セクション ---- */
 .home-subtitle { margin-bottom: 12px; font-size: 1rem; color: var(--text-sub); }
 .section {
   margin-top: 18px;
@@ -62,7 +61,7 @@
   border-radius: 18px;
   padding: 16px;
   box-shadow: var(--elev-1);
-  border: none; /* 外枠ナシ */
+  border: none;
 }
 
 /* ---- 4×2 グリッド ---- */
@@ -72,14 +71,21 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* ---- タイル（FeatureTile を想定）---- */
+/* ---- タイル（FeatureTile）---- */
 .grid-four .feature {
+  /* ボタン化（アクセシビリティ） */
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+
   /* 形と見た目 */
-  aspect-ratio: 1 / 1;                  /* 正方形 */
-  border-radius: 12px;                  /* 小さめ角丸 */
-  background: #0d1f1a;                  /* 深い緑 */
-  border: 1.5px solid #d9b45e;          /* 金色の縁 */
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: #0d1f1a;                 /* 深い緑 */
+  border: 1.5px solid #d9b45e;         /* 金縁 */
   box-shadow: 0 4px 12px rgba(0,0,0,.45);
+  position: relative;
 
   /* レイアウト */
   display: flex;
@@ -91,10 +97,36 @@
 
   /* 触感 */
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  cursor: pointer;
 }
 .grid-four .feature:hover {
   transform: translateY(-2px);
   box-shadow: 0 7px 16px rgba(0,0,0,.55);
+}
+.grid-four .feature:focus-visible {
+  outline: 2px solid rgba(217,180,94,.7);
+  outline-offset: 2px;
+}
+
+/* 無効タイル（近日公開） */
+.grid-four .feature.is-disabled {
+  opacity: .55;
+  filter: saturate(.3) brightness(.95);
+  cursor: default;
+  pointer-events: none;
+}
+.grid-four .feature .soon-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1;
+  color: #ffd98a;
+  background: rgba(0,0,0,.55);
+  border: 1px solid #d9b45e;          /* 金縁と調和 */
+  border-radius: 6px;
+  letter-spacing: .02em;
 }
 
 /* アイコン大きめ */
@@ -104,7 +136,7 @@
   color: #eef2f1;
 }
 
-/* ラベル：2行まで表示、…は出さない */
+/* ラベル（2行まで表示・…は出さない） */
 .grid-four .feature .label {
   font-size: clamp(12px, 3.1vw, 14px);
   font-weight: 700;
@@ -112,11 +144,10 @@
   color: #f5f5f5;
   text-align: center;
 
-  /* 2行に限定（省略しない） */
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;   /* ここで 2 行まで */
-  overflow: hidden;        /* 3行目以降を隠す（…は出さない） */
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   white-space: normal;
   word-break: keep-all;
 }
@@ -158,4 +189,4 @@
 /* 低モーション */
 @media (prefers-reduced-motion: reduce) {
   .progress-fill, .cta-big { transition: none; }
-}
+} 
