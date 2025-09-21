@@ -9,17 +9,13 @@ import React, {
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// ★ Reader.css は削除済みなので不要
-// import "../styles/Reader.css";
-
 import { n5Stories } from "../data/reader/n5/stories";
 import ReaderHeader from "../components/ReaderHeader.jsx";
 import SentenceCard from "../components/SentenceCard.jsx";
-import ControlsBar from "../components/ControlsBar.jsx";
+import BottomActionBar from "../components/BottomActionBar.jsx"; // ★ 修正
 import WordPopup from "../components/WordPopup.jsx";
 import { useAppStore } from "../store/useAppStore";
 
-// いまは N5 固定。将来 N4/N3 を追加したらここに拡張
 const STORY_MAP = { n5: n5Stories };
 
 export default function ReaderPage() {
@@ -33,15 +29,12 @@ export default function ReaderPage() {
   const audioRef = useRef(null);
   const saveReaderProgress = useAppStore((s) => s.saveReaderProgress);
 
-  // 現在のストーリー（N5固定）
   const story = useMemo(() => STORY_MAP["n5"]?.[storyId], [storyId]);
 
-  // ストーリーが無ければ Hub へ戻す
   useEffect(() => {
     if (!story) navigate("/reader", { replace: true });
   }, [story, navigate]);
 
-  // ストーリー切替時の初期化
   useEffect(() => {
     setIdx(0);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -53,7 +46,6 @@ export default function ReaderPage() {
     ? Math.round(((idx + 1) / sentences.length) * 100)
     : 0;
 
-  // 進捗保存（簡易デバウンス）
   useEffect(() => {
     if (!story) return;
     const h = setTimeout(() => {
@@ -66,16 +58,17 @@ export default function ReaderPage() {
     return () => clearTimeout(h);
   }, [idx, story, saveReaderProgress]);
 
-  // 再生処理
   const onPlay = useCallback(() => {
-    if (!audioRef.current || !sentence || !story) return;
+    if (!audioRef.current || !sentence || !story) {
+      console.log("音声はまだ準備中です");
+      return;
+    }
     audioRef.current.src = `${story.audioBase}/${sentence.audio}`;
     audioRef.current
       .play()
       .catch((e) => console.warn("Audio play failed:", e));
   }, [sentence, story]);
 
-  // 音声終了 → 次の文へ
   useEffect(() => {
     const el = audioRef.current;
     if (!el) return;
@@ -91,30 +84,6 @@ export default function ReaderPage() {
   );
   const prev = useCallback(() => setIdx((i) => Math.max(i - 1, 0)), []);
 
-  // キーボード操作: ← → / Space
-  useEffect(() => {
-    const onKey = (e) => {
-      if (
-        e.target &&
-        (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
-      )
-        return;
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        next();
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        prev();
-      } else if (e.code === "Space") {
-        e.preventDefault();
-        onPlay();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [next, prev, onPlay]);
-
-  // ストーリーが存在しない場合のフォールバック
   if (!story) {
     return (
       <div style={{ padding: "2rem", color: "#fff" }}>
@@ -145,12 +114,15 @@ export default function ReaderPage() {
         />
       )}
 
-      <ControlsBar
+      <BottomActionBar
         onPrev={prev}
         onNext={next}
         onPlay={onPlay}
-        canPrev={idx > 0}
-        canNext={idx < sentences.length - 1}
+        onCheck={() => {}}
+        onSettings={() => {}}
+        onTranslate={() => setShowTrans(v => !v)}
+        onSlow={() => {}} // ReaderPageではスロー再生はまだ未実装
+        slowActive={false}
       />
 
       <audio ref={audioRef} preload="none" />

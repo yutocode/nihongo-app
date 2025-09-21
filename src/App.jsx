@@ -56,6 +56,7 @@ import WordQuizLessonSelectPage from "./pages/WordQuizLessonSelectPage";
 // reader
 import ReaderPage from "./pages/ReaderPage";
 import ReaderHubPage from "./pages/ReaderHubPage";
+import StoryPlayer from "./pages/StoryPlayer.jsx"; // ★ 追加：本文再生ページ
 
 // XP persistence
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
@@ -110,7 +111,7 @@ const App = () => (
 
         {/* lessons & words */}
         <Route path="/level" element={<LevelSelectPage />} />
-        {/* エイリアス（/levels でも開ける） */}
+        {/* alias */}
         <Route path="/levels" element={<LevelSelectPage />} />
         <Route path="/lessons/:level" element={<LessonSelectPage />} />
         <Route path="/words/:level/:lesson" element={<WordPage />} />
@@ -154,10 +155,11 @@ const App = () => (
         <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
 
         {/* reader */}
-        {/* /reader → 直で来たら n5 へ */}
         <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
         <Route path="/reader/:level" element={<ReaderHubPage />} />
         <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
+        {/* ★ 追加：本文再生ページ（スクショの完成形） */}
+        <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
       </Route>
 
       {/* fallback */}

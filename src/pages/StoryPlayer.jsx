@@ -1,35 +1,49 @@
 // src/pages/StoryPlayer.jsx
 import React, { useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ReaderHeader from "@/components/ReaderHeader.jsx";      // ← ヘッダー（戻る/進捗/ページ数/旗）
-import SentenceCard from "@/components/SentenceCard.jsx";       // ← 画像＋本文（ルビ対応）
-import BottomActionBar from "@/components/BottomActionBar.jsx"; // ← 下の楕円ボタン列
+import ReaderHeader from "@/components/ReaderHeader.jsx";      // 上ヘッダー（戻る/進捗/ページ数/旗）
+import SentenceCard from "@/components/SentenceCard.jsx";       // 画像＋本文（ルビ対応）
+import BottomActionBar from "@/components/BottomActionBar.jsx"; // 下の楕円ボタン列
 import "@/styles/StoryPlayer.css";
 
 import { story1 } from "@/data/reader/n5/stories/story1.js";
 
+// ★ 音声がまだ無い間は false のまま。
+//    音声を置いたら true に変えるだけで再生有効化。
+const AUDIO_ENABLED = false;
+
 export default function StoryPlayer() {
+  // いまは固定（将来 level/id で差し替え）
   const { level = "n5", id = "story1" } = useParams();
   const navigate = useNavigate();
 
-  const story = story1; // 今回は固定
+  const story = story1;
 
   const [idx, setIdx] = useState(0);
-  const [showTrans, setShowTrans] = useState(true);  // 翻訳ON/OFF（ボタンで切替）
+  const [showTrans, setShowTrans] = useState(true);
   const [slow, setSlow] = useState(false);
   const audioRef = useRef(null);
 
   const page = story.sentences[idx];
   const total = story.sentences.length;
 
-  const audioSrc = useMemo(() => `${story.audioBase}/${page.audio}`, [story, page, slow]);
+  // 再生用パス（AUDIO_ENABLED=false の間は使わない）
+  const audioSrc = useMemo(() => `${story.audioBase}/${page.audio}`, [story, page]);
 
   const onPlay = () => {
-    if (audioRef.current) audioRef.current.pause();
-    const a = new Audio(audioSrc);
-    a.playbackRate = slow ? 0.75 : 1.0;
-    a.play();
-    audioRef.current = a;
+    if (!AUDIO_ENABLED || !page?.audio) {
+      console.log("音声はまだ準備中です");
+      return;
+    }
+    try {
+      if (audioRef.current) audioRef.current.pause();
+      const a = new Audio(audioSrc);
+      a.playbackRate = slow ? 0.75 : 1.0;
+      a.play();
+      audioRef.current = a;
+    } catch (e) {
+      console.warn("音声の再生に失敗しました:", e);
+    }
   };
 
   const onPrev = () => setIdx(i => Math.max(0, i - 1));
@@ -45,15 +59,15 @@ export default function StoryPlayer() {
         onFlag={() => {}}
       />
 
-      {/* 中央：画像＋本文（繁体字翻訳はボタンで表示/非表示） */}
+      {/* 中央：画像＋本文（翻訳は繁体字。ボタンでON/OFF） */}
       <SentenceCard
         cover={story.cover}
-        html={page.jp}                     // ← ここはHTML（ruby）文字列を渡す
+        html={page.jp}                       // ruby入りHTMLを渡す
         showFurigana={true}
-        tr={showTrans ? page.tr.tw : null} // ← 翻訳は文字列を渡す
+        tr={showTrans ? page.tr.tw : null}   // 翻訳は“文字列”で渡す（[object Object]回避）
       />
 
-      {/* 下：楕円のコントロールバー（スクショの順番） */}
+      {/* 下：楕円コントロールバー（参考アプリの並び） */}
       <BottomActionBar
         onSettings={() => {}}
         onTranslate={() => setShowTrans(v => !v)}

@@ -1,0 +1,70 @@
+/* src/styles/BottomActionBar.css */
+
+.ba-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  z-index: 100;
+}
+
+.ba-pill {
+  display: flex;
+  gap: 12px;
+  background: rgba(30, 30, 30, 0.95);
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ボタン共通 */
+.ba-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background: #222;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.ba-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+.ba-btn:active {
+  transform: scale(0.95);
+}
+
+/* 再生ボタン（赤） */
+.ba-btn.ba-primary {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* OK（チェック）ボタン（緑） */
+.ba-btn.ba-ok {
+  background: #2ecc71;
+  color: #fff;
+}
+
+/* アクティブ状態（スネイル用） */
+.ba-btn.ba-active {
+  background: #3498db;
+  color: #fff;
+}
+
+/* 最後の安全マージン (iPhone XなどのSafe Area対策) */
+.ba-safezone {
+  height: env(safe-area-inset-bottom, 16px);
+}
