@@ -3,12 +3,16 @@ export const story1 = {
   id: "story1",
   level: "n5",
   title: "学校の初日",
+  // カバー（初期フォールバック用）
   cover: "/images/reader/n5/story1/cover.jpg",
+  // 音声ベースパス（あとで差し替え可）
   audioBase: "/audio/reader/n5/story1",
+
   sentences: [
-    // 1/5
+    // 1 / 5
     {
       id: "s1",
+      image: "/images/reader/n5/story1/1.jpg", // ★ページ専用画像
       jp: "きょうは <ruby>学校<rt>がっこう</rt></ruby>の <ruby>初日<rt>しょにち</rt></ruby>です。",
       tr: {
         ja: "今日は学校の初日です。",
@@ -24,16 +28,17 @@ export const story1 = {
       audio: "sentence_001.mp3"
     },
 
-    // 2/5
+    // 2 / 5
     {
       id: "s2",
+      image: "/images/reader/n5/story1/2.jpg",
       jp: "わたしは <ruby>朝<rt>あさ</rt></ruby>、はやく おきます。",
       tr: {
         ja: "私は朝、早く起きます。",
         en: "I get up early in the morning.",
         zh: "早上我早起。", tw: "早上我早起。",
         ko: "아침에 일찍 일어납니다。", vi: "Buổi sáng tôi dậy sớm.",
-        th: "ตอนเช้าฉันตื่นเช้า", my: "မနက် လွှင့်လွှင့် သွားထတယ်။"
+        th: "ตอนเช้าฉันตื่นเช้า", my: "မနက် လွှင့်လွှင့် သွားထတယ်。"
       },
       dict: {
         "朝": { ja:"朝", en:"morning", zh:"早上", tw:"早上", ko:"아침", vi:"buổi sáng", th:"ตอนเช้า", my:"မနက်" },
@@ -42,9 +47,10 @@ export const story1 = {
       audio: "sentence_002.mp3"
     },
 
-    // 3/5
+    // 3 / 5
     {
       id: "s3",
+      image: "/images/reader/n5/story1/3.jpg",
       jp: "<ruby>新<rt>あたら</rt></ruby>しい <ruby>先生<rt>せんせい</rt></ruby>に あいさつします。",
       tr: {
         ja: "新しい先生にあいさつします。",
@@ -60,9 +66,10 @@ export const story1 = {
       audio: "sentence_003.mp3"
     },
 
-    // 4/5
+    // 4 / 5
     {
       id: "s4",
+      image: "/images/reader/n5/story1/4.jpg",
       jp: "クラスで <ruby>自己紹介<rt>じこしょうかい</rt></ruby>を します。<ruby>名前<rt>なまえ</rt></ruby>を いいます。",
       tr: {
         ja: "クラスで自己紹介をします。名前を言います。",
@@ -78,9 +85,10 @@ export const story1 = {
       audio: "sentence_004.mp3"
     },
 
-    // 5/5
+    // 5 / 5
     {
       id: "s5",
+      image: "/images/reader/n5/story1/5.jpg",
       jp: "きょう、<ruby>友<rt>とも</rt></ruby>だちが できました。たのしかったです。",
       tr: {
         ja: "今日、友達ができました。楽しかったです。",

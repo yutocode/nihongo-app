@@ -22,12 +22,15 @@ export default function ReaderPage() {
   const audioRef = useRef(null);
   const saveReaderProgress = useAppStore((s) => s.saveReaderProgress);
 
-  const story = useMemo(() => STORY_MAP["n5"]?.[storyId], [storyId]);
+  // N5 固定で該当ストーリーを取得
+  const story = useMemo(() => STORY_MAP.n5?.[storyId], [storyId]);
 
+  // ストーリーが無ければ一覧へ戻す
   useEffect(() => {
     if (!story) navigate("/reader", { replace: true });
   }, [story, navigate]);
 
+  // ストーリー切替時の初期化
   useEffect(() => {
     setIdx(0);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -35,34 +38,49 @@ export default function ReaderPage() {
 
   const sentences = story?.sentences ?? [];
   const page = sentences[idx];
-  const progress = story ? Math.round(((idx + 1) / sentences.length) * 100) : 0;
+  const total = sentences.length;
+  const progress = total ? Math.round(((idx + 1) / total) * 100) : 0;
 
+  // 進捗保存（軽いデバウンス）
   useEffect(() => {
     if (!story) return;
-    const h = setTimeout(() => {
-      try { saveReaderProgress("n5", story.id, idx); } catch {}
+    const t = setTimeout(() => {
+      try {
+        saveReaderProgress("n5", story.id, idx);
+      } catch {}
     }, 150);
-    return () => clearTimeout(h);
+    return () => clearTimeout(t);
   }, [idx, story, saveReaderProgress]);
 
+  // 再生（音声未用意ならメッセージ）
   const onPlay = useCallback(() => {
-    if (!audioRef.current || !page || !story) {
+    if (!page || !story) return;
+    if (!audioRef.current) return;
+    // 音声ファイルが未配置ならここで安全にログだけ
+    const url = `${story.audioBase}/${page.audio}`;
+    if (!page.audio) {
       console.log("音声はまだ準備中です");
       return;
     }
-    audioRef.current.src = `${story.audioBase}/${page.audio}`;
-    audioRef.current.play().catch((e) => console.warn("Audio play failed:", e));
+    audioRef.current.src = url;
+    audioRef.current
+      .play()
+      .catch(() => console.log("音声はまだ準備中です"));
   }, [page, story]);
 
+  // 音声終了で自動で次へ
   useEffect(() => {
     const el = audioRef.current;
     if (!el) return;
-    const onEnded = () => setIdx((i) => Math.min(i + 1, sentences.length - 1));
-    el.addEventListener("ended", onEnded);
-    return () => el.removeEventListener("ended", onEnded);
-  }, [sentences.length]);
+    const handleEnd = () => setIdx((i) => Math.min(i + 1, total - 1));
+    el.addEventListener("ended", handleEnd);
+    return () => el.removeEventListener("ended", handleEnd);
+  }, [total]);
 
-  const next = useCallback(() => setIdx((i) => Math.min(i + 1, sentences.length - 1)), [sentences.length]);
+  const next = useCallback(
+    () => setIdx((i) => Math.min(i + 1, total - 1)),
+    [total]
+  );
   const prev = useCallback(() => setIdx((i) => Math.max(i - 1, 0)), []);
 
   if (!story) return null;
@@ -72,32 +90,39 @@ export default function ReaderPage() {
       <ReaderHeader
         title={story.title}
         progress={progress}
+        current={idx + 1}
+        total={total}
         showFuri={showFuri}
         setShowFuri={setShowFuri}
         showTrans={showTrans}
         setShowTrans={setShowTrans}
         onBack={() => navigate("/reader")}
+        onFlag={() => {}}
       />
 
-      {/* ★ ここがポイント：SentenceCard には “文字列” として渡す */}
       {page && (
         <SentenceCard
-          cover={story.cover}
-          html={page.jp}                        // ← ルビ入りHTML文字列
+          // 各ページ専用画像があれば使用。無ければカバー画像。
+          cover={page.image || story.cover}
+          // ルビ付きの本文（HTML文字列）
+          html={page.jp}
           showFurigana={showFuri}
-          tr={showTrans ? page.tr?.tw : null}   // ← 翻訳（繁体字）
+          // 翻訳は繁体字を前面に（他言語にしたい時はここを切り替え）
+          tr={showTrans ? page.tr?.tw : null}
+          // ついでに現在のUI言語が要る場合は渡せる
+          lang={i18n.language}
         />
       )}
 
       <BottomActionBar
-        onPrev={prev}
-        onNext={next}
-        onPlay={onPlay}
-        onCheck={() => {}}
         onSettings={() => {}}
         onTranslate={() => setShowTrans((v) => !v)}
+        onPlay={onPlay}
         onSlow={() => {}}
         slowActive={false}
+        onPrev={prev}
+        onNext={next}
+        onCheck={() => {}}
       />
 
       <audio ref={audioRef} preload="none" />
