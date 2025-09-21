@@ -13,9 +13,10 @@ import { useTranslation } from "react-i18next";
 // import "../styles/Reader.css";
 
 import { n5Stories } from "../data/reader/n5/stories";
-import ReaderHeader from "../components/reader/ReaderHeader.jsx";
-import SentenceCard from "../components/reader/SentenceCard.jsx";
-import ControlsBar from "../components/reader/ControlsBar.jsx";
+import ReaderHeader from "../components/ReaderHeader.jsx";
+import SentenceCard from "../components/SentenceCard.jsx";
+import ControlsBar from "../components/ControlsBar.jsx";
+import WordPopup from "../components/WordPopup.jsx";
 import { useAppStore } from "../store/useAppStore";
 
 // いまは N5 固定。将来 N4/N3 を追加したらここに拡張

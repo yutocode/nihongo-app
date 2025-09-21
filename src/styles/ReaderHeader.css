@@ -1,0 +1,18 @@
+/* src/styles/ReaderHeader.css */
+.rh-wrap{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; position:sticky; top:0; z-index:10;
+  background:#0b0c0d;  /* 黒背景 */
+}
+.rh-back, .rh-flag{
+  width:36px; height:36px; border-radius:999px; border:none;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent; color:#e9f0ee; font-size:24px;
+}
+.rh-flag{ color:#ff4d4f; } /* 赤いフラグ */
+.rh-track{
+  flex:1; height:10px; background:#1c2a21;
+  border-radius:999px; overflow:hidden;
+}
+.rh-fill{ height:100%; background:#1ecf7a; } /* 緑バー */
+.rh-page{ color:#e9f0ee; font-weight:600; min-width:60px; text-align:center; }

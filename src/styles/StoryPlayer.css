@@ -1,0 +1,51 @@
+/* StoryPlayer 全体のラッパ */
+.story-wrap {
+  background: #0b0c0d;       /* 背景は黒 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 120px;     /* 下の操作バー分の余白 */
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 上部ヘッダー（ReaderHeaderが入る） */
+.story-header {
+  background: #0b0c0d;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* 本文カードの中央寄せ */
+.story-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+/* ページ番号 */
+.pager {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e9f0ee;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+/* ふりがな/翻訳トグル（必要なら表示） */
+.toggles {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 10px 0;
+  color: #cfd8dc;
+  font-size: 14px;
+}
+.toggles input {
+  margin-right: 4px;
+}

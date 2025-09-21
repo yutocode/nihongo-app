@@ -1,0 +1,68 @@
+/* 背景 */
+.wp-overlay{
+  position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  display: flex; align-items: flex-end; z-index: 1000;
+}
+
+/* シート本体 */
+.wp-sheet{
+  width: 100%; max-height: 78vh; overflow-y: auto;
+  background: #1c151f; color: #f3f3f3;
+  border-top-left-radius: 18px; border-top-right-radius: 18px;
+  padding: 10px 14px 22px;
+  animation: wp-rise .16s ease-out;
+  box-shadow: 0 -10px 30px rgba(0,0,0,.5);
+}
+
+@keyframes wp-rise {
+  from { transform: translateY(32px); opacity: .95; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.wp-handle{
+  width: 46px; height: 4px; border-radius: 999px;
+  background: #ffffff22; margin: 6px auto 10px;
+}
+
+/* ヘッダー */
+.wp-head{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-bottom: 6px;
+}
+.wp-title{ display:flex; align-items: baseline; gap:8px; }
+.wp-word{ font-size: 22px; font-weight: 800; }
+.wp-romaji{ color:#91a3b0; font-size:14px; }
+.wp-actions{ display:flex; gap:6px; }
+.wp-icon{
+  width:34px; height:34px; border-radius:999px; border:none;
+  background:#2a2d2f; color:#e9f0ee; cursor:pointer;
+}
+
+/* タグ */
+.wp-tags{ display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 8px; }
+.wp-tag{
+  background:#6d4bc7; color:#fff; padding:2px 8px; border-radius:10px;
+  font-size:12px; font-weight:700;
+}
+
+/* 内容 */
+.wp-content{ padding-bottom: 8px; }
+.wp-section{ margin: 12px 0; }
+.wp-section h4{ margin:0 0 8px; color:#c7d0d9; font-size:13px; letter-spacing:.4px; }
+.wp-list{ margin:0; padding-left: 18px; }
+
+.wp-grid{
+  display:grid; grid-template-columns: 1fr; gap:8px;
+}
+@media (min-width: 540px){
+  .wp-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* 例文カード */
+.wp-card{
+  background:#3d2759; border-radius:12px; padding:12px; color:#fff; margin:8px 0;
+}
+.wp-ex-jp{ font-size:16px; margin-bottom:4px; }
+.wp-ex-en{ font-size:14px; color:#d7e0e6; }
+
+.wp-empty{ opacity:.8; text-align:center; padding:18px 0; }
