@@ -1,29 +1,49 @@
 /* src/styles/SentenceCard.css */
-.sentence-card {
-  background: #111;
-  color: #fff;
-  border-radius: 16px;
-  padding: 1rem;
-  margin: 1rem;
-  text-align: center;
+.sc-card{
+  background:#1f1f1f;
+  border-radius:18px;
+  padding:16px 18px 14px;
+  margin:16px 16px 12px;
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
 }
 
-.sentence-card img {
-  width: 100%;
-  max-width: 360px;   /* ← 最大幅を制限して小さく表示 */
-  height: auto;
-  border-radius: 12px;
-  margin: 0 auto 1rem;
-  display: block;
+.sc-image{
+  border-radius:14px;
+  overflow:hidden;
+  background:#111;
+  margin-bottom:14px;
+}
+.sc-image img{
+  width:100%;
+  display:block;
+  /* 画像を少し小さめに見せたい → 親のパディングと margin で余白が出ます */
+  border-radius:12px;
 }
 
-.sentence-card .jp {
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  margin-bottom: 0.5rem;
+.sc-text{
+  font-size:28px;
+  line-height:1.6;
+  color:#f3f3f3;
+  word-break:keep-all;
+}
+.sc-text ruby rt{
+  font-size:.5em;
+  color:#c9c9c9;
 }
 
-.sentence-card .tr {
-  font-size: 1rem;
-  color: #ccc;
+.sc-word{
+  position:relative;
+  padding:0 .04em;
+  cursor:pointer;
+  border-bottom:3px solid #3f6ef3; /* 青いアンダーライン風 */
+}
+.sc-word:active{
+  transform:translateY(1px);
+  opacity:.9;
+}
+
+.sc-tr{
+  margin-top:10px;
+  color:#cfcfcf;
+  font-size:15px;
 }

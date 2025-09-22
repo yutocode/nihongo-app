@@ -7,6 +7,7 @@ import { n5Stories } from "../data/reader/n5/stories";
 import ReaderHeader from "../components/ReaderHeader.jsx";
 import SentenceCard from "../components/SentenceCard.jsx";
 import BottomActionBar from "../components/BottomActionBar.jsx";
+import WordPopup from "../components/WordPopup.jsx";
 import { useAppStore } from "../store/useAppStore";
 
 const STORY_MAP = { n5: n5Stories };
@@ -19,6 +20,7 @@ export default function ReaderPage() {
   const [idx, setIdx] = useState(0);
   const [showFuri, setShowFuri] = useState(true);
   const [showTrans, setShowTrans] = useState(true);
+  const [popupWord, setPopupWord] = useState(null); // ← 追加：ポップアップ表示用
   const audioRef = useRef(null);
   const saveReaderProgress = useAppStore((s) => s.saveReaderProgress);
 
@@ -33,6 +35,7 @@ export default function ReaderPage() {
   // ストーリー切替時の初期化
   useEffect(() => {
     setIdx(0);
+    setPopupWord(null);
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [storyId]);
 
@@ -56,16 +59,13 @@ export default function ReaderPage() {
   const onPlay = useCallback(() => {
     if (!page || !story) return;
     if (!audioRef.current) return;
-    // 音声ファイルが未配置ならここで安全にログだけ
-    const url = `${story.audioBase}/${page.audio}`;
     if (!page.audio) {
       console.log("音声はまだ準備中です");
       return;
     }
+    const url = `${story.audioBase}/${page.audio}`;
     audioRef.current.src = url;
-    audioRef.current
-      .play()
-      .catch(() => console.log("音声はまだ準備中です"));
+    audioRef.current.play().catch(() => console.log("音声はまだ準備中です"));
   }, [page, story]);
 
   // 音声終了で自動で次へ
@@ -102,14 +102,12 @@ export default function ReaderPage() {
 
       {page && (
         <SentenceCard
-          // 各ページ専用画像があれば使用。無ければカバー画像。
-          cover={page.image || story.cover}
-          // ルビ付きの本文（HTML文字列）
-          html={page.jp}
+          cover={page.image || story.cover} // ページ専用画像優先
+          html={page.jp}                    // ルビ付きHTML
           showFurigana={showFuri}
-          // 翻訳は繁体字を前面に（他言語にしたい時はここを切り替え）
-          tr={showTrans ? page.tr?.tw : null}
-          // ついでに現在のUI言語が要る場合は渡せる
+          tr={showTrans ? page.tr?.tw : null} // 繁体字を前面に
+          dict={page.dict || {}}            // ← 追加：クリック可能語
+          onWord={(w) => setPopupWord(w)}   // ← 追加：語タップでポップアップ
           lang={i18n.language}
         />
       )}
@@ -123,6 +121,13 @@ export default function ReaderPage() {
         onPrev={prev}
         onNext={next}
         onCheck={() => {}}
+      />
+
+      {/* 単語の意味ポップアップ */}
+      <WordPopup
+        word={popupWord}
+        dict={page?.dict || {}}
+        onClose={() => setPopupWord(null)}
       />
 
       <audio ref={audioRef} preload="none" />
