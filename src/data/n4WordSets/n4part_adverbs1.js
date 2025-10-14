@@ -1,0 +1,25 @@
+// src/data/n4WordSets/n4part_adverbs1.js
+export const n4part_adverbs1 = {
+  Lesson10: [
+    { id: 358, kanji: "すっと", reading: "すっと", meanings: { ja: "すっと", en: "straight", zh: "笔直地", tw: "筆直地", ko: "곧게", vi: "thẳng", th: "ตรงๆ", my: "တည့်တည့်", km: "ត្រង់" } },
+    { id: 359, kanji: "必ず", reading: "かならず", meanings: { ja: "必ず", en: "always", zh: "必定", tw: "必定", ko: "반드시", vi: "nhất định; luôn luôn", th: "แน่นอน; เสมอ", my: "သေချာစွာ", km: "ច្បាស់លាស់" } },
+    { id: 360, kanji: "非常に", reading: "ひじょうに", meanings: { ja: "非常に", en: "very", zh: "非常", tw: "非常", ko: "매우", vi: "rất", th: "อย่างมาก", my: "အလွန်", km: "ខ្លាំងណាស់" } },
+    { id: 361, kanji: "一生懸命", reading: "いっしょうけんめい", meanings: { ja: "一生懸命", en: "very hard", zh: "拼命地", tw: "拼命地", ko: "열심히", vi: "hết sức", th: "อย่างเต็มที่", my: "အလွန်ကြိုးစားစွာ", km: "ខិតខំប្រឹងប្រែង" } },
+    { id: 362, kanji: "決して", reading: "けっして", meanings: { ja: "決して", en: "(not) ever", zh: "決不", tw: "決不", ko: "결코", vi: "tuyệt đối (không)", th: "เด็ดขาด (ไม่)", my: "决ကာ", km: "មិនអីទេ" } },
+    { id: 363, kanji: "どんどん", reading: "どんどん", meanings: { ja: "どんどん", en: "drumming (noise)", zh: "咚咚地", tw: "咚咚地", ko: "쾅쾅", vi: "liên tiếp; nhanh chóng", th: "อย่างรวดเร็ว", my: "ဆက်တိုက်", km: "យ៉ាងឆាប់រហ័ស" } },
+    { id: 364, kanji: "すっかり", reading: "すっかり", meanings: { ja: "すっかり", en: "all", zh: "完全", tw: "完全", ko: "완전히", vi: "hoàn toàn", th: "ทั้งหมด", my: "အကုန်လုံး", km: "ទាំងអស់" } },
+    { id: 365, kanji: "はっきり", reading: "はっきり", meanings: { ja: "はっきり", en: "clearly", zh: "清楚地", tw: "清楚地", ko: "분명히", vi: "rõ ràng", th: "อย่างชัดเจน", my: "ရှင်းလင်းစွာ", km: "ច្បាស់លាស់" } },
+    { id: 366, kanji: "例えば", reading: "たとえば", meanings: { ja: "例えば", en: "for example", zh: "例如", tw: "例如", ko: "예를 들어", vi: "ví dụ", th: "เช่น", my: "ဥပမာ", km: "ឧទាហរណ៍" } },
+    { id: 367, kanji: "中々", reading: "なかなか", meanings: { ja: "中々", en: "very", zh: "相當", tw: "相當", ko: "상당히", vi: "khá là", th: "ค่อนข้าง", my: "အတော်လေး", km: "ពិតជាច្រើន" } },
+    { id: 368, kanji: "随分", reading: "ずいぶん", meanings: { ja: "随分", en: "very", zh: "非常", tw: "非常", ko: "상당히", vi: "rất; khá nhiều", th: "มากทีเดียว", my: "အလွန်", km: "ខ្លាំងណាស់" } },
+    { id: 369, kanji: "特に", reading: "とくに", meanings: { ja: "特に", en: "particularly", zh: "特別", tw: "特別", ko: "특히", vi: "đặc biệt", th: "โดยเฉพาะ", my: "အထူးသဖြင့်", km: "ពិសេស" } },
+    { id: 370, kanji: "是非", reading: "ぜひ", meanings: { ja: "是非", en: "certainly", zh: "務必", tw: "務必", ko: "꼭", vi: "nhất định", th: "ให้ได้", my: "အမှန်အကန်", km: "ច្បាស់លាស់" } },
+    { id: 371, kanji: "大体", reading: "だいたい", meanings: { ja: "大体", en: "generally", zh: "大致", tw: "大致", ko: "대체로", vi: "đại khái; thường", th: "โดยทั่วไป", my: "အများအားဖြင့်", km: "ជាធម្មតា" } },
+    { id: 372, kanji: "そろそろ", reading: "そろそろ", meanings: { ja: "そろそろ", en: "soon", zh: "快要", tw: "快要", ko: "슬슬", vi: "sắp", th: "ใกล้จะ", my: "မကြာမီ", km: "ឆាប់ៗ" } },
+    { id: 373, kanji: "そんなに", reading: "そんなに", meanings: { ja: "そんなに", en: "so much", zh: "那麼", tw: "那麼", ko: "그렇게", vi: "đến mức đó", th: "ขนาดนั้น", my: "အဲ့လောက်", km: "ដល់ថ្នាក់នោះ" } },
+    { id: 374, kanji: "最も", reading: "もっとも", meanings: { ja: "最も", en: "most", zh: "最", tw: "最", ko: "가장", vi: "nhất", th: "ที่สุด", my: "အများဆုံး", km: "ច្រើនបំផុត" } },
+    { id: 375, kanji: "全然", reading: "ぜんぜん", meanings: { ja: "全然", en: "(not) at all", zh: "完全不", tw: "完全不", ko: "전혀", vi: "hoàn toàn (không)", th: "ไม่เลย", my: "မ बिल्कुल", km: "ទាំងស្រុង (មិន)" } },
+    { id: 376, kanji: "この頃", reading: "このごろ", meanings: { ja: "この頃", en: "these days", zh: "這些日子", tw: "這些日子", ko: "요즘", vi: "dạo này", th: "ช่วงนี้", my: "ယခုခေတ်", km: "ពេលនេះ" } },
+    { id: 377, kanji: "大分", reading: "だいぶ", meanings: { ja: "大分", en: "considerably", zh: "相當", tw: "相當", ko: "꽤", vi: "khá nhiều", th: "มากทีเดียว", my: "အတော်လေး", km: "ច្រើន" } },
+  ],
+};

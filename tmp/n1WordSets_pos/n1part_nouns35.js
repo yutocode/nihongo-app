@@ -1,0 +1,904 @@
+export const n1part_nouns35 = {
+  "Lesson35": [
+    {
+      "id": 1701,
+      "pos": "名詞",
+      "kanji": "与党",
+      "reading": "よとう",
+      "meanings": {
+        "ja": "与党",
+        "en": "ruling party",
+        "zh": "执政党",
+        "tw": "執政黨",
+        "ko": "여당",
+        "vi": "đảng cầm quyền",
+        "th": "พรรครัฐบาล",
+        "my": "အုပ်ချုပ်ရေးပါတီ",
+        "km": "គណបក្សរដ្ឋាភិបាល",
+        "id": "partai berkuasa"
+      }
+    },
+    {
+      "id": 1702,
+      "pos": "名詞",
+      "kanji": "夜更し",
+      "reading": "よふかし",
+      "meanings": {
+        "ja": "夜更し",
+        "en": "staying up late",
+        "zh": "熬夜",
+        "tw": "熬夜",
+        "ko": "밤샘",
+        "vi": "thức khuya",
+        "th": "นอนดึก",
+        "my": "ညမနက်အထိမနပ်ခြင်း",
+        "km": "អង្គុយយឺត",
+        "id": "begadang"
+      }
+    },
+    {
+      "id": 1703,
+      "pos": "名詞",
+      "kanji": "夜更け",
+      "reading": "よふけ",
+      "meanings": {
+        "ja": "夜更け",
+        "en": "late at night",
+        "zh": "深夜",
+        "tw": "深夜",
+        "ko": "심야",
+        "vi": "đêm khuya",
+        "th": "ยามดึก",
+        "my": "ညနက်ခင်း",
+        "km": "យប់ពេញយាម",
+        "id": "larut malam"
+      }
+    },
+    {
+      "id": 1704,
+      "pos": "名詞",
+      "kanji": "世論",
+      "reading": "よろん",
+      "meanings": {
+        "ja": "世論",
+        "en": "public opinion",
+        "zh": "舆论",
+        "tw": "輿論",
+        "ko": "여론",
+        "vi": "dư luận",
+        "th": "ความคิดเห็นสาธารณะ",
+        "my": "လူထုအမြင်",
+        "km": "មតិសាធារណៈ",
+        "id": "opini publik"
+      }
+    },
+    {
+      "id": 1705,
+      "pos": "名詞",
+      "kanji": "来場",
+      "reading": "らいじょう",
+      "meanings": {
+        "ja": "来場",
+        "en": "attendance (at an event)",
+        "zh": "到场",
+        "tw": "到場",
+        "ko": "내장",
+        "vi": "đến tham dự",
+        "th": "การมาร่วมงาน",
+        "my": "တက်ရောက်မှု",
+        "km": "ការមកចូលរួម",
+        "id": "kehadiran"
+      }
+    },
+    {
+      "id": 1706,
+      "pos": "名詞",
+      "kanji": "ライス",
+      "reading": "ライス",
+      "meanings": {
+        "ja": "ライス",
+        "en": "rice (served on a plate)",
+        "zh": "米饭",
+        "tw": "米飯",
+        "ko": "라이스",
+        "vi": "cơm",
+        "th": "ข้าว",
+        "my": "ထမင်း",
+        "km": "បាយ",
+        "id": "nasi"
+      }
+    },
+    {
+      "id": 1707,
+      "pos": "名詞",
+      "kanji": "酪農",
+      "reading": "らくのう",
+      "meanings": {
+        "ja": "酪農",
+        "en": "dairy farming",
+        "zh": "乳业畜牧",
+        "tw": "乳製畜牧",
+        "ko": "낙농",
+        "vi": "ngành nuôi bò sữa",
+        "th": "การเลี้ยงโคนม",
+        "my": "နို့လုပ်ငန်း",
+        "km": "ចិញ្ចឹមគោទឹកដោះ",
+        "id": "peternakan sapi perah"
+      }
+    },
+    {
+      "id": 1708,
+      "pos": "名詞",
+      "kanji": "落下",
+      "reading": "らっか",
+      "meanings": {
+        "ja": "落下",
+        "en": "fall; drop",
+        "zh": "落下",
+        "tw": "落下",
+        "ko": "낙하",
+        "vi": "rơi xuống",
+        "th": "ตกลงมา",
+        "my": "ကျဆင်းခြင်း",
+        "km": "ធ្លាក់ចុះ",
+        "id": "jatuh"
+      }
+    },
+    {
+      "id": 1709,
+      "pos": "名詞",
+      "kanji": "楽観",
+      "reading": "らっかん",
+      "meanings": {
+        "ja": "楽観",
+        "en": "optimism",
+        "zh": "乐观",
+        "tw": "樂觀",
+        "ko": "낙관",
+        "vi": "lạc quan",
+        "th": "มองโลกในแง่ดี",
+        "my": "အပြီးအမြတ်မြင်မှု",
+        "km": "សុទិដ្ឋិនិយម",
+        "id": "optimisme"
+      }
+    },
+    {
+      "id": 1710,
+      "pos": "名詞",
+      "kanji": "ランプ",
+      "reading": "ランプ",
+      "meanings": {
+        "ja": "ランプ",
+        "en": "lamp",
+        "zh": "灯",
+        "tw": "燈",
+        "ko": "램프",
+        "vi": "đèn",
+        "th": "โคมไฟ",
+        "my": "မီးအိမ်",
+        "km": "ចង្កៀង",
+        "id": "lampu"
+      }
+    },
+    {
+      "id": 1711,
+      "pos": "名詞",
+      "kanji": "濫用",
+      "reading": "らんよう",
+      "meanings": {
+        "ja": "濫用",
+        "en": "abuse; misuse",
+        "zh": "滥用",
+        "tw": "濫用",
+        "ko": "남용",
+        "vi": "lạm dụng",
+        "th": "ใช้ในทางที่ผิด",
+        "my": "အသုံးအလွဲပြုခြင်း",
+        "km": "ប្រើប្រាស់លើសលប់",
+        "id": "penyalahgunaan"
+      }
+    },
+    {
+      "id": 1712,
+      "pos": "名詞",
+      "kanji": "リード",
+      "reading": "リード",
+      "meanings": {
+        "ja": "リード",
+        "en": "lead; leash",
+        "zh": "领先；牵引绳",
+        "tw": "領先；牽繩",
+        "ko": "선두; (애완동물)끈",
+        "vi": "dẫn đầu; dây dắt",
+        "th": "นำหน้า; สายจูง",
+        "my": "ဦးဆောင်မှု; ချည်ကြိုး",
+        "km": "ដឹកនាំ; ខ្សែចងសត្វ",
+        "id": "pimpinan; tali anjing"
+      }
+    },
+    {
+      "id": 1713,
+      "pos": "名詞",
+      "kanji": "理屈",
+      "reading": "りくつ",
+      "meanings": {
+        "ja": "理屈",
+        "en": "reason; logic",
+        "zh": "道理",
+        "tw": "道理",
+        "ko": "이치",
+        "vi": "lý lẽ",
+        "th": "เหตุผล",
+        "my": "အကြောင်းအရာ",
+        "km": "ហេតុផល",
+        "id": "logika"
+      }
+    },
+    {
+      "id": 1714,
+      "pos": "名詞",
+      "kanji": "利子",
+      "reading": "りし",
+      "meanings": {
+        "ja": "利子",
+        "en": "interest (on a deposit)",
+        "zh": "利息",
+        "tw": "利息",
+        "ko": "이자",
+        "vi": "lãi (tiền gửi)",
+        "th": "ดอกเบี้ย (เงินฝาก)",
+        "my": "အတိုး",
+        "km": "ការប្រាក់",
+        "id": "bunga (tabungan)"
+      }
+    },
+    {
+      "id": 1715,
+      "pos": "名詞",
+      "kanji": "利潤",
+      "reading": "りじゅん",
+      "meanings": {
+        "ja": "利潤",
+        "en": "profit",
+        "zh": "利润",
+        "tw": "利潤",
+        "ko": "이윤",
+        "vi": "lợi nhuận",
+        "th": "กำไร",
+        "my": "အမြတ်",
+        "km": "ប្រាក់ចំណេញ",
+        "id": "keuntungan"
+      }
+    },
+    {
+      "id": 1716,
+      "pos": "名詞",
+      "kanji": "理性",
+      "reading": "りせい",
+      "meanings": {
+        "ja": "理性",
+        "en": "reason; intellect",
+        "zh": "理性",
+        "tw": "理性",
+        "ko": "이성",
+        "vi": "lý trí",
+        "th": "เหตุผล",
+        "my": "အာရုံနှင့်အကျိုး",
+        "km": "ហេតុផល",
+        "id": "akal sehat"
+      }
+    },
+    {
+      "id": 1717,
+      "pos": "名詞",
+      "kanji": "利息",
+      "reading": "りそく",
+      "meanings": {
+        "ja": "利息",
+        "en": "interest (on a loan)",
+        "zh": "利息",
+        "tw": "利息",
+        "ko": "이자",
+        "vi": "tiền lãi (khoản vay)",
+        "th": "ดอกเบี้ย (เงินกู้)",
+        "my": "အတိုး",
+        "km": "ការប្រាក់",
+        "id": "bunga (pinjaman)"
+      }
+    },
+    {
+      "id": 1718,
+      "pos": "名詞",
+      "kanji": "立体",
+      "reading": "りったい",
+      "meanings": {
+        "ja": "立体",
+        "en": "solid; three-dimensional",
+        "zh": "立体",
+        "tw": "立體",
+        "ko": "입체",
+        "vi": "hình khối",
+        "th": "สามมิติ",
+        "my": "သုံးမြင့်",
+        "km": "បីវិមាត្រ",
+        "id": "tiga dimensi"
+      }
+    },
+    {
+      "id": 1719,
+      "pos": "名詞",
+      "kanji": "立方",
+      "reading": "りっぽう",
+      "meanings": {
+        "ja": "立方",
+        "en": "cube; cubic",
+        "zh": "立方",
+        "tw": "立方",
+        "ko": "입방",
+        "vi": "lập phương",
+        "th": "ลูกบาศก์",
+        "my": "အလျားသုံးမြင့်",
+        "km": "គូប",
+        "id": "kubik"
+      }
+    },
+    {
+      "id": 1720,
+      "pos": "名詞",
+      "kanji": "立法",
+      "reading": "りっぽう",
+      "meanings": {
+        "ja": "立法",
+        "en": "legislation",
+        "zh": "立法",
+        "tw": "立法",
+        "ko": "입법",
+        "vi": "lập pháp",
+        "th": "การออกกฎหมาย",
+        "my": "ဥပဒေပြုခြင်း",
+        "km": "ច្បាប់ចេញ",
+        "id": "pembuatan undang-undang"
+      }
+    },
+    {
+      "id": 1721,
+      "pos": "名詞",
+      "kanji": "利点",
+      "reading": "りてん",
+      "meanings": {
+        "ja": "利点",
+        "en": "advantage; merit",
+        "zh": "优点",
+        "tw": "優點",
+        "ko": "이점",
+        "vi": "ưu điểm",
+        "th": "ข้อดี",
+        "my": "အားသာချက်",
+        "km": "អត្ថប្រយោជន៍",
+        "id": "keuntungan"
+      }
+    },
+    {
+      "id": 1722,
+      "pos": "名詞",
+      "kanji": "略奪",
+      "reading": "りゃくだつ",
+      "meanings": {
+        "ja": "略奪",
+        "en": "pillage; plunder",
+        "zh": "掠夺",
+        "tw": "掠奪",
+        "ko": "약탈",
+        "vi": "cướp bóc",
+        "th": "ปล้นสะดม",
+        "my": "လုယူခြင်း",
+        "km": "ប្លន់ល្មោធ",
+        "id": "perampasan"
+      }
+    },
+    {
+      "id": 1723,
+      "pos": "名詞",
+      "kanji": "略語",
+      "reading": "りゃくご",
+      "meanings": {
+        "ja": "略語",
+        "en": "abbreviation",
+        "zh": "缩略语",
+        "tw": "縮略語",
+        "ko": "약어",
+        "vi": "từ viết tắt",
+        "th": "ตัวย่อ",
+        "my": "အတိုချုပ်စကားလုံး",
+        "km": "ពាក្យកាត់",
+        "id": "singkatan"
+      }
+    },
+    {
+      "id": 1724,
+      "pos": "名詞",
+      "kanji": "流通",
+      "reading": "りゅうつう",
+      "meanings": {
+        "ja": "流通",
+        "en": "circulation; distribution (of goods/money)",
+        "zh": "流通",
+        "tw": "流通",
+        "ko": "유통",
+        "vi": "lưu thông",
+        "th": "การหมุนเวียน",
+        "my": "အဝင်အထွက်",
+        "km": "ចរាចរណ៍ទំនិញ",
+        "id": "distribusi"
+      }
+    },
+    {
+      "id": 1725,
+      "pos": "名詞",
+      "kanji": "領域",
+      "reading": "りょういき",
+      "meanings": {
+        "ja": "領域",
+        "en": "territory; field; domain",
+        "zh": "领域",
+        "tw": "領域",
+        "ko": "영역",
+        "vi": "lĩnh vực",
+        "th": "ขอบเขต/เขตแดน",
+        "my": "နယ်ပယ်/နယ်မြေ",
+        "km": "ដែនកំណត់",
+        "id": "wilayah; ranah"
+      }
+    },
+    {
+      "id": 1726,
+      "pos": "名詞",
+      "kanji": "了解",
+      "reading": "りょうかい",
+      "meanings": {
+        "ja": "了解",
+        "en": "understanding; consent",
+        "zh": "了解",
+        "tw": "了解",
+        "ko": "이해; 승낙",
+        "vi": "hiểu; chấp thuận",
+        "th": "เข้าใจ; ยอมรับ",
+        "my": "နားလည်မှု; သဘောတူချက်",
+        "km": "យល់ព្រម; យល់ដឹង",
+        "id": "mengerti; setuju"
+      }
+    },
+    {
+      "id": 1727,
+      "pos": "名詞",
+      "kanji": "領海",
+      "reading": "りょうかい",
+      "meanings": {
+        "ja": "領海",
+        "en": "territorial waters",
+        "zh": "领海",
+        "tw": "領海",
+        "ko": "영해",
+        "vi": "hải phận",
+        "th": "น่านน้ำ",
+        "my": "ပင်လယ်နယ်မြေ",
+        "km": "សមុទ្ររដ្ឋ",
+        "id": "perairan teritorial"
+      }
+    },
+    {
+      "id": 1728,
+      "pos": "名詞",
+      "kanji": "両極",
+      "reading": "りょうきょく",
+      "meanings": {
+        "ja": "両極",
+        "en": "both poles; extremes",
+        "zh": "两极",
+        "tw": "兩極",
+        "ko": "양극",
+        "vi": "hai cực",
+        "th": "ขั้วทั้งสอง",
+        "my": "အပြိုင်အဆိုင်အ край",
+        "km": "ប៉ូលទាំងពីរ",
+        "id": "dua kutub"
+      }
+    },
+    {
+      "id": 1729,
+      "pos": "名詞",
+      "kanji": "良識",
+      "reading": "りょうしき",
+      "meanings": {
+        "ja": "良識",
+        "en": "good sense; common sense",
+        "zh": "良知",
+        "tw": "良知/常識",
+        "ko": "양식",
+        "vi": "lẽ phải/nhận thức đúng",
+        "th": "สามัญสำนึก",
+        "my": "ကျိုးကြောင်းသိမွန်",
+        "km": "សុភវិនិច្ឆ័យ",
+        "id": "akal sehat"
+      }
+    },
+    {
+      "id": 1730,
+      "pos": "名詞",
+      "kanji": "了承",
+      "reading": "りょうしょう",
+      "meanings": {
+        "ja": "了承",
+        "en": "acknowledgement; approval",
+        "zh": "谅解",
+        "tw": "諒解/同意",
+        "ko": "양해/승낙",
+        "vi": "chấp thuận",
+        "th": "อนุมัติ/ยอมรับ",
+        "my": "သဘောတူချက်",
+        "km": "យល់ព្រម",
+        "id": "persetujuan"
+      }
+    },
+    {
+      "id": 1731,
+      "pos": "名詞",
+      "kanji": "良心",
+      "reading": "りょうしん",
+      "meanings": {
+        "ja": "良心",
+        "en": "conscience",
+        "zh": "良心",
+        "tw": "良心",
+        "ko": "양심",
+        "vi": "lương tâm",
+        "th": "มโนธรรม",
+        "my": "ကောင်းမှုစိတ်",
+        "km": "មនសិការ",
+        "id": "hati nurani"
+      }
+    },
+    {
+      "id": 1732,
+      "pos": "名詞",
+      "kanji": "領地",
+      "reading": "りょうち",
+      "meanings": {
+        "ja": "領地",
+        "en": "territory; fief",
+        "zh": "领地",
+        "tw": "領地",
+        "ko": "영지",
+        "vi": "lãnh địa",
+        "th": "เขตครอบครอง",
+        "my": "အုပ်ချုပ်နယ်မြေ",
+        "km": "ដែនកាន់កាប់",
+        "id": "wilayah kekuasaan"
+      }
+    },
+    {
+      "id": 1733,
+      "pos": "名詞",
+      "kanji": "領土",
+      "reading": "りょうど",
+      "meanings": {
+        "ja": "領土",
+        "en": "territory",
+        "zh": "领土",
+        "tw": "領土",
+        "ko": "영토",
+        "vi": "lãnh thổ",
+        "th": "ดินแดน",
+        "my": "နယ်မြေတိုင်းပြည်",
+        "km": "ដែនដី",
+        "id": "wilayah negara"
+      }
+    },
+    {
+      "id": 1734,
+      "pos": "名詞",
+      "kanji": "両立",
+      "reading": "りょうりつ",
+      "meanings": {
+        "ja": "両立",
+        "en": "coexistence; compatibility",
+        "zh": "兼顾并存",
+        "tw": "兼顧並存",
+        "ko": "양립",
+        "vi": "song hành",
+        "th": "ทำควบคู่กันได้",
+        "my": "အတူတကွဖြစ်နိုင်မှု",
+        "km": "រស់រានមានជីវិតរួម",
+        "id": "kompatibilitas"
+      }
+    },
+    {
+      "id": 1735,
+      "pos": "名詞",
+      "kanji": "旅客",
+      "reading": "りょかく",
+      "meanings": {
+        "ja": "旅客",
+        "en": "passenger",
+        "zh": "旅客",
+        "tw": "旅客",
+        "ko": "여객",
+        "vi": "hành khách",
+        "th": "ผู้โดยสาร",
+        "my": "ခရီးသည်",
+        "km": "អ្នកដំណើរ",
+        "id": "penumpang"
+      }
+    },
+    {
+      "id": 1736,
+      "pos": "名詞",
+      "kanji": "旅券",
+      "reading": "りょけん",
+      "meanings": {
+        "ja": "旅券",
+        "en": "passport",
+        "zh": "护照",
+        "tw": "護照",
+        "ko": "여권",
+        "vi": "hộ chiếu",
+        "th": "หนังสือเดินทาง",
+        "my": "နိုင်ငံကူးလက်မှတ်",
+        "km": "លិខិតឆ្លងដែន",
+        "id": "paspor"
+      }
+    },
+    {
+      "id": 1737,
+      "pos": "名詞",
+      "kanji": "履歴",
+      "reading": "りれき",
+      "meanings": {
+        "ja": "履歴",
+        "en": "personal history; record",
+        "zh": "履历",
+        "tw": "履歷",
+        "ko": "이력",
+        "vi": "lý lịch",
+        "th": "ประวัติ",
+        "my": "မှတ်တမ်း",
+        "km": "ប្រវត្តិ",
+        "id": "riwayat"
+      }
+    },
+    {
+      "id": 1738,
+      "pos": "名詞",
+      "kanji": "理論",
+      "reading": "りろん",
+      "meanings": {
+        "ja": "理論",
+        "en": "theory",
+        "zh": "理论",
+        "tw": "理論",
+        "ko": "이론",
+        "vi": "lý thuyết",
+        "th": "ทฤษฎี",
+        "my": "သီအိုရီ",
+        "km": "ទ្រឹស្តី",
+        "id": "teori"
+      }
+    },
+    {
+      "id": 1739,
+      "pos": "名詞",
+      "kanji": "林業",
+      "reading": "りんぎょう",
+      "meanings": {
+        "ja": "林業",
+        "en": "forestry",
+        "zh": "林业",
+        "tw": "林業",
+        "ko": "임업",
+        "vi": "lâm nghiệp",
+        "th": "ป่าไม้ (อุตสาหกรรม)",
+        "my": "လယ်ယာသစ်တောလုပ်ငန်း",
+        "km": "ឧស្សាហកម្មព្រៃឈើ",
+        "id": "kehutanan"
+      }
+    },
+    {
+      "id": 1740,
+      "pos": "名詞",
+      "kanji": "類",
+      "reading": "るい",
+      "meanings": {
+        "ja": "類",
+        "en": "kind; type",
+        "zh": "种类",
+        "tw": "種類",
+        "ko": "유",
+        "vi": "loại",
+        "th": "ชนิด",
+        "my": "အမျိုးအစား",
+        "km": "ប្រភេទ",
+        "id": "jenis"
+      }
+    },
+    {
+      "id": 1741,
+      "pos": "名詞",
+      "kanji": "類推",
+      "reading": "るいすい",
+      "meanings": {
+        "ja": "類推",
+        "en": "analogy",
+        "zh": "类推",
+        "tw": "類推",
+        "ko": "유추",
+        "vi": "suy luận tương tự",
+        "th": "เปรียบเทียบโดยอนุมาน",
+        "my": "တူညီမှုကနထူးချင်",
+        "km": "អនុមានដោយប្រៀបធៀប",
+        "id": "analogi"
+      }
+    },
+    {
+      "id": 1742,
+      "pos": "名詞",
+      "kanji": "類似",
+      "reading": "るいじ",
+      "meanings": {
+        "ja": "類似",
+        "en": "resemblance",
+        "zh": "类似",
+        "tw": "類似",
+        "ko": "유사",
+        "vi": "tương tự",
+        "th": "คล้ายคลึง",
+        "my": "ဆင်တူမှု",
+        "km": "ស្រដៀងគ្នា",
+        "id": "kemiripan"
+      }
+    },
+    {
+      "id": 1743,
+      "pos": "名詞",
+      "kanji": "冷蔵",
+      "reading": "れいぞう",
+      "meanings": {
+        "ja": "冷蔵",
+        "en": "cold storage; refrigeration",
+        "zh": "冷藏",
+        "tw": "冷藏",
+        "ko": "냉장",
+        "vi": "bảo quản lạnh",
+        "th": "แช่เย็น",
+        "my": "အအေးသိုလှောင်",
+        "km": "រក្សាអាហារត្រជាក់",
+        "id": "pendinginan"
+      }
+    },
+    {
+      "id": 1744,
+      "pos": "名詞",
+      "kanji": "レース",
+      "reading": "レース",
+      "meanings": {
+        "ja": "レース",
+        "en": "race",
+        "zh": "比赛",
+        "tw": "比賽",
+        "ko": "레이스",
+        "vi": "cuộc đua",
+        "th": "การแข่งขัน",
+        "my": "ယှဉ်ပြိုင်ပွဲ",
+        "km": "ការប្រណាំង",
+        "id": "balapan"
+      }
+    },
+    {
+      "id": 1745,
+      "pos": "名詞",
+      "kanji": "レッスン",
+      "reading": "レッスン",
+      "meanings": {
+        "ja": "レッスン",
+        "en": "lesson",
+        "zh": "课程",
+        "tw": "課程",
+        "ko": "레슨",
+        "vi": "bài học",
+        "th": "บทเรียน",
+        "my": "သင်ခန်းစာ",
+        "km": "មេរៀន",
+        "id": "pelajaran"
+      }
+    },
+    {
+      "id": 1746,
+      "pos": "名詞",
+      "kanji": "レディー",
+      "reading": "レディー",
+      "meanings": {
+        "ja": "レディー",
+        "en": "lady",
+        "zh": "女士",
+        "tw": "淑女/女士",
+        "ko": "레이디",
+        "vi": "quý cô",
+        "th": "สุภาพสตรี",
+        "my": "မိန်းမတော်",
+        "km": "នារី",
+        "id": "wanita"
+      }
+    },
+    {
+      "id": 1747,
+      "pos": "名詞",
+      "kanji": "レバー",
+      "reading": "レバー",
+      "meanings": {
+        "ja": "レバー",
+        "en": "liver",
+        "zh": "肝脏",
+        "tw": "肝臟",
+        "ko": "간",
+        "vi": "gan",
+        "th": "ตับ",
+        "my": "အသည်း",
+        "km": "ថ្លើម",
+        "id": "hati (organ)"
+      }
+    },
+    {
+      "id": 1748,
+      "pos": "名詞",
+      "kanji": "恋愛",
+      "reading": "れんあい",
+      "meanings": {
+        "ja": "恋愛",
+        "en": "romance; love",
+        "zh": "恋爱",
+        "tw": "戀愛",
+        "ko": "연애",
+        "vi": "tình yêu",
+        "th": "ความรัก",
+        "my": "ချစ်ခြင်းမေတ္တာ",
+        "km": "សេចក្តីស្រឡាញ់",
+        "id": "asmara; cinta"
+      }
+    },
+    {
+      "id": 1749,
+      "pos": "名詞",
+      "kanji": "バッテリー",
+      "reading": "バッテリー",
+      "meanings": {
+        "ja": "バッテリー",
+        "en": "battery",
+        "zh": "电池",
+        "tw": "電池",
+        "ko": "배터리",
+        "vi": "pin",
+        "th": "แบตเตอรี่",
+        "my": "ဘက်ထရီ",
+        "km": "ថ្ម",
+        "id": "baterai"
+      }
+    },
+    {
+      "id": 1750,
+      "pos": "名詞",
+      "kanji": "バット",
+      "reading": "バット",
+      "meanings": {
+        "ja": "バット",
+        "en": "bat (in baseball)",
+        "zh": "球棒",
+        "tw": "球棒",
+        "ko": "배트",
+        "vi": "gậy bóng chày",
+        "th": "ไม้เบสบอล",
+        "my": "ဘေ့စ်ဘောတုတ်",
+        "km": "ឈើបេស្បូល",
+        "id": "tongkat bisbol"
+      }
+    }
+  ]
+}

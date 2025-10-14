@@ -1,0 +1,17 @@
+{
+  "Lesson37": [
+    { "id": 1801, "kanji": "雛", "reading": "ひな", "meanings": { "ja": "雛", "en": "young bird; chick", "zh": "雏鸟", "tw": "雛鳥", "ko": "병아리", "vi": "chim non", "th": "ลูกนก", "my": "ငှက်ကလေး", "km": "កូនបក្សី", "id": "anak burung" } },
+    { "id": 1802, "kanji": "雛祭", "reading": "ひなまつり", "meanings": { "ja": "雛祭", "en": "Hinamatsuri (Girls" Festival)", "zh": "雏祭（女儿节）", "tw": "雛祭（女兒節）", "ko": "히나마쓰리 (여자아이 축제)", "vi": "lễ búp bê (Hinamatsuri)", "th": "เทศกาลฮินะ", "my": "အိမ်ထောင်ပွဲလေးသမီးပွဲ", "km": "ពិធីបុណ្យតុក្កតា (Hinamatsuri)", "id": "festival boneka (Hinamatsuri)" } },
+    { "id": 1803, "kanji": "日向", "reading": "ひなた", "meanings": { "ja": "日向", "en": "sunny place", "zh": "向阳处", "tw": "向陽處", "ko": "햇볕드는 곳", "vi": "chỗ có nắng", "th": "ที่มีแสงแดด", "my": "နေထွက်နေရာ", "km": "កន្លែងមានពន្លឺថ្ងៃ", "id": "tempat cerah" } },
+    { "id": 1804, "kanji": "非難", "reading": "ひなん", "meanings": { "ja": "非難", "en": "criticism; blame", "zh": "批评；责备", "tw": "批評；責備", "ko": "비난", "vi": "chỉ trích", "th": "ตำหนิ", "my": "ဝေဖန်ခြင်း", "km": "វិភាគរិះគន់", "id": "kritik; kecaman" } },
+    { "id": 1805, "kanji": "避難", "reading": "ひなん", "meanings": { "ja": "避難", "en": "taking refuge; evacuation", "zh": "避难；疏散", "tw": "避難；疏散", "ko": "피난", "vi": "lánh nạn", "th": "อพยพหนีภัย", "my": "ကယ်ဆယ်ခြင်း; ထွက်ပြေးခြင်း", "km": "ជលសាស្រ្ត; រត់គេចខ្លួន", "id": "evakuasi; berlindung" } },
+    { "id": 1806, "kanji": "日の丸", "reading": "ひのまる", "meanings": { "ja": "日の丸", "en": "the Japanese flag; red sun symbol", "zh": "日之丸（日本国旗）", "tw": "日之丸（日本國旗）", "ko": "일장기 (일본 국기)", "vi": "quốc kỳ Nhật Bản", "th": "ธงชาติญี่ปุ่น", "my": "ဂျပန်နိုင်ငံအလံ", "km": "ទង់ជាតិនីប៉ុន", "id": "bendera Jepang" } },
+    { "id": 1807, "kanji": "火花", "reading": "ひばな", "meanings": { "ja": "火花", "en": "spark", "zh": "火花", "tw": "火花", "ko": "불꽃", "vi": "tia lửa", "th": "ประกายไฟ", "my": "မီးဖွား", "km": "ភ្លើងចេញភ្លក់", "id": "percikan api" } },
+    { "id": 1808, "kanji": "悲鳴", "reading": "ひめい", "meanings": { "ja": "悲鳴", "en": "shriek; scream", "zh": "悲鸣", "tw": "悲鳴", "ko": "비명", "vi": "tiếng la hét", "th": "เสียงกรีดร้อง", "my": "အော်ဟစ်သံ", "km": "ស្រែកឡើងដោយភ័យ", "id": "teriakan; jeritan" } },
+    { "id": 1809, "kanji": "日焼け", "reading": "ひやけ", "meanings": { "ja": "日焼け", "en": "sunburn", "zh": "晒伤", "tw": "曬傷", "ko": "햇볕에 탐", "vi": "cháy nắng", "th": "ผิวไหม้แดด", "my": "နေကြောင့်အသားမီးခြစ်", "km": "ស្បែកឆាបថ្ងៃ", "id": "terbakar matahari" } },
+    { "id": 1810, "kanji": "標語", "reading": "ひょうご", "meanings": { "ja": "標語", "en": "motto; slogan", "zh": "标语；口号", "tw": "標語；口號", "ko": "표어", "vi": "khẩu hiệu", "th": "คำขวัญ", "my": "အဓိပ္ပါယ်ဖော်ပြစာ", "km": "ស្លោកប្រកាស", "id": "slogan; semboyan" } },
+    { "id": 1811, "kanji": "描写", "reading": "びょうしゃ", "meanings": { "ja": "描写", "en": "depiction; description", "zh": "描写", "tw": "描寫", "ko": "묘사", "vi": "miêu tả", "th": "การพรรณนา", "my": "ဖော်ပြရေးသားမှု", "km": "ការពិពណ៌នា", "id": "gambaran; deskripsi" } },
+    { "id": 1812, "kanji": "びり", "reading": "びり", "meanings": { "ja": "びり", "en": "last (on the list)", "zh": "最后一名", "tw": "最後一名", "ko": "꼴찌", "vi": "hạng chót", "th": "อันดับสุดท้าย", "my": "နောက်ဆုံး", "km": "ចុងក្រោយ", "id": "terakhir" } },
+    { "id": 1813, "kanji": "比率", "reading": "ひりつ", "meanings": { "ja": "比率", "en": "ratio; proportion", "zh": "比例；比率", "tw": "比例；比率", "ko": "비율", "vi": "tỷ lệ", "th": "อัตราส่วน", "my": "အချိုးအစား", "km": "អត្រា", "id": "rasio; perbandingan" } }
+  ]
+}

@@ -1,0 +1,27 @@
+// src/data/n5WordSets/n5part_nouns8.js
+export const n5part_nouns8 = {
+  Lesson8: [
+    { id:351, kanji:"昨夜", reading:"ゆうべ", meanings:{ ja:"昨夜", en:"last night", zh:"昨夜", tw:"昨夜", ko:"어젯밤", vi:"tối qua", th:"เมื่อคืนนี้", my:"မနေ့ည", km:"យប់មិញ" } },
+    { id:352, kanji:"雪", reading:"ゆき", meanings:{ ja:"雪", en:"snow", zh:"雪", tw:"雪", ko:"눈", vi:"tuyết", th:"หิมะ", my:"နှင်း", km:"ព្រិល" } },
+    { id:353, kanji:"八日", reading:"ようか", meanings:{ ja:"八日（8日）", en:"8th day of the month", zh:"八日（8号）", tw:"八日（8號）", ko:"8일", vi:"ngày mồng 8", th:"วันที่ 8", my:"၈ ရက်နေ့", km:"ថ្ងៃទី៨" } },
+    { id:354, kanji:"洋服", reading:"ようふく", meanings:{ ja:"洋服", en:"Western-style clothes", zh:"西服", tw:"西裝；洋服", ko:"양복; 옷", vi:"quần áo kiểu Tây", th:"เสื้อผ้าแบบตะวันตก", my:"အဝတ်အစားအနောက်တိုင်း", km:"សំលៀកបំពាក់អឺរ៉ុប" } },
+    { id:355, kanji:"横", reading:"よこ", meanings:{ ja:"横", en:"side; beside", zh:"旁边", tw:"旁邊", ko:"옆", vi:"bên cạnh", th:"ข้าง", my:"ဘေး", km:"ជាយខាង" } },
+    { id:356, kanji:"四日", reading:"よっか", meanings:{ ja:"四日（4日）", en:"4th day of the month", zh:"四日（4号）", tw:"四日（4號）", ko:"4일", vi:"ngày mồng 4", th:"วันที่ 4", my:"၄ ရက်နေ့", km:"ថ្ងៃទី៤" } },
+    { id:357, kanji:"四つ", reading:"よっつ", meanings:{ ja:"四つ（数量）", en:"four (count)", zh:"四个", tw:"四個", ko:"네 개", vi:"bốn cái", th:"สี่ (จำนวน)", my:"လေးခု", km:"បួន (ចំនួន)" } },
+    { id:358, kanji:"夜", reading:"よる", meanings:{ ja:"夜", en:"night", zh:"夜晚", tw:"夜晚", ko:"밤", vi:"ban đêm", th:"กลางคืน", my:"ည", km:"យប់" } },
+    { id:359, kanji:"来月", reading:"らいげつ", meanings:{ ja:"来月", en:"next month", zh:"下个月", tw:"下個月", ko:"다음 달", vi:"tháng sau", th:"เดือนหน้า", my:"နောက်လ", km:"ខែក្រោយ" } },
+    { id:360, kanji:"来週", reading:"らいしゅう", meanings:{ ja:"来週", en:"next week", zh:"下周", tw:"下週", ko:"다음 주", vi:"tuần sau", th:"สัปดาห์หน้า", my:"နောက်အပတ်", km:"សប្ដាហ៍ក្រោយ" } },
+    { id:361, kanji:"来年", reading:"らいねん", meanings:{ ja:"来年", en:"next year", zh:"明年", tw:"明年", ko:"내년", vi:"năm sau", th:"ปีหน้า", my:"နောက်နှစ်", km:"ឆ្នាំក្រោយ" } },
+    { id:362, kanji:"ラジオ", reading:"ラジオ", meanings:{ ja:"ラジオ", en:"radio", zh:"收音机", tw:"收音機", ko:"라디오", vi:"radio", th:"วิทยุ", my:"ရေဒီယို", km:"វិទ្យុ" } },
+    { id:363, kanji:"留学生", reading:"りゅうがくせい", meanings:{ ja:"留学生", en:"overseas student", zh:"留学生", tw:"留學生", ko:"유학생", vi:"du học sinh", th:"นักเรียนแลกเปลี่ยน", my:"ပညာတော်သင်", km:"និស្សិតបរទេស" } },
+    { id:364, kanji:"両親", reading:"りょうしん", meanings:{ ja:"両親", en:"parents", zh:"父母", tw:"父母", ko:"부모님", vi:"bố mẹ", th:"พ่อแม่", my:"မိဘ", km:"ឪពុកម្ដាយ" } },
+    { id:365, kanji:"料理", reading:"りょうり", meanings:{ ja:"料理", en:"cooking; cuisine", zh:"料理", tw:"料理", ko:"요리", vi:"nấu ăn; món ăn", th:"การทำอาหาร; อาหาร", my:"အစားအစာချက်", km:"ម្ហូប" } },
+    { id:366, kanji:"旅行", reading:"りょこう", meanings:{ ja:"旅行", en:"travel; trip", zh:"旅行", tw:"旅行", ko:"여행", vi:"du lịch", th:"การท่องเที่ยว", my:"ခရီးသွား", km:"ការធ្វើដំណើរ" } },
+    { id:367, kanji:"零", reading:"れい", meanings:{ ja:"零", en:"zero", zh:"零", tw:"零", ko:"영", vi:"số 0", th:"ศูนย์", my:"သုည", km:"សូន្យ" } },
+    { id:368, kanji:"冷蔵庫", reading:"れいぞうこ", meanings:{ ja:"冷蔵庫", en:"refrigerator", zh:"冰箱", tw:"冰箱", ko:"냉장고", vi:"tủ lạnh", th:"ตู้เย็น", my:"ရေခဲသေတ္တာ", km:"ទូទឹកកក" } },
+    { id:369, kanji:"レコード", reading:"レコード", meanings:{ ja:"レコード", en:"record (LP, vinyl)", zh:"唱片", tw:"唱片", ko:"레코드", vi:"đĩa hát", th:"แผ่นเสียง", my:"စာတမ်းသီချင်း", km:"ចានតន្ត្រី" } },
+    { id:370, kanji:"レストラン", reading:"レストラン", meanings:{ ja:"レストラン", en:"restaurant (Western-style)", zh:"餐馆", tw:"餐廳", ko:"레스토랑", vi:"nhà hàng", th:"ภัตตาคาร", my:"စားသောက်ဆိုင်", km:"ភោជនីយដ្ឋាន" } },
+    { id:371, kanji:"廊下", reading:"ろうか", meanings:{ ja:"廊下", en:"corridor; hallway", zh:"走廊", tw:"走廊", ko:"복도", vi:"hành lang", th:"ทางเดิน", my:"ကြမ်းပေါက်", km:"រលង" } },
+    { id:372, kanji:"六", reading:"ろく", meanings:{ ja:"六", en:"six", zh:"六", tw:"六", ko:"여섯", vi:"sáu", th:"หก", my:"ခြောက်", km:"ប្រាំមួយ" } },
+  ],
+};

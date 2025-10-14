@@ -1,0 +1,28 @@
+// src/data/n4WordSets/n4part_naAdjectives1.js
+export const n4part_naAdjectives1 = {
+  Lesson9: [
+    { id: 335, kanji: "大抵", reading: "たいてい", meanings: { ja: "大抵", en: "mostly", zh: "大多數", tw: "大多數", ko: "대체로", vi: "hầu hết", th: "ส่วนใหญ่", my: "အများအားဖြင့်", km: "ភាគច្រើន" } },
+    { id: 336, kanji: "複雑", reading: "ふくざつ", meanings: { ja: "複雑", en: "complex", zh: "複雜", tw: "複雜", ko: "복잡한", vi: "phức tạp", th: "ซับซ้อน", my: "ရှုပ်ထွေးသော", km: "ស្មុគស្មាញ" } },
+    { id: 337, kanji: "大事", reading: "だいじ", meanings: { ja: "大事", en: "important", zh: "重要", tw: "重要", ko: "중요한", vi: "quan trọng", th: "สำคัญ", my: "အရေးကြီးသော", km: "សំខាន់" } },
+    { id: 338, kanji: "必要", reading: "ひつよう", meanings: { ja: "必要", en: "necessary", zh: "必要", tw: "必要", ko: "필요한", vi: "cần thiết", th: "จำเป็น", my: "လိုအပ်သော", km: "ចាំបាច់" } },
+    { id: 339, kanji: "盛ん", reading: "さかん", meanings: { ja: "盛ん", en: "prosperous", zh: "興盛", tw: "興盛", ko: "번성한", vi: "thịnh vượng", th: "รุ่งเรือง", my: "ကြွယ်ဝမှု", km: "ចម្រើន" } },
+    { id: 340, kanji: "残念", reading: "ざんねん", meanings: { ja: "残念", en: "regrettable", zh: "遺憾", tw: "遺憾", ko: "유감스러운", vi: "đáng tiếc", th: "น่าเสียดาย", my: "စိတ်မကောင်းဖွယ်", km: "គួរឱ្យសោកស្ដាយ" } },
+    { id: 341, kanji: "丁寧", reading: "ていねい", meanings: { ja: "丁寧", en: "polite", zh: "有禮貌", tw: "有禮貌", ko: "공손한", vi: "lịch sự", th: "สุภาพ", my: "ယဉ်ကျေးသော", km: "អធ្យាស្រ័យ" } },
+    { id: 342, kanji: "無理", reading: "むり", meanings: { ja: "無理", en: "unreasonable", zh: "不合理", tw: "不合理", ko: "무리한", vi: "vô lý", th: "ไม่สมเหตุสมผล", my: "အဓမ္မ", km: "អសមហេតុផល" } },
+    { id: 343, kanji: "適当", reading: "てきとう", meanings: { ja: "適当", en: "suitable", zh: "適合", tw: "適合", ko: "적당한", vi: "phù hợp", th: "เหมาะสม", my: "သင့်တင့်သော", km: "សមរម្យ" } },
+    { id: 344, kanji: "親切", reading: "しんせつ", meanings: { ja: "親切", en: "kind", zh: "親切", tw: "親切", ko: "친절한", vi: "tốt bụng", th: "ใจดี", my: "ကြင်နာသော", km: "មានចិត្តល្អ" } },
+    { id: 345, kanji: "熱心", reading: "ねっしん", meanings: { ja: "熱心", en: "zealous", zh: "熱心", tw: "熱心", ko: "열심인", vi: "nhiệt tình", th: "กระตือรือร้น", my: "စွမ်းဆောင်နိုင်သော", km: "ទទួលខុសត្រូវ" } },
+    { id: 346, kanji: "変", reading: "へん", meanings: { ja: "変", en: "strange", zh: "奇怪", tw: "奇怪", ko: "이상한", vi: "kỳ lạ", th: "แปลก", my: "ထူးဆန်းသော", km: "ចម្លែក" } },
+    { id: 347, kanji: "確か", reading: "たしか", meanings: { ja: "確か", en: "sure", zh: "確定", tw: "確定", ko: "확실한", vi: "chắc chắn", th: "แน่นอน", my: "သေချာသော", km: "ប្រាកដ" } },
+    { id: 348, kanji: "真面目", reading: "まじめ", meanings: { ja: "真面目", en: "serious", zh: "認真", tw: "認真", ko: "성실한", vi: "nghiêm túc", th: "จริงจัง", my: "စီးပွားကျသော", km: "ព្យាយាម" } },
+    { id: 349, kanji: "国際", reading: "こくさい", meanings: { ja: "国際", en: "international", zh: "國際", tw: "國際", ko: "국제적인", vi: "quốc tế", th: "นานาชาติ", my: "အပြည်ပြည်ဆိုင်ရာ", km: "អន្តរជាតិ" } },
+    { id: 350, kanji: "十分", reading: "じゅうぶん", meanings: { ja: "十分", en: "enough", zh: "充分", tw: "充分", ko: "충분한", vi: "đủ", th: "เพียงพอ", my: "လုံလောက်သော", km: "គ្រប់គ្រាន់" } },
+    { id: 351, kanji: "普通", reading: "ふつう", meanings: { ja: "普通", en: "normal", zh: "普通", tw: "普通", ko: "보통의", vi: "bình thường", th: "ปกติ", my: "ပုံမှန်", km: "ធម្មតា" } },
+    { id: 352, kanji: "久しぶり", reading: "ひさしぶり", meanings: { ja: "久しぶり", en: "a long time (since)", zh: "好久", tw: "好久", ko: "오랜만", vi: "lâu rồi", th: "นานแล้ว", my: "ကြာသေး", km: "យូរ​ហើយ" } },
+    { id: 353, kanji: "最初", reading: "さいしょ", meanings: { ja: "最初", en: "beginning", zh: "最初", tw: "最初", ko: "처음", vi: "đầu tiên", th: "แรกเริ่ม", my: "အစ", km: "ដំបូង" } },
+    { id: 354, kanji: "簡単", reading: "かんたん", meanings: { ja: "簡単", en: "simple", zh: "簡單", tw: "簡單", ko: "간단한", vi: "đơn giản", th: "ง่าย", my: "ရိုးရှင်းသော", km: "សាមញ្ញ" } },
+    { id: 355, kanji: "特別", reading: "とくべつ", meanings: { ja: "特別", en: "special", zh: "特別", tw: "特別", ko: "특별한", vi: "đặc biệt", th: "พิเศษ", my: "ထူးခြားသော", km: "ពិសេស" } },
+    { id: 356, kanji: "急", reading: "きゅう", meanings: { ja: "急", en: "sudden", zh: "突然", tw: "突然", ko: "급한", vi: "gấp; đột ngột", th: "ทันที", my: "အလျင်အမြန်", km: "ភ្លាមៗ" } },
+    { id: 357, kanji: "ソフト", reading: "ソフト", meanings: { ja: "ソフト", en: "soft", zh: "柔軟", tw: "柔軟", ko: "소프트한", vi: "mềm mại", th: "นุ่มนวล", my: "နူးညံ့", km: "ទន់ភ្លន់" } },
+  ],
+};

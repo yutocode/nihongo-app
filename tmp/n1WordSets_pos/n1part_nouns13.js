@@ -1,0 +1,904 @@
+export const n1part_nouns13 = {
+  "Lesson13": [
+    {
+      "id": 601,
+      "pos": "名詞",
+      "kanji": "議題",
+      "reading": "ぎだい",
+      "meanings": {
+        "ja": "議題",
+        "en": "topic of discussion",
+        "zh": "议题",
+        "tw": "議題",
+        "ko": "의제",
+        "vi": "chủ đề thảo luận",
+        "th": "หัวข้ออภิปราย",
+        "my": "ဆွေးနွေးခန်းမာတမ်း",
+        "km": "ប្រធានបទពិភាក្សា",
+        "id": "topik pembahasan"
+      }
+    },
+    {
+      "id": 602,
+      "pos": "名詞",
+      "kanji": "気立て",
+      "reading": "きだて",
+      "meanings": {
+        "ja": "気立て",
+        "en": "disposition; temperament",
+        "zh": "性情",
+        "tw": "性情",
+        "ko": "성미",
+        "vi": "tính tình",
+        "th": "นิสัยใจคอ",
+        "my": "သဘောသဘာဝ",
+        "km": "អាកប្បកិរិយា",
+        "id": "perangai"
+      }
+    },
+    {
+      "id": 603,
+      "pos": "名詞",
+      "kanji": "規定",
+      "reading": "きてい",
+      "meanings": {
+        "ja": "規定",
+        "en": "stipulation; regulation",
+        "zh": "规定",
+        "tw": "規定",
+        "ko": "규정",
+        "vi": "quy định",
+        "th": "ข้อกำหนด",
+        "my": "စည်းကမ်းချက်",
+        "km": "បទបញ្ជា",
+        "id": "ketentuan"
+      }
+    },
+    {
+      "id": 604,
+      "pos": "名詞",
+      "kanji": "起点",
+      "reading": "きてん",
+      "meanings": {
+        "ja": "起点",
+        "en": "starting point",
+        "zh": "起点",
+        "tw": "起點",
+        "ko": "기점",
+        "vi": "điểm xuất phát",
+        "th": "จุดเริ่มต้น",
+        "my": "အစမှတ်",
+        "km": "ចំណុចចាប់ផ្តើម",
+        "id": "titik awal"
+      }
+    },
+    {
+      "id": 605,
+      "pos": "名詞",
+      "kanji": "軌道",
+      "reading": "きどう",
+      "meanings": {
+        "ja": "軌道",
+        "en": "orbit; track",
+        "zh": "轨道",
+        "tw": "軌道",
+        "ko": "궤도",
+        "vi": "quỹ đạo",
+        "th": "วงโคจร",
+        "my": "ပတ်လမ်း",
+        "km": "គន្លង",
+        "id": "orbit; rel"
+      }
+    },
+    {
+      "id": 606,
+      "pos": "名詞",
+      "kanji": "技能",
+      "reading": "ぎのう",
+      "meanings": {
+        "ja": "技能",
+        "en": "technical skill",
+        "zh": "技能",
+        "tw": "技能",
+        "ko": "기능",
+        "vi": "kỹ năng kỹ thuật",
+        "th": "ทักษะเทคนิค",
+        "my": "စက်တင်ကျွမ်းကျင်မှု",
+        "km": "ជំនាញបច្ចេកទេស",
+        "id": "keterampilan teknis"
+      }
+    },
+    {
+      "id": 607,
+      "pos": "名詞",
+      "kanji": "規範",
+      "reading": "きはん",
+      "meanings": {
+        "ja": "規範",
+        "en": "norm; model",
+        "zh": "规范",
+        "tw": "規範",
+        "ko": "규범",
+        "vi": "chuẩn mực",
+        "th": "บรรทัดฐาน",
+        "my": "စံနိမိတ်",
+        "km": "គំរូស្តង់ដារ",
+        "id": "patokan; norma"
+      }
+    },
+    {
+      "id": 608,
+      "pos": "名詞",
+      "kanji": "気品",
+      "reading": "きひん",
+      "meanings": {
+        "ja": "気品",
+        "en": "elegance; grace",
+        "zh": "气质高雅",
+        "tw": "高雅氣質",
+        "ko": "기품",
+        "vi": "phẩm cách thanh tao",
+        "th": "สง่างามมีชั้นเชิง",
+        "my": "သဘောကျိုးတိုး",
+        "km": "សោភ័ណភាព",
+        "id": "keanggunan"
+      }
+    },
+    {
+      "id": 609,
+      "pos": "名詞",
+      "kanji": "気風",
+      "reading": "きふう",
+      "meanings": {
+        "ja": "気風",
+        "en": "character; spirit",
+        "zh": "风气",
+        "tw": "風氣",
+        "ko": "기풍",
+        "vi": "phong cách",
+        "th": "ลักษณะนิสัย/ค่านิยม",
+        "my": "လေ့လာမှုအသိုင်းအဝိုင်း",
+        "km": "របៀបធម្មនា",
+        "id": "semangat; watak"
+      }
+    },
+    {
+      "id": 610,
+      "pos": "名詞",
+      "kanji": "起伏",
+      "reading": "きふく",
+      "meanings": {
+        "ja": "起伏",
+        "en": "undulation; ups and downs",
+        "zh": "起伏",
+        "tw": "起伏",
+        "ko": "기복",
+        "vi": "thăng trầm; gợn sóng",
+        "th": "ขึ้นๆลงๆ",
+        "my": "လှိုင်းများခြင်း",
+        "km": "ឡើងចុះ",
+        "id": "pasang surut"
+      }
+    },
+    {
+      "id": 611,
+      "pos": "名詞",
+      "kanji": "規模",
+      "reading": "きぼ",
+      "meanings": {
+        "ja": "規模",
+        "en": "scale; scope",
+        "zh": "规模",
+        "tw": "規模",
+        "ko": "규모",
+        "vi": "quy mô",
+        "th": "ขนาด/สเกล",
+        "my": "ဧရိယာ/အတိုင်းအတာ",
+        "km": "ទំហំ",
+        "id": "skala"
+      }
+    },
+    {
+      "id": 612,
+      "pos": "名詞",
+      "kanji": "気まぐれ",
+      "reading": "きまぐれ",
+      "meanings": {
+        "ja": "気まぐれ",
+        "en": "whim; caprice",
+        "zh": "反复无常",
+        "tw": "反覆無常",
+        "ko": "변덕",
+        "vi": "tính thất thường",
+        "th": "เอาแน่เอานอนไม่ได้",
+        "my": "ညံ့ဖျင်း",
+        "km": "មនសិការផ្លាស់ប្តូរ",
+        "id": "moody; plin-plan"
+      }
+    },
+    {
+      "id": 613,
+      "pos": "名詞",
+      "kanji": "期末",
+      "reading": "きまつ",
+      "meanings": {
+        "ja": "期末",
+        "en": "end of term",
+        "zh": "期末",
+        "tw": "期末",
+        "ko": "기말",
+        "vi": "cuối kỳ",
+        "th": "ปลายภาค",
+        "my": "ရာသီအဆုံး",
+        "km": "ចុងឆមាស/ចុងឆាក",
+        "id": "akhir semester"
+      }
+    },
+    {
+      "id": 614,
+      "pos": "名詞",
+      "kanji": "記名",
+      "reading": "きめい",
+      "meanings": {
+        "ja": "記名",
+        "en": "signature; inscription",
+        "zh": "署名",
+        "tw": "記名",
+        "ko": "기명",
+        "vi": "ký tên",
+        "th": "ลงชื่อ",
+        "my": "လက်မှတ်ရေးထိုး",
+        "km": "ចុះហត្ថលេខា",
+        "id": "penandatanganan"
+      }
+    },
+    {
+      "id": 615,
+      "pos": "名詞",
+      "kanji": "規約",
+      "reading": "きやく",
+      "meanings": {
+        "ja": "規約",
+        "en": "agreement; rules",
+        "zh": "规约",
+        "tw": "規約",
+        "ko": "규약",
+        "vi": "quy ước",
+        "th": "ข้อบังคับ",
+        "my": "စည်းကမ်းစာချုပ်",
+        "km": "កិច្ចព្រមព្រៀង/បទបញ្ជា",
+        "id": "perjanjian; aturan"
+      }
+    },
+    {
+      "id": 616,
+      "pos": "名詞",
+      "kanji": "脚色",
+      "reading": "きゃくしょく",
+      "meanings": {
+        "ja": "脚色",
+        "en": "dramatization; adaptation",
+        "zh": "改编（戏剧）",
+        "tw": "改編（戲劇）",
+        "ko": "각색",
+        "vi": "chuyển thể; phóng tác",
+        "th": "ดัดแปลงบท",
+        "my": "ဇာတ်သိုင်းပြင်ဆင်",
+        "km": "បំប្លែងជាល្ខោន",
+        "id": "adaptasi (drama)"
+      }
+    },
+    {
+      "id": 617,
+      "pos": "名詞",
+      "kanji": "逆転",
+      "reading": "ぎゃくてん",
+      "meanings": {
+        "ja": "逆転",
+        "en": "turnaround; reversal",
+        "zh": "逆转",
+        "tw": "逆轉",
+        "ko": "역전",
+        "vi": "lội ngược dòng",
+        "th": "พลิกกลับ",
+        "my": "ပြန်လှည့်",
+        "km": "ប្តូរទិសឆ្ពោះ",
+        "id": "membalik keadaan"
+      }
+    },
+    {
+      "id": 618,
+      "pos": "名詞",
+      "kanji": "脚本",
+      "reading": "きゃくほん",
+      "meanings": {
+        "ja": "脚本",
+        "en": "script; screenplay",
+        "zh": "脚本",
+        "tw": "腳本",
+        "ko": "각본",
+        "vi": "kịch bản",
+        "th": "บทภาพยนตร์/บทละคร",
+        "my": "ဇာတ်ညွှန်း",
+        "km": "គ្រោងសាច់រឿង",
+        "id": "naskah"
+      }
+    },
+    {
+      "id": 619,
+      "pos": "名詞",
+      "kanji": "客観",
+      "reading": "きゃっかん",
+      "meanings": {
+        "ja": "客観",
+        "en": "objectivity",
+        "zh": "客观",
+        "tw": "客觀",
+        "ko": "객관",
+        "vi": "khách quan",
+        "th": "ความเป็นภววิสัย",
+        "my": "အပြင်ပန်းမြင်ယူချက်",
+        "km": "ភាព_OBJECTIVE",
+        "id": "objektivitas"
+      }
+    },
+    {
+      "id": 620,
+      "pos": "名詞",
+      "kanji": "キャッチ",
+      "reading": "キャッチ",
+      "meanings": {
+        "ja": "キャッチ",
+        "en": "catch; catching",
+        "zh": "接住",
+        "tw": "接住",
+        "ko": "캐치",
+        "vi": "bắt (banh)",
+        "th": "รับ (ลูกบอล)",
+        "my": "ဖမ်းယူ",
+        "km": "ចាប់",
+        "id": "menangkap"
+      }
+    },
+    {
+      "id": 621,
+      "pos": "名詞",
+      "kanji": "キャリア",
+      "reading": "キャリア",
+      "meanings": {
+        "ja": "キャリア",
+        "en": "career; carrier (telecom)",
+        "zh": "事业；运营商",
+        "tw": "職涯；電信業者",
+        "ko": "커리어; 통신사",
+        "vi": "sự nghiệp; nhà mạng",
+        "th": "อาชีพ; ผู้ให้บริการ",
+        "my": "အသက်ဘောင်; တယ်လီကွန်း",
+        "km": "អាជីព; ក្រុមហ៊ុនបណ្តាញ",
+        "id": "karier; operator"
+      }
+    },
+    {
+      "id": 622,
+      "pos": "名詞",
+      "kanji": "救援",
+      "reading": "きゅうえん",
+      "meanings": {
+        "ja": "救援",
+        "en": "relief; aid",
+        "zh": "救援",
+        "tw": "救援",
+        "ko": "구원",
+        "vi": "cứu trợ",
+        "th": "กู้ภัย/บรรเทาทุกข์",
+        "my": "ကယ်ဆယ်မှု",
+        "km": "សង្គ្រោះ",
+        "id": "bantuan"
+      }
+    },
+    {
+      "id": 623,
+      "pos": "名詞",
+      "kanji": "休学",
+      "reading": "きゅうがく",
+      "meanings": {
+        "ja": "休学",
+        "en": "leave of absence (school)",
+        "zh": "休学",
+        "tw": "休學",
+        "ko": "휴학",
+        "vi": "bảo lưu (học)",
+        "th": "พักการเรียน",
+        "my": "စာသင်ခွင့်ရပ်",
+        "km": "ផ្អាកសិក្សា",
+        "id": "cuti kuliah"
+      }
+    },
+    {
+      "id": 624,
+      "pos": "名詞",
+      "kanji": "球根",
+      "reading": "きゅうこん",
+      "meanings": {
+        "ja": "球根",
+        "en": "(plant) bulb",
+        "zh": "鳞茎",
+        "tw": "鱗莖",
+        "ko": "구근",
+        "vi": "củ (thực vật)",
+        "th": "หัวพืช",
+        "my": "အမြစ်ခွံ",
+        "km": "គ្រាប់គល់",
+        "id": "umbi (tanaman)"
+      }
+    },
+    {
+      "id": 625,
+      "pos": "名詞",
+      "kanji": "救済",
+      "reading": "きゅうさい",
+      "meanings": {
+        "ja": "救済",
+        "en": "relief; salvation",
+        "zh": "救济",
+        "tw": "救濟",
+        "ko": "구제",
+        "vi": "cứu tế",
+        "th": "เยียวยาช่วยเหลือ",
+        "my": "ကယ်ဆယ်ကူညီ",
+        "km": "ជួយសង្គ្រោះ",
+        "id": "penyelamatan; bantuan"
+      }
+    },
+    {
+      "id": 626,
+      "pos": "名詞",
+      "kanji": "給仕",
+      "reading": "きゅうじ",
+      "meanings": {
+        "ja": "給仕",
+        "en": "waiting service",
+        "zh": "侍应",
+        "tw": "侍者服務",
+        "ko": "웨이터 업무",
+        "vi": "phục vụ bàn",
+        "th": "บริการเสิร์ฟ",
+        "my": "စားပွဲပေါ်ဝန်ထမ်း",
+        "km": "អ្នកបម្រើ",
+        "id": "pelayan meja"
+      }
+    },
+    {
+      "id": 627,
+      "pos": "名詞",
+      "kanji": "給食",
+      "reading": "きゅうしょく",
+      "meanings": {
+        "ja": "給食",
+        "en": "school/office lunch",
+        "zh": "供餐",
+        "tw": "供餐",
+        "ko": "급식",
+        "vi": "suất ăn (tập thể)",
+        "th": "อาหารกลางวัน (โรงเรียน/ที่ทำงาน)",
+        "my": "အတွင်းခံစားရေးစားမူ",
+        "km": "អាហារូបករណ៍អាហារ",
+        "id": "katering institusi"
+      }
+    },
+    {
+      "id": 628,
+      "pos": "名詞",
+      "kanji": "休戦",
+      "reading": "きゅうせん",
+      "meanings": {
+        "ja": "休戦",
+        "en": "cease-fire",
+        "zh": "休战",
+        "tw": "休戰",
+        "ko": "휴전",
+        "vi": "đình chiến",
+        "th": "หยุดยิง",
+        "my": "ပစ်ခတ်မှုရပ်စဲ",
+        "km": "បញ្ឈប់បាញ់",
+        "id": "gencatan senjata"
+      }
+    },
+    {
+      "id": 629,
+      "pos": "名詞",
+      "kanji": "宮殿",
+      "reading": "きゅうでん",
+      "meanings": {
+        "ja": "宮殿",
+        "en": "palace",
+        "zh": "宫殿",
+        "tw": "宮殿",
+        "ko": "궁전",
+        "vi": "cung điện",
+        "th": "พระราชวัง",
+        "my": "နန်းတော်",
+        "km": "ព្រះបរមរាជវាំង",
+        "id": "istana"
+      }
+    },
+    {
+      "id": 630,
+      "pos": "名詞",
+      "kanji": "旧知",
+      "reading": "きゅうち",
+      "meanings": {
+        "ja": "旧知",
+        "en": "old acquaintance",
+        "zh": "旧识",
+        "tw": "舊識",
+        "ko": "구지인",
+        "vi": "bạn cũ",
+        "th": "คนรู้จักเก่า",
+        "my": "ဟောင်းရင်းသား",
+        "km": "មិត្តចាស់",
+        "id": "kenalan lama"
+      }
+    },
+    {
+      "id": 631,
+      "pos": "名詞",
+      "kanji": "窮乏",
+      "reading": "きゅうぼう",
+      "meanings": {
+        "ja": "窮乏",
+        "en": "poverty; destitution",
+        "zh": "困乏",
+        "tw": "窮乏",
+        "ko": "궁핍",
+        "vi": "túng quẫn",
+        "th": "ความยากจนข้นแค้น",
+        "my": "ဒုက္ခပင်ပန်း",
+        "km": "ភាពក្រីក្រ",
+        "id": "kemiskinan"
+      }
+    },
+    {
+      "id": 632,
+      "pos": "名詞",
+      "kanji": "寄与",
+      "reading": "きよ",
+      "meanings": {
+        "ja": "寄与",
+        "en": "contribution",
+        "zh": "贡献",
+        "tw": "貢獻",
+        "ko": "기여",
+        "vi": "đóng góp",
+        "th": "การมีส่วนร่วม",
+        "my": "ဝင်ရောက်ကူညီမှု",
+        "km": "ការរួមចំណែក",
+        "id": "kontribusi"
+      }
+    },
+    {
+      "id": 633,
+      "pos": "名詞",
+      "kanji": "驚異",
+      "reading": "きょうい",
+      "meanings": {
+        "ja": "驚異",
+        "en": "wonder; marvel",
+        "zh": "惊异",
+        "tw": "驚異",
+        "ko": "경이",
+        "vi": "kỳ diệu",
+        "th": "มหัศจรรย์",
+        "my": "အံ့သြမှု",
+        "km": "ការភ្ញាក់ផ្អើល",
+        "id": "keajaiban"
+      }
+    },
+    {
+      "id": 634,
+      "pos": "名詞",
+      "kanji": "教科",
+      "reading": "きょうか",
+      "meanings": {
+        "ja": "教科",
+        "en": "school subject",
+        "zh": "学科",
+        "tw": "學科",
+        "ko": "교과",
+        "vi": "môn học",
+        "th": "รายวิชา",
+        "my": "သင်ရိုး",
+        "km": "មុខវិជ្ជា",
+        "id": "mata pelajaran"
+      }
+    },
+    {
+      "id": 635,
+      "pos": "名詞",
+      "kanji": "協会",
+      "reading": "きょうかい",
+      "meanings": {
+        "ja": "協会",
+        "en": "association; society",
+        "zh": "协会",
+        "tw": "協會",
+        "ko": "협회",
+        "vi": "hiệp hội",
+        "th": "สมาคม",
+        "my": "အသင်းအဖွဲ့",
+        "km": "សមាគម",
+        "id": "asosiasi"
+      }
+    },
+    {
+      "id": 636,
+      "pos": "名詞",
+      "kanji": "共学",
+      "reading": "きょうがく",
+      "meanings": {
+        "ja": "共学",
+        "en": "coeducation",
+        "zh": "男女同校",
+        "tw": "男女同校",
+        "ko": "공학(남녀공학)",
+        "vi": "đồng giáo dục",
+        "th": "สหศึกษา",
+        "my": "အမျိုးသားအမျိုးသမီးပေါင်းသင်",
+        "km": "សាលាសហ",
+        "id": "pendidikan koedukasi"
+      }
+    },
+    {
+      "id": 637,
+      "pos": "名詞",
+      "kanji": "共感",
+      "reading": "きょうかん",
+      "meanings": {
+        "ja": "共感",
+        "en": "empathy; sympathy",
+        "zh": "共鸣",
+        "tw": "共鳴/同感",
+        "ko": "공감",
+        "vi": "đồng cảm",
+        "th": "ความเห็นอกเห็นใจ",
+        "my": "ကိုယ်တူမြင်",
+        "km": "ការយល់ចិត្ត",
+        "id": "empati"
+      }
+    },
+    {
+      "id": 638,
+      "pos": "名詞",
+      "kanji": "境遇",
+      "reading": "きょうぐう",
+      "meanings": {
+        "ja": "境遇",
+        "en": "circumstances",
+        "zh": "境遇",
+        "tw": "境遇",
+        "ko": "경우(처지)",
+        "vi": "hoàn cảnh",
+        "th": "สถานการณ์ชีวิต",
+        "my": "ဘဝအခြေအနေ",
+        "km": "ស្ថានភាពជីវិត",
+        "id": "keadaan hidup"
+      }
+    },
+    {
+      "id": 639,
+      "pos": "名詞",
+      "kanji": "教訓",
+      "reading": "きょうくん",
+      "meanings": {
+        "ja": "教訓",
+        "en": "lesson; moral",
+        "zh": "教训",
+        "tw": "教訓",
+        "ko": "교훈",
+        "vi": "bài học",
+        "th": "บทเรียน/คติสอนใจ",
+        "my": "သင်ခန်းစာ",
+        "km": "ប្រសាសន៍សិក្សា",
+        "id": "pelajaran moral"
+      }
+    },
+    {
+      "id": 640,
+      "pos": "名詞",
+      "kanji": "強行",
+      "reading": "きょうこう",
+      "meanings": {
+        "ja": "強行",
+        "en": "enforcement; push through",
+        "zh": "强行",
+        "tw": "強行",
+        "ko": "강행",
+        "vi": "cưỡng hành",
+        "th": "ดันทุรังดำเนิน",
+        "my": "ဖိအားမောင်းနှင်",
+        "km": "អ cưងបង្ខំ",
+        "id": "pemaksaan; memaksakan"
+      }
+    },
+    {
+      "id": 641,
+      "pos": "名詞",
+      "kanji": "教材",
+      "reading": "きょうざい",
+      "meanings": {
+        "ja": "教材",
+        "en": "teaching materials",
+        "zh": "教材",
+        "tw": "教材",
+        "ko": "교재",
+        "vi": "giáo tài",
+        "th": "สื่อการสอน",
+        "my": "သင်ရိုးပညာရေးစာ",
+        "km": "សម្ភារៈសិក្សា",
+        "id": "bahan ajar"
+      }
+    },
+    {
+      "id": 642,
+      "pos": "名詞",
+      "kanji": "凶作",
+      "reading": "きょうさく",
+      "meanings": {
+        "ja": "凶作",
+        "en": "bad harvest",
+        "zh": "歉收",
+        "tw": "歉收",
+        "ko": "흉작",
+        "vi": "mất mùa",
+        "th": "ผลผลิตตกต่ำ",
+        "my": "လယ်ယာမအောင်",
+        "km": "ផលចំណេញអន់",
+        "id": "gagal panen"
+      }
+    },
+    {
+      "id": 643,
+      "pos": "名詞",
+      "kanji": "業者",
+      "reading": "ぎょうしゃ",
+      "meanings": {
+        "ja": "業者",
+        "en": "vendor; trader",
+        "zh": "业者",
+        "tw": "業者",
+        "ko": "업자",
+        "vi": "nhà cung cấp",
+        "th": "ผู้ประกอบการ/ร้านค้า",
+        "my": "ကုန်သည်",
+        "km": "អ្នកលក់/សហគ្រាស",
+        "id": "pelaku usaha"
+      }
+    },
+    {
+      "id": 644,
+      "pos": "名詞",
+      "kanji": "教習",
+      "reading": "きょうしゅう",
+      "meanings": {
+        "ja": "教習",
+        "en": "training; instruction",
+        "zh": "教练",
+        "tw": "教習",
+        "ko": "교습",
+        "vi": "huấn luyện",
+        "th": "ฝึกหัด",
+        "my": "သင်တန်းပေး",
+        "km": "បណ្ដុះបណ្ដាល",
+        "id": "pelatihan"
+      }
+    },
+    {
+      "id": 645,
+      "pos": "名詞",
+      "kanji": "郷愁",
+      "reading": "きょうしゅう",
+      "meanings": {
+        "ja": "郷愁",
+        "en": "nostalgia; homesickness",
+        "zh": "乡愁",
+        "tw": "鄉愁",
+        "ko": "향수",
+        "vi": "nhớ quê",
+        "th": "คิดถึงบ้าน/ถิ่นกำเนิด",
+        "my": "မြို့တော်တွင်ထိုင်ချင်",
+        "km": "គំនិតឃ្លានផ្ទះ",
+        "id": "rindu kampung halaman"
+      }
+    },
+    {
+      "id": 646,
+      "pos": "名詞",
+      "kanji": "教職",
+      "reading": "きょうしょく",
+      "meanings": {
+        "ja": "教職",
+        "en": "teaching profession",
+        "zh": "教职",
+        "tw": "教職",
+        "ko": "교직",
+        "vi": "nghề giáo",
+        "th": "วิชาชีพครู",
+        "my": "ဆရာဘဝ",
+        "km": "វិជ្ជាជីវៈគ្រូ",
+        "id": "profesi guru"
+      }
+    },
+    {
+      "id": 647,
+      "pos": "名詞",
+      "kanji": "強制",
+      "reading": "きょうせい",
+      "meanings": {
+        "ja": "強制",
+        "en": "compulsion; coercion",
+        "zh": "强制",
+        "tw": "強制",
+        "ko": "강제",
+        "vi": "cưỡng chế",
+        "th": "บังคับ",
+        "my": "တင်းကြပ်စေ",
+        "km": "បង្ខំ",
+        "id": "pemaksaan"
+      }
+    },
+    {
+      "id": 648,
+      "pos": "名詞",
+      "kanji": "行政",
+      "reading": "ぎょうせい",
+      "meanings": {
+        "ja": "行政",
+        "en": "administration (gov.)",
+        "zh": "行政",
+        "tw": "行政",
+        "ko": "행정",
+        "vi": "hành chính",
+        "th": "การปกครอง/บริหาร",
+        "my": "အုပ်ချုပ်ရေး",
+        "km": "រដ្ឋបាល",
+        "id": "administrasi"
+      }
+    },
+    {
+      "id": 649,
+      "pos": "名詞",
+      "kanji": "業績",
+      "reading": "ぎょうせき",
+      "meanings": {
+        "ja": "業績",
+        "en": "achievement; performance",
+        "zh": "业绩",
+        "tw": "業績",
+        "ko": "업적",
+        "vi": "thành tích",
+        "th": "ผลงาน",
+        "my": "ထင်ရှားမှု/အောင်မြင်မှု",
+        "km": "សមិទ្ធផល",
+        "id": "kinerja"
+      }
+    },
+    {
+      "id": 650,
+      "pos": "名詞",
+      "kanji": "共存",
+      "reading": "きょうぞん",
+      "meanings": {
+        "ja": "共存",
+        "en": "coexistence",
+        "zh": "共存",
+        "tw": "共存",
+        "ko": "공존",
+        "vi": "cùng tồn tại",
+        "th": "อยู่ร่วมกัน",
+        "my": "အတူတကွရှိနေ",
+        "km": "សហវត្តមាន",
+        "id": "koeksistensi"
+      }
+    }
+  ]
+}

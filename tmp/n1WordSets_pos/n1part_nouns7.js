@@ -1,0 +1,904 @@
+export const n1part_nouns7 = {
+  "Lesson7": [
+    {
+      "id": 301,
+      "pos": "名詞",
+      "kanji": "音色",
+      "reading": "ねいろ",
+      "meanings": {
+        "ja": "音色",
+        "en": "timbre",
+        "zh": "音色",
+        "tw": "音色",
+        "ko": "음색",
+        "vi": "âm sắc",
+        "th": "โทนเสียง",
+        "my": "အသံအရောင်",
+        "km": "សំឡេង",
+        "id": "warna nada"
+      }
+    },
+    {
+      "id": 302,
+      "pos": "名詞",
+      "kanji": "値打ち",
+      "reading": "ねうち",
+      "meanings": {
+        "ja": "価値",
+        "en": "value",
+        "zh": "价值",
+        "tw": "價值",
+        "ko": "가치",
+        "vi": "giá trị",
+        "th": "คุณค่า",
+        "my": "တန်ဖိုး",
+        "km": "តម្លៃ",
+        "id": "nilai"
+      }
+    },
+    {
+      "id": 303,
+      "pos": "名詞",
+      "kanji": "ネガ",
+      "reading": "ネガ",
+      "meanings": {
+        "ja": "ネガ（フィルム）",
+        "en": "negative (film)",
+        "zh": "底片",
+        "tw": "底片",
+        "ko": "네거티브",
+        "vi": "âm bản",
+        "th": "เนกาทีฟ",
+        "my": "အနုတ်ဓာတ်ပုံ",
+        "km": "រូបអវិជ្ជមាន",
+        "id": "negatif"
+      }
+    },
+    {
+      "id": 304,
+      "pos": "名詞",
+      "kanji": "熱意",
+      "reading": "ねつい",
+      "meanings": {
+        "ja": "熱意",
+        "en": "zeal",
+        "zh": "热忱",
+        "tw": "熱忱",
+        "ko": "열의",
+        "vi": "nhiệt huyết",
+        "th": "ความมุ่งมั่น",
+        "my": "အားမာန်",
+        "km": "ទឹកចិត្តក្តៅ",
+        "id": "semangat"
+      }
+    },
+    {
+      "id": 305,
+      "pos": "名詞",
+      "kanji": "熱湯",
+      "reading": "ねっとう",
+      "meanings": {
+        "ja": "熱湯",
+        "en": "boiling water",
+        "zh": "开水",
+        "tw": "滾水",
+        "ko": "끓는물",
+        "vi": "nước sôi",
+        "th": "น้ำเดือด",
+        "my": "ရေနွေး",
+        "km": "ទឹកក្តៅ",
+        "id": "air mendidih"
+      }
+    },
+    {
+      "id": 306,
+      "pos": "名詞",
+      "kanji": "熱量",
+      "reading": "ねつりょう",
+      "meanings": {
+        "ja": "熱量",
+        "en": "calories",
+        "zh": "热量",
+        "tw": "熱量",
+        "ko": "열량",
+        "vi": "nhiệt lượng",
+        "th": "พลังงานความร้อน",
+        "my": "အပူအင်ဂါ",
+        "km": "កំដៅ",
+        "id": "kalori"
+      }
+    },
+    {
+      "id": 307,
+      "pos": "名詞",
+      "kanji": "粘り",
+      "reading": "ねばり",
+      "meanings": {
+        "ja": "粘り・根気",
+        "en": "stickiness; persistence",
+        "zh": "黏性；毅力",
+        "tw": "黏性；毅力",
+        "ko": "끈기",
+        "vi": "sự dính; kiên trì",
+        "th": "ความเหนียว; ความอึด",
+        "my": "လ်ကန့်သိပ်; ကြံ့ခိုင်မှု",
+        "km": "ភាពជាប់; អត់ធ្មត់",
+        "id": "kekentalan; tekun"
+      }
+    },
+    {
+      "id": 308,
+      "pos": "名詞",
+      "kanji": "値引き",
+      "reading": "ねびき",
+      "meanings": {
+        "ja": "値引き",
+        "en": "discount",
+        "zh": "折扣",
+        "tw": "折扣",
+        "ko": "할인",
+        "vi": "giảm giá",
+        "th": "ส่วนลด",
+        "my": "စျေးလျှော့",
+        "km": "បញ្ចុះតម្លៃ",
+        "id": "diskon"
+      }
+    },
+    {
+      "id": 309,
+      "pos": "名詞",
+      "kanji": "根回し",
+      "reading": "ねまわし",
+      "meanings": {
+        "ja": "根回し",
+        "en": "groundwork",
+        "zh": "事前准备",
+        "tw": "事前協調",
+        "ko": "사전조율",
+        "vi": "chuẩn bị ngầm",
+        "th": "เตรียมการ",
+        "my": "ကြိုတင်ပြင်ဆင်",
+        "km": "រៀបចំជាមុន",
+        "id": "persiapan awal"
+      }
+    },
+    {
+      "id": 310,
+      "pos": "名詞",
+      "kanji": "念",
+      "reading": "ねん",
+      "meanings": {
+        "ja": "念",
+        "en": "thought; intention",
+        "zh": "念头",
+        "tw": "念頭",
+        "ko": "염; 뜻",
+        "vi": "ý niệm",
+        "th": "ความคิด",
+        "my": "စိတ်ကူး",
+        "km": "គំនិត",
+        "id": "niat"
+      }
+    },
+    {
+      "id": 311,
+      "pos": "名詞",
+      "kanji": "年賀",
+      "reading": "ねんが",
+      "meanings": {
+        "ja": "年賀",
+        "en": "New Year’s greetings",
+        "zh": "新年问候",
+        "tw": "新年問候",
+        "ko": "신년 인사",
+        "vi": "chúc năm mới",
+        "th": "อวยพรปีใหม่",
+        "my": "နှစ်သစ်ဆုတောင်း",
+        "km": "អបអរសាទរឆ្នាំថ្មី",
+        "id": "ucapan tahun baru"
+      }
+    },
+    {
+      "id": 312,
+      "pos": "名詞",
+      "kanji": "念願",
+      "reading": "ねんがん",
+      "meanings": {
+        "ja": "念願",
+        "en": "long-cherished desire",
+        "zh": "心愿",
+        "tw": "心願",
+        "ko": "염원",
+        "vi": "nguyện vọng",
+        "th": "ความปรารถนา",
+        "my": "ဆန္ဒ",
+        "km": "បំណងប្រាថ្នា",
+        "id": "cita-cita"
+      }
+    },
+    {
+      "id": 313,
+      "pos": "名詞",
+      "kanji": "年号",
+      "reading": "ねんごう",
+      "meanings": {
+        "ja": "年号",
+        "en": "era name",
+        "zh": "年号",
+        "tw": "年號",
+        "ko": "연호",
+        "vi": "niên hiệu",
+        "th": "ชื่อรัชศก",
+        "my": "နှစ်အမည်",
+        "km": "ឈ្មោះសករាជ",
+        "id": "nama era"
+      }
+    },
+    {
+      "id": 314,
+      "pos": "名詞",
+      "kanji": "燃焼",
+      "reading": "ねんしょう",
+      "meanings": {
+        "ja": "燃焼",
+        "en": "combustion",
+        "zh": "燃烧",
+        "tw": "燃燒",
+        "ko": "연소",
+        "vi": "sự cháy",
+        "th": "การเผาไหม้",
+        "my": "လောင်ကျွမ်းမှု",
+        "km": "ការចំហេះ",
+        "id": "pembakaran"
+      }
+    },
+    {
+      "id": 315,
+      "pos": "名詞",
+      "kanji": "燃料",
+      "reading": "ねんりょう",
+      "meanings": {
+        "ja": "燃料",
+        "en": "fuel",
+        "zh": "燃料",
+        "tw": "燃料",
+        "ko": "연료",
+        "vi": "nhiên liệu",
+        "th": "เชื้อเพลิง",
+        "my": "လောင်စာ",
+        "km": "ឥន្ធនៈ",
+        "id": "bahan bakar"
+      }
+    },
+    {
+      "id": 316,
+      "pos": "名詞",
+      "kanji": "年輪",
+      "reading": "ねんりん",
+      "meanings": {
+        "ja": "年輪",
+        "en": "tree ring",
+        "zh": "年轮",
+        "tw": "年輪",
+        "ko": "나이테",
+        "vi": "vòng tuổi cây",
+        "th": "วงปีต้นไม้",
+        "my": "သစ်ပင်အသက်အဆက်",
+        "km": "រង្វង់អាយុឈើ",
+        "id": "cincin tahun"
+      }
+    },
+    {
+      "id": 317,
+      "pos": "名詞",
+      "kanji": "ノイローゼ",
+      "reading": "ノイローゼ",
+      "meanings": {
+        "ja": "神経症",
+        "en": "neurosis",
+        "zh": "神经症",
+        "tw": "神經症",
+        "ko": "노이로제",
+        "vi": "rối loạn thần kinh",
+        "th": "โรคประสาท",
+        "my": "စိတ်ရောဂါ",
+        "km": "ជំងឺប្រសាទ",
+        "id": "neurosis"
+      }
+    },
+    {
+      "id": 318,
+      "pos": "名詞",
+      "kanji": "農耕",
+      "reading": "のうこう",
+      "meanings": {
+        "ja": "農耕",
+        "en": "farming",
+        "zh": "农耕",
+        "tw": "農耕",
+        "ko": "농경",
+        "vi": "nông canh",
+        "th": "เพาะปลูก",
+        "my": "စိုက်ပျိုး",
+        "km": "កសិកម្ម",
+        "id": "pertanian"
+      }
+    },
+    {
+      "id": 319,
+      "pos": "名詞",
+      "kanji": "農場",
+      "reading": "のうじょう",
+      "meanings": {
+        "ja": "農場",
+        "en": "farm",
+        "zh": "农场",
+        "tw": "農場",
+        "ko": "농장",
+        "vi": "nông trại",
+        "th": "ฟาร์ม",
+        "my": "စိုက်ခင်း",
+        "km": "កសិដ្ឋាន",
+        "id": "ladang; peternakan"
+      }
+    },
+    {
+      "id": 320,
+      "pos": "名詞",
+      "kanji": "農地",
+      "reading": "のうち",
+      "meanings": {
+        "ja": "農地",
+        "en": "farmland",
+        "zh": "农地",
+        "tw": "農地",
+        "ko": "농지",
+        "vi": "đất nông nghiệp",
+        "th": "ที่ดินเกษตร",
+        "my": "ကာစစ်မြေ",
+        "km": "ដីកសិកម្ម",
+        "id": "tanah pertanian"
+      }
+    },
+    {
+      "id": 321,
+      "pos": "名詞",
+      "kanji": "納入",
+      "reading": "のうにゅう",
+      "meanings": {
+        "ja": "納入",
+        "en": "payment; delivery",
+        "zh": "缴纳；交付",
+        "tw": "繳納；交付",
+        "ko": "납입; 납품",
+        "vi": "nộp; giao hàng",
+        "th": "ชำระ/ส่งมอบ",
+        "my": "ငွေပေးချေ/ပစ္စည်းဝင်",
+        "km": "បង់ប្រាក់/ប្រគល់",
+        "id": "pembayaran; pengiriman"
+      }
+    },
+    {
+      "id": 322,
+      "pos": "名詞",
+      "kanji": "軒並",
+      "reading": "のきなみ",
+      "meanings": {
+        "ja": "軒並",
+        "en": "row of houses; all alike",
+        "zh": "鳞次栉比",
+        "tw": "鱗次櫛比",
+        "ko": "집들이 줄지어",
+        "vi": "dãy nhà",
+        "th": "เรียงรายเป็นแถว",
+        "my": "အိမ်တန်းတန်း",
+        "km": "ជួរផ្ទះ",
+        "id": "deretan rumah"
+      }
+    },
+    {
+      "id": 323,
+      "pos": "名詞",
+      "kanji": "延べ",
+      "reading": "のべ",
+      "meanings": {
+        "ja": "延べ",
+        "en": "total; cumulative",
+        "zh": "累计",
+        "tw": "累計",
+        "ko": "총계",
+        "vi": "tổng cộng",
+        "th": "รวมทั้งหมด",
+        "my": "စုစုပေါင်း",
+        "km": "សរុប",
+        "id": "total kumulatif"
+      }
+    },
+    {
+      "id": 324,
+      "pos": "名詞",
+      "kanji": "刃",
+      "reading": "は",
+      "meanings": {
+        "ja": "刃",
+        "en": "blade; edge",
+        "zh": "刀刃",
+        "tw": "刀刃",
+        "ko": "칼날",
+        "vi": "lưỡi dao",
+        "th": "คมมีด",
+        "my": "ဓါးချွန်",
+        "km": "លែមកាំបិត",
+        "id": "mata pisau"
+      }
+    },
+    {
+      "id": 325,
+      "pos": "名詞",
+      "kanji": "バー",
+      "reading": "バー",
+      "meanings": {
+        "ja": "酒場",
+        "en": "bar (pub)",
+        "zh": "酒吧",
+        "tw": "酒吧",
+        "ko": "바",
+        "vi": "quán bar",
+        "th": "บาร์",
+        "my": "ဘား",
+        "km": "បារ",
+        "id": "bar"
+      }
+    },
+    {
+      "id": 326,
+      "pos": "名詞",
+      "kanji": "把握",
+      "reading": "はあく",
+      "meanings": {
+        "ja": "把握",
+        "en": "grasp; understand",
+        "zh": "掌握",
+        "tw": "掌握",
+        "ko": "파악",
+        "vi": "nắm bắt",
+        "th": "เข้าใจ",
+        "my": "သဘောပေါက်",
+        "km": "យល់ដឹង",
+        "id": "memahami"
+      }
+    },
+    {
+      "id": 327,
+      "pos": "名詞",
+      "kanji": "パート",
+      "reading": "パート",
+      "meanings": {
+        "ja": "パート/役割",
+        "en": "part-time; part",
+        "zh": "兼职；部分",
+        "tw": "兼職；部分",
+        "ko": "파트타임; 부분",
+        "vi": "bán thời gian",
+        "th": "พาร์ทไทม์; ส่วน",
+        "my": "အချိန်ပိုင်း",
+        "km": "ពាក់កណ្តាលពេល",
+        "id": "paruh waktu; bagian"
+      }
+    },
+    {
+      "id": 328,
+      "pos": "名詞",
+      "kanji": "廃棄",
+      "reading": "はいき",
+      "meanings": {
+        "ja": "廃棄",
+        "en": "disposal",
+        "zh": "废弃",
+        "tw": "廢棄",
+        "ko": "폐기",
+        "vi": "vứt bỏ",
+        "th": "กำจัดทิ้ง",
+        "my": "ပစ်ဖျက်",
+        "km": "បោះបង់",
+        "id": "pembuangan"
+      }
+    },
+    {
+      "id": 329,
+      "pos": "名詞",
+      "kanji": "配給",
+      "reading": "はいきゅう",
+      "meanings": {
+        "ja": "配給",
+        "en": "rationing; distribution",
+        "zh": "配给",
+        "tw": "配給",
+        "ko": "배급",
+        "vi": "cấp phát",
+        "th": "จัดสรร",
+        "my": "အမွေးထုတ်ပေး",
+        "km": "ចែកចាយ",
+        "id": "distribusi/rasio"
+      }
+    },
+    {
+      "id": 330,
+      "pos": "名詞",
+      "kanji": "ばい菌",
+      "reading": "ばいきん",
+      "meanings": {
+        "ja": "細菌",
+        "en": "germ",
+        "zh": "细菌",
+        "tw": "細菌",
+        "ko": "세균",
+        "vi": "vi khuẩn",
+        "th": "เชื้อโรค",
+        "my": "ဘက်တီးရီးယား",
+        "km": "បាក់តេរី",
+        "id": "kuman"
+      }
+    },
+    {
+      "id": 331,
+      "pos": "名詞",
+      "kanji": "配偶者",
+      "reading": "はいぐうしゃ",
+      "meanings": {
+        "ja": "配偶者",
+        "en": "spouse",
+        "zh": "配偶",
+        "tw": "配偶",
+        "ko": "배우자",
+        "vi": "vợ/chồng",
+        "th": "คู่สมรส",
+        "my": "ဇနီး/ခင်ပွန်း",
+        "km": "ប្តីប្រពន្ធ",
+        "id": "pasangan"
+      }
+    },
+    {
+      "id": 332,
+      "pos": "名詞",
+      "kanji": "拝啓",
+      "reading": "はいけい",
+      "meanings": {
+        "ja": "拝啓",
+        "en": "Dear (opening)",
+        "zh": "敬启者",
+        "tw": "敬啟者",
+        "ko": "친애하는",
+        "vi": "kính gửi",
+        "th": "เรียน…",
+        "my": "လေးမြတ်စွာ",
+        "km": "គោរពជូនដំណឹង",
+        "id": "dengan hormat"
+      }
+    },
+    {
+      "id": 333,
+      "pos": "名詞",
+      "kanji": "背景",
+      "reading": "はいけい",
+      "meanings": {
+        "ja": "背景",
+        "en": "background",
+        "zh": "背景",
+        "tw": "背景",
+        "ko": "배경",
+        "vi": "bối cảnh",
+        "th": "พื้นหลัง",
+        "my": "နောက်ခံ",
+        "km": "ផ្ទៃក្រោយ",
+        "id": "latar belakang"
+      }
+    },
+    {
+      "id": 334,
+      "pos": "名詞",
+      "kanji": "背後",
+      "reading": "はいご",
+      "meanings": {
+        "ja": "背後",
+        "en": "behind; back",
+        "zh": "背后",
+        "tw": "背後",
+        "ko": "배후",
+        "vi": "phía sau",
+        "th": "ด้านหลัง",
+        "my": "နောက်ကွယ်",
+        "km": "ពីក្រោយ",
+        "id": "belakang"
+      }
+    },
+    {
+      "id": 335,
+      "pos": "名詞",
+      "kanji": "廃止",
+      "reading": "はいし",
+      "meanings": {
+        "ja": "廃止",
+        "en": "abolition",
+        "zh": "废止",
+        "tw": "廢止",
+        "ko": "폐지",
+        "vi": "bãi bỏ",
+        "th": "ยกเลิก",
+        "my": "ပယ်ဖျက်",
+        "km": "លុបចោល",
+        "id": "penghapusan"
+      }
+    },
+    {
+      "id": 336,
+      "pos": "名詞",
+      "kanji": "拝借",
+      "reading": "はいしゃく",
+      "meanings": {
+        "ja": "拝借（謙譲）",
+        "en": "borrowing (humble)",
+        "zh": "借用（谦）",
+        "tw": "借用（謙）",
+        "ko": "차용(겸양)",
+        "vi": "mượn (khiêm nhường)",
+        "th": "ขอยืม (ถ่อม)",
+        "my": "ချေးယူ(လျှော့တင်)",
+        "km": "ខ្ចីយក(សុភាព)",
+        "id": "meminjam (rendah diri)"
+      }
+    },
+    {
+      "id": 337,
+      "pos": "名詞",
+      "kanji": "排除",
+      "reading": "はいじょ",
+      "meanings": {
+        "ja": "排除",
+        "en": "exclusion; removal",
+        "zh": "排除",
+        "tw": "排除",
+        "ko": "배제",
+        "vi": "loại trừ",
+        "th": "กำจัดออก",
+        "my": "ဖယ်ရှား",
+        "km": "ដកចេញ",
+        "id": "penghapusan"
+      }
+    },
+    {
+      "id": 338,
+      "pos": "名詞",
+      "kanji": "賠償",
+      "reading": "ばいしょう",
+      "meanings": {
+        "ja": "賠償",
+        "en": "compensation",
+        "zh": "赔偿",
+        "tw": "賠償",
+        "ko": "배상",
+        "vi": "bồi thường",
+        "th": "ชดใช้",
+        "my": "နှိမ်နင်းငွေ",
+        "km": "សំណង",
+        "id": "ganti rugi"
+      }
+    },
+    {
+      "id": 339,
+      "pos": "名詞",
+      "kanji": "排水",
+      "reading": "はいすい",
+      "meanings": {
+        "ja": "排水",
+        "en": "drainage",
+        "zh": "排水",
+        "tw": "排水",
+        "ko": "배수",
+        "vi": "thoát nước",
+        "th": "ระบายน้ำ",
+        "my": "ရေစီးဆင်း",
+        "km": "បង្ហូរទឹក",
+        "id": "drainase"
+      }
+    },
+    {
+      "id": 340,
+      "pos": "名詞",
+      "kanji": "敗戦",
+      "reading": "はいせん",
+      "meanings": {
+        "ja": "敗戦",
+        "en": "defeat (war)",
+        "zh": "战败",
+        "tw": "戰敗",
+        "ko": "패전",
+        "vi": "bại trận",
+        "th": "แพ้สงคราม",
+        "my": "စစ်ရှုံး",
+        "km": "ចាញ់សង្គ្រាម",
+        "id": "kalah perang"
+      }
+    },
+    {
+      "id": 341,
+      "pos": "名詞",
+      "kanji": "配置",
+      "reading": "はいち",
+      "meanings": {
+        "ja": "配置",
+        "en": "arrangement",
+        "zh": "配置",
+        "tw": "配置",
+        "ko": "배치",
+        "vi": "bố trí",
+        "th": "จัดวาง",
+        "my": "တပ်ဆင်",
+        "km": "រៀបចំ",
+        "id": "penataan"
+      }
+    },
+    {
+      "id": 342,
+      "pos": "名詞",
+      "kanji": "配布",
+      "reading": "はいふ",
+      "meanings": {
+        "ja": "配布",
+        "en": "distribution",
+        "zh": "分发",
+        "tw": "分發",
+        "ko": "배포",
+        "vi": "phân phát",
+        "th": "แจกจ่าย",
+        "my": "ဖြန့်ချိ",
+        "km": "ចែកចាយ",
+        "id": "distribusi"
+      }
+    },
+    {
+      "id": 343,
+      "pos": "名詞",
+      "kanji": "配分",
+      "reading": "はいぶん",
+      "meanings": {
+        "ja": "配分",
+        "en": "allocation",
+        "zh": "分配",
+        "tw": "分配",
+        "ko": "배분",
+        "vi": "phân bổ",
+        "th": "การจัดสรร",
+        "my": "ခွဲဝေ",
+        "km": "បែងចែក",
+        "id": "alokasi"
+      }
+    },
+    {
+      "id": 344,
+      "pos": "名詞",
+      "kanji": "敗北",
+      "reading": "はいぼく",
+      "meanings": {
+        "ja": "敗北",
+        "en": "defeat",
+        "zh": "失败",
+        "tw": "失敗",
+        "ko": "패배",
+        "vi": "thất bại",
+        "th": "พ่ายแพ้",
+        "my": "ရှုံးနိမ့်",
+        "km": "បរាជ័យ",
+        "id": "kekalahan"
+      }
+    },
+    {
+      "id": 345,
+      "pos": "名詞",
+      "kanji": "倍率",
+      "reading": "ばいりつ",
+      "meanings": {
+        "ja": "倍率",
+        "en": "magnification; ratio",
+        "zh": "倍率",
+        "tw": "倍率",
+        "ko": "배율",
+        "vi": "độ phóng đại",
+        "th": "อัตราขยาย",
+        "my": "ကြိမ်နှုန်း",
+        "km": "មូលដ្ឋានបូក",
+        "id": "pembesaran"
+      }
+    },
+    {
+      "id": 346,
+      "pos": "名詞",
+      "kanji": "配慮",
+      "reading": "はいりょ",
+      "meanings": {
+        "ja": "配慮",
+        "en": "consideration",
+        "zh": "关照",
+        "tw": "關照",
+        "ko": "배려",
+        "vi": "quan tâm",
+        "th": "เอื้อเฟื้อ",
+        "my": "စဉ်းစားပူပန်",
+        "km": "ការយកចិត្តទុកដាក់",
+        "id": "perhatian"
+      }
+    },
+    {
+      "id": 347,
+      "pos": "名詞",
+      "kanji": "配列",
+      "reading": "はいれつ",
+      "meanings": {
+        "ja": "配列",
+        "en": "array; arrangement",
+        "zh": "排列",
+        "tw": "排列",
+        "ko": "배열",
+        "vi": "mảng; sắp xếp",
+        "th": "การเรียง",
+        "my": "စီစဉ်မှု",
+        "km": "រៀបបញ្ចូល",
+        "id": "array; susunan"
+      }
+    },
+    {
+      "id": 348,
+      "pos": "名詞",
+      "kanji": "破壊",
+      "reading": "はかい",
+      "meanings": {
+        "ja": "破壊",
+        "en": "destruction",
+        "zh": "破坏",
+        "tw": "破壞",
+        "ko": "파괴",
+        "vi": "phá hủy",
+        "th": "การทำลาย",
+        "my": "ဖျက်သိမ်း",
+        "km": "បំផ្លាញ",
+        "id": "perusakan"
+      }
+    },
+    {
+      "id": 349,
+      "pos": "名詞",
+      "kanji": "一同",
+      "reading": "いちどう",
+      "meanings": {
+        "ja": "一同",
+        "en": "all present",
+        "zh": "全体",
+        "tw": "全體",
+        "ko": "일동",
+        "vi": "mọi người",
+        "th": "ทุกคน",
+        "my": "လူသီးသန့်အားလုံး",
+        "km": "ទាំងអស់",
+        "id": "semua yang hadir"
+      }
+    },
+    {
+      "id": 350,
+      "pos": "名詞",
+      "kanji": "一部分",
+      "reading": "いちぶぶん",
+      "meanings": {
+        "ja": "一部分",
+        "en": "part; portion",
+        "zh": "一部分",
+        "tw": "一部分",
+        "ko": "일부분",
+        "vi": "một phần",
+        "th": "บางส่วน",
+        "my": "အချို့အပိုင်း",
+        "km": "មួយផ្នែក",
+        "id": "sebagian"
+      }
+    }
+  ]
+}

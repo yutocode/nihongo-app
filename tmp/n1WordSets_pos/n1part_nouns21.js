@@ -1,0 +1,904 @@
+export const n1part_nouns21 = {
+  "Lesson21": [
+    {
+      "id": 1001,
+      "pos": "名詞",
+      "kanji": "設立",
+      "reading": "せつりつ",
+      "meanings": {
+        "ja": "設立",
+        "en": "establishment; founding",
+        "zh": "设立",
+        "tw": "設立",
+        "ko": "설립",
+        "vi": "thành lập",
+        "th": "การก่อตั้ง",
+        "my": "တည်ထောင်ခြင်း",
+        "km": "ការបង្កើត",
+        "id": "pendirian"
+      }
+    },
+    {
+      "id": 1002,
+      "pos": "名詞",
+      "kanji": "攻め",
+      "reading": "せめ",
+      "meanings": {
+        "ja": "攻め",
+        "en": "attack (n.)",
+        "zh": "进攻（名）",
+        "tw": "進攻（名）",
+        "ko": "공격(명)",
+        "vi": "tấn công (danh)",
+        "th": "การบุก",
+        "my": "တိုက်ခိုက်မှု",
+        "km": "ការវាយប្រហារ",
+        "id": "serangan"
+      }
+    },
+    {
+      "id": 1003,
+      "pos": "名詞",
+      "kanji": "ゼリー",
+      "reading": "ゼリー",
+      "meanings": {
+        "ja": "ゼリー",
+        "en": "jelly; jello",
+        "zh": "果冻",
+        "tw": "果凍",
+        "ko": "젤리",
+        "vi": "thạch",
+        "th": "เยลลี่",
+        "my": "ဂျెలလီ",
+        "km": "ជេលី",
+        "id": "jeli"
+      }
+    },
+    {
+      "id": 1004,
+      "pos": "名詞",
+      "kanji": "セレモニー",
+      "reading": "セレモニー",
+      "meanings": {
+        "ja": "セレモニー",
+        "en": "ceremony",
+        "zh": "典礼；仪式",
+        "tw": "典禮；儀式",
+        "ko": "세리머니; 의식",
+        "vi": "nghi lễ",
+        "th": "พิธี",
+        "my": "အခမ်းအနား",
+        "km": "ពិធីការណ៍",
+        "id": "upacara"
+      }
+    },
+    {
+      "id": 1005,
+      "pos": "名詞",
+      "kanji": "世論",
+      "reading": "せろん",
+      "meanings": {
+        "ja": "世論",
+        "en": "public opinion",
+        "zh": "舆论",
+        "tw": "輿論",
+        "ko": "여론",
+        "vi": "dư luận",
+        "th": "ความเห็นสาธารณะ",
+        "my": "ပြည်သူ့အမြင်",
+        "km": "មតិសាធារណៈ",
+        "id": "opini publik"
+      }
+    },
+    {
+      "id": 1006,
+      "pos": "名詞",
+      "kanji": "繊維",
+      "reading": "せんい",
+      "meanings": {
+        "ja": "繊維",
+        "en": "fiber",
+        "zh": "纤维",
+        "tw": "纖維",
+        "ko": "섬유",
+        "vi": "sợi; chất xơ",
+        "th": "เส้นใย",
+        "my": "တစ်စင်းစင်း(ဖိုဘာ)",
+        "km": "សរសៃ",
+        "id": "serat"
+      }
+    },
+    {
+      "id": 1007,
+      "pos": "名詞",
+      "kanji": "全快",
+      "reading": "ぜんかい",
+      "meanings": {
+        "ja": "全快",
+        "en": "complete recovery",
+        "zh": "痊愈",
+        "tw": "痊癒",
+        "ko": "완쾌",
+        "vi": "bình phục hoàn toàn",
+        "th": "หายดี",
+        "my": "ပြန်ကောင်းလုံးဝ",
+        "km": "ជាសះស្បើយ",
+        "id": "sembuh total"
+      }
+    },
+    {
+      "id": 1008,
+      "pos": "名詞",
+      "kanji": "宣教",
+      "reading": "せんきょう",
+      "meanings": {
+        "ja": "宣教",
+        "en": "missionary work",
+        "zh": "传教",
+        "tw": "宣教",
+        "ko": "선교",
+        "vi": "truyền giáo",
+        "th": "งานเผยแผ่ศาสนา",
+        "my": "မစ္စနာရီလုပ်ငန်း",
+        "km": "ការប្រកាសសាសនា",
+        "id": "misi keagamaan"
+      }
+    },
+    {
+      "id": 1009,
+      "pos": "名詞",
+      "kanji": "宣言",
+      "reading": "せんげん",
+      "meanings": {
+        "ja": "宣言",
+        "en": "declaration",
+        "zh": "宣言",
+        "tw": "宣言",
+        "ko": "선언",
+        "vi": "tuyên ngôn",
+        "th": "ประกาศ",
+        "my": "ကြေညာချက်",
+        "km": "សេចក្តីប្រកាស",
+        "id": "deklarasi"
+      }
+    },
+    {
+      "id": 1010,
+      "pos": "名詞",
+      "kanji": "戦災",
+      "reading": "せんさい",
+      "meanings": {
+        "ja": "戦災",
+        "en": "war damage",
+        "zh": "战灾",
+        "tw": "戰災",
+        "ko": "전재",
+        "vi": "thiệt hại do chiến tranh",
+        "th": "ความเสียหายจากสงคราม",
+        "my": "စစ်ဘေးအန္တရာယ်",
+        "km": "គ្រោះមហន្តរាយសង្គ្រាម",
+        "id": "kerusakan perang"
+      }
+    },
+    {
+      "id": 1011,
+      "pos": "名詞",
+      "kanji": "専修",
+      "reading": "せんしゅう",
+      "meanings": {
+        "ja": "専修",
+        "en": "specialization",
+        "zh": "专修",
+        "tw": "專修",
+        "ko": "전수/전공수업",
+        "vi": "chuyên tu",
+        "th": "การเรียนเฉพาะทาง",
+        "my": "အထူးပြုလေ့လာ",
+        "km": "ការសិក្សាពិសេស",
+        "id": "spesialisasi"
+      }
+    },
+    {
+      "id": 1012,
+      "pos": "名詞",
+      "kanji": "戦術",
+      "reading": "せんじゅつ",
+      "meanings": {
+        "ja": "戦術",
+        "en": "tactics",
+        "zh": "战术",
+        "tw": "戰術",
+        "ko": "전술",
+        "vi": "chiến thuật",
+        "th": "ยุทธวิธี",
+        "my": "ยุทธဗျူဟာသေး",
+        "km": "យុទ្ធសាស្ត្រ(តាក់ស៊ីក)",
+        "id": "taktik"
+      }
+    },
+    {
+      "id": 1013,
+      "pos": "名詞",
+      "kanji": "センス",
+      "reading": "センス",
+      "meanings": {
+        "ja": "センス",
+        "en": "sense; taste",
+        "zh": "品味；感觉",
+        "tw": "品味；感覺",
+        "ko": "감각; 센스",
+        "vi": "cảm quan; gu",
+        "th": "เซนส์; รสนิยม",
+        "my": "ခံစားချက်/ဂု",
+        "km": "រសជាតិ; អារម្មណ៍",
+        "id": "selera; sense"
+      }
+    },
+    {
+      "id": 1014,
+      "pos": "名詞",
+      "kanji": "潜水",
+      "reading": "せんすい",
+      "meanings": {
+        "ja": "潜水",
+        "en": "diving",
+        "zh": "潜水",
+        "tw": "潛水",
+        "ko": "잠수",
+        "vi": "lặn",
+        "th": "ดำน้ำ",
+        "my": "မျော‌့ရေ",
+        "km": "លោតទឹក/潜水",
+        "id": "menyelam"
+      }
+    },
+    {
+      "id": 1015,
+      "pos": "名詞",
+      "kanji": "全盛",
+      "reading": "ぜんせい",
+      "meanings": {
+        "ja": "全盛",
+        "en": "heyday",
+        "zh": "全盛期",
+        "tw": "全盛期",
+        "ko": "전성기",
+        "vi": "thời hoàng kim",
+        "th": "ยุครุ่งเรือง",
+        "my": "တိုးတက်ထွန်းကားဆုံးကာလ",
+        "km": "រុងរឿងខ្លាំងបំផុត",
+        "id": "masa kejayaan"
+      }
+    },
+    {
+      "id": 1016,
+      "pos": "名詞",
+      "kanji": "先代",
+      "reading": "せんだい",
+      "meanings": {
+        "ja": "先代",
+        "en": "previous generation",
+        "zh": "上一代",
+        "tw": "上一代",
+        "ko": "선대",
+        "vi": "đời trước",
+        "th": "รุ่นก่อน",
+        "my": "ယခင်မျိုးစိတ်",
+        "km": "ជំនាន់មុន",
+        "id": "generasi sebelumnya"
+      }
+    },
+    {
+      "id": 1017,
+      "pos": "名詞",
+      "kanji": "先だって",
+      "reading": "せんだって",
+      "meanings": {
+        "ja": "先だって",
+        "en": "the other day; recently",
+        "zh": "前几天",
+        "tw": "前幾天",
+        "ko": "요전에",
+        "vi": "mới đây",
+        "th": "เมื่อวันก่อน",
+        "my": "မကြာသေးမီက",
+        "km": "ម្សិលមិញៗ",
+        "id": "belum lama ini"
+      }
+    },
+    {
+      "id": 1018,
+      "pos": "名詞",
+      "kanji": "先着",
+      "reading": "せんちゃく",
+      "meanings": {
+        "ja": "先着",
+        "en": "first arrival",
+        "zh": "先到",
+        "tw": "先到",
+        "ko": "선착",
+        "vi": "đến trước",
+        "th": "ถึงก่อน",
+        "my": "ဦးစွာရောက်",
+        "km": "មកដល់មុន",
+        "id": "datang lebih dulu"
+      }
+    },
+    {
+      "id": 1019,
+      "pos": "名詞",
+      "kanji": "前提",
+      "reading": "ぜんてい",
+      "meanings": {
+        "ja": "前提",
+        "en": "premise; condition",
+        "zh": "前提；条件",
+        "tw": "前提；條件",
+        "ko": "전제",
+        "vi": "tiền đề; điều kiện",
+        "th": "ข้อกำหนดเบื้องต้น",
+        "my": "အခြေခံအချက်",
+        "km": "លក្ខខណ្ឌដើម",
+        "id": "praduga; prasyarat"
+      }
+    },
+    {
+      "id": 1020,
+      "pos": "名詞",
+      "kanji": "前途",
+      "reading": "ぜんと",
+      "meanings": {
+        "ja": "前途",
+        "en": "future prospects",
+        "zh": "前途",
+        "tw": "前途",
+        "ko": "전도",
+        "vi": "tiền đồ",
+        "th": "อนาคตข้างหน้า",
+        "my": "အနာဂတ်အလားအလာ",
+        "km": "អនាគតខាងមុខ",
+        "id": "prospek masa depan"
+      }
+    },
+    {
+      "id": 1021,
+      "pos": "名詞",
+      "kanji": "戦闘",
+      "reading": "せんとう",
+      "meanings": {
+        "ja": "戦闘",
+        "en": "combat; battle",
+        "zh": "战斗",
+        "tw": "戰鬥",
+        "ko": "전투",
+        "vi": "chiến đấu",
+        "th": "การรบ",
+        "my": "စစ်တိုက်ပွဲ",
+        "km": "យុទ្ធប្រយុទ្ធ",
+        "id": "pertempuran"
+      }
+    },
+    {
+      "id": 1022,
+      "pos": "名詞",
+      "kanji": "潜入",
+      "reading": "せんにゅう",
+      "meanings": {
+        "ja": "潜入",
+        "en": "infiltration",
+        "zh": "潜入",
+        "tw": "潛入",
+        "ko": "침투",
+        "vi": "thâm nhập",
+        "th": "แฝงตัวเข้าไป",
+        "my": "လျှို့ဝှက်စွန့်ဝင်",
+        "km": "គ្រាងចូល",
+        "id": "infiltrasi"
+      }
+    },
+    {
+      "id": 1023,
+      "pos": "名詞",
+      "kanji": "船舶",
+      "reading": "せんぱく",
+      "meanings": {
+        "ja": "船舶",
+        "en": "ships; vessels",
+        "zh": "船舶",
+        "tw": "船舶",
+        "ko": "선박",
+        "vi": "tàu thuyền",
+        "th": "เรือพาณิชย์",
+        "my": "သင်္ဘောများ",
+        "km": "នាវាចរ",
+        "id": "kapal"
+      }
+    },
+    {
+      "id": 1024,
+      "pos": "名詞",
+      "kanji": "全滅",
+      "reading": "ぜんめつ",
+      "meanings": {
+        "ja": "全滅",
+        "en": "annihilation; wipeout",
+        "zh": "全灭",
+        "tw": "全滅",
+        "ko": "전멸",
+        "vi": "tiêu diệt hoàn toàn",
+        "th": "ถูกล้างบาง",
+        "my": "ပျက်စီးကုန်",
+        "km": "ផុតសង្ឃឹមទាំងស្រុង",
+        "id": "pemusnahan total"
+      }
+    },
+    {
+      "id": 1025,
+      "pos": "名詞",
+      "kanji": "専用",
+      "reading": "せんよう",
+      "meanings": {
+        "ja": "専用",
+        "en": "exclusive use",
+        "zh": "专用",
+        "tw": "專用",
+        "ko": "전용",
+        "vi": "chuyên dụng",
+        "th": "ใช้เฉพาะ",
+        "my": "သီးသန့်အသုံး",
+        "km": "ប្រើប្រាស់ពិសេស",
+        "id": "khusus"
+      }
+    },
+    {
+      "id": 1026,
+      "pos": "名詞",
+      "kanji": "占領",
+      "reading": "せんりょう",
+      "meanings": {
+        "ja": "占領",
+        "en": "occupation",
+        "zh": "占领",
+        "tw": "佔領",
+        "ko": "점령",
+        "vi": "chiếm đóng",
+        "th": "ยึดครอง",
+        "my": "ချုပ်ခေါင်းယူခြင်း",
+        "km": "កាន់កាប់",
+        "id": "pendudukan"
+      }
+    },
+    {
+      "id": 1027,
+      "pos": "名詞",
+      "kanji": "戦力",
+      "reading": "せんりょく",
+      "meanings": {
+        "ja": "戦力",
+        "en": "war potential; capability",
+        "zh": "战力",
+        "tw": "戰力",
+        "ko": "전력",
+        "vi": "sức mạnh chiến đấu",
+        "th": "กำลังรบ",
+        "my": "စစ်ဗல",
+        "km": "កម្លាំងយោធា",
+        "id": "kekuatan militer"
+      }
+    },
+    {
+      "id": 1028,
+      "pos": "名詞",
+      "kanji": "前例",
+      "reading": "ぜんれい",
+      "meanings": {
+        "ja": "前例",
+        "en": "precedent",
+        "zh": "前例",
+        "tw": "前例",
+        "ko": "전례",
+        "vi": "tiền lệ",
+        "th": "แบบอย่างก่อน",
+        "my": "လက်ရှိမတိုင်မီဥပမာ",
+        "km": "ដំណើរមុន",
+        "id": "preseden"
+      }
+    },
+    {
+      "id": 1029,
+      "pos": "名詞",
+      "kanji": "総会",
+      "reading": "そうかい",
+      "meanings": {
+        "ja": "総会",
+        "en": "general meeting",
+        "zh": "大会；股东大会",
+        "tw": "大會；股東會",
+        "ko": "총회",
+        "vi": "đại hội; họp toàn thể",
+        "th": "การประชุมใหญ่",
+        "my": "အထွေထွေအစည်းအဝေး",
+        "km": "សន្និបាតទូទៅ",
+        "id": "rapat umum"
+      }
+    },
+    {
+      "id": 1030,
+      "pos": "名詞",
+      "kanji": "創刊",
+      "reading": "そうかん",
+      "meanings": {
+        "ja": "創刊",
+        "en": "launch of first issue",
+        "zh": "创刊",
+        "tw": "創刊",
+        "ko": "창간",
+        "vi": "khai sáng (số đầu)",
+        "th": "ออกฉบับปฐมฤกษ์",
+        "my": "မဂ္ဂဇင်း/စာနယ်ဇင်း စတင်ထုတ်",
+        "km": "ការចាប់ផ្ដើមច្បាប់ទី១",
+        "id": "terbitan perdana"
+      }
+    },
+    {
+      "id": 1031,
+      "pos": "名詞",
+      "kanji": "雑木",
+      "reading": "ぞうき",
+      "meanings": {
+        "ja": "雑木",
+        "en": "assorted small trees",
+        "zh": "杂木",
+        "tw": "雜木",
+        "ko": "잡목",
+        "vi": "cây tạp",
+        "th": "ไม้พุ่มหลากชนิด",
+        "my": "သစ်ပင်ကွဲမျိုး",
+        "km": "ដើមឈើចម្រុះ",
+        "id": "pepohonan campur"
+      }
+    },
+    {
+      "id": 1032,
+      "pos": "名詞",
+      "kanji": "増強",
+      "reading": "ぞうきょう",
+      "meanings": {
+        "ja": "増強",
+        "en": "reinforcement; buildup",
+        "zh": "增强",
+        "tw": "增強",
+        "ko": "증강",
+        "vi": "tăng cường",
+        "th": "เสริมกำลัง",
+        "my": "တိုးမြှင့်",
+        "km": "បន្ថែមកម្លាំង",
+        "id": "penguatan"
+      }
+    },
+    {
+      "id": 1033,
+      "pos": "名詞",
+      "kanji": "送金",
+      "reading": "そうきん",
+      "meanings": {
+        "ja": "送金",
+        "en": "remittance",
+        "zh": "汇款",
+        "tw": "匯款",
+        "ko": "송금",
+        "vi": "chuyển tiền",
+        "th": "โอนเงิน",
+        "my": "ငွေလွှဲ",
+        "km": "ផ្ញើលុយ",
+        "id": "remitansi"
+      }
+    },
+    {
+      "id": 1034,
+      "pos": "名詞",
+      "kanji": "走行",
+      "reading": "そうこう",
+      "meanings": {
+        "ja": "走行",
+        "en": "running/driving (vehicle)",
+        "zh": "行驶",
+        "tw": "行駛",
+        "ko": "주행",
+        "vi": "chạy xe",
+        "th": "วิ่ง (ยานพาหนะ)",
+        "my": "မောင်းနှင်ခြင်း",
+        "km": "បើកបរ",
+        "id": "berjalan (kendaraan)"
+      }
+    },
+    {
+      "id": 1035,
+      "pos": "名詞",
+      "kanji": "総合",
+      "reading": "そうごう",
+      "meanings": {
+        "ja": "総合",
+        "en": "synthesis; integrated",
+        "zh": "综合",
+        "tw": "綜合",
+        "ko": "종합",
+        "vi": "tổng hợp",
+        "th": "บูรณาการ",
+        "my": "စုစည်းမှု",
+        "km": "សរុបរួម",
+        "id": "terpadu; sintesis"
+      }
+    },
+    {
+      "id": 1036,
+      "pos": "名詞",
+      "kanji": "捜索",
+      "reading": "そうさく",
+      "meanings": {
+        "ja": "捜索",
+        "en": "search (for missing)",
+        "zh": "搜寻",
+        "tw": "搜尋",
+        "ko": "수색",
+        "vi": "tìm kiếm (người/vật mất)",
+        "th": "ค้นหา (ผู้สูญหาย)",
+        "my": "ရှာဖွေမြှောက်",
+        "km": "ស្វែងរក",
+        "id": "pencarian"
+      }
+    },
+    {
+      "id": 1037,
+      "pos": "名詞",
+      "kanji": "蔵相",
+      "reading": "ぞうしょう",
+      "meanings": {
+        "ja": "蔵相",
+        "en": "Minister of Finance (JP)",
+        "zh": "大藏相（财务大臣）",
+        "tw": "大藏相（財務大臣）",
+        "ko": "대장상(재무대신)",
+        "vi": "Bộ trưởng Tài chính (Nhật)",
+        "th": "รัฐมนตรีว่าการกระทรวงการคลัง (ญี่ปุ่น)",
+        "my": "ငွေကြေးဝန်ကြီး(ယသ) ",
+        "km": "រដ្ឋមន្ត្រីហិរញ្ញវត្ថុ (ជប៉ុន)",
+        "id": "Menteri Keuangan (JP)"
+      }
+    },
+    {
+      "id": 1038,
+      "pos": "名詞",
+      "kanji": "装飾",
+      "reading": "そうしょく",
+      "meanings": {
+        "ja": "装飾",
+        "en": "decoration; ornamentation",
+        "zh": "装饰",
+        "tw": "裝飾",
+        "ko": "장식",
+        "vi": "trang trí",
+        "th": "การตกแต่ง",
+        "my": "အလှပြင်",
+        "km": "ការតុបតែង",
+        "id": "dekorasi"
+      }
+    },
+    {
+      "id": 1039,
+      "pos": "名詞",
+      "kanji": "増進",
+      "reading": "ぞうしん",
+      "meanings": {
+        "ja": "増進",
+        "en": "promotion; improvement",
+        "zh": "增进",
+        "tw": "增進",
+        "ko": "증진",
+        "vi": "tăng tiến; cải thiện",
+        "th": "ส่งเสริม; เพิ่มพูน",
+        "my": "တိုးတက်မှု",
+        "km": "ជំរុញឲ្យកើន",
+        "id": "peningkatan"
+      }
+    },
+    {
+      "id": 1040,
+      "pos": "名詞",
+      "kanji": "相対",
+      "reading": "そうたい",
+      "meanings": {
+        "ja": "相対",
+        "en": "relativity; relative",
+        "zh": "相对",
+        "tw": "相對",
+        "ko": "상대",
+        "vi": "tính tương đối",
+        "th": "ความสัมพันธ์แบบสัมพัทธ์",
+        "my": "ဆက်ဆံရေးအပြန်အလှန်",
+        "km": "ទំនាក់ទំនងសមាមាត្រ",
+        "id": "relativitas"
+      }
+    },
+    {
+      "id": 1041,
+      "pos": "名詞",
+      "kanji": "騒動",
+      "reading": "そうどう",
+      "meanings": {
+        "ja": "騒動",
+        "en": "riot; disturbance",
+        "zh": "骚动",
+        "tw": "騷動",
+        "ko": "소동",
+        "vi": "náo loạn",
+        "th": "ความวุ่นวาย",
+        "my": "တရာင်းမှု",
+        "km": "ចលាចរ",
+        "id": "kerusuhan"
+      }
+    },
+    {
+      "id": 1042,
+      "pos": "名詞",
+      "kanji": "遭難",
+      "reading": "そうなん",
+      "meanings": {
+        "ja": "遭難",
+        "en": "disaster; shipwreck",
+        "zh": "遇难",
+        "tw": "遇難",
+        "ko": "조난",
+        "vi": "gặp nạn",
+        "th": "ประสบภัย",
+        "my": "ထိခိုက်မိခြင်း",
+        "km": "ជួបគ្រោះថ្នាក់",
+        "id": "kecelakaan (laut/gunung)"
+      }
+    },
+    {
+      "id": 1043,
+      "pos": "名詞",
+      "kanji": "相場",
+      "reading": "そうば",
+      "meanings": {
+        "ja": "相場",
+        "en": "market price",
+        "zh": "行情；市价",
+        "tw": "行情；市價",
+        "ko": "시세",
+        "vi": "giá thị trường",
+        "th": "ราคาตลาด",
+        "my": "စျေးကွက်ဈေး",
+        "km": "តម្លៃទីផ្សារ",
+        "id": "harga pasar"
+      }
+    },
+    {
+      "id": 1044,
+      "pos": "名詞",
+      "kanji": "装備",
+      "reading": "そうび",
+      "meanings": {
+        "ja": "装備",
+        "en": "equipment; gear",
+        "zh": "装备",
+        "tw": "裝備",
+        "ko": "장비",
+        "vi": "trang bị",
+        "th": "อุปกรณ์",
+        "my": "ကိရိယာပစ္စည်း",
+        "km": "ឧបករណ៍",
+        "id": "perlengkapan"
+      }
+    },
+    {
+      "id": 1045,
+      "pos": "名詞",
+      "kanji": "創立",
+      "reading": "そうりつ",
+      "meanings": {
+        "ja": "創立",
+        "en": "establishment; founding",
+        "zh": "创立",
+        "tw": "創立",
+        "ko": "창립",
+        "vi": "sáng lập",
+        "th": "ก่อตั้ง",
+        "my": "တည်ထောင်ခြင်း",
+        "km": "បង្កើតឡើង",
+        "id": "pendirian"
+      }
+    },
+    {
+      "id": 1046,
+      "pos": "名詞",
+      "kanji": "ソース",
+      "reading": "ソース",
+      "meanings": {
+        "ja": "ソース",
+        "en": "sauce",
+        "zh": "酱汁",
+        "tw": "醬汁",
+        "ko": "소스",
+        "vi": "nước xốt",
+        "th": "ซอส",
+        "my": "ဆော့စ်",
+        "km": "ស៊ុប/សូស",
+        "id": "saus"
+      }
+    },
+    {
+      "id": 1047,
+      "pos": "名詞",
+      "kanji": "促進",
+      "reading": "そくしん",
+      "meanings": {
+        "ja": "促進",
+        "en": "promotion; acceleration",
+        "zh": "促进",
+        "tw": "促進",
+        "ko": "촉진",
+        "vi": "thúc đẩy",
+        "th": "เร่งส่งเสริม",
+        "my": "ဖြို့အားပေး",
+        "km": "ជំរុញ",
+        "id": "promosi; percepatan"
+      }
+    },
+    {
+      "id": 1048,
+      "pos": "名詞",
+      "kanji": "束縛",
+      "reading": "そくばく",
+      "meanings": {
+        "ja": "束縛",
+        "en": "restraint; restriction",
+        "zh": "束缚",
+        "tw": "束縛",
+        "ko": "속박",
+        "vi": "ràng buộc",
+        "th": "ผูกมัด",
+        "my": "ဖက်သိမ်းမှု",
+        "km": "ចងចាប់",
+        "id": "pembatasan; belenggu"
+      }
+    },
+    {
+      "id": 1049,
+      "pos": "名詞",
+      "kanji": "側面",
+      "reading": "そくめん",
+      "meanings": {
+        "ja": "側面",
+        "en": "side; aspect",
+        "zh": "侧面；方面",
+        "tw": "側面；方面",
+        "ko": "측면",
+        "vi": "khía cạnh; mặt bên",
+        "th": "ด้าน; มุมมอง",
+        "my": "ဘက်ခြမ်း",
+        "km": "ជ្រុង/ផ្នែក",
+        "id": "sisi; aspek"
+      }
+    },
+    {
+      "id": 1050,
+      "pos": "名詞",
+      "kanji": "素材",
+      "reading": "そざい",
+      "meanings": {
+        "ja": "素材",
+        "en": "material; ingredient",
+        "zh": "素材；材料",
+        "tw": "素材；材料",
+        "ko": "소재; 재료",
+        "vi": "nguyên liệu",
+        "th": "วัสดุ; ส่วนผสม",
+        "my": "အစုအဝေး/ကုန်ကြမ်း",
+        "km": "វត្ថុធាតុ",
+        "id": "bahan; material"
+      }
+    }
+  ]
+}

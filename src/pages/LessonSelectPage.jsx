@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import "../styles/LessonSelectPage.css";
 
 const LESSON_COUNTS = {
-  n5: 14,
+  n5: 18,
   n4: 12,
   n3: 36,
   n2: 20,

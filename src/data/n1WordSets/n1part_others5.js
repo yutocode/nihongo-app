@@ -1,0 +1,16 @@
+export const n1part_others5 = {
+  Lesson56: [
+    { id: 2688, kanji: "～油", reading: "～ゆ", meanings: { ja: "～油／油の種類を表す", en: "~oil (type of oil)", zh: "～油；油類", tw: "～油；油類", ko: "~기름", vi: "dầu ~", th: "น้ำมัน ~", my: "ဆီ ~", km: "ប្រេង ~", id: "minyak ~" } },
+    { id: 2689, kanji: "よし (かん)", reading: "よし (かん)", meanings: { ja: "よし（感）／よろしい・よい", en: "okay; all right (expression)", zh: "好；行", tw: "好；行", ko: "좋아", vi: "được rồi; tốt", th: "ตกลง; ดี", my: "ကောင်းပါပြီ", km: "ល្អហើយ", id: "baik; oke" } },
+    { id: 2690, kanji: "良し", reading: "よし", meanings: { ja: "良し／よいこと", en: "good; fine", zh: "好的", tw: "好的", ko: "좋음", vi: "tốt", th: "ดี", my: "ကောင်းသော", km: "ល្អ", id: "baik" } },
+    { id: 2691, kanji: "よって (よりどころ)", reading: "よって (よりどころ)", meanings: { ja: "よって（拠り所）／～によって", en: "therefore; by means of", zh: "因此；由於", tw: "因此；由於", ko: "그러므로; ~에 의해", vi: "vì vậy; bởi", th: "ดังนั้น; โดย", my: "ဖြင့်", km: "ដោយសារ", id: "oleh karena itu; berdasarkan" } },
+    { id: 2692, kanji: "～寄り", reading: "～より", meanings: { ja: "～寄り／～に近い", en: "toward; near", zh: "靠近～", tw: "靠近～", ko: "~쪽에 가까운", vi: "nghiêng về; gần ~", th: "ใกล้กับ ~", my: "~ ချဉ်းကပ်", km: "ជិត ~", id: "menuju ke ~" } },
+    { id: 2693, kanji: "レギュラー", reading: "レギュラー", meanings: { ja: "レギュラー／通常の", en: "regular; standard", zh: "普通的；標準的", tw: "普通的；標準的", ko: "일반적인; 레귤러", vi: "thông thường", th: "ปกติ; มาตรฐาน", my: "ပုံမှန်", km: "ធម្មតា", id: "reguler; standar" } },
+    { id: 2694, kanji: "はまる", reading: "はまる", meanings: { ja: "はまる／ぴったり入る", en: "to fit; to get stuck", zh: "嵌入；陷入", tw: "嵌入；陷入", ko: "끼다; 빠지다", vi: "vừa khít; mắc kẹt", th: "พอดี; ติดอยู่", my: "အဖက်အညီဖြစ်သည်", km: "សមព្រិត", id: "pas; terjebak" } },
+    { id: 2695, kanji: "ばらまく", reading: "ばらまく", meanings: { ja: "ばらまく／まき散らす", en: "to scatter; to spread (money, rumors)", zh: "散佈；撒錢", tw: "散佈；撒錢", ko: "흩뿌리다", vi: "rải; phát tán", th: "โปรย; แจก", my: "ဖြန့်ဝေသည်", km: "បញ្ចេញ", id: "menyebar; menabur" } },
+    { id: 2696, kanji: "ひいては", reading: "ひいては", meanings: { ja: "ひいては／さらには", en: "furthermore; and eventually", zh: "進而；甚至", tw: "進而；甚至", ko: "나아가서", vi: "hơn nữa; dẫn đến", th: "ยิ่งไปกว่านั้น", my: "ထပ်ပြီး", km: "បន្ថែមទៀត", id: "selanjutnya; bahkan" } },
+    { id: 2697, kanji: "ひたすら", reading: "ひたすら", meanings: { ja: "ひたすら／一途に", en: "earnestly; intently", zh: "一心一意地", tw: "一心一意地", ko: "오로지; 열심히", vi: "chuyên tâm; chăm chỉ", th: "มุ่งมั่น; ตั้งใจ", my: "အာရုံစိုက်စွာ", km: "អស់ពីចិត្ត", id: "dengan sungguh-sungguh" } },
+    { id: 2698, kanji: "ひび (かべの～)", reading: "ひび (かべの～)", meanings: { ja: "ひび（壁の～）／割れ目", en: "crack (in a wall)", zh: "裂縫；裂痕", tw: "裂縫；裂痕", ko: "금", vi: "vết nứt", th: "รอยร้าว", my: "ပေါက်ခြင်း", km: "ស្នាមប្រេះ", id: "retakan" } },
+    { id: 2699, kanji: "びら", reading: "びら", meanings: { ja: "びら／チラシ", en: "leaflet; flyer", zh: "傳單", tw: "傳單", ko: "전단지", vi: "tờ rơi", th: "ใบปลิว", my: "ကြော်ငြာစာစောင်", km: "សន្លឹកផ្សាយពាណិជ្ជកម្ម", id: "selebaran" } },
+  ],
+};

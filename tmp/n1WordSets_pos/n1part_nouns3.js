@@ -1,0 +1,904 @@
+export const n1part_nouns3 = {
+  "Lesson3": [
+    {
+      "id": 101,
+      "pos": "名詞",
+      "kanji": "コントロール",
+      "reading": "コントロール",
+      "meanings": {
+        "ja": "コントロール（制御）",
+        "en": "control",
+        "zh": "控制",
+        "tw": "控制",
+        "ko": "컨트롤; 제어",
+        "vi": "điều khiển",
+        "th": "ควบคุม",
+        "my": "ထိန်းချုပ်ခြင်း",
+        "km": "ការគ្រប់គ្រង",
+        "id": "kendali"
+      }
+    },
+    {
+      "id": 102,
+      "pos": "名詞",
+      "kanji": "コンパス",
+      "reading": "コンパス",
+      "meanings": {
+        "ja": "コンパス（円を描く道具）",
+        "en": "compass (for drawing circles)",
+        "zh": "圆规",
+        "tw": "圓規",
+        "ko": "컴퍼스",
+        "vi": "com-pa",
+        "th": "วงเวียน",
+        "my": "ကွင်းဖျား",
+        "km": "ខ្នាតគូរវង់",
+        "id": "jangka"
+      }
+    },
+    {
+      "id": 103,
+      "pos": "名詞",
+      "kanji": "根本",
+      "reading": "こんぽん",
+      "meanings": {
+        "ja": "根本",
+        "en": "root; foundation",
+        "zh": "根本; 基础",
+        "tw": "根本; 基礎",
+        "ko": "근본",
+        "vi": "gốc rễ; nền tảng",
+        "th": "พื้นฐาน",
+        "my": "အခြေခံအမြစ်",
+        "km": "គ្រឹះសម្បទាន",
+        "id": "dasar; akar"
+      }
+    },
+    {
+      "id": 104,
+      "pos": "名詞",
+      "kanji": "財",
+      "reading": "ざい",
+      "meanings": {
+        "ja": "財（財産）",
+        "en": "wealth; fortune",
+        "zh": "财富",
+        "tw": "財富",
+        "ko": "재산",
+        "vi": "tài sản",
+        "th": "ทรัพย์สิน",
+        "my": "ပစ္စည်းဥစ္စာ",
+        "km": "ទ្រព្យសម្បត្តិ",
+        "id": "kekayaan"
+      }
+    },
+    {
+      "id": 105,
+      "pos": "名詞",
+      "kanji": "再会",
+      "reading": "さいかい",
+      "meanings": {
+        "ja": "再会",
+        "en": "meeting again; reunion",
+        "zh": "重逢",
+        "tw": "重逢",
+        "ko": "재회",
+        "vi": "gặp lại",
+        "th": "พบกันอีกครั้ง",
+        "my": "ပြန်တွေ့ခြင်း",
+        "km": "ជួបជុំម្ដងទៀត",
+        "id": "bertemu kembali"
+      }
+    },
+    {
+      "id": 106,
+      "pos": "名詞",
+      "kanji": "災害",
+      "reading": "さいがい",
+      "meanings": {
+        "ja": "災害",
+        "en": "disaster; calamity",
+        "zh": "灾害",
+        "tw": "災害",
+        "ko": "재해",
+        "vi": "thiên tai",
+        "th": "ภัยพิบัติ",
+        "my": "ဘေးအန္တရာယ်",
+        "km": "គ្រោះថ្នាក់ធម្មជាតិ",
+        "id": "bencana"
+      }
+    },
+    {
+      "id": 107,
+      "pos": "名詞",
+      "kanji": "細菌",
+      "reading": "さいきん",
+      "meanings": {
+        "ja": "細菌",
+        "en": "bacterium",
+        "zh": "细菌",
+        "tw": "細菌",
+        "ko": "세균",
+        "vi": "vi khuẩn",
+        "th": "แบคทีเรีย",
+        "my": "ဘက်တီးရီးယား",
+        "km": "បាក់តេរី",
+        "id": "bakteri"
+      }
+    },
+    {
+      "id": 108,
+      "pos": "名詞",
+      "kanji": "細工",
+      "reading": "さいく",
+      "meanings": {
+        "ja": "細工",
+        "en": "workmanship; craftsmanship",
+        "zh": "工艺; 手工",
+        "tw": "工藝; 手工",
+        "ko": "세공; 솜씨",
+        "vi": "chế tác",
+        "th": "งานฝีมือ",
+        "my": "လက်မှုပညာ",
+        "km": "សិប្បកម្ម",
+        "id": "kerajinan tangan"
+      }
+    },
+    {
+      "id": 109,
+      "pos": "名詞",
+      "kanji": "採掘",
+      "reading": "さいくつ",
+      "meanings": {
+        "ja": "採掘",
+        "en": "mining; excavation",
+        "zh": "开采",
+        "tw": "開採",
+        "ko": "채굴",
+        "vi": "khai thác mỏ",
+        "th": "ขุดเจาะ",
+        "my": "တူးဖော်ခြင်း",
+        "km": "ជីកយក",
+        "id": "penambangan"
+      }
+    },
+    {
+      "id": 110,
+      "pos": "名詞",
+      "kanji": "サイクル",
+      "reading": "サイクル",
+      "meanings": {
+        "ja": "サイクル（周期）",
+        "en": "cycle",
+        "zh": "循环",
+        "tw": "循環",
+        "ko": "주기; 사이클",
+        "vi": "chu kỳ",
+        "th": "วงจร",
+        "my": "လှည့်ပတ်ခြင်း",
+        "km": "វដ្ត",
+        "id": "siklus"
+      }
+    },
+    {
+      "id": 111,
+      "pos": "名詞",
+      "kanji": "採決",
+      "reading": "さいけつ",
+      "meanings": {
+        "ja": "採決（投票で決めること）",
+        "en": "vote",
+        "zh": "表决",
+        "tw": "表決",
+        "ko": "표결",
+        "vi": "biểu quyết",
+        "th": "ลงคะแนนเสียง",
+        "my": "မဲပေးဆုံးဖြတ်ခြင်း",
+        "km": "ការបោះឆ្នោតសម្រេច",
+        "id": "pemungutan suara"
+      }
+    },
+    {
+      "id": 112,
+      "pos": "名詞",
+      "kanji": "再建",
+      "reading": "さいけん",
+      "meanings": {
+        "ja": "再建",
+        "en": "reconstruction; rebuilding",
+        "zh": "重建",
+        "tw": "重建",
+        "ko": "재건",
+        "vi": "tái thiết",
+        "th": "สร้างใหม่",
+        "my": "ပြန်လည်တည်ဆောက်ခြင်း",
+        "km": "ស្តារឡើងវិញ",
+        "id": "pembangunan kembali"
+      }
+    },
+    {
+      "id": 113,
+      "pos": "名詞",
+      "kanji": "再現",
+      "reading": "さいげん",
+      "meanings": {
+        "ja": "再現",
+        "en": "reappearance; reproduction",
+        "zh": "再现",
+        "tw": "再現",
+        "ko": "재현",
+        "vi": "tái hiện",
+        "th": "แสดงอีกครั้ง",
+        "my": "ပြန်လည်ပေါ်ပေါက်ခြင်း",
+        "km": "បង្ហាញឡើងវិញ",
+        "id": "reproduksi"
+      }
+    },
+    {
+      "id": 114,
+      "pos": "名詞",
+      "kanji": "財源",
+      "reading": "ざいげん",
+      "meanings": {
+        "ja": "財源",
+        "en": "financial resources; source of funds",
+        "zh": "财源",
+        "tw": "財源",
+        "ko": "재원",
+        "vi": "nguồn tài chính",
+        "th": "แหล่งเงินทุน",
+        "my": "ငွေကြေးအရင်းအမြစ်",
+        "km": "ប្រភពហិរញ្ញវត្ថុ",
+        "id": "sumber dana"
+      }
+    },
+    {
+      "id": 115,
+      "pos": "名詞",
+      "kanji": "在庫",
+      "reading": "ざいこ",
+      "meanings": {
+        "ja": "在庫",
+        "en": "inventory; stock",
+        "zh": "库存",
+        "tw": "庫存",
+        "ko": "재고",
+        "vi": "hàng tồn kho",
+        "th": "สินค้าคงคลัง",
+        "my": "ကုန်ပစ္စည်းအရှုံး",
+        "km": "ស្តុកទំនិញ",
+        "id": "stok barang"
+      }
+    },
+    {
+      "id": 116,
+      "pos": "名詞",
+      "kanji": "採算",
+      "reading": "さいさん",
+      "meanings": {
+        "ja": "採算",
+        "en": "profitability",
+        "zh": "收益",
+        "tw": "收益",
+        "ko": "수지; 이익",
+        "vi": "lợi nhuận",
+        "th": "กำไร",
+        "my": "အမြတ်အမြန်",
+        "km": "ប្រាក់ចំណេញ",
+        "id": "keuntungan"
+      }
+    },
+    {
+      "id": 117,
+      "pos": "名詞",
+      "kanji": "サイズ",
+      "reading": "サイズ",
+      "meanings": {
+        "ja": "サイズ（大きさ）",
+        "en": "size",
+        "zh": "尺寸",
+        "tw": "尺寸",
+        "ko": "사이즈; 크기",
+        "vi": "kích thước",
+        "th": "ขนาด",
+        "my": "အရွယ်အစား",
+        "km": "ទំហំ",
+        "id": "ukuran"
+      }
+    },
+    {
+      "id": 118,
+      "pos": "名詞",
+      "kanji": "再生",
+      "reading": "さいせい",
+      "meanings": {
+        "ja": "再生",
+        "en": "regeneration; playback",
+        "zh": "再生",
+        "tw": "再生",
+        "ko": "재생",
+        "vi": "tái sinh; phát lại",
+        "th": "เล่นซ้ำ/เกิดใหม่",
+        "my": "ပြန်လည်ဖြစ်ပေါ်ခြင်း",
+        "km": "ការស្តារឡើងវិញ",
+        "id": "pemutaran; regenerasi"
+      }
+    },
+    {
+      "id": 119,
+      "pos": "名詞",
+      "kanji": "財政",
+      "reading": "ざいせい",
+      "meanings": {
+        "ja": "財政",
+        "en": "public finance; fiscal policy",
+        "zh": "财政",
+        "tw": "財政",
+        "ko": "재정",
+        "vi": "tài chính công",
+        "th": "การคลัง",
+        "my": "ငွေကြေးအုပ်ချုပ်မှု",
+        "km": "ហិរញ្ញវត្ថុសាធារណៈ",
+        "id": "keuangan publik"
+      }
+    },
+    {
+      "id": 120,
+      "pos": "名詞",
+      "kanji": "最善",
+      "reading": "さいぜん",
+      "meanings": {
+        "ja": "最善",
+        "en": "the very best",
+        "zh": "最善",
+        "tw": "最善",
+        "ko": "최선",
+        "vi": "tốt nhất",
+        "th": "ดีที่สุด",
+        "my": "အကောင်းဆုံး",
+        "km": "ល្អបំផុត",
+        "id": "terbaik"
+      }
+    },
+    {
+      "id": 121,
+      "pos": "名詞",
+      "kanji": "採択",
+      "reading": "さいたく",
+      "meanings": {
+        "ja": "採択",
+        "en": "adoption (of a proposal)",
+        "zh": "采纳",
+        "tw": "採納",
+        "ko": "채택",
+        "vi": "thông qua",
+        "th": "นำมาใช้/ยอมรับ",
+        "my": "လက်ခံသုံးစွဲခြင်း",
+        "km": "ការទទួលយក",
+        "id": "adopsi"
+      }
+    },
+    {
+      "id": 122,
+      "pos": "名詞",
+      "kanji": "栽培",
+      "reading": "さいばい",
+      "meanings": {
+        "ja": "栽培",
+        "en": "cultivation; growing (plants)",
+        "zh": "栽培",
+        "tw": "栽培",
+        "ko": "재배",
+        "vi": "trồng trọt",
+        "th": "เพาะปลูก",
+        "my": "စိုက်ပျိုးခြင်း",
+        "km": "ដាំដុះ",
+        "id": "budidaya"
+      }
+    },
+    {
+      "id": 123,
+      "pos": "名詞",
+      "kanji": "再発",
+      "reading": "さいはつ",
+      "meanings": {
+        "ja": "再発",
+        "en": "recurrence",
+        "zh": "复发",
+        "tw": "復發",
+        "ko": "재발",
+        "vi": "tái phát",
+        "th": "เกิดซ้ำ",
+        "my": "ပြန်လည်ဖြစ်ပေါ်ခြင်း",
+        "km": "កើតឡើងម្ដងទៀត",
+        "id": "kambuh"
+      }
+    },
+    {
+      "id": 124,
+      "pos": "名詞",
+      "kanji": "細胞",
+      "reading": "さいぼう",
+      "meanings": {
+        "ja": "細胞",
+        "en": "cell (biology)",
+        "zh": "细胞",
+        "tw": "細胞",
+        "ko": "세포",
+        "vi": "tế bào",
+        "th": "เซลล์",
+        "my": "ဆဲလ်",
+        "km": "កោសិកា",
+        "id": "sel"
+      }
+    },
+    {
+      "id": 125,
+      "pos": "名詞",
+      "kanji": "採用",
+      "reading": "さいよう",
+      "meanings": {
+        "ja": "採用",
+        "en": "employment; adoption (of method)",
+        "zh": "采用; 录用",
+        "tw": "採用; 錄用",
+        "ko": "채용",
+        "vi": "tuyển dụng",
+        "th": "รับเข้า/ใช้",
+        "my": "အလုပ်ခန့်ခြင်း",
+        "km": "ការជ្រើសរើស",
+        "id": "rekrutmen"
+      }
+    },
+    {
+      "id": 126,
+      "pos": "名詞",
+      "kanji": "竿",
+      "reading": "さお",
+      "meanings": {
+        "ja": "竿（釣り竿など）",
+        "en": "rod; pole",
+        "zh": "竿子",
+        "tw": "竿子",
+        "ko": "막대기; 낚싯대",
+        "vi": "cần (câu cá)",
+        "th": "คันเบ็ด/ไม้ยาว",
+        "my": "တိုင်",
+        "km": "ដំបង",
+        "id": "tongkat"
+      }
+    },
+    {
+      "id": 127,
+      "pos": "名詞",
+      "kanji": "差額",
+      "reading": "さがく",
+      "meanings": {
+        "ja": "差額",
+        "en": "balance; difference in amount",
+        "zh": "差额",
+        "tw": "差額",
+        "ko": "차액",
+        "vi": "khoản chênh lệch",
+        "th": "ส่วนต่างราคา",
+        "my": "အပိုငွေ/ခွဲခြားငွေ",
+        "km": "ប្រាក់ខុសគ្នា",
+        "id": "selisih"
+      }
+    },
+    {
+      "id": 128,
+      "pos": "名詞",
+      "kanji": "杯",
+      "reading": "さかずき",
+      "meanings": {
+        "ja": "杯（さかずき）",
+        "en": "sake cup",
+        "zh": "酒杯",
+        "tw": "酒杯",
+        "ko": "술잔",
+        "vi": "chén rượu",
+        "th": "ถ้วยสาเก",
+        "my": "ဝိုင်ခွက်",
+        "km": "ពាងស្រា",
+        "id": "cawan sake"
+      }
+    },
+    {
+      "id": 129,
+      "pos": "名詞",
+      "kanji": "逆立ち",
+      "reading": "さかだち",
+      "meanings": {
+        "ja": "逆立ち",
+        "en": "handstand",
+        "zh": "倒立",
+        "tw": "倒立",
+        "ko": "물구나무서기",
+        "vi": "trồng cây chuối",
+        "th": "ยืนกลับหัว",
+        "my": "အဖြောင့်နောက်အထောက်",
+        "km": "ឈរទ្រេត",
+        "id": "berdiri terbalik"
+      }
+    },
+    {
+      "id": 130,
+      "pos": "名詞",
+      "kanji": "詐欺",
+      "reading": "さぎ",
+      "meanings": {
+        "ja": "詐欺",
+        "en": "fraud; scam",
+        "zh": "诈骗",
+        "tw": "詐騙",
+        "ko": "사기",
+        "vi": "lừa đảo",
+        "th": "ฉ้อโกง",
+        "my": "လိမ်လည်မှု",
+        "km": "ការលួចបន្លំ",
+        "id": "penipuan"
+      }
+    },
+    {
+      "id": 131,
+      "pos": "名詞",
+      "kanji": "削減",
+      "reading": "さくげん",
+      "meanings": {
+        "ja": "削減",
+        "en": "reduction; cut",
+        "zh": "削减",
+        "tw": "削減",
+        "ko": "삭감",
+        "vi": "giảm bớt",
+        "th": "ลดลง",
+        "my": "လျှော့ချခြင်း",
+        "km": "កាត់បន្ថយ",
+        "id": "pengurangan"
+      }
+    },
+    {
+      "id": 132,
+      "pos": "名詞",
+      "kanji": "錯誤",
+      "reading": "さくご",
+      "meanings": {
+        "ja": "錯誤",
+        "en": "mistake; error",
+        "zh": "错误",
+        "tw": "錯誤",
+        "ko": "착오",
+        "vi": "sai lầm",
+        "th": "ความผิดพลาด",
+        "my": "မှားယွင်းမှု",
+        "km": "កំហុស",
+        "id": "kesalahan"
+      }
+    },
+    {
+      "id": 133,
+      "pos": "名詞",
+      "kanji": "作戦",
+      "reading": "さくせん",
+      "meanings": {
+        "ja": "作戦",
+        "en": "strategy; tactics",
+        "zh": "作战; 策略",
+        "tw": "作戰; 策略",
+        "ko": "작전; 전략",
+        "vi": "chiến lược",
+        "th": "ยุทธการ/กลยุทธ์",
+        "my": "နည်းလမ်းစစ်ဆင်ရေး",
+        "km": "យុទ្ធសាស្រ្ត",
+        "id": "strategi"
+      }
+    },
+    {
+      "id": 134,
+      "pos": "名詞",
+      "kanji": "叫び",
+      "reading": "さけび",
+      "meanings": {
+        "ja": "叫び",
+        "en": "shout; scream",
+        "zh": "喊叫",
+        "tw": "喊叫",
+        "ko": "외침",
+        "vi": "tiếng hét",
+        "th": "เสียงตะโกน",
+        "my": "အော်ဟစ်သံ",
+        "km": "ស្រែក",
+        "id": "teriakan"
+      }
+    },
+    {
+      "id": 135,
+      "pos": "名詞",
+      "kanji": "指図",
+      "reading": "さしず",
+      "meanings": {
+        "ja": "指図",
+        "en": "directions; orders",
+        "zh": "指示",
+        "tw": "指示",
+        "ko": "지시",
+        "vi": "chỉ dẫn",
+        "th": "คำสั่ง",
+        "my": "ညွှန်ကြားချက်",
+        "km": "ការណែនាំ",
+        "id": "perintah"
+      }
+    },
+    {
+      "id": 136,
+      "pos": "名詞",
+      "kanji": "座談会",
+      "reading": "ざだんかい",
+      "meanings": {
+        "ja": "座談会",
+        "en": "symposium; round-table talk",
+        "zh": "座谈会",
+        "tw": "座談會",
+        "ko": "좌담회",
+        "vi": "tọa đàm",
+        "th": "เสวนา",
+        "my": "ညှိနှိုင်းပွဲ",
+        "km": "សន្និសីទជជែក",
+        "id": "diskusi meja bundar"
+      }
+    },
+    {
+      "id": 137,
+      "pos": "名詞",
+      "kanji": "雑貨",
+      "reading": "ざっか",
+      "meanings": {
+        "ja": "雑貨",
+        "en": "miscellaneous goods",
+        "zh": "杂货",
+        "tw": "雜貨",
+        "ko": "잡화",
+        "vi": "hàng tạp hóa",
+        "th": "ของจิปาถะ",
+        "my": "အမျိုးအစားပစ္စည်း",
+        "km": "ទំនិញចម្រុះ",
+        "id": "barang kelontong"
+      }
+    },
+    {
+      "id": 138,
+      "pos": "名詞",
+      "kanji": "殺人",
+      "reading": "さつじん",
+      "meanings": {
+        "ja": "殺人",
+        "en": "murder; homicide",
+        "zh": "杀人",
+        "tw": "殺人",
+        "ko": "살인",
+        "vi": "giết người",
+        "th": "ฆาตกรรม",
+        "my": "လူသတ်မှု",
+        "km": "ការសម្លាប់មនុស្ស",
+        "id": "pembunuhan"
+      }
+    },
+    {
+      "id": 139,
+      "pos": "名詞",
+      "kanji": "雑談",
+      "reading": "ざつだん",
+      "meanings": {
+        "ja": "雑談",
+        "en": "chatting; small talk",
+        "zh": "闲聊",
+        "tw": "閒聊",
+        "ko": "잡담",
+        "vi": "tán gẫu",
+        "th": "พูดคุยทั่วไป",
+        "my": "စကားပြောခြင်း",
+        "km": "និយាយលេង",
+        "id": "ngobrol"
+      }
+    },
+    {
+      "id": 140,
+      "pos": "名詞",
+      "kanji": "最中",
+      "reading": "さなか",
+      "meanings": {
+        "ja": "最中（〜のさなか）",
+        "en": "in the middle of",
+        "zh": "正当...之中",
+        "tw": "正當...之中",
+        "ko": "한창 ...중에",
+        "vi": "đang lúc",
+        "th": "ในระหว่าง",
+        "my": "အလယ်မှာ",
+        "km": "កណ្ដាលនៃ",
+        "id": "sedang (di tengah)"
+      }
+    },
+    {
+      "id": 141,
+      "pos": "名詞",
+      "kanji": "座標",
+      "reading": "ざひょう",
+      "meanings": {
+        "ja": "座標",
+        "en": "coordinate",
+        "zh": "坐标",
+        "tw": "座標",
+        "ko": "좌표",
+        "vi": "tọa độ",
+        "th": "พิกัด",
+        "my": "အတိုင်းအတာချင်း",
+        "km": "កូអរដោនេ",
+        "id": "koordinat"
+      }
+    },
+    {
+      "id": 142,
+      "pos": "名詞",
+      "kanji": "寒気",
+      "reading": "さむけ",
+      "meanings": {
+        "ja": "寒気（さむけ）",
+        "en": "chill; shiver",
+        "zh": "寒气",
+        "tw": "寒氣",
+        "ko": "오한",
+        "vi": "ớn lạnh",
+        "th": "หนาวสั่น",
+        "my": "အေးလှုပ်ခြင်း",
+        "km": "ការភ្ញាក់អាឡាត",
+        "id": "rasa dingin"
+      }
+    },
+    {
+      "id": 143,
+      "pos": "名詞",
+      "kanji": "侍",
+      "reading": "さむらい",
+      "meanings": {
+        "ja": "侍",
+        "en": "samurai; warrior",
+        "zh": "武士",
+        "tw": "武士",
+        "ko": "사무라이",
+        "vi": "võ sĩ",
+        "th": "ซามูไร",
+        "my": "စမူရိုင်း",
+        "km": "សាមូរាយ",
+        "id": "samurai"
+      }
+    },
+    {
+      "id": 144,
+      "pos": "名詞",
+      "kanji": "作用",
+      "reading": "さよう",
+      "meanings": {
+        "ja": "作用",
+        "en": "action; effect",
+        "zh": "作用",
+        "tw": "作用",
+        "ko": "작용",
+        "vi": "tác dụng",
+        "th": "ผลกระทบ",
+        "my": "အကျိုးသက်ရောက်မှု",
+        "km": "អំពើ; ផលប៉ះពាល់",
+        "id": "efek; aksi"
+      }
+    },
+    {
+      "id": 145,
+      "pos": "名詞",
+      "kanji": "酸",
+      "reading": "さん",
+      "meanings": {
+        "ja": "酸",
+        "en": "acid",
+        "zh": "酸",
+        "tw": "酸",
+        "ko": "산",
+        "vi": "axit",
+        "th": "กรด",
+        "my": "အက်စစ်",
+        "km": "អាស៊ីត",
+        "id": "asam"
+      }
+    },
+    {
+      "id": 146,
+      "pos": "名詞",
+      "kanji": "山岳",
+      "reading": "さんがく",
+      "meanings": {
+        "ja": "山岳",
+        "en": "mountain range",
+        "zh": "山岳",
+        "tw": "山岳",
+        "ko": "산악",
+        "vi": "núi non",
+        "th": "ภูเขา",
+        "my": "တောင်တန်း",
+        "km": "ភ្នំ",
+        "id": "pegunungan"
+      }
+    },
+    {
+      "id": 147,
+      "pos": "名詞",
+      "kanji": "参議院",
+      "reading": "さんぎいん",
+      "meanings": {
+        "ja": "参議院（日本の国会の上院）",
+        "en": "House of Councillors (Japan)",
+        "zh": "参议院",
+        "tw": "參議院",
+        "ko": "참의원",
+        "vi": "Thượng viện Nhật Bản",
+        "th": "วุฒิสภาญี่ปุ่น",
+        "my": "အကြံပေးအဖွဲ့",
+        "km": "ព្រឹទ្ធសភា",
+        "id": "Dewan Penasihat Jepang"
+      }
+    },
+    {
+      "id": 148,
+      "pos": "名詞",
+      "kanji": "産休",
+      "reading": "さんきゅう",
+      "meanings": {
+        "ja": "産休（出産休暇）",
+        "en": "maternity leave",
+        "zh": "产假",
+        "tw": "產假",
+        "ko": "출산휴가",
+        "vi": "nghỉ sinh",
+        "th": "ลาคลอด",
+        "my": "မွေးဖွားခြင်းအပန်း",
+        "km": "វិស្សមកាលសម្រាលកូន",
+        "id": "cuti melahirkan"
+      }
+    },
+    {
+      "id": 149,
+      "pos": "名詞",
+      "kanji": "残金",
+      "reading": "ざんきん",
+      "meanings": {
+        "ja": "残金",
+        "en": "remaining money",
+        "zh": "余额",
+        "tw": "餘額",
+        "ko": "잔금",
+        "vi": "tiền còn lại",
+        "th": "เงินที่เหลือ",
+        "my": "ကျန်ငွေ",
+        "km": "ប្រាក់នៅសល់",
+        "id": "sisa uang"
+      }
+    },
+    {
+      "id": 150,
+      "pos": "名詞",
+      "kanji": "産出",
+      "reading": "さんしゅつ",
+      "meanings": {
+        "ja": "産出",
+        "en": "production; yield",
+        "zh": "产出",
+        "tw": "產出",
+        "ko": "산출",
+        "vi": "sản xuất",
+        "th": "การผลิต",
+        "my": "ထုတ်လုပ်ခြင်း",
+        "km": "ផលិតកម្ម",
+        "id": "produksi"
+      }
+    }
+  ]
+}

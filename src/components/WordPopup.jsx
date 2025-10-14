@@ -11,9 +11,10 @@ import "@/styles/WordPopup.css";
  *     pos?: string[], romaji?: string, audioSrc?: string,
  *     defs?: string[], examples?: Array<{jp:string, en?:string}>
  *   }
+ * - lang: string   ← ★ 追加: 現在のUI言語 (ReaderPageから渡す)
  * - onClose: () => void
  */
-export default function WordPopup({ open=false, word="", entry=null, onClose }) {
+export default function WordPopup({ open=false, word="", entry=null, lang="ja", onClose }) {
   const sheetRef = useRef(null);
 
   // 背景スクロールを止める／Escで閉じる
@@ -39,10 +40,23 @@ export default function WordPopup({ open=false, word="", entry=null, onClose }) 
     }
   };
 
+  // UI言語を story データのキーに変換
+  const pickKey = (lng) => {
+    const l = String(lng || "").toLowerCase();
+    if (l.startsWith("zh-tw") || l === "tw") return "tw";
+    if (l.startsWith("zh")     || l === "cn") return "zh";
+    if (l.startsWith("en")) return "en";
+    if (l.startsWith("ko")) return "ko";
+    if (l.startsWith("vi")) return "vi";
+    if (l.startsWith("th")) return "th";
+    if (l.startsWith("my")) return "my";
+    return "ja";
+  };
+  const langKey = pickKey(lang);
+
   const hasAny =
     entry &&
-    (entry.ja || entry.en || entry.zh || entry.tw || entry.ko || entry.vi || entry.th || entry.my ||
-     entry.defs?.length || entry.examples?.length || entry.romaji || entry.pos?.length);
+    (entry[langKey] || entry.ja || entry.defs?.length || entry.examples?.length || entry.romaji || entry.pos?.length);
 
   return (
     <div className="wp-overlay" onClick={onClose} role="dialog" aria-modal="true">
@@ -89,22 +103,15 @@ export default function WordPopup({ open=false, word="", entry=null, onClose }) 
             </section>
           ) : null}
 
-          {/* 多言語 */}
-          {(entry?.ja || entry?.en || entry?.zh || entry?.tw || entry?.ko || entry?.vi || entry?.th || entry?.my) ? (
+          {/* 選択言語の翻訳だけ */}
+          {entry?.[langKey] && (
             <section className="wp-section">
-              <h4>Translations:</h4>
+              <h4>Translation:</h4>
               <div className="wp-grid">
-                {entry?.ja && <div><b>日本語:</b> {entry.ja}</div>}
-                {entry?.en && <div><b>English:</b> {entry.en}</div>}
-                {entry?.zh && <div><b>中文:</b> {entry.zh}</div>}
-                {entry?.tw && <div><b>繁體:</b> {entry.tw}</div>}
-                {entry?.ko && <div><b>한국어:</b> {entry.ko}</div>}
-                {entry?.vi && <div><b>Tiếng Việt:</b> {entry.vi}</div>}
-                {entry?.th && <div><b>ภาษาไทย:</b> {entry.th}</div>}
-                {entry?.my && <div><b>မြန်မာ:</b> {entry.my}</div>}
+                {entry[langKey]}
               </div>
             </section>
-          ) : null}
+          )}
 
           {/* 例文 */}
           {entry?.examples?.length ? (

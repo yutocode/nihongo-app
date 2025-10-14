@@ -1,0 +1,27 @@
+export const n3part_iAdjectives1 = {
+  Lesson24: [
+    { id: 1418, kanji: "親しい", reading: "したしい", meanings: { ja:"親しい", en:"close; intimate", zh:"亲近", tw:"親近", ko:"가깝다", vi:"thân thiết", th:"สนิทสนม", my:"နီးစပ်သော", km:"ជិតស្និទ្ធ", id:"akrab" } },
+    { id: 1419, kanji: "鋭い", reading: "するどい", meanings: { ja:"鋭い", en:"sharp; pointed", zh:"锋利", tw:"鋒利", ko:"날카롭다", vi:"sắc bén", th:"คม", my:"စူးရှသော", km:"មុត", id:"tajam" } },
+    { id: 1420, kanji: "温かい", reading: "あたたかい", meanings: { ja:"温かい", en:"warm", zh:"温暖", tw:"溫暖", ko:"따뜻하다", vi:"ấm áp", th:"อบอุ่น", my:"နွေးထွေးသော", km:"កក់ក្ដៅ", id:"hangat" } },
+    { id: 1421, kanji: "羨ましい", reading: "うらやましい", meanings: { ja:"羨ましい", en:"envious; jealous", zh:"羡慕", tw:"羨慕", ko:"부럽다", vi:"ghen tị", th:"น่าอิจฉา", my:"စဉ်းစားဖွယ်", km:"អាចទុកចិត្ត", id:"iri" } },
+    { id: 1422, kanji: "幼い", reading: "おさない", meanings: { ja:"幼い", en:"very young; childish", zh:"幼小", tw:"幼小", ko:"어리다", vi:"non nớt", th:"ยังเล็ก", my:"အသက်ငယ်သော", km:"ក្មេង", id:"masih kecil" } },
+    { id: 1423, kanji: "恐ろしい", reading: "おそろしい", meanings: { ja:"恐ろしい", en:"terrible; dreadful", zh:"可怕", tw:"可怕", ko:"무섭다", vi:"đáng sợ", th:"น่ากลัว", my:"ကြောက်မက်ဖွယ်", km:"គួរឱ្យខ្លាច", id:"menakutkan" } },
+    { id: 1424, kanji: "大人しい", reading: "おとなしい", meanings: { ja:"大人しい", en:"gentle; quiet; obedient", zh:"温顺", tw:"溫順", ko:"얌전하다", vi:"ngoan ngoãn; hiền lành", th:"เรียบร้อย", my:"စိတၱပြေသော", km:"ស្ដូកស្ងាត់", id:"pendiam" } },
+    { id: 1425, kanji: "賢い", reading: "かしこい", meanings: { ja:"賢い", en:"wise; clever", zh:"聪明", tw:"聰明", ko:"똑똑하다", vi:"thông minh", th:"ฉลาด", my:"ဉာဏ်ကြွသော", km:"ឆ្លាត", id:"cerdas" } },
+    { id: 1426, kanji: "堅い", reading: "かたい", meanings: { ja:"堅い", en:"hard; solid (firm)", zh:"坚硬", tw:"堅硬", ko:"굳다", vi:"cứng chắc", th:"แข็ง", my:"မာကျောသော", km:"រឹង", id:"keras (padat)" } },
+    { id: 1427, kanji: "硬い", reading: "かたい", meanings: { ja:"硬い", en:"hard; stiff (material)", zh:"坚硬", tw:"堅硬", ko:"단단하다", vi:"cứng", th:"แข็ง", my:"အုံ့အတိုသော", km:"រឹង", id:"keras (bahan)" } },
+    { id: 1428, kanji: "可愛らしい", reading: "かわいらしい", meanings: { ja:"可愛らしい", en:"lovely; sweet", zh:"可爱", tw:"可愛", ko:"귀엽다", vi:"đáng yêu", th:"น่ารัก", my:"ချစ်ဖွယ်", km:"គួរឱ្យស្រឡាញ់", id:"imut; manis" } },
+    { id: 1429, kanji: "きつい", reading: "きつい", meanings: { ja:"きつい", en:"tough; intense; tight", zh:"严格；紧", tw:"嚴格；緊", ko:"힘들다; 꽉 끼다", vi:"chặt; nghiêm ngặt; mệt mỏi", th:"แน่น; เข้มงวด", my:"အလွန်ခက်ခဲသော", km:"តឹង; ពិបាក", id:"ketat; berat" } },
+    { id: 1430, kanji: "臭い", reading: "くさい", meanings: { ja:"臭い", en:"stinking; smelly", zh:"臭", tw:"臭", ko:"냄새나다", vi:"hôi thối", th:"เหม็น", my:"နံရံဆိုး", km:"អាក្រក់", id:"bau" } },
+    { id: 1431, kanji: "悔しい", reading: "くやしい", meanings: { ja:"悔しい", en:"frustrating; regrettable", zh:"懊悔", tw:"懊悔", ko:"분하다", vi:"tiếc nuối; tức tối", th:"เจ็บใจ", my:"စိတ်ညစ်ဖွယ်", km:"សោកស្តាយ", id:"menyesal; kesal" } },
+    { id: 1432, kanji: "苦しい", reading: "くるしい", meanings: { ja:"苦しい", en:"painful; difficult", zh:"痛苦", tw:"痛苦", ko:"괴롭다", vi:"đau khổ; khó khăn", th:"ทรมาน", my:"နာကျင်ဖွယ်", km:"ឈឺចាប់", id:"sulit; menyakitkan" } },
+    { id: 1433, kanji: "詳しい", reading: "くわしい", meanings: { ja:"詳しい", en:"detailed; well-informed", zh:"详细", tw:"詳細", ko:"자세하다", vi:"chi tiết; am hiểu", th:"ละเอียด", my:"အသေးစိတ်", km:"លម្អិត", id:"rinci" } },
+    { id: 1434, kanji: "濃い", reading: "こい", meanings: { ja:"濃い", en:"deep; strong (color, taste)", zh:"浓", tw:"濃", ko:"짙다", vi:"đậm; đặc", th:"เข้ม", my:"အရောင်နက်", km:"ចំហៀង", id:"pekat" } },
+    { id: 1435, kanji: "蒸し暑い", reading: "むしあつい", meanings: { ja:"蒸し暑い", en:"humid; muggy", zh:"闷热", tw:"悶熱", ko:"무덥다", vi:"oi bức", th:"ร้อนอบอ้าว", my:"နွေးစပ်စပ်", km:"ក្តៅស្រួច", id:"lembap panas" } },
+    { id: 1436, kanji: "辛い", reading: "つらい", meanings: { ja:"辛い", en:"painful; bitter (emotionally/physically)", zh:"辛苦", tw:"辛苦", ko:"힘들다", vi:"đau khổ", th:"เจ็บปวด", my:"ခက်ခဲသော", km:"ពិបាក", id:"menyakitkan" } },
+    { id: 1437, kanji: "激しい", reading: "はげしい", meanings: { ja:"激しい", en:"violent; intense", zh:"激烈", tw:"激烈", ko:"격렬하다", vi:"mãnh liệt", th:"รุนแรง", my:"ကြမ်းတမ်းသော", km:"ខ្លាំង", id:"hebat; dahsyat" } },
+    { id: 1438, kanji: "等しい", reading: "ひとしい", meanings: { ja:"等しい", en:"equal; equivalent", zh:"相等", tw:"相等", ko:"같다", vi:"bằng nhau", th:"เท่ากัน", my:"တူညီသော", km:"ស្មើ", id:"sama" } },
+    { id: 1439, kanji: "貧しい", reading: "まずしい", meanings: { ja:"貧しい", en:"poor; needy", zh:"贫穷", tw:"貧窮", ko:"가난하다", vi:"nghèo", th:"ยากจน", my:"ဆင်းရဲသော", km:"ក្រីក្រ", id:"miskin" } },
+    { id: 1440, kanji: "良い", reading: "よい", meanings: { ja:"良い", en:"good; fine", zh:"好", tw:"好", ko:"좋다", vi:"tốt", th:"ดี", my:"ကောင်းသော", km:"ល្អ", id:"baik" } }
+  ],
+};

@@ -1,76 +1,103 @@
-// src/data/n3WordSets/index.js
-import { n3part1 } from "./n3part1.js";
-import { n3part2 } from "./n3part2.js";
-import { n3part3 } from "./n3part3.js";
-import { n3part4 } from "./n3part4.js";
-import { n3part5 } from "./n3part5.js";
-import { n3part6 } from "./n3part6.js";
-import { n3part7 } from "./n3part7.js";
-import { n3part8 } from "./n3part8.js";
-import { n3part9 } from "./n3part9.js";
-import { n3part10 } from "./n3part10.js";
-import { n3part11 } from "./n3part11.js";
-import { n3part12 } from "./n3part12.js";
-import { n3part13 } from "./n3part13.js";
-import { n3part14 } from "./n3part14.js";
-import { n3part15 } from "./n3part15.js";
-import { n3part16 } from "./n3part16.js";
-import { n3part17 } from "./n3part17.js";
-import { n3part18 } from "./n3part18.js";
-import { n3part19 } from "./n3part19.js";
-import { n3part20 } from "./n3part20.js";
-import { n3part21 } from "./n3part21.js";
-import { n3part22 } from "./n3part22.js";
-import { n3part23 } from "./n3part23.js";
-import { n3part24 } from "./n3part24.js";
-import { n3part25 } from "./n3part25.js";
-import { n3part26 } from "./n3part26.js";
-import { n3part27 } from "./n3part27.js";
-import { n3part28 } from "./n3part28.js";
-import { n3part29 } from "./n3part29.js";
-import { n3part30 } from "./n3part30.js";
-import { n3part31 } from "./n3part31.js";
-import { n3part32 } from "./n3part32.js";
-import { n3part33 } from "./n3part33.js";
-import { n3part34 } from "./n3part34.js";
-import { n3part35 } from "./n3part35.js";
-import { n3part36 } from "./n3part36.js";
+// src/data/n3WordSets/index.jsx
 
+// --- Adverbs（副詞） ---
+import { n3part_adverbs1 } from "./n3part_adverbs1.js";
+
+// --- i-Adjectives（い形容詞） ---
+import { n3part_iAdjectives1 } from "./n3part_iAdjectives1.js";
+
+// --- na-Adjectives（な形容詞） ---
+import { n3part_naAdjectives1 } from "./n3part_naAdjectives1.js";
+import { n3part_naAdjectives2 } from "./n3part_naAdjectives2.js";
+
+// --- Nouns（名詞） ---
+import { n3part_nouns1 } from "./n3part_nouns1.js";
+import { n3part_nouns2 } from "./n3part_nouns2.js";
+import { n3part_nouns3 } from "./n3part_nouns3.js";
+import { n3part_nouns4 } from "./n3part_nouns4.js";
+import { n3part_nouns5 } from "./n3part_nouns5.js";
+import { n3part_nouns6 } from "./n3part_nouns6.js";
+import { n3part_nouns7 } from "./n3part_nouns7.js";
+import { n3part_nouns8 } from "./n3part_nouns8.js";
+import { n3part_nouns9 } from "./n3part_nouns9.js";
+import { n3part_nouns10 } from "./n3part_nouns10.js";
+import { n3part_nouns11 } from "./n3part_nouns11.js";
+import { n3part_nouns12 } from "./n3part_nouns12.js";
+import { n3part_nouns13 } from "./n3part_nouns13.js";
+import { n3part_nouns14 } from "./n3part_nouns14.js";
+import { n3part_nouns15 } from "./n3part_nouns15.js";
+import { n3part_nouns16 } from "./n3part_nouns16.js";
+import { n3part_nouns17 } from "./n3part_nouns17.js";
+import { n3part_nouns18 } from "./n3part_nouns18.js";
+import { n3part_nouns19 } from "./n3part_nouns19.js";
+import { n3part_nouns20 } from "./n3part_nouns20.js";
+import { n3part_nouns21 } from "./n3part_nouns21.js";
+import { n3part_nouns22 } from "./n3part_nouns22.js";
+import { n3part_nouns23 } from "./n3part_nouns23.js";
+
+// --- Others（その他） ---
+import { n3part_others1 } from "./n3part_others1.js";
+import { n3part_others2 } from "./n3part_others2.js";
+import { n3part_others3 } from "./n3part_others3.js";
+
+// --- Verbs（動詞） ---
+import { n3part_verbs1 } from "./n3part_verbs1.js";
+import { n3part_verbs2 } from "./n3part_verbs2.js";
+import { n3part_verbs3 } from "./n3part_verbs3.js";
+import { n3part_verbs4 } from "./n3part_verbs4.js";
+import { n3part_verbs5 } from "./n3part_verbs5.js";
+import { n3part_verbs6 } from "./n3part_verbs6.js";
+import { n3part_verbs7 } from "./n3part_verbs7.js";
+import { n3part_verbs8 } from "./n3part_verbs8.js";
+
+
+// --- まとめて export するオブジェクト ---
 export const n3WordSets = {
-  Lesson1: n3part1.Lesson1,
-  Lesson2: n3part2.Lesson2,
-  Lesson3: n3part3.Lesson3,
-  Lesson4: n3part4.Lesson4,
-  Lesson5: n3part5.Lesson5,
-  Lesson6: n3part6.Lesson6,
-  Lesson7: n3part7.Lesson7,
-  Lesson8: n3part8.Lesson8,
-  Lesson9: n3part9.Lesson9,
-  Lesson10: n3part10.Lesson10,
-  Lesson11: n3part11.Lesson11,
-  Lesson12: n3part12.Lesson12,
-  Lesson13: n3part13.Lesson13,
-  Lesson14: n3part14.Lesson14,
-  Lesson15: n3part15.Lesson15,
-  Lesson16: n3part16.Lesson16,
-  Lesson17: n3part17.Lesson17,
-  Lesson18: n3part18.Lesson18,
-  Lesson19: n3part19.Lesson19,
-  Lesson20: n3part20.Lesson20,
-  Lesson21: n3part21.Lesson21,
-  Lesson22: n3part22.Lesson22,
-  Lesson23: n3part23.Lesson23,
-  Lesson24: n3part24.Lesson24,
-  Lesson25: n3part25.Lesson25,
-  Lesson26: n3part26.Lesson26,
-  Lesson27: n3part27.Lesson27,
-  Lesson28: n3part28.Lesson28,
-  Lesson29: n3part29.Lesson29,
-  Lesson30: n3part30.Lesson30,
-  Lesson31: n3part31.Lesson31,
-  Lesson32: n3part32.Lesson32,
-  Lesson33: n3part33.Lesson33,
-  Lesson34: n3part34.Lesson34,
-  Lesson35: n3part35.Lesson35,
-  Lesson36: n3part36.Lesson36,
+  // 副詞
+  n3part_adverbs1,
+
+  // 形容詞
+  n3part_iAdjectives1,
+  n3part_naAdjectives1,
+  n3part_naAdjectives2,
+
+  // 名詞
+  n3part_nouns1,
+  n3part_nouns2,
+  n3part_nouns3,
+  n3part_nouns4,
+  n3part_nouns5,
+  n3part_nouns6,
+  n3part_nouns7,
+  n3part_nouns8,
+  n3part_nouns9,
+  n3part_nouns10,
+  n3part_nouns11,
+  n3part_nouns12,
+  n3part_nouns13,
+  n3part_nouns14,
+  n3part_nouns15,
+  n3part_nouns16,
+  n3part_nouns17,
+  n3part_nouns18,
+  n3part_nouns19,
+  n3part_nouns20,
+  n3part_nouns21,
+  n3part_nouns22,
+  n3part_nouns23,
+
+  // その他
+  n3part_others1,
+  n3part_others2,
+  n3part_others3,
+
+  // 動詞
+  n3part_verbs1,
+  n3part_verbs2,
+  n3part_verbs3,
+  n3part_verbs4,
+  n3part_verbs5,
+  n3part_verbs6,
+  n3part_verbs7,
+  n3part_verbs8,
 };

@@ -1,10 +1,15 @@
+// 品詞（Part of Speech）をレッスン番号から返す（名詞=1〜10に対応済み）
 export const getPosByLesson = (lessonNo) => {
-  if (lessonNo >= 1 && lessonNo <= 6) return "名詞";
-  if (lessonNo >= 7 && lessonNo <= 8) return "い形容詞";
-  if (lessonNo === 9) return "な形容詞";
-  if (lessonNo === 10) return "副詞/表現";
-  if (lessonNo === 11) return "助詞/接続";
-  if (lessonNo === 12) return "助数詞";
-  if (lessonNo >= 13 && lessonNo <= 14) return "動詞";
+  const n = Number(lessonNo);
+  if (!Number.isFinite(n)) return "";
+
+  if (n >= 1 && n <= 10)  return "名詞";          // Nouns
+  if (n >= 11 && n <= 12) return "い形容詞";      // i-adjectives
+  if (n === 13)           return "な形容詞";      // na-adjectives
+  if (n === 14)           return "副詞/表現";     // Adverbs / Expressions
+  if (n === 15)           return "助詞/接続";     // Particles / Conjunctions
+  if (n === 16)           return "助数詞";        // Counters
+  if (n >= 17 && n <= 18) return "動詞";          // Verbs
+
   return "";
 };
