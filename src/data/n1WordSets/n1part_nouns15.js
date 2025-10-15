@@ -1,55 +1,904 @@
-// src/data/n1WordSets/n1part_nouns15.js
 export const n1part_nouns15 = {
-  Lesson15: [
-    { id: 701, kanji: "軍備", reading: "ぐんび", meanings: { ja: "軍備", en: "armaments", zh: "军备", tw: "軍備", ko: "군비", vi: "vũ trang", th: "อาวุธยุทโธปกรณ์", my: "စစ်အင်အားသုံးပစ္စည်း", km: "អាវុធសព្វាវុធ", id: "persenjataan" } },
-    { id: 702, kanji: "軍服", reading: "ぐんぷく", meanings: { ja: "軍服", en: "military uniform", zh: "军装", tw: "軍裝", ko: "군복", vi: "quân phục", th: "เครื่องแบบทหาร", my: "စစ်အဝတ်အစား", km: "ឯកសណ្ឋានយោធា", id: "seragam militer" } },
-    { id: 703, kanji: "芸", reading: "げい", meanings: { ja: "芸", en: "art", zh: "艺术", tw: "藝術", ko: "예술", vi: "nghệ thuật", th: "ศิลปะ", my: "အနုပညာ", km: "សិល្បៈ", id: "seni" } },
-    { id: 704, kanji: "経過", reading: "けいか", meanings: { ja: "経過", en: "passage (of time)", zh: "经过", tw: "經過", ko: "경과", vi: "trôi qua (thời gian)", th: "การผ่านไป (ของเวลา)", my: "အချိန်ဖြတ်သန်းမှု", km: "ការរយៈពេល", id: "berlalunya waktu" } },
-    { id: 705, kanji: "警戒", reading: "けいかい", meanings: { ja: "警戒", en: "vigilance; caution", zh: "警戒", tw: "警戒", ko: "경계", vi: "cảnh giác", th: "ระวังภัย", my: "သတိထားခြင်း", km: "ការប្រុងប្រយ័ត្ន", id: "kewaspadaan" } },
-    { id: 706, kanji: "敬具", reading: "けいぐ", meanings: { ja: "敬具", en: "yours sincerely (letter ending)", zh: "敬上", tw: "敬上", ko: "경구 (편지 마무리)", vi: "trân trọng (kết thư)", th: "ขอแสดงความนับถือ", my: "လေးစားစွာဖြင့် (စာအဆုံး)", km: "ដោយក្តីគោរព", id: "hormat saya" } },
-    { id: 707, kanji: "軽減", reading: "けいげん", meanings: { ja: "軽減", en: "reduction; mitigation", zh: "减轻", tw: "減輕", ko: "경감", vi: "giảm bớt", th: "ลดลง", my: "လျှော့ချခြင်း", km: "ការកាត់បន្ថយ", id: "pengurangan" } },
-    { id: 708, kanji: "掲載", reading: "けいさい", meanings: { ja: "掲載", en: "publication; posting", zh: "刊登", tw: "刊登", ko: "게재", vi: "đăng tải", th: "การตีพิมพ์", my: "ထုတ်ဝေခြင်း", km: "ការបោះពុម្ពផ្សាយ", id: "penerbitan" } },
-    { id: 709, kanji: "傾斜", reading: "けいしゃ", meanings: { ja: "傾斜", en: "slope; inclination", zh: "倾斜", tw: "傾斜", ko: "경사", vi: "dốc; nghiêng", th: "ความลาดเอียง", my: "အနည်းငယ်လျှောခြင်း", km: "ភាពលំអៀង", id: "kemiringan" } },
-    { id: 710, kanji: "形成", reading: "けいせい", meanings: { ja: "形成", en: "formation", zh: "形成", tw: "形成", ko: "형성", vi: "hình thành", th: "การก่อรูป", my: "ဖွဲ့စည်းခြင်း", km: "ការបង្កើត", id: "pembentukan" } },
-    { id: 711, kanji: "形勢", reading: "けいせい", meanings: { ja: "形勢", en: "situation; condition", zh: "形势", tw: "形勢", ko: "형세", vi: "tình hình", th: "สถานการณ์", my: "အခြေအနေ", km: "ស្ថានភាព", id: "keadaan" } },
-    { id: 712, kanji: "刑罰", reading: "けいばつ", meanings: { ja: "刑罰", en: "punishment (criminal)", zh: "刑罚", tw: "刑罰", ko: "형벌", vi: "hình phạt", th: "การลงโทษ", my: "ပြစ်ဒဏ်", km: "ទណ្ឌកម្ម", id: "hukuman pidana" } },
-    { id: 713, kanji: "経費", reading: "けいひ", meanings: { ja: "経費", en: "expenses", zh: "经费", tw: "經費", ko: "경비", vi: "chi phí", th: "ค่าใช้จ่าย", my: "အသုံးစရိတ်", km: "ចំណាយ", id: "biaya" } },
-    { id: 714, kanji: "警部", reading: "けいぶ", meanings: { ja: "警部", en: "police inspector", zh: "警部", tw: "警部", ko: "경부", vi: "thanh tra cảnh sát", th: "สารวัตรตำรวจ", my: "ရဲအရာရှိ", km: "សារវត្ថុប៉ូលិស", id: "inspektur polisi" } },
-    { id: 715, kanji: "転換", reading: "てんかん", meanings: { ja: "転換", en: "conversion; change", zh: "转换", tw: "轉換", ko: "전환", vi: "chuyển đổi", th: "การเปลี่ยนแปลง", my: "ပြောင်းလဲခြင်း", km: "ការប្រែប្រួល", id: "perubahan" } },
-    { id: 716, kanji: "転居", reading: "てんきょ", meanings: { ja: "転居", en: "moving (to another residence)", zh: "搬家", tw: "搬家", ko: "이사", vi: "chuyển nhà", th: "ย้ายบ้าน", my: "အိမ်ပြောင်းခြင်း", km: "ផ្លាស់ទីផ្ទះ", id: "pindah rumah" } },
-    { id: 717, kanji: "転勤", reading: "てんきん", meanings: { ja: "転勤", en: "job transfer", zh: "调职", tw: "調職", ko: "전근", vi: "chuyển công tác", th: "ย้ายงาน", my: "အလုပ်အပြောင်း", km: "ផ្លាស់ប្តូរងារ", id: "mutasi kerja" } },
-    { id: 718, kanji: "点検", reading: "てんけん", meanings: { ja: "点検", en: "inspection", zh: "检查", tw: "檢查", ko: "점검", vi: "kiểm tra", th: "การตรวจสอบ", my: "စစ်ဆေးမှု", km: "ការត្រួតពិនិត្យ", id: "pemeriksaan" } },
-    { id: 719, kanji: "電源", reading: "でんげん", meanings: { ja: "電源", en: "power source", zh: "电源", tw: "電源", ko: "전원", vi: "nguồn điện", th: "แหล่งพลังงาน", my: "လျှပ်စစ်မီးအုပ်ချုပ်မှု", km: "ប្រភពអគ្គិសនី", id: "sumber listrik" } },
-    { id: 720, kanji: "天国", reading: "てんごく", meanings: { ja: "天国", en: "heaven; paradise", zh: "天堂", tw: "天堂", ko: "천국", vi: "thiên đường", th: "สวรรค์", my: "ပြည်သူ့စည်းမျဉ်း", km: "ស្ថានសួគ៌", id: "surga" } },
-    { id: 721, kanji: "天才", reading: "てんさい", meanings: { ja: "天才", en: "genius", zh: "天才", tw: "天才", ko: "천재", vi: "thiên tài", th: "อัจฉริยะ", my: "တမန်သစ္စာ", km: "អ្នកឯកទេស", id: "jenius" } },
-    { id: 722, kanji: "天災", reading: "てんさい", meanings: { ja: "天災", en: "natural disaster", zh: "天灾", tw: "天災", ko: "천재지변", vi: "thiên tai", th: "ภัยธรรมชาติ", my: "သဘာဝဘေးအန္တရာယ်", km: "គ្រោះថ្នាក់ធម្មជាតិ", id: "bencana alam" } },
-    { id: 723, kanji: "展示", reading: "てんじ", meanings: { ja: "展示", en: "exhibition; display", zh: "展览", tw: "展覽", ko: "전시", vi: "triển lãm", th: "นิทรรศการ", my: "ပြပွဲ", km: "ការតាំងពិព័រណ៍", id: "pameran" } },
-    { id: 724, kanji: "伝説", reading: "でんせつ", meanings: { ja: "伝説", en: "legend", zh: "传说", tw: "傳說", ko: "전설", vi: "truyền thuyết", th: "ตำนาน", my: "ပုံပြင်", km: "រឿងព្រេង", id: "legenda" } },
-    { id: 725, kanji: "点線", reading: "てんせん", meanings: { ja: "点線", en: "dotted line", zh: "虚线", tw: "虛線", ko: "점선", vi: "đường chấm", th: "เส้นประ", my: "ပုဒ်လိုင်း", km: "បន្ទាត់ចំណុច", id: "garis titik-titik" } },
-    { id: 726, kanji: "天体", reading: "てんたい", meanings: { ja: "天体", en: "celestial body", zh: "天体", tw: "天體", ko: "천체", vi: "thiên thể", th: "วัตถุท้องฟ้า", my: "အာကာသအရာဝတ္တု", km: "វត្ថុអាកាស", id: "benda langit" } },
-    { id: 727, kanji: "伝達", reading: "でんたつ", meanings: { ja: "伝達", en: "transmission; communication", zh: "传达", tw: "傳達", ko: "전달", vi: "truyền đạt", th: "การส่งต่อ", my: "ပေးပို့ခြင်း", km: "ការបញ្ជូន", id: "penyampaian" } },
-    { id: 728, kanji: "天地", reading: "てんち", meanings: { ja: "天地", en: "heaven and earth", zh: "天地", tw: "天地", ko: "천지", vi: "trời đất", th: "สวรรค์และโลก", my: "ကောင်းကင်နှင့်မြေကြီး", km: "មេឃនិងដី", id: "langit dan bumi" } },
-    { id: 729, kanji: "転任", reading: "てんにん", meanings: { ja: "転任", en: "change of post", zh: "调任", tw: "調任", ko: "전임", vi: "chuyển vị trí", th: "ย้ายตำแหน่งงาน", my: "ရာထူးပြောင်းခြင်း", km: "ផ្លាស់ប្តូរតំណែង", id: "pindah jabatan" } },
-    { id: 730, kanji: "展望", reading: "てんぼう", meanings: { ja: "展望", en: "prospect; view", zh: "展望", tw: "展望", ko: "전망", vi: "triển vọng", th: "มุมมอง", my: "အမြင်", km: "ទស្សនៈ", id: "pandangan" } },
-    { id: 731, kanji: "伝来", reading: "でんらい", meanings: { ja: "伝来", en: "introduction (from abroad)", zh: "传入", tw: "傳入", ko: "전래", vi: "truyền vào", th: "การนำเข้าจากต่างประเทศ", my: "နိုင်ငံခြားမှပြန်လာခြင်း", km: "នាំចូល", id: "pengenalan dari luar negeri" } },
-    { id: 732, kanji: "転落", reading: "てんらく", meanings: { ja: "転落", en: "fall; downfall", zh: "跌落", tw: "跌落", ko: "전락", vi: "ngã xuống", th: "ตกลงมา", my: "ကျသွားခြင်း", km: "ធ្លាក់ចុះ", id: "jatuh" } },
-    { id: 733, kanji: "胴", reading: "どう", meanings: { ja: "胴", en: "trunk; torso", zh: "躯干", tw: "軀幹", ko: "몸통", vi: "thân mình", th: "ลำตัว", my: "ကိုယ်ခန္ဓာ", km: "ត្រគាក", id: "badan (torso)" } },
-    { id: 734, kanji: "同意", reading: "どうい", meanings: { ja: "同意", en: "agreement; consent", zh: "同意", tw: "同意", ko: "동의", vi: "đồng ý", th: "ความเห็นชอบ", my: "သဘောတူညီမှု", km: "ការយល់ព្រម", id: "persetujuan" } },
-    { id: 735, kanji: "動員", reading: "どういん", meanings: { ja: "動員", en: "mobilization", zh: "动员", tw: "動員", ko: "동원", vi: "huy động", th: "การระดมพล", my: "အင်အားစုစုဆောင်းခြင်း", km: "ការចលនា", id: "mobilisasi" } },
-    { id: 736, kanji: "同感", reading: "どうかん", meanings: { ja: "同感", en: "same feeling", zh: "同感", tw: "同感", ko: "동감", vi: "đồng cảm", th: "ความรู้สึกเดียวกัน", my: "အထင်အမြင်တူခြင်း", km: "អារម្មណ៍ដូចគ្នា", id: "empati" } },
-    { id: 737, kanji: "陶器", reading: "とうき", meanings: { ja: "陶器", en: "pottery; ceramics", zh: "陶器", tw: "陶器", ko: "도자기", vi: "đồ gốm", th: "เครื่องปั้นดินเผา", my: "အိုးမြောင်းပစ္စည်း", km: "ផើងដីឥដ្ឋ", id: "keramik" } },
-    { id: 738, kanji: "討議", reading: "とうぎ", meanings: { ja: "討議", en: "discussion; debate", zh: "讨论", tw: "討論", ko: "토의", vi: "thảo luận", th: "อภิปราย", my: "ဆွေးနွေးမှု", km: "ការពិភាក្សា", id: "diskusi" } },
-    { id: 739, kanji: "動機", reading: "どうき", meanings: { ja: "動機", en: "motive", zh: "动机", tw: "動機", ko: "동기", vi: "động cơ", th: "แรงจูงใจ", my: "အကြောင်းပြချက်", km: "មូលហេតុ", id: "motivasi" } },
-    { id: 740, kanji: "等級", reading: "とうきゅう", meanings: { ja: "等級", en: "grade; class", zh: "等级", tw: "等級", ko: "등급", vi: "cấp bậc", th: "ระดับชั้น", my: "အဆင့်အတန်း", km: "ថ្នាក់", id: "tingkatan" } },
-    { id: 741, kanji: "同級", reading: "どうきゅう", meanings: { ja: "同級", en: "same grade", zh: "同级", tw: "同級", ko: "동급", vi: "cùng lớp", th: "ระดับเดียวกัน", my: "အတန်းတူ", km: "ថ្នាក់ដូចគ្នា", id: "setingkat" } },
-    { id: 742, kanji: "同居", reading: "どうきょ", meanings: { ja: "同居", en: "living together", zh: "同居", tw: "同居", ko: "동거", vi: "sống chung", th: "อยู่ร่วมกัน", my: "အတူနေခြင်း", km: "រស់នៅរួមគ្នា", id: "tinggal bersama" } },
-    { id: 743, kanji: "登校", reading: "とうこう", meanings: { ja: "登校", en: "attendance at school", zh: "上学", tw: "上學", ko: "등교", vi: "đến trường", th: "ไปโรงเรียน", my: "ကျောင်းသွားခြင်း", km: "ទៅសាលា", id: "pergi ke sekolah" } },
-    { id: 744, kanji: "統合", reading: "とうごう", meanings: { ja: "統合", en: "integration; unification", zh: "整合", tw: "整合", ko: "통합", vi: "hợp nhất", th: "รวมกัน", my: "ပေါင်းစည်းခြင်း", km: "ការរួមបញ្ចូល", id: "integrasi" } },
-    { id: 745, kanji: "動向", reading: "どうこう", meanings: { ja: "動向", en: "trend; tendency", zh: "动向", tw: "動向", ko: "동향", vi: "xu hướng", th: "แนวโน้ม", my: "လမ်းကြောင်းအနာဂတ်", km: "និន្នាការ", id: "tren" } },
-    { id: 746, kanji: "投資", reading: "とうし", meanings: { ja: "投資", en: "investment", zh: "投资", tw: "投資", ko: "투자", vi: "đầu tư", th: "การลงทุน", my: "ရင်းနှီးမြှုပ်နှံမှု", km: "វិនិយោគ", id: "investasi" } },
-    { id: 747, kanji: "同情", reading: "どうじょう", meanings: { ja: "同情", en: "sympathy", zh: "同情", tw: "同情", ko: "동정", vi: "cảm thông", th: "ความเห็นใจ", my: "မေတ္တာတရား", km: "ការយល់ចិត្ត", id: "simpati" } },
-    { id: 748, kanji: "道場", reading: "どうじょう", meanings: { ja: "道場", en: "dojo (training hall)", zh: "道场", tw: "道場", ko: "도장", vi: "võ đường", th: "สำนักฝึกศิลปะการต่อสู้", my: "လေ့ကျင့်ခန်းခန်း", km: "សាលាហាត់", id: "dojo" } },
-    { id: 749, kanji: "統制", reading: "とうせい", meanings: { ja: "統制", en: "control; regulation", zh: "统制", tw: "統制", ko: "통제", vi: "kiểm soát", th: "การควบคุม", my: "ထိန်းချုပ်မှု", km: "ការគ្រប់គ្រង", id: "pengendalian" } },
-    { id: 750, kanji: "当選", reading: "とうせん", meanings: { ja: "当選", en: "being elected", zh: "当选", tw: "當選", ko: "당선", vi: "trúng cử", th: "ได้รับเลือกตั้ง", my: "အနိုင်ရခြင်း", km: "ជាប់ឆ្នោត", id: "terpilih" } }
+  "Lesson15": [
+    {
+      "id": 701,
+      "pos": "名詞",
+      "kanji": "軍備",
+      "reading": "ぐんび",
+      "meanings": {
+        "ja": "軍備",
+        "en": "armaments",
+        "zh": "军备",
+        "tw": "軍備",
+        "ko": "군비",
+        "vi": "vũ trang",
+        "th": "อาวุธยุทโธปกรณ์",
+        "my": "စစ်အင်အားသုံးပစ္စည်း",
+        "km": "អាវុធសព្វាវុធ",
+        "id": "persenjataan"
+      }
+    },
+    {
+      "id": 702,
+      "pos": "名詞",
+      "kanji": "軍服",
+      "reading": "ぐんぷく",
+      "meanings": {
+        "ja": "軍服",
+        "en": "military uniform",
+        "zh": "军装",
+        "tw": "軍裝",
+        "ko": "군복",
+        "vi": "quân phục",
+        "th": "เครื่องแบบทหาร",
+        "my": "စစ်အဝတ်အစား",
+        "km": "ឯកសណ្ឋានយោធា",
+        "id": "seragam militer"
+      }
+    },
+    {
+      "id": 703,
+      "pos": "名詞",
+      "kanji": "芸",
+      "reading": "げい",
+      "meanings": {
+        "ja": "芸",
+        "en": "art",
+        "zh": "艺术",
+        "tw": "藝術",
+        "ko": "예술",
+        "vi": "nghệ thuật",
+        "th": "ศิลปะ",
+        "my": "အနုပညာ",
+        "km": "សិល្បៈ",
+        "id": "seni"
+      }
+    },
+    {
+      "id": 704,
+      "pos": "名詞",
+      "kanji": "経過",
+      "reading": "けいか",
+      "meanings": {
+        "ja": "経過",
+        "en": "passage (of time)",
+        "zh": "经过",
+        "tw": "經過",
+        "ko": "경과",
+        "vi": "trôi qua (thời gian)",
+        "th": "การผ่านไป (ของเวลา)",
+        "my": "အချိန်ဖြတ်သန်းမှု",
+        "km": "ការរយៈពេល",
+        "id": "berlalunya waktu"
+      }
+    },
+    {
+      "id": 705,
+      "pos": "名詞",
+      "kanji": "警戒",
+      "reading": "けいかい",
+      "meanings": {
+        "ja": "警戒",
+        "en": "vigilance; caution",
+        "zh": "警戒",
+        "tw": "警戒",
+        "ko": "경계",
+        "vi": "cảnh giác",
+        "th": "ระวังภัย",
+        "my": "သတိထားခြင်း",
+        "km": "ការប្រុងប្រយ័ត្ន",
+        "id": "kewaspadaan"
+      }
+    },
+    {
+      "id": 706,
+      "pos": "名詞",
+      "kanji": "敬具",
+      "reading": "けいぐ",
+      "meanings": {
+        "ja": "敬具",
+        "en": "yours sincerely (letter ending)",
+        "zh": "敬上",
+        "tw": "敬上",
+        "ko": "경구 (편지 마무리)",
+        "vi": "trân trọng (kết thư)",
+        "th": "ขอแสดงความนับถือ",
+        "my": "လေးစားစွာဖြင့် (စာအဆုံး)",
+        "km": "ដោយក្តីគោរព",
+        "id": "hormat saya"
+      }
+    },
+    {
+      "id": 707,
+      "pos": "名詞",
+      "kanji": "軽減",
+      "reading": "けいげん",
+      "meanings": {
+        "ja": "軽減",
+        "en": "reduction; mitigation",
+        "zh": "减轻",
+        "tw": "減輕",
+        "ko": "경감",
+        "vi": "giảm bớt",
+        "th": "ลดลง",
+        "my": "လျှော့ချခြင်း",
+        "km": "ការកាត់បន្ថយ",
+        "id": "pengurangan"
+      }
+    },
+    {
+      "id": 708,
+      "pos": "名詞",
+      "kanji": "掲載",
+      "reading": "けいさい",
+      "meanings": {
+        "ja": "掲載",
+        "en": "publication; posting",
+        "zh": "刊登",
+        "tw": "刊登",
+        "ko": "게재",
+        "vi": "đăng tải",
+        "th": "การตีพิมพ์",
+        "my": "ထုတ်ဝေခြင်း",
+        "km": "ការបោះពុម្ពផ្សាយ",
+        "id": "penerbitan"
+      }
+    },
+    {
+      "id": 709,
+      "pos": "名詞",
+      "kanji": "傾斜",
+      "reading": "けいしゃ",
+      "meanings": {
+        "ja": "傾斜",
+        "en": "slope; inclination",
+        "zh": "倾斜",
+        "tw": "傾斜",
+        "ko": "경사",
+        "vi": "dốc; nghiêng",
+        "th": "ความลาดเอียง",
+        "my": "အနည်းငယ်လျှောခြင်း",
+        "km": "ភាពលំអៀង",
+        "id": "kemiringan"
+      }
+    },
+    {
+      "id": 710,
+      "pos": "名詞",
+      "kanji": "形成",
+      "reading": "けいせい",
+      "meanings": {
+        "ja": "形成",
+        "en": "formation",
+        "zh": "形成",
+        "tw": "形成",
+        "ko": "형성",
+        "vi": "hình thành",
+        "th": "การก่อรูป",
+        "my": "ဖွဲ့စည်းခြင်း",
+        "km": "ការបង្កើត",
+        "id": "pembentukan"
+      }
+    },
+    {
+      "id": 711,
+      "pos": "名詞",
+      "kanji": "形勢",
+      "reading": "けいせい",
+      "meanings": {
+        "ja": "形勢",
+        "en": "situation; condition",
+        "zh": "形势",
+        "tw": "形勢",
+        "ko": "형세",
+        "vi": "tình hình",
+        "th": "สถานการณ์",
+        "my": "အခြေအနေ",
+        "km": "ស្ថានភាព",
+        "id": "keadaan"
+      }
+    },
+    {
+      "id": 712,
+      "pos": "名詞",
+      "kanji": "刑罰",
+      "reading": "けいばつ",
+      "meanings": {
+        "ja": "刑罰",
+        "en": "punishment (criminal)",
+        "zh": "刑罚",
+        "tw": "刑罰",
+        "ko": "형벌",
+        "vi": "hình phạt",
+        "th": "การลงโทษ",
+        "my": "ပြစ်ဒဏ်",
+        "km": "ទណ្ឌកម្ម",
+        "id": "hukuman pidana"
+      }
+    },
+    {
+      "id": 713,
+      "pos": "名詞",
+      "kanji": "経費",
+      "reading": "けいひ",
+      "meanings": {
+        "ja": "経費",
+        "en": "expenses",
+        "zh": "经费",
+        "tw": "經費",
+        "ko": "경비",
+        "vi": "chi phí",
+        "th": "ค่าใช้จ่าย",
+        "my": "အသုံးစရိတ်",
+        "km": "ចំណាយ",
+        "id": "biaya"
+      }
+    },
+    {
+      "id": 714,
+      "pos": "名詞",
+      "kanji": "警部",
+      "reading": "けいぶ",
+      "meanings": {
+        "ja": "警部",
+        "en": "police inspector",
+        "zh": "警部",
+        "tw": "警部",
+        "ko": "경부",
+        "vi": "thanh tra cảnh sát",
+        "th": "สารวัตรตำรวจ",
+        "my": "ရဲအရာရှိ",
+        "km": "សារវត្ថុប៉ូលិស",
+        "id": "inspektur polisi"
+      }
+    },
+    {
+      "id": 715,
+      "pos": "名詞",
+      "kanji": "転換",
+      "reading": "てんかん",
+      "meanings": {
+        "ja": "転換",
+        "en": "conversion; change",
+        "zh": "转换",
+        "tw": "轉換",
+        "ko": "전환",
+        "vi": "chuyển đổi",
+        "th": "การเปลี่ยนแปลง",
+        "my": "ပြောင်းလဲခြင်း",
+        "km": "ការប្រែប្រួល",
+        "id": "perubahan"
+      }
+    },
+    {
+      "id": 716,
+      "pos": "名詞",
+      "kanji": "転居",
+      "reading": "てんきょ",
+      "meanings": {
+        "ja": "転居",
+        "en": "moving (to another residence)",
+        "zh": "搬家",
+        "tw": "搬家",
+        "ko": "이사",
+        "vi": "chuyển nhà",
+        "th": "ย้ายบ้าน",
+        "my": "အိမ်ပြောင်းခြင်း",
+        "km": "ផ្លាស់ទីផ្ទះ",
+        "id": "pindah rumah"
+      }
+    },
+    {
+      "id": 717,
+      "pos": "名詞",
+      "kanji": "転勤",
+      "reading": "てんきん",
+      "meanings": {
+        "ja": "転勤",
+        "en": "job transfer",
+        "zh": "调职",
+        "tw": "調職",
+        "ko": "전근",
+        "vi": "chuyển công tác",
+        "th": "ย้ายงาน",
+        "my": "အလုပ်အပြောင်း",
+        "km": "ផ្លាស់ប្តូរងារ",
+        "id": "mutasi kerja"
+      }
+    },
+    {
+      "id": 718,
+      "pos": "名詞",
+      "kanji": "点検",
+      "reading": "てんけん",
+      "meanings": {
+        "ja": "点検",
+        "en": "inspection",
+        "zh": "检查",
+        "tw": "檢查",
+        "ko": "점검",
+        "vi": "kiểm tra",
+        "th": "การตรวจสอบ",
+        "my": "စစ်ဆေးမှု",
+        "km": "ការត្រួតពិនិត្យ",
+        "id": "pemeriksaan"
+      }
+    },
+    {
+      "id": 719,
+      "pos": "名詞",
+      "kanji": "電源",
+      "reading": "でんげん",
+      "meanings": {
+        "ja": "電源",
+        "en": "power source",
+        "zh": "电源",
+        "tw": "電源",
+        "ko": "전원",
+        "vi": "nguồn điện",
+        "th": "แหล่งพลังงาน",
+        "my": "လျှပ်စစ်မီးအုပ်ချုပ်မှု",
+        "km": "ប្រភពអគ្គិសនី",
+        "id": "sumber listrik"
+      }
+    },
+    {
+      "id": 720,
+      "pos": "名詞",
+      "kanji": "天国",
+      "reading": "てんごく",
+      "meanings": {
+        "ja": "天国",
+        "en": "heaven; paradise",
+        "zh": "天堂",
+        "tw": "天堂",
+        "ko": "천국",
+        "vi": "thiên đường",
+        "th": "สวรรค์",
+        "my": "ပြည်သူ့စည်းမျဉ်း",
+        "km": "ស្ថានសួគ៌",
+        "id": "surga"
+      }
+    },
+    {
+      "id": 721,
+      "pos": "名詞",
+      "kanji": "天才",
+      "reading": "てんさい",
+      "meanings": {
+        "ja": "天才",
+        "en": "genius",
+        "zh": "天才",
+        "tw": "天才",
+        "ko": "천재",
+        "vi": "thiên tài",
+        "th": "อัจฉริยะ",
+        "my": "တမန်သစ္စာ",
+        "km": "អ្នកឯកទេស",
+        "id": "jenius"
+      }
+    },
+    {
+      "id": 722,
+      "pos": "名詞",
+      "kanji": "天災",
+      "reading": "てんさい",
+      "meanings": {
+        "ja": "天災",
+        "en": "natural disaster",
+        "zh": "天灾",
+        "tw": "天災",
+        "ko": "천재지변",
+        "vi": "thiên tai",
+        "th": "ภัยธรรมชาติ",
+        "my": "သဘာဝဘေးအန္တရာယ်",
+        "km": "គ្រោះថ្នាក់ធម្មជាតិ",
+        "id": "bencana alam"
+      }
+    },
+    {
+      "id": 723,
+      "pos": "名詞",
+      "kanji": "展示",
+      "reading": "てんじ",
+      "meanings": {
+        "ja": "展示",
+        "en": "exhibition; display",
+        "zh": "展览",
+        "tw": "展覽",
+        "ko": "전시",
+        "vi": "triển lãm",
+        "th": "นิทรรศการ",
+        "my": "ပြပွဲ",
+        "km": "ការតាំងពិព័រណ៍",
+        "id": "pameran"
+      }
+    },
+    {
+      "id": 724,
+      "pos": "名詞",
+      "kanji": "伝説",
+      "reading": "でんせつ",
+      "meanings": {
+        "ja": "伝説",
+        "en": "legend",
+        "zh": "传说",
+        "tw": "傳說",
+        "ko": "전설",
+        "vi": "truyền thuyết",
+        "th": "ตำนาน",
+        "my": "ပုံပြင်",
+        "km": "រឿងព្រេង",
+        "id": "legenda"
+      }
+    },
+    {
+      "id": 725,
+      "pos": "名詞",
+      "kanji": "点線",
+      "reading": "てんせん",
+      "meanings": {
+        "ja": "点線",
+        "en": "dotted line",
+        "zh": "虚线",
+        "tw": "虛線",
+        "ko": "점선",
+        "vi": "đường chấm",
+        "th": "เส้นประ",
+        "my": "ပုဒ်လိုင်း",
+        "km": "បន្ទាត់ចំណុច",
+        "id": "garis titik-titik"
+      }
+    },
+    {
+      "id": 726,
+      "pos": "名詞",
+      "kanji": "天体",
+      "reading": "てんたい",
+      "meanings": {
+        "ja": "天体",
+        "en": "celestial body",
+        "zh": "天体",
+        "tw": "天體",
+        "ko": "천체",
+        "vi": "thiên thể",
+        "th": "วัตถุท้องฟ้า",
+        "my": "အာကာသအရာဝတ္တု",
+        "km": "វត្ថុអាកាស",
+        "id": "benda langit"
+      }
+    },
+    {
+      "id": 727,
+      "pos": "名詞",
+      "kanji": "伝達",
+      "reading": "でんたつ",
+      "meanings": {
+        "ja": "伝達",
+        "en": "transmission; communication",
+        "zh": "传达",
+        "tw": "傳達",
+        "ko": "전달",
+        "vi": "truyền đạt",
+        "th": "การส่งต่อ",
+        "my": "ပေးပို့ခြင်း",
+        "km": "ការបញ្ជូន",
+        "id": "penyampaian"
+      }
+    },
+    {
+      "id": 728,
+      "pos": "名詞",
+      "kanji": "天地",
+      "reading": "てんち",
+      "meanings": {
+        "ja": "天地",
+        "en": "heaven and earth",
+        "zh": "天地",
+        "tw": "天地",
+        "ko": "천지",
+        "vi": "trời đất",
+        "th": "สวรรค์และโลก",
+        "my": "ကောင်းကင်နှင့်မြေကြီး",
+        "km": "មេឃនិងដី",
+        "id": "langit dan bumi"
+      }
+    },
+    {
+      "id": 729,
+      "pos": "名詞",
+      "kanji": "転任",
+      "reading": "てんにん",
+      "meanings": {
+        "ja": "転任",
+        "en": "change of post",
+        "zh": "调任",
+        "tw": "調任",
+        "ko": "전임",
+        "vi": "chuyển vị trí",
+        "th": "ย้ายตำแหน่งงาน",
+        "my": "ရာထူးပြောင်းခြင်း",
+        "km": "ផ្លាស់ប្តូរតំណែង",
+        "id": "pindah jabatan"
+      }
+    },
+    {
+      "id": 730,
+      "pos": "名詞",
+      "kanji": "展望",
+      "reading": "てんぼう",
+      "meanings": {
+        "ja": "展望",
+        "en": "prospect; view",
+        "zh": "展望",
+        "tw": "展望",
+        "ko": "전망",
+        "vi": "triển vọng",
+        "th": "มุมมอง",
+        "my": "အမြင်",
+        "km": "ទស្សនៈ",
+        "id": "pandangan"
+      }
+    },
+    {
+      "id": 731,
+      "pos": "名詞",
+      "kanji": "伝来",
+      "reading": "でんらい",
+      "meanings": {
+        "ja": "伝来",
+        "en": "introduction (from abroad)",
+        "zh": "传入",
+        "tw": "傳入",
+        "ko": "전래",
+        "vi": "truyền vào",
+        "th": "การนำเข้าจากต่างประเทศ",
+        "my": "နိုင်ငံခြားမှပြန်လာခြင်း",
+        "km": "នាំចូល",
+        "id": "pengenalan dari luar negeri"
+      }
+    },
+    {
+      "id": 732,
+      "pos": "名詞",
+      "kanji": "転落",
+      "reading": "てんらく",
+      "meanings": {
+        "ja": "転落",
+        "en": "fall; downfall",
+        "zh": "跌落",
+        "tw": "跌落",
+        "ko": "전락",
+        "vi": "ngã xuống",
+        "th": "ตกลงมา",
+        "my": "ကျသွားခြင်း",
+        "km": "ធ្លាក់ចុះ",
+        "id": "jatuh"
+      }
+    },
+    {
+      "id": 733,
+      "pos": "名詞",
+      "kanji": "胴",
+      "reading": "どう",
+      "meanings": {
+        "ja": "胴",
+        "en": "trunk; torso",
+        "zh": "躯干",
+        "tw": "軀幹",
+        "ko": "몸통",
+        "vi": "thân mình",
+        "th": "ลำตัว",
+        "my": "ကိုယ်ခန္ဓာ",
+        "km": "ត្រគាក",
+        "id": "badan (torso)"
+      }
+    },
+    {
+      "id": 734,
+      "pos": "名詞",
+      "kanji": "同意",
+      "reading": "どうい",
+      "meanings": {
+        "ja": "同意",
+        "en": "agreement; consent",
+        "zh": "同意",
+        "tw": "同意",
+        "ko": "동의",
+        "vi": "đồng ý",
+        "th": "ความเห็นชอบ",
+        "my": "သဘောတူညီမှု",
+        "km": "ការយល់ព្រម",
+        "id": "persetujuan"
+      }
+    },
+    {
+      "id": 735,
+      "pos": "名詞",
+      "kanji": "動員",
+      "reading": "どういん",
+      "meanings": {
+        "ja": "動員",
+        "en": "mobilization",
+        "zh": "动员",
+        "tw": "動員",
+        "ko": "동원",
+        "vi": "huy động",
+        "th": "การระดมพล",
+        "my": "အင်အားစုစုဆောင်းခြင်း",
+        "km": "ការចលនា",
+        "id": "mobilisasi"
+      }
+    },
+    {
+      "id": 736,
+      "pos": "名詞",
+      "kanji": "同感",
+      "reading": "どうかん",
+      "meanings": {
+        "ja": "同感",
+        "en": "same feeling",
+        "zh": "同感",
+        "tw": "同感",
+        "ko": "동감",
+        "vi": "đồng cảm",
+        "th": "ความรู้สึกเดียวกัน",
+        "my": "အထင်အမြင်တူခြင်း",
+        "km": "អារម្មណ៍ដូចគ្នា",
+        "id": "empati"
+      }
+    },
+    {
+      "id": 737,
+      "pos": "名詞",
+      "kanji": "陶器",
+      "reading": "とうき",
+      "meanings": {
+        "ja": "陶器",
+        "en": "pottery; ceramics",
+        "zh": "陶器",
+        "tw": "陶器",
+        "ko": "도자기",
+        "vi": "đồ gốm",
+        "th": "เครื่องปั้นดินเผา",
+        "my": "အိုးမြောင်းပစ္စည်း",
+        "km": "ផើងដីឥដ្ឋ",
+        "id": "keramik"
+      }
+    },
+    {
+      "id": 738,
+      "pos": "名詞",
+      "kanji": "討議",
+      "reading": "とうぎ",
+      "meanings": {
+        "ja": "討議",
+        "en": "discussion; debate",
+        "zh": "讨论",
+        "tw": "討論",
+        "ko": "토의",
+        "vi": "thảo luận",
+        "th": "อภิปราย",
+        "my": "ဆွေးနွေးမှု",
+        "km": "ការពិភាក្សា",
+        "id": "diskusi"
+      }
+    },
+    {
+      "id": 739,
+      "pos": "名詞",
+      "kanji": "動機",
+      "reading": "どうき",
+      "meanings": {
+        "ja": "動機",
+        "en": "motive",
+        "zh": "动机",
+        "tw": "動機",
+        "ko": "동기",
+        "vi": "động cơ",
+        "th": "แรงจูงใจ",
+        "my": "အကြောင်းပြချက်",
+        "km": "មូលហេតុ",
+        "id": "motivasi"
+      }
+    },
+    {
+      "id": 740,
+      "pos": "名詞",
+      "kanji": "等級",
+      "reading": "とうきゅう",
+      "meanings": {
+        "ja": "等級",
+        "en": "grade; class",
+        "zh": "等级",
+        "tw": "等級",
+        "ko": "등급",
+        "vi": "cấp bậc",
+        "th": "ระดับชั้น",
+        "my": "အဆင့်အတန်း",
+        "km": "ថ្នាក់",
+        "id": "tingkatan"
+      }
+    },
+    {
+      "id": 741,
+      "pos": "名詞",
+      "kanji": "同級",
+      "reading": "どうきゅう",
+      "meanings": {
+        "ja": "同級",
+        "en": "same grade",
+        "zh": "同级",
+        "tw": "同級",
+        "ko": "동급",
+        "vi": "cùng lớp",
+        "th": "ระดับเดียวกัน",
+        "my": "အတန်းတူ",
+        "km": "ថ្នាក់ដូចគ្នា",
+        "id": "setingkat"
+      }
+    },
+    {
+      "id": 742,
+      "pos": "名詞",
+      "kanji": "同居",
+      "reading": "どうきょ",
+      "meanings": {
+        "ja": "同居",
+        "en": "living together",
+        "zh": "同居",
+        "tw": "同居",
+        "ko": "동거",
+        "vi": "sống chung",
+        "th": "อยู่ร่วมกัน",
+        "my": "အတူနေခြင်း",
+        "km": "រស់នៅរួមគ្នា",
+        "id": "tinggal bersama"
+      }
+    },
+    {
+      "id": 743,
+      "pos": "名詞",
+      "kanji": "登校",
+      "reading": "とうこう",
+      "meanings": {
+        "ja": "登校",
+        "en": "attendance at school",
+        "zh": "上学",
+        "tw": "上學",
+        "ko": "등교",
+        "vi": "đến trường",
+        "th": "ไปโรงเรียน",
+        "my": "ကျောင်းသွားခြင်း",
+        "km": "ទៅសាលា",
+        "id": "pergi ke sekolah"
+      }
+    },
+    {
+      "id": 744,
+      "pos": "名詞",
+      "kanji": "統合",
+      "reading": "とうごう",
+      "meanings": {
+        "ja": "統合",
+        "en": "integration; unification",
+        "zh": "整合",
+        "tw": "整合",
+        "ko": "통합",
+        "vi": "hợp nhất",
+        "th": "รวมกัน",
+        "my": "ပေါင်းစည်းခြင်း",
+        "km": "ការរួមបញ្ចូល",
+        "id": "integrasi"
+      }
+    },
+    {
+      "id": 745,
+      "pos": "名詞",
+      "kanji": "動向",
+      "reading": "どうこう",
+      "meanings": {
+        "ja": "動向",
+        "en": "trend; tendency",
+        "zh": "动向",
+        "tw": "動向",
+        "ko": "동향",
+        "vi": "xu hướng",
+        "th": "แนวโน้ม",
+        "my": "လမ်းကြောင်းအနာဂတ်",
+        "km": "និន្នាការ",
+        "id": "tren"
+      }
+    },
+    {
+      "id": 746,
+      "pos": "名詞",
+      "kanji": "投資",
+      "reading": "とうし",
+      "meanings": {
+        "ja": "投資",
+        "en": "investment",
+        "zh": "投资",
+        "tw": "投資",
+        "ko": "투자",
+        "vi": "đầu tư",
+        "th": "การลงทุน",
+        "my": "ရင်းနှီးမြှုပ်နှံမှု",
+        "km": "វិនិយោគ",
+        "id": "investasi"
+      }
+    },
+    {
+      "id": 747,
+      "pos": "名詞",
+      "kanji": "同情",
+      "reading": "どうじょう",
+      "meanings": {
+        "ja": "同情",
+        "en": "sympathy",
+        "zh": "同情",
+        "tw": "同情",
+        "ko": "동정",
+        "vi": "cảm thông",
+        "th": "ความเห็นใจ",
+        "my": "မေတ္တာတရား",
+        "km": "ការយល់ចិត្ត",
+        "id": "simpati"
+      }
+    },
+    {
+      "id": 748,
+      "pos": "名詞",
+      "kanji": "道場",
+      "reading": "どうじょう",
+      "meanings": {
+        "ja": "道場",
+        "en": "dojo (training hall)",
+        "zh": "道场",
+        "tw": "道場",
+        "ko": "도장",
+        "vi": "võ đường",
+        "th": "สำนักฝึกศิลปะการต่อสู้",
+        "my": "လေ့ကျင့်ခန်းခန်း",
+        "km": "សាលាហាត់",
+        "id": "dojo"
+      }
+    },
+    {
+      "id": 749,
+      "pos": "名詞",
+      "kanji": "統制",
+      "reading": "とうせい",
+      "meanings": {
+        "ja": "統制",
+        "en": "control; regulation",
+        "zh": "统制",
+        "tw": "統制",
+        "ko": "통제",
+        "vi": "kiểm soát",
+        "th": "การควบคุม",
+        "my": "ထိန်းချုပ်မှု",
+        "km": "ការគ្រប់គ្រង",
+        "id": "pengendalian"
+      }
+    },
+    {
+      "id": 750,
+      "pos": "名詞",
+      "kanji": "当選",
+      "reading": "とうせん",
+      "meanings": {
+        "ja": "当選",
+        "en": "being elected",
+        "zh": "当选",
+        "tw": "當選",
+        "ko": "당선",
+        "vi": "trúng cử",
+        "th": "ได้รับเลือกตั้ง",
+        "my": "အနိုင်ရခြင်း",
+        "km": "ជាប់ឆ្នោត",
+        "id": "terpilih"
+      }
+    }
   ]
-};
+}

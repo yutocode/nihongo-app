@@ -1,54 +1,904 @@
 export const n1part_nouns5 = {
-  Lesson5: [
-    { id: 201, kanji: "権限", reading: "けんげん", meanings: { ja:"権限", en:"authority; power", zh:"权限", tw:"權限", ko:"권한", vi:"thẩm quyền", th:"อำนาจหน้าที่", my:"အာဏာခွင့်", km:"សិទ្ធិអំណាច", id:"wewenang" } },
-    { id: 202, kanji: "現行", reading: "げんこう", meanings: { ja:"現行", en:"current; in force", zh:"现行", tw:"現行", ko:"현행", vi:"hiện hành", th:"ที่ใช้อยู่ปัจจุบัน", my:"လက်ရှိအသုံးပြု", km:"ដែលកំពុងអនុវត្ត", id:"yang berlaku" } },
-    { id: 203, kanji: "原作", reading: "げんさく", meanings: { ja:"原作", en:"original work", zh:"原作", tw:"原作", ko:"원작", vi:"tác phẩm gốc", th:"ผลงานต้นฉบับ", my:"မူရင်းလက်ရာ", km:"ស្នាដៃដើម", id:"karya asli" } },
-    { id: 204, kanji: "検事", reading: "けんじ", meanings: { ja:"検事", en:"public prosecutor", zh:"检察官", tw:"檢察官", ko:"검사", vi:"kiểm sát viên", th:"อัยการ", my:"ရှေ့နေပြစ်မှု", km:"អយ្យការការ", id:"jaksa" } },
-    { id: 205, kanji: "原子", reading: "げんし", meanings: { ja:"原子", en:"atom", zh:"原子", tw:"原子", ko:"원자", vi:"nguyên tử", th:"อะตอม", my:"အက်တမ်", km:"អាតូម", id:"atom" } },
-    { id: 206, kanji: "元首", reading: "げんしゅ", meanings: { ja:"元首", en:"sovereign; head of state", zh:"元首", tw:"元首", ko:"원수(국가수반)", vi:"nguyên thủ quốc gia", th:"ประมุขของรัฐ", my:"နိုင်ငံခေါင်းဆောင်", km:"ប្រមុខរដ្ឋ", id:"kepala negara" } },
-    { id: 207, kanji: "原書", reading: "げんしょ", meanings: { ja:"原書", en:"original document/book", zh:"原始文献", tw:"原書", ko:"원서", vi:"nguyên thư", th:"ต้นฉบับหนังสือ", my:"မူရင်းစာအုပ်", km:"សៀវភៅដើម", id:"naskah asli" } },
-    { id: 208, kanji: "懸賞", reading: "けんしょう", meanings: { ja:"懸賞", en:"offering a prize; reward", zh:"悬赏", tw:"懸賞", ko:"현상(금)", vi:"treo thưởng", th:"ตั้งรางวัล", my:"ဆုကြေးငွေကြေညာ", km:"ផ្សព្វផ្សាយផ្តល់រង្វាន់", id:"sayembara/hadiah" } },
-    { id: 209, kanji: "元素", reading: "げんそ", meanings: { ja:"元素", en:"(chemical) element", zh:"元素", tw:"元素", ko:"원소", vi:"nguyên tố", th:"ธาตุ", my:"အမှုန့်ဓာတုအင်္ဂါ", km:"ធាតុគីមី", id:"unsur" } },
-    { id: 210, kanji: "同調", reading: "どうちょう", meanings: { ja:"同調", en:"conformity; tuning (sync)", zh:"同调；附和", tw:"同調；附和", ko:"동조", vi:"đồng điệu/đồng thuận", th:"สอดรับ/คล้อยตาม", my:"သဘောတူညီမှု", km:"ការយល់ស្រប", id:"konformitas" } },
-    { id: 211, kanji: "投入", reading: "とうにゅう", meanings: { ja:"投入", en:"throwing in; input; investment (resources)", zh:"投入", tw:"投入", ko:"투입", vi:"đưa vào;投入", th:"ใส่/ทุ่มเท", my:"ထည့်သွင်း", km:"បញ្ចូល/ដាក់ចូល", id:"pemasukan/penyuntikan" } },
-    { id: 212, kanji: "導入", reading: "どうにゅう", meanings: { ja:"導入", en:"introduction; implementation", zh:"导入；引进", tw:"導入", ko:"도입", vi:"đưa vào; triển khai", th:"นำเข้า/เริ่มใช้", my:"တင်သွင်းသုံးစွဲ", km:"ដាក់ឲ្យប្រើ", id:"pengenalan/implementasi" } },
-    { id: 213, kanji: "当人", reading: "とうにん", meanings: { ja:"当人", en:"the person concerned", zh:"当事人", tw:"當事人", ko:"당사자", vi:"đương sự", th:"ผู้เกี่ยวข้อง", my:"ဆိုင်ရာပုဂ္ဂိုလ်", km:"មនុស្សពាក់ព័ន្ធ", id:"yang bersangkutan" } },
-    { id: 214, kanji: "同封", reading: "どうふう", meanings: { ja:"同封", en:"enclosure (in a letter)", zh:"同封", tw:"同封", ko:"동봉", vi:"đồng phong (gửi kèm)", th:"แนบมาพร้อมจดหมาย", my:"စာတွင်ပါရှိ", km:"ជាមួយសំបុត្រ", id:"terlampir" } },
-    { id: 215, kanji: "逃亡", reading: "とうぼう", meanings: { ja:"逃亡", en:"escape; flight", zh:"逃亡", tw:"逃亡", ko:"도망", vi:"đào tẩu", th:"หลบหนี", my:"ပြေးလွတ်ခြင်း", km:"គេចខ្លួន", id:"pelarian" } },
-    { id: 216, kanji: "冬眠", reading: "とうみん", meanings: { ja:"冬眠", en:"hibernation", zh:"冬眠", tw:"冬眠", ko:"동면", vi:"ngủ đông", th:"จำศีลฤดูหนาว", my:"ဆောင်းရာသီအိပ်", km:"ការគេងរដូវរងារ", id:"hibernasi" } },
-    { id: 217, kanji: "同盟", reading: "どうめい", meanings: { ja:"同盟", en:"alliance", zh:"同盟", tw:"同盟", ko:"동맹", vi:"liên minh", th:"พันธมิตร", my:"မဟာမိတ်", km:"សម្ព័ន្ធ", id:"aliansi" } },
-    { id: 218, kanji: "動力", reading: "どうりょく", meanings: { ja:"動力", en:"power (motive force)", zh:"动力", tw:"動力", ko:"동력", vi:"động lực (cơ học)", th:"กำลังขับเคลื่อน", my:"အင်ဂျင်အင်အား", km:"កម្លាំងបញ្ជា", id:"tenaga penggerak" } },
-    { id: 219, kanji: "登録", reading: "とうろく", meanings: { ja:"登録", en:"registration", zh:"登记", tw:"登記/註冊", ko:"등록", vi:"đăng ký", th:"ลงทะเบียน", my:"မှတ်ပုံတင်", km:"ចុះឈ្មោះ", id:"registrasi" } },
-    { id: 220, kanji: "討論", reading: "とうろん", meanings: { ja:"討論", en:"debate; discussion", zh:"讨论", tw:"討論", ko:"토론", vi:"thảo luận; tranh luận", th:"อภิปราย/ถกเถียง", my:"ဆွေးနွေးဗေဒ", km:"ការពិភាក្សា", id:"debat" } },
-    { id: 221, kanji: "遠回り", reading: "とおまわり", meanings: { ja:"遠回り", en:"detour; roundabout way", zh:"绕远；绕道", tw:"繞遠路", ko:"빙 돌아감", vi:"đi đường vòng", th:"อ้อมทาง", my:"လမ်းခရီးရှည်အနည်းငယ်", km:"លំយោលផ្លូវ", id:"memutar jalan" } },
-    { id: 222, kanji: "トーン", reading: "トーン", meanings: { ja:"トーン", en:"tone", zh:"色调；语调", tw:"色調；語氣", ko:"톤", vi:"tông", th:"โทน", my:"အသံ/အရောင်ခန့်", km:"ទឹកសម្លេង/ពណ៌", id:"nada" } },
-    { id: 223, kanji: "特技", reading: "とくぎ", meanings: { ja:"特技", en:"special skill", zh:"特长", tw:"特技", ko:"특기", vi:"sở trường", th:"ความสามารถพิเศษ", my:"ထူးချွန်ကျွမ်းက်င်မှု", km:"ជំនាញពិសេស", id:"keahlian khusus" } },
-    { id: 224, kanji: "独裁", reading: "どくさい", meanings: { ja:"独裁", en:"dictatorship", zh:"独裁", tw:"獨裁", ko:"독재", vi:"độc tài", th:"เผด็จการ", my:"ဖိနှိပ်အုပ်ချုပ်မှုပုံစံ", km:"ផ្តាច់ការ", id:"kediktatoran" } },
-    { id: 225, kanji: "特産", reading: "とくさん", meanings: { ja:"特産", en:"local specialty; produced in a region", zh:"特产", tw:"特產", ko:"특산(품)", vi:"đặc sản/đặc thù sản xuất", th:"ของขึ้นชื่อท้องถิ่น", my:"ဒေသဆိုင်ရာထုတ်ကုန်", km:"ផលិតផលពិសេសតំបន់", id:"produk khas daerah" } },
-    { id: 226, kanji: "特集", reading: "とくしゅう", meanings: { ja:"特集", en:"feature (article/program)", zh:"专题", tw:"特集", ko:"특집", vi:"chuyên mục đặc biệt", th:"ฉบับพิเศษ/ตอนพิเศษ", my:"အထူးအစိတ်အပိုင်း", km:"ប្រធានបទពិសេស", id:"edisi khusus" } },
-    { id: 227, kanji: "独占", reading: "どくせん", meanings: { ja:"独占", en:"monopoly", zh:"垄断", tw:"壟斷", ko:"독점", vi:"độc chiếm", th:"ผูกขาด", my:"တစ်ခုတည်းထိန်းချုပ်", km:"អភិវឌ្ឍន៍តែមួយ", id:"monopoli" } },
-    { id: 228, kanji: "独創", reading: "どくそう", meanings: { ja:"独創", en:"originality; creative originality", zh:"独创", tw:"獨創", ko:"독창성", vi:"tính độc sáng", th:"ความริเริ่มสร้างสรรค์", my:"ဖန်တီးတီထွင်နိုင်မှု", km:"ភាពច្នៃប្រឌិតដើម", id:"orisinalitas kreatif" } },
-    { id: 229, kanji: "得点", reading: "とくてん", meanings: { ja:"得点", en:"score; points", zh:"得分", tw:"得分", ko:"득점", vi:"ghi điểm", th:"คะแนน", my:"အမှတ်ယူ", km:"ពិន្ទុ", id:"skor" } },
-    { id: 230, kanji: "特派", reading: "とくは", meanings: { ja:"特派", en:"special dispatch", zh:"特派", tw:"特派", ko:"특파", vi:"cử phái đặc biệt", th:"ส่งตัวเป็นกรณีพิเศษ", my:"အထူးလွှဲပြောင်း", km:"ប phái ពិសេស", id:"penugasan khusus" } },
-    { id: 231, kanji: "年頃", reading: "としごろ", meanings: { ja:"年頃", en:"approximate age; marriageable age", zh:"年纪；适婚年龄", tw:"年紀；適婚年齡", ko:"적령기; 대략적 나이", vi:"độ tuổi; tuổi cập kê", th:"วัยประมาณ/ถึงวัย", my:"အသက်တိုင်တယ်", km:"អាយុប្រហែល/គួររៀបការ", id:"usia kira-kira; usia menikah" } },
-    { id: 232, kanji: "戸締り", reading: "とじまり", meanings: { ja:"戸締り", en:"locking up (doors/windows)", zh:"关门落锁", tw:"關門上鎖", ko:"문단속", vi:"khóa cửa", th:"ปิดล็อกประตูหน้าต่าง", my:"တံခါးပြတင်းပိတ်ခတ်", km:"ចាក់សោទ្វារ​បង្អួច", id:"mengunci rumah" } },
-    { id: 233, kanji: "途上", reading: "とじょう", meanings: { ja:"途上", en:"on the way; in progress", zh:"途中；在发展中", tw:"途上；進行中", ko:"도중; 진행 중", vi:"trên đường; đang tiến hành", th:"ระหว่างทาง/กำลังดำเนิน", my:"လမ်းမှာ/တိုးတက်လျက်", km:"កំពុងដំណើរ", id:"di tengah jalan/proses" } },
-    { id: 234, kanji: "土台", reading: "どだい", meanings: { ja:"土台", en:"foundation; base", zh:"地基；基础", tw:"地基；基礎", ko:"토대", vi:"nền tảng", th:"รากฐาน", my:"အုတ်မြစ်ခံ", km:"មូលដ្ឋាន", id:"pondasi" } },
-    { id: 235, kanji: "特許", reading: "とっきょ", meanings: { ja:"特許", en:"patent", zh:"专利", tw:"專利", ko:"특허", vi:"bằng sáng chế", th:"สิทธิบัตร", my:"မူပိုင်ခွင့်", km:"ប៉ាតង់", id:"paten" } },
-    { id: 236, kanji: "特権", reading: "とっけん", meanings: { ja:"特権", en:"privilege; prerogative", zh:"特权", tw:"特權", ko:"특권", vi:"đặc quyền", th:"อภิสิทธิ์", my:"အထူးအခွင့်", km:"អភិវឌ្ឍន៍ពិសេស", id:"hak istimewa" } },
-    { id: 237, kanji: "突破", reading: "とっぱ", meanings: { ja:"突破", en:"breakthrough; breach", zh:"突破", tw:"突破", ko:"돌파", vi:"đột phá", th:"ฝ่า/ทะลวง", my:"ထည့်ဖျက်ကျော်", km:"ច្រានចូល/ផ្តាច់", id:"terobosan" } },
-    { id: 238, kanji: "土手", reading: "どて", meanings: { ja:"土手", en:"embankment; levee", zh:"堤岸", tw:"土堤", ko:"둑", vi:"bờ đê", th:"คันดิน/ตลิ่ง", my:"တံတိုင်းတံခါး", km:"ទំនប់ដី", id:"tanggul" } },
-    { id: 239, kanji: "届", reading: "とどけ", meanings: { ja:"届", en:"report; notice (to authorities)", zh:"申报；报告", tw:"申報；通報", ko:"신고서", vi:"giấy thông báo/đơn trình", th:"แบบฟอร์มแจ้ง/รายงาน", my:"တင်သွင်းအချက်အလက်", km:"ពាក្យស្នើសុំ/រាយការណ៍", id:"laporan/pemberitahuan" } },
-    { id: 240, kanji: "殿様", reading: "とのさま", meanings: { ja:"殿様", en:"feudal lord; nobleman", zh:"藩主；贵族", tw:"大名；貴族", ko:"영주; 귀족", vi:"lãnh chúa; quý tộc", th:"ท่านเจ้า/ขุนนาง", my:"ဝပ်ရှင်မင်း", km:"អភិជនម្ចាស់ដី", id:"tuan feodal" } },
-    { id: 241, kanji: "土俵", reading: "どひょう", meanings: { ja:"土俵", en:"sumo ring", zh:"相扑土俵（赛场）", tw:"相撲土俵", ko:"스모 링(도효)", vi:"võ đài sumo", th:"เวทีซูโม่ (โดฮียว)", my:"စုမိုကာလ်ပျစ်", km:"វេទិកាស៊ូម៉ូ", id:"arena sumo (dohyō)" } },
-    { id: 242, kanji: "扉", reading: "とびら", meanings: { ja:"扉", en:"door; title page", zh:"扉；门扉", tw:"扉；門扉", ko:"문짝", vi:"cánh cửa", th:"บานประตู", my:"တံခါးပ，请", km:"ទ្វារបិទ", id:"pintu (daun)" } },
-    { id: 243, kanji: "溝", reading: "どぶ", meanings: { ja:"溝", en:"ditch; gutter", zh:"沟渠", tw:"水溝", ko:"도랑; 하수구", vi:"mương; rãnh", th:"ร่องน้ำ/ท่อระบายน้ำ", my:"မြောင်းချိုင့်", km:"រន្ធរាន", id:"selokan" } },
-    { id: 244, kanji: "徒歩", reading: "とほ", meanings: { ja:"徒歩", en:"on foot", zh:"徒步", tw:"徒步", ko:"도보", vi:"đi bộ", th:"เดินเท้า", my:"လမ်းလျှောက်", km:"ដើរក្បាលដី", id:"berjalan kaki" } },
-    { id: 245, kanji: "土木", reading: "どぼく", meanings: { ja:"土木", en:"civil engineering; public works", zh:"土木工程", tw:"土木工程", ko:"토목", vi:"kỹ thuật dân dụng", th:"วิศวกรรมโยธา", my:"တည်ဆောက်ရေးအင်ဂျင်နီယာ", km:"វិស្វកម្មសំណង់", id:"teknik sipil" } },
-    { id: 246, kanji: "富", reading: "とみ", meanings: { ja:"富", en:"wealth; riches", zh:"财富", tw:"財富", ko:"부(富)", vi:"của cải", th:"ความมั่งคั่ง", my:"ချမ်းသာမှု", km:"សម្បត្តិ", id:"kekayaan" } },
-    { id: 247, kanji: "共稼ぎ", reading: "ともかせぎ", meanings: { ja:"共稼ぎ", en:"dual-income (husband & wife)", zh:"双职工（夫妻都工作）", tw:"雙薪家庭", ko:"맞벌이", vi:"vợ chồng cùng đi làm", th:"ครอบครัวรายได้สองทาง", my:"အိမ်ထောင်နှစ်ယောက်လုံးအလုပ်လုပ်", km:"គ្រួសារបើកប្រាក់ពីទាំងពីរ", id:"dua penghasilan (suami-istri)" } },
-    { id: 248, kanji: "共働き", reading: "ともばたらき", meanings: { ja:"共働き", en:"both husband and wife working", zh:"夫妻共同工作", tw:"雙薪", ko:"맞벌이", vi:"cả hai vợ chồng đi làm", th:"ทำงานทั้งคู่", my:"လင်မယားနှစ်ယောက်လုံးအလုပ်လုပ်", km:"ប្ដីប្រពន្ធធ្វើការ", id:"keduanya bekerja" } },
-    { id: 249, kanji: "ドライクリーニング", reading: "ドライクリーニング", meanings: { ja:"ドライクリーニング", en:"dry cleaning", zh:"干洗", tw:"乾洗", ko:"드라이클리닝", vi:"giặt khô", th:"ซักแห้ง", my:"ခြောက်သင်္ကမ", km:"បោកស្ងួត", id:"dry clean" } },
-    { id: 250, kanji: "ドライバー", reading: "ドライバー", meanings: { ja:"ドライバー", en:"driver (of a vehicle)", zh:"司机", tw:"司機", ko:"운전사", vi:"tài xế", th:"คนขับรถ", my:"ယာဉ်မောင်း", km:"អ្នកបើកបរ", id:"pengemudi" } }
+  "Lesson5": [
+    {
+      "id": 201,
+      "pos": "名詞",
+      "kanji": "権限",
+      "reading": "けんげん",
+      "meanings": {
+        "ja": "権限",
+        "en": "authority; power",
+        "zh": "权限",
+        "tw": "權限",
+        "ko": "권한",
+        "vi": "thẩm quyền",
+        "th": "อำนาจหน้าที่",
+        "my": "အာဏာခွင့်",
+        "km": "សិទ្ធិអំណាច",
+        "id": "wewenang"
+      }
+    },
+    {
+      "id": 202,
+      "pos": "名詞",
+      "kanji": "現行",
+      "reading": "げんこう",
+      "meanings": {
+        "ja": "現行",
+        "en": "current; in force",
+        "zh": "现行",
+        "tw": "現行",
+        "ko": "현행",
+        "vi": "hiện hành",
+        "th": "ที่ใช้อยู่ปัจจุบัน",
+        "my": "လက်ရှိအသုံးပြု",
+        "km": "ដែលកំពុងអនុវត្ត",
+        "id": "yang berlaku"
+      }
+    },
+    {
+      "id": 203,
+      "pos": "名詞",
+      "kanji": "原作",
+      "reading": "げんさく",
+      "meanings": {
+        "ja": "原作",
+        "en": "original work",
+        "zh": "原作",
+        "tw": "原作",
+        "ko": "원작",
+        "vi": "tác phẩm gốc",
+        "th": "ผลงานต้นฉบับ",
+        "my": "မူရင်းလက်ရာ",
+        "km": "ស្នាដៃដើម",
+        "id": "karya asli"
+      }
+    },
+    {
+      "id": 204,
+      "pos": "名詞",
+      "kanji": "検事",
+      "reading": "けんじ",
+      "meanings": {
+        "ja": "検事",
+        "en": "public prosecutor",
+        "zh": "检察官",
+        "tw": "檢察官",
+        "ko": "검사",
+        "vi": "kiểm sát viên",
+        "th": "อัยการ",
+        "my": "ရှေ့နေပြစ်မှု",
+        "km": "អយ្យការការ",
+        "id": "jaksa"
+      }
+    },
+    {
+      "id": 205,
+      "pos": "名詞",
+      "kanji": "原子",
+      "reading": "げんし",
+      "meanings": {
+        "ja": "原子",
+        "en": "atom",
+        "zh": "原子",
+        "tw": "原子",
+        "ko": "원자",
+        "vi": "nguyên tử",
+        "th": "อะตอม",
+        "my": "အက်တမ်",
+        "km": "អាតូម",
+        "id": "atom"
+      }
+    },
+    {
+      "id": 206,
+      "pos": "名詞",
+      "kanji": "元首",
+      "reading": "げんしゅ",
+      "meanings": {
+        "ja": "元首",
+        "en": "sovereign; head of state",
+        "zh": "元首",
+        "tw": "元首",
+        "ko": "원수(국가수반)",
+        "vi": "nguyên thủ quốc gia",
+        "th": "ประมุขของรัฐ",
+        "my": "နိုင်ငံခေါင်းဆောင်",
+        "km": "ប្រមុខរដ្ឋ",
+        "id": "kepala negara"
+      }
+    },
+    {
+      "id": 207,
+      "pos": "名詞",
+      "kanji": "原書",
+      "reading": "げんしょ",
+      "meanings": {
+        "ja": "原書",
+        "en": "original document/book",
+        "zh": "原始文献",
+        "tw": "原書",
+        "ko": "원서",
+        "vi": "nguyên thư",
+        "th": "ต้นฉบับหนังสือ",
+        "my": "မူရင်းစာအုပ်",
+        "km": "សៀវភៅដើម",
+        "id": "naskah asli"
+      }
+    },
+    {
+      "id": 208,
+      "pos": "名詞",
+      "kanji": "懸賞",
+      "reading": "けんしょう",
+      "meanings": {
+        "ja": "懸賞",
+        "en": "offering a prize; reward",
+        "zh": "悬赏",
+        "tw": "懸賞",
+        "ko": "현상(금)",
+        "vi": "treo thưởng",
+        "th": "ตั้งรางวัล",
+        "my": "ဆုကြေးငွေကြေညာ",
+        "km": "ផ្សព្វផ្សាយផ្តល់រង្វាន់",
+        "id": "sayembara/hadiah"
+      }
+    },
+    {
+      "id": 209,
+      "pos": "名詞",
+      "kanji": "元素",
+      "reading": "げんそ",
+      "meanings": {
+        "ja": "元素",
+        "en": "(chemical) element",
+        "zh": "元素",
+        "tw": "元素",
+        "ko": "원소",
+        "vi": "nguyên tố",
+        "th": "ธาตุ",
+        "my": "အမှုန့်ဓာတုအင်္ဂါ",
+        "km": "ធាតុគីមី",
+        "id": "unsur"
+      }
+    },
+    {
+      "id": 210,
+      "pos": "名詞",
+      "kanji": "同調",
+      "reading": "どうちょう",
+      "meanings": {
+        "ja": "同調",
+        "en": "conformity; tuning (sync)",
+        "zh": "同调；附和",
+        "tw": "同調；附和",
+        "ko": "동조",
+        "vi": "đồng điệu/đồng thuận",
+        "th": "สอดรับ/คล้อยตาม",
+        "my": "သဘောတူညီမှု",
+        "km": "ការយល់ស្រប",
+        "id": "konformitas"
+      }
+    },
+    {
+      "id": 211,
+      "pos": "名詞",
+      "kanji": "投入",
+      "reading": "とうにゅう",
+      "meanings": {
+        "ja": "投入",
+        "en": "throwing in; input; investment (resources)",
+        "zh": "投入",
+        "tw": "投入",
+        "ko": "투입",
+        "vi": "đưa vào;投入",
+        "th": "ใส่/ทุ่มเท",
+        "my": "ထည့်သွင်း",
+        "km": "បញ្ចូល/ដាក់ចូល",
+        "id": "pemasukan/penyuntikan"
+      }
+    },
+    {
+      "id": 212,
+      "pos": "名詞",
+      "kanji": "導入",
+      "reading": "どうにゅう",
+      "meanings": {
+        "ja": "導入",
+        "en": "introduction; implementation",
+        "zh": "导入；引进",
+        "tw": "導入",
+        "ko": "도입",
+        "vi": "đưa vào; triển khai",
+        "th": "นำเข้า/เริ่มใช้",
+        "my": "တင်သွင်းသုံးစွဲ",
+        "km": "ដាក់ឲ្យប្រើ",
+        "id": "pengenalan/implementasi"
+      }
+    },
+    {
+      "id": 213,
+      "pos": "名詞",
+      "kanji": "当人",
+      "reading": "とうにん",
+      "meanings": {
+        "ja": "当人",
+        "en": "the person concerned",
+        "zh": "当事人",
+        "tw": "當事人",
+        "ko": "당사자",
+        "vi": "đương sự",
+        "th": "ผู้เกี่ยวข้อง",
+        "my": "ဆိုင်ရာပုဂ္ဂိုလ်",
+        "km": "មនុស្សពាក់ព័ន្ធ",
+        "id": "yang bersangkutan"
+      }
+    },
+    {
+      "id": 214,
+      "pos": "名詞",
+      "kanji": "同封",
+      "reading": "どうふう",
+      "meanings": {
+        "ja": "同封",
+        "en": "enclosure (in a letter)",
+        "zh": "同封",
+        "tw": "同封",
+        "ko": "동봉",
+        "vi": "đồng phong (gửi kèm)",
+        "th": "แนบมาพร้อมจดหมาย",
+        "my": "စာတွင်ပါရှိ",
+        "km": "ជាមួយសំបុត្រ",
+        "id": "terlampir"
+      }
+    },
+    {
+      "id": 215,
+      "pos": "名詞",
+      "kanji": "逃亡",
+      "reading": "とうぼう",
+      "meanings": {
+        "ja": "逃亡",
+        "en": "escape; flight",
+        "zh": "逃亡",
+        "tw": "逃亡",
+        "ko": "도망",
+        "vi": "đào tẩu",
+        "th": "หลบหนี",
+        "my": "ပြေးလွတ်ခြင်း",
+        "km": "គេចខ្លួន",
+        "id": "pelarian"
+      }
+    },
+    {
+      "id": 216,
+      "pos": "名詞",
+      "kanji": "冬眠",
+      "reading": "とうみん",
+      "meanings": {
+        "ja": "冬眠",
+        "en": "hibernation",
+        "zh": "冬眠",
+        "tw": "冬眠",
+        "ko": "동면",
+        "vi": "ngủ đông",
+        "th": "จำศีลฤดูหนาว",
+        "my": "ဆောင်းရာသီအိပ်",
+        "km": "ការគេងរដូវរងារ",
+        "id": "hibernasi"
+      }
+    },
+    {
+      "id": 217,
+      "pos": "名詞",
+      "kanji": "同盟",
+      "reading": "どうめい",
+      "meanings": {
+        "ja": "同盟",
+        "en": "alliance",
+        "zh": "同盟",
+        "tw": "同盟",
+        "ko": "동맹",
+        "vi": "liên minh",
+        "th": "พันธมิตร",
+        "my": "မဟာမိတ်",
+        "km": "សម្ព័ន្ធ",
+        "id": "aliansi"
+      }
+    },
+    {
+      "id": 218,
+      "pos": "名詞",
+      "kanji": "動力",
+      "reading": "どうりょく",
+      "meanings": {
+        "ja": "動力",
+        "en": "power (motive force)",
+        "zh": "动力",
+        "tw": "動力",
+        "ko": "동력",
+        "vi": "động lực (cơ học)",
+        "th": "กำลังขับเคลื่อน",
+        "my": "အင်ဂျင်အင်အား",
+        "km": "កម្លាំងបញ្ជា",
+        "id": "tenaga penggerak"
+      }
+    },
+    {
+      "id": 219,
+      "pos": "名詞",
+      "kanji": "登録",
+      "reading": "とうろく",
+      "meanings": {
+        "ja": "登録",
+        "en": "registration",
+        "zh": "登记",
+        "tw": "登記/註冊",
+        "ko": "등록",
+        "vi": "đăng ký",
+        "th": "ลงทะเบียน",
+        "my": "မှတ်ပုံတင်",
+        "km": "ចុះឈ្មោះ",
+        "id": "registrasi"
+      }
+    },
+    {
+      "id": 220,
+      "pos": "名詞",
+      "kanji": "討論",
+      "reading": "とうろん",
+      "meanings": {
+        "ja": "討論",
+        "en": "debate; discussion",
+        "zh": "讨论",
+        "tw": "討論",
+        "ko": "토론",
+        "vi": "thảo luận; tranh luận",
+        "th": "อภิปราย/ถกเถียง",
+        "my": "ဆွေးနွေးဗေဒ",
+        "km": "ការពិភាក្សា",
+        "id": "debat"
+      }
+    },
+    {
+      "id": 221,
+      "pos": "名詞",
+      "kanji": "遠回り",
+      "reading": "とおまわり",
+      "meanings": {
+        "ja": "遠回り",
+        "en": "detour; roundabout way",
+        "zh": "绕远；绕道",
+        "tw": "繞遠路",
+        "ko": "빙 돌아감",
+        "vi": "đi đường vòng",
+        "th": "อ้อมทาง",
+        "my": "လမ်းခရီးရှည်အနည်းငယ်",
+        "km": "លំយោលផ្លូវ",
+        "id": "memutar jalan"
+      }
+    },
+    {
+      "id": 222,
+      "pos": "名詞",
+      "kanji": "トーン",
+      "reading": "トーン",
+      "meanings": {
+        "ja": "トーン",
+        "en": "tone",
+        "zh": "色调；语调",
+        "tw": "色調；語氣",
+        "ko": "톤",
+        "vi": "tông",
+        "th": "โทน",
+        "my": "အသံ/အရောင်ခန့်",
+        "km": "ទឹកសម្លេង/ពណ៌",
+        "id": "nada"
+      }
+    },
+    {
+      "id": 223,
+      "pos": "名詞",
+      "kanji": "特技",
+      "reading": "とくぎ",
+      "meanings": {
+        "ja": "特技",
+        "en": "special skill",
+        "zh": "特长",
+        "tw": "特技",
+        "ko": "특기",
+        "vi": "sở trường",
+        "th": "ความสามารถพิเศษ",
+        "my": "ထူးချွန်ကျွမ်းက်င်မှု",
+        "km": "ជំនាញពិសេស",
+        "id": "keahlian khusus"
+      }
+    },
+    {
+      "id": 224,
+      "pos": "名詞",
+      "kanji": "独裁",
+      "reading": "どくさい",
+      "meanings": {
+        "ja": "独裁",
+        "en": "dictatorship",
+        "zh": "独裁",
+        "tw": "獨裁",
+        "ko": "독재",
+        "vi": "độc tài",
+        "th": "เผด็จการ",
+        "my": "ဖိနှိပ်အုပ်ချုပ်မှုပုံစံ",
+        "km": "ផ្តាច់ការ",
+        "id": "kediktatoran"
+      }
+    },
+    {
+      "id": 225,
+      "pos": "名詞",
+      "kanji": "特産",
+      "reading": "とくさん",
+      "meanings": {
+        "ja": "特産",
+        "en": "local specialty; produced in a region",
+        "zh": "特产",
+        "tw": "特產",
+        "ko": "특산(품)",
+        "vi": "đặc sản/đặc thù sản xuất",
+        "th": "ของขึ้นชื่อท้องถิ่น",
+        "my": "ဒေသဆိုင်ရာထုတ်ကုန်",
+        "km": "ផលិតផលពិសេសតំបន់",
+        "id": "produk khas daerah"
+      }
+    },
+    {
+      "id": 226,
+      "pos": "名詞",
+      "kanji": "特集",
+      "reading": "とくしゅう",
+      "meanings": {
+        "ja": "特集",
+        "en": "feature (article/program)",
+        "zh": "专题",
+        "tw": "特集",
+        "ko": "특집",
+        "vi": "chuyên mục đặc biệt",
+        "th": "ฉบับพิเศษ/ตอนพิเศษ",
+        "my": "အထူးအစိတ်အပိုင်း",
+        "km": "ប្រធានបទពិសេស",
+        "id": "edisi khusus"
+      }
+    },
+    {
+      "id": 227,
+      "pos": "名詞",
+      "kanji": "独占",
+      "reading": "どくせん",
+      "meanings": {
+        "ja": "独占",
+        "en": "monopoly",
+        "zh": "垄断",
+        "tw": "壟斷",
+        "ko": "독점",
+        "vi": "độc chiếm",
+        "th": "ผูกขาด",
+        "my": "တစ်ခုတည်းထိန်းချုပ်",
+        "km": "អភិវឌ្ឍន៍តែមួយ",
+        "id": "monopoli"
+      }
+    },
+    {
+      "id": 228,
+      "pos": "名詞",
+      "kanji": "独創",
+      "reading": "どくそう",
+      "meanings": {
+        "ja": "独創",
+        "en": "originality; creative originality",
+        "zh": "独创",
+        "tw": "獨創",
+        "ko": "독창성",
+        "vi": "tính độc sáng",
+        "th": "ความริเริ่มสร้างสรรค์",
+        "my": "ဖန်တီးတီထွင်နိုင်မှု",
+        "km": "ភាពច្នៃប្រឌិតដើម",
+        "id": "orisinalitas kreatif"
+      }
+    },
+    {
+      "id": 229,
+      "pos": "名詞",
+      "kanji": "得点",
+      "reading": "とくてん",
+      "meanings": {
+        "ja": "得点",
+        "en": "score; points",
+        "zh": "得分",
+        "tw": "得分",
+        "ko": "득점",
+        "vi": "ghi điểm",
+        "th": "คะแนน",
+        "my": "အမှတ်ယူ",
+        "km": "ពិន្ទុ",
+        "id": "skor"
+      }
+    },
+    {
+      "id": 230,
+      "pos": "名詞",
+      "kanji": "特派",
+      "reading": "とくは",
+      "meanings": {
+        "ja": "特派",
+        "en": "special dispatch",
+        "zh": "特派",
+        "tw": "特派",
+        "ko": "특파",
+        "vi": "cử phái đặc biệt",
+        "th": "ส่งตัวเป็นกรณีพิเศษ",
+        "my": "အထူးလွှဲပြောင်း",
+        "km": "ប phái ពិសេស",
+        "id": "penugasan khusus"
+      }
+    },
+    {
+      "id": 231,
+      "pos": "名詞",
+      "kanji": "年頃",
+      "reading": "としごろ",
+      "meanings": {
+        "ja": "年頃",
+        "en": "approximate age; marriageable age",
+        "zh": "年纪；适婚年龄",
+        "tw": "年紀；適婚年齡",
+        "ko": "적령기; 대략적 나이",
+        "vi": "độ tuổi; tuổi cập kê",
+        "th": "วัยประมาณ/ถึงวัย",
+        "my": "အသက်တိုင်တယ်",
+        "km": "អាយុប្រហែល/គួររៀបការ",
+        "id": "usia kira-kira; usia menikah"
+      }
+    },
+    {
+      "id": 232,
+      "pos": "名詞",
+      "kanji": "戸締り",
+      "reading": "とじまり",
+      "meanings": {
+        "ja": "戸締り",
+        "en": "locking up (doors/windows)",
+        "zh": "关门落锁",
+        "tw": "關門上鎖",
+        "ko": "문단속",
+        "vi": "khóa cửa",
+        "th": "ปิดล็อกประตูหน้าต่าง",
+        "my": "တံခါးပြတင်းပိတ်ခတ်",
+        "km": "ចាក់សោទ្វារ​បង្អួច",
+        "id": "mengunci rumah"
+      }
+    },
+    {
+      "id": 233,
+      "pos": "名詞",
+      "kanji": "途上",
+      "reading": "とじょう",
+      "meanings": {
+        "ja": "途上",
+        "en": "on the way; in progress",
+        "zh": "途中；在发展中",
+        "tw": "途上；進行中",
+        "ko": "도중; 진행 중",
+        "vi": "trên đường; đang tiến hành",
+        "th": "ระหว่างทาง/กำลังดำเนิน",
+        "my": "လမ်းမှာ/တိုးတက်လျက်",
+        "km": "កំពុងដំណើរ",
+        "id": "di tengah jalan/proses"
+      }
+    },
+    {
+      "id": 234,
+      "pos": "名詞",
+      "kanji": "土台",
+      "reading": "どだい",
+      "meanings": {
+        "ja": "土台",
+        "en": "foundation; base",
+        "zh": "地基；基础",
+        "tw": "地基；基礎",
+        "ko": "토대",
+        "vi": "nền tảng",
+        "th": "รากฐาน",
+        "my": "အုတ်မြစ်ခံ",
+        "km": "មូលដ្ឋាន",
+        "id": "pondasi"
+      }
+    },
+    {
+      "id": 235,
+      "pos": "名詞",
+      "kanji": "特許",
+      "reading": "とっきょ",
+      "meanings": {
+        "ja": "特許",
+        "en": "patent",
+        "zh": "专利",
+        "tw": "專利",
+        "ko": "특허",
+        "vi": "bằng sáng chế",
+        "th": "สิทธิบัตร",
+        "my": "မူပိုင်ခွင့်",
+        "km": "ប៉ាតង់",
+        "id": "paten"
+      }
+    },
+    {
+      "id": 236,
+      "pos": "名詞",
+      "kanji": "特権",
+      "reading": "とっけん",
+      "meanings": {
+        "ja": "特権",
+        "en": "privilege; prerogative",
+        "zh": "特权",
+        "tw": "特權",
+        "ko": "특권",
+        "vi": "đặc quyền",
+        "th": "อภิสิทธิ์",
+        "my": "အထူးအခွင့်",
+        "km": "អភិវឌ្ឍន៍ពិសេស",
+        "id": "hak istimewa"
+      }
+    },
+    {
+      "id": 237,
+      "pos": "名詞",
+      "kanji": "突破",
+      "reading": "とっぱ",
+      "meanings": {
+        "ja": "突破",
+        "en": "breakthrough; breach",
+        "zh": "突破",
+        "tw": "突破",
+        "ko": "돌파",
+        "vi": "đột phá",
+        "th": "ฝ่า/ทะลวง",
+        "my": "ထည့်ဖျက်ကျော်",
+        "km": "ច្រានចូល/ផ្តាច់",
+        "id": "terobosan"
+      }
+    },
+    {
+      "id": 238,
+      "pos": "名詞",
+      "kanji": "土手",
+      "reading": "どて",
+      "meanings": {
+        "ja": "土手",
+        "en": "embankment; levee",
+        "zh": "堤岸",
+        "tw": "土堤",
+        "ko": "둑",
+        "vi": "bờ đê",
+        "th": "คันดิน/ตลิ่ง",
+        "my": "တံတိုင်းတံခါး",
+        "km": "ទំនប់ដី",
+        "id": "tanggul"
+      }
+    },
+    {
+      "id": 239,
+      "pos": "名詞",
+      "kanji": "届",
+      "reading": "とどけ",
+      "meanings": {
+        "ja": "届",
+        "en": "report; notice (to authorities)",
+        "zh": "申报；报告",
+        "tw": "申報；通報",
+        "ko": "신고서",
+        "vi": "giấy thông báo/đơn trình",
+        "th": "แบบฟอร์มแจ้ง/รายงาน",
+        "my": "တင်သွင်းအချက်အလက်",
+        "km": "ពាក្យស្នើសុំ/រាយការណ៍",
+        "id": "laporan/pemberitahuan"
+      }
+    },
+    {
+      "id": 240,
+      "pos": "名詞",
+      "kanji": "殿様",
+      "reading": "とのさま",
+      "meanings": {
+        "ja": "殿様",
+        "en": "feudal lord; nobleman",
+        "zh": "藩主；贵族",
+        "tw": "大名；貴族",
+        "ko": "영주; 귀족",
+        "vi": "lãnh chúa; quý tộc",
+        "th": "ท่านเจ้า/ขุนนาง",
+        "my": "ဝပ်ရှင်မင်း",
+        "km": "អភិជនម្ចាស់ដី",
+        "id": "tuan feodal"
+      }
+    },
+    {
+      "id": 241,
+      "pos": "名詞",
+      "kanji": "土俵",
+      "reading": "どひょう",
+      "meanings": {
+        "ja": "土俵",
+        "en": "sumo ring",
+        "zh": "相扑土俵（赛场）",
+        "tw": "相撲土俵",
+        "ko": "스모 링(도효)",
+        "vi": "võ đài sumo",
+        "th": "เวทีซูโม่ (โดฮียว)",
+        "my": "စုမိုကာလ်ပျစ်",
+        "km": "វេទិកាស៊ូម៉ូ",
+        "id": "arena sumo (dohyō)"
+      }
+    },
+    {
+      "id": 242,
+      "pos": "名詞",
+      "kanji": "扉",
+      "reading": "とびら",
+      "meanings": {
+        "ja": "扉",
+        "en": "door; title page",
+        "zh": "扉；门扉",
+        "tw": "扉；門扉",
+        "ko": "문짝",
+        "vi": "cánh cửa",
+        "th": "บานประตู",
+        "my": "တံခါးပ，请",
+        "km": "ទ្វារបិទ",
+        "id": "pintu (daun)"
+      }
+    },
+    {
+      "id": 243,
+      "pos": "名詞",
+      "kanji": "溝",
+      "reading": "どぶ",
+      "meanings": {
+        "ja": "溝",
+        "en": "ditch; gutter",
+        "zh": "沟渠",
+        "tw": "水溝",
+        "ko": "도랑; 하수구",
+        "vi": "mương; rãnh",
+        "th": "ร่องน้ำ/ท่อระบายน้ำ",
+        "my": "မြောင်းချိုင့်",
+        "km": "រន្ធរាន",
+        "id": "selokan"
+      }
+    },
+    {
+      "id": 244,
+      "pos": "名詞",
+      "kanji": "徒歩",
+      "reading": "とほ",
+      "meanings": {
+        "ja": "徒歩",
+        "en": "on foot",
+        "zh": "徒步",
+        "tw": "徒步",
+        "ko": "도보",
+        "vi": "đi bộ",
+        "th": "เดินเท้า",
+        "my": "လမ်းလျှောက်",
+        "km": "ដើរក្បាលដី",
+        "id": "berjalan kaki"
+      }
+    },
+    {
+      "id": 245,
+      "pos": "名詞",
+      "kanji": "土木",
+      "reading": "どぼく",
+      "meanings": {
+        "ja": "土木",
+        "en": "civil engineering; public works",
+        "zh": "土木工程",
+        "tw": "土木工程",
+        "ko": "토목",
+        "vi": "kỹ thuật dân dụng",
+        "th": "วิศวกรรมโยธา",
+        "my": "တည်ဆောက်ရေးအင်ဂျင်နီယာ",
+        "km": "វិស្វកម្មសំណង់",
+        "id": "teknik sipil"
+      }
+    },
+    {
+      "id": 246,
+      "pos": "名詞",
+      "kanji": "富",
+      "reading": "とみ",
+      "meanings": {
+        "ja": "富",
+        "en": "wealth; riches",
+        "zh": "财富",
+        "tw": "財富",
+        "ko": "부(富)",
+        "vi": "của cải",
+        "th": "ความมั่งคั่ง",
+        "my": "ချမ်းသာမှု",
+        "km": "សម្បត្តិ",
+        "id": "kekayaan"
+      }
+    },
+    {
+      "id": 247,
+      "pos": "名詞",
+      "kanji": "共稼ぎ",
+      "reading": "ともかせぎ",
+      "meanings": {
+        "ja": "共稼ぎ",
+        "en": "dual-income (husband & wife)",
+        "zh": "双职工（夫妻都工作）",
+        "tw": "雙薪家庭",
+        "ko": "맞벌이",
+        "vi": "vợ chồng cùng đi làm",
+        "th": "ครอบครัวรายได้สองทาง",
+        "my": "အိမ်ထောင်နှစ်ယောက်လုံးအလုပ်လုပ်",
+        "km": "គ្រួសារបើកប្រាក់ពីទាំងពីរ",
+        "id": "dua penghasilan (suami-istri)"
+      }
+    },
+    {
+      "id": 248,
+      "pos": "名詞",
+      "kanji": "共働き",
+      "reading": "ともばたらき",
+      "meanings": {
+        "ja": "共働き",
+        "en": "both husband and wife working",
+        "zh": "夫妻共同工作",
+        "tw": "雙薪",
+        "ko": "맞벌이",
+        "vi": "cả hai vợ chồng đi làm",
+        "th": "ทำงานทั้งคู่",
+        "my": "လင်မယားနှစ်ယောက်လုံးအလုပ်လုပ်",
+        "km": "ប្ដីប្រពន្ធធ្វើការ",
+        "id": "keduanya bekerja"
+      }
+    },
+    {
+      "id": 249,
+      "pos": "名詞",
+      "kanji": "ドライクリーニング",
+      "reading": "ドライクリーニング",
+      "meanings": {
+        "ja": "ドライクリーニング",
+        "en": "dry cleaning",
+        "zh": "干洗",
+        "tw": "乾洗",
+        "ko": "드라이클리닝",
+        "vi": "giặt khô",
+        "th": "ซักแห้ง",
+        "my": "ခြောက်သင်္ကမ",
+        "km": "បោកស្ងួត",
+        "id": "dry clean"
+      }
+    },
+    {
+      "id": 250,
+      "pos": "名詞",
+      "kanji": "ドライバー",
+      "reading": "ドライバー",
+      "meanings": {
+        "ja": "ドライバー",
+        "en": "driver (of a vehicle)",
+        "zh": "司机",
+        "tw": "司機",
+        "ko": "운전사",
+        "vi": "tài xế",
+        "th": "คนขับรถ",
+        "my": "ယာဉ်မောင်း",
+        "km": "អ្នកបើកបរ",
+        "id": "pengemudi"
+      }
+    }
   ]
-};
+}

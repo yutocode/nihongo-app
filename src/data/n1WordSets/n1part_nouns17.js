@@ -1,55 +1,904 @@
-// src/data/n1WordSets/n1part_nouns17.js
 export const n1part_nouns17 = {
-  Lesson17: [
-    { id: 801, kanji: "圧迫", reading: "あっぱく", meanings: { ja: "圧迫", en: "pressure; oppression", zh: "压迫", tw: "壓迫", ko: "압박", vi: "áp bức; ép", th: "กดดัน; กดทับ", my: "ဖိစီးမှု", km: "ការរឹតត្បិត", id: "penekanan; penindasan" } },
-    { id: 802, kanji: "圧力", reading: "あつりょく", meanings: { ja: "圧力", en: "pressure", zh: "压力", tw: "壓力", ko: "압력", vi: "áp lực", th: "ความดัน", my: "ဖိအား", km: "សម្ពាធ", id: "tekanan" } },
-    { id: 803, kanji: "当て", reading: "あて", meanings: { ja: "当て", en: "aim; reliance", zh: "目标；指望", tw: "目標；指望", ko: "목표; 의지", vi: "mục tiêu; chỗ trông", th: "เป้าหมาย; ที่พึ่ง", my: "ပန်းတိုင်; ကိုးကားရာ", km: "គោលដៅ; ការរំពឹង", id: "sasaran; sandaran" } },
-    { id: 804, kanji: "当て字", reading: "あてじ", meanings: { ja: "当て字", en: "phonetic kanji", zh: "借字", tw: "借字", ko: "당자(음차 한자)", vi: "chữ Hán mượn âm", th: "ตัวคันจิแทนเสียง", my: "အသံအလိုက်ကန်ဂျီ", km: "អក្សរខានជីតាមសំឡេង", id: "kanji fonetik" } },
-    { id: 805, kanji: "跡継ぎ", reading: "あとつぎ", meanings: { ja: "跡継ぎ", en: "heir; successor", zh: "继承人", tw: "繼承人", ko: "후계자", vi: "người thừa kế", th: "ทายาท", my: "အမွေဆက်တင်", km: "អ្នកស្នងមរតក", id: "ahli waris" } },
-    { id: 806, kanji: "後回し", reading: "あとまわし", meanings: { ja: "後回し", en: "postponement; putting off", zh: "推迟", tw: "延後", ko: "미룸", vi: "để sau", th: "เลื่อนไปทีหลัง", my: "နောက်ဆုတ်သတ်မှတ်", km: "ពន្យាពេល", id: "menunda" } },
-    { id: 807, kanji: "油絵", reading: "あぶらえ", meanings: { ja: "油絵", en: "oil painting", zh: "油画", tw: "油畫", ko: "유화", vi: "tranh sơn dầu", th: "ภาพสีน้ำมัน", my: "ဆီချိတ်ရုပ်ပုံ", km: "រូបគំនូរប្រេង", id: "lukisan minyak" } },
-    { id: 808, kanji: "アプローチ", reading: "アプローチ", meanings: { ja: "アプローチ", en: "approach (to a problem)", zh: "方法；途径", tw: "方法；途徑", ko: "접근법", vi: "cách tiếp cận", th: "แนวทาง", my: "ဆက်ဆံ/ရောက်ရှိနည်း", km: "វិធីការចូលទៅរក", id: "pendekatan" } },
-    { id: 809, kanji: "雨具", reading: "あまぐ", meanings: { ja: "雨具", en: "rain gear", zh: "雨具", tw: "雨具", ko: "우비류", vi: "đồ đi mưa", th: "อุปกรณ์กันฝน", my: "မိုးကာပစ္စည်း", km: "ឧបករណ៍ការពារពេលភ្លៀង", id: "perlengeran hujan" } },
-    { id: 810, kanji: "アマチュア", reading: "アマチュア", meanings: { ja: "アマチュア", en: "amateur", zh: "业余者", tw: "業餘者", ko: "아마추어", vi: "nghiệp dư", th: "สมัครเล่น", my: "အမားချွာ (မ पेशेवर)", km: "ស្ម័គ្រចិត្ត", id: "amatir" } },
-    { id: 811, kanji: "網", reading: "あみ", meanings: { ja: "網", en: "net", zh: "网", tw: "網", ko: "그물", vi: "lưới", th: "ตาข่าย", my: "အဝတ်ခြင်္သေ့/လွှာ", km: "សំណាញ់", id: "jaring" } },
-    { id: 812, kanji: "過ち", reading: "あやまち", meanings: { ja: "過ち", en: "fault; error", zh: "过失", tw: "過失", ko: "과실; 잘못", vi: "lỗi lầm", th: "ความผิดพลาด", my: "အမှား", km: "កំហុស", id: "kesalahan" } },
-    { id: 813, kanji: "歩み", reading: "あゆみ", meanings: { ja: "歩み", en: "walking; progress", zh: "步伐；进展", tw: "步伐；進展", ko: "걸음; 진전", vi: "bước đi; tiến triển", th: "การเดิน; ความคืบหน้า", my: "လှည့်လည်ခြင်း; တိုးတက်မှု", km: "ការដើរ; ការរីកចម្រើន", id: "langkah; kemajuan" } },
-    { id: 814, kanji: "争い", reading: "あらそい", meanings: { ja: "争い", en: "conflict; fight", zh: "争斗", tw: "爭鬥", ko: "다툼; 분쟁", vi: "tranh chấp", th: "ความขัดแย้ง", my: "အငြင်းပွားမှု", km: "ភាពវិវាទ", id: "pertikaian" } },
-    { id: 815, kanji: "アラブ", reading: "アラブ", meanings: { ja: "アラブ", en: "Arab", zh: "阿拉伯", tw: "阿拉伯", ko: "아랍", vi: "Ả Rập", th: "อาหรับ", my: "အာရပ်", km: "អារ៉ាប់", id: "Arab" } },
-    { id: 816, kanji: "霰", reading: "あられ", meanings: { ja: "霰", en: "hail (small hailstones)", zh: "霰", tw: "霰", ko: "싸라기눈/우박", vi: "mưa đá (nhỏ)", th: "ลูกเห็บเม็ดเล็ก", my: "မိုးရေခဲစ", km: "ព្រិលថ្នាំ (គ្រាប់តូច)", id: "hujan es kecil" } },
-    { id: 817, kanji: "有り様", reading: "ありさま", meanings: { ja: "有り様", en: "state; condition", zh: "情况", tw: "情況", ko: "상태", vi: "tình trạng", th: "สภาพ", my: "အခြေအနေ", km: "ស្ថានភាព", id: "keadaan" } },
-    { id: 818, kanji: "アルミ", reading: "アルミ", meanings: { ja: "アルミ", en: "aluminum", zh: "铝", tw: "鋁", ko: "알루미늄", vi: "nhôm", th: "อะลูมิเนียม", my: "အလူမီနီယမ်", km: "អាលុយមីញ៉ូម", id: "aluminium" } },
-    { id: 819, kanji: "アワー", reading: "アワー", meanings: { ja: "アワー", en: "hour", zh: "小时", tw: "小時", ko: "시간", vi: "giờ", th: "ชั่วโมง", my: "နာရီ", km: "ម៉ោង", id: "jam" } },
-    { id: 820, kanji: "アンコール", reading: "アンコール", meanings: { ja: "アンコール", en: "encore", zh: "安可", tw: "安可", ko: "앙코르", vi: "yêu cầu diễn lại", th: "อังกอร์ (ขอเพิ่ม)", my: "ထပ်ဖော်ပြရန်တောင်းဆို", km: "ស្នើឲ្យបន្តសម្ដែង", id: "encore" } },
-    { id: 821, kanji: "暗殺", reading: "あんさつ", meanings: { ja: "暗殺", en: "assassination", zh: "暗杀", tw: "暗殺", ko: "암살", vi: "ám sát", th: "ลอบสังหาร", my: "လျှို့ဝှက်သတ်ဖြတ်", km: "សម្លាប់លាក់លៀម", id: "pembunuhan politik" } },
-    { id: 822, kanji: "暗算", reading: "あんざん", meanings: { ja: "暗算", en: "mental arithmetic", zh: "心算", tw: "心算", ko: "암산", vi: "tính nhẩm", th: "คำนวณในใจ", my: "မှတ်မှတ်သားသားတွက်", km: "គណនាតាមមាត់", id: "hitung dalam hati" } },
-    { id: 823, kanji: "暗示", reading: "あんじ", meanings: { ja: "暗示", en: "hint; suggestion", zh: "暗示", tw: "暗示", ko: "암시", vi: "ám chỉ", th: "นัย; บอกเป็นนัย", my: "ရိပ်မိုးချက်", km: "ការជំរុញដោយអនាមិក", id: "sugesti" } },
-    { id: 824, kanji: "安静", reading: "あんせい", meanings: { ja: "安静", en: "rest; repose", zh: "安静", tw: "安靜", ko: "안정; 안식", vi: "nghỉ ngơi tĩnh dưỡng", th: "พักผ่อนนิ่งๆ", my: "ငြိမ်သက်နေခြင်း", km: "សម្រាកស្ងៀមស្ងាត់", id: "istirahat" } },
-    { id: 825, kanji: "言い訳", reading: "いいわけ", meanings: { ja: "言い訳", en: "excuse", zh: "借口", tw: "藉口", ko: "변명", vi: "biện minh", th: "แก้ตัว", my: "ဆိုထင်ရှားမှု", km: "ស្រោចស្រង់", id: "alasan" } },
-    { id: 826, kanji: "家出", reading: "いえで", meanings: { ja: "家出", en: "running away from home", zh: "离家出走", tw: "離家出走", ko: "가출", vi: "bỏ nhà đi", th: "หนีออกจากบ้าน", my: "အိမ်ထွက်ပြေး", km: "រត់ចេញពីផ្ទះ", id: "kabur dari rumah" } },
-    { id: 827, kanji: "異議", reading: "いぎ", meanings: { ja: "異議", en: "objection", zh: "异议", tw: "異議", ko: "이의", vi: "phản đối", th: "คัดค้าน", my: "အနိုင်ယူမည်ဟုဆိုခြင်း", km: "ប្រឆាំង", id: "keberatan" } },
-    { id: 828, kanji: "生き甲斐", reading: "いきがい", meanings: { ja: "生き甲斐", en: "reason for living", zh: "人生意义", tw: "人生意義", ko: "삶의 보람", vi: "lý do sống", th: "แรงบันดาลใจในการมีชีวิต", my: "ဘဝအဓိပ္ပါယ်", km: "ហេតុផលរស់នៅ", id: "alasan hidup" } },
-    { id: 829, kanji: "行き違い", reading: "いきちがい", meanings: { ja: "行き違い", en: "crossing without meeting; mix-up", zh: "错过；误会", tw: "錯過；誤會", ko: "엇갈림; 오해", vi: "lệch hướng; lỡ nhau", th: "คลาดกัน; เข้าใจผิด", my: "ကြာလိမ့်မည့်အေ", km: "ខកខានឆ្លងកាត់គ្នា", id: "saling luput; kekeliruan" } },
-    { id: 830, kanji: "育成", reading: "いくせい", meanings: { ja: "育成", en: "nurturing; training", zh: "培育", tw: "培育", ko: "육성", vi: "bồi dưỡng", th: "บ่มเพาะ; พัฒนา", my: "ဖွံ့ဖြိုးတိုးတက်အောင်လုပ်ခြင်း", km: "បង្កើតបណ្ដុះបណ្ដាល", id: "pembinaan" } },
-    { id: 831, kanji: "異見", reading: "いけん", meanings: { ja: "異見", en: "different opinion", zh: "不同意见", tw: "不同意見", ko: "이견", vi: "ý kiến khác", th: "ความเห็นต่าง", my: "အမြင်ကွဲ", km: "យោបល់ខុស", id: "pendapat berbeda" } },
-    { id: 832, kanji: "意向", reading: "いこう", meanings: { ja: "意向", en: "intention; will", zh: "意向", tw: "意向", ko: "의향", vi: "ý hướng", th: "ความประสงค์", my: "ရည်ရွယ်ချက်", km: "បំណង", id: "niat" } },
-    { id: 833, kanji: "移行", reading: "いこう", meanings: { ja: "移行", en: "transition; shift", zh: "过渡", tw: "過渡", ko: "이행", vi: "chuyển đổi", th: "เปลี่ยนผ่าน", my: "လွှဲပြောင်းခြင်း", km: "ផ្លាស់ប្ដូរ", id: "transisi" } },
-    { id: 834, kanji: "移住", reading: "いじゅう", meanings: { ja: "移住", en: "migration; relocation", zh: "移居", tw: "移居", ko: "이주", vi: "di cư", th: "อพยพย้ายถิ่น", my: "ပြောင်းရွှေ့နေထိုင်", km: "ផ្លាស់ទីរស់នៅ", id: "imigrasi/pindah" } },
-    { id: 835, kanji: "衣装", reading: "いしょう", meanings: { ja: "衣装", en: "costume; outfit", zh: "服装", tw: "服裝", ko: "의상", vi: "y phục", th: "เครื่องแต่งกาย", my: "ဝတ်စုံ", km: "ឯកសណ្ឋាន/សម្លៀកបំពាក់", id: "kostum" } },
-    { id: 836, kanji: "異性", reading: "いせい", meanings: { ja: "異性", en: "the opposite sex", zh: "异性", tw: "異性", ko: "이성", vi: "khác giới", th: "เพศตรงข้าม", my: "ပြောင်းလဲသောလိင်", km: "ភេទផ្ទុយ", id: "lawan jenis" } },
-    { id: 837, kanji: "遺跡", reading: "いせき", meanings: { ja: "遺跡", en: "ruins; archaeological site", zh: "遗迹", tw: "遺跡", ko: "유적", vi: "di tích", th: "โบราณสถาน", my: "ယဉ်ကျေးမှုအမွေအနှစ်", km: "បេតិកភណ្ឌបុរាណ", id: "situs purbakala" } },
-    { id: 838, kanji: "依存", reading: "いぞん", meanings: { ja: "依存", en: "dependence", zh: "依存", tw: "依存", ko: "의존", vi: "phụ thuộc", th: "พึ่งพา", my: "မူတည်ခြင်း", km: "អាស្រ័យលើ", id: "ketergantungan" } },
-    { id: 839, kanji: "委託", reading: "いたく", meanings: { ja: "委託", en: "entrustment; consignment", zh: "委托", tw: "委託", ko: "위탁", vi: "ủy thác", th: "มอบหมาย", my: "ဦးစားပေးရန်အပ်နှံ", km: "ស្នើសុំឲ្យធ្វើជំនួស", id: "penitipan/kontrak" } },
-    { id: 840, kanji: "出世", reading: "しゅっせ", meanings: { ja: "出世", en: "success in life; promotion", zh: "出人头地", tw: "出人頭地", ko: "출세", vi: "thành đạt", th: "เจริญก้าวหน้า", my: "အောင်မြင်မှု", km: "ជោគជ័យក្នុងជីវិត", id: "sukses dalam hidup" } },
-    { id: 841, kanji: "出題", reading: "しゅつだい", meanings: { ja: "出題", en: "setting exam questions", zh: "出题", tw: "出題", ko: "출제", vi: "ra đề", th: "ออกข้อสอบ", my: "စာမေးပွဲမေးခွန်း ထုတ်", km: "ដាក់សំណួរប្រលង", id: "menyusun soal" } },
-    { id: 842, kanji: "出動", reading: "しゅつどう", meanings: { ja: "出動", en: "mobilization; dispatch", zh: "出动", tw: "出動", ko: "출동", vi: "xuất quân/điều động", th: "ระดม/ออกปฏิบัติการ", my: "တပ်ဖွဲ့လှုပ်ရှား", km: "ចេញផ្តើមសកម្មភាព", id: "dikerahkan" } },
-    { id: 843, kanji: "出費", reading: "しゅっぴ", meanings: { ja: "出費", en: "expenses", zh: "开销", tw: "開銷", ko: "지출", vi: "chi phí", th: "ค่าใช้จ่าย", my: "အသုံးစရိတ်", km: "ចំណាយ", id: "pengeluaran" } },
-    { id: 844, kanji: "出品", reading: "しゅっぴん", meanings: { ja: "出品", en: "exhibiting; putting on display", zh: "展出", tw: "展出", ko: "출품", vi: "trưng bày", th: "นำออกแสดง", my: "ပြသရန်တင်သွင်း", km: "បង្ហាញក្នុងពិព័រណ៍", id: "memamerkan" } },
-    { id: 845, kanji: "主導", reading: "しゅどう", meanings: { ja: "主導", en: "leadership; initiative", zh: "主导", tw: "主導", ko: "주도", vi: "chủ đạo", th: "นำพา", my: "ဦးဆောင်မှု", km: "ដឹកនាំ", id: "memimpin" } },
-    { id: 846, kanji: "主任", reading: "しゅにん", meanings: { ja: "主任", en: "person in charge; chief", zh: "主任", tw: "主任", ko: "주임", vi: "chủ nhiệm", th: "หัวหน้าผู้รับผิดชอบ", my: "တာဝန်ခံ", km: "អ្នកទទួលខុសត្រូវ", id: "penanggung jawab" } },
-    { id: 847, kanji: "首脳", reading: "しゅのう", meanings: { ja: "首脳", en: "leaders; head", zh: "首脑", tw: "首腦", ko: "수뇌", vi: "người đứng đầu", th: "ผู้นำระดับสูง", my: "ခေါင်းဆောင်အကြီးအကဲ", km: "មេដឹកនាំកំពូល", id: "pimpinan puncak" } },
-    { id: 848, kanji: "守備", reading: "しゅび", meanings: { ja: "守備", en: "defense (sports/war)", zh: "防守", tw: "守備", ko: "수비", vi: "phòng thủ", th: "ตั้งรับ", my: "ကာကွယ်ရေး", km: "ការពារ", id: "pertahanan" } },
-    { id: 849, kanji: "手法", reading: "しゅほう", meanings: { ja: "手法", en: "technique; method", zh: "手法", tw: "手法", ko: "수법; 기법", vi: "phương pháp", th: "วิธีการ", my: "နည်းလမ်း", km: "បច្ចេកទេស", id: "metode" } },
-    { id: 850, kanji: "樹木", reading: "じゅもく", meanings: { ja: "樹木", en: "tree(s)", zh: "树木", tw: "樹木", ko: "수목", vi: "cây cối", th: "ไม้ยืนต้น", my: "အ деревоများ", km: "ដើមឈើ", id: "pepohonan" } }
+  "Lesson17": [
+    {
+      "id": 801,
+      "pos": "名詞",
+      "kanji": "圧迫",
+      "reading": "あっぱく",
+      "meanings": {
+        "ja": "圧迫",
+        "en": "pressure; oppression",
+        "zh": "压迫",
+        "tw": "壓迫",
+        "ko": "압박",
+        "vi": "áp bức; ép",
+        "th": "กดดัน; กดทับ",
+        "my": "ဖိစီးမှု",
+        "km": "ការរឹតត្បិត",
+        "id": "penekanan; penindasan"
+      }
+    },
+    {
+      "id": 802,
+      "pos": "名詞",
+      "kanji": "圧力",
+      "reading": "あつりょく",
+      "meanings": {
+        "ja": "圧力",
+        "en": "pressure",
+        "zh": "压力",
+        "tw": "壓力",
+        "ko": "압력",
+        "vi": "áp lực",
+        "th": "ความดัน",
+        "my": "ဖိအား",
+        "km": "សម្ពាធ",
+        "id": "tekanan"
+      }
+    },
+    {
+      "id": 803,
+      "pos": "名詞",
+      "kanji": "当て",
+      "reading": "あて",
+      "meanings": {
+        "ja": "当て",
+        "en": "aim; reliance",
+        "zh": "目标；指望",
+        "tw": "目標；指望",
+        "ko": "목표; 의지",
+        "vi": "mục tiêu; chỗ trông",
+        "th": "เป้าหมาย; ที่พึ่ง",
+        "my": "ပန်းတိုင်; ကိုးကားရာ",
+        "km": "គោលដៅ; ការរំពឹង",
+        "id": "sasaran; sandaran"
+      }
+    },
+    {
+      "id": 804,
+      "pos": "名詞",
+      "kanji": "当て字",
+      "reading": "あてじ",
+      "meanings": {
+        "ja": "当て字",
+        "en": "phonetic kanji",
+        "zh": "借字",
+        "tw": "借字",
+        "ko": "당자(음차 한자)",
+        "vi": "chữ Hán mượn âm",
+        "th": "ตัวคันจิแทนเสียง",
+        "my": "အသံအလိုက်ကန်ဂျီ",
+        "km": "អក្សរខានជីតាមសំឡេង",
+        "id": "kanji fonetik"
+      }
+    },
+    {
+      "id": 805,
+      "pos": "名詞",
+      "kanji": "跡継ぎ",
+      "reading": "あとつぎ",
+      "meanings": {
+        "ja": "跡継ぎ",
+        "en": "heir; successor",
+        "zh": "继承人",
+        "tw": "繼承人",
+        "ko": "후계자",
+        "vi": "người thừa kế",
+        "th": "ทายาท",
+        "my": "အမွေဆက်တင်",
+        "km": "អ្នកស្នងមរតក",
+        "id": "ahli waris"
+      }
+    },
+    {
+      "id": 806,
+      "pos": "名詞",
+      "kanji": "後回し",
+      "reading": "あとまわし",
+      "meanings": {
+        "ja": "後回し",
+        "en": "postponement; putting off",
+        "zh": "推迟",
+        "tw": "延後",
+        "ko": "미룸",
+        "vi": "để sau",
+        "th": "เลื่อนไปทีหลัง",
+        "my": "နောက်ဆုတ်သတ်မှတ်",
+        "km": "ពន្យាពេល",
+        "id": "menunda"
+      }
+    },
+    {
+      "id": 807,
+      "pos": "名詞",
+      "kanji": "油絵",
+      "reading": "あぶらえ",
+      "meanings": {
+        "ja": "油絵",
+        "en": "oil painting",
+        "zh": "油画",
+        "tw": "油畫",
+        "ko": "유화",
+        "vi": "tranh sơn dầu",
+        "th": "ภาพสีน้ำมัน",
+        "my": "ဆီချိတ်ရုပ်ပုံ",
+        "km": "រូបគំនូរប្រេង",
+        "id": "lukisan minyak"
+      }
+    },
+    {
+      "id": 808,
+      "pos": "名詞",
+      "kanji": "アプローチ",
+      "reading": "アプローチ",
+      "meanings": {
+        "ja": "アプローチ",
+        "en": "approach (to a problem)",
+        "zh": "方法；途径",
+        "tw": "方法；途徑",
+        "ko": "접근법",
+        "vi": "cách tiếp cận",
+        "th": "แนวทาง",
+        "my": "ဆက်ဆံ/ရောက်ရှိနည်း",
+        "km": "វិធីការចូលទៅរក",
+        "id": "pendekatan"
+      }
+    },
+    {
+      "id": 809,
+      "pos": "名詞",
+      "kanji": "雨具",
+      "reading": "あまぐ",
+      "meanings": {
+        "ja": "雨具",
+        "en": "rain gear",
+        "zh": "雨具",
+        "tw": "雨具",
+        "ko": "우비류",
+        "vi": "đồ đi mưa",
+        "th": "อุปกรณ์กันฝน",
+        "my": "မိုးကာပစ္စည်း",
+        "km": "ឧបករណ៍ការពារពេលភ្លៀង",
+        "id": "perlengeran hujan"
+      }
+    },
+    {
+      "id": 810,
+      "pos": "名詞",
+      "kanji": "アマチュア",
+      "reading": "アマチュア",
+      "meanings": {
+        "ja": "アマチュア",
+        "en": "amateur",
+        "zh": "业余者",
+        "tw": "業餘者",
+        "ko": "아마추어",
+        "vi": "nghiệp dư",
+        "th": "สมัครเล่น",
+        "my": "အမားချွာ (မ पेशेवर)",
+        "km": "ស្ម័គ្រចិត្ត",
+        "id": "amatir"
+      }
+    },
+    {
+      "id": 811,
+      "pos": "名詞",
+      "kanji": "網",
+      "reading": "あみ",
+      "meanings": {
+        "ja": "網",
+        "en": "net",
+        "zh": "网",
+        "tw": "網",
+        "ko": "그물",
+        "vi": "lưới",
+        "th": "ตาข่าย",
+        "my": "အဝတ်ခြင်္သေ့/လွှာ",
+        "km": "សំណាញ់",
+        "id": "jaring"
+      }
+    },
+    {
+      "id": 812,
+      "pos": "名詞",
+      "kanji": "過ち",
+      "reading": "あやまち",
+      "meanings": {
+        "ja": "過ち",
+        "en": "fault; error",
+        "zh": "过失",
+        "tw": "過失",
+        "ko": "과실; 잘못",
+        "vi": "lỗi lầm",
+        "th": "ความผิดพลาด",
+        "my": "အမှား",
+        "km": "កំហុស",
+        "id": "kesalahan"
+      }
+    },
+    {
+      "id": 813,
+      "pos": "名詞",
+      "kanji": "歩み",
+      "reading": "あゆみ",
+      "meanings": {
+        "ja": "歩み",
+        "en": "walking; progress",
+        "zh": "步伐；进展",
+        "tw": "步伐；進展",
+        "ko": "걸음; 진전",
+        "vi": "bước đi; tiến triển",
+        "th": "การเดิน; ความคืบหน้า",
+        "my": "လှည့်လည်ခြင်း; တိုးတက်မှု",
+        "km": "ការដើរ; ការរីកចម្រើន",
+        "id": "langkah; kemajuan"
+      }
+    },
+    {
+      "id": 814,
+      "pos": "名詞",
+      "kanji": "争い",
+      "reading": "あらそい",
+      "meanings": {
+        "ja": "争い",
+        "en": "conflict; fight",
+        "zh": "争斗",
+        "tw": "爭鬥",
+        "ko": "다툼; 분쟁",
+        "vi": "tranh chấp",
+        "th": "ความขัดแย้ง",
+        "my": "အငြင်းပွားမှု",
+        "km": "ភាពវិវាទ",
+        "id": "pertikaian"
+      }
+    },
+    {
+      "id": 815,
+      "pos": "名詞",
+      "kanji": "アラブ",
+      "reading": "アラブ",
+      "meanings": {
+        "ja": "アラブ",
+        "en": "Arab",
+        "zh": "阿拉伯",
+        "tw": "阿拉伯",
+        "ko": "아랍",
+        "vi": "Ả Rập",
+        "th": "อาหรับ",
+        "my": "အာရပ်",
+        "km": "អារ៉ាប់",
+        "id": "Arab"
+      }
+    },
+    {
+      "id": 816,
+      "pos": "名詞",
+      "kanji": "霰",
+      "reading": "あられ",
+      "meanings": {
+        "ja": "霰",
+        "en": "hail (small hailstones)",
+        "zh": "霰",
+        "tw": "霰",
+        "ko": "싸라기눈/우박",
+        "vi": "mưa đá (nhỏ)",
+        "th": "ลูกเห็บเม็ดเล็ก",
+        "my": "မိုးရေခဲစ",
+        "km": "ព្រិលថ្នាំ (គ្រាប់តូច)",
+        "id": "hujan es kecil"
+      }
+    },
+    {
+      "id": 817,
+      "pos": "名詞",
+      "kanji": "有り様",
+      "reading": "ありさま",
+      "meanings": {
+        "ja": "有り様",
+        "en": "state; condition",
+        "zh": "情况",
+        "tw": "情況",
+        "ko": "상태",
+        "vi": "tình trạng",
+        "th": "สภาพ",
+        "my": "အခြေအနေ",
+        "km": "ស្ថានភាព",
+        "id": "keadaan"
+      }
+    },
+    {
+      "id": 818,
+      "pos": "名詞",
+      "kanji": "アルミ",
+      "reading": "アルミ",
+      "meanings": {
+        "ja": "アルミ",
+        "en": "aluminum",
+        "zh": "铝",
+        "tw": "鋁",
+        "ko": "알루미늄",
+        "vi": "nhôm",
+        "th": "อะลูมิเนียม",
+        "my": "အလူမီနီယမ်",
+        "km": "អាលុយមីញ៉ូម",
+        "id": "aluminium"
+      }
+    },
+    {
+      "id": 819,
+      "pos": "名詞",
+      "kanji": "アワー",
+      "reading": "アワー",
+      "meanings": {
+        "ja": "アワー",
+        "en": "hour",
+        "zh": "小时",
+        "tw": "小時",
+        "ko": "시간",
+        "vi": "giờ",
+        "th": "ชั่วโมง",
+        "my": "နာရီ",
+        "km": "ម៉ោង",
+        "id": "jam"
+      }
+    },
+    {
+      "id": 820,
+      "pos": "名詞",
+      "kanji": "アンコール",
+      "reading": "アンコール",
+      "meanings": {
+        "ja": "アンコール",
+        "en": "encore",
+        "zh": "安可",
+        "tw": "安可",
+        "ko": "앙코르",
+        "vi": "yêu cầu diễn lại",
+        "th": "อังกอร์ (ขอเพิ่ม)",
+        "my": "ထပ်ဖော်ပြရန်တောင်းဆို",
+        "km": "ស្នើឲ្យបន្តសម្ដែង",
+        "id": "encore"
+      }
+    },
+    {
+      "id": 821,
+      "pos": "名詞",
+      "kanji": "暗殺",
+      "reading": "あんさつ",
+      "meanings": {
+        "ja": "暗殺",
+        "en": "assassination",
+        "zh": "暗杀",
+        "tw": "暗殺",
+        "ko": "암살",
+        "vi": "ám sát",
+        "th": "ลอบสังหาร",
+        "my": "လျှို့ဝှက်သတ်ဖြတ်",
+        "km": "សម្លាប់លាក់លៀម",
+        "id": "pembunuhan politik"
+      }
+    },
+    {
+      "id": 822,
+      "pos": "名詞",
+      "kanji": "暗算",
+      "reading": "あんざん",
+      "meanings": {
+        "ja": "暗算",
+        "en": "mental arithmetic",
+        "zh": "心算",
+        "tw": "心算",
+        "ko": "암산",
+        "vi": "tính nhẩm",
+        "th": "คำนวณในใจ",
+        "my": "မှတ်မှတ်သားသားတွက်",
+        "km": "គណនាតាមមាត់",
+        "id": "hitung dalam hati"
+      }
+    },
+    {
+      "id": 823,
+      "pos": "名詞",
+      "kanji": "暗示",
+      "reading": "あんじ",
+      "meanings": {
+        "ja": "暗示",
+        "en": "hint; suggestion",
+        "zh": "暗示",
+        "tw": "暗示",
+        "ko": "암시",
+        "vi": "ám chỉ",
+        "th": "นัย; บอกเป็นนัย",
+        "my": "ရိပ်မိုးချက်",
+        "km": "ការជំរុញដោយអនាមិក",
+        "id": "sugesti"
+      }
+    },
+    {
+      "id": 824,
+      "pos": "名詞",
+      "kanji": "安静",
+      "reading": "あんせい",
+      "meanings": {
+        "ja": "安静",
+        "en": "rest; repose",
+        "zh": "安静",
+        "tw": "安靜",
+        "ko": "안정; 안식",
+        "vi": "nghỉ ngơi tĩnh dưỡng",
+        "th": "พักผ่อนนิ่งๆ",
+        "my": "ငြိမ်သက်နေခြင်း",
+        "km": "សម្រាកស្ងៀមស្ងាត់",
+        "id": "istirahat"
+      }
+    },
+    {
+      "id": 825,
+      "pos": "名詞",
+      "kanji": "言い訳",
+      "reading": "いいわけ",
+      "meanings": {
+        "ja": "言い訳",
+        "en": "excuse",
+        "zh": "借口",
+        "tw": "藉口",
+        "ko": "변명",
+        "vi": "biện minh",
+        "th": "แก้ตัว",
+        "my": "ဆိုထင်ရှားမှု",
+        "km": "ស្រោចស្រង់",
+        "id": "alasan"
+      }
+    },
+    {
+      "id": 826,
+      "pos": "名詞",
+      "kanji": "家出",
+      "reading": "いえで",
+      "meanings": {
+        "ja": "家出",
+        "en": "running away from home",
+        "zh": "离家出走",
+        "tw": "離家出走",
+        "ko": "가출",
+        "vi": "bỏ nhà đi",
+        "th": "หนีออกจากบ้าน",
+        "my": "အိမ်ထွက်ပြေး",
+        "km": "រត់ចេញពីផ្ទះ",
+        "id": "kabur dari rumah"
+      }
+    },
+    {
+      "id": 827,
+      "pos": "名詞",
+      "kanji": "異議",
+      "reading": "いぎ",
+      "meanings": {
+        "ja": "異議",
+        "en": "objection",
+        "zh": "异议",
+        "tw": "異議",
+        "ko": "이의",
+        "vi": "phản đối",
+        "th": "คัดค้าน",
+        "my": "အနိုင်ယူမည်ဟုဆိုခြင်း",
+        "km": "ប្រឆាំង",
+        "id": "keberatan"
+      }
+    },
+    {
+      "id": 828,
+      "pos": "名詞",
+      "kanji": "生き甲斐",
+      "reading": "いきがい",
+      "meanings": {
+        "ja": "生き甲斐",
+        "en": "reason for living",
+        "zh": "人生意义",
+        "tw": "人生意義",
+        "ko": "삶의 보람",
+        "vi": "lý do sống",
+        "th": "แรงบันดาลใจในการมีชีวิต",
+        "my": "ဘဝအဓိပ္ပါယ်",
+        "km": "ហេតុផលរស់នៅ",
+        "id": "alasan hidup"
+      }
+    },
+    {
+      "id": 829,
+      "pos": "名詞",
+      "kanji": "行き違い",
+      "reading": "いきちがい",
+      "meanings": {
+        "ja": "行き違い",
+        "en": "crossing without meeting; mix-up",
+        "zh": "错过；误会",
+        "tw": "錯過；誤會",
+        "ko": "엇갈림; 오해",
+        "vi": "lệch hướng; lỡ nhau",
+        "th": "คลาดกัน; เข้าใจผิด",
+        "my": "ကြာလိမ့်မည့်အေ",
+        "km": "ខកខានឆ្លងកាត់គ្នា",
+        "id": "saling luput; kekeliruan"
+      }
+    },
+    {
+      "id": 830,
+      "pos": "名詞",
+      "kanji": "育成",
+      "reading": "いくせい",
+      "meanings": {
+        "ja": "育成",
+        "en": "nurturing; training",
+        "zh": "培育",
+        "tw": "培育",
+        "ko": "육성",
+        "vi": "bồi dưỡng",
+        "th": "บ่มเพาะ; พัฒนา",
+        "my": "ဖွံ့ဖြိုးတိုးတက်အောင်လုပ်ခြင်း",
+        "km": "បង្កើតបណ្ដុះបណ្ដាល",
+        "id": "pembinaan"
+      }
+    },
+    {
+      "id": 831,
+      "pos": "名詞",
+      "kanji": "異見",
+      "reading": "いけん",
+      "meanings": {
+        "ja": "異見",
+        "en": "different opinion",
+        "zh": "不同意见",
+        "tw": "不同意見",
+        "ko": "이견",
+        "vi": "ý kiến khác",
+        "th": "ความเห็นต่าง",
+        "my": "အမြင်ကွဲ",
+        "km": "យោបល់ខុស",
+        "id": "pendapat berbeda"
+      }
+    },
+    {
+      "id": 832,
+      "pos": "名詞",
+      "kanji": "意向",
+      "reading": "いこう",
+      "meanings": {
+        "ja": "意向",
+        "en": "intention; will",
+        "zh": "意向",
+        "tw": "意向",
+        "ko": "의향",
+        "vi": "ý hướng",
+        "th": "ความประสงค์",
+        "my": "ရည်ရွယ်ချက်",
+        "km": "បំណង",
+        "id": "niat"
+      }
+    },
+    {
+      "id": 833,
+      "pos": "名詞",
+      "kanji": "移行",
+      "reading": "いこう",
+      "meanings": {
+        "ja": "移行",
+        "en": "transition; shift",
+        "zh": "过渡",
+        "tw": "過渡",
+        "ko": "이행",
+        "vi": "chuyển đổi",
+        "th": "เปลี่ยนผ่าน",
+        "my": "လွှဲပြောင်းခြင်း",
+        "km": "ផ្លាស់ប្ដូរ",
+        "id": "transisi"
+      }
+    },
+    {
+      "id": 834,
+      "pos": "名詞",
+      "kanji": "移住",
+      "reading": "いじゅう",
+      "meanings": {
+        "ja": "移住",
+        "en": "migration; relocation",
+        "zh": "移居",
+        "tw": "移居",
+        "ko": "이주",
+        "vi": "di cư",
+        "th": "อพยพย้ายถิ่น",
+        "my": "ပြောင်းရွှေ့နေထိုင်",
+        "km": "ផ្លាស់ទីរស់នៅ",
+        "id": "imigrasi/pindah"
+      }
+    },
+    {
+      "id": 835,
+      "pos": "名詞",
+      "kanji": "衣装",
+      "reading": "いしょう",
+      "meanings": {
+        "ja": "衣装",
+        "en": "costume; outfit",
+        "zh": "服装",
+        "tw": "服裝",
+        "ko": "의상",
+        "vi": "y phục",
+        "th": "เครื่องแต่งกาย",
+        "my": "ဝတ်စုံ",
+        "km": "ឯកសណ្ឋាន/សម្លៀកបំពាក់",
+        "id": "kostum"
+      }
+    },
+    {
+      "id": 836,
+      "pos": "名詞",
+      "kanji": "異性",
+      "reading": "いせい",
+      "meanings": {
+        "ja": "異性",
+        "en": "the opposite sex",
+        "zh": "异性",
+        "tw": "異性",
+        "ko": "이성",
+        "vi": "khác giới",
+        "th": "เพศตรงข้าม",
+        "my": "ပြောင်းလဲသောလိင်",
+        "km": "ភេទផ្ទុយ",
+        "id": "lawan jenis"
+      }
+    },
+    {
+      "id": 837,
+      "pos": "名詞",
+      "kanji": "遺跡",
+      "reading": "いせき",
+      "meanings": {
+        "ja": "遺跡",
+        "en": "ruins; archaeological site",
+        "zh": "遗迹",
+        "tw": "遺跡",
+        "ko": "유적",
+        "vi": "di tích",
+        "th": "โบราณสถาน",
+        "my": "ယဉ်ကျေးမှုအမွေအနှစ်",
+        "km": "បេតិកភណ្ឌបុរាណ",
+        "id": "situs purbakala"
+      }
+    },
+    {
+      "id": 838,
+      "pos": "名詞",
+      "kanji": "依存",
+      "reading": "いぞん",
+      "meanings": {
+        "ja": "依存",
+        "en": "dependence",
+        "zh": "依存",
+        "tw": "依存",
+        "ko": "의존",
+        "vi": "phụ thuộc",
+        "th": "พึ่งพา",
+        "my": "မူတည်ခြင်း",
+        "km": "អាស្រ័យលើ",
+        "id": "ketergantungan"
+      }
+    },
+    {
+      "id": 839,
+      "pos": "名詞",
+      "kanji": "委託",
+      "reading": "いたく",
+      "meanings": {
+        "ja": "委託",
+        "en": "entrustment; consignment",
+        "zh": "委托",
+        "tw": "委託",
+        "ko": "위탁",
+        "vi": "ủy thác",
+        "th": "มอบหมาย",
+        "my": "ဦးစားပေးရန်အပ်နှံ",
+        "km": "ស្នើសុំឲ្យធ្វើជំនួស",
+        "id": "penitipan/kontrak"
+      }
+    },
+    {
+      "id": 840,
+      "pos": "名詞",
+      "kanji": "出世",
+      "reading": "しゅっせ",
+      "meanings": {
+        "ja": "出世",
+        "en": "success in life; promotion",
+        "zh": "出人头地",
+        "tw": "出人頭地",
+        "ko": "출세",
+        "vi": "thành đạt",
+        "th": "เจริญก้าวหน้า",
+        "my": "အောင်မြင်မှု",
+        "km": "ជោគជ័យក្នុងជីវិត",
+        "id": "sukses dalam hidup"
+      }
+    },
+    {
+      "id": 841,
+      "pos": "名詞",
+      "kanji": "出題",
+      "reading": "しゅつだい",
+      "meanings": {
+        "ja": "出題",
+        "en": "setting exam questions",
+        "zh": "出题",
+        "tw": "出題",
+        "ko": "출제",
+        "vi": "ra đề",
+        "th": "ออกข้อสอบ",
+        "my": "စာမေးပွဲမေးခွန်း ထုတ်",
+        "km": "ដាក់សំណួរប្រលង",
+        "id": "menyusun soal"
+      }
+    },
+    {
+      "id": 842,
+      "pos": "名詞",
+      "kanji": "出動",
+      "reading": "しゅつどう",
+      "meanings": {
+        "ja": "出動",
+        "en": "mobilization; dispatch",
+        "zh": "出动",
+        "tw": "出動",
+        "ko": "출동",
+        "vi": "xuất quân/điều động",
+        "th": "ระดม/ออกปฏิบัติการ",
+        "my": "တပ်ဖွဲ့လှုပ်ရှား",
+        "km": "ចេញផ្តើមសកម្មភាព",
+        "id": "dikerahkan"
+      }
+    },
+    {
+      "id": 843,
+      "pos": "名詞",
+      "kanji": "出費",
+      "reading": "しゅっぴ",
+      "meanings": {
+        "ja": "出費",
+        "en": "expenses",
+        "zh": "开销",
+        "tw": "開銷",
+        "ko": "지출",
+        "vi": "chi phí",
+        "th": "ค่าใช้จ่าย",
+        "my": "အသုံးစရိတ်",
+        "km": "ចំណាយ",
+        "id": "pengeluaran"
+      }
+    },
+    {
+      "id": 844,
+      "pos": "名詞",
+      "kanji": "出品",
+      "reading": "しゅっぴん",
+      "meanings": {
+        "ja": "出品",
+        "en": "exhibiting; putting on display",
+        "zh": "展出",
+        "tw": "展出",
+        "ko": "출품",
+        "vi": "trưng bày",
+        "th": "นำออกแสดง",
+        "my": "ပြသရန်တင်သွင်း",
+        "km": "បង្ហាញក្នុងពិព័រណ៍",
+        "id": "memamerkan"
+      }
+    },
+    {
+      "id": 845,
+      "pos": "名詞",
+      "kanji": "主導",
+      "reading": "しゅどう",
+      "meanings": {
+        "ja": "主導",
+        "en": "leadership; initiative",
+        "zh": "主导",
+        "tw": "主導",
+        "ko": "주도",
+        "vi": "chủ đạo",
+        "th": "นำพา",
+        "my": "ဦးဆောင်မှု",
+        "km": "ដឹកនាំ",
+        "id": "memimpin"
+      }
+    },
+    {
+      "id": 846,
+      "pos": "名詞",
+      "kanji": "主任",
+      "reading": "しゅにん",
+      "meanings": {
+        "ja": "主任",
+        "en": "person in charge; chief",
+        "zh": "主任",
+        "tw": "主任",
+        "ko": "주임",
+        "vi": "chủ nhiệm",
+        "th": "หัวหน้าผู้รับผิดชอบ",
+        "my": "တာဝန်ခံ",
+        "km": "អ្នកទទួលខុសត្រូវ",
+        "id": "penanggung jawab"
+      }
+    },
+    {
+      "id": 847,
+      "pos": "名詞",
+      "kanji": "首脳",
+      "reading": "しゅのう",
+      "meanings": {
+        "ja": "首脳",
+        "en": "leaders; head",
+        "zh": "首脑",
+        "tw": "首腦",
+        "ko": "수뇌",
+        "vi": "người đứng đầu",
+        "th": "ผู้นำระดับสูง",
+        "my": "ခေါင်းဆောင်အကြီးအကဲ",
+        "km": "មេដឹកនាំកំពូល",
+        "id": "pimpinan puncak"
+      }
+    },
+    {
+      "id": 848,
+      "pos": "名詞",
+      "kanji": "守備",
+      "reading": "しゅび",
+      "meanings": {
+        "ja": "守備",
+        "en": "defense (sports/war)",
+        "zh": "防守",
+        "tw": "守備",
+        "ko": "수비",
+        "vi": "phòng thủ",
+        "th": "ตั้งรับ",
+        "my": "ကာကွယ်ရေး",
+        "km": "ការពារ",
+        "id": "pertahanan"
+      }
+    },
+    {
+      "id": 849,
+      "pos": "名詞",
+      "kanji": "手法",
+      "reading": "しゅほう",
+      "meanings": {
+        "ja": "手法",
+        "en": "technique; method",
+        "zh": "手法",
+        "tw": "手法",
+        "ko": "수법; 기법",
+        "vi": "phương pháp",
+        "th": "วิธีการ",
+        "my": "နည်းလမ်း",
+        "km": "បច្ចេកទេស",
+        "id": "metode"
+      }
+    },
+    {
+      "id": 850,
+      "pos": "名詞",
+      "kanji": "樹木",
+      "reading": "じゅもく",
+      "meanings": {
+        "ja": "樹木",
+        "en": "tree(s)",
+        "zh": "树木",
+        "tw": "樹木",
+        "ko": "수목",
+        "vi": "cây cối",
+        "th": "ไม้ยืนต้น",
+        "my": "အ деревоများ",
+        "km": "ដើមឈើ",
+        "id": "pepohonan"
+      }
+    }
   ]
-};
+}
