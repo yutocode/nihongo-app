@@ -31,6 +31,9 @@ import Settings from "./pages/Settings";
 import LanguageSettings from "./pages/LanguageSettings";
 import MyWordbookPage from "./pages/MyWordbookPage";
 
+// ブロック閲覧（新規）
+import BrowseBlockPage from "./pages/BrowseBlockPage";
+
 // alphabet
 import AlphabetUnitsPage from "./pages/AlphabetUnitsPage";
 import AlphabetUnitLessonPage from "./pages/AlphabetUnitLessonPage";
@@ -56,7 +59,7 @@ import WordQuizLessonSelectPage from "./pages/WordQuizLessonSelectPage";
 // reader
 import ReaderPage from "./pages/ReaderPage";
 import ReaderHubPage from "./pages/ReaderHubPage";
-import StoryPlayer from "./pages/StoryPlayer.jsx"; // ★ 追加：本文再生ページ
+import StoryPlayer from "./pages/StoryPlayer.jsx";
 
 // XP persistence
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
@@ -116,6 +119,12 @@ const App = () => (
         <Route path="/lessons/:level" element={<LessonSelectPage />} />
         <Route path="/words/:level/:lesson" element={<WordPage />} />
 
+        {/* ▼ 新フロー：ブロック閲覧 */}
+        {/* /browse/:level/:mode/:key
+            mode: "pos" | "number" | "freq"
+            key : 例 "pos-名詞-1" / "num-1" / "freq-5-1" など */}
+        <Route path="/browse/:level/:mode/:key" element={<BrowseBlockPage />} />
+
         {/* my wordbook */}
         <Route path="/my-words" element={<MyWordbookPage />} />
         <Route path="/my" element={<Navigate to="/my-words" replace />} />
@@ -158,7 +167,6 @@ const App = () => (
         <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
         <Route path="/reader/:level" element={<ReaderHubPage />} />
         <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
-        {/* ★ 追加：本文再生ページ（スクショの完成形） */}
         <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
       </Route>
 
@@ -181,6 +189,7 @@ const AppInitializer = () => {
   const PRIVATE_PREFIXES = [
     "/home", "/quiz", "/result",
     "/level", "/levels", "/lessons", "/words",
+    "/browse",                    // ★ 追加：ブロック閲覧もガード
     "/my-words", "/word-quiz",
     "/settings", "/language",
     "/grammar", "/adj",

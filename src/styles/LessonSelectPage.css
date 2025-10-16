@@ -1,57 +1,8 @@
-/* ================================
-   レッスン選択ページ ボタン配置
-================================ */
+.lesson-toolbar { display:flex; gap:8px; padding:8px 12px; position:sticky; top:56px; background:#fff; z-index:5; }
+.toggle { flex:1; padding:10px; border-radius:999px; border:1px solid #e2e8f0; background:#f8fafc; }
+.toggle.active { background:#21c7b8; color:#fff; border-color:#21c7b8; }
 
-/* コンテナ */
-.lesson-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1.5rem;
-  padding: 0 1rem;
-}
-
-/* レッスンボタン */
-.lesson-buttons button {
-  flex: 0 0 calc(50% - 1rem);   /* デフォルトは2列 */
-  box-sizing: border-box;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  background-color: #4f46e5;     /* Indigo */
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-/* hover エフェクト */
-.lesson-buttons button:hover {
-  background-color: #3730a3;     /* 濃いIndigo */
-  transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* 押したときの縮小エフェクト */
-.lesson-buttons button:active {
-  transform: scale(0.97);
-}
-
-/* フォーカスリング（キーボード操作向け） */
-.lesson-buttons button:focus-visible {
-  outline: 3px solid #a5b4fc;   /* Indigo-200 */
-  outline-offset: 2px;
-}
-
-/* スマホでは1列表示 */
-@media (max-width: 600px) {
-  .lesson-buttons button {
-    flex: 0 0 100%;
-    max-width: 280px;
-  }
-}
+.lesson-blocks { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:12px; }
+.lesson-block { text-align:left; padding:14px 16px; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); border:0; }
+.blk-title { font-weight:700; }
+.blk-sub { color:#64748b; font-size:12px; margin-top:2px; }

@@ -3,14 +3,18 @@ import React, { useMemo, useRef, useState, useEffect, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { useAppStore } from "../store/useAppStore";
 import { useMyWordsStore } from "../store/useMyWordsStore";
-import { getPosByLesson } from "../data/n5WordSets/posMap";
+import { getPosById } from "../utils/posById";
 import { loadDetail } from "@/data/wordDetails/loader";
 import DetailModal from "@/components/DetailModal.jsx";
-import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi"; // ★ アイコン追加
+import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi";
 import "../styles/WordCard.css";
 
-const buildId = (w) =>
-  w?.id ?? `${w?.level ?? "n?"}:${w?.lesson ?? "Lesson?"}:${w?.idx ?? w?.kanji ?? ""}`;
+// ★ 常に level と id を含む複合キーで衝突回避（n5:1 と n4:1 を区別）
+const buildKey = (w) => {
+  const lvl = w?.level ?? "n?";
+  const id = w?.id ?? `${w?.lesson ?? "Lesson?"}:${w?.idx ?? w?.kanji ?? ""}`;
+  return `${lvl}:${id}`;
+};
 
 export default function WordCard({
   wordList = [],
@@ -21,17 +25,19 @@ export default function WordCard({
   onIndexChange,
   onAdd,
   onDetail,
-  mode = "learn",
+  mode = "learn", // "learn" or "my"
   onRemove,
+  lessonTitleOverride,
 }) {
   const isMy = mode === "my";
 
+  // === 状態管理 ===
   const [index, setIndex] = useState(0);
   const [showMeaning, setShowMeaning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-  // 詳細モーダル用
+  // 詳細モーダル
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailData, setDetailData] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
@@ -43,18 +49,22 @@ export default function WordCard({
   const addToMyBook = useMyWordsStore((s) => s.add);
   const removeWord = useMyWordsStore((s) => s.removeWord);
 
+  // === 言語判定 ===
   const currentLang = useMemo(() => {
     const lower = String(i18n.language || "ja").toLowerCase();
     if (lower.startsWith("tw")) return "tw";
     if (lower.startsWith("zh")) return "zh";
     if (lower.startsWith("en")) return "en";
     if (lower.startsWith("id")) return "id";
-    if (lower.startsWith("vi")) return "vi";   // 🇻🇳
-    if (lower.startsWith("th")) return "th";   // 🇹🇭
-    if (lower.startsWith("my")) return "my";   // 🇲🇲
+    if (lower.startsWith("vi")) return "vi";
+    if (lower.startsWith("th")) return "th";
+    if (lower.startsWith("my")) return "my";
+    if (lower.startsWith("ko")) return "ko";
+    if (lower.startsWith("km")) return "km";
     return "ja";
   }, [i18n.language]);
 
+  // === 文言 ===
   const L = useMemo(
     () => ({
       show: t("wordcard.showMeaning", "クリックして意味を表示"),
@@ -69,6 +79,7 @@ export default function WordCard({
     [t]
   );
 
+  // === 単語リストなし ===
   if (!Array.isArray(wordList) || wordList.length === 0) {
     return (
       <div className="word-card">
@@ -77,6 +88,7 @@ export default function WordCard({
     );
   }
 
+  // === 現在の単語 ===
   const word = wordList[index] ?? {};
   const currentMeaning = word?.meanings?.[currentLang] || L.notFound;
 
@@ -85,20 +97,20 @@ export default function WordCard({
     [word, level, lesson, index]
   );
 
+  // === MyWordBookにあるか（複合キーで判定）
   const isAdded = useMyWordsStore(
     useCallback(
-      (s) => s.items.some((w) => buildId(w) === buildId(enriched)),
+      (s) => s.items.some((w) => buildKey(w) === buildKey(enriched)),
       [enriched]
     )
   );
 
+  // === 音声候補生成 ===
   const audioCandidates = useMemo(() => {
     const join = (...p) =>
       p
         .filter(Boolean)
-        .map((x) =>
-          typeof x === "string" ? x.replace(/^\/+|\/+$/g, "") : x
-        )
+        .map((x) => (typeof x === "string" ? x.replace(/^\/+|\/+$/g, "") : x))
         .join("/");
     const enc = (s) => encodeURIComponent(s || "");
     const r = word?.reading || "";
@@ -111,14 +123,27 @@ export default function WordCard({
     return arr;
   }, [word, index, level, lesson, audioBase]);
 
+  // === 再生を確実に停止するヘルパ ===
+  const stopAudio = useCallback(() => {
+    if (audioRef.current) {
+      try {
+        audioRef.current.pause();
+      } catch {}
+      audioRef.current.src = "";
+    }
+    setIsPlaying(false);
+  }, []);
+
+  // === 単語切り替え ===
   const goto = useCallback(
     (next) => {
+      // 再生中なら停止してから切り替え
+      stopAudio();
       setShowMeaning(false);
-      setIsPlaying(false);
       setIndex(next);
       onIndexChange?.(next);
     },
-    [onIndexChange]
+    [onIndexChange, stopAudio]
   );
 
   const handleNext = useCallback(() => {
@@ -133,39 +158,37 @@ export default function WordCard({
     if (index > 0) goto(index - 1);
   }, [index, goto]);
 
+  // === 音声再生（成功時は onended で OFF。失敗時のみ明示OFF） ===
   const playAudio = useCallback(async () => {
     if (!audioCandidates.length) return;
-    setIsPlaying(true);
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
+    stopAudio();                 // 直前の音声を止める
+    const a = audioRef.current || new Audio();
+    audioRef.current = a;
+
     for (const src of audioCandidates) {
       try {
-        const a = audioRef.current || new Audio();
-        audioRef.current = a;
         a.src = src;
-        a.onended = () => setIsPlaying(false);
-        a.pause();
-        a.currentTime = 0;
         await a.play();
-        return;
-      } catch {}
-    }
-    setIsPlaying(false);
-  }, [audioCandidates]);
-
-  useEffect(
-    () => () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-        audioRef.current = null;
+        setIsPlaying(true);
+        a.onended = () => setIsPlaying(false);
+        return;                  // 成功したら終わり（finallyでOFFにしない）
+      } catch {
+        // 次の候補へ
       }
-    },
-    []
-  );
+    }
+    // 全候補失敗
+    setIsPlaying(false);
+  }, [audioCandidates, stopAudio]);
 
+  // === アンマウント時のクリーンアップ ===
+  useEffect(() => {
+    return () => {
+      stopAudio();
+      audioRef.current = null;
+    };
+  }, [stopAudio]);
+
+  // === 意味表示 ===
   const onToggleMeaning = () => {
     if (!showMeaning && !awardedRef.current.has(index)) {
       awardedRef.current.add(index);
@@ -174,13 +197,15 @@ export default function WordCard({
     setShowMeaning(true);
   };
 
+  // === レッスン・品詞 ===
   const lessonNo = useMemo(() => {
     const m = String(lesson).match(/\d+/);
     return m ? Number(m[0]) : NaN;
   }, [lesson]);
 
-  const pos = getPosByLesson(lessonNo);
-  const lessonTitle = `Lesson ${Number.isFinite(lessonNo) ? lessonNo : ""}`.trim();
+  const lessonTitle = (lessonTitleOverride || (Number.isFinite(lessonNo) ? `Lesson ${lessonNo}` : "")).trim();
+
+  const pos = getPosById(level, word?.id, word?.pos || "—");
 
   const posClass = (p) => {
     if (p.includes("名詞")) return "noun";
@@ -192,6 +217,7 @@ export default function WordCard({
     return "default";
   };
 
+  // === 右側ボタン（追加/削除） ===
   const handleRight = () => {
     if (isMy) {
       onRemove?.(enriched);
@@ -202,6 +228,7 @@ export default function WordCard({
     }
   };
 
+  // === 詳細モーダル ===
   const openDetail = useCallback(async () => {
     setDetailLoading(true);
     try {
@@ -214,14 +241,16 @@ export default function WordCard({
           meanings: word?.meanings || {},
         }
       );
+      onDetail?.(enriched);
     } finally {
       setDetailLoading(false);
       setDetailOpen(true);
     }
-  }, [level, category, lesson, word?.id, word?.kanji, word?.reading, word?.meanings, pos]);
+  }, [level, category, lesson, word?.id, word?.kanji, word?.reading, word?.meanings, pos, onDetail, enriched]);
 
   const closeDetail = () => setDetailOpen(false);
 
+  // === 出力 ===
   return (
     <div className="word-card" role="group" aria-label="Word card">
       {/* ヘッダー */}
@@ -232,7 +261,7 @@ export default function WordCard({
 
         <div className="wc-head-title">
           <span className={`pos-badge ${posClass(pos)}`}>{pos || "—"}</span>
-          <span className="lesson-title">{lessonTitle}</span>
+          {lessonTitle && <span className="lesson-title">{lessonTitle}</span>}
         </div>
 
         <button
@@ -264,7 +293,7 @@ export default function WordCard({
         )}
       </button>
 
-      {/* スピーカー（アイコンのみ） */}
+      {/* スピーカー */}
       <div className="audio-area">
         <button
           type="button"
@@ -279,7 +308,7 @@ export default function WordCard({
         </button>
       </div>
 
-      {/* ナビゲーション（アイコンのみ） */}
+      {/* ナビゲーション */}
       <div className="navigation">
         <button
           type="button"

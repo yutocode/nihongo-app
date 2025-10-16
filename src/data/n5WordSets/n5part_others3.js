@@ -46,5 +46,10 @@ export const n5part_others3 = {
     { id:701, kanji:"ナイフ", reading:"ナイフ", pos:"n", meanings:{ ja:"ナイフ", en:"knife", zh:"刀", tw:"刀", ko:"나이프", vi:"dao", th:"มีด", my:"ဓါး", km:"កាំបិត" } },
     { id:702, kanji:"中", reading:"なか", pos:"n", meanings:{ ja:"中", en:"inside; middle", zh:"里面; 中间", tw:"裡面；中間", ko:"안; 가운데", vi:"bên trong; giữa", th:"ข้างใน; ตรงกลาง", my:"အတွင်း; အလယ်", km:"ខាងក្នុង; កណ្ដាល" } },
     { id:703, kanji:"長い", reading:"ながい", pos:"adj-i", meanings:{ ja:"長い", en:"long", zh:"长", tw:"長", ko:"길다", vi:"dài", th:"ยาว", my:"ရှည်", km:"វែង" } },
-  ],
+    { id:704, kanji:"まっすぐ", reading:"まっすぐ", pos:"unknown", meanings:{ ja:"まっすぐ", en:"straight; directly", zh:"笔直; 直接", tw:"筆直；直接", ko:"곧장; 똑바로", vi:"thẳng; ngay", th:"ตรงไป; โดยตรง", my:"တည့်တည့်; တန်း", km:"ត្រង់; ផ្ទាល់" } },
+    { id:705, kanji:"丸い; 円い", reading:"まるい", pos:"unknown", meanings:{ ja:"丸い; 円い", en:"round; circular", zh:"圆的", tw:"圓的", ko:"둥글다", vi:"tròn", th:"กลม", my:"ကွင်းကောင်း", km:"មូល" } },
+    { id:706, kanji:"みんな", reading:"みんな", pos:"unknown", meanings:{ ja:"みんな", en:"everyone; all", zh:"大家; 全部", tw:"大家；全部", ko:"모두", vi:"mọi người; tất cả", th:"ทุกคน; ทั้งหมด", my:"အားလုံး", km:"ទាំងអស់" } },
+    { id:707, kanji:"メートル", reading:"メートル", pos:"unknown", meanings:{ ja:"メートル", en:"meter (m)", zh:"米 (公尺)", tw:"公尺", ko:"미터", vi:"mét", th:"เมตร", my:"မီတာ", km:"ម៉ែត្រ" } },
+    { id:708, kanji:"もしもし", reading:"もしもし", pos:"int", meanings:{ ja:"もしもし", en:"hello (e.g. on phone)", zh:"喂 (打电话时)", tw:"喂 (打電話時)", ko:"여보세요 (전화)", vi:"alo (khi gọi điện)", th:"สวัสดี (เวลาโทรศัพท์)", my:"ဟယ်လို (ဖုန်း)", km:"អេហ្គោ (ទូរស័ព្ទ)" } },   
+],
 };

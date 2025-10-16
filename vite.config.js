@@ -1,21 +1,29 @@
 // vite.config.js
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import { fileURLToPath, URL } from "node:url";
 
-// Vite 設定ファイル
+// ================================
+// 🚀 Vite + React 設定（最新版）
+// ================================
 export default defineConfig({
   plugins: [react()],
-  base: "./", // 相対パスでビルド（Netlify / GitHub Pages対応）
+
+  // 📦 相対パスでビルド（Netlify / GitHub Pages対応）
+  base: "./",
+
+  // 🧭 import エイリアス設定
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // "@/..." で src を参照
+      "@": fileURLToPath(new URL("./src", import.meta.url)), // "@/..." → src/
     },
   },
+
+  // 🌐 開発サーバー設定
   server: {
-    host: "0.0.0.0",  // LAN 経由でスマホや他PCからアクセス可能
-    port: 5173,       // デフォルトポート
-    strictPort: true, // ポートが埋まっていたらエラーを出す
-    open: false,      // サーバー起動時に自動でブラウザを開かない
+    host: "0.0.0.0",   // LAN経由でスマホ・他PCからアクセスOK
+    port: 5173,        // デフォルトポート
+    strictPort: true,  // 使用中ならエラーで停止
+    open: false,       // 起動時に自動ブラウザ起動しない
   },
 });

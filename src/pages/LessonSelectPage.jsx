@@ -1,17 +1,18 @@
 // src/pages/LessonSelectPage.jsx
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// ← ページ内ホームを消すので FiHome は不要
 import "../styles/LessonSelectPage.css";
 
-const LESSON_COUNTS = {
-  n5: 18,
-  n4: 12,
-  n3: 36,
-  n2: 20,
-  n1: 40,
-};
+// ✅ 各レベルのデータをレジストリから取得
+import { getAllWords } from "@/data/registry/index.js";
+
+// ブロック分けユーティリティ
+import {
+  buildBlocksByNumber,
+  buildBlocksByPOS,
+  buildBlocksByFreq,
+} from "@/utils/grouping.js";
 
 export default function LessonSelectPage() {
   const { level = "n5" } = useParams(); // /lessons/:level
@@ -19,14 +20,27 @@ export default function LessonSelectPage() {
   const { t } = useTranslation();
 
   const normLevel = String(level).toLowerCase();
-  const lessonCount = LESSON_COUNTS[normLevel] ?? 0;
 
-  const lessons = useMemo(
-    () => Array.from({ length: Math.max(lessonCount, 0) }, (_, i) => i + 1),
-    [lessonCount]
-  );
+  // === 表示モード ===
+  const [mode, setMode] = useState("number"); // "pos" | "number" | "freq"
 
-  const goLesson = (no) => navigate(`/words/${normLevel}/Lesson${no}`);
+  // === 全単語をレジストリから取得 ===
+  const allWords = useMemo(() => getAllWords(normLevel), [normLevel]);
+
+  // === モード別ブロック生成 ===
+  const blocks = useMemo(() => {
+    if (!allWords.length) return [];
+    if (mode === "pos") return buildBlocksByPOS(allWords, normLevel);
+    if (mode === "freq") return buildBlocksByFreq(allWords);
+    return buildBlocksByNumber(allWords);
+  }, [mode, allWords, normLevel]);
+
+  // === ブロッククリック時 ===
+  const goBlock = (blk) => {
+    navigate(`/browse/${normLevel}/${mode}/${encodeURIComponent(blk.key)}`, {
+      state: { ids: blk.ids, label: blk.label },
+    });
+  };
 
   const title = t("lesson.selectTitle", {
     level: normLevel.toUpperCase(),
@@ -35,29 +49,47 @@ export default function LessonSelectPage() {
 
   return (
     <main className="lesson-select-page" role="main" aria-label={title}>
-      {/* ← ここにあった黒帯内ホームは削除。共通 Header 側のホームだけ表示 */}
+      {/* === トップツールバー === */}
+      <div className="lesson-toolbar">
+        <button
+          className={`toggle ${mode === "pos" ? "active" : ""}`}
+          onClick={() => setMode("pos")}
+        >
+          品詞で分ける
+        </button>
+        <button
+          className={`toggle ${mode === "number" ? "active" : ""}`}
+          onClick={() => setMode("number")}
+        >
+          番号順
+        </button>
+        <button
+          className={`toggle ${mode === "freq" ? "active" : ""}`}
+          onClick={() => setMode("freq")}
+        >
+          よく出る順
+        </button>
+      </div>
 
-      {lessonCount <= 0 ? (
+      {/* === コンテンツ === */}
+      {blocks.length === 0 ? (
         <div className="lesson-empty">
-          {t("common.notFound", "このレベルのレッスンは見つかりませんでした。")}
+          {t("common.notFound", "データがありません。")}
         </div>
       ) : (
-        <div className="lesson-buttons" role="list">
-          {lessons.map((no) => {
-            const label = t("lesson.part", { num: no, defaultValue: `第 ${no} 課` });
-            return (
-              <button
-                key={no}
-                className="lesson-btn"
-                type="button"
-                role="listitem"
-                onClick={() => goLesson(no)}
-                aria-label={label}
-              >
-                {label}
-              </button>
-            );
-          })}
+        <div className="lesson-blocks" role="list">
+          {blocks.map((blk) => (
+            <button
+              key={blk.key}
+              className="lesson-block"
+              role="listitem"
+              onClick={() => goBlock(blk)}
+              aria-label={`${blk.label} (${blk.count})`}
+            >
+              <div className="blk-title">{blk.label}</div>
+              <div className="blk-sub">{blk.count} 語</div>
+            </button>
+          ))}
         </div>
       )}
     </main>

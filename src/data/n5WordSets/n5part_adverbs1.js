@@ -1,4 +1,4 @@
-// src/data/n5WordSets/n5part_adverbs1.js
+  // src/data/n5WordSets/n5part_adverbs1.js
 export const n5part_adverbs1 = {
   Lesson12: [
     { id:446, kanji:"ああ", reading:"ああ", meanings:{ ja:"ああ", en:"like that; ah", zh:"那样", tw:"那樣", ko:"아아; 그렇게", vi:"như thế", th:"อย่างนั้น", my:"အဲဒီလို", km:"ដូច្នោះ" } },
