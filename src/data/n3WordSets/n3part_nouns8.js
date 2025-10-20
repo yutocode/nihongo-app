@@ -1,54 +1,705 @@
+// N3 Nouns Lesson8 (IDs 351–400)
 export const n3part_nouns8 = {
   Lesson8: [
-    { id: 651, kanji: "今日", reading: "こんにち", meanings: { ja:"今日", en:"today", zh:"今日/当今", tw:"今日/當今", ko:"오늘/현대", vi:"ngày nay", th:"ปัจจุบัน/สมัยนี้", my:"ယနေ့/ယခုခေတ်", km:"សព្វថ្ងៃ", id:"kini/masa kini" } },
-    { id: 652, kanji: "婚約", reading: "こんやく", meanings: { ja:"婚約", en:"engagement", zh:"订婚", tw:"訂婚", ko:"약혼", vi:"đính hôn", th:"หมั้นหมาย", my:"လက်ဆောင်ကမ်းလှမ်းခြင်း/ရန်သတ်မှတ်", km:"ការរៀបការ​ជាមុន (និពន្ធ)", id:"pertunangan" } },
-    { id: 653, kanji: "混乱", reading: "こんらん", meanings: { ja:"混乱", en:"disorder/confusion", zh:"混乱", tw:"混亂", ko:"혼란", vi:"hỗn loạn", th:"ความโกลาหล", my:"အရေးပေါ်ပေါက်ကွဲ/ကပ်လှန်", km:"ភាពវឹកវរលំអ", id:"kekacauan" } },
-    { id: 654, kanji: "差", reading: "さ", meanings: { ja:"差", en:"difference", zh:"差别/差距", tw:"差異/差距", ko:"차이/격차", vi:"sự chênh lệch", th:"ความแตกต่าง", my:"ကွာဟမှု", km:"ភាពខុសគ្នា", id:"perbedaan" } },
-    { id: 655, kanji: "サービス", reading: "サービス", meanings: { ja:"サービス", en:"service", zh:"服务", tw:"服務", ko:"서비스", vi:"dịch vụ", th:"บริการ", my:"ဝန်ဆောင်မှု", km:"សេវាកម្ម", id:"layanan" } },
-    { id: 656, kanji: "際", reading: "さい", meanings: { ja:"際", en:"occasion", zh:"时机/场合", tw:"時機/場合", ko:"때/경우", vi:"dịp/khía cạnh", th:"โอกาส/คราว", my:"အခွင့်အလမ်း/အခငါး", km:"ឱកាស/ពេលវេលា", id:"kesempatan/ketika" } },
-    { id: 657, kanji: "財産", reading: "ざいさん", meanings: { ja:"財産", en:"property/assets", zh:"财产", tw:"財產", ko:"재산", vi:"tài sản", th:"ทรัพย์สิน", my:"ကုန်ပစ္စည်း/ပိုင်ဆိုင်မှု", km:"ទ្រព្យសម្បត្តិ", id:"harta kekayaan" } },
-    { id: 658, kanji: "最中", reading: "さいちゅう", meanings: { ja:"最中", en:"in the middle of", zh:"正当…之中", tw:"正當…之中", ko:"한창 … 중", vi:"đang lúc/giữa lúc", th:"อยู่ระหว่าง/กำลัง", my:"တစ်ဝက်လည်ပတ်中", km:"កណ្ដាលនៃ…", id:"sedang dalam (proses)" } },
-    { id: 659, kanji: "才能", reading: "さいのう", meanings: { ja:"才能", en:"talent", zh:"才能", tw:"才能", ko:"재능", vi:"tài năng", th:"พรสวรรค์", my:"တမန်", km:"ទេពកោសល្យ", id:"bakat" } },
-    { id: 660, kanji: "裁判", reading: "さいばん", meanings: { ja:"裁判", en:"trial", zh:"审判", tw:"審判", ko:"재판", vi:"phiên toà", th:"การพิจารณาคดี", my:"တရားရုံးစီရင်ရေး", km:"ការកាត់ក្ដី", id:"persidangan" } },
-    { id: 661, kanji: "材料", reading: "ざいりょう", meanings: { ja:"材料", en:"materials/ingredients", zh:"材料", tw:"材料", ko:"재료", vi:"vật liệu/nguyên liệu", th:"วัสดุ/ส่วนผสม", my:"အရည်အသွေး/ယူနစ်", km:"សម្ភារៈ/គ្រឿងផ្សំ", id:"bahan" } },
-    { id: 662, kanji: "サイン", reading: "サイン", meanings: { ja:"サイン", en:"autograph/signature", zh:"签名", tw:"簽名", ko:"사인", vi:"chữ ký", th:"ลายเซ็น", my:"လက်မှတ်", km:"ហត្ថលេខា", id:"tanda tangan" } },
-    { id: 663, kanji: "境", reading: "さかい", meanings: { ja:"境", en:"border/boundary", zh:"边界", tw:"邊界", ko:"경계", vi:"ranh giới", th:"เขตแดน", my:"နယ်နိမိတ်", km:"ព្រំដែន", id:"batas" } },
-    { id: 664, kanji: "盛り", reading: "さかり", meanings: { ja:"盛り", en:"height/peak (of season)", zh:"鼎盛/正旺", tw:"旺盛/正盛", ko:"절정/한창", vi:"đỉnh điểm", th:"ช่วงพีค/กำลังสุด", my:"အထွား", km:"កំពូល/កំពុងរីក", id:"puncak/masa jayanya" } },
-    { id: 665, kanji: "作業", reading: "さぎょう", meanings: { ja:"作業", en:"work/task", zh:"作业/工作", tw:"作業/工作", ko:"작업", vi:"tác nghiệp/công việc", th:"งาน", my:"အလုပ်", km:"ការងារ", id:"pekerjaan" } },
-    { id: 666, kanji: "作品", reading: "さくひん", meanings: { ja:"作品", en:"(artistic) work", zh:"作品", tw:"作品", ko:"작품", vi:"tác phẩm", th:"ผลงาน", my:"လက်ရာ", km:"ស្នាដៃ", id:"karya" } },
-    { id: 667, kanji: "作物", reading: "さくもつ", meanings: { ja:"作物", en:"crop", zh:"作物", tw:"作物", ko:"농작물", vi:"hoa màu", th:"พืชผล", my:"စိုက်ပျိုးဖွားပိုး", km:"ដំណាំ", id:"tanaman" } },
-    { id: 668, kanji: "桜", reading: "さくら", meanings: { ja:"桜", en:"cherry tree", zh:"樱花树", tw:"櫻花樹", ko:"벚나무", vi:"cây anh đào", th:"ต้นซากุระ", my:"စကူရာ", km:"ដើមសាកુરា", id:"pohon sakura" } },
-    { id: 669, kanji: "酒", reading: "さけ", meanings: { ja:"酒", en:"alcohol/sake", zh:"酒", tw:"酒", ko:"술", vi:"rượu", th:"สุรา/เหล้า", my:"အရက်", km:"ស្រា", id:"alkohol/sake" } },
-    { id: 670, kanji: "座席", reading: "ざせき", meanings: { ja:"座席", en:"seat", zh:"座位", tw:"座位", ko:"좌석", vi:"chỗ ngồi", th:"ที่นั่ง", my:"ထိုင်ခုံ", km:"កៅអី/កន្លែងអង្គុយ", id:"tempat duduk" } },
-    { id: 671, kanji: "札", reading: "さつ", meanings: { ja:"札", en:"banknote", zh:"纸币", tw:"紙鈔", ko:"지폐", vi:"tiền giấy", th:"ธนบัตร", my:"ဟောင်းပုံစံဓမ္မစာ", km:"ប្រាក់ក្រដាស់", id:"uang kertas" } },
-    { id: 672, kanji: "作家", reading: "さっか", meanings: { ja:"作家", en:"author", zh:"作家", tw:"作家", ko:"작가", vi:"tác giả/nhà văn", th:"นักเขียน", my:"စာရေးဆရာ", km:"អ្នកនិពន្ធ", id:"penulis" } },
-    { id: 673, kanji: "作曲", reading: "さっきょく", meanings: { ja:"作曲", en:"composition (music)", zh:"作曲", tw:"作曲", ko:"작곡", vi:"sáng tác nhạc", th:"แต่งเพลง", my:"တေးရေး", km:"និពន្ធទំនុកច្រៀង", id:"komposisi musik" } },
-    { id: 674, kanji: "砂漠", reading: "さばく", meanings: { ja:"砂漠", en:"desert", zh:"沙漠", tw:"沙漠", ko:"사막", vi:"sa mạc", th:"ทะเลทราย", my:"သဲကန္တာရာ", km:"វាលខ្សាច់", id:"gurun" } },
-    { id: 675, kanji: "差別", reading: "さべつ", meanings: { ja:"差別", en:"discrimination", zh:"歧视", tw:"歧視", ko:"차별", vi:"phân biệt đối xử", th:"การเลือกปฏิบัติ", my:"ခြားချက်ပြုခြင်း", km:"ការរើសអើង", id:"diskriminasi" } },
-    { id: 676, kanji: "ママ", reading: "ママ", meanings: { ja:"ママ", en:"mom", zh:"妈妈", tw:"媽媽", ko:"엄마", vi:"mẹ", th:"แม่", my:"မိဘမ", km:"ម៉ាក់", id:"mama/ibu" } },
-    { id: 677, kanji: "豆", reading: "まめ", meanings: { ja:"豆", en:"legume/bean", zh:"豆/豆类", tw:"豆/豆類", ko:"콩", vi:"đậu", th:"ถั่ว", my:"ပဲ", km:"សណ្តែក", id:"kacang" } },
-    { id: 678, kanji: "丸", reading: "まる", meanings: { ja:"丸", en:"circle", zh:"圆形", tw:"圓形", ko:"원/동그라미", vi:"hình tròn", th:"วงกลม", my:"စက်ဝိုင်း", km:"រង្វង់", id:"lingkaran" } },
-    { id: 679, kanji: "円", reading: "まる", meanings: { ja:"円（形）", en:"circle", zh:"圆", tw:"圓", ko:"원", vi:"hình tròn", th:"วงกลม", my:"စက်ဝိုင်း", km:"រង្វង់", id:"lingkaran" } },
-    { id: 680, kanji: "万一", reading: "まんいち", meanings: { ja:"万一", en:"in case of emergency/if by any chance", zh:"万一/以防万一", tw:"萬一/以防萬一", ko:"만일/만약", vi:"nhỡ khi/phòng khi", th:"เผื่อว่า/กรณีฉุกเฉิน", my:"မဖြစ်မနေလျှင်", km:"បើសិនជា/ក្នុងករណីចៃដន្យ", id:"andaikata/kalau-kalau" } },
-    { id: 681, kanji: "満足", reading: "まんぞく", meanings: { ja:"満足", en:"satisfaction", zh:"满足", tw:"滿足", ko:"만족", vi:"hài lòng", th:"ความพอใจ", my:"ကျေနပ်မှု", km:"ការពេញចិត្ត", id:"kepuasan" } },
-    { id: 682, kanji: "身", reading: "み", meanings: { ja:"身", en:"one's body/self", zh:"身/自身", tw:"身/自身", ko:"몸/신분", vi:"thân mình", th:"ตัวตน/ร่างกาย", my:"ကိုယ်ခန္ဓာ", km:"ខ្លួន/សាច់ឈាម", id:"tubuh/diri" } },
-    { id: 683, kanji: "実", reading: "み", meanings: { ja:"実", en:"fruit/nut", zh:"果实", tw:"果實", ko:"열매", vi:"quả/nhân", th:"ผล/เมล็ด", my:"ဖျားသီး", km:"ផ្លែ/គ្រាប់", id:"buah/biji" } },
-    { id: 684, kanji: "見送り", reading: "みおくり", meanings: { ja:"見送り", en:"seeing off", zh:"送行", tw:"送行", ko:"배웅", vi:"tiễn", th:"ไปส่ง", my:"နှုတ်ဆက်ပို့", km:"សង្រ្គោះ/ទៅអម", id:"mengantar (keberangkatan)" } },
-    { id: 685, kanji: "味方", reading: "みかた", meanings: { ja:"味方", en:"ally/supporter", zh:"盟友/我方", tw:"我方/同盟", ko:"아군/편", vi:"đồng minh", th:"ฝ่ายเดียวกัน/พวก", my:"ဖက်စပ်", km:"សម្ព័ន្ធមិត្ត", id:"sekutu" } },
-    { id: 686, kanji: "ミス", reading: "ミス", meanings: { ja:"ミス", en:"mistake", zh:"错误", tw:"錯誤", ko:"실수", vi:"lỗi", th:"ความผิดพลาด", my:"ချော့မွေ့", km:"កំហុស", id:"kesalahan" } },
-    { id: 687, kanji: "見舞い", reading: "みまい", meanings: { ja:"見舞い", en:"visit (someone ill or in trouble)", zh:"探望/慰问", tw:"探望/慰問", ko:"문안/병문안", vi:"thăm hỏi", th:"ไปเยี่ยม (คนป่วย/ประสบภัย)", my:"ပြန်လည်က慰問", km:"ទៅទស្សនារបួស/ជំងឺ", id:"menjenguk" } },
-    { id: 688, kanji: "土産", reading: "みやげ", meanings: { ja:"土産", en:"souvenir/local specialty", zh:"土产/伴手礼", tw:"土產/伴手禮", ko:"토산품/기념품", vi:"đặc sản/đồ lưu niệm", th:"ของฝาก", my:"လက်ဆောင်မြို့ပြ", km:"អំណោយ/ផលដឹកនាំតំបន់", id:"oleh-oleh" } },
-    { id: 689, kanji: "都", reading: "みやこ", meanings: { ja:"都", en:"capital (esp. Kyoto)", zh:"都城/京城", tw:"都 (京城)", ko:"도읍/수도", vi:"kinh đô (đặc biệt Kyoto)", th:"นครหลวง (โดยเฉพาะเกียวโต)", my:"မြို့တော်", km:"រាជធានី", id:"ibu kota (khusus Kyoto)" } },
-    { id: 690, kanji: "明後日", reading: "みょうごにち", meanings: { ja:"明後日", en:"day after tomorrow", zh:"后天", tw:"後天", ko:"모레", vi:"ngày kia", th:"มะรืนนี้", my:"တနှစ်နေ့", km:"ស្អែកម៉ាត់", id:"lusa" } },
-    { id: 691, kanji: "未来", reading: "みらい", meanings: { ja:"未来", en:"(distant) future", zh:"未来", tw:"未來", ko:"미래", vi:"tương lai", th:"อนาคต", my:"အနာဂတ်", km:"អនាគត", id:"masa depan" } },
-    { id: 692, kanji: "魅力", reading: "みりょく", meanings: { ja:"魅力", en:"charm/attraction", zh:"魅力", tw:"魅力", ko:"매력", vi:"sức hấp dẫn", th:"เสน่ห์", my:"ဆွဲဆောင်မှု", km:"ការ​ទាក់ទាញ", id:"pesona" } },
-    { id: 693, kanji: "ミルク", reading: "ミルク", meanings: { ja:"ミルク", en:"milk", zh:"牛奶", tw:"牛奶", ko:"우유", vi:"sữa", th:"นม", my:"နို့", km:"ទឹកដោះគោ", id:"susu" } },
-    { id: 694, kanji: "無", reading: "む", meanings: { ja:"無", en:"nothing/none", zh:"无/没有", tw:"無/沒有", ko:"무/없음", vi:"vô/không", th:"ไม่มี/ความว่าง", my:"မရှိခြင်း", km:"គ្មាន", id:"ketiadaan" } },
-    { id: 695, kanji: "向かい", reading: "むかい", meanings: { ja:"向かい", en:"facing/opposite", zh:"对面/相对", tw:"對面/相對", ko:"맞은편", vi:"đối diện", th:"ฝั่งตรงข้าม", my:"အဖြစ်တန်ပြန်", km:"ម្ខាងមុខ/ផ្ទុយមុខ", id:"seberang/berhadapan" } },
-    { id: 696, kanji: "迎え", reading: "むかえ", meanings: { ja:"迎え", en:"meeting/welcoming", zh:"迎接", tw:"迎接", ko:"마중", vi:"đón tiếp", th:"ไปรับ", my:"ကြိုဆိုခြင်း", km:"ទៅទទួល", id:"penjemputan" } },
-    { id: 697, kanji: "無視", reading: "むし", meanings: { ja:"無視", en:"disregarding/ignoring", zh:"无视", tw:"無視", ko:"무시", vi:"phớt lờ", th:"เมินเฉย", my:"လွတ်လပ်စွာလျှော့", km:"មិនអើពើ", id:"mengabaikan" } },
-    { id: 698, kanji: "虫歯", reading: "むしば", meanings: { ja:"虫歯", en:"tooth decay/cavity", zh:"蛀牙", tw:"蛀牙", ko:"충치", vi:"sâu răng", th:"ฟันผุ", my:"ဝါးခွံပျက်", km:"ធ្មេញពុក", id:"gigi berlubang" } },
-    { id: 699, kanji: "無駄", reading: "むだ", meanings: { ja:"無駄", en:"futility/waste", zh:"徒劳/浪费", tw:"徒勞/浪費", ko:"헛됨/낭비", vi:"lãng phí/vô ích", th:"สูญเปล่า/สิ้นเปลือง", my:"ဖြူဘက်မရှိမှု/အလဟာ", km:"បាត់បង់ឥតប្រយោជន៍", id:"sia-sia/pemborosan" } },
-    { id: 700, kanji: "胸", reading: "むね", meanings: { ja:"胸", en:"chest", zh:"胸部", tw:"胸部", ko:"가슴", vi:"ngực", th:"หน้าอก", my:"ဉီးရေကောက်/ရင်ဘတ်", km:"ទ្រូង", id:"dada" } },
-  ],
+    { id: 351, kanji: "カード", reading: "カード", pos: "n",
+      meanings: {
+        ja: "カード。厚紙やプラスチック製の小片。",
+        en: "card",
+        zh: "卡片",
+        tw: "卡片",
+        id: "kartu",
+        ko: "카드",
+        vi: "thẻ",
+        th: "บัตร",
+        my: "ကဒ်",
+        km: "កាត"
+      }
+    },
+    { id: 352, kanji: "貝", reading: "かい", pos: "n",
+      meanings: {
+        ja: "貝殻をもつ水生動物の総称。",
+        en: "shellfish; mollusk",
+        zh: "贝类",
+        tw: "貝類",
+        id: "kerang; moluska",
+        ko: "조개류",
+        vi: "động vật có vỏ (nhuyễn thể)",
+        th: "หอย",
+        my: "ခဲအုံးရှိသောရေသတ္တဝါ (shellfish)",
+        km: "សត្វសមុទ្រមានសំបក (សត្វខ្យង)"
+      }
+    },
+    { id: 353, kanji: "害", reading: "がい", pos: "n",
+      meanings: {
+        ja: "損害。悪い影響。",
+        en: "harm; damage; injury",
+        zh: "害；损害",
+        tw: "害；損害",
+        id: "bahaya; kerugian",
+        ko: "해; 피해",
+        vi: "hại; tổn hại",
+        th: "โทษ; ความเสียหาย",
+        my: "ထိခိုက်ပျက်စီးမှု",
+        km: "គ្រោះថ្នាក់; ការខូចខាត"
+      }
+    },
+    { id: 354, kanji: "会員", reading: "かいいん", pos: "n",
+      meanings: {
+        ja: "会や団体に属する人。",
+        en: "member",
+        zh: "会员",
+        tw: "會員",
+        id: "anggota",
+        ko: "회원",
+        vi: "thành viên",
+        th: "สมาชิก",
+        my: "အဖွဲ့ဝင်",
+        km: "សមាជិក"
+      }
+    },
+    { id: 355, kanji: "絵画", reading: "かいが", pos: "n",
+      meanings: {
+        ja: "絵や絵画作品。",
+        en: "painting; artwork",
+        zh: "绘画；画作",
+        tw: "繪畫；畫作",
+        id: "lukisan; karya hội hoạ",
+        ko: "회화; 그림",
+        vi: "hội họa; bức tranh",
+        th: "จิตรกรรม; ภาพวาด",
+        my: "ရုပ်ပုံရေးရာ; ပန်းချီကား",
+        km: "គំនូរ; ស្នាដៃគំនូរ"
+      }
+    },
+    { id: 356, kanji: "海外", reading: "かいがい", pos: "n",
+      meanings: {
+        ja: "外国。海外。",
+        en: "overseas; abroad",
+        zh: "海外；国外",
+        tw: "海外；國外",
+        id: "luar negeri",
+        ko: "해외",
+        vi: "nước ngoài; hải ngoại",
+        th: "ต่างประเทศ",
+        my: "နိုင်ငံခြား",
+        km: "បរទេស; ក្រៅប្រទេស"
+      }
+    },
+    { id: 357, kanji: "会計", reading: "かいけい", pos: "n",
+      meanings: {
+        ja: "金銭の出納・計算。または会計担当。",
+        en: "accounting; checkout (at a store)",
+        zh: "会计；结账",
+        tw: "會計；結帳",
+        id: "akuntansi; kasir/ pembayaran",
+        ko: "회계; 계산",
+        vi: "kế toán; tính tiền",
+        th: "บัญชี; ชำระเงิน",
+        my: "စာရင်းကိုင်; ငွေနှုန်းချိန်",
+        km: "គណនេយ្យ; គិតលុយ"
+      }
+    },
+    { id: 358, kanji: "解決", reading: "かいけつ", pos: "n",
+      meanings: {
+        ja: "問題などを解き終えること。",
+        en: "solution; resolution (of a problem)",
+        zh: "解决",
+        tw: "解決",
+        id: "penyelesaian; solusi",
+        ko: "해결",
+        vi: "giải quyết; lời giải",
+        th: "การแก้ปัญหา",
+        my: "ဖြေရှင်းချက်",
+        km: "ដោះស្រាយ; ಪರಿಹារ (solution)"
+      }
+    },
+    { id: 359, kanji: "会合", reading: "かいごう", pos: "n",
+      meanings: {
+        ja: "人が集まること。集会。",
+        en: "meeting; gathering",
+        zh: "会合；聚会",
+        tw: "會合；聚會",
+        id: "pertemuan; kumpul",
+        ko: "모임; 회합",
+        vi: "cuộc họp; buổi gặp mặt",
+        th: "การประชุม; การรวมตัว",
+        my: "အစည်းအဝေး",
+        km: "សន្និសីទ; ការជួបប្រជុំ"
+      }
+    },
+    { id: 360, kanji: "外交", reading: "がいこう", pos: "n",
+      meanings: {
+        ja: "国家間の公式な交渉・関係。",
+        en: "diplomacy; foreign affairs",
+        zh: "外交",
+        tw: "外交",
+        id: "diplomasi; urusan luar negeri",
+        ko: "외교",
+        vi: "ngoại giao",
+        th: "การทูต",
+        my: "နိုင်ငံတကာရေးရာ (နိုင်ငံခြားရေး)",
+        km: "ការទូត; ការផ្តោតលើការបរទេស"
+      }
+    },
+    { id: 361, kanji: "開始", reading: "かいし", pos: "n",
+      meanings: {
+        ja: "始めること。スタート。",
+        en: "start; commencement",
+        zh: "开始",
+        tw: "開始",
+        id: "mulai; pembukaan",
+        ko: "개시; 시작",
+        vi: "khai bắt đầu; khởi đầu",
+        th: "เริ่มต้น",
+        my: "အစပြုခြင်း",
+        km: "ការចាប់ផ្តើម"
+      }
+    },
+    { id: 362, kanji: "解釈", reading: "かいしゃく", pos: "n",
+      meanings: {
+        ja: "意味や意図を説明・理解すること。",
+        en: "interpretation; explanation",
+        zh: "解释；阐释",
+        tw: "解釋；詮釋",
+        id: "penafsiran; interpretasi",
+        ko: "해석",
+        vi: "diễn giải; giải thích",
+        th: "การตีความ; การอธิบาย",
+        my: "ဖော်ကျူးဖော်ပြခြင်း; အဓိပ္ပါယ်ဖော်ထုတ်ခြင်း",
+        km: "ការបកស្រាយ"
+      }
+    },
+    { id: 363, kanji: "外出", reading: "がいしゅつ", pos: "n",
+      meanings: {
+        ja: "家や職場の外へ出ること。",
+        en: "going out (leaving home/office)",
+        zh: "外出",
+        tw: "外出",
+        id: "keluar (dari rumah/kantor)",
+        ko: "외출",
+        vi: "ra ngoài",
+        th: "ออกไปข้างนอก",
+        my: "အပြင်ထွက်ခြင်း",
+        km: "ចេញទៅក្រៅ"
+      }
+    },
+    { id: 364, kanji: "改善", reading: "かいぜん", pos: "n",
+      meanings: {
+        ja: "よりよく改めること。",
+        en: "improvement",
+        zh: "改善",
+        tw: "改善",
+        id: "perbaikan",
+        ko: "개선",
+        vi: "cải thiện",
+        th: "การปรับปรุง",
+        my: "တိုးတက်ကောင်းမွန်စေခြင်း",
+        km: "កែលម្អ"
+      }
+    },
+    { id: 365, kanji: "回復", reading: "かいふく", pos: "n",
+      meanings: {
+        ja: "元の良い状態に戻ること。",
+        en: "recovery; restoration",
+        zh: "恢复",
+        tw: "恢復",
+        id: "pemulihan",
+        ko: "회복",
+        vi: "phục hồi",
+        th: "การฟื้นตัว",
+        my: "နေပြန်ကောင်းလာခြင်း",
+        km: "ស្តារឡើងវិញ; ការជាសះស្បើយ"
+      }
+    },
+    { id: 366, kanji: "香り", reading: "かおり", pos: "n",
+      meanings: {
+        ja: "よいにおい。芳香。",
+        en: "scent; fragrance; aroma",
+        zh: "香味；香气",
+        tw: "香味；香氣",
+        id: "aroma; wangi",
+        ko: "향기",
+        vi: "hương thơm; mùi thơm",
+        th: "กลิ่นหอม",
+        my: "မွှေးနံ့",
+        km: "ក្លិនក្រអូប"
+      }
+    },
+    { id: 367, kanji: "画家", reading: "がか", pos: "n",
+      meanings: {
+        ja: "絵を職業とする人。",
+        en: "painter (artist)",
+        zh: "画家",
+        tw: "畫家",
+        id: "pelukis",
+        ko: "화가",
+        vi: "họa sĩ",
+        th: "จิตรกร",
+        my: "ပန်းချီဝါကြီး",
+        km: "សិល្បករ​គំនូរ"
+      }
+    },
+    { id: 368, kanji: "価格", reading: "かかく", pos: "n",
+      meanings: {
+        ja: "品物の値段。",
+        en: "price; cost",
+        zh: "价格",
+        tw: "價格",
+        id: "harga",
+        ko: "가격",
+        vi: "giá; giá cả",
+        th: "ราคา",
+        my: "စျေးနှုန်း",
+        km: "តម្លៃ"
+      }
+    },
+    { id: 369, kanji: "化学", reading: "かがく", pos: "n",
+      meanings: {
+        ja: "物質とその変化を研究する学問。",
+        en: "chemistry",
+        zh: "化学",
+        tw: "化學",
+        id: "kimia",
+        ko: "화학",
+        vi: "hóa học",
+        th: "เคมี",
+        my: "ဓာတုဗေဒ",
+        km: "គីមីវិទ្យា"
+      }
+    },
+    { id: 370, kanji: "係", reading: "かかり", pos: "n",
+      meanings: {
+        ja: "担当者。係の人。",
+        en: "person in charge; clerk",
+        zh: "负责人；经办人",
+        tw: "負責人；承辦人",
+        id: "petugas; penanggung jawab",
+        ko: "담당자",
+        vi: "người phụ trách",
+        th: "ผู้รับผิดชอบ; เจ้าหน้าที่",
+        my: "တာဝန်ခံ; ဝန်ထမ်း",
+        km: "អ្នកទទួលខុសត្រូវ; មន្រ្តី"
+      }
+    },
+    { id: 371, kanji: "家具", reading: "かぐ", pos: "n",
+      meanings: {
+        ja: "室内で使用する大型の道具。",
+        en: "furniture",
+        zh: "家具",
+        tw: "家具",
+        id: "perabot; furnitur",
+        ko: "가구",
+        vi: "đồ nội thất",
+        th: "เฟอร์นิเจอร์",
+        my: "အိမ်ပရိဘောဂ",
+        km: "គ្រឿងសង្ហារឹម"
+      }
+    },
+    { id: 372, kanji: "学", reading: "がく", pos: "n",
+      meanings: {
+        ja: "学問。学び。",
+        en: "learning; scholarship",
+        zh: "学问；学习",
+        tw: "學問；學習",
+        id: "pembelajaran; ilmu học",
+        ko: "학문; 배움",
+        vi: "sự học; học thuật",
+        th: "การเรียนรู้; วิชาการ",
+        my: "စာပေသင်ကြားမှု; ပညာ",
+        km: "ការសិក្សា; វិជ្ជា"
+      }
+    },
+    { id: 373, kanji: "額", reading: "がく", pos: "n",
+      meanings: {
+        ja: "絵などを入れる枠。額縁。",
+        en: "(picture) frame",
+        zh: "画框；相框",
+        tw: "畫框；相框",
+        id: "bingkai (lukisan)",
+        ko: "액자",
+        vi: "khung (tranh)",
+        th: "กรอบรูป/กรอบภาพ",
+        my: "ပန်းချီဘောင်",
+        km: "ស៊ុមរូបភាព"
+      }
+    },
+    { id: 374, kanji: "覚悟", reading: "かくご", pos: "n",
+      meanings: {
+        ja: "結果を受け止める心の準備。",
+        en: "readiness; resolve; preparedness",
+        zh: "觉悟；心理准备",
+        tw: "覺悟；心理準備",
+        id: "tekad; kesiapan",
+        ko: "각오; 대비",
+        vi: "quyết tâm; sự sẵn sàng",
+        th: "ความตั้งใจแน่วแน่; การเตรียมใจ",
+        my: "သူ့စိတ်ပြင်ဆင်ချက်; ဆုံးဖြတ်ချက်",
+        km: "ការរៀបចំចិត្ត; សេចក្តីសម្រេចចិត្ត"
+      }
+    },
+    { id: 375, kanji: "学者", reading: "がくしゃ", pos: "n",
+      meanings: {
+        ja: "学問を専門とする人。",
+        en: "scholar",
+        zh: "学者",
+        tw: "學者",
+        id: "sarjana; cendekiawan",
+        ko: "학자",
+        vi: "học giả",
+        th: "นักปราชญ์; นักวิชาการ",
+        my: "ပညာတော်ဦး; အတ္ထုပ္ပတ္တိကျော်",
+        km: "អ្នកប្រាជ្ញ; អ្នកវិទ្យាសាស្ត្រ"
+      }
+    },
+    { id: 376, kanji: "学習", reading: "がくしゅう", pos: "n",
+      meanings: {
+        ja: "学び習うこと。",
+        en: "learning; study",
+        zh: "学习",
+        tw: "學習",
+        id: "pembelajaran; belajar",
+        ko: "학습",
+        vi: "học tập",
+        th: "การเรียนรู้",
+        my: "လေ့လာသင်ယူမှု",
+        km: "ការសិក្សា; ការរៀន"
+      }
+    },
+    { id: 377, kanji: "拡大", reading: "かくだい", pos: "n",
+      meanings: {
+        ja: "大きくすること。広げること。",
+        en: "enlargement; expansion",
+        zh: "扩大；放大",
+        tw: "擴大；放大",
+        id: "pembesaran; perluasan",
+        ko: "확대",
+        vi: "mở rộng; phóng to",
+        th: "การขยาย",
+        my: "ချဲ့ထွင်မှု; ထွင်ခြင်း",
+        km: "ពង្រីក; ពង្រីកទំហំ"
+      }
+    },
+    { id: 378, kanji: "確認", reading: "かくにん", pos: "n",
+      meanings: {
+        ja: "確かめること。検証。",
+        en: "confirmation; verification",
+        zh: "确认；核实",
+        tw: "確認；核實",
+        id: "konfirmasi; verifikasi",
+        ko: "확인",
+        vi: "xác nhận; kiểm chứng",
+        th: "การยืนยัน; การตรวจสอบ",
+        my: "အတည်ပြုခြင်း; စစ်ဆေးခြင်း",
+        km: "ការបញ្ជាក់; ផ្ទៀងផ្ទាត់"
+      }
+    },
+    { id: 379, kanji: "学問", reading: "がくもん", pos: "n",
+      meanings: {
+        ja: "系統立てて学ぶ学術。",
+        en: "scholarship; academic study",
+        zh: "学问；学术研究",
+        tw: "學問；學術研究",
+        id: "ilmu pengetahuan; học thuật",
+        ko: "학문",
+        vi: "học vấn; học thuật",
+        th: "วิชาการ; การศึกษาทางวิชาการ",
+        my: "ပညာရပ်; အင်အားပညာ",
+        km: "វិជ្ជាជីវៈ; សិក្សាវិទ្យាសាស្ត្រ"
+      }
+    },
+    { id: 380, kanji: "影", reading: "かげ", pos: "n",
+      meanings: {
+        ja: "光がさえぎられてできる黒い形。",
+        en: "shadow; silhouette",
+        zh: "影子；阴影",
+        tw: "影子；陰影",
+        id: "bayangan",
+        ko: "그림자",
+        vi: "bóng; bóng đổ",
+        th: "เงา",
+        my: "အရိပ်",
+        km: "ស្រមោល"
+      }
+    },
+    { id: 381, kanji: "陰", reading: "かげ", pos: "n",
+      meanings: {
+        ja: "日が当たらない所。暗がり。",
+        en: "shade; shadow (out of light)",
+        zh: "阴处；背阴",
+        tw: "陰處；背陰",
+        id: "bóng râm; chỗ khuất nắng",
+        ko: "그늘",
+        vi: "bóng râm; chỗ râm mát",
+        th: "ร่มเงา; ที่มืด",
+        my: "အရိပ်နေရာ; အရိပ်ချနေရာ",
+        km: "ឋានកន្លែងខាងស្រមោល; កន្លែងត្រជាក់"
+      }
+    },
+    { id: 382, kanji: "加減", reading: "かげん", pos: "n",
+      meanings: {
+        ja: "程度。具合。調節すること。",
+        en: "degree; condition; adjustment",
+        zh: "程度；状况；调节",
+        tw: "程度；狀況；調節",
+        id: "derajat; kondisi; penyesuaian",
+        ko: "정도; 상태; 조절",
+        vi: "mức độ; tình trạng; điều chỉnh",
+        th: "ระดับ; สภาพ; การปรับ",
+        my: "အဆင့်အတန်း; အခွအေန; စိစစ်ညှိနှိုင်း",
+        km: "កម្រិត; ស្ថានភាព; ការកែសម្រួល"
+      }
+    },
+    { id: 383, kanji: "過去", reading: "かこ", pos: "n",
+      meanings: {
+        ja: "今までに過ぎ去った時間。",
+        en: "the past",
+        zh: "过去",
+        tw: "過去",
+        id: "masa lalu",
+        ko: "과거",
+        vi: "quá khứ",
+        th: "อดีต",
+        my: "အတိတ်",
+        km: "អតីតកាល"
+      }
+    },
+    { id: 384, kanji: "籠", reading: "かご", pos: "n",
+      meanings: {
+        ja: "物を入れて運ぶ入れ物。買い物かごなど。",
+        en: "basket (e.g., shopping basket)",
+        zh: "篮子（如购物篮）",
+        tw: "籃子（如購物籃）",
+        id: "keranjang (mis. keranjang belanja)",
+        ko: "바구니 (쇼핑 바구니 등)",
+        vi: "giỏ (ví dụ: giỏ mua sắm)",
+        th: "ตะกร้า (เช่น ตะกร้าช้อปปิ้ง)",
+        my: "ခြုံ (စျေးဝယ်ခြုံ)",
+        km: "កន្ត្រក (ឧ. កន្ត្រកទិញឥវ៉ាន់)"
+      }
+    },
+    { id: 385, kanji: "火災", reading: "かさい", pos: "n",
+      meanings: {
+        ja: "建物などが焼ける大きな火事。",
+        en: "fire; conflagration",
+        zh: "火灾",
+        tw: "火災",
+        id: "kebakaran",
+        ko: "화재",
+        vi: "hỏa hoạn",
+        th: "อัคคีภัย",
+        my: "မီးလောင်မှု",
+        km: "អគ្គីភ័យ"
+      }
+    },
+    { id: 386, kanji: "飾り", reading: "かざり", pos: "n",
+      meanings: {
+        ja: "装飾・飾り付け。飾ること。",
+        en: "decoration; ornament",
+        zh: "装饰；点缀",
+        tw: "裝飾；點綴",
+        id: "dekorasi; hiasan",
+        ko: "장식",
+        vi: "trang trí; đồ trang trí",
+        th: "การประดับ; เครื่องประดับตกแต่ง",
+        my: "အလှဆင်ခြင်း; အလှပစ္စည်း",
+        km: "ការតុបតែង; វត្ថុតុបតែង"
+      }
+    },
+    { id: 387, kanji: "貸し", reading: "かし", pos: "n",
+      meanings: {
+        ja: "貸していること。または借りを作らせたこと。",
+        en: "loan; favor owed",
+        zh: "借出；人情债",
+        tw: "借出；人情債",
+        id: "pinjaman; budi (utang budi)",
+        ko: "빌려줌; 신세 (빚)",
+        vi: "cho vay; ơn nợ",
+        th: "การให้ยืม; บุญคุณที่ติดค้าง",
+        my: "အမြန်ဒေဏ; အကျေးဇူးတင်ခြင်း",
+        km: "ការខ្ចីឲ្យ; បំណុលគុណ"
+      }
+    },
+    { id: 388, kanji: "菓子", reading: "かし", pos: "n",
+      meanings: {
+        ja: "砂糖などを使った甘い食べ物。",
+        en: "confectionery; sweets",
+        zh: "点心；甜食",
+        tw: "點心；甜食",
+        id: "kue manis; permen",
+        ko: "과자",
+        vi: "bánh kẹo",
+        th: "ขนมหวาน",
+        my: "မုန့်များ; ချိုဟင်း",
+        km: "នំផ្អែម; ភេសជ្ជៈផ្អែម"
+      }
+    },
+    { id: 389, kanji: "家事", reading: "かじ", pos: "n",
+      meanings: {
+        ja: "家で行う日常の作業。",
+        en: "housework; household chores",
+        zh: "家务",
+        tw: "家務",
+        id: "pekerjaan rumah tangga",
+        ko: "가사일",
+        vi: "việc nhà",
+        th: "งานบ้าน",
+        my: "အိမ်အလုပ်",
+        km: "ការងារផ្ទះ"
+      }
+    },
+    { id: 390, kanji: "歌手", reading: "かしゅ", pos: "n",
+      meanings: {
+        ja: "歌を職業として歌う人。",
+        en: "singer",
+        zh: "歌手",
+        tw: "歌手",
+        id: "penyanyi",
+        ko: "가수",
+        vi: "ca sĩ",
+        th: "นักร้อง",
+        my: "အဆိုတော်",
+        km: "អ្នកចម្រៀង"
+      }
+    },
+    { id: 391, kanji: "数", reading: "かず", pos: "n",
+      meanings: {
+        ja: "ものの多さ・数量。数字。",
+        en: "number; quantity",
+        zh: "数目；数量",
+        tw: "數；數量",
+        id: "angka; jumlah",
+        ko: "숫자; 수량",
+        vi: "số; số lượng",
+        th: "จำนวน",
+        my: "အရေအတွက်; နံပါတ်",
+        km: "ចំនួន; លេខ"
+      }
+    },
+    { id: 392, kanji: "型", reading: "かた", pos: "n",
+      meanings: {
+        ja: "形の種類。型式。型枠。",
+        en: "type; pattern; mold",
+        zh: "类型；样式；模具",
+        tw: "類型；樣式；模型/模具",
+        id: "tipe; pola; cetakan",
+        ko: "유형; 형식; 거푸집",
+        vi: "kiểu; mẫu; khuôn",
+        th: "แบบ; รูปแบบ; แม่พิมพ์",
+        my: "အမျိုးအစား; နမူနာ; ဖုံ",
+        km: "ប្រភេទ; លំនាំ; ពង្រាត់ (ម៉ូល្ត)"
+      }
+    },
+    { id: 393, kanji: "肩", reading: "かた", pos: "n",
+      meanings: {
+        ja: "首と腕の付け根の部分。",
+        en: "shoulder",
+        zh: "肩膀",
+        tw: "肩膀",
+        id: "bahu",
+        ko: "어깨",
+        vi: "vai",
+        th: "ไหล่",
+        my: "ပခုံး",
+        km: "ស្មា"
+      }
+    },
+    { id: 394, kanji: "方々", reading: "かたがた", pos: "n",
+      meanings: {
+        ja: "多くの人々（丁寧）。",
+        en: "people; everyone (polite)",
+        zh: "各位；诸位（敬称）",
+        tw: "各位；諸位（敬稱）",
+        id: "para hadirin; semua orang (kính ngữ)",
+        ko: "여러 분들 (존칭)",
+        vi: "quý vị; mọi người (lịch sự)",
+        th: "ทุกท่าน (คำสุภาพ)",
+        my: "လူကြီးမင်းများ; များစွာသော လူများ",
+        km: "លោកអើយទាំងអស់គ្នា (បំរាប់សរសើរ)"
+      }
+    },
+    { id: 395, kanji: "刀", reading: "かたな", pos: "n",
+      meanings: {
+        ja: "日本の片刃の剣。刀。",
+        en: "sword (esp. Japanese single-edged)",
+        zh: "刀（日本武士刀）",
+        tw: "刀（日本刀）",
+        id: "pedang (khusus: katana Jepang)",
+        ko: "칼 (일본도)",
+        vi: "kiếm Nhật (katana)",
+        th: "ดาบ (โดยเฉพาะดาบญี่ปุ่น)",
+        my: "ကြိမ်တဆိုက်ဓား (ဂျပန် ဒါဘ)",
+        km: "ដាវ (ជាពិសេស​ដាវជប៉ុន)"
+      }
+    },
+    { id: 396, kanji: "勝ち", reading: "かち", pos: "n",
+      meanings: {
+        ja: "勝つこと。勝利。",
+        en: "win; victory",
+        zh: "胜利；赢",
+        tw: "勝利；贏",
+        id: "kemenangan",
+        ko: "승리",
+        vi: "chiến thắng",
+        th: "ชัยชนะ",
+        my: "အောင်ပွဲ",
+        km: "ជ័យជម្នះ"
+      }
+    },
+    { id: 397, kanji: "価値", reading: "かち", pos: "n",
+      meanings: {
+        ja: "どれだけ重要・有用かという度合い。",
+        en: "value; worth",
+        zh: "价值",
+        tw: "價值",
+        id: "nilai; harga diri (value)",
+        ko: "가치",
+        vi: "giá trị",
+        th: "คุณค่า; มูลค่า",
+        my: "တန်ဖိုး",
+        km: "តម្លៃ; គុណតម្លៃ"
+      }
+    },
+    { id: 398, kanji: "活気", reading: "かっき", pos: "n",
+      meanings: {
+        ja: "生き生きとした勢い。にぎわい。",
+        en: "liveliness; vigor; bustle",
+        zh: "活力；生气；热闹",
+        tw: "活力；朝氣；熱鬧",
+        id: "semangat; keramaian",
+        ko: "활기",
+        vi: "sinh khí; sôi động",
+        th: "ความคึกคัก; มีชีวิตชีวา",
+        my: "လှုပ်ရှားစွာရှိမှု; ရွှင်လန်းမှု",
+        km: "សកម្មភាពក្លៀវក្លា; រវល់រវល់"
+      }
+    },
+    { id: 399, kanji: "楽器", reading: "がっき", pos: "n",
+      meanings: {
+        ja: "音楽を奏する道具。",
+        en: "musical instrument",
+        zh: "乐器",
+        tw: "樂器",
+        id: "alat musik",
+        ko: "악기",
+        vi: "nhạc cụ",
+        th: "เครื่องดนตรี",
+        my: "တူရိယာ",
+        km: "ឧបករណ៍តន្ត្រី"
+      }
+    },
+    { id: 400, kanji: "学期", reading: "がっき", pos: "n",
+      meanings: {
+        ja: "学校の授業の区切りとなる期間。",
+        en: "school term; semester",
+        zh: "学期；学段",
+        tw: "學期；學段",
+        id: "masa studi; semester",
+        ko: "학기",
+        vi: "học kỳ",
+        th: "ภาคการศึกษา; เทอม",
+        my: "သင်တန်းကာလ; ဆယ်မီစတာ",
+        km: "វគ្គសិក្សា; ឆមាសសិក្សា"
+      }
+    }
+  ]
 };
