@@ -1,3 +1,4 @@
+//src/data/wordquiz/n5/index.js
 import { n5part_adverbs1 } from "./n5part_adverbs1.js";//446-457副詞
 import { n5part_iAdjectives1 } from "./n5part_iAdjectives1.js";//373-427い形容詞
 import { n5part_iAdjectives2 } from "./n5part_iAdjectives2.js";

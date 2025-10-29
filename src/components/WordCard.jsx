@@ -137,7 +137,6 @@ export default function WordCard({
   // === 単語切り替え ===
   const goto = useCallback(
     (next) => {
-      // 再生中なら停止してから切り替え
       stopAudio();
       setShowMeaning(false);
       setIndex(next);
@@ -158,10 +157,10 @@ export default function WordCard({
     if (index > 0) goto(index - 1);
   }, [index, goto]);
 
-  // === 音声再生（成功時は onended で OFF。失敗時のみ明示OFF） ===
+  // === 音声再生 ===
   const playAudio = useCallback(async () => {
     if (!audioCandidates.length) return;
-    stopAudio();                 // 直前の音声を止める
+    stopAudio();
     const a = audioRef.current || new Audio();
     audioRef.current = a;
 
@@ -171,16 +170,15 @@ export default function WordCard({
         await a.play();
         setIsPlaying(true);
         a.onended = () => setIsPlaying(false);
-        return;                  // 成功したら終わり（finallyでOFFにしない）
+        return;
       } catch {
         // 次の候補へ
       }
     }
-    // 全候補失敗
     setIsPlaying(false);
   }, [audioCandidates, stopAudio]);
 
-  // === アンマウント時のクリーンアップ ===
+  // === アンマウント時クリーンアップ ===
   useEffect(() => {
     return () => {
       stopAudio();
@@ -228,25 +226,38 @@ export default function WordCard({
     }
   };
 
-  // === 詳細モーダル ===
+  // === 詳細モーダル（★ここを修正） ===
   const openDetail = useCallback(async () => {
+    if (!word) return;
+
     setDetailLoading(true);
     try {
-      const data = await loadDetail(level, category, lesson, word?.id);
-      setDetailData(
-        data || {
-          kanji: word?.kanji,
-          reading: word?.reading,
-          pos,
-          meanings: word?.meanings || {},
-        }
-      );
-      onDetail?.(enriched);
+      // ベース（必須フィールドを確実に含める）
+      const base = {
+        id: word?.id,                        // ← これが超重要
+        kanji: word?.kanji ?? "",
+        reading: word?.reading ?? "",
+        pos: word?.pos || pos || "—",
+        meanings: word?.meanings || {},
+        level,
+        lesson,
+      };
+
+      // 追加詳細（あればマージ、無ければ無視）
+      let extra = null;
+      try {
+        extra = await loadDetail(level, category, lesson, word?.id);
+      } catch {}
+
+      const payload = { ...base, ...(extra || {}) };
+
+      setDetailData(payload);
+      onDetail?.({ ...payload, idx: index });
     } finally {
       setDetailLoading(false);
       setDetailOpen(true);
     }
-  }, [level, category, lesson, word?.id, word?.kanji, word?.reading, word?.meanings, pos, onDetail, enriched]);
+  }, [word, pos, level, lesson, category, index, onDetail]);
 
   const closeDetail = () => setDetailOpen(false);
 

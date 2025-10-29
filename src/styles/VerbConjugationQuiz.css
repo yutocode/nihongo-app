@@ -1,0 +1,55 @@
+.verb-quiz {
+  text-align: center;
+  padding: 40px;
+  color: #fff;
+  background: #1a1a1a;
+  min-height: 100vh;
+}
+
+.target {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+/* ▼ ここを grid に変更して 2×2 にする */
+.verb-quiz .choices {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+  justify-items: stretch;   /* ボタンを列幅いっぱいに */
+  align-items: center;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.verb-quiz .choice {
+  background: #333;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 16px;
+  width: 100%;              /* gridのセル幅いっぱい */
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.verb-quiz .choice:hover { background: #444; }
+.verb-quiz .choice.correct { background: #4caf50; }
+.verb-quiz .choice.wrong   { background: #e53935; }
+
+.score {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* 画面が極端に狭い時だけ1列に落とす（任意） */
+@media (max-width: 340px) {
+  .verb-quiz .choices {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+  }
+}

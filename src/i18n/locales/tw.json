@@ -83,6 +83,18 @@
       "backHome": "返回首頁",
       "backToLevels": "返回級別"
     },
+    "hints": {
+      "teacher_advice": { "title": "教師建議", "tip": "教師的建議 →「最好」（〜ほうがいい）。" },
+      "doctor_advice":  { "title": "醫生建議", "tip": "醫生的建議 →「最好」（〜ほうがいい）。" },
+      "company_rule":   { "title": "公司規定", "tip": "公司規定/制度 →「必須」（〜なければならない）。" },
+      "posted_notice":  { "title": "張貼告示", "tip": "告示牌寫明 →「必須」（〜なければならない）。" },
+      "deadline":       { "title": "截止／要繳交", "tip": "截止前需繳交 →「必須」（〜なければならない）。" },
+      "optional":       { "title": "選填／可自由", "tip": "自願參與 →「不必」（〜なくてもいい）。" },
+      "free_participation": { "title": "自由參加", "tip": "要不要都可 →「不必」（〜なくてもいい）。" },
+      "situation_change": { "title": "情況改變", "tip": "已經不用了 →「不必」（〜なくてもいい）。" },
+      "safety":         { "title": "安全要求", "tip": "安全／法規要求 →「必須」（〜なければならない）。" },
+      "polite_suggestion": { "title": "禮貌建議", "tip": "委婉建議 →「最好」（〜ほうがいい）。" }
+    },
     "categories": {
       "title": "選擇 {{level}} 文法分類",
       "particles": "助詞",

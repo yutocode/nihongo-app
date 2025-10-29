@@ -1,252 +1,262 @@
 export const n2part_nouns18 = [
-  { id: 851,
-    question_ja: "作品の<u>本能</u>をテーマにした映画です。",
-    choices_ja: ["ほんのう","ほんの","ぼんのう","ほんどう"],
+  {
+    id: 851,
+    question_ja: "<u>窓口</u>で<ruby>手続<rt>てつづ</rt></ruby>きをする。",
+    choices_ja: ["まどぐち","まどくち","まどぐちょ","まどこち"],
     correct: 0
   },
-  { id: 852,
-    question_ja: "私は<u>本人確認</u>の書類を出しました。",
-    choices_ja: ["ほんにんかくにん","ほんにんしょうめい","ほんじんしょうめい","ほんにんけん"],
+  // 852: マフラー（カタカナなのでスキップ）
+  // 853: マラソン（カタカナなのでスキップ）
+  {
+    id: 854,
+    question_ja: "<u>回り道</u>でも<ruby>安全<rt>あんぜん</rt></ruby>な<ruby>道<rt>みち</rt></ruby>を<ruby>行<rt>い</rt></ruby>く。",
+    choices_ja: ["まわりみち","まわりどう","めぐりみち","まわりみつ"],
     correct: 0
   },
-  { id: 853,
-    question_ja: "<u>凡人</u>でも努力すれば成功できます。",
-    choices_ja: ["ぼんじん","ほんじん","ぼんにん","ほんにん"],
+  {
+    id: 855,
+    question_ja: "<u>満員</u>の<ruby>電車<rt>でんしゃ</rt></ruby>に<ruby>乗<rt>の</rt></ruby>る。",
+    choices_ja: ["まんいん","まいいん","まんにん","まんえん"],
     correct: 0
   },
-  { id: 854,
-    question_ja: "今日は会社の<u>忘年会</u>です。",
-    choices_ja: ["ぼうねんかい","ぼうねかい","ほうねんかい","ぼんねんかい"],
+  // 856: マンション（カタカナなのでスキップ）
+  {
+    id: 857,
+    question_ja: "<u>満点</u>を<ruby>取<rt>と</rt></ruby>ることを<ruby>目標<rt>もくひょう</rt></ruby>にする。",
+    choices_ja: ["まんてん","まってん","まんでん","まさてん"],
     correct: 0
   },
-  { id: 855,
-    question_ja: "彼は<u>墓地</u>の近くに住んでいます。",
-    choices_ja: ["ぼち","はかち","ぼじ","ほち"],
+  {
+    id: 858,
+    question_ja: "<u>見掛け</u>よりも<ruby>中身<rt>なかみ</rt></ruby>が<ruby>大事<rt>だいじ</rt></ruby>だ。",
+    choices_ja: ["みかけ","みがけ","みかげ","みかけえ"],
     correct: 0
   },
-  { id: 856,
-    question_ja: "先祖の<u>墓参り</u>に行きました。",
-    choices_ja: ["はかまいり","ぼまいり","はばまいり","ほまいり"],
+  {
+    id: 859,
+    question_ja: "<u>三日月</u>が<ruby>綺麗<rt>きれい</rt></ruby>に<ruby>見<rt>み</rt></ruby>える。",
+    choices_ja: ["みかづき","みつき","みっかづき","みかずき"],
     correct: 0
   },
-  { id: 857,
-    question_ja: "<u>母校</u>の先生に会いました。",
-    choices_ja: ["ぼこう","ははこう","ほこう","ぼうこう"],
+  {
+    id: 860,
+    question_ja: "<u>岬</u>の<ruby>灯台<rt>とうだい</rt></ruby>が<ruby>目印<rt>めじるし</rt></ruby>です。",
+    choices_ja: ["みさき","みさけ","みさく","みざき"],
     correct: 0
   },
-  { id: 858,
-    question_ja: "家の<u>牧場</u>で牛を育てています。",
-    choices_ja: ["ぼくじょう","ぼくしょう","ぼくじょ","ほくじょう"],
+  // 861: ミシン（カタカナなのでスキップ）
+  {
+    id: 862,
+    question_ja: "<u>自ら</u><ruby>手<rt>て</rt></ruby>を<ruby>挙<rt>あ</rt></ruby>げて<ruby>参加<rt>さんか</rt></ruby>した。",
+    choices_ja: ["みずから","じぶんから","みづから","みずかる"],
     correct: 0
   },
-  { id: 859,
-    question_ja: "兄は<u>木材</u>会社で働いています。",
-    choices_ja: ["もくざい","ぼくざい","もくさい","ぼくさい"],
+  {
+    id: 863,
+    question_ja: "<u>水着</u>を<ruby>新調<rt>しんちょう</rt></ruby>する。",
+    choices_ja: ["みずぎ","みずき","すいぎ","みずぎい"],
     correct: 0
   },
-  { id: 860,
-    question_ja: "おばあさんは毎日<u>餅</u>を作ります。",
-    choices_ja: ["もち","もっち","もつ","ぼち"],
+  {
+    id: 864,
+    question_ja: "<u>店屋</u>の<ruby>前<rt>まえ</rt></ruby>で<ruby>待<rt>ま</rt></ruby>ち<ruby>合<rt>あ</rt></ruby>わせる。",
+    choices_ja: ["みせや","みせあ","てんや","みせわ"],
     correct: 0
   },
-  { id: 861,
-    question_ja: "弟は<u>目上</u>の人にとても礼儀正しいです。",
-    choices_ja: ["めうえ","めかみ","めした","めじょう"],
+  {
+    id: 865,
+    question_ja: "<u>見出し</u>だけで<ruby>内容<rt>ないよう</rt></ruby>を<ruby>想像<rt>そうぞう</rt></ruby>する。",
+    choices_ja: ["みだし","みいだし","みだち","みだしゅ"],
     correct: 0
   },
-  { id: 862,
-    question_ja: "この町の<u>名産</u>はリンゴです。",
-    choices_ja: ["めいさん","めいざん","みょうさん","みょうざん"],
+  {
+    id: 866,
+    question_ja: "<u>道順</u>を<ruby>地図<rt>ちず</rt></ruby>で<ruby>確<rt>たし</rt></ruby>かめる。",
+    choices_ja: ["みちじゅん","みちじゅんん","みちしゅん","みちじょん"],
     correct: 0
   },
-  { id: 863,
-    question_ja: "<u>名刺</u>を交換しました。",
-    choices_ja: ["めいし","めいじ","みょうし","めし"],
+  {
+    id: 867,
+    question_ja: "<u>身分</u>を<ruby>証明<rt>しょうめい</rt></ruby>できるものを<ruby>持<rt>も</rt></ruby>参<ruby>さん</ruby>する。",
+    choices_ja: ["みぶん","しんぶん","みふん","みべん"],
     correct: 0
   },
-  { id: 864,
-    question_ja: "映画の<u>名作</u>をもう一度見たいです。",
-    choices_ja: ["めいさく","めいざく","みょうさく","めいしゃく"],
+  {
+    id: 868,
+    question_ja: "<u>見本</u>を<ruby>配<rt>くば</rt></ruby>る。",
+    choices_ja: ["みほん","みぼん","みもと","みぽん"],
     correct: 0
   },
-  { id: 865,
-    question_ja: "<u>名所</u>を巡るツアーに参加しました。",
-    choices_ja: ["めいしょ","めいじょ","みょうしょ","めいしゃ"],
+  {
+    id: 869,
+    question_ja: "<u>未満</u>の<ruby>入場<rt>にゅうじょう</rt></ruby>は<ruby>不可<rt>ふか</rt></ruby>です。",
+    choices_ja: ["みまん","みばん","みみゃん","みもん"],
     correct: 0
   },
-  { id: 866,
-    question_ja: "<u>名物</u>のお菓子をお土産に買いました。",
-    choices_ja: ["めいぶつ","めいもつ","めいひん","みょうぶつ"],
+  {
+    id: 870,
+    question_ja: "<u>名字</u>をひらがなで<ruby>書<rt>か</rt></ruby>く。",
+    choices_ja: ["みょうじ","みょじ","みょじゅ","みょうし"],
     correct: 0
   },
-  { id: 867,
-    question_ja: "あの店は<u>名店</u>として知られています。",
-    choices_ja: ["めいてん","めいみせ","めいせん","みょうてん"],
+  {
+    id: 871,
+    question_ja: "<u>民謡</u>を<ruby>合唱<rt>がっしょう</rt></ruby>する。",
+    choices_ja: ["みんよう","みにょう","みんようう","みんよ"],
     correct: 0
   },
-  { id: 868,
-    question_ja: "<u>命令</u>に従って動きます。",
-    choices_ja: ["めいれい","めいねい","みょうれい","めいりょう"],
+  {
+    id: 872,
+    question_ja: "<u>無限</u>の<ruby>可能性<rt>かのうせい</rt></ruby>を<ruby>信<rt>しん</rt></ruby>じる。",
+    choices_ja: ["むげん","むけん","むげんう","むげ"],
     correct: 0
   },
-  { id: 869,
-    question_ja: "彼の<u>名誉</u>を守るために話しました。",
-    choices_ja: ["めいよ","みょうよ","めいしょう","めいぎょ"],
+  {
+    id: 873,
+    question_ja: "<u>矛盾</u>を<ruby>指摘<rt>してき</rt></ruby>する。",
+    choices_ja: ["むじゅん","むしゅん","むじゅう","むじょん"],
     correct: 0
   },
-  { id: 870,
-    question_ja: "この川の<u>源</u>は山の中にあります。",
-    choices_ja: ["みなもと","げん","みね","もとみ"],
+  {
+    id: 874,
+    question_ja: "<u>紫</u>の<ruby>花<rt>はな</rt></ruby>が<ruby>咲<rt>さ</rt></ruby>いた。",
+    choices_ja: ["むらさき","むらざき","むらさっき","むりさき"],
     correct: 0
   },
-  { id: 871,
-    question_ja: "おじいさんは<u>耳鼻科</u>に通っています。",
-    choices_ja: ["じびか","みみはなか","じみか","じびけ"],
+  {
+    id: 875,
+    question_ja: "<u>群れ</u>で<ruby>移動<rt>いどう</rt></ruby>する<ruby>動物<rt>どうぶつ</rt></ruby>。",
+    choices_ja: ["むれ","むら","むね","むれい"],
     correct: 0
   },
-  { id: 872,
-    question_ja: "日本の<u>民謡</u>を聞きました。",
-    choices_ja: ["みんよう","みんよ","みょうよう","みんようう"],
+  {
+    id: 876,
+    question_ja: "<u>姪</u>への<ruby>土産<rt>みやげ</rt></ruby>を<ruby>選<rt>えら</rt></ruby>ぶ。",
+    choices_ja: ["めい","ねい","まい","めえ"],
     correct: 0
   },
-  { id: 873,
-    question_ja: "この地域の<u>民族</u>衣装は美しいです。",
-    choices_ja: ["みんぞく","みんそく","みんどく","みんぞう"],
+  {
+    id: 877,
+    question_ja: "<u>名作</u>と<ruby>呼<rt>よ</rt></ruby>ばれる<ruby>映画<rt>えいが</rt></ruby>。",
+    choices_ja: ["めいさく","めいさき","めさく","めいさっく"],
     correct: 0
   },
-  { id: 874,
-    question_ja: "その映画は<u>民主</u>主義について語っています。",
-    choices_ja: ["みんしゅ","みんす","みんず","みんしょう"],
+  {
+    id: 878,
+    question_ja: "<u>名所</u>を<ruby>巡<rt>めぐ</rt></ruby>るツアー。",
+    choices_ja: ["めいしょ","めいじょ","めいしよ","めいしょう"],
     correct: 0
   },
-  { id: 875,
-    question_ja: "その<u>向</u>こうに山が見えます。",
-    choices_ja: ["むこう","むこ","むごう","むこお"],
+  {
+    id: 879,
+    question_ja: "<u>迷信</u>を<ruby>信<rt>しん</rt></ruby>じない。",
+    choices_ja: ["めいしん","めいじん","めいしゅん","めーしん"],
     correct: 0
   },
-  { id: 876,
-    question_ja: "彼は<u>無料</u>でアプリをダウンロードしました。",
-    choices_ja: ["むりょう","むしょう","むよう","むれい"],
+  {
+    id: 880,
+    question_ja: "<u>名物</u>のラーメンを<ruby>食<rt>た</rt></ruby>べる。",
+    choices_ja: ["めいぶつ","めいぶち","めいぷつ","めいふつ"],
     correct: 0
   },
-  { id: 877,
-    question_ja: "この料理は<u>無駄</u>が多いです。",
-    choices_ja: ["むだ","ぶだ","むた","むだあ"],
+  {
+    id: 881,
+    question_ja: "<u>目覚し</u><ruby>時計<rt>どけい</rt></ruby>をセットする。",
+    choices_ja: ["めざまし","めさまし","めざもし","めざめし"],
     correct: 0
   },
-  { id: 878,
-    question_ja: "会社の<u>無断</u>欠勤は禁止です。",
-    choices_ja: ["むだん","ぶだん","むたん","むでん"],
+  {
+    id: 882,
+    question_ja: "<u>目下</u>の<ruby>問題<rt>もんだい</rt></ruby>を<ruby>解決<rt>かいけつ</rt></ruby>する。",
+    choices_ja: ["めした","めしたん","めしたち","めしたあ"],
     correct: 0
   },
-  { id: 879,
-    question_ja: "この実験には<u>矛盾</u>があります。",
-    choices_ja: ["むじゅん","ぶじゅん","むしゅん","むずん"],
+  {
+    id: 883,
+    question_ja: "<u>目印</u>に<ruby>赤<rt>あか</rt></ruby>いリボンをつける。",
+    choices_ja: ["めじるし","めしるし","めじょし","めじゅし"],
     correct: 0
   },
-  { id: 880,
-    question_ja: "このお寺には古い<u>木像</u>があります。",
-    choices_ja: ["もくぞう","ぼくぞう","もくそう","もくしょう"],
+  // 884: メニュー（カタカナなのでスキップ）
+  {
+    id: 885,
+    question_ja: "<u>目安</u>として<ruby>三<rt>みっ</rt></ruby><ruby>日<rt>か</rt></ruby>ほどかかる。",
+    choices_ja: ["めやす","めやし","めあす","めやず"],
     correct: 0
   },
-  { id: 881,
-    question_ja: "<u>目印</u>の木を探してください。",
-    choices_ja: ["めじるし","めじしる","めしるし","めしる"],
+  {
+    id: 886,
+    question_ja: "<u>免税</u>ショップで<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>する。",
+    choices_ja: ["めんぜい","めいぜん","めんせい","めんぜえ"],
     correct: 0
   },
-  { id: 882,
-    question_ja: "彼の言葉に<u>目的</u>があると思います。",
-    choices_ja: ["もくてき","もくでき","ぼくてき","もくてく"],
+  {
+    id: 887,
+    question_ja: "<u>面積</u>を<ruby>求<rt>もと</rt></ruby>める<ruby>公式<rt>こうしき</rt></ruby>。",
+    choices_ja: ["めんせき","めんしゃく","めんしき","めせき"],
     correct: 0
   },
-  { id: 883,
-    question_ja: "部屋に<u>木製</u>の机を置きました。",
-    choices_ja: ["もくせい","ぼくせい","もくぜい","もくしょう"],
+  // 888: モーター（カタカナなのでスキップ）
+  {
+    id: 889,
+    question_ja: "<u>木材</u>の<ruby>価格<rt>かかく</rt></ruby>が<ruby>上昇<rt>じょうしょう</rt></ruby>した。",
+    choices_ja: ["もくざい","もくさい","ぼくざい","もくざ"],
     correct: 0
   },
-  { id: 884,
-    question_ja: "<u>目次</u>を見て内容を確認します。",
-    choices_ja: ["もくじ","めじ","もくし","もくじょ"],
+  {
+    id: 890,
+    question_ja: "<u>目次</u>から<ruby>該当<rt>がいとう</rt></ruby><ruby>箇所<rt>かしょ</rt></ruby>を<ruby>探<rt>さが</rt></ruby>す。",
+    choices_ja: ["もくじ","めくじ","もくし","もくじゅ"],
     correct: 0
   },
-  { id: 885,
-    question_ja: "彼の<u>物音</u>で目が覚めました。",
-    choices_ja: ["ものおと","ものね","ものごえ","ものおん"],
+  {
+    id: 891,
+    question_ja: "<u>餅</u>を<ruby>焼<rt>や</rt></ruby>いて<ruby>食<rt>た</rt></ruby>べる。",
+    choices_ja: ["もち","もつ","もじ","もて"],
     correct: 0
   },
-  { id: 886,
-    question_ja: "<u>物語</u>の主人公は少年です。",
-    choices_ja: ["ものがたり","ものごと","ものかたり","ものだたり"],
+  // 892: モデル（カタカナなのでスキップ）
+  {
+    id: 893,
+    question_ja: "<u>物置</u>に<ruby>道具<rt>どうぐ</rt></ruby>をしまう。",
+    choices_ja: ["ものおき","ものおきい","ものおく","ものうき"],
     correct: 0
   },
-  { id: 887,
-    question_ja: "机の上に<u>物置</u>があります。",
-    choices_ja: ["ものおき","ものうけ","ものかけ","ものき"],
+  {
+    id: 894,
+    question_ja: "<u>物差し</u>で<ruby>長<rt>なが</rt></ruby>さを<ruby>測<rt>はか</rt></ruby>る。",
+    choices_ja: ["ものさし","ものざし","ものさち","ものさしゅ"],
     correct: 0
   },
-  { id: 888,
-    question_ja: "彼の<u>物腰</u>はとても柔らかいです。",
-    choices_ja: ["ものごし","ものこし","ものごじ","ものご"],
+  // 895: モノレール（カタカナなのでスキップ）
+  {
+    id: 896,
+    question_ja: "<u>紅葉</u>が<ruby>見頃<rt>みごろ</rt></ruby>を<ruby>迎<rt>むか</rt></ruby>える。",
+    choices_ja: ["もみじ","こうよう","もみぢ","もようじ"],
     correct: 0
   },
-  { id: 889,
-    question_ja: "この<u>物差</u>しで長さを測ります。",
-    choices_ja: ["ものさし","ものざし","ものさい","ものさ"],
+  {
+    id: 897,
+    question_ja: "<u>催し</u>は<ruby>雨天<rt>うてん</rt></ruby><ruby>中止<rt>ちゅうし</rt></ruby>です。",
+    choices_ja: ["もよおし","もよおい","もよし","もよいし"],
     correct: 0
   },
-  { id: 890,
-    question_ja: "これは<u>物質</u>の変化を調べる実験です。",
-    choices_ja: ["ぶっしつ","ぶっちつ","ぶしつ","ぶつしつ"],
+  {
+    id: 898,
+    question_ja: "<u>問答</u>を<ruby>重<rt>かさ</rt></ruby>ねて<ruby>理解<rt>りかい</rt></ruby>を<ruby>深<rt>ふか</rt></ruby>める。",
+    choices_ja: ["もんどう","もんど","もんとう","もんどうう"],
     correct: 0
   },
-  { id: 891,
-    question_ja: "<u>文字</u>を大きくしてください。",
-    choices_ja: ["もじ","ぶんじ","ぼじ","もじょ"],
+  {
+    id: 899,
+    question_ja: "<u>夜間</u>の<ruby>外出<rt>がいしゅつ</rt></ruby>は<ruby>控<rt>ひか</rt></ruby>える。",
+    choices_ja: ["やかん","よかん","やがん","やけん"],
     correct: 0
   },
-  { id: 892,
-    question_ja: "山の上で<u>文字通り</u>の絶景を見ました。",
-    choices_ja: ["もじどおり","もんじどおり","ぶんじどおり","もじとおり"],
-    correct: 0
-  },
-  { id: 893,
-    question_ja: "<u>文句</u>を言わずにやりなさい。",
-    choices_ja: ["もんく","ぶんく","もんぐ","もくん"],
-    correct: 0
-  },
-  { id: 894,
-    question_ja: "夏の<u>物価</u>上昇が心配です。",
-    choices_ja: ["ぶっか","ぶっが","ぶつか","ぶか"],
-    correct: 0
-  },
-  { id: 895,
-    question_ja: "<u>物理</u>の試験は難しかったです。",
-    choices_ja: ["ぶつり","ぶっり","ぶりつ","ぶつい"],
-    correct: 0
-  },
-  { id: 896,
-    question_ja: "これは<u>模型</u>の飛行機です。",
-    choices_ja: ["もけい","ぼけい","もがい","もげい"],
-    correct: 0
-  },
-  { id: 897,
-    question_ja: "彼は<u>文芸</u>作品をよく読みます。",
-    choices_ja: ["ぶんげい","ぶんけい","もんげい","ぶんげ"],
-    correct: 0
-  },
-  { id: 898,
-    question_ja: "この大学の<u>文系</u>に入りたいです。",
-    choices_ja: ["ぶんけい","ぶんげい","ぶけい","もんけい"],
-    correct: 0
-  },
-  { id: 899,
-    question_ja: "日本の<u>文学</u>を専攻しています。",
-    choices_ja: ["ぶんがく","もんがく","ぶんけい","ぶんかく"],
-    correct: 0
-  },
-  { id: 900,
-    question_ja: "新しい<u>文集</u>が出版されました。",
-    choices_ja: ["ぶんしゅう","ぶんじゅう","もんしゅう","ぶんしゅ"],
+  {
+    id: 900,
+    question_ja: "<u>役者</u>として<ruby>舞台<rt>ぶたい</rt></ruby>に<ruby>立<rt>た</rt></ruby>つ。",
+    choices_ja: ["やくしゃ","やくしゃあ","やくしゃく","やくしょ"],
     correct: 0
   }
 ];

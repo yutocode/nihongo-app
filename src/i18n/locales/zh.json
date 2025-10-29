@@ -83,6 +83,18 @@
       "backHome": "返回首页",
       "backToLevels": "返回级别"
     },
+    "hints": {
+      "teacher_advice": { "title": "教师建议", "tip": "教师的建议 → “最好”（〜ほうがいい）。" },
+      "doctor_advice":  { "title": "医生建议", "tip": "医生的建议 → “最好”（〜ほうがいい）。" },
+      "company_rule":   { "title": "公司规定", "tip": "公司规定/制度 → “必须”（〜なければならない）。" },
+      "posted_notice":  { "title": "张贴公告", "tip": "告示牌上写明 → “必须”（〜なければならない）。" },
+      "deadline":       { "title": "截止/需提交", "tip": "到截止时间前提交 → “必须”（〜なければならない）。" },
+      "optional":       { "title": "自愿/可选", "tip": "自愿参与 → “不必”（〜なくてもいい）。" },
+      "free_participation": { "title": "自由参加", "tip": "参加与否自由 → “不必”（〜なくてもいい）。" },
+      "situation_change": { "title": "情况已变化", "tip": "已不需要 → “不必”（〜なくてもいい）。" },
+      "safety":         { "title": "安全要求", "tip": "安全/合规要求 → “必须”（〜なければならない）。" },
+      "polite_suggestion": { "title": "礼貌建议", "tip": "委婉建议 → “最好”（〜ほうがいい）。" }
+    },
     "categories": {
       "title": "选择 {{level}} 语法分类",
       "particles": "助词",
@@ -172,4 +184,5 @@
     "add": "加入",
     "notFound": "❌ 未找到翻译"
   }
+
 }

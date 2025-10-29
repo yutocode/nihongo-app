@@ -1,49 +1,30 @@
-import React, { useMemo, useState, useEffect } from "react";
+//src/pages/grammar/n5/AdjTypeQuizPage.jsx
+import React, { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-// ← ここを修正（n5配下 → 2階層上）
 import "../../../styles/GrammarQuiz.css";
 
-// ← ここも修正（n5配下なので 3階層上）
+import useMCQQuiz from "../../../utils/useMCQQuiz";
+import MCQQuizShell from "../../../components/quiz/MCQQuizShell";
 import { getN5AdjLessonMixed } from "../../../data/grammar/n5/adjectives";
 
 const LABEL_I = "い形容詞";
 const LABEL_NA = "な形容詞";
 
-function shuffle(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = (Math.random() * (i + 1)) | 0;
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-function makeOrder(n) {
-  return shuffle([...Array(n).keys()]);
-}
+function ChoiceFace({ label, lang }) {
+  const isI = label === LABEL_I;
+  const prefix = isI ? "い" : "な";
+  const sub =
+    lang.startsWith("en") ? (isI ? "i-adjective" : "na-adjective")
+    : lang.startsWith("id") ? (isI ? "adjektiva-i" : "adjektiva-na")
+    : lang.startsWith("zh-tw") || lang === "tw" ? (isI ? "い形容詞" : "な形容詞")
+    : lang.startsWith("zh") ? (isI ? "い形容词" : "な形容词")
+    : (isI ? "い形容詞" : "な形容詞");
 
-function subLabel(type, lang) {
-  const L = (lang || "ja").toLowerCase();
-  const isEn = L.startsWith("en");
-  const isId = L.startsWith("id");
-  const isZh = L.startsWith("zh");
-  const isTw = L.startsWith("zh-tw") || L === "tw";
-  if (isEn) return type === "i" ? "i-adjective" : "na-adjective";
-  if (isId) return type === "i" ? "adjektiva-i" : "adjektiva-na";
-  if (isZh) return type === "i" ? "い形容词" : "な形容词";
-  if (isTw) return type === "i" ? "い形容詞" : "な形容詞";
-  return type === "i" ? "い形容詞" : "な形容詞";
-}
-
-function ChoiceFace({ kind, lang }) {
-  const prefix = kind === "i" ? "い" : "な";
-  const sub = subLabel(kind, lang);
   return (
     <div style={{ display: "grid", gap: 4 }}>
       <span className="jp" style={{ fontSize: 18, lineHeight: 1.1 }}>
-        {prefix}
-        <ruby>形容詞<rt>けいようし</rt></ruby>
+        {prefix}<ruby>形容詞<rt>けいようし</rt></ruby>
       </span>
       <span style={{ fontSize: 12, opacity: 0.9 }}>{sub}</span>
     </div>
@@ -53,177 +34,41 @@ function ChoiceFace({ kind, lang }) {
 export default function AdjTypeQuizPage() {
   const navigate = useNavigate();
   const { level = "n5", lesson = "lesson1" } = useParams();
-  const { t, i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
+  // データ → MCQ 形式に正規化（2択）
   const items = useMemo(() => {
     if (level !== "n5") return [];
-    return getN5AdjLessonMixed(lesson) ?? [];
+    const pool = getN5AdjLessonMixed(lesson) ?? [];
+    return pool.map((it) => {
+      const correct = it.type === "i" ? LABEL_I : LABEL_NA;
+      const wrong   = it.type === "i" ? LABEL_NA : LABEL_I;
+      const choices = [correct, wrong];
+      return { id: it.id, question: it.word, choices, answer: 0 };
+    });
   }, [level, lesson]);
 
-  const total = items.length || 10;
-  const [order, setOrder] = useState(() => makeOrder(items.length));
-  const [ptr, setPtr] = useState(0);
-  const [score, setScore] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [judge, setJudge] = useState(null);
-  const [finished, setFinished] = useState(false);
-
-  const current = useMemo(() => {
-    if (!items.length || ptr >= order.length) return null;
-    return items[order[ptr]];
-  }, [items, order, ptr]);
-
-  const choices = useMemo(() => {
-    if (!current) return [];
-    const correctLabel = current.type === "i" ? LABEL_I : LABEL_NA;
-    const wrongLabel = current.type === "i" ? LABEL_NA : LABEL_I;
-    return shuffle([correctLabel, wrongLabel]);
-  }, [current]);
-
-  useEffect(() => {
-    setOrder(makeOrder(items.length));
-    setPtr(0);
-    setScore(0);
-    setSelected(null);
-    setJudge(null);
-    setFinished(false);
-  }, [items.length]);
-
-  const handleSelect = (i) => {
-    if (selected !== null || !current) return;
-    const isCorrect =
-      (current.type === "i" && choices[i] === LABEL_I) ||
-      (current.type === "na" && choices[i] === LABEL_NA);
-
-    setSelected(i);
-    setJudge(isCorrect ? "correct" : "wrong");
-    if (isCorrect) setScore((s) => s + 1);
-
-    setTimeout(() => {
-      setSelected(null);
-      setJudge(null);
-      const nextPtr = ptr + 1;
-      if (nextPtr >= total) setFinished(true);
-      else setPtr(nextPtr);
-    }, 700);
-  };
-
-  const restart = () => {
-    setOrder(makeOrder(items.length));
-    setPtr(0);
-    setScore(0);
-    setSelected(null);
-    setJudge(null);
-    setFinished(false);
-  };
-
-  const goPrevQuestion = () => {
-    if (selected !== null) return;
-    if (ptr > 0) {
-      setPtr((p) => p - 1);
-      setJudge(null);
-      setSelected(null);
-      setFinished(false);
-    }
-  };
-
-  const goLessonList = () => navigate(`/adj/${level}`);
-  const goCategoryList = () => navigate(`/grammar/${level}`);
-
-  // ======= レイアウト =======
-  if (!current && !finished) {
-    return (
-      <div className="quiz-wrap">
-        <div className="quiz-top-nav">
-          <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
-          <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>
-        </div>
-
-        <h1>{t("adj.title", { level: level.toUpperCase() })}</h1>
-        <p>{t("adj.notFound")}</p>
-      </div>
-    );
-  }
-
-  if (finished) {
-    return (
-      <div className="quiz-wrap">
-        <div className="quiz-top-nav">
-          <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
-          <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>
-        </div>
-
-        <h1>{t("adj.title", { level: level.toUpperCase() })}</h1>
-        <div className="result-card">
-          <p className="counter">{t("adj.score", { score, total })}</p>
-          <div style={{ display: "flex", gap: 8, marginTop: 12, justifyContent: "center" }}>
-            <button className="choice-btn" onClick={restart}>{t("adj.retry")}</button>
-            <button className="choice-btn" onClick={goPrevQuestion} disabled={ptr === 0}>
-              {t("adj.backOne")}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const wordDisplay = current?.word ?? "";
-  const correctIdx =
-    current?.type === "i" ? choices.indexOf(LABEL_I) : choices.indexOf(LABEL_NA);
+  const quiz = useMCQQuiz(items, { shuffleQuestions: true, shuffleChoices: true, fxDelay: 700 });
 
   return (
-    <div className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}>
-      <div className="quiz-top-nav">
-        <button className="nav-btn" onClick={goLessonList}>{t("adj.toLessonList")}</button>
-        <button className="nav-btn" onClick={goCategoryList}>{t("adj.toCategoryList")}</button>
-      </div>
-
-      <h1>{t("adj.title", { level: level.toUpperCase() })}</h1>
-      <p className="counter">{t("adj.counter", { current: ptr + 1, total })}</p>
-
-      <h2 className="question">
-        <span className="jp" style={{ fontSize: 28 }}>{wordDisplay}</span>
-      </h2>
-
-      <div className="choices">
-        {choices.map((label, i) => {
-          const isI = label === LABEL_I;
-          const classes =
-            selected !== null
-              ? i === correctIdx
-                ? "choice-btn correct"
-                : i === selected
-                ? "choice-btn wrong"
-                : "choice-btn"
-              : "choice-btn";
-          return (
-            <button
-              key={`${current.id}-${i}`}
-              className={classes}
-              onClick={() => handleSelect(i)}
-              disabled={selected !== null}
-            >
-              <ChoiceFace kind={isI ? "i" : "na"} lang={i18n.language} />
-            </button>
-          );
-        })}
-      </div>
-
-      {judge && (
-        <div className="judge-overlay" aria-hidden>
-          {judge === "correct" ? (
-            <svg className="judge-circle" viewBox="0 0 120 120">
-              <circle className="ring" cx="60" cy="60" r="45" />
-              <circle className="ring2" cx="60" cy="60" r="30" />
-            </svg>
-          ) : (
-            <svg className="judge-cross" viewBox="0 0 120 120">
-              <line className="bar1" x1="30" y1="30" x2="90" y2="90" />
-              <line className="bar2" x1="90" y1="30" x2="30" y2="90" />
-            </svg>
-          )}
-        </div>
-      )}
-    </div>
+    <MCQQuizShell
+      title={t("adj.title", { level: level.toUpperCase() })}
+      questions={quiz.questions}
+      current={quiz.current}
+      index={quiz.index}
+      total={quiz.total}
+      score={quiz.score}
+      selected={quiz.selected}
+      judge={quiz.judge}
+      finished={quiz.finished}
+      onPick={quiz.pick}
+      onRestart={quiz.restart}
+      onBack={quiz.backOne}
+      onExit={() => navigate(`/adj/${level}`)}
+      renderQuestion={(q) => <span className="jp" style={{ fontSize: 28 }}>{q?.question}</span>}
+      renderChoice={(c) => <ChoiceFace label={c} lang={i18n.language.toLowerCase()} />}
+      // 2択なので番号は省略（空配列）／4択にしたいなら ["1","2","3","4"]
+      numberLabels={[]}
+    />
   );
 }

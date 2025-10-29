@@ -1,0 +1,1 @@
+export const n5part_adverbs1 = { Lesson1: [] };

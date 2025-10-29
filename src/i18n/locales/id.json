@@ -83,6 +83,18 @@
       "backHome": "Kembali ke Beranda",
       "backToLevels": "Kembali ke Level"
     },
+    "hints": {
+      "teacher_advice": { "title": "Saran guru", "tip": "Bimbingan dari guru → “sebaiknya” (〜ほうがいい)." },
+      "doctor_advice":  { "title": "Saran dokter", "tip": "Saran dari dokter → “sebaiknya” (〜ほうがいい)." },
+      "company_rule":   { "title": "Peraturan perusahaan", "tip": "Aturan perusahaan → “harus” (〜なければならない)." },
+      "posted_notice":  { "title": "Pengumuman tertempel", "tip": "Tertulis di papan/penanda → “harus” (〜なければならない)." },
+      "deadline":       { "title": "Batas waktu", "tip": "Harus kumpul sebelum tenggat → “harus” (〜なければならない)." },
+      "optional":       { "title": "Opsional", "tip": "Sukarela/opsional → “tidak perlu” (〜なくてもいい)." },
+      "free_participation": { "title": "Partisipasi sukarela", "tip": "Boleh ikut/ tidak → “tidak perlu” (〜なくてもいい)." },
+      "situation_change": { "title": "Kondisi berubah", "tip": "Sudah tidak diperlukan → “tidak perlu” (〜なくてもいい)." },
+      "safety":         { "title": "Ketentuan keselamatan", "tip": "Keselamatan/kepatuhan → “harus” (〜なければならない)." },
+      "polite_suggestion": { "title": "Saran sopan", "tip": "Rekomendasi halus → “sebaiknya” (〜ほうがいい)." }
+    },
     "categories": {
       "title": "Pilih kategori tata bahasa {{level}}",
       "particles": "Partikel",
@@ -171,6 +183,7 @@
     "add": "Tambah",
     "notFound": "❌ Terjemahan tidak ditemukan"
   }
+
 
 
 }

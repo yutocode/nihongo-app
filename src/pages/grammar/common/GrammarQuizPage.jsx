@@ -12,7 +12,14 @@ import { LESSON_MAP } from "../../../utils/loadLessons";
 import { TARGET_LABELS } from "../../../constants/grammarLabels";
 import { prepareRuntime } from "../../../utils/quizRuntime";
 
-/** rubies: [{base:"財布", yomi:"さいふ"}, ...] をベース文字列に適用して segments を作る */
+// 🌸 N5 の動詞活用データを読み込み
+import { N5_VERB_LESSONS } from "../../../data/grammar/n5";
+
+// ============================
+// 🧩 補助関数
+// ============================
+
+/** rubies: [{base:"財布", yomi:"さいふ"}, ...] をベース文字列に適用 */
 function applyWordRubies(base, rubies) {
   const dict = [...rubies].filter(Boolean).sort((a, b) => b.base.length - a.base.length);
   const segs = [];
@@ -20,10 +27,7 @@ function applyWordRubies(base, rubies) {
   while (i < base.length) {
     let hit = null;
     for (const r of dict) {
-      if (r?.base && base.startsWith(r.base, i)) {
-        hit = r;
-        break;
-      }
+      if (r?.base && base.startsWith(r.base, i)) { hit = r; break; }
     }
     if (hit) {
       segs.push({ t: hit.base, y: hit.yomi });
@@ -36,19 +40,59 @@ function applyWordRubies(base, rubies) {
   return { segments: segs };
 }
 
+// 言語コード→キー変換
+const pickLangKey = (lng) => {
+  const L = String(lng || "").toLowerCase();
+  if (L.startsWith("zh-tw") || L.includes("hant")) return "tw";
+  if (L.startsWith("zh")) return "zh";
+  if (L.startsWith("en")) return "en";
+  if (L.startsWith("id")) return "id";
+  if (L.startsWith("ko")) return "ko";
+  if (L.startsWith("vi")) return "vi";
+  if (L.startsWith("th")) return "th";
+  if (L.startsWith("my")) return "my";
+  if (L.startsWith("km")) return "km";
+  return "ja";
+};
+
+// lesson1 → n5-verb-forms-lesson1 に正規化
+const normalizeVerbLessonKey = (level, lesson) =>
+  `${level}-verb-forms-${String(lesson).toLowerCase()}`;
+
+// ============================
+// 🌸 メインコンポーネント
+// ============================
 export default function GrammarQuizPage() {
   const navigate = useNavigate();
   const { level = "n5", category = "", lesson = "lesson1" } = useParams();
   const { i18n, t } = useTranslation();
 
+  // ベースキー
   const lessonKey = category
     ? `${String(level).toLowerCase()}-${String(category).toLowerCase()}-${String(lesson).toLowerCase()}`
     : `${String(level).toLowerCase()}-${String(lesson).toLowerCase()}`;
 
-  // 生データ
-  const rawQuestions = useMemo(() => LESSON_MAP.get(lessonKey) ?? [], [lessonKey]);
+  // ========= データ選択ロジック =========
+  const rawQuestions = useMemo(() => {
+    const L = String(level).toLowerCase();
+    const C = String(category).toLowerCase();
+    const LES = String(lesson).toLowerCase();
 
-  // 実行用問題
+    // 🔸 動詞活用カテゴリーの場合
+    if (C === "verb-forms") {
+      const key1 = normalizeVerbLessonKey(L, LES);
+      return (
+        N5_VERB_LESSONS.get(key1) ||
+        N5_VERB_LESSONS.get(`${L}-lesson${LES.replace("lesson", "")}`) ||
+        []
+      );
+    }
+
+    // 🔸 それ以外（通常文法レッスン）
+    return LESSON_MAP.get(lessonKey) ?? [];
+  }, [level, category, lesson, lessonKey]);
+
+  // ========= 実行用問題生成 =========
   const questions = useMemo(
     () =>
       prepareRuntime({
@@ -62,11 +106,13 @@ export default function GrammarQuizPage() {
     [rawQuestions, i18n.language]
   );
 
+  // ========= 状態管理 =========
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [judge, setJudge] = useState(null);
   const [finished, setFinished] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   useEffect(() => {
     setIndex(0);
@@ -74,17 +120,13 @@ export default function GrammarQuizPage() {
     setSelected(null);
     setJudge(null);
     setFinished(false);
+    setShowHint(false);
   }, [lessonKey]);
 
   const total = questions.length;
   const q = questions[index];
 
-  const goPrev = () => {
-    if (selected === null && index > 0) setIndex((n) => n - 1);
-  };
-  const goLessonList = () =>
-    navigate(category ? `/grammar/${level}/${category}` : `/grammar/${level}`);
-
+  // ========= 回答処理 =========
   const handleAnswer = (i) => {
     if (!q || selected !== null) return;
     const isCorrect = i === q.answer;
@@ -105,61 +147,94 @@ export default function GrammarQuizPage() {
     setSelected(null);
     setJudge(null);
     setFinished(false);
+    setShowHint(false);
   };
 
-  // ── 文タイプの質問文にルビを適用
+  const goPrev = () => {
+    if (selected === null && index > 0) setIndex((n) => n - 1);
+  };
+  const goLessonList = () =>
+    navigate(category ? `/grammar/${level}/${category}` : `/grammar/${level}`);
+
+  // ========= ヒント処理 =========
+  const hintText = useMemo(() => {
+    if (!q || !q.hints) return "";
+    const key = pickLangKey(i18n.language);
+    return (
+      (typeof q.hints === "object" && (q.hints[key] || q.hints.ja || "")) || ""
+    );
+  }, [q, i18n.language]);
+
+  // ========= ルビ適用 =========
   const sentenceWithRuby = useMemo(() => {
     if (!q || !q.question) return "";
-
     if (Array.isArray(q.segments) && q.segments.length) {
       return { segments: q.segments.map((s) => ({ t: s.t, y: s.y ?? s.r })) };
     }
-
     if (typeof q.furigana === "string" && q.furigana.includes("<ruby")) {
       return q.furigana;
     }
-
     const baseRaw = String(q.question);
-
     if (Array.isArray(q.rubies) && q.rubies.length) {
       return applyWordRubies(baseRaw, q.rubies);
-    }
-
-    const marker = "◻◻";
-    const base = stripRuby(baseRaw).replace(/＿+/g, marker);
-    const yomi = String(q.yomi || "").replace(/＿+/g, marker);
-    const val = yomi ? makeRubyValue(base, yomi, { kanjiOnly: true }) : base;
-
-    const restoreObj = (v) => ({
-      segments: v.segments.map((s) => ({
-        ...s,
-        t: (s.t || "").replaceAll(marker, "＿＿"),
-        y: s.y ? String(s.y).replaceAll(marker, "＿＿") : s.y,
-      })),
-    });
-
-    if (typeof val === "string") {
-      const restored = val.replaceAll(marker, "＿＿");
-      if (/^[、。，．・]/.test(restored) || restored.includes(marker)) return baseRaw;
-      return restored;
-    }
-    if (val && Array.isArray(val.segments)) {
-      const restored = restoreObj(val);
-      return restored;
     }
     return baseRaw;
   }, [q]);
 
+  // ========= 出力部 =========
+  if (total === 0) {
+    return (
+      <div className="quiz-wrap">
+        <h1>{`${level?.toUpperCase()} ${lesson}`}</h1>
+        <p>
+          {t("grammar.quiz.noData", {
+            defaultValue: "このレッスンの問題データが見つかりませんでした。",
+          })}
+        </p>
+        <button className="choice-btn" onClick={() => navigate(-1)}>
+          {t("common.back", { defaultValue: "戻る" })}
+        </button>
+      </div>
+    );
+  }
+
+  if (finished) {
+    return (
+      <div className="quiz-wrap">
+        <h1>{`${level?.toUpperCase()} ${lesson}`}</h1>
+        <div className="result-card">
+          <p className="counter">
+            {t("grammar.quiz.score", { defaultValue: "Score" })}: {score} /{" "}
+            {total}
+          </p>
+          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+            <button className="choice-btn" onClick={restart}>
+              {t("common.retry", { defaultValue: "もう一度" })}
+            </button>
+            <button className="choice-btn" onClick={goLessonList}>
+              {t("common.backToLessons", { defaultValue: "レッスン一覧へ" })}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const renderTop = () => {
     if (!q) return null;
-
     if (q.base) {
       const label = TARGET_LABELS[q._target]?.ja || "普通形";
       const baseForHeader =
-        q.yomi ? makeRubyValue(stripRuby(q.base), q.yomi, { kanjiOnly: true }) : q.base;
-
+        q.yomi
+          ? makeRubyValue(stripRuby(q.base), q.yomi, { kanjiOnly: true })
+          : q.base;
       return (
         <div className="conj-card">
+          {hintText && (
+            <button className="conj-hint-btn" onClick={() => setShowHint(true)}>
+              ？
+            </button>
+          )}
           <div className="conj-base">
             〔{label}〕 <TextWithRuby value={baseForHeader} />
           </div>
@@ -171,9 +246,13 @@ export default function GrammarQuizPage() {
         </div>
       );
     }
-
     return (
-      <div className="jp">
+      <div className="jp jp-card">
+        {hintText && (
+          <button className="conj-hint-btn" onClick={() => setShowHint(true)}>
+            ？
+          </button>
+        )}
         <TextWithRuby value={sentenceWithRuby} />
       </div>
     );
@@ -186,43 +265,17 @@ export default function GrammarQuizPage() {
     return <TextWithRuby value={c} />;
   };
 
-  if (total === 0) {
-    return (
-      <div className="quiz-wrap">
-        <h1>{`${level?.toUpperCase()} ${lesson} ${t("grammar.quiz.title", { defaultValue: "文法" })}`}</h1>
-        <p>{t("grammar.quiz.noData", { defaultValue: "このレッスンの問題データが見つかりませんでした。" })}</p>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button className="choice-btn" onClick={() => navigate(-1)}>
-            {t("common.back", { defaultValue: "戻る" })}
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (finished) {
-    return (
-      <div className="quiz-wrap">
-        <h1>{`${level?.toUpperCase()} ${lesson} ${t("grammar.quiz.title", { defaultValue: "文法" })}`}</h1>
-        <div className="result-card">
-          <p className="counter">{t("grammar.quiz.score", { defaultValue: "Score" })}: {score} / {total}</p>
-          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-            <button className="choice-btn" onClick={restart}>
-              {t("common.retry", { defaultValue: "もう一度" })}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div
-      className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}
+      className={`quiz-wrap ${
+        judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""
+      }`}
       key={q?.id || index}
     >
-      <h1>{`${level?.toUpperCase()} ${lesson} ${t("grammar.quiz.title", { defaultValue: "文法" })}`}</h1>
-      <p className="counter">{index + 1} / {total}</p>
+      <h1>{`${level?.toUpperCase()} ${lesson}`}</h1>
+      <p className="counter">
+        {index + 1} / {total}
+      </p>
 
       <h2 className="question">{renderTop()}</h2>
 
@@ -281,7 +334,35 @@ export default function GrammarQuizPage() {
         >
           ← {t("common.prev", { defaultValue: "前へ" })}
         </button>
+        <button
+          className="choice-btn"
+          onClick={goLessonList}
+          disabled={selected !== null}
+        >
+          {t("common.backToLessons", { defaultValue: "レッスン一覧へ" })}
+        </button>
       </div>
+
+      {showHint && hintText && (
+        <div className="gq-hint-dim" onClick={() => setShowHint(false)}>
+          <div className="gq-hint-box" onClick={(e) => e.stopPropagation()}>
+            <div className="gq-hint-head">
+              <span className="gq-hint-title">
+                {t("grammar.quiz.hint", { defaultValue: "ヒント" })}
+              </span>
+              <button
+                className="gq-hint-close"
+                onClick={() => setShowHint(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="gq-hint-body">
+              <TextWithRuby value={hintText} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

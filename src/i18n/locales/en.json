@@ -120,6 +120,18 @@
         "lessonList": "Lesson List",
         "home": "Home"
       }
+    },
+    "hints": {
+      "teacher_advice": { "title": "Teacher's advice", "tip": "Guidance from a teacher → “should” (〜ほうがいい)." },
+      "doctor_advice":  { "title": "Doctor's advice",  "tip": "Advice from a doctor → “should” (〜ほうがいい)." },
+      "company_rule":   { "title": "Company rule",     "tip": "Company rule/policy → “must” (〜なければならない)." },
+      "posted_notice":  { "title": "Posted notice",    "tip": "Sign/notice says so → “must” (〜なければならない)." },
+      "deadline":       { "title": "Deadline",         "tip": "Submit by a deadline → “must” (〜なければならない)." },
+      "optional":       { "title": "Optional",         "tip": "Voluntary/optional → “not necessary” (〜なくてもいい)." },
+      "free_participation": { "title": "Optional participation", "tip": "Free to join → “not necessary” (〜なくてもいい)." },
+      "situation_change": { "title": "Condition changed", "tip": "No longer needed → “not necessary” (〜なくてもいい)." },
+      "safety":         { "title": "Safety requirement", "tip": "Safety/compliance → “must” (〜なければならない)." },
+      "polite_suggestion": { "title": "Polite suggestion", "tip": "Soft recommendation → “should” (〜ほうがいい)." }
     }
   },
 

@@ -83,6 +83,18 @@
       "backHome": "ホームに戻る",
       "backToLevels": "レベル選択に戻る"
     },
+    "hints": {
+      "teacher_advice": { "title": "先生の助言", "tip": "先生からの助言 →「〜ほうがいい」。" },
+      "doctor_advice":  { "title": "医者の助言",  "tip": "医者からの助言 →「〜ほうがいい」。" },
+      "company_rule":   { "title": "社内ルール",  "tip": "会社の規則・ポリシー →「〜なければならない」。" },
+      "posted_notice":  { "title": "掲示",        "tip": "掲示・標識で定められている →「〜なければならない」。" },
+      "deadline":       { "title": "締切／提出",   "tip": "締切までに提出 →「〜なければならない」。" },
+      "optional":       { "title": "任意",        "tip": "任意・自由 →「〜なくてもいい」。" },
+      "free_participation": { "title": "自由参加", "tip": "参加は自由 →「〜なくてもいい」。" },
+      "situation_change": { "title": "状況変化",   "tip": "条件が変わって不要 →「〜なくてもいい」。" },
+      "safety":         { "title": "安全要件",    "tip": "安全・遵守事項 →「〜なければならない」。" },
+      "polite_suggestion": { "title": "丁寧な提案", "tip": "控えめな推奨 →「〜ほうがいい」。" }
+    },
     "categories": {
       "title": "{{level}} の文法カテゴリを選択",
       "particles": "助詞",
@@ -174,6 +186,7 @@
     "add": "追加",
     "notFound": "❌ 翻訳が見つかりません"
   }
+
 
 }
 
