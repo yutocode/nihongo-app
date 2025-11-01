@@ -2,6 +2,19 @@
 import { getPosById, getPosOrder } from "./posById";
 
 /* -------------------------------------------
+ * 小ユーティリティ
+ * ------------------------------------------- */
+const toInt = (v) => (Number.isFinite(Number(v)) ? Number(v) : NaN);
+const uniq = (arr) => Array.from(new Set(arr));
+
+/** id 昇順・数値化してソート（不正 id は除外） */
+const normSortById = (words = []) =>
+  words
+    .map((w) => ({ ...w, id: toInt(w?.id) }))
+    .filter((w) => Number.isFinite(w.id))
+    .sort((a, b) => a.id - b.id);
+
+/* -------------------------------------------
  * チャンク分割: 既定50語、最後が少なすぎる時は直前から融通（最小20語を保証）
  * ------------------------------------------- */
 export function chunkWithMin(arr, preferred = 50, min = 20) {
@@ -32,31 +45,25 @@ export function chunkWithMin(arr, preferred = 50, min = 20) {
 }
 
 /* -------------------------------------------
- * 正規化ヘルパ
- * ------------------------------------------- */
-const normSortById = (words) =>
-  (words || [])
-    .map((w) => ({ ...w, id: Number(w.id) }))
-    .filter((w) => Number.isFinite(w.id))
-    .sort((a, b) => a.id - b.id);
-
-/* -------------------------------------------
- * インデックス形式（Lesson1: [...]）→ フラット配列
- * level を渡せば _pos/_rating を付与
+ * インデックス形式（{ Lesson1:[...], ... }）→ フラット配列
+ * - level を渡すと _pos / _rating を付与
  * ------------------------------------------- */
 export function flattenWordsFromIndex(wordSetsObj, level) {
   const flat = [];
   if (!wordSetsObj) return flat;
 
   for (const mod of Object.values(wordSetsObj)) {
+    if (!mod || typeof mod !== "object") continue;
     for (const [k, list] of Object.entries(mod)) {
       if (!/^Lesson\d+$/i.test(k) || !Array.isArray(list)) continue;
       for (const w of list) {
         if (!w || typeof w !== "object") continue;
-        const id = Number(w.id);
-        const pos = getPosById(level, id, w.pos || w.partOfSpeech || ""); // ★ id優先
-        const rating = Number(w.freq ?? w.rating ?? 0) || 0;               // 0〜5想定
-        flat.push({ ...w, id, _lessonKey: k, _pos: pos, _rating: rating });
+        const id = toInt(w.id);
+        const pos = Number.isFinite(id)
+          ? getPosById(String(level).toLowerCase(), id, w.pos || w.partOfSpeech || "")
+          : (w.pos || w.partOfSpeech || "その他");
+        const rating = toInt(w.freq ?? w.rating);
+        flat.push({ ...w, id, _lessonKey: k, _pos: pos, _rating: Number.isFinite(rating) ? rating : 0 });
       }
     }
   }
@@ -64,10 +71,13 @@ export function flattenWordsFromIndex(wordSetsObj, level) {
 }
 
 /* -------------------------------------------
- * 1) 番号順（id昇順で50語ずつ）
+ * 1) 番号レンジ（例: 1–50, 51–100, ...）
+ * 返却: [{ key:"num:1-50:0", label:"1–50", count, ids }]
  * ------------------------------------------- */
 export function buildBlocksByNumber(words, blockSize = 50) {
   const all = normSortById(words);
+  if (!all.length) return [];
+
   const chunks = chunkWithMin(all, blockSize, 20);
   return chunks.map((arr, i) => {
     const from = arr[0]?.id ?? "";
@@ -82,18 +92,39 @@ export function buildBlocksByNumber(words, blockSize = 50) {
 }
 
 /* -------------------------------------------
- * 2) 品詞で分ける（レベル別の表示順に従い、各品詞を50語ずつ）
+ * 2) 品詞ブロック（レベル別の表示順に従い、各品詞を50語ずつ）
+ * 返却: [{ key:"pos:名詞:1-50:0", label:"名詞（50語）", count, ids }]
  * ------------------------------------------- */
 export function buildBlocksByPOS(words, level, blockSize = 50) {
+  const normLevel = String(level).toLowerCase();
   const all = normSortById(words);
-  const order = getPosOrder(level); // 例: ["名詞","い形容詞","な形容詞","副詞","動詞","その他"]
+  const order = getPosOrder(normLevel); // ["名詞","い形容詞","な形容詞","副詞","動詞","その他"]
 
-  // idレンジで厳密にバケツ分け（_posが無くてもOK）
+  // 品詞ごとのバケツ（posById のレンジを優先。id 無し/範囲外は pos 文字列でフォールバック）
   const buckets = new Map(order.map((p) => [p, []]));
+  const ensure = (p) => {
+    if (!buckets.has(p)) buckets.set(p, []);
+    return buckets.get(p);
+  };
+
   for (const w of all) {
-    const p = getPosById(level, w.id, w._pos || w.pos || "その他");
-    if (!buckets.has(p)) buckets.set(p, []); // 念のため未知品詞にも対応
-    buckets.get(p).push(w);
+    const wid = w.id;
+    let pos = Number.isFinite(wid) ? getPosById(normLevel, wid, null) : null;
+    if (!pos) {
+      const p = String(
+        w._pos ??
+        w.pos ??
+        w.partOfSpeech ??
+        (Array.isArray(w?.tags) ? w.tags.join(",") : "")
+      ).toLowerCase();
+      if (p.includes("名詞") || p === "n" || p.startsWith("n")) pos = "名詞";
+      else if (p.includes("い形") || p.includes("形容詞") || p.startsWith("adj-i")) pos = "い形容詞";
+      else if (p.includes("な形") || p.includes("形容動詞") || p.startsWith("adj-na")) pos = "な形容詞";
+      else if (p.includes("副詞") || p === "adv" || p.startsWith("adv")) pos = "副詞";
+      else if (p.includes("動詞") || p.startsWith("v")) pos = "動詞";
+      else pos = "その他";
+    }
+    ensure(pos).push(w);
   }
 
   const blocks = [];
@@ -107,18 +138,36 @@ export function buildBlocksByPOS(words, level, blockSize = 50) {
       const to = ck[ck.length - 1]?.id ?? "";
       blocks.push({
         key: `pos:${pos}:${from}-${to}:${idx}`,
-        label: `${pos}${ck.length}問`, // 例: 名詞50問 / 名詞22問
+        label: `${pos}（${ck.length}語）`,
         count: ck.length,
-        ids: ck.map((w) => w.id),
+        ids: uniq(ck.map((w) => w.id)),
       });
     });
   }
+
+  // 定義にない品詞があれば最後に追加
+  for (const [p, arr] of buckets.entries()) {
+    if (order.includes(p) || !arr.length) continue;
+    const chunks = chunkWithMin(arr.sort((a, b) => a.id - b.id), blockSize, 20);
+    chunks.forEach((ck, idx) => {
+      const from = ck[0]?.id ?? "";
+      const to = ck[ck.length - 1]?.id ?? "";
+      blocks.push({
+        key: `pos:${p}:${from}-${to}:${idx}`,
+        label: `${p}（${ck.length}語）`,
+        count: ck.length,
+        ids: uniq(ck.map((w) => w.id)),
+      });
+    });
+  }
+
   return blocks;
 }
 
 /* -------------------------------------------
- * 3) よく出る順（rating/freq 降順で50語ずつ）
- *    ラベルはブロック内の平均★を四捨五入
+ * 3) よく出る順（_rating/freq 降順で50語ずつ）
+ *    ラベルは平均★（四捨五入）
+ * 返却: [{ key:"freq:0", label:"★★★☆☆ 50語", count, ids }]
  * ------------------------------------------- */
 export const stars = (n) => {
   const s = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
@@ -127,7 +176,7 @@ export const stars = (n) => {
 
 export function buildBlocksByFreq(words, blockSize = 50) {
   const all = normSortById(words).sort(
-    (a, b) => (b._rating || b.rating || b.freq || 0) - (a._rating || a.rating || a.freq || 0)
+    (a, b) => (b._rating ?? b.rating ?? b.freq ?? 0) - (a._rating ?? a.rating ?? a.freq ?? 0)
   );
   if (!all.length) return [];
 
@@ -136,10 +185,9 @@ export function buildBlocksByFreq(words, blockSize = 50) {
     const avg =
       ck.reduce((sum, w) => sum + (Number(w._rating ?? w.rating ?? w.freq) || 0), 0) /
       (ck.length || 1);
-    const labelStars = stars(avg);
     return {
       key: `freq:${idx}`,
-      label: `${labelStars} ${ck.length}問`,
+      label: `${stars(avg)} ${ck.length}語`,
       count: ck.length,
       ids: ck.map((w) => w.id),
     };

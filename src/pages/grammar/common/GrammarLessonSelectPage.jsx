@@ -18,19 +18,34 @@ const LESSON_COUNTS = {
     "ask-permit": 6,
     comparison: 0,
     basic: 0,
+    paraphrase: 5,
   },
   n4: {
     comparison: 8,
     "tense-aspect": 8,        // 旧スラッグ
-    "tense-aspect-jlpt": 8, 
-    particles: 10  // 本線
+    "tense-aspect-jlpt": 8,
+    particles: 10,
+    "advice-obligation": 8,   // 助言・義務・不要
+    paraphrase: 5,            // いいかえ（Lesson1〜5）
   },
-  n3: {},
-  n2: {},
-  n1: {},
+  // ★ N3
+  n3: {
+    concession: 10,           // 逆接 Lesson1〜10（専用ページもあるが保険で記載）
+    voice: 8,                 // 受け身・使役受け身 Lesson1〜8
+    paraphrase: 5,            // いいかえ Lesson1〜5
+  },
+  // ★ N2 / N1
+  n2: { paraphrase: 5 },
+  n1: { paraphrase: 5 },
 };
 
 const CAT_I18N_KEY = {
+  // 追加カテゴリ
+  concession: "grammar.categories.concession",
+  voice: "grammar.categories.voice",
+  paraphrase: "grammar.categories.paraphrase",
+
+  // 既存
   particles: "grammar.categories.particles",
   "verb-forms": "grammar.categories.verbForms",
   adjectives: "grammar.categories.adjectives",
@@ -42,6 +57,7 @@ const CAT_I18N_KEY = {
   basic: "grammar.categories.basic",
   "tense-aspect": "grammar.categories.tenseAspect",
   "tense-aspect-jlpt": "grammar.categories.tenseAspect",
+  "advice-obligation": "grammar.categories.adviceObligation",
 };
 
 function normalizeLessonNum(num) {
@@ -52,16 +68,27 @@ function normalizeLessonNum(num) {
 function makeLessonPath(level, category, num) {
   const cat = String(category).toLowerCase();
   const lv = String(level).toLowerCase();
+  const N = `Lesson${normalizeLessonNum(num)}`;
 
   if (cat === "compare" || cat === "comparison") {
-    return `/grammar/n4/comparison/Lesson${normalizeLessonNum(num)}`;
+    return `/grammar/n4/comparison/${N}`;
   }
   if (cat === "tense-aspect" || cat === "tense-aspect-jlpt") {
-    return `/grammar/n4/tense-aspect-jlpt/Lesson${normalizeLessonNum(num)}`;
+    return `/grammar/n4/tense-aspect-jlpt/${N}`;
   }
   if (cat === "exist-have") {
-    return `/grammar/${lv}/exist-have/Lesson${normalizeLessonNum(num)}`;
+    return `/grammar/${lv}/exist-have/${N}`;
   }
+  // ★ N3: 専用ページ（ConcessionQuizPage）
+  if (cat === "concession") {
+    // ルートは /grammar/n3/concession/:lesson （小文字lessonもOK）
+    return `/grammar/${lv}/concession/lesson${normalizeLessonNum(num)}`;
+  }
+  // ★ N3: 専用ページ（N3VoiceQuizPage）
+  if (cat === "voice") {
+    return `/grammar/${lv}/voice/${N}`;
+  }
+  // 汎用カテゴリは共通ルート（GrammarQuizPage）
   return `/grammar/${lv}/${cat}/lesson${normalizeLessonNum(num)}`;
 }
 
@@ -86,21 +113,6 @@ export default function GrammarLessonSelectPage() {
       <div className="grammar-wrap">
         <h1>{t("lesson.title", { defaultValue: "レッスン選択" })}</h1>
         <p>{t("grammar.lessons.hint", { defaultValue: "カテゴリを選んでください。" })}</p>
-      </div>
-    );
-  }
-
-  // N3〜N1 はデータ無し
-  if (level === "n3" || level === "n2" || level === "n1") {
-    return (
-      <div className="grammar-wrap">
-        <h1>
-          {t("grammar.lessons.title", {
-            level: LEVEL_LABELS[level] || level.toUpperCase(),
-            category: t(CAT_I18N_KEY[category] ?? "", { defaultValue: rawCat }),
-          })}
-        </h1>
-        <p>このレベルのデータはありません。</p>
       </div>
     );
   }

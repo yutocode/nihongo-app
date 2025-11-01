@@ -1,0 +1,8 @@
+/* src/styles/Exam.css */
+.exam-page { max-width: 840px; margin: auto; padding: 24px; }
+.timer    { font-feature-settings: "tnum"; }
+.question { break-inside: avoid; margin-bottom: 18px; }
+@media print {
+  .exam-page { columns: 2; column-gap: 24px; }
+  .timer, .submit-btn, .review-tag { display: none; }
+}

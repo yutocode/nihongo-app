@@ -41,6 +41,9 @@ import GrammarCategorySelectPage from "./pages/grammar/common/GrammarCategorySel
 import GrammarLessonSelectPage from "./pages/grammar/common/GrammarLessonSelectPage";
 import GrammarQuizPage from "./pages/grammar/common/GrammarQuizPage";
 
+// ★ paraphrase（言いかえ）共通ページ
+import ParaphraseQuizPage from "./pages/grammar/common/ParaphraseQuizPage";
+
 // N4 grammar
 import N4ComparisonBlankQuizPage from "./pages/grammar/n4/N4ComparisonBlankQuizPage";
 import N4TenseAspectJLPTPage from "./pages/grammar/n4/N4TenseAspectJLPTPage";
@@ -64,6 +67,12 @@ import StoryPlayer from "./pages/StoryPlayer.jsx";
 
 // verb conjugation quiz
 import GrammarVerbQuizPage from "./pages/GrammarVerbQuizPage";
+
+// ★ N3: 受け身・使役受け身（voice）
+import N3VoiceQuizPage from "./pages/grammar/n3/N3VoiceQuizPage";
+
+// ★ N3: 逆接（が／けれども／のに／しかし／だが／わりに／くせに）
+import N3ConcessionQuizPage from "./pages/grammar/n3/N3ConcessionQuizPage";
 
 // XP persistence
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
@@ -143,17 +152,26 @@ const App = () => (
         {/* grammar hub */}
         <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
         <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
+
+        {/* ★ N3: 逆接（本編のみ専用）。一覧は汎用 /grammar/:level/:category を利用 */}
+        <Route path="/grammar/n3/concession/:lesson" element={<N3ConcessionQuizPage />} />
+
+        {/* ★ Paraphrase（言いかえ）専用 実行ページ（汎用より前に置く） */}
+        <Route path="/grammar/:level/paraphrase/:lesson" element={<ParaphraseQuizPage />} />
+
+        {/* 汎用：その他の文法クイズ */}
         <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
+
+        {/* ★ N3: 受け身・使役受け身（voice）専用 */}
+        <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
 
         {/* verb conjugation quiz */}
         <Route path="/grammar/:level/verb-forms/:lesson" element={<GrammarVerbQuizPage />} />
 
         {/* N4 comparison official lesson routes (一覧ページから遷移) */}
-        {/* ✅ ここはリダイレクトを置かない */}
         <Route path="/grammar/n4/comparison/:lesson" element={<N4ComparisonBlankQuizPage />} />
 
         {/* N4 tense-aspect (JLPT) official lesson routes */}
-        {/* ✅ ここもリダイレクトを置かない */}
         <Route path="/grammar/n4/tense-aspect-jlpt/:lesson" element={<N4TenseAspectJLPTPage />} />
 
         {/* legacy comparison redirects to N4 */}

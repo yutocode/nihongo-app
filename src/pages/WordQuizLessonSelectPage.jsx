@@ -20,79 +20,76 @@ export default function WordQuizLessonSelectPage() {
   // クイズ用プール（単語帳と同じデータ源）
   const allWords = useMemo(() => getAllWords(normLevel) ?? [], [normLevel]);
 
-  // ===== ブロック作成 =====
-  // 品詞ブロック（posById のレンジに基づく・各品詞1ブロック）
-  const posBlocks = useMemo(() => {
-    const blocks = buildBlocksByPOS(allWords, normLevel);
-    // UIで必要な形に最小整形
-    return blocks.map(b => ({
-      key: b.key,            // 例: "pos-名詞-all"
-      label: b.label,        // 例: "名詞（372語）"
-      count: b.count,
-      ids: b.ids,
-    }));
-  }, [allWords, normLevel]);
+  // ===== ブロック作成（grouping.js はコロン形式キーを返す）=====
+  const posBlocks = useMemo(() => buildBlocksByPOS(allWords, normLevel), [allWords, normLevel]);
+  const numberBlocks = useMemo(() => buildBlocksByNumber(allWords, 50), [allWords]);
 
-  // 番号ブロック（1–50, 51–100, ...）
-  const numberBlocks = useMemo(() => {
-    const blocks = buildBlocksByNumber(allWords, 50);
-    // "num-1","num-2"… のキー/ラベルは buildBlocksByNumber 側で作成済み
-    return blocks.map(b => ({
-      key: b.key,     // 例: "num-1"
-      label: b.label, // 例: "1–50"
-      count: b.count,
-      ids: b.ids,
-    }));
-  }, [allWords]);
+  // ラベル "101–150" → [101, 150]
+  const rangeFromLabel = (label) => {
+    const m = String(label).match(/(\d+)\s*[–-]\s*(\d+)/);
+    return m ? [parseInt(m[1], 10), parseInt(m[2], 10)] : [null, null];
+  };
 
-  // ランダムブロック（番号ブロックを流用 + 全体）
+  // ランダムブロック（番号レンジごと＋全体）
   const randomBlocks = useMemo(() => {
-    const perRange = numberBlocks.map(b => ({
-      key: `rand-${b.key.split("-")[1]}`, // "num-3" -> "rand-3"
-      label: `${b.label} からランダム10問`,
-      count: b.count,
-      ids: b.ids,
-    }));
+    const perRange = numberBlocks.map((b) => {
+      const [start, end] = rangeFromLabel(b.label);
+      return {
+        key: start && end ? `rand:${start}-${end}` : `rand:all`,
+        label: `${b.label} からランダム10問`,
+        count: b.count,
+        ids: b.ids,
+      };
+    });
     return [
       ...perRange,
-      { key: "rand-all", label: "全体からランダム10問", count: allWords.length, ids: allWords.map(w => w.id) },
+      { key: "rand:all", label: "全体からランダム10問", count: allWords.length, ids: allWords.map((w) => w.id) },
     ];
   }, [numberBlocks, allWords]);
 
-  // 画面に出すブロック
+  // 表示するブロック
   const blocks = useMemo(() => {
     if (mode === "pos") return posBlocks;
     if (mode === "number") return numberBlocks;
-    return randomBlocks; // "random"
+    return randomBlocks;
   }, [mode, posBlocks, numberBlocks, randomBlocks]);
 
-  // クリック → クイズへ
+  // クリック → クイズへ（キーがコロン形式ならそのまま、旧ハイフンも後方互換で変換）
   const go = (blk) => {
-    // WordQuizPage 側で pos- / num- / rand- を解釈して10問ランダム出題
-    // （ids は state で渡しても良いが、キー解釈で十分なのでURLのみでOK）
-    navigate(`/word-quiz/${normLevel}/${encodeURIComponent(blk.key)}`);
+    let lesson = blk.key;
+
+    // すでに "pos:" / "num:" / "rand:" 形式ならそのまま
+    if (/^(pos|num|rand):/.test(lesson)) {
+      navigate(`/word-quiz/${normLevel}/${encodeURIComponent(lesson)}`);
+      return;
+    }
+
+    // 旧ハイフン形式の後方互換（混在対策）
+    if (lesson.startsWith("pos-")) {
+      const pos = lesson.replace(/^pos-/, "").replace(/-all$/, "");
+      lesson = `pos:${pos}`;
+    } else if (lesson.startsWith("num-")) {
+      const [start, end] = rangeFromLabel(blk.label);
+      lesson = start && end ? `num:${start}-${end}` : "num:all";
+    } else if (lesson.startsWith("rand-")) {
+      const [start, end] = rangeFromLabel(blk.label);
+      lesson = start && end ? `rand:${start}-${end}` : "rand:all";
+    }
+
+    navigate(`/word-quiz/${normLevel}/${encodeURIComponent(lesson)}`);
   };
 
   return (
     <main className="lesson-select-page" role="main" aria-label={`WORD QUIZ ${normLevel.toUpperCase()}`}>
-      {/* タブ（単語帳と同じ見た目に） */}
+      {/* タブ */}
       <div className="lesson-toolbar">
-        <button
-          className={`toggle ${mode === "pos" ? "active" : ""}`}
-          onClick={() => setMode("pos")}
-        >
+        <button className={`toggle ${mode === "pos" ? "active" : ""}`} onClick={() => setMode("pos")}>
           品詞で分ける
         </button>
-        <button
-          className={`toggle ${mode === "number" ? "active" : ""}`}
-          onClick={() => setMode("number")}
-        >
+        <button className={`toggle ${mode === "number" ? "active" : ""}`} onClick={() => setMode("number")}>
           番号順
         </button>
-        <button
-          className={`toggle ${mode === "random" ? "active" : ""}`}
-          onClick={() => setMode("random")}
-        >
+        <button className={`toggle ${mode === "random" ? "active" : ""}`} onClick={() => setMode("random")}>
           ランダム
         </button>
       </div>

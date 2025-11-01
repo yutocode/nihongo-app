@@ -4,23 +4,45 @@ const modules = import.meta.glob("../n*WordSets/**/*.js", { eager: true });
 
 const _cache = { full: null };
 
-/** 言語キーの正規化: i18n.language → story用キー（tw/zh/en/ko/vi/th/my/ja） */
+/** 言語キーの正規化: i18n.language → story用キー（ja/en/zh/tw/id/ko/vi/th/my/km） */
 export function pickLangKey(lng) {
   const l = String(lng || "").toLowerCase();
-  if (l.startsWith("zh-tw") || l === "tw") return "tw";
-  if (l.startsWith("zh")) return "zh";
-  if (l.startsWith("en")) return "en";
-  if (l.startsWith("ko")) return "ko";
-  if (l.startsWith("vi")) return "vi";
-  if (l.startsWith("th")) return "th";
-  if (l.startsWith("my")) return "my";
+
+  // 先に繁体（台湾華語）を判定
+  if (l === "tw" || l.startsWith("zh-tw") || l.startsWith("zh_hant") || l.includes("hant")) return "tw";
+
+  // 中国語（簡体）
+  if (l === "zh" || l.startsWith("zh")) return "zh";
+
+  // 英語
+  if (l === "en" || l.startsWith("en-")) return "en";
+
+  // インドネシア語
+  if (l === "id" || l.startsWith("id-")) return "id";
+
+  // 韓国語
+  if (l === "ko" || l.startsWith("ko-")) return "ko";
+
+  // ベトナム語
+  if (l === "vi" || l.startsWith("vi-")) return "vi";
+
+  // タイ語
+  if (l === "th" || l.startsWith("th-")) return "th";
+
+  // ビルマ語（ミャンマー語）
+  if (l === "my" || l.startsWith("my-") || l.startsWith("my_mm")) return "my";
+
+  // クメール語（カンボジア語）
+  if (l === "km" || l.startsWith("km-")) return "km";
+
+  // 既定は日本語
   return "ja";
 }
 
 function buildOnce() {
   const dict = {}; // word → entry（多言語を含む）
 
-  // WordSets は { LessonX: [ { kanji, reading, meanings:{en,tw,zh,...} } ] } 形式を想定
+  // WordSets は { LessonX: [ { kanji, reading, meanings:{ja,en,zh,tw,id,ko,vi,th,my,km} } ] } 形式を想定
   Object.values(modules).forEach((mod) => {
     // 各モジュールの全エクスポートを見る（n5part_adverbs1 などの名前は任意）
     Object.values(mod).forEach((exported) => {

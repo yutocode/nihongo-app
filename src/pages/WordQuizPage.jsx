@@ -1,279 +1,225 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+// src/pages/WordQuizPage.jsx
+import React, { useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/WordQuiz.css";
 
-// ===== 各レベル =====
-import { n1WordSets } from "../data/wordquiz/n1";
-import { n2WordSets } from "../data/wordquiz/n2";
-import { n3WordSets } from "../data/wordquiz/n3";
-import { n4WordSets } from "../data/wordquiz/n4";
-import { n5WordSets } from "../data/wordquiz/n5";
+import useMCQQuiz from "@/utils/useMCQQuiz";
+import MCQQuizShell from "@/components/quiz/MCQQuizShell";
+
+// ===== データ（各レベル）=====
+import { n1WordSets } from "@/data/wordquiz/n1";
+import { n2WordSets } from "@/data/wordquiz/n2";
+import { n3WordSets } from "@/data/wordquiz/n3";
+import { n4WordSets } from "@/data/wordquiz/n4";
+import { n5WordSets } from "@/data/wordquiz/n5";
 
 const WORDSETS_BY_LEVEL = {
-  n1: n1WordSets, n2: n2WordSets, n3: n3WordSets, n4: n4WordSets, n5: n5WordSets,
+  n1: n1WordSets,
+  n2: n2WordSets,
+  n3: n3WordSets,
+  n4: n4WordSets,
+  n5: n5WordSets,
 };
 
-// ==== Utility ====
-const shuffle = (arr) => {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+/* ---------------------------
+ * ユーティリティ
+ * --------------------------- */
+// 各パートが「配列」でも「{ LessonX:[…] }」でも吸収してフラット化
+function flattenFromParts(wordSetsObj) {
+  const out = [];
+  if (!wordSetsObj) return out;
+
+  for (const [partKey, part] of Object.entries(wordSetsObj)) {
+    if (!part) continue;
+
+    if (Array.isArray(part)) {
+      for (const w of part) {
+        if (!w || typeof w !== "object") continue;
+        out.push({ ...w, _partKey: partKey, id: Number(w.id) });
+      }
+      continue;
+    }
+    if (typeof part === "object") {
+      for (const [k, list] of Object.entries(part)) {
+        if (!/^Lesson\d+$/i.test(k) || !Array.isArray(list)) continue;
+        for (const w of list) {
+          if (!w || typeof w !== "object") continue;
+          out.push({ ...w, _partKey: partKey, _lessonKey: k, id: Number(w.id) });
+        }
+      }
+    }
   }
-  return a;
-};
-
-const pickN = (arr, n, exceptSet = new Set()) => {
-  const pool = arr.filter((x) => !exceptSet.has(x));
-  return shuffle(pool).slice(0, Math.max(0, n));
-};
-
-// ==== データ形式を統一 ====
-function adaptItemToQuestion(item, poolReadings) {
-  const kanji = item?.kanji || item?.word || item?.base || "";
-  const reading = item?.reading || item?.yomi || "";
-
-  if (!kanji || !reading) {
-    const s = JSON.stringify(item ?? {});
-    return {
-      qhtml: `この語を選んでください：<code>${s.slice(0, 30)}…</code>`,
-      options: [s.slice(0, 8), "A", "B", "C"],
-      correctIndex: 0,
-    };
-  }
-
-  const exclude = new Set([reading]);
-  const dummies = pickN(poolReadings, 12, exclude).filter((r) => r && r !== reading).slice(0, 3);
-  const options = shuffle([reading, ...dummies]);
-  const correctIndex = options.indexOf(reading);
-  return {
-    qhtml: `「${kanji}」の読みは？`,
-    options,
-    correctIndex: correctIndex >= 0 ? correctIndex : 0,
-  };
+  return out.filter(w => Number.isFinite(w.id)).sort((a, b) => a.id - b.id);
 }
 
-const isVerbLike = (x) => {
-  const pos = String(x?.pos || "").toLowerCase();
-  return pos.startsWith("v") || pos.includes("動詞") || !!x?.conjugations;
-};
+// :lesson を解釈（pos/num/rand/all/自由語）
+function parseKey(raw) {
+  const s = String(raw || "");
+  {
+    const m = s.match(/^pos:([^:]+)(?::(\d+)-(\d+))?(?::(\d+))?$/i);
+    if (m) return { kind: "pos", pos: m[1], from: m[2] ? +m[2] : null, to: m[3] ? +m[3] : null, offset: m[4] ? +m[4] : 0 };
+  }
+  {
+    const m = s.match(/^num:(\d+)-(\d+)$/i);
+    if (m) return { kind: "num", from: +m[1], to: +m[2] };
+  }
+  if (s === "rand:all") return { kind: "rand", all: true };
+  {
+    const m = s.match(/^rand:(\d+)-(\d+)$/i);
+    if (m) return { kind: "rand", from: +m[1], to: +m[2] };
+  }
+  if (s.toLowerCase() === "all") return { kind: "all" };
+  return { kind: "text", q: s };
+}
 
-// =============================================================
-//                WordQuizPage メインコンポーネント
-// =============================================================
+// 品詞ゆる判定（partKey/posに対応）
+const pk = x => String(x?._partKey || "").toLowerCase();
+const isVerbLike  = x => /verbs?/.test(pk(x))   || /動詞/.test(String(x?.pos||""));
+const isNounLike  = x => /nouns?/.test(pk(x))   || /名詞/.test(String(x?.pos||""));
+const isAdjILike  = x => /iadjectives?/.test(pk(x)) || /い形|形容詞/.test(String(x?.pos||""));
+const isAdjNaLike = x => /naadjectives?/.test(pk(x))|| /な形|形容動詞/.test(String(x?.pos||""));
+const isAdvLike   = x => /adverbs?/.test(pk(x))  || /副詞/.test(String(x?.pos||""));
+
+// データ → MCQ形式
+function toMCQItems(sourceItems) {
+  return sourceItems.map((it, i) => {
+    if (it?.question_ja && Array.isArray(it?.choices_ja) && Number.isFinite(it?.correct)) {
+      const choices = it.choices_ja.map(String);
+      const ansIdx = Math.max(0, Math.min(choices.length - 1, Number(it.correct)));
+      return {
+        id: it.id ?? i,
+        question: String(it.question_ja), // HTML（<ruby>, <u> 等）OK
+        choices,
+        answer: ansIdx,
+        payload: it,
+      };
+    }
+    const dump = JSON.stringify(it).slice(0, 40);
+    return {
+      id: it.id ?? i,
+      question: `<code>${dump}</code> から正しい項目を選んでください`,
+      choices: ["A", "B", "C", "D"],
+      answer: 0,
+      payload: it,
+    };
+  });
+}
+
+/* ---------------------------
+ * メイン
+ * --------------------------- */
 export default function WordQuizPage() {
-  const { level = "n5", lesson: rawLesson = "all" } = useParams();
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const { level = "n5", lesson: rawLesson = "all" } = useParams();
 
-  const wordSets = WORDSETS_BY_LEVEL[level?.toLowerCase()] || {};
-  const lessonKeyRaw = String(rawLesson || "all").toLowerCase();
+  const normLevel = String(level).toLowerCase();
+  const sets = WORDSETS_BY_LEVEL[normLevel] || {};
 
-  // ====== レッスンデータ抽出 ======
-  const selectedData = useMemo(() => {
-    const allEntries = Object.entries(wordSets);
-    if (!allEntries.length) return [];
-    if (lessonKeyRaw === "all")
-      return allEntries.flatMap(([, arr]) => (Array.isArray(arr) ? arr : []));
-    const exact = wordSets[lessonKeyRaw];
-    if (Array.isArray(exact) && exact.length) return exact;
-    const matched = allEntries
-      .filter(([k]) => k.toLowerCase().includes(lessonKeyRaw))
-      .flatMap(([, arr]) => (Array.isArray(arr) ? arr : []));
-    return matched.length ? matched : allEntries.flatMap(([, arr]) => (Array.isArray(arr) ? arr : []));
-  }, [wordSets, lessonKeyRaw]);
+  const decoded = useMemo(() => {
+    try { return decodeURIComponent(String(rawLesson || "all")); }
+    catch { return String(rawLesson || "all"); }
+  }, [rawLesson]);
 
-  // ===== 品詞でフィルタリング =====
-  const filteredData = useMemo(() => {
-    const lowerKey = String(rawLesson).toLowerCase();
+  const key = useMemo(() => parseKey(decoded), [decoded]);
+  const all = useMemo(() => flattenFromParts(sets), [sets]);
 
-    if (lowerKey.includes("動詞")) {
-      return selectedData.filter((item) => isVerbLike(item));
+  // プール抽出
+  const pool = useMemo(() => {
+    if (!all.length) return [];
+
+    switch (key.kind) {
+      case "all":
+        return all;
+
+      case "num": {
+        const { from, to } = key;
+        return all.filter(w => w.id >= from && w.id <= to);
+      }
+
+      case "rand": {
+        return key.all
+          ? all
+          : all.filter(w => w.id >= (key.from || -Infinity) && w.id <= (key.to || Infinity));
+      }
+
+      case "pos": {
+        const { pos, from, to, offset } = key;
+        let arr = all;
+        if (pos.includes("動詞")) arr = arr.filter(isVerbLike);
+        else if (pos.includes("名詞")) arr = arr.filter(isNounLike);
+        else if (pos.includes("い形")) arr = arr.filter(isAdjILike);
+        else if (pos.includes("な形")) arr = arr.filter(isAdjNaLike);
+        else if (pos.includes("副詞")) arr = arr.filter(isAdvLike);
+        if (Number.isFinite(from) && Number.isFinite(to)) arr = arr.filter(w => w.id >= from && w.id <= to);
+        if (Number.isFinite(offset) && offset > 0) arr = arr.slice(offset);
+        return arr;
+      }
+
+      case "text": {
+        const q = key.q.toLowerCase();
+        return all.filter(w =>
+          String(w._partKey || "").toLowerCase().includes(q) ||
+          String(w._lessonKey || "").toLowerCase().includes(q)
+        );
+      }
+
+      default:
+        return all;
     }
-    if (lowerKey.includes("名詞")) {
-      return selectedData.filter(
-        (item) => !isVerbLike(item) && String(item.pos || "").includes("名詞")
-      );
-    }
-    if (lowerKey.includes("い形")) {
-      return selectedData.filter((item) => String(item.pos || "").includes("い形"));
-    }
-    if (lowerKey.includes("な形")) {
-      return selectedData.filter((item) => String(item.pos || "").includes("な形"));
-    }
-    if (lowerKey.includes("副詞")) {
-      return selectedData.filter((item) => String(item.pos || "").includes("副詞"));
-    }
-    return selectedData;
-  }, [selectedData, rawLesson]);
+  }, [all, key]);
 
-  // ===== クイズ作成 =====
-  const QUIZ_SIZE = 10;
-  const pool = useMemo(() => shuffle(filteredData).slice(0, QUIZ_SIZE), [filteredData]);
+  // MCQ化 → シャッフルして10問
+  const items = useMemo(() => {
+    const base = toMCQItems(pool);
+    return [...base].sort(() => Math.random() - 0.5).slice(0, 10);
+  }, [pool]);
 
-  const readingPool = useMemo(() => {
-    const readings = filteredData.map((x) => x?.reading || x?.yomi).filter(Boolean).map(String);
-    return Array.from(new Set(readings));
-  }, [filteredData]);
-
-  const questions = useMemo(
-    () =>
-      pool.map((item, idx) => {
-        const { qhtml, options, correctIndex } = adaptItemToQuestion(item, readingPool);
-        return {
-          id: item?.id ?? idx,
-          kanji: item?.kanji ?? "",
-          html: qhtml,
-          options,
-          correctIndex,
-        };
-      }),
-    [pool, readingPool]
-  );
-
-  // ===== 状態管理 =====
-  const [index, setIndex] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [judge, setJudge] = useState(null);
-  const [history, setHistory] = useState([]);
-  const [finished, setFinished] = useState(false);
-
-  const total = questions.length;
-  const q = questions[index];
-
-  // ===== リセット =====
-  useEffect(() => {
-    setIndex(0);
-    setSelected(null);
-    setJudge(null);
-    setHistory([]);
-    setFinished(false);
-  }, [level, rawLesson]);
-
-  // ===== データがないと戻る =====
-  useEffect(() => {
-    if (!total) {
-      const timer = setTimeout(() => nav(-1), 200);
-      return () => clearTimeout(timer);
-    }
-  }, [total, nav]);
-
-  // ===== 回答処理 =====
-  const handleAnswer = (i) => {
-    if (selected !== null || !q) return;
-    setSelected(i);
-    const ok = i === q.correctIndex;
-    setJudge(ok ? "correct" : "wrong");
-    setHistory((h) => [
-      ...h,
-      {
-        no: index + 1,
-        id: q.id,
-        html: q.html,
-        kanji: q.kanji,
-        correct: q.options[q.correctIndex],
-        picked: q.options[i],
-        ok,
-      },
-    ]);
-  };
-
-  const goNext = () => {
-    if (selected === null) return;
-    if (index + 1 < total) {
-      setIndex((n) => n + 1);
-      setSelected(null);
-      setJudge(null);
-    } else {
-      setFinished(true);
-    }
-  };
-
-  const score = history.filter((h) => h.ok).length;
-
-  // ✅ ======= 結果画面 =======
-  if (finished) {
-    const goDetail = (id) => nav(`/word/${level}/${id}`);
-
+  // データ無しUI
+  if (!items.length) {
     return (
-      <div className="quiz-result">
-        <h2>{`${String(level).toUpperCase()} ${String(rawLesson || "ALL")} - 結果`}</h2>
-        <p className="result-score">Score {score} / {total}</p>
-
-        <ul className="result-list">
-          {history.map((h, i) => (
-            <li
-              key={i}
-              className={`result-item ${h.ok ? "ok" : "ng"}`}
-            >
-              <div className="q">
-                <span
-                  className="word-link"
-                  onClick={() => goDetail(h.id)}
-                  title="詳細を見る"
-                >
-                  No.{h.id}「{h.kanji}」
-                </span>
-                ： <span dangerouslySetInnerHTML={{ __html: h.html }} />
-              </div>
-              <div className="ansline">
-                <span className="correct">正: {h.correct}</span>
-                <span className="your">あなた: {h.picked}</span>
-                <span className="mark">{h.ok ? "✅" : "❌"}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <button className="result-back" onClick={() => nav(-1)}>
-          レッスン一覧へ戻る
-        </button>
+      <div className="quiz-wrap">
+        <h1>{`${normLevel.toUpperCase()} ${decoded || "ALL"}`}</h1>
+        <p className="counter">0 / 0</p>
+        <div className="question">該当データが見つかりませんでした。</div>
+        <div className="wq-actions">
+          <button className="result-back" onClick={() => navigate(-1)}>レッスン一覧へ戻る</button>
+        </div>
       </div>
     );
   }
 
-  // ===== 出題画面 =====
+  const quiz = useMCQQuiz(items, {
+    shuffleQuestions: false, // 上でシャッフル済み
+    shuffleChoices: true,
+    fxDelay: 750,
+  });
+
   return (
-    <div
-      className={`quiz-wrap ${judge ? (judge === "correct" ? "show-correct" : "show-wrong") : ""}`}
-      key={q?.id}
-    >
-      <h1>{`${String(level).toUpperCase()} ${String(rawLesson || "ALL")}`}</h1>
-      <p className="counter">{index + 1} / {total}</p>
-
-      <h2 className="question">
-        <span dangerouslySetInnerHTML={{ __html: q.html }} />
-      </h2>
-
-      <div className="choices">
-        {q.options.map((opt, i) => {
-          const cls =
-            selected !== null
-              ? i === q.correctIndex
-                ? "choice-btn correct"
-                : i === selected
-                ? "choice-btn wrong"
-                : "choice-btn"
-              : "choice-btn";
-          return (
-            <button
-              key={`${q.id}-${i}`}
-              className={cls}
-              onClick={() => handleAnswer(i)}
-              disabled={selected !== null}
-            >
-              {opt}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="wq-actions">
-        <button className="wq-next" onClick={goNext} disabled={selected === null}>
-          {index < total - 1 ? "次へ" : "終了"}
-        </button>
-      </div>
-    </div>
+    <MCQQuizShell
+      title={`${t("wordquiz.title", { defaultValue: "単語クイズ" })}（${level.toUpperCase()} / ${decoded}）`}
+      questions={quiz.questions}
+      current={quiz.current}
+      index={quiz.index}
+      total={quiz.total}
+      score={quiz.score}
+      selected={quiz.selected}
+      judge={quiz.judge}
+      finished={quiz.finished}
+      onPick={quiz.pick}
+      onRestart={quiz.restart}
+      onBack={quiz.backOne}
+      onExit={() => navigate(`/word-quiz/${normLevel}`)}
+      renderQuestion={(q) => (
+        // HTML（<u>, <ruby> など）をそのまま表示
+        <span
+          className="jp"
+          style={{ fontSize: 22 }}
+          dangerouslySetInnerHTML={{ __html: String(q?.question || "") }}
+        />
+      )}
+      numberLabels={[]}
+    />
   );
 }

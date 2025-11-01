@@ -1,0 +1,86 @@
+// src/data/grammar/n3/voice/lesson1.js
+// N3: 受け身（～られる／～れる）+ 使役受け身（～させられる／～せられる） Lesson1（ruby対応・一意解）
+
+// 受け身 10問
+export const  N3_VOICE_Lesson1 = [
+  {
+    id: "n3-vp-101",
+    labelKey: "passive_basic",
+    question: "きのう、<ruby>先生<rt>せんせい</rt></ruby>に<ruby>名前<rt>なまえ</rt></ruby>を<ruby>間違<rt>まちが</rt></ruby>え（　）。",
+    choices: ["られました", "させられました", "ました", "されました"],
+    answer: 0,
+    explain: "他者の行為を受けた → 受け身「間違えられる」。",
+  },
+  {
+    id: "n3-vp-102",
+    labelKey: "passive_godan",
+    question: "<ruby>私<rt>わたし</rt></ruby>は<ruby>上司<rt>じょうし</rt></ruby>にレポートを<ruby>直<rt>なお</rt></ruby>さ（　）。",
+    choices: ["れました", "せられました", "させられました", "ました"],
+    answer: 0,
+    explain: "五段「直す」→ 直さ『れる』。",
+  },
+  {
+    id: "n3-vp-103",
+    labelKey: "passive_godan",
+    question: "<ruby>彼<rt>かれ</rt></ruby>はファンに<ruby>写真<rt>しゃしん</rt></ruby>をたくさん<ruby>撮<rt>と</rt></ruby>ら（　）。",
+    choices: ["れました", "させられました", "せられました", "しました"],
+    answer: 0,
+    explain: "五段「撮る」→ 撮ら『れる』。",
+  },
+  {
+    id: "n3-vp-104",
+    labelKey: "passive_godan",
+    question: "<ruby>私は<rt>わたしは</rt></ruby><ruby>友達<rt>ともだち</rt></ruby>に<ruby>秘密<rt>ひみつ</rt></ruby>を<ruby>知<rt>し</rt></ruby>ら（　）。",
+    choices: ["れてしまいました", "せられてしまいました", "させられてしまいました", "てしまいました"],
+    answer: 0,
+    explain: "五段「知る」→ 知ら『れる』。",
+  },
+  {
+    id: "n3-vp-105",
+    labelKey: "passive_suru",
+    question: "<ruby>会議<rt>かいぎ</rt></ruby>の<ruby>日程<rt>にってい</rt></ruby>は<ruby>部長<rt>ぶちょう</rt></ruby>に<ruby>決定<rt>けってい</rt></ruby>（　）。",
+    choices: ["られました", "されました", "させられました", "せられました"],
+    answer: 1,
+    explain: "サ変名詞＋する → 受け身は『される』。",
+  },
+  {
+    id: "n3-vp-106",
+    labelKey: "passive_iu",
+    question: "<ruby>私<rt>わたし</rt></ruby>は<ruby>急<rt>いそ</rt></ruby>いでくるように<ruby>言<rt>い</rt></ruby>わ（　）。",
+    choices: ["れました", "られました", "させられました", "せられました"],
+    answer: 0,
+    explain: "言う→言われる。",
+  },
+  {
+    id: "n3-vp-107",
+    labelKey: "passive_transitive_su",
+    question: "<ruby>古<rt>ふる</rt></ruby>い<ruby>建物<rt>たてもの</rt></ruby>が<ruby>台風<rt>たいふう</rt></ruby>で<ruby>壊<rt>こわ</rt></ruby>さ（　）。",
+    choices: ["れました", "られました", "せられました", "させられました"],
+    answer: 0,
+    explain: "他動詞「壊す」→ 壊さ『れる』。",
+  },
+  {
+    id: "n3-vp-108",
+    labelKey: "passive_godan",
+    question: "<ruby>母<rt>はは</rt></ruby>に<ruby>新<rt>あたら</rt></ruby>しい<ruby>靴<rt>くつ</rt></ruby>を<ruby>買<rt>か</rt></ruby>わ（　）。",
+    choices: ["されました", "れました", "させられました", "せられました"],
+    answer: 1,
+    explain: "五段「買う」→ 買わ『れる』。",
+  },
+  {
+    id: "n3-vp-109",
+    labelKey: "passive_suru2",
+    question: "<ruby>会場<rt>かいじょう</rt></ruby>は<ruby>急<rt>きゅう</rt></ruby>に<ruby>変更<rt>へんこう</rt></ruby>（　）。",
+    choices: ["されました", "させられました", "られました", "れました"],
+    answer: 0,
+    explain: "サ変名詞＋されるで受け身。",
+  },
+  {
+    id: "n3-vp-110",
+    labelKey: "passive_kuru",
+    question: "<ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>会議<rt>かいぎ</rt></ruby>には<ruby>来<rt>こ</rt></ruby>ら（　）そうです。",
+    choices: ["れない", "れました", "させられない", "せられない"],
+    answer: 0,
+    explain: "来るの受け身形は『来られる』。否定は『来られない』。",
+  },
+];

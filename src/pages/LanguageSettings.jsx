@@ -6,10 +6,16 @@ import i18n from "../i18n/i18n";
 import "../styles/LanguageSettings.css";
 
 const languages = [
+  { code: "ja", label: "日本語" },
   { code: "en", label: "English" },
-  { code: "id", label: "Bahasa Indonesia" },
   { code: "zh", label: "简体中文" },
-  { code: "tw", label: "繁體中文" }
+  { code: "tw", label: "繁體中文" },
+  { code: "id", label: "Bahasa Indonesia" },
+  { code: "ko", label: "한국어" },
+  { code: "vi", label: "Tiếng Việt" },
+  { code: "th", label: "ไทย" },
+  { code: "my", label: "မြန်မာစာ" },
+  { code: "km", label: "ខ្មែរ" },
 ];
 
 const LanguageSettings = () => {
@@ -20,7 +26,7 @@ const LanguageSettings = () => {
     i18n.changeLanguage(lang);
     setLanguage(lang);
     localStorage.setItem("i18nextLng", lang);
-    navigate(-1); // 👈 戻る（設定画面に）
+    navigate(-1); // 戻る（設定画面へ）
   };
 
   return (
@@ -32,6 +38,7 @@ const LanguageSettings = () => {
             <button
               className={selectedLanguage === lang.code ? "active" : ""}
               onClick={() => handleChange(lang.code)}
+              aria-pressed={selectedLanguage === lang.code}
             >
               {lang.label}
             </button>

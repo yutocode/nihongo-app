@@ -1,3 +1,4 @@
+//src/pages/WordPage.jsx
 import React from "react";
 import { useParams } from "react-router-dom";
 import WordCard from "../components/WordCard";
