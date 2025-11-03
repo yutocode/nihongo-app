@@ -1,0 +1,173 @@
+// src/data/exam/n5/n5_mock1.js
+// JLPT N5 模試 01（完成版 / かな中心 / 本試験寄り）
+// ルール：本文はかな中心。読み問題のみ漢字を出す（選択肢はかな）。
+// 読解の本文は <ruby>会社<rt>かいしゃ</rt></ruby> のようにふりがな対応。
+
+export const N5_MOCK1_META = {
+  id: "n5-mock1",
+  level: "N5",
+  title: "N5 模試 01（完成版）",
+  durationSec: 45 * 60,
+  pass: { overall: 0.6, readingMin: 0.5, listeningMin: 0.5 },
+  sectionsLabel: {
+    vocab: "文字・語彙",
+    grammar: "文法",
+    reading: "読解",
+    listening: "聴解",
+  },
+};
+
+// 40問：文字語彙 8 / 文法 12 / 読解 10 / 聴解 10
+export const N5_MOCK1_ITEMS = [
+  // ===== 文字・語彙（1-8）=====
+  { id:"Q001", no:1, section:"vocab",
+    stem:"まいあさ、【新聞】をよみます。下せんぶのよみは？",
+    choices:["しんぶん","しんもん","しみん","しゅんぶん"], answer:0 },
+  { id:"Q002", no:2, section:"vocab",
+    stem:"たなかさんは【会社】で はたらきます。下せんぶのよみは？",
+    choices:["かいしゃ","かしや","かいや","かいしょ"], answer:0 },
+  { id:"Q003", no:3, section:"vocab",
+    stem:"ここは【有名】な みせです。下せんぶのよみは？",
+    choices:["ゆうめい","ゆめい","ゆうみょう","ゆめ"], answer:0 },
+  { id:"Q004", no:4, section:"vocab",
+    stem:"あした、【雨】が ふります。下せんぶのよみは？",
+    choices:["あま","あめ","うめ","うま"], answer:1 },
+  { id:"Q005", no:5, section:"vocab",
+    stem:"（　）に いちばん いい ことばを えらびなさい。きょうは とても（　）です。コートを きてください。",
+    choices:["さむい","たかい","ひくい","きれい"], answer:0 },
+  { id:"Q006", no:6, section:"vocab",
+    stem:"（　）に いちばん いい ことば：あさ、パンと（　）を のみます。",
+    choices:["みず","ジュース","さかな","いす"], answer:1 },
+  { id:"Q007", no:7, section:"vocab",
+    stem:"カタカナごの いみ：エレベーター",
+    choices:["かいだん","ゆうびん","しょうこうき","じてんしゃ"], answer:2 },
+  { id:"Q008", no:8, section:"vocab",
+    stem:"この ペンは（　）です。100えんだけです。",
+    choices:["たかい","べんり","やすい","きけん"], answer:2 },
+
+  // ===== 文法（9-20）=====
+  { id:"Q009", no:9, section:"grammar",
+    stem:"たなかさんは にほん（　） せんせいです。",
+    choices:["は","が","の","を"], answer:2 },
+  { id:"Q010", no:10, section:"grammar",
+    stem:"まいあさ 7じ（　） おきます。",
+    choices:["に","へ","で","と"], answer:0 },
+  { id:"Q011", no:11, section:"grammar",
+    stem:"ここ（　） しゃしんを とらないで ください。",
+    choices:["に","で","を","へ"], answer:1 },
+  { id:"Q012", no:12, section:"grammar",
+    stem:"きのう、ともだち（　） えいがを みました。",
+    choices:["に","が","と","を"], answer:3 },
+  { id:"Q013", no:13, section:"grammar",
+    stem:"あした、ともだち（　） あいます。",
+    choices:["に","と","を","へ"], answer:1 },
+  { id:"Q014", no:14, section:"grammar",
+    stem:"いま なに（　） していますか。",
+    choices:["を","が","に","も"], answer:0 },
+  { id:"Q015", no:15, section:"grammar",
+    stem:"ここ（　） すわって ください。",
+    choices:["で","に","を","へ"], answer:1 },
+  { id:"Q016", no:16, section:"grammar",
+    stem:"りんご（　） ふたつ ください。",
+    choices:["を","が","で","と"], answer:0 },
+  { id:"Q017", no:17, section:"grammar",
+    stem:"ただしい かたち：まいあさ コーヒーを（　）。",
+    choices:["のみます","のみました","のみませんでした","のまない"], answer:0 },
+  { id:"Q018", no:18, section:"grammar",
+    stem:"ただしい かたち：ドアを（　）ください。",
+    choices:["あけて","あける","あけない","あけた"], answer:0 },
+  { id:"Q019", no:19, section:"grammar",
+    stem:"（せいじょ） A しちじに　B おきます　C まいあさ　D わたしは",
+    choices:["D→C→A→B","C→D→A→B","C→A→D→B","D→A→C→B"], answer:1 },
+  { id:"Q020", no:20, section:"grammar",
+    stem:"（せいじょ） A としょかん　B で　C ほんを　D よみます",
+    choices:["A→B→C→D","A→C→B→D","C→A→B→D","B→A→C→D"], answer:0 },
+
+  // ===== 読解（21-30）=====
+  // 掲示
+  { id:"Q021", no:21, section:"reading",
+    stem:"【としょかんの おしらせ】\nかいかん：ごぜん9じ〜ごご6じ\nやすみ：かようび\nほんを かりる ときは、がくせいカードを みせて ください。\nやすみは いつですか。",
+    choices:["げつようび","かようび","どようび","にちようび"], answer:1 },
+  { id:"Q022", no:22, section:"reading",
+    stem:"上の おしらせ：ほんを かりる とき、ひつような ものは なんですか。",
+    choices:["おかね","がくせいカード","でんわばんごう","じゅうしょ"], answer:1 },
+  // メール
+  { id:"Q023", no:23, section:"reading",
+    stem:"（メール）\nせんせい、やまだです。らいしゅうの にほんご クラスは すいようび の ごご3じ から です。ばしょは 302 きょうしつ です。おくれないで ください。\nクラスは いつ ですか。",
+    choices:["かようび 15じ","すいようび 15じ","もくようび 15じ","きんようび 15じ"], answer:1 },
+  { id:"Q024", no:24, section:"reading",
+    stem:"上の メール：ばしょは どこ ですか。",
+    choices:["201 きょうしつ","302 きょうしつ","としょかん","カフェ"], answer:1 },
+  // 短文（ふりがな）
+  { id:"Q025", no:25, section:"reading",
+    stem:"たなかさんは <ruby>会社<rt>かいしゃ</rt></ruby>いん です。げつようび から きんようび まで はたらきます。まいあさ 6じに おきて、7じに いえを でます。<ruby>会社<rt>かいしゃ</rt></ruby>は 8じはんに はじまります。たなかさんは なんじに いえを でますか。",
+    choices:["6じ","7じ","8じ","8じはん"], answer:1 },
+  { id:"Q026", no:26, section:"reading",
+    stem:"上の ぶん：たなかさんは どようび と にちようびに はたらきますか。",
+    choices:["はい、はたらきます。","いいえ、はたらきません。","どようび だけ はたらきます。","にちようび だけ はたらきます。"], answer:1 },
+  // 表（時刻表）
+  { id:"Q027", no:27, section:"reading",
+    stem:"【バス じこく】 がっこうまえ → えき\nへいじつ：7:10／7:30／7:50\nきゅうじつ：8:00／8:30\nしつもん：へいじつ の 7じだい の バスは なんぼん ありますか。",
+    choices:["1ほん","2ほん","3ほん","4ほん"], answer:2 },
+  // 張り紙
+  { id:"Q028", no:28, section:"reading",
+    stem:"【アルバイト ぼしゅう】\nじかん：17:00〜21:00（どにち できる ひと）\nじきゅう：1000えん\nどんな ひとが ほしい ですか。",
+    choices:["へいじつ だけ できる ひと","どにちに はたらける ひと","あさ だけ はたらける ひと","がくせい は だめ"], answer:1 },
+  // 回覧
+  { id:"Q029", no:29, section:"reading",
+    stem:"【マンション そうじ の おしらせ】\nらいしゅう かようび の ごぜんちゅう に そうじ を します。ベランダ の にもつ を なか に いれて ください。\nいつ そうじ を しますか。",
+    choices:["らいしゅう げつようび ごぜん","らいしゅう かようび ごぜん","らいしゅう かようび ごご","らいしゅう すいようび ごぜん"], answer:1 },
+  { id:"Q030", no:30, section:"reading",
+    stem:"上の おしらせ：なに を して ください と いっていますか。",
+    choices:["ベランダ に にもつ を だす","にもつ を ベランダ から なか に いれる","ドア を しめる","ゴミ を だす"], answer:1 },
+
+  // ===== 聴解（31-40）=====
+  // ※ script は開発用。画面では audio 再生と設問のみ表示。
+  { id:"Q031", no:31, section:"listening", audio:"/audio/n5/mock1/031.mp3",
+    script:"女：あした の にほんご クラス は なんじ ですか。男：ごご2じ から です。",
+    stem:"クラス は なんじ から ですか。",
+    choices:["ごぜん10じ","しょうご12じ","ごご2じ","ごご3じ"], answer:2 },
+  { id:"Q032", no:32, section:"listening", audio:"/audio/n5/mock1/032.mp3",
+    script:"男：この バス は えき へ いきますか。女：いいえ、えき へ は つぎ の バス です。",
+    stem:"この バス は えき へ いきますか。",
+    choices:["はい、いきます。","いいえ、いきません。","くうこう へ いきます。","がっこう へ いきます。"], answer:1 },
+  { id:"Q033", no:33, section:"listening", audio:"/audio/n5/mock1/033.mp3",
+    script:"てんいん：リンゴ は 1こ 100えん、3こ で 250えん です。きゃく：じゃ、3こ ください。",
+    stem:"きゃく は いくら はらいますか。",
+    choices:["100えん","200えん","250えん","300えん"], answer:2 },
+  { id:"Q034", no:34, section:"listening", audio:"/audio/n5/mock1/034.mp3",
+    script:"女：すみません、としょかん は なんじ まで ですか。男：6じ まで です。",
+    stem:"としょかん は なんじ まで ですか。",
+    choices:["4じ","5じ","6じ","7じ"], answer:2 },
+  { id:"Q035", no:35, section:"listening", audio:"/audio/n5/mock1/035.mp3",
+    script:"男：あした の てんき は どう ですか。女：あめ です。かさ を もって ください。",
+    stem:"あした の てんき は？",
+    choices:["はれ","くもり","あめ","ゆき"], answer:2 },
+  { id:"Q036", no:36, section:"listening", audio:"/audio/n5/mock1/036.mp3",
+    script:"アナウンス：つぎ は とうきょう、とうきょう です。おでぐち は みぎがわ です。",
+    stem:"この アナウンス は どこ ですか。",
+    choices:["バス","でんしゃ","ひこうき","タクシー"], answer:1 },
+  { id:"Q037", no:37, section:"listening", audio:"/audio/n5/mock1/037.mp3",
+    script:"男：コーヒー と こうちゃ、どちら が いい ですか。女：こうちゃ を ください。",
+    stem:"女 の ひと は なに を のみますか。",
+    choices:["コーヒー","こうちゃ","みず","ジュース"], answer:1 },
+  { id:"Q038", no:38, section:"listening", audio:"/audio/n5/mock1/038.mp3",
+    script:"女：せんせい、しゅくだい は いつ だしますか。男：きんようび まで に だして ください。",
+    stem:"しゅくだい の しめきり は いつ ですか。",
+    choices:["すいようび","もくようび","きんようび","どようび"], answer:2 },
+  { id:"Q039", no:39, section:"listening", audio:"/audio/n5/mock1/039.mp3",
+    script:"てんいん：Tシャツ は しろ と あお が あります。男：あお を ください。",
+    stem:"男 の ひと は なにいろ の Tシャツ を かいますか。",
+    choices:["しろ","くろ","あお","あか"], answer:2 },
+  { id:"Q040", no:40, section:"listening", audio:"/audio/n5/mock1/040.mp3",
+    script:"アナウンス：ごご3じ から にほんご の しけん を おこないます。じゅけん ばんごう を かいて、しずか に して ください。",
+    stem:"しけん は なんじ から ですか。",
+    choices:["ごご1じ","ごご2じ","ごご3じ","ごご4じ"], answer:2 },
+];
+
+// 分野取得（採点・集計で使用）
+export const N5_MOCK1_SECTION_OF = (noOrSection, items = N5_MOCK1_ITEMS) => {
+  if (typeof noOrSection === "string") return noOrSection;
+  const it = items.find(x => x.no === noOrSection);
+  return it?.section || "vocab";
+};

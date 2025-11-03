@@ -9,7 +9,7 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase/firebase-config";
 import { useAppStore } from "./store/useAppStore";
 import "./styles/Global.css";
@@ -32,6 +32,9 @@ import LanguageSettings from "./pages/LanguageSettings";
 import MyWordbookPage from "./pages/MyWordbookPage";
 import BrowseBlockPage from "./pages/BrowseBlockPage";
 
+// ★ 模試ページ（追加）
+import ExamPage from "./pages/ExamPage";
+
 // alphabet
 import AlphabetUnitsPage from "./pages/AlphabetUnitsPage";
 import AlphabetUnitLessonPage from "./pages/AlphabetUnitLessonPage";
@@ -41,7 +44,7 @@ import GrammarCategorySelectPage from "./pages/grammar/common/GrammarCategorySel
 import GrammarLessonSelectPage from "./pages/grammar/common/GrammarLessonSelectPage";
 import GrammarQuizPage from "./pages/grammar/common/GrammarQuizPage";
 
-// ★ paraphrase（言いかえ）共通ページ
+// ★ paraphrase
 import ParaphraseQuizPage from "./pages/grammar/common/ParaphraseQuizPage";
 
 // N4 grammar
@@ -68,10 +71,8 @@ import StoryPlayer from "./pages/StoryPlayer.jsx";
 // verb conjugation quiz
 import GrammarVerbQuizPage from "./pages/GrammarVerbQuizPage";
 
-// ★ N3: 受け身・使役受け身（voice）
+// ★ N3
 import N3VoiceQuizPage from "./pages/grammar/n3/N3VoiceQuizPage";
-
-// ★ N3: 逆接（が／けれども／のに／しかし／だが／わりに／くせに）
 import N3ConcessionQuizPage from "./pages/grammar/n3/N3ConcessionQuizPage";
 
 // XP persistence
@@ -87,17 +88,13 @@ function normalizeLesson(key) {
   const m = String(key).match(/lesson\s*(\d+)/i);
   return m ? `Lesson${m[1]}` : String(key);
 }
-
-/** 旧比較URL互換: /grammar/:level/compare → /grammar/n4/comparison/Lesson1 */
 function CompareAliasRedirect() {
   return <Navigate to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`} replace />;
 }
-/** 旧比較URL互換: /grammar/:level/compare/:lesson → /grammar/n4/comparison/:lesson */
 function CompareLessonAliasRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />;
 }
-/** 旧比較URL互換: /grammar/:level/comparison/:lesson → /grammar/n4/comparison/:lesson */
 function ComparisonLegacyRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />;
@@ -127,6 +124,9 @@ const App = () => (
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/result" element={<ResultPage />} />
 
+        {/* JLPT 模試（追加） */}
+        <Route path="/exam/:examId" element={<ExamPage />} />
+
         {/* lessons & words */}
         <Route path="/level" element={<LevelSelectPage />} />
         <Route path="/levels" element={<LevelSelectPage />} />
@@ -153,33 +153,29 @@ const App = () => (
         <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
         <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
 
-        {/* ★ N3: 逆接（本編のみ専用）。一覧は汎用 /grammar/:level/:category を利用 */}
+        {/* N3 special (dedicated) */}
         <Route path="/grammar/n3/concession/:lesson" element={<N3ConcessionQuizPage />} />
-
-        {/* ★ Paraphrase（言いかえ）専用 実行ページ（汎用より前に置く） */}
         <Route path="/grammar/:level/paraphrase/:lesson" element={<ParaphraseQuizPage />} />
 
-        {/* 汎用：その他の文法クイズ */}
+        {/* generic grammar */}
         <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
 
-        {/* ★ N3: 受け身・使役受け身（voice）専用 */}
+        {/* N3 voice */}
         <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
 
-        {/* verb conjugation quiz */}
+        {/* verb conjugation */}
         <Route path="/grammar/:level/verb-forms/:lesson" element={<GrammarVerbQuizPage />} />
 
-        {/* N4 comparison official lesson routes (一覧ページから遷移) */}
+        {/* N4 official paths */}
         <Route path="/grammar/n4/comparison/:lesson" element={<N4ComparisonBlankQuizPage />} />
+        <Route path="/grammar/n4/tense-aspect-jlPT/:lesson" element={<N4TenseAspectJLPTPage />} />
 
-        {/* N4 tense-aspect (JLPT) official lesson routes */}
-        <Route path="/grammar/n4/tense-aspect-jlpt/:lesson" element={<N4TenseAspectJLPTPage />} />
-
-        {/* legacy comparison redirects to N4 */}
+        {/* legacy redirects */}
         <Route path="/grammar/:level/comparison/:lesson" element={<ComparisonLegacyRedirect />} />
         <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
         <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
 
-        {/* N5 special grammar quizzes (比較は無し) */}
+        {/* N5 specials */}
         <Route path="/grammar/:level/intent-plan/:lesson" element={<N5IntentPlanQuizPage />} />
         <Route path="/grammar/:level/exist-have/:lesson" element={<ExistHaveQuizPage />} />
         <Route path="/grammar/:level/ask-permit/:lesson" element={<N5AskPermitQuizPage />} />
@@ -235,6 +231,8 @@ const AppInitializer = () => {
     "/alphabet",
     "/alphabet/unit",
     "/reader",
+    // ★ 追加：模試ページをプライベート扱いに
+    "/exam",
   ];
 
   const lastNavRef = useRef("");
@@ -244,6 +242,7 @@ const AppInitializer = () => {
     navigate(to, { replace: true });
   };
 
+  // 1) 通常の Auth 監視
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       const path = location.pathname || "/";
@@ -252,18 +251,10 @@ const AppInitializer = () => {
         setUser(user);
 
         (async () => {
-          try {
-            await ensureUserDoc?.(user.uid);
-          } catch (e) {
-            console.warn(e);
-          }
+          try { await ensureUserDoc?.(user.uid); } catch (e) { console.warn(e); }
         })();
 
-        try {
-          initUserXP?.(user.uid);
-        } catch (e) {
-          console.warn("initUserXP failed:", e);
-        }
+        try { initUserXP?.(user.uid); } catch (e) { console.warn("initUserXP failed:", e); }
 
         try {
           const st = useAppStore.getState?.();
@@ -276,9 +267,7 @@ const AppInitializer = () => {
         if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
       } else {
         clearUser();
-        try {
-          stopAutoSave?.();
-        } catch {}
+        try { stopAutoSave?.(); } catch {}
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
         if (onPrivate) navigateOnce("/");
       }
@@ -288,6 +277,33 @@ const AppInitializer = () => {
 
     return () => unsubscribe && unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 2) DEV 専用：?autologin=1 でテストユーザに自動ログイン
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+
+    try {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get("autologin") !== "1") return;
+
+      const email = import.meta.env.VITE_SHOT_EMAIL;
+      const pass  = import.meta.env.VITE_SHOT_PASS;
+
+      if (!email || !pass) {
+        console.warn("VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。");
+        return;
+      }
+
+      const unsub = auth.onAuthStateChanged((u) => {
+        if (!u) {
+          signInWithEmailAndPassword(auth, email, pass).catch(() => {});
+        }
+        unsub?.();
+      });
+    } catch (e) {
+      console.warn("autologin init failed:", e);
+    }
   }, []);
 
   return null;

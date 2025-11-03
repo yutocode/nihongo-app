@@ -7,10 +7,31 @@ import { useAppStore } from "../store/useAppStore";
 import FeatureTile from "../components/FeatureTile";
 import "../styles/Home.css";
 
+// レベル→模試IDのマッピング（用意できたら増やす）
+const EXAM_BY_LEVEL = {
+  n5: "n5-mock1",
+  // n4: "n4-mock1",
+  // n3: "n3-mock1",
+  // n2: "n2-mock1",
+  // n1: "n1-mock1",
+};
+
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const level = useAppStore((s) => s.level) || "n5";
+
+  // このレベルで使う模試ID（なければnull）
+  const examId = EXAM_BY_LEVEL[level] || null;
+
+  // CTA：N5なら模試へ、他レベルは従来どおりレッスンへ
+  const handleStart = () => {
+    if (examId) {
+      navigate(`/exam/${examId}`);
+    } else {
+      navigate(`/lessons/${level}`);
+    }
+  };
 
   return (
     <main
@@ -27,6 +48,7 @@ const Home = () => {
             desc={t("home.menu.wordbookDesc", "カードで暗記")}
             onClick={() => navigate(`/lessons/${level}`)}
           />
+
           <FeatureTile
             iconName="question"
             label={t("home.menu.grammarQuiz", "文法クイズ")}
@@ -34,14 +56,24 @@ const Home = () => {
             onClick={() => navigate(`/grammar/${level}`)}
           />
 
-          {/* 課文：近日公開 */}
-          <FeatureTile disabled>
-            <span className="coming-soon">近日公開</span>
-          </FeatureTile>
+          {/* JLPT 模試（レベルに応じて遷移／未対応レベルは非活性表示） */}
+          <FeatureTile
+            iconName="medal"
+            label={t("home.menu.mockExam", "JLPT 模試")}
+            desc={
+              examId
+                ? t("home.menu.mockExamDesc", `${level.toUpperCase()} 試験モード`)
+                : t("home.menu.mockExamSoon", "このレベルは準備中")
+            }
+            onClick={
+              examId ? () => navigate(`/exam/${examId}`) : undefined
+            }
+            disabled={!examId}
+          />
 
-          {/* リスニング：近日公開 */}
+          {/* リスニング：近日公開（そのまま） */}
           <FeatureTile disabled>
-            <span className="coming-soon">近日公開</span>
+            <span className="coming-soon">{t("common.comingSoon", "近日公開")}</span>
           </FeatureTile>
         </div>
       </section>
@@ -80,14 +112,28 @@ const Home = () => {
       <div className="container cta-wrap">
         <button
           className="cta-big btn-primary"
-          onClick={() => navigate(`/lessons/${level}`)}
-          aria-label={t(
-            "home.cta.start",
-            `${level.toUpperCase()}から学習を始める`
-          )}
+          onClick={handleStart}
+          aria-label={
+            examId
+              ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
+              : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)
+          }
         >
-          {t("home.cta.start", `${level.toUpperCase()}から学習を始める`)}
+          {examId
+            ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
+            : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)}
         </button>
+
+        {/* 補助リンク：レッスン学習へ（模試導線を増やしても迷わないように） */}
+        {examId && (
+          <button
+            className="cta-sub btn-ghost"
+            onClick={() => navigate(`/lessons/${level}`)}
+            style={{ marginLeft: 12 }}
+          >
+            {t("home.cta.learnInstead", "レッスン学習に切り替える")}
+          </button>
+        )}
       </div>
     </main>
   );
