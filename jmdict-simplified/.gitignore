@@ -1,0 +1,26 @@
+# IDEs
+.idea
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Gradle cache directory
+.gradle
+
+# Build outputs
+build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules
+
+# System Files
+.DS_Store
+Thumbs.db

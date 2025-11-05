@@ -1,0 +1,23 @@
+{
+  "name": "@scriptin/jmdict-simplified-root",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx nx run-many --target=build",
+    "build:nocache": "npx nx run-many --target=build --skip-nx-cache",
+    "test": "npx nx run-many --target=test",
+    "lint": "npx nx run-many --target=lint",
+    "validate": "node validate.js",
+    "docs": "npx nx run-many --target=docs"
+  },
+  "devDependencies": {
+    "@nrwl/nx-cloud": "latest",
+    "ajv": "^8.12.0",
+    "nx": "15.4.4",
+    "prettier": "^2.6.2",
+    "ts-json-schema-generator": "^1.2.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

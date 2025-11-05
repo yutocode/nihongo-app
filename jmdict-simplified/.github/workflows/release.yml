@@ -1,0 +1,183 @@
+name: Release
+
+on:
+  schedule:
+    - cron: '0 12 ? * MON' # At 12:00 PM every Monday
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: 'Release notes'
+        required: true
+        default: 'Updated to the latest version of the source dictionary files'
+      dry_run:
+        description: "Dry run: don't create a release, don't commit checksums"
+        required: true
+        type: boolean
+        default: false
+      force:
+        description: "Force: proceed even if XML files haven't changed"
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - name: Download source files
+        run: |
+          ./gradlew clean
+          ./gradlew download
+      - name: Check for updates
+        if: ${{ !inputs.force }}
+        shell: bash
+        run: |
+          jmdict_updated=$(./gradlew --quiet jmdictHasChanged)
+          jmdict_examples_updated=$(./gradlew --quiet jmdictExamplesHasChanged)
+          jmnedict_updated=$(./gradlew --quiet jmnedictHasChanged)
+          kanjidic_updated=$(./gradlew --quiet kanjidicHasChanged)
+          echo "JMDICT_UPDATED=$jmdict_updated" >> $GITHUB_ENV
+          echo "JMDICT_EXAMPLES_UPDATED=$jmdict_examples_updated" >> $GITHUB_ENV
+          echo "JMNEDICT_UPDATED=$jmnedict_updated" >> $GITHUB_ENV
+          echo "KANJIDIC_UPDATED=$kanjidic_updated" >> $GITHUB_ENV
+          if [[ "$jmdict_updated" = "YES" ]] || \
+             [[ "$jmdict_examples_updated" = "YES" ]] || \
+             [[ "$jmnedict_updated" = "YES" ]] || \
+             [[ "$kanjidic_updated" = "YES" ]]
+          then
+            echo "SOMETHING_UPDATED=YES" >> $GITHUB_ENV
+          fi
+      - name: Set force update variables
+        if: ${{ inputs.force }}
+        run: |
+          echo "JMDICT_UPDATED=YES" >> $GITHUB_ENV
+          echo "JMDICT_EXAMPLES_UPDATED=YES" >> $GITHUB_ENV
+          echo "JMNEDICT_UPDATED=YES" >> $GITHUB_ENV
+          echo "KANJIDIC_UPDATED=YES" >> $GITHUB_ENV
+          echo "SOMETHING_UPDATED=YES" >> $GITHUB_ENV
+      - name: Convert dictionaries
+        if: env.SOMETHING_UPDATED == 'YES'
+        run: ./gradlew convert
+      - name: Setup Node.js
+        if: env.SOMETHING_UPDATED == 'YES'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install NPM dependencies
+        if: env.SOMETHING_UPDATED == 'YES'
+        working-directory: node
+        run: npm ci
+      - name: Build Node packages
+        if: env.SOMETHING_UPDATED == 'YES'
+        working-directory: node
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+        run: npm run build
+      - name: Validate dictionary JSON files
+        if: env.SOMETHING_UPDATED == 'YES'
+        working-directory: node
+        run: npm run validate
+      - name: Create archives
+        if: env.SOMETHING_UPDATED == 'YES'
+        run: ./gradlew archive
+      - name: Set build info
+        if: env.SOMETHING_UPDATED == 'YES'
+        run: |
+          build_time_human=$(date --utc +'%Y-%m-%d %H:%M:%S UTC')
+          build_time_only_numbers=$(date --utc +%Y%m%d%H%M%S)
+
+          build_version_number=$(./gradlew properties | grep 'version: .*' | cut -d' ' -f2 | tr -d '[:space:]')
+          build_version_metadata=$build_time_only_numbers
+          build_tag="${build_version_number}+${build_version_metadata}"
+
+          echo "BUILD_VERSION_NUMBER=$build_version_number" >> $GITHUB_ENV
+          echo "BUILD_VERSION_METADATA=$build_version_metadata" >> $GITHUB_ENV
+          echo "BUILD_TAG=$build_tag" >> $GITHUB_ENV
+          echo "BUILD_TIME=$build_time_human" >> $GITHUB_ENV
+      - name: Set release notes for scheduled releases
+        if: env.SOMETHING_UPDATED == 'YES' && !inputs.release_notes
+        shell: bash
+        run: |
+          RELEASE_NOTES="Updated dictionaries:\n\n"
+          if [[ "$JMDICT_UPDATED" = "YES" ]]; then
+            RELEASE_NOTES="${RELEASE_NOTES}- JMdict\n"
+          fi
+          if [[ "$JMDICT_EXAMPLES_UPDATED" = "YES" ]]; then
+            RELEASE_NOTES="${RELEASE_NOTES}- JMdict with examples\n"
+          fi
+          if [[ "$JMNEDICT_UPDATED" = "YES" ]]; then
+            RELEASE_NOTES="${RELEASE_NOTES}- JMnedict\n"
+          fi
+          if [[ "$KANJIDIC_UPDATED" = "YES" ]]; then
+            RELEASE_NOTES="${RELEASE_NOTES}- Kanjidic\n"
+          fi
+          WARNING="NOTE: This is a scheduled automated release. It may not have been reviewed by a human."
+          RELEASE_NOTES="$RELEASE_NOTES\n$WARNING"
+          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+      - name: Set release notes for manual releases
+        if: env.SOMETHING_UPDATED == 'YES' && inputs.release_notes
+        run: |
+          RELEASE_NOTES='${{ inputs.release_notes }}'
+          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+      - name: Rename archives # add version build timestamp as version metadata
+        if: env.SOMETHING_UPDATED == 'YES'
+        run: |
+          for f in ./build/distributions/*.zip; do
+            mv $f ${f/$BUILD_VERSION_NUMBER/$BUILD_TAG}
+          done
+          for f in ./build/distributions/*.tgz; do
+            mv $f ${f/$BUILD_VERSION_NUMBER/$BUILD_TAG}
+          done
+      - name: Create release
+        if: env.SOMETHING_UPDATED == 'YES' && !inputs.dry_run
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # collect assets
+          assets=()
+          for asset in ./build/distributions/*.zip; do
+            assets+=("$asset")
+          done
+          for asset in ./build/distributions/*.tgz; do
+            assets+=("$asset")
+          done
+
+          release_notes=./build/distributions/release-${BUILD_TAG}.md
+          touch $release_notes
+
+          # create release message
+          echo -e "${BUILD_VERSION_NUMBER}, update ${BUILD_TIME}" > $release_notes
+          echo -e "\n\n${RELEASE_NOTES}" >> $release_notes
+
+          echo -e "\n\n## JMdict\n\n" >> $release_notes
+          cat ./build/dict-json/jmdict-release-info.md >> $release_notes
+
+          echo -e "\n\n## JMdict with examples\n\n" >> $release_notes
+          cat ./build/dict-json/jmdict-examples-release-info.md >> $release_notes
+
+          echo -e "\n\n## JMnedict\n\n" >> $release_notes
+          cat ./build/dict-json/jmnedict-release-info.md >> $release_notes
+
+          echo -e "\n\n## Kanjidic\n\n" >> $release_notes
+          cat ./build/dict-json/kanjidic-release-info.md >> $release_notes
+
+          # create a release
+          gh release create $BUILD_TAG --notes-file $release_notes "${assets[@]}"
+      - name: Update checksums
+        if: env.SOMETHING_UPDATED == 'YES'
+        run: ./gradlew updateChecksums
+      - name: Commit XML files checksums
+        if: env.SOMETHING_UPDATED == 'YES' && !inputs.dry_run
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "checksums/*.sha256"
+          message: Update checksum files @ ${{ env.BUILD_TIME }}

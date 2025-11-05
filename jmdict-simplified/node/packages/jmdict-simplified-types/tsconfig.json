@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist"
+  },
+  "include": ["*.ts"],
+  "typedocOptions": {
+    "entryPoints": ["index.ts"],
+    "out": "../../../docs",
+    "readme": "format.md",
+  },
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@scriptin/jmdict-simplified-types",
+  "version": "0.0.0",
+  "description": "TypeScript type definitions for jmdict-simplified - JMdict, JMnedict, Kanjidic in JSON format",
+  "keywords": [
+    "jmdict",
+    "jmnedict",
+    "kanjidic",
+    "kanjidic2",
+    "kradfile",
+    "kradfile2",
+    "radkfile",
+    "radkfile2",
+    "json",
+    "japanese",
+    "dictionary"
+  ],
+  "license": "MIT",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/scriptin/jmdict-simplified",
+  "bugs": {
+    "url": "https://github.com/scriptin/jmdict-simplified/issues"
+  },
+  "author": {
+    "name": "Dmitry Shpika",
+    "url": "https://scriptin.github.io/"
+  },
+  "scripts": {
+    "build": "rm -rf dist/ && tsc",
+    "docs": "npx typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "^0.23.26",
+    "typescript": "^4.9.4"
+  }
+}

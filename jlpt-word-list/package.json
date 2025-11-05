@@ -1,0 +1,9 @@
+{
+  "name": "jlpt-word-list",
+  "version": "0.1.1",
+  "description": "Japanese word list from JLPT vocabulary",
+  "author": "elzup",
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {}
+}
