@@ -123,17 +123,7 @@ const Home = () => {
             ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
             : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)}
         </button>
-
-        {/* 補助リンク：レッスン学習へ（模試導線を増やしても迷わないように） */}
-        {examId && (
-          <button
-            className="cta-sub btn-ghost"
-            onClick={() => navigate(`/lessons/${level}`)}
-            style={{ marginLeft: 12 }}
-          >
-            {t("home.cta.learnInstead", "レッスン学習に切り替える")}
-          </button>
-        )}
+        
       </div>
     </main>
   );
