@@ -1,19 +1,33 @@
+/* ============================================================
+   Theme.css 100点版
+   - OSのライト/ダークに追従しつつ data-theme="light|dark" で強制上書き
+   - 可読性(コントラスト)、アクセシビリティ(フォーカス/選択色/強制ハイコントラスト)対応
+   ============================================================ */
+
 :root {
   color-scheme: light dark;
 
   /* ===== Base tokens (Light) ===== */
   --bg: #f7f8fa;
   --surface: #ffffff;
-  --surface-2: #f1f5f9;
+  --surface-2: #f1f5f9;           /* タブ背景などの一段低い面 */
   --border: #e5e7eb;
 
   --text: #121417;
   --text-muted: #4b5563;
   --icon: var(--text);
-  --accent: #16a34a; /* 緑 */
-  --danger: #ef4444;
-  --warn: #f59e0b;
-  --info: #0ea5e9;
+
+  /* Semantic accents */
+  --accent: #16a34a;              /* 成功/プライマリ */
+  --danger: #ef4444;              /* エラー */
+  --warn: #f59e0b;                /* 警告 */
+  --info: #0ea5e9;                /* 情報/リンク */
+  --link: var(--info);
+
+  /* UI helpers */
+  --focus-ring: #60a5fa;          /* フォーカス外枠色 */
+  --overlay: rgba(2, 6, 23, .4);  /* モーダルの背面 */
+  --disabled: rgba(0,0,0,.35);
 
   --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
 
@@ -36,7 +50,16 @@
     --text: #e6edf3;
     --text-muted: #b6c2cd;
     --icon: var(--text);
+
     --accent: #22c55e;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --info: #38bdf8;
+    --link: var(--info);
+
+    --focus-ring: #93c5fd;
+    --overlay: rgba(0,0,0,.55);
+    --disabled: rgba(255,255,255,.38);
 
     --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
 
@@ -44,12 +67,103 @@
   }
 }
 
-/* ===== 明示切替（data-themeで最優先） ===== */
-:root[data-theme="light"] { /* 上と同じ値（省略可だが明示） */ }
-:root[data-theme="dark"]  { /* 上と同じ値（省略可だが明示） */ }
+/* ===== 明示切替（data-themeが最優先） ===== */
+:root[data-theme="light"] {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e5e7eb;
+
+  --text: #121417;
+  --text-muted: #4b5563;
+  --icon: var(--text);
+
+  --accent: #16a34a;
+  --danger: #ef4444;
+  --warn: #f59e0b;
+  --info: #0ea5e9;
+  --link: var(--info);
+
+  --focus-ring: #60a5fa;
+  --overlay: rgba(2, 6, 23, .4);
+  --disabled: rgba(0,0,0,.35);
+
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+
+  --tab-bg: var(--surface-2);
+  --tab-active-bg: var(--surface);
+  --card-bg: var(--surface);
+  --progress-bg: rgba(2, 6, 23, .08);
+  --progress-fill: var(--accent);
+}
+:root[data-theme="dark"] {
+  --bg: #0b0f14;
+  --surface: #121821;
+  --surface-2: #0f141b;
+  --border: #25313f;
+
+  --text: #e6edf3;
+  --text-muted: #b6c2cd;
+  --icon: var(--text);
+
+  --accent: #22c55e;
+  --danger: #f87171;
+  --warn: #fbbf24;
+  --info: #38bdf8;
+  --link: var(--info);
+
+  --focus-ring: #93c5fd;
+  --overlay: rgba(0,0,0,.55);
+  --disabled: rgba(255,255,255,.38);
+
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
+
+  --tab-bg: var(--surface-2);
+  --tab-active-bg: var(--surface);
+  --card-bg: var(--surface);
+  --progress-bg: rgba(255,255,255,.12);
+  --progress-fill: var(--accent);
+}
 
 /* ===== ベース適用 ===== */
 html, body { background: var(--bg); color: var(--text); }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* フォーカス（キーボード操作の視認性） */
+:where(button, [role="button"], a, input, select, textarea):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* 選択色（テキストドラッグ時） */
+::selection { background: color-mix(in oklab, var(--accent) 28%, transparent); color: var(--text); }
+
+/* 微アニメ（ユーザーが許可した場合のみ） */
+@media (prefers-reduced-motion: no-preference) {
+  * { transition: background-color .15s linear, color .15s linear, border-color .15s linear; }
+}
+
+/* WebKit スクロールバー（控えめ） */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--text) 20%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* 強制ハイコントラスト環境の配慮 */
+@media (forced-colors: active) {
+  :root { --shadow: none; }
+  :where(button, [role="button"], a, input, select, textarea):focus-visible {
+    outline: 2px solid CanvasText;
+  }
+}
+
+/* ===== ユーティリティ ===== */
 .app-surface { background: var(--surface); box-shadow: var(--shadow); }
 .app-border { border: 1px solid var(--border); }
 .text-muted { color: var(--text-muted); }
@@ -65,17 +179,13 @@ html, body { background: var(--bg); color: var(--text); }
   background: var(--card-bg);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  color: var(--text); /* 重要: opacityを使わない */
+  color: var(--text);
 }
 .lesson-card .count { color: var(--text-muted); }
 
 /* Progress */
-.progress {
-  height: 8px; border-radius: 999px; background: var(--progress-bg);
-}
-.progress > span {
-  display: block; height: 100%; border-radius: inherit; background: var(--progress-fill);
-}
+.progress { height: 8px; border-radius: 999px; background: var(--progress-bg); overflow: hidden; }
+.progress > span { display: block; height: 100%; border-radius: inherit; background: var(--progress-fill); }
 
 /* 小さな改善 */
 html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }

@@ -1,3 +1,4 @@
+
 /* ============================================================
    結果画面：目にやさしい学習トーン（中明度・低彩度・十分な行間）
    - ダーク/ライト自動対応（prefers-color-scheme）
@@ -5,128 +6,122 @@
    ============================================================ */
 
 /* 基本トークン */
+/* ============================
+   WordCard.css（テーマ統一版）
+   ============================ */
+
+/* ページ専用トークンをグローバルに接続 */
 :root {
-  --res-bg: #1a1c1a;            /* 背景（ダーク） */
-  --res-card: #212421;          /* カード面 */
-  --res-border: rgba(255,255,255,.10);
-  --res-subtle: rgba(255,255,255,.7);
-  --res-text: #f2f3f2;          /* 本文 */
-  --res-accent: #78c2ad;        /* 穏やかな緑（正解） */
-  --res-danger: #e99a9a;        /* 穏やかな赤（誤答） */
-  --res-brand: #a7c7e7;         /* 穏やかな青（見出し/ボタン） */
-  --res-shadow: 0 2px 10px rgba(0,0,0,.25);
+  --wc-bg: var(--bg);
+  --wc-card: var(--surface);
+  --wc-border: var(--border);
+  --wc-text: var(--text);
+  --wc-muted: var(--text-muted);
+  --wc-shadow: var(--shadow);
+
+  --wc-accent: var(--accent); /* 例：発音ボタン/プライマリ */
+  --wc-info: var(--info);     /* 例：ふりがな見出し等 */
+  --wc-danger: var(--danger); /* お気に入り削除や誤りUIに使うなら */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --res-bg: #faf9f7;
-    --res-card: #ffffff;
-    --res-border: rgba(0,0,0,.10);
-    --res-subtle: rgba(0,0,0,.65);
-    --res-text: #1f2320;
-    --res-accent: #2e7d6b;
-    --res-danger: #c44d4d;
-    --res-brand: #406a9a;
-    --res-shadow: 0 2px 10px rgba(0,0,0,.07);
-  }
-}
-
-/* コンテナ */
-.quiz-result {
-  background: var(--res-card);
-  color: var(--res-text);
-  border: 1px solid var(--res-border);
+/* カード本体 */
+.wordcard {
+  background: var(--wc-card);
+  color: var(--wc-text);
+  border: 1px solid var(--wc-border);
   border-radius: 14px;
-  max-width: 720px;
-  margin: 20px auto;
-  padding: 20px 18px;
-  box-shadow: var(--res-shadow);
-  animation: res-fade .25s ease-out;
+  box-shadow: var(--wc-shadow);
+  padding: 16px 14px;
 }
 
-/* タイトル & スコア */
-.quiz-result h2 {
-  margin: 2px 0 8px;
-  font-size: 1.25rem;
-  line-height: 1.35;
-  text-align: center;
-  color: var(--res-brand);
-  font-weight: 700;
-  letter-spacing: .2px;
+/* ヘッダー（品詞・レベル等） */
+.wordcard__meta {
+  display: flex; gap: 10px; align-items: center; margin-bottom: 8px;
+  color: var(--wc-muted);                 /* opacityは使わない */
+  font-size: .92rem; line-height: 1.5;
 }
-.result-score {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--res-subtle);
-  margin-bottom: 14px;
-}
-
-/* リスト */
-.result-list {
-  display: grid;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.result-item {
-  border: 1px solid var(--res-border);
-  border-radius: 10px;
+.wordcard__tag {
+  border: 1px solid var(--wc-border);
+  border-radius: 999px;
+  padding: 3px 8px;
   background: transparent;
-  padding: 12px 14px;
-  line-height: 1.8;            /* 行間を広めに */
-  font-size: 1rem;
 }
 
-/* 正解/不正解のアクセントは“縁取りのみ + ごく淡い背景” */
-.result-item.ok   { border-color: color-mix(in oklab, var(--res-accent) 50%, transparent); background: color-mix(in oklab, var(--res-accent) 10%, transparent); }
-.result-item.ng   { border-color: color-mix(in oklab, var(--res-danger) 50%, transparent); background: color-mix(in oklab, var(--res-danger) 8%,  transparent); }
-
-/* 文章・答え行 */
-.result-item .q { 
-  font-weight: 600; 
-  margin-bottom: 6px; 
+/* 単語表示（漢字 + ふりがな） */
+.wordcard__kanji {
+  font-size: 1.6rem; line-height: 1.2; font-weight: 700;
+  color: var(--wc-text);
 }
-.result-item .ansline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
-  align-items: baseline;
-  font-size: .98rem;
+.wordcard__reading {
+  margin-top: 4px;
+  color: var(--wc-muted);
 }
-.result-item .correct { color: var(--res-accent); font-weight: 600; }
-.result-item .your    { opacity: .9; }
-.result-item .mark    { font-size: 1.05rem; margin-left: 4px; }
+.wordcard__reading .label {
+  color: var(--wc-info); font-weight: 600; margin-right: 6px;
+}
 
-/* ボタン（過度な発光をやめ、滑らかな押し感） */
-.result-back {
-  display: inline-block;
-  margin: 20px auto 2px;
-  padding: 10px 20px;
+/* 意味エリア */
+.wordcard__meanings {
+  margin-top: 10px;
+  color: var(--wc-text);
+}
+.wordcard__meanings .lang {
+  color: var(--wc-muted);
+  font-size: .92rem;
+}
+
+/* アクション群（音声・お気に入り・次へ等） */
+.wordcard__actions {
+  display: flex; gap: 10px; align-items: center; margin-top: 14px;
+}
+
+.button {
+  border: 1px solid var(--wc-border);
+  background: var(--wc-card);
+  color: var(--wc-text);
   border-radius: 10px;
-  border: 1px solid var(--res-border);
-  background: color-mix(in oklab, var(--res-brand) 20%, transparent);
-  color: var(--res-text);
+  padding: 8px 12px;
   font-weight: 600;
-  letter-spacing: .2px;
-  cursor: pointer;
   transition: background .2s ease, transform .08s ease, box-shadow .2s ease;
 }
-.result-back:hover {
-  background: color-mix(in oklab, var(--res-brand) 30%, transparent);
+.button:hover { background: color-mix(in oklab, var(--wc-text) 6%, var(--wc-card)); }
+.button:active { transform: translateY(1px); }
+
+.button--primary {
+  background: var(--wc-accent);
+  color: #fff;
+  border-color: transparent;
 }
-.result-back:active {
-  transform: translateY(1px);
+.button--danger {
+  background: color-mix(in oklab, var(--wc-danger) 85%, #0000);
+  color: #fff;
+  border-color: transparent;
 }
 
-/* 小さめ端末：余白をもう少しゆったり */
+/* アイコン（SVGは currentColor を使う） */
+.icon-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--wc-text);
+}
+.icon-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* 進捗や下部情報（必要なら） */
+.wordcard__footer {
+  margin-top: 10px;
+  color: var(--wc-muted);
+}
+.progress {
+  height: 6px; border-radius: 999px;
+  background: color-mix(in oklab, var(--wc-text) 10%, transparent);
+  overflow: hidden;
+}
+.progress > span {
+  display: block; height: 100%;
+  background: var(--wc-accent);
+  border-radius: inherit;
+}
+
+/* 小さめ端末 */
 @media (max-width: 420px) {
-  .quiz-result { padding: 16px 14px; }
-  .result-item { padding: 10px 12px; }
-}
-
-/* さりげないフェード */
-@keyframes res-fade {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  .wordcard { padding: 14px 12px; }
 }

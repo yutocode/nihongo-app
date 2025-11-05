@@ -64,39 +64,44 @@ const Settings = () => {
   const { clearUser } = useAppStore();
   const { t, i18n } = useTranslation();
 
-  // ----- Version 表示（Viteの環境変数 or フォールバック）
+  // ----- Version
   const appVersion = useMemo(
     () => import.meta?.env?.VITE_APP_VERSION || "1.0.0",
     []
   );
 
-  // ----- ダークモード（localStorage + prefers-color-scheme）
-  const getSystemDark = () =>
+  // ===== テーマ（data-theme を統一使用）=====
+  const systemPrefersDark =
+    typeof window !== "undefined" &&
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem("theme");
+    const saved = localStorage.getItem("theme"); // "light" | "dark" | null
     if (saved === "dark") return true;
     if (saved === "light") return false;
-    return getSystemDark();
+
+    // main.jsx が設定済みの data-theme を優先
+    const attr = document.documentElement.getAttribute("data-theme");
+    if (attr === "dark") return true;
+    if (attr === "light") return false;
+
+    return systemPrefersDark;
   });
 
   useEffect(() => {
-    // アプリ側のテーマ切替（必要に応じてクラス名を調整）
     const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add("theme-dark");
-      root.classList.remove("theme-light");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.add("theme-light");
-      root.classList.remove("theme-dark");
-      localStorage.setItem("theme", "light");
-    }
+    const theme = darkMode ? "dark" : "light";
+
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+
+    // モバイルのアドレスバー色も同期（index.html に <meta name="theme-color"> 必須）
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", darkMode ? "#0b0f14" : "#f7f8fa");
   }, [darkMode]);
 
-  // ----- 通知（Permission + localStorage）
+  // ===== 通知 =====
   const [notifEnabled, setNotifEnabled] = useState(() => {
     const saved = localStorage.getItem("notificationsEnabled");
     return saved ? saved === "true" : false;
@@ -128,7 +133,7 @@ const Settings = () => {
     }
   };
 
-  // ----- ログアウト
+  // ===== ログアウト =====
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth)
@@ -139,7 +144,7 @@ const Settings = () => {
       .catch((err) => console.error("ログアウト失敗:", err));
   };
 
-  // ----- 言語ラベル
+  // ===== 言語ラベル =====
   const langName = useMemo(() => {
     const map = {
       ja: "日本語",
@@ -154,9 +159,7 @@ const Settings = () => {
   return (
     <div className="settings-page" role="main">
       <header className="settings__header">
-        <h2 className="settings__title">
-          {t("common.settings", "設定")}
-        </h2>
+        <h2 className="settings__title">{t("common.settings", "設定")}</h2>
         <p className="settings__subtitle">
           {t("settings.managePreferences", "アプリの設定を管理")}
         </p>
