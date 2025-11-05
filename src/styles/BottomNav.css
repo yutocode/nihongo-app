@@ -1,29 +1,70 @@
-/* src/styles/BottomNav.css */
-.bottom-nav {
+:root {
+  --bn-height: 88px;
+  --bn-bg: #ffffff;
+  --bn-border: #e5e7eb;
+  --bn-active: #2563eb;
+  --bn-inactive: #6b7280;
+  --bn-shadow: 0 -8px 24px rgba(0,0,0,.06);
+  --bn-icon-size: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bn-bg: #0f141a;
+    --bn-border: #1f2937;
+    --bn-inactive: #9ca3af;
+    --bn-shadow: 0 -8px 24px rgba(0,0,0,.3);
+  }
+}
+
+/* 画面下に固定＋Safe Area */
+.bn-wrap {
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid #ccc;
+  left: 0; right: 0; bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   z-index: 1000;
 }
 
-.bottom-nav svg {
-  font-size: 1.6rem;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.2s ease;
+/* バー本体 */
+.bn-bar {
+  list-style: none; margin: 0; padding: 12px 24px;
+  height: var(--bn-height);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  background: var(--bn-bg);
+  border-top: 1px solid var(--bn-border);
+  box-shadow: var(--bn-shadow);
 }
 
-.bottom-nav svg:hover {
-  color: #4f46e5;
+/* 各タブ */
+.bn-item { flex: 1 1 0; display: flex; justify-content: center; }
+
+.bn-link {
+  min-width: 44px; min-height: 44px; /* ヒット領域 */
+  display: flex; align-items: center; justify-content: center;
+  color: var(--bn-inactive);
+  text-decoration: none; border-radius: 12px;
+  transition: color .15s ease, background .15s ease, transform .12s ease;
+  outline: none;
 }
 
-.bottom-nav .center-icon {
-  font-size: 2rem;
-  color: #4f46e5;
+.bn-link:hover { color: var(--bn-active); }
+.bn-link.is-active { color: var(--bn-active); }
+
+.bn-link:focus-visible {
+  background: rgba(37,99,235,.1);
+  box-shadow: 0 0 0 2px rgba(37,99,235,.25);
+}
+
+.bn-icon { font-size: var(--bn-icon-size); line-height: 1; }
+
+/* 中央タブをわずかに強調（任意） */
+.bn-item--accent .bn-link { transform: translateY(-2px); }
+.bn-item--accent .bn-link.is-active { transform: translateY(-3px); }
+
+.bn-safezone { height: env(safe-area-inset-bottom, 0px); }
+
+/* 視覚非表示ユーティリティ（必要なら） */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }

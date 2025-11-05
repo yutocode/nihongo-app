@@ -1,0 +1,36 @@
+.profile { padding: 16px 16px 80px; }
+.profile__loading, .profile__empty { padding: 24px; text-align: center; }
+
+.profile__header { display: grid; grid-template-columns: 72px 1fr auto; gap: 12px; align-items: center; }
+.avatar { width:72px; height:72px; border-radius: 50%; object-fit: cover; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.avatar--placeholder { display:grid; place-items:center; background:#f3f4f6; }
+.avatar-btn { border: none; background: transparent; padding: 0; cursor: pointer; }
+
+.profile__name { margin:0; font-size: 20px; }
+.profile__handle { color:#6b7280; font-size: 12px; }
+.profile__target { margin-top: 2px; font-size: 12px; color:#374151; }
+
+.profile__stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin: 14px 0; }
+.stat { background:#fff; border-radius: 16px; padding: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.06); text-align:center; }
+.stat__value { font-size: 18px; font-weight: 700; }
+.stat__label { color:#6b7280; font-size: 12px; margin-top: 2px; }
+
+.profile__section { margin-top: 18px; }
+.profile__section h2 { margin: 0 0 8px; font-size: 16px; }
+.profile__bio { background:#fff; border-radius: 12px; padding: 12px; min-height: 48px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+
+.profile__links { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
+.link { display:block; padding: 10px 12px; background:#fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.04); text-align:center; }
+
+.toggle { display:flex; align-items:center; gap:8px; padding: 10px 0; }
+.toggle input { width: 18px; height: 18px; }
+
+.btn { border-radius: 10px; padding: 8px 12px; border: 1px solid #e5e7eb; background:#fff; cursor:pointer; }
+.btn--primary { background:#3b82f6; color:#fff; border-color:#3b82f6; }
+
+.modal { position: fixed; inset: 0; display:grid; place-items:center; z-index:1000; }
+.modal__backdrop { position:absolute; inset:0; background: rgba(0,0,0,.35); }
+.modal__body { position:relative; z-index:1; width:min(92vw, 520px); background:#fff; border-radius: 16px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+.field { display:grid; gap:6px; margin: 10px 0; }
+.field input, .field select, .field textarea { padding:10px 12px; border:1px solid #e5e7eb; border-radius: 10px; font-size:14px; }
+.hint { text-align:right; color:#6b7280; font-size: 11px; }

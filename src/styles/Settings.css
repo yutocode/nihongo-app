@@ -1,40 +1,68 @@
-/* src/styles/Settings.css */
 .settings-page {
-  padding: 20px;
-  text-align: center;
+  padding: 16px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.settings-page h2 {
-  font-size: 26px;
-  margin-bottom: 24px;
-  color: #ffffff; /* タイトルは白文字でコントラスト強化 */
-  font-weight: bold;
+.settings__header { margin-bottom: 12px; }
+.settings__title { font-size: 22px; line-height: 28px; margin: 0 0 4px; }
+.settings__subtitle { color: #6B7280; margin: 0; }
+
+.settings__section { margin: 20px 0; }
+.settings__sectionTitle {
+  font-size: 12px; letter-spacing: .06em; color: #6B7280; margin: 0 0 8px;
 }
 
-/* ボタンデザイン */
-.settings-buttons button {
-  display: block;
-  width: 85%;
-  margin: 12px auto;
-  padding: 14px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  background-color: #2d2d2d; /* ダーク背景に合わせる */
-  color: #ffffff;            /* 白文字で視認性UP */
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
+.settings__group {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-/* ホバー（PC用） */
-.settings-buttons button:hover {
-  background-color: #4cafef; /* 水色に変化 */
-  transform: scale(1.02);
+.settings__row {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: transparent; border: none; cursor: pointer;
 }
+.settings__row + .settings__row { border-top: 1px solid #E5E7EB; }
 
-/* 押した時のフィードバック */
-.settings-buttons button:active {
-  background-color: #388edc;
-  transform: scale(0.98);
+.settings__row:focus-visible { outline: 2px solid #2563EB; outline-offset: -2px; }
+.settings__rowLeft { display: flex; align-items: center; gap: 12px; }
+.settings__icon { width: 22px; text-align: center; }
+.settings__labelBlock { display: flex; flex-direction: column; }
+.settings__label { font-size: 16px; }
+.settings__desc { font-size: 12px; color: #6B7280; }
+
+.settings__value { color: #374151; font-size: 14px; }
+.settings__chevron { color: #9CA3AF; font-size: 20px; }
+
+.switch { position: relative; width: 48px; height: 28px; }
+.switch input { display: none; }
+.slider {
+  position: absolute; inset: 0; background:#E5E7EB; border-radius: 999px; transition: .2s;
 }
+.slider::before {
+  content: ""; position: absolute; left: 4px; top: 4px; width: 20px; height: 20px;
+  background: #fff; border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,.15); transition: .2s;
+}
+.switch input:checked + .slider { background:#2563EB; }
+.switch input:checked + .slider::before { transform: translateX(20px); }
+
+.settings__footer {
+  margin: 24px 0 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.settings__version { color: #6B7280; font-size: 12px; }
+.settings__logout {
+  color: #fff; background:#EF4444; border:none; border-radius: 12px; padding: 10px 14px;
+  font-weight: 600; cursor: pointer;
+}
+.settings__logout:focus-visible { outline: 2px solid #B91C1C; outline-offset: 2px; }
+
+/* ダークテーマ（必要ならクラスを調整） */
+.theme-dark .settings__group { background:#0B0F16; border-color:#1F2937; }
+.theme-dark .settings__subtitle,
+.theme-dark .settings__sectionTitle,
+.theme-dark .settings__value,
+.theme-dark .settings__version { color:#9CA3AF; }
+.theme-dark .settings__row + .settings__row { border-top-color:#1F2937; }
+.theme-dark .settings__label { color:#F3F4F6; }

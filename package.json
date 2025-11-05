@@ -11,9 +11,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "postbuild": "node -e \"const fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html');fs.writeFileSync('dist/.nojekyll','')\"",
+    "preview": "vite preview --host --port 5174",
     "lint": "eslint .",
-    "predeploy": "npm run build && node -e \"fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html')\"",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -b gh-pages",
     "clean-gh": "gh-pages-clean"
   },
@@ -26,6 +27,7 @@
     "firebase": "^12.0.0",
     "i18next": "^25.3.2",
     "i18next-browser-languagedetector": "^8.2.0",
+    "lucide-react": "^0.552.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

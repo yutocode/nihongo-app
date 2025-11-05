@@ -1,0 +1,101 @@
+.loader-wrap {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.loader-wrap--backdrop {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, #000 10%, transparent);
+  z-index: 1000;
+}
+
+.loader {
+  width: 220px;
+  user-select: none;
+  text-align: center;
+  color: var(--fg, #111827);         /* current text color */
+}
+.loader.sm { width: 160px; }
+.loader.lg { width: 280px; }
+
+.loader__svg { display: block; margin: 0 auto; height: auto; }
+.loader__text {
+  margin-top: 10px;
+  font-size: 12px;
+  color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+/* 色テーマ */
+.book       { fill: #60a5fa; }        /* primary-400 */
+.book-side  { fill: #3b82f6; }        /* primary-500 */
+.ribbon     { fill: #f43f5e; }        /* rose-500 */
+.eye, .mouth, .shuriken { fill: currentColor; }
+.shadow     { fill: rgba(0,0,0,.12); }
+.page-stroke{
+  fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round;
+  stroke-dasharray: 120; stroke-dashoffset: 120;
+  animation: draw 2.4s ease-in-out infinite;
+}
+
+/* ふわふわ浮遊 */
+.book, .book-side, .eye, .mouth, .ribbon, .dot-1, .dot-2, .dot-3, .shuriken {
+  animation: float 3s ease-in-out infinite;
+}
+.shadow { animation: shadow 3s ease-in-out infinite; }
+
+/* まばたき */
+.eye--left, .eye--right { transform-origin: center; }
+.eye--left  { animation: blink 4s infinite; }
+.eye--right { animation: blink 4.2s infinite .2s; }
+
+/* ドットのポンポン */
+.dot { fill: #111827; }
+.dot-1 { animation: bounce 1.2s infinite; }
+.dot-2 { animation: bounce 1.2s infinite .2s; }
+.dot-3 { animation: bounce 1.2s infinite .4s; }
+
+/* 手裏剣回転 */
+.shuriken { transform-box: fill-box; transform-origin: center; animation: spin 1.8s linear infinite; }
+
+/* ダークモード（.theme-dark を html/body に付与している前提） */
+.theme-dark .loader { --fg: #e5e7eb; color: var(--fg); }
+.theme-dark .book { fill: #1f2937; }         /* slate-800 */
+.theme-dark .book-side { fill: #111827; }    /* slate-900 */
+.theme-dark .ribbon { fill: #f472b6; }       /* pink-400 */
+.theme-dark .dot { fill: var(--fg); }
+.theme-dark .shadow { fill: rgba(0,0,0,.35); }
+.theme-dark .page-stroke { stroke: #d1d5db; }
+
+/* アニメーション定義 */
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-4px); }
+}
+@keyframes shadow {
+  0%,100% { transform: scale(1); opacity: .34; }
+  50%     { transform: scale(0.92); opacity: .22; }
+}
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%          { transform: scaleY(0.2); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: .8; }
+  50%      { transform: translateY(-8px); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes draw {
+  0%   { stroke-dashoffset: 120; opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { stroke-dashoffset: 0; }
+  80%  { opacity: 1; }
+  100% { stroke-dashoffset: 120; opacity: 0; }
+}
+
+/* 低速・節電：動きを抑制 */
+@media (prefers-reduced-motion: reduce) {
+  .loader * { animation: none !important; }
+}

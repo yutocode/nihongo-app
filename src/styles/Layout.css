@@ -1,13 +1,22 @@
-/* 例: styles/Layout.css */
-.layout-container {
+/* 画面全体の土台 */
+html, body, #root { height: 100%; }
+body { margin: 0; }
+
+/* ビューポートにフィット（mobile UIバー変動に強い） */
+.app-shell {
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: #fffdf8;
 }
 
-.layout-main {
-  flex: 1;
-  padding: 20px;
+/* BottomNavに隠れないよう下に自動マージン
+   --bn-height は BottomNav.css で 88px を既定にしています */
+.app-content {
+  flex: 1 0 auto;
+  padding-bottom: calc(var(--bn-height, 88px) + env(safe-area-inset-bottom, 0px) + 8px);
 }
 
+/* もし BottomActionBar を同時に出す画面があるなら、上書き用のユーティリティ */
+.app-content.has-actionbar {
+  padding-bottom: calc(var(--bn-height, 88px) + 56px + env(safe-area-inset-bottom, 0px));
+}

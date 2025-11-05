@@ -1,24 +1,46 @@
 /* src/styles/BottomActionBar.css */
 
+:root {
+  --ba-bg: rgba(30, 30, 30, 0.95);
+  --ba-btn-bg: #222;
+  --ba-btn-bg-hover: #333;
+  --ba-primary: #e74c3c; /* play */
+  --ba-ok: #2ecc71;      /* check */
+  --ba-active: #2563eb;  /* slow toggle ON */
+  --ba-shadow: 0 8px 24px rgba(0,0,0,.35);
+  --ba-icon-size: 22px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ba-bg: rgba(255, 255, 255, 0.96);
+    --ba-btn-bg: #f3f4f6;
+    --ba-btn-bg-hover: #e5e7eb;
+    --ba-shadow: 0 8px 24px rgba(0,0,0,.08);
+  }
+}
+
 .ba-wrap {
   position: fixed;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 12px;
-  z-index: 100;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 1000;
+  pointer-events: none; /* pill以外にクリックを通さない */
 }
 
 .ba-pill {
+  pointer-events: auto;
   display: flex;
   gap: 12px;
-  background: rgba(30, 30, 30, 0.95);
+  background: var(--ba-bg);
   padding: 8px 14px;
   border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--ba-shadow);
+  backdrop-filter: saturate(140%) blur(6px);
 }
 
 /* ボタン共通 */
@@ -27,44 +49,40 @@
   height: 44px;
   border-radius: 50%;
   border: none;
-  outline: none;
-  background: #222;
-  color: #fff;
-  font-size: 22px;
-  display: flex;
+  background: var(--ba-btn-bg);
+  color: #111;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, transform 0.1s;
+  font-size: var(--ba-icon-size);
+  transition: transform .1s ease, background .15s ease, box-shadow .15s ease;
+  outline: none;
 }
 
-.ba-btn:hover {
-  background: #333;
-  transform: scale(1.05);
+@media (prefers-color-scheme: dark) {
+  .ba-btn { color: #fff; }
 }
 
-.ba-btn:active {
-  transform: scale(0.95);
+.ba-btn:hover { background: var(--ba-btn-bg-hover); transform: scale(1.05); }
+.ba-btn:active { transform: scale(0.96); }
+.ba-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .35);
 }
 
-/* 再生ボタン（赤） */
-.ba-btn.ba-primary {
-  background: #e74c3c;
-  color: #fff;
+/* 状態色 */
+.ba-btn.ba-primary { background: var(--ba-primary); color: #fff; }
+.ba-btn.ba-ok      { background: var(--ba-ok);      color: #fff; }
+.ba-btn.ba-active  { background: var(--ba-active);  color: #fff; }
+
+/* 次へ（リングボタン） */
+.ba-btn.ba-ring {
+  background: transparent;
+  color: inherit;
+  box-shadow: inset 0 0 0 2px rgba(120,120,120,.5);
+}
+.ba-btn.ba-ring:hover {
+  box-shadow: inset 0 0 0 2px rgba(120,120,120,.8);
 }
 
-/* OK（チェック）ボタン（緑） */
-.ba-btn.ba-ok {
-  background: #2ecc71;
-  color: #fff;
-}
-
-/* アクティブ状態（スネイル用） */
-.ba-btn.ba-active {
-  background: #3498db;
-  color: #fff;
-}
-
-/* 最後の安全マージン (iPhone XなどのSafe Area対策) */
-.ba-safezone {
-  height: env(safe-area-inset-bottom, 16px);
-}
+/* Safe area spacer */
+.ba-safezone { height: env(safe-area-inset-bottom, 0px); }
