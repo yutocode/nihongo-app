@@ -1,21 +1,42 @@
 {
-  "common": {
-    "next": "Next →",
-    "prev": "← Back",
-    "start": "Start",
-    "clickToShow": "Click to show meaning",
-    "meaning": "Meaning",
-    "progress": "Progress",
-    "progressCheck": "Check Progress",
-    "logout": "Logout",
-    "premium": "Premium Features",
-    "settings": "Settings",
-    "profile": "Profile",
-    "language": "Language",
-    "languageSettings": "Language Settings",
-    "noWordsFound": "No words found",
-    "backToPrev": "Back to Previous",
-    "backHome": "Back to Home"
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your app settings",
+    "sections": {
+      "account": {
+        "title": "Account",
+        "profile": "Profile",
+        "password": "Password",
+        "export": "Export data"
+      },
+      "basic": {
+        "title": "Basic settings",
+        "notifications": "Notifications",
+        "notifications_desc": "Receive study reminders",
+        "theme": "Dark mode",
+        "theme_desc": "Switch the app appearance",
+        "language": "Language",
+        "language_desc": "Choose the app language"
+      },
+      "premium": {
+        "title": "Premium",
+        "managePlan": "Manage plan"
+      },
+      "support": {
+        "title": "Support",
+        "help": "Help & Support",
+        "contact": "Contact us",
+        "terms": "Terms of use",
+        "privacy": "Privacy policy"
+      },
+      "danger": {
+        "title": "Danger zone",
+        "deleteAccount": "Delete account",
+        "deleteConfirm": "Are you sure? This action cannot be undone."
+      }
+    },
+    "version": "Version",
+    "logout": "Log out"
   },
 
   "nav": {

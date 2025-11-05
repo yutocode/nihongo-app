@@ -1,21 +1,42 @@
 {
-  "common": {
-    "next": "Lanjut →",
-    "prev": "← Kembali",
-    "start": "Mulai",
-    "clickToShow": "Klik untuk melihat arti",
-    "meaning": "Arti",
-    "progress": "Kemajuan",
-    "progressCheck": "Cek Kemajuan",
-    "logout": "Keluar",
-    "premium": "Fitur Premium",
-    "settings": "Pengaturan",
-    "profile": "Profil",
-    "language": "Bahasa",
-    "languageSettings": "Pengaturan Bahasa",
-    "noWordsFound": "Kata tidak ditemukan",
-    "backToPrev": "Kembali ke sebelumnya",
-    "backHome": "Kembali ke Beranda"
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Kelola pengaturan aplikasi",
+    "sections": {
+      "account": {
+        "title": "Akun",
+        "profile": "Profil",
+        "password": "Kata sandi",
+        "export": "Ekspor data"
+      },
+      "basic": {
+        "title": "Pengaturan dasar",
+        "notifications": "Notifikasi",
+        "notifications_desc": "Terima pengingat belajar",
+        "theme": "Mode gelap",
+        "theme_desc": "Ganti tampilan aplikasi",
+        "language": "Bahasa",
+        "language_desc": "Pilih bahasa aplikasi"
+      },
+      "premium": {
+        "title": "Premium",
+        "managePlan": "Kelola paket"
+      },
+      "support": {
+        "title": "Dukungan",
+        "help": "Bantuan & Dukungan",
+        "contact": "Hubungi kami",
+        "terms": "Ketentuan penggunaan",
+        "privacy": "Kebijakan privasi"
+      },
+      "danger": {
+        "title": "Zona berbahaya",
+        "deleteAccount": "Hapus akun",
+        "deleteConfirm": "Anda yakin? Tindakan ini tidak bisa dibatalkan."
+      }
+    },
+    "version": "Versi",
+    "logout": "Keluar"
   },
 
   "nav": {

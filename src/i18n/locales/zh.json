@@ -1,21 +1,42 @@
 {
-  "common": {
-    "next": "下一题 →",
-    "prev": "← 上一题",
-    "start": "开始",
-    "clickToShow": "点击查看意思",
-    "meaning": "意思",
-    "progress": "进度",
-    "progressCheck": "检查进度",
-    "logout": "登出",
-    "premium": "高级功能",
-    "settings": "设置",
-    "profile": "个人资料",
-    "language": "语言",
-    "languageSettings": "语言设置",
-    "noWordsFound": "未找到单词",
-    "backToPrev": "返回上一页",
-    "backHome": "返回首页"
+ "settings": {
+    "title": "设置",
+    "subtitle": "管理应用设置",
+    "sections": {
+      "account": {
+        "title": "账户",
+        "profile": "个人资料",
+        "password": "密码",
+        "export": "导出数据"
+      },
+      "basic": {
+        "title": "基本设置",
+        "notifications": "通知",
+        "notifications_desc": "接收学习提醒",
+        "theme": "深色模式",
+        "theme_desc": "切换界面主题",
+        "language": "语言设置",
+        "language_desc": "选择应用语言"
+      },
+      "premium": {
+        "title": "高级",
+        "managePlan": "管理方案"
+      },
+      "support": {
+        "title": "支持",
+        "help": "帮助与支持",
+        "contact": "联系我们",
+        "terms": "使用条款",
+        "privacy": "隐私政策"
+      },
+      "danger": {
+        "title": "危险操作",
+        "deleteAccount": "删除账号",
+        "deleteConfirm": "确定要删除吗？此操作无法撤销。"
+      }
+    },
+    "version": "版本",
+    "logout": "退出登录"
   },
 
   "nav": {

@@ -1,21 +1,43 @@
+
 {
-  "common": {
-    "next": "次へ →",
-    "prev": "← 戻る",
-    "start": "開始",
-    "clickToShow": "クリックして意味を表示",
-    "meaning": "意味",
-    "progress": "進捗",
-    "progressCheck": "進捗確認",
-    "logout": "ログアウト",
-    "premium": "プレミアム機能",
-    "settings": "設定",
-    "profile": "プロフィール",
-    "language": "言語",
-    "languageSettings": "言語設定",
-    "noWordsFound": "単語が見つかりません",
-    "backToPrev": "前へ戻る",
-    "backHome": "ホームに戻る"
+  "settings": {
+    "title": "設定",
+    "subtitle": "アプリの設定を管理",
+    "sections": {
+      "account": {
+        "title": "アカウント",
+        "profile": "プロフィール",
+        "password": "パスワード",
+        "export": "データの書き出し"
+      },
+      "basic": {
+        "title": "基本設定",
+        "notifications": "通知",
+        "notifications_desc": "学習のリマインダーを受け取る",
+        "theme": "ダークモード",
+        "theme_desc": "見た目のテーマを切り替え",
+        "language": "言語設定",
+        "language_desc": "アプリの表示言語を選ぶ"
+      },
+      "premium": {
+        "title": "プレミアム",
+        "managePlan": "プランを管理"
+      },
+      "support": {
+        "title": "サポート",
+        "help": "ヘルプ・サポート",
+        "contact": "お問い合わせ",
+        "terms": "利用規約",
+        "privacy": "プライバシー"
+      },
+      "danger": {
+        "title": "危険な操作",
+        "deleteAccount": "アカウント削除",
+        "deleteConfirm": "本当に削除しますか？この操作は取り消せません。"
+      }
+    },
+    "version": "バージョン",
+    "logout": "ログアウト"
   },
 
   "nav": {

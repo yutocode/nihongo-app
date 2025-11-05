@@ -1,21 +1,42 @@
 {
-  "common": {
-    "next": "下一題 →",
-    "prev": "← 上一題",
-    "start": "開始",
-    "clickToShow": "點擊查看意思",
-    "meaning": "意思",
-    "progress": "進度",
-    "progressCheck": "檢查進度",
-    "logout": "登出",
-    "premium": "高級功能",
-    "settings": "設定",
-    "profile": "個人資料",
-    "language": "語言",
-    "languageSettings": "語言設定",
-    "noWordsFound": "找不到單字",
-    "backToPrev": "返回上一頁",
-    "backHome": "返回首頁"
+ "settings": {
+    "title": "設定",
+    "subtitle": "管理應用程式設定",
+    "sections": {
+      "account": {
+        "title": "帳號",
+        "profile": "個人資料",
+        "password": "密碼",
+        "export": "匯出資料"
+      },
+      "basic": {
+        "title": "基本設定",
+        "notifications": "通知",
+        "notifications_desc": "接收學習提醒",
+        "theme": "深色模式",
+        "theme_desc": "切換介面主題",
+        "language": "語言設定",
+        "language_desc": "選擇介面語言"
+      },
+      "premium": {
+        "title": "進階方案",
+        "managePlan": "管理方案"
+      },
+      "support": {
+        "title": "支援",
+        "help": "說明與支援",
+        "contact": "聯絡我們",
+        "terms": "使用條款",
+        "privacy": "隱私權政策"
+      },
+      "danger": {
+        "title": "危險操作",
+        "deleteAccount": "刪除帳號",
+        "deleteConfirm": "確定要刪除嗎？此動作無法復原。"
+      }
+    },
+    "version": "版本",
+    "logout": "登出"
   },
 
   "nav": {
