@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- iPhone / Safari 最適化 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="日本語学習アプリ" />
+
+    <!-- 基本情報 -->
+    <meta name="application-name" content="日本語学習アプリ" />
+    <meta name="description" content="日本語学習アプリ（単語・文法クイズ・聴解など）" />
+
+    <!-- テーマカラー（ライト/ダーク） -->
+    <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- PWA（base:'./' 環境で壊れないよう相対パス） -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <!-- アイコン（相対パス） -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+
+    <title>日本語学習アプリ</title>
+
+    <!-- 初期のチラつき/拡大対策・セーフエリア・100dvh -->
+    <style>
+      :root { color-scheme: light dark; --vh: 1vh; }
+      html, body, #root { height: 100%; }
+      html { -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
+        background: #111318; color: #fff;
+        padding-left:  max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-top:   max(0px, env(safe-area-inset-top));
+        padding-bottom:max(0px, env(safe-area-inset-bottom));
+      }
+
+      #root {
+        min-height: 100dvh;
+        min-height: calc(var(--vh) * 100);
+        display: contents;
+      }
+
+      @media (prefers-color-scheme: light) {
+        body { background: #ffffff; color: #111318; }
+      }
+
+      .app-loading {
+        position: fixed; inset: 0; display: grid; place-items: center;
+        background: inherit; color: inherit; z-index: 9999; font-size: 14px;
+      }
+
+      [hidden] { display: none !important; }
+    </style>
+    <script type="module" crossorigin src="/nihongo-app/assets/index-BUq-FPLr.js"></script>
+    <link rel="modulepreload" crossorigin href="/nihongo-app/assets/react-kJzwxFS_.js">
+    <link rel="modulepreload" crossorigin href="/nihongo-app/assets/firebase-CiC4ra4F.js">
+    <link rel="modulepreload" crossorigin href="/nihongo-app/assets/i18n-BXC4prgf.js">
+    <link rel="stylesheet" crossorigin href="/nihongo-app/assets/index-DqrLyHKd.css">
+  </head>
+
+  <body>
+    <div id="app-loading" class="app-loading" hidden>Loading…</div>
+    <div id="root"></div>
+
+    <!-- 古いAndroidの100vh問題フォールバック -->
+    <script>
+      (function () {
+        var setVh = function () {
+          var vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', vh + 'px');
+        };
+        setVh();
+        window.addEventListener('resize', setVh);
+        window.addEventListener('orientationchange', setVh);
+      }());
+    </script>
+
+    <!-- ✅ Vite エントリはこの1行で十分 -->
+  </body>
+</html>
