@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 jmdict-simplified/data/*.json
+
+ios-history.bundle
