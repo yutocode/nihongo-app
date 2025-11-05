@@ -15,14 +15,13 @@
     <meta name="application-name" content="日本語学習アプリ" />
     <meta name="description" content="日本語学習アプリ（単語・文法クイズ・聴解など）" />
 
-    <!-- テーマカラー（ライト/ダーク） -->
-    <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <!-- テーマカラー（起動後は main.jsx が動的更新） -->
+    <meta name="theme-color" content="#f7f8fa" />
 
-    <!-- PWA（base:'./' 環境で壊れないよう相対パス） -->
+    <!-- PWA（相対パス） -->
     <link rel="manifest" href="./manifest.webmanifest" />
 
-    <!-- アイコン（相対パス） -->
+    <!-- アイコン -->
     <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png" />
@@ -30,44 +29,52 @@
 
     <title>日本語学習アプリ</title>
 
-    <!-- 初期のチラつき/拡大対策・セーフエリア・100dvh -->
+    <!-- 初期ペイント用の安全なテーマ変数（Theme.css 到着までのFOUC防止） -->
     <style>
-      :root { color-scheme: light dark; --vh: 1vh; }
+      :root {
+        color-scheme: light dark;
+        /* Light 初期値（Theme.css と整合） */
+        --bg: #f7f8fa;
+        --text: #111318;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Dark 初期値（Theme.css と整合） */
+          --bg: #0b0f14;
+          --text: #e6edf3;
+        }
+      }
+
       html, body, #root { height: 100%; }
       html { -webkit-text-size-adjust: 100%; }
-
       body {
         margin: 0;
         font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
-        background: #111318; color: #fff;
+        background: var(--bg);
+        color: var(--text);
         padding-left:  max(0px, env(safe-area-inset-left));
         padding-right: max(0px, env(safe-area-inset-right));
         padding-top:   max(0px, env(safe-area-inset-top));
         padding-bottom:max(0px, env(safe-area-inset-bottom));
       }
-
       #root {
         min-height: 100dvh;
         min-height: calc(var(--vh) * 100);
         display: contents;
       }
 
-      @media (prefers-color-scheme: light) {
-        body { background: #ffffff; color: #111318; }
-      }
-
       .app-loading {
         position: fixed; inset: 0; display: grid; place-items: center;
-        background: inherit; color: inherit; z-index: 9999; font-size: 14px;
+        background: var(--bg); color: var(--text);
+        z-index: 9999; font-size: 14px;
       }
-
       [hidden] { display: none !important; }
     </style>
-    <script type="module" crossorigin src="/nihongo-app/assets/index-BorcNTIg.js"></script>
+    <script type="module" crossorigin src="/nihongo-app/assets/index-Dlm9Ygkn.js"></script>
     <link rel="modulepreload" crossorigin href="/nihongo-app/assets/react-kJzwxFS_.js">
     <link rel="modulepreload" crossorigin href="/nihongo-app/assets/firebase-CiC4ra4F.js">
     <link rel="modulepreload" crossorigin href="/nihongo-app/assets/i18n-BXC4prgf.js">
-    <link rel="stylesheet" crossorigin href="/nihongo-app/assets/index-CoND_dav.css">
+    <link rel="stylesheet" crossorigin href="/nihongo-app/assets/index-DbrL0svk.css">
   </head>
 
   <body>
@@ -87,6 +94,6 @@
       }());
     </script>
 
-    <!-- ✅ Vite エントリはこの1行で十分 -->
+    <!-- ✅ Vite エントリ -->
   </body>
 </html>
