@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light dark;
+
+  /* ===== Base tokens (Light) ===== */
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e5e7eb;
+
+  --text: #121417;
+  --text-muted: #4b5563;
+  --icon: var(--text);
+  --accent: #16a34a; /* 緑 */
+  --danger: #ef4444;
+  --warn: #f59e0b;
+  --info: #0ea5e9;
+
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+
+  /* Components */
+  --tab-bg: var(--surface-2);
+  --tab-active-bg: var(--surface);
+  --card-bg: var(--surface);
+  --progress-bg: rgba(2, 6, 23, .08);
+  --progress-fill: var(--accent);
+}
+
+/* ===== System Dark (ユーザー指定が無いときの初期値) ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f14;
+    --surface: #121821;
+    --surface-2: #0f141b;
+    --border: #25313f;
+
+    --text: #e6edf3;
+    --text-muted: #b6c2cd;
+    --icon: var(--text);
+    --accent: #22c55e;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
+
+    --progress-bg: rgba(255,255,255,.12);
+  }
+}
+
+/* ===== 明示切替（data-themeで最優先） ===== */
+:root[data-theme="light"] { /* 上と同じ値（省略可だが明示） */ }
+:root[data-theme="dark"]  { /* 上と同じ値（省略可だが明示） */ }
+
+/* ===== ベース適用 ===== */
+html, body { background: var(--bg); color: var(--text); }
+.app-surface { background: var(--surface); box-shadow: var(--shadow); }
+.app-border { border: 1px solid var(--border); }
+.text-muted { color: var(--text-muted); }
+.icon { color: var(--icon); fill: currentColor; }
+
+/* Tabs */
+.tabs { background: var(--tab-bg); border-radius: 16px; padding: 6px; }
+.tab { color: var(--text-muted); }
+.tab.is-active { color: var(--text); background: var(--tab-active-bg); box-shadow: var(--shadow); }
+
+/* Cards（レッスン枠） */
+.lesson-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  color: var(--text); /* 重要: opacityを使わない */
+}
+.lesson-card .count { color: var(--text-muted); }
+
+/* Progress */
+.progress {
+  height: 8px; border-radius: 999px; background: var(--progress-bg);
+}
+.progress > span {
+  display: block; height: 100%; border-radius: inherit; background: var(--progress-fill);
+}
+
+/* 小さな改善 */
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
