@@ -23,7 +23,16 @@ export default function ExamPage() {
   if (!pack) {
     return <div style={{ padding: 24 }}>試験データが見つかりません。</div>;
   }
-  const items = pack.items || [];
+
+  // ★ n5-mock1 のみ聴解を除外して 30 問運用（他は従来通り）
+  const items = useMemo(() => {
+    const all = pack.items || [];
+    if (pack?.meta?.id === "n5-mock1") {
+      return all.filter(q => q.section !== "listening").slice(0, 30);
+    }
+    return all;
+  }, [pack]);
+
   const item = items[idx];
 
   // タイマー設定（リロードに強く）
@@ -34,7 +43,7 @@ export default function ExamPage() {
     sessionStorage.setItem(ssKey(examId), String(end));
     const t = setInterval(() => setNow(Date.now()), 250);
     return () => clearInterval(t);
-  }, [examId]);
+  }, [examId, pack?.meta?.durationSec]);
 
   // 回答の永続化（任意：リロードで保持）
   useEffect(() => {
@@ -69,6 +78,16 @@ export default function ExamPage() {
   function handleSubmit() {
     setSubmitted(true);
   }
+
+  // ★ この試験で出題された項目だけで「回答済み数」を計算（聴解の保存分を無視）
+  const answeredCount = useMemo(() => {
+    if (!items.length) return 0;
+    const idPrefix = `${pack.meta.id}:`;
+    return items.reduce((n, q) => {
+      const k = `${idPrefix}${q.id}`;
+      return n + (answers[k] != null ? 1 : 0);
+    }, 0);
+  }, [answers, items, pack]);
 
   // スコア計算（分野は sectionOf(no) or q.section を使用）
   const result = useMemo(() => {
@@ -111,11 +130,13 @@ export default function ExamPage() {
     if (typeof passCfg.readingMin === "number" && by.reading?.t) {
       pass = pass && by.reading.ok / by.reading.t >= passCfg.readingMin;
     }
+    // 聴解最小基準は、出題数が0なら自然にスキップ（by.listening.t が 0 のため）
     if (typeof passCfg.listeningMin === "number" && by.listening?.t) {
       pass = pass && by.listening.ok / by.listening.t >= passCfg.listeningMin;
     }
 
-    return { ok, total: items.length, by, overall, pass };
+    // 見直しに使う items を同梱（今回の 30 問だけ）
+    return { ok, total: items.length, by, overall, pass, items };
   }, [submitted, answers, items, pack]);
 
   // 表示用：stem（HTML/ruby対応）
@@ -153,7 +174,7 @@ export default function ExamPage() {
           <div className="question" style={{ marginTop: 18, marginBottom: 16 }}>
             <div style={{ fontWeight: 700, marginBottom: 8 }}>問題{item?.no}</div>
 
-            {/* 聴解の音声（任意表示） */}
+            {/* 聴解の音声（n5-mock1 では除外済みなので通常は表示されない） */}
             {item?.section === "listening" && item.audio && (
               <div style={{ marginBottom: 12 }}>
                 <audio src={item.audio} controls preload="none" />
@@ -201,7 +222,8 @@ export default function ExamPage() {
             ) : (
               <button
                 onClick={handleSubmit}
-                disabled={Object.keys(answers).length !== items.length}
+                // ★ 現在の 30 問すべてに回答済みかで判定
+                disabled={answeredCount !== items.length}
               >
                 提出
               </button>
@@ -230,6 +252,9 @@ function Result({ result, pack, answers }) {
     (k) => result.by[k]?.t > 0
   );
 
+  // ★ 見直しは今回使った items（n5-mock1 なら30問）
+  const reviewItems = result.items || pack.items || [];
+
   return (
     <div style={{ marginTop: 24 }}>
       <h2 style={{ marginBottom: 8 }}>結果</h2>
@@ -246,7 +271,7 @@ function Result({ result, pack, answers }) {
       </ul>
 
       <h3 style={{ marginTop: 20 }}>見直し</h3>
-      {pack.items.map((q) => {
+      {reviewItems.map((q) => {
         const gkey = `${pack.meta.id}:${q.id}`;
         const picked = answers[gkey];
         const ok = picked === q.answer;

@@ -9,7 +9,7 @@ import DetailModal from "@/components/DetailModal.jsx";
 import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi";
 import "../styles/WordCard.css";
 
-// ★ 常に level と id を含む複合キーで衝突回避（n5:1 と n4:1 を区別）
+// 複合キー
 const buildKey = (w) => {
   const lvl = w?.level ?? "n?";
   const id = w?.id ?? `${w?.lesson ?? "Lesson?"}:${w?.idx ?? w?.kanji ?? ""}`;
@@ -25,13 +25,12 @@ export default function WordCard({
   onIndexChange,
   onAdd,
   onDetail,
-  mode = "learn", // "learn" or "my"
+  mode = "learn", // "learn" | "my"
   onRemove,
-  lessonTitleOverride,
 }) {
   const isMy = mode === "my";
 
-  // === 状態管理 ===
+  // === 状態 ===
   const [index, setIndex] = useState(0);
   const [showMeaning, setShowMeaning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -49,7 +48,7 @@ export default function WordCard({
   const addToMyBook = useMyWordsStore((s) => s.add);
   const removeWord = useMyWordsStore((s) => s.removeWord);
 
-  // === 言語判定 ===
+  // === 表示言語 ===
   const currentLang = useMemo(() => {
     const lower = String(i18n.language || "ja").toLowerCase();
     if (lower.startsWith("tw")) return "tw";
@@ -97,7 +96,7 @@ export default function WordCard({
     [word, level, lesson, index]
   );
 
-  // === MyWordBookにあるか（複合キーで判定）
+  // MyWordBookにあるか
   const isAdded = useMyWordsStore(
     useCallback(
       (s) => s.items.some((w) => buildKey(w) === buildKey(enriched)),
@@ -105,7 +104,7 @@ export default function WordCard({
     )
   );
 
-  // === 音声候補生成 ===
+  // === 音声候補 ===
   const audioCandidates = useMemo(() => {
     const join = (...p) =>
       p
@@ -123,7 +122,6 @@ export default function WordCard({
     return arr;
   }, [word, index, level, lesson, audioBase]);
 
-  // === 再生を確実に停止するヘルパ ===
   const stopAudio = useCallback(() => {
     if (audioRef.current) {
       try {
@@ -134,7 +132,7 @@ export default function WordCard({
     setIsPlaying(false);
   }, []);
 
-  // === 単語切り替え ===
+  // === 送り・戻し ===
   const goto = useCallback(
     (next) => {
       stopAudio();
@@ -157,7 +155,7 @@ export default function WordCard({
     if (index > 0) goto(index - 1);
   }, [index, goto]);
 
-  // === 音声再生 ===
+  // === 再生 ===
   const playAudio = useCallback(async () => {
     if (!audioCandidates.length) return;
     stopAudio();
@@ -178,7 +176,6 @@ export default function WordCard({
     setIsPlaying(false);
   }, [audioCandidates, stopAudio]);
 
-  // === アンマウント時クリーンアップ ===
   useEffect(() => {
     return () => {
       stopAudio();
@@ -195,23 +192,17 @@ export default function WordCard({
     setShowMeaning(true);
   };
 
-  // === レッスン・品詞 ===
-  const lessonNo = useMemo(() => {
-    const m = String(lesson).match(/\d+/);
-    return m ? Number(m[0]) : NaN;
-  }, [lesson]);
-
-  const lessonTitle = (lessonTitleOverride || (Number.isFinite(lessonNo) ? `Lesson ${lessonNo}` : "")).trim();
-
-  const pos = getPosById(level, word?.id, word?.pos || "—");
+  // === 品詞とID表示（ここがポイント） ===
+  const pos = getPosById(level, word?.id, word?.pos || "—"); // 例: "名詞"
+  const idLabel = word?.id ? `No.${word.id}` : `No.${index + 1}`;
 
   const posClass = (p) => {
-    if (p.includes("名詞")) return "noun";
-    if (p.includes("動詞")) return "verb";
-    if (p.includes("い形容詞") || p.includes("な形容詞")) return "adj";
-    if (p.includes("副詞")) return "adv";
-    if (p.includes("助詞")) return "particle";
-    if (p.includes("助数詞")) return "counter";
+    if ((p || "").includes("名詞")) return "noun";
+    if ((p || "").includes("動詞")) return "verb";
+    if ((p || "").includes("い形容詞") || (p || "").includes("な形容詞")) return "adj";
+    if ((p || "").includes("副詞")) return "adv";
+    if ((p || "").includes("助詞")) return "particle";
+    if ((p || "").includes("助数詞")) return "counter";
     return "default";
   };
 
@@ -226,15 +217,13 @@ export default function WordCard({
     }
   };
 
-  // === 詳細モーダル（★ここを修正） ===
+  // === 詳細モーダル ===
   const openDetail = useCallback(async () => {
     if (!word) return;
-
     setDetailLoading(true);
     try {
-      // ベース（必須フィールドを確実に含める）
       const base = {
-        id: word?.id,                        // ← これが超重要
+        id: word?.id, // ← 重要：IDを必ず渡す
         kanji: word?.kanji ?? "",
         reading: word?.reading ?? "",
         pos: word?.pos || pos || "—",
@@ -242,15 +231,11 @@ export default function WordCard({
         level,
         lesson,
       };
-
-      // 追加詳細（あればマージ、無ければ無視）
       let extra = null;
       try {
         extra = await loadDetail(level, category, lesson, word?.id);
       } catch {}
-
       const payload = { ...base, ...(extra || {}) };
-
       setDetailData(payload);
       onDetail?.({ ...payload, idx: index });
     } finally {
@@ -264,15 +249,15 @@ export default function WordCard({
   // === 出力 ===
   return (
     <div className="word-card" role="group" aria-label="Word card">
-      {/* ヘッダー */}
+      {/* ヘッダー：左「詳しく」 / 中央「名詞 No.x」 / 右「追加」 */}
       <div className="wc-head">
         <button type="button" className="wc-head-btn left" onClick={openDetail}>
           {detailLoading ? L.loading : L.detail}
         </button>
 
-        <div className="wc-head-title">
+        <div className="wc-head-title" aria-label="品詞と番号">
           <span className={`pos-badge ${posClass(pos)}`}>{pos || "—"}</span>
-          {lessonTitle && <span className="lesson-title">{lessonTitle}</span>}
+          <span className="id-badge">{idLabel}</span>
         </div>
 
         <button

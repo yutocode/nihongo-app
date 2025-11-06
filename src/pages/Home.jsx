@@ -1,36 +1,38 @@
 // src/pages/Home.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppStore } from "../store/useAppStore";
+import { EXAM_REGISTRY } from "@/data/exam";
 
 import FeatureTile from "../components/FeatureTile";
 import "../styles/Home.css";
 
-// レベル→模試IDのマッピング（用意できたら増やす）
-const EXAM_BY_LEVEL = {
-  n5: "n5-mock1",
-  // n4: "n4-mock1",
-  // n3: "n3-mock1",
-  // n2: "n2-mock1",
-  // n1: "n1-mock1",
-};
+// EXAM_REGISTRY から自動で「各レベルの最初の模試ID」を拾う
+const LEVEL_KEYS = ["n5", "n4", "n3", "n2", "n1"];
+const AUTO_EXAM_BY_LEVEL = (() => {
+  const map = { n5: null, n4: null, n3: null, n2: null, n1: null };
+  for (const [examId, pack] of Object.entries(EXAM_REGISTRY)) {
+    const lv = (pack?.meta?.level || "").toLowerCase(); // "N5" → "n5"
+    if (LEVEL_KEYS.includes(lv) && !map[lv]) {
+      map[lv] = examId; // そのレベルで最初に見つかった模試を採用
+    }
+  }
+  return map;
+})();
 
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const level = useAppStore((s) => s.level) || "n5";
 
-  // このレベルで使う模試ID（なければnull）
-  const examId = EXAM_BY_LEVEL[level] || null;
+  // 現在レベルで使う模試ID（無ければ null → タイルは準備中/CTAはレッスンへ）
+  const examId = useMemo(() => AUTO_EXAM_BY_LEVEL[level] || null, [level]);
 
-  // CTA：N5なら模試へ、他レベルは従来どおりレッスンへ
+  // CTA：模試があれば模試へ、無ければ従来どおりレッスンへ
   const handleStart = () => {
-    if (examId) {
-      navigate(`/exam/${examId}`);
-    } else {
-      navigate(`/lessons/${level}`);
-    }
+    if (examId) navigate(`/exam/${examId}`);
+    else navigate(`/lessons/${level}`);
   };
 
   return (
@@ -65,9 +67,7 @@ const Home = () => {
                 ? t("home.menu.mockExamDesc", `${level.toUpperCase()} 試験モード`)
                 : t("home.menu.mockExamSoon", "このレベルは準備中")
             }
-            onClick={
-              examId ? () => navigate(`/exam/${examId}`) : undefined
-            }
+            onClick={examId ? () => navigate(`/exam/${examId}`) : undefined}
             disabled={!examId}
           />
 
@@ -123,7 +123,6 @@ const Home = () => {
             ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
             : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)}
         </button>
-        
       </div>
     </main>
   );
