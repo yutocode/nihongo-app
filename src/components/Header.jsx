@@ -2,17 +2,32 @@
 import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaCog, FaHome, FaLayerGroup } from "react-icons/fa"; // ← FaArrowLeft 削除
+import { FaCog, FaLayerGroup } from "react-icons/fa";
+
+import { useAppStore } from "../store/useAppStore";
+import JellyfishLogo from "./avatars/JellyfishLogo";
 import XPBanner from "./XPBanner";
+
 import "../styles/XPBanner.css";
 import "../styles/Header.css";
+
+// 今後アバター増やす前提のマップ
+const AVATAR_ICON_MAP = {
+  jellyfish: JellyfishLogo,
+};
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
 
-  // 現在パスからレベル推定
+  const xp = useAppStore((s) => s.xp);
+  const avatarKey = useAppStore((s) => s.avatarKey || "jellyfish");
+
+  // avatarKey が不正でも必ず JellyfishLogo にフォールバック
+  const AvatarIcon = AVATAR_ICON_MAP[avatarKey] || JellyfishLogo;
+
+  // 現在パスからレベル推定（XPバナー用フォールバック）
   const currentLevel = useMemo(() => {
     const m = location.pathname.match(
       /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i
@@ -20,24 +35,27 @@ const Header = () => {
     return m ? m[1].toUpperCase() : "N5";
   }, [location.pathname]);
 
-  // 戻る先を決定
+  // 戻る先を決定（ルーティングロジック）
   const backTarget = useMemo(() => {
     const p = location.pathname;
 
-    // 単語帳：単語レッスン → レッスン一覧へ
+    // 単語レッスン → レッスン一覧
     if (/^\/words\/n[1-5]\//i.test(p)) {
       const m = p.match(/^\/words\/(n[1-5])/i);
       if (m) {
-        return { path: `/lessons/${m[1]}`, label: t("nav.toLessonSelect", "レッスン選択") };
+        return {
+          path: `/lessons/${m[1]}`,
+          label: t("nav.toLessonSelect", "レッスン選択"),
+        };
       }
     }
 
-    // レッスン選択ページ → ホーム
+    // レッスン選択 → ホーム
     if (/^\/lessons\/n[1-5]/i.test(p)) {
       return { path: "/home", label: t("common.home", "ホーム") };
     }
 
-    // 文法レッスンページ → カテゴリ内一覧
+    // 文法レッスン → 同カテゴリ内一覧
     let m = p.match(/^\/grammar\/(n[1-5])\/([^/]+)\/lesson[0-9]+$/i);
     if (m) {
       return {
@@ -74,69 +92,78 @@ const Header = () => {
       return { path: "/home", label: t("common.home", "ホーム") };
     }
 
+    // それ以外は戻るなし
     return null;
   }, [location.pathname, t]);
 
   const showBack = !!backTarget;
-  const onBack = () => navigate(backTarget.path);
-  const showHome = !showBack && location.pathname !== "/home";
-  const onHome = () => navigate("/home");
+
+  const handleBack = () => {
+    if (backTarget) navigate(backTarget.path);
+  };
 
   return (
-    <header className="app-header" role="banner">
-      {/* 左：ホーム or 戻る */}
+    <header className="app-header" role="banner" data-testid="AppHeader">
+      {/* 左：戻る or アバター（白ベタなし・大きめ） */}
       <div className="hdr-left">
         {showBack ? (
           <button
+            type="button"
             className="hdr-btn is-primary back-btn"
             aria-label={backTarget.label}
             title={backTarget.label}
-            onClick={onBack}
+            onClick={handleBack}
           >
-            {/* ← アイコン削除、テキストだけに変更 */}
             <span className="hdr-btn-text">{backTarget.label}</span>
           </button>
-        ) : showHome ? (
-          <button
-            className="hdr-btn is-ghost home-btn"
-            aria-label={t("nav.home", "Home")}
-            title={t("nav.home", "Home")}
-            onClick={onHome}
-          >
-            <FaHome className="hdr-ic" />
-            <span className="hdr-btn-text">{t("common.home", "ホーム")}</span>
-          </button>
         ) : (
-          <span className="hdr-left-spacer" />
+          <button
+            type="button"
+            className="hdr-avatar-btn"
+            aria-label={t("nav.profile", "プロフィール")}
+            title={t("nav.profile", "プロフィール")}
+            onClick={() => navigate("/profile")}
+          >
+            {/* SVG/PNGは透過推奨。サイズはCSSで枠→中身80%フィット */}
+            <span className="hdr-avatar-ico" aria-hidden="true">
+              <AvatarIcon size={40} />
+            </span>
+          </button>
         )}
       </div>
 
-      {/* 中央：XP */}
+      {/* 中央：XPバナー（幅に合わせて縮む） */}
       <div className="hdr-center">
-        <XPBanner levelLabel={currentLevel} percent={45} compact />
+        <XPBanner
+          levelLabel={xp.levelLabel || currentLevel}
+          percent={xp.percent ?? 0}
+          compact
+        />
       </div>
 
-      {/* 右：レベル設定とその他 */}
+      {/* 右：レベル選択＆設定（透明背景／統一サイズ） */}
       <div className="hdr-right">
         <button
+          type="button"
           className="hdr-icon-btn level-icon-btn"
           aria-label={t("nav.level", "Level")}
           title={t("nav.level", "レベル設定")}
           onClick={() => navigate("/level")}
         >
-          <FaLayerGroup className="hdr-ic" />
+          <FaLayerGroup className="hdr-ic" aria-hidden="true" />
         </button>
         <button
+          type="button"
           className="hdr-icon-btn settings-icon-btn"
           aria-label={t("nav.settings", "Settings")}
           title={t("nav.settings", "設定")}
           onClick={() => navigate("/settings")}
         >
-          <FaCog className="hdr-ic" />
+          <FaCog className="hdr-ic" aria-hidden="true" />
         </button>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default React.memo(Header);

@@ -1,3 +1,4 @@
+// src/store/useAppStore.jsx
 import { create } from "zustand";
 
 /** localStorage 安全取得 */
@@ -49,7 +50,9 @@ function computeProgress(total) {
 /** 日付キー */
 const todayKey = () => {
   const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+    d.getDate()
+  ).padStart(2, "0")}`;
 };
 const dailyKey = (uid) => `daily:${uid || "anon"}`;
 
@@ -89,7 +92,7 @@ export const useAppStore = create((set, get) => ({
   clearUser: () => set({ user: null }),
 
   /* ===== レベル ===== */
-  level: safeGet("app.level", ""), // ← 初回は空
+  level: safeGet("app.level", ""), // 初回は空
   setLevel: (lvl) => {
     try {
       const v = String(lvl).toLowerCase();
@@ -98,6 +101,17 @@ export const useAppStore = create((set, get) => ({
     } catch {
       set({ level: String(lvl).toLowerCase() });
     }
+  },
+
+  /* ===== アバター（プロフィールアイコン） ===== */
+  // avatarKey は "panda" | "cat" | "dog" | "penguin" ... を想定
+  avatarKey: safeGet("avatarKey", "panda"),
+  setAvatarKey: (key) => {
+    const k = key || "panda";
+    try {
+      window?.localStorage?.setItem("avatarKey", k);
+    } catch {}
+    set({ avatarKey: k });
   },
 
   /* ===== XP ===== */
@@ -155,6 +169,7 @@ export const useAppStore = create((set, get) => ({
       get().resetDaily(uid, d);
     }
   },
+  // 互換用: 旧関数名を残しておく
   ensureToday: (uid) => {
     const d = get().daily;
     if (d.dateKey !== todayKey()) {
@@ -168,7 +183,8 @@ export const useAppStore = create((set, get) => ({
     const targetWords = prev?.targetWords ?? 20;
     const targetQuizzes = prev?.targetQuizzes ?? 5;
 
-    const wasAchieved = wordsDone >= targetWords && quizzesDone >= targetQuizzes;
+    const wasAchieved =
+      wordsDone >= targetWords && quizzesDone >= targetQuizzes;
 
     const next = {
       dateKey: todayKey(),
@@ -200,7 +216,10 @@ export const useAppStore = create((set, get) => ({
     const add = n | 0;
     const next = {
       ...d,
-      wordsDone: Math.max(0, Math.min(d.targetWords, (d.wordsDone | 0) + add)),
+      wordsDone: Math.max(
+        0,
+        Math.min(d.targetWords, (d.wordsDone | 0) + add)
+      ),
     };
     set({ daily: next });
     get().saveDailyForUser(uid);
@@ -211,7 +230,10 @@ export const useAppStore = create((set, get) => ({
     const add = n | 0;
     const next = {
       ...d,
-      quizzesDone: Math.max(0, Math.min(d.targetQuizzes, (d.quizzesDone | 0) + add)),
+      quizzesDone: Math.max(
+        0,
+        Math.min(d.targetQuizzes, (d.quizzesDone | 0) + add)
+      ),
     };
     set({ daily: next });
     get().saveDailyForUser(uid);
@@ -222,13 +244,17 @@ export const useAppStore = create((set, get) => ({
     const d = get().daily;
     const denom = d.targetWords | 0;
     if (denom <= 0) return 0;
-    return Math.round((Math.max(0, d.wordsDone | 0) / denom) * 100);
+    return Math.round(
+      (Math.max(0, d.wordsDone | 0) / denom) * 100
+    );
   },
   getQuizProgress: () => {
     const d = get().daily;
     const denom = d.targetQuizzes | 0;
     if (denom <= 0) return 0;
-    return Math.round((Math.max(0, d.quizzesDone | 0) / denom) * 100);
+    return Math.round(
+      (Math.max(0, d.quizzesDone | 0) / denom) * 100
+    );
   },
 
   /* ===== XP付与 ===== */

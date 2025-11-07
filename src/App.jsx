@@ -14,19 +14,20 @@ import { auth } from "./firebase/firebase-config";
 import { useAppStore } from "./store/useAppStore";
 import "./styles/Global.css";
 
+/* ===== Layout / Guards ===== */
 import Layout from "./components/Layout";
 import AuthGuard from "./components/AuthGuard";
 import LoadingIllustration from "./components/LoadingIllustration";
 
-// （任意）プロフィールページ
+/* ===== Optional pages ===== */
 import ProfilePage from "./pages/ProfilePage";
 
-// ======== pages (public) ========
+/* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
-// ======== pages (protected) ========
+/* ===== protected pages ===== */
 import Home from "./pages/Home";
 import QuizPage from "./pages/QuizPage";
 import WordPage from "./pages/WordPage";
@@ -38,67 +39,66 @@ import LanguageSettings from "./pages/LanguageSettings";
 import MyWordbookPage from "./pages/MyWordbookPage";
 import BrowseBlockPage from "./pages/BrowseBlockPage";
 import ExamPage from "./pages/ExamPage";
-
-// ← 追加：ランキング
 import RankingPage from "./pages/RankingPage";
 
-// alphabet
+/* alphabet */
 import AlphabetUnitsPage from "./pages/AlphabetUnitsPage";
 import AlphabetUnitLessonPage from "./pages/AlphabetUnitLessonPage";
 
-// grammar (common)
+/* grammar (common) */
 import GrammarCategorySelectPage from "./pages/grammar/common/GrammarCategorySelectPage";
 import GrammarLessonSelectPage from "./pages/grammar/common/GrammarLessonSelectPage";
 import GrammarQuizPage from "./pages/grammar/common/GrammarQuizPage";
 
-// paraphrase
+/* paraphrase (common path) */
 import ParaphraseQuizPage from "./pages/grammar/common/ParaphraseQuizPage";
 
-// N4 grammar
+/* N4 grammar */
 import N4ComparisonBlankQuizPage from "./pages/grammar/n4/N4ComparisonBlankQuizPage";
 import N4TenseAspectJLPTPage from "./pages/grammar/n4/N4TenseAspectJLPTPage";
 
-// N5 special quizzes
+/* N5 special quizzes */
 import ExistHaveQuizPage from "./pages/grammar/n5/ExistHaveQuizPage";
 import N5IntentPlanQuizPage from "./pages/grammar/n5/N5IntentPlanQuizPage";
 import N5AskPermitQuizPage from "./pages/grammar/n5/N5AskPermitQuizPage";
 
-// adjective
+/* adjective */
 import AdjTypeQuizPage from "./pages/grammar/n5/AdjTypeQuizPage";
 
-// word quizzes
+/* word quizzes */
 import WordQuizPage from "./pages/WordQuizPage";
 import WordQuizLessonSelectPage from "./pages/WordQuizLessonSelectPage";
 
-// reader
+/* reader */
 import ReaderPage from "./pages/ReaderPage";
 import ReaderHubPage from "./pages/ReaderHubPage";
 import StoryPlayer from "./pages/StoryPlayer.jsx";
 
-// verb conjugation quiz
+/* verb conjugation */
 import GrammarVerbQuizPage from "./pages/GrammarVerbQuizPage";
 
-// N3
+/* N3 special */
 import N3VoiceQuizPage from "./pages/grammar/n3/N3VoiceQuizPage";
 import N3ConcessionQuizPage from "./pages/grammar/n3/N3ConcessionQuizPage";
 
-// ======== legal (public) ========
+/* legal (public) */
 import Tokusho from "./pages/legal/Tokusho";
 import Terms from "./pages/legal/Terms";
 import Privacy from "./pages/legal/Privacy";
 
-// XP persistence
+/* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
 /* ========= helpers ========= */
+function normalizeLesson(key) {
+  if (!key) return "Lesson1";
+  const m = String(key).match(/lesson\\s*(\\d+)/i);
+  return m ? `Lesson${m[1]}` : String(key);
+}
+
 function AdjLevelRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
-}
-function normalizeLesson(key) {
-  if (!key) return "Lesson1";
-  const m = String(key).match(/lesson\s*(\d+)/i);
-  return m ? `Lesson${m[1]}` : String(key);
 }
 function CompareAliasRedirect() {
   return <Navigate to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`} replace />;
@@ -115,13 +115,14 @@ function ComparisonLegacyRedirect() {
 /* ========= scroll reset ========= */
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return null;
 }
 
 /* ========= App ========= */
 const App = () => (
-  // Vite の base と合わせる（サブパス配信でもOK）
   <Router basename={import.meta.env.BASE_URL}>
     <ScrollToTop />
     <AppInitializer />
@@ -129,18 +130,18 @@ const App = () => (
       fallback={<LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />}
     >
       <Routes>
-        {/* ======= public routes ======= */}
+        {/* ======= public ======= */}
         <Route path="/" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/auth" element={<AuthPage />} />
 
-        {/* legal（誰でも見れる） */}
+        {/* legal */}
         <Route path="/legal/tokusho" element={<Tokusho />} />
         <Route path="/legal/terms" element={<Terms />} />
         <Route path="/legal/privacy" element={<Privacy />} />
 
-        {/* ======= protected routes ======= */}
+        {/* ======= protected ======= */}
         <Route
           element={
             <AuthGuard>
@@ -148,15 +149,15 @@ const App = () => (
             </AuthGuard>
           }
         >
-          {/* home & result */}
+          {/* home & basics */}
           <Route path="/home" element={<Home />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/result" element={<ResultPage />} />
 
-          {/* ランキング（追加） */}
+          {/* ranking */}
           <Route path="/ranking" element={<RankingPage />} />
 
-          {/* JLPT 模試 */}
+          {/* exam */}
           <Route path="/exam/:examId" element={<ExamPage />} />
 
           {/* lessons & words */}
@@ -186,20 +187,20 @@ const App = () => (
           <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
           <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
 
-          {/* N3 special (dedicated) */}
+          {/* N3 dedicated routes */}
           <Route path="/grammar/n3/concession/:lesson" element={<N3ConcessionQuizPage />} />
+          <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
+
+          {/* paraphrase (共通パス) */}
           <Route path="/grammar/:level/paraphrase/:lesson" element={<ParaphraseQuizPage />} />
 
           {/* generic grammar */}
           <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
 
-          {/* N3 voice */}
-          <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
-
           {/* verb conjugation */}
           <Route path="/grammar/:level/verb-forms/:lesson" element={<GrammarVerbQuizPage />} />
 
-          {/* N4 official paths */}
+          {/* N4 official */}
           <Route path="/grammar/n4/comparison/:lesson" element={<N4ComparisonBlankQuizPage />} />
           <Route path="/grammar/n4/tense-aspect-jlpt/:lesson" element={<N4TenseAspectJLPTPage />} />
 
@@ -261,8 +262,8 @@ const AppInitializer = () => {
     "/alphabet/unit",
     "/reader",
     "/exam",
-    "/profile", // 保護
-    "/ranking", // 追加：ランキングも保護
+    "/profile",
+    "/ranking",
   ];
 
   const lastNavRef = useRef("");
@@ -272,7 +273,7 @@ const AppInitializer = () => {
     navigate(to, { replace: true });
   };
 
-  // 1) 通常の Auth 監視
+  // Auth監視
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       const path = location.pathname || "/";
@@ -309,24 +310,24 @@ const AppInitializer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // 2) DEV 専用：?autologin=1 でテストユーザに自動ログイン
+  // DEV: ?autologin=1 でテストユーザー自動ログイン
   useEffect(() => {
     if (!import.meta.env.DEV) return;
-
     try {
       const url = new URL(window.location.href);
       if (url.searchParams.get("autologin") !== "1") return;
 
       const email = import.meta.env.VITE_SHOT_EMAIL;
       const pass = import.meta.env.VITE_SHOT_PASS;
-
       if (!email || !pass) {
         console.warn("VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。");
         return;
       }
 
       const unsub = auth.onAuthStateChanged((u) => {
-        if (!u) { signInWithEmailAndPassword(auth, email, pass).catch(() => {}); }
+        if (!u) {
+          signInWithEmailAndPassword(auth, email, pass).catch(() => {});
+        }
         unsub?.();
       });
     } catch (e) {

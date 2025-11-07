@@ -25,7 +25,6 @@ export default function HeaderRight() {
         <div className="level-select-modal">
           <h3>Choose level</h3>
           <ul>
-            <li>Beginner</li>
             <li>JLPT N5</li>
             <li>JLPT N4</li>
             <li>JLPT N3</li>
