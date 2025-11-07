@@ -15,22 +15,6 @@ import "@/styles/RankingPage.css";
 
 const PAGE_SIZE = 25;
 
-function explainFirestoreError(err) {
-  // FirebaseError には code が入る: e.g. "failed-precondition", "permission-denied"
-  const code = err?.code || "";
-  const msg = err?.message || "";
-
-  if (code === "failed-precondition") {
-    // 複合インデックス未作成のときに出やすい
-    // console のエラーメッセージ内にインデックス作成リンクが出ます
-    return "このクエリには複合インデックスが必要です。コンソールのエラーに表示されるリンクから作成してください。";
-  }
-  if (code === "permission-denied") {
-    return "読み取り権限がありません。Firestore ルールを確認してください（公開条件とクエリ条件を一致させてください）。";
-  }
-  return `読み込みでエラーが発生しました: ${code || ""} ${msg || ""}`;
-}
-
 export default function RankingPage() {
   const user = useAppStore((s) => s.user);
 
@@ -42,28 +26,25 @@ export default function RankingPage() {
 
   const lastDocRef = useRef(null);
 
-  const baseQuery = (opts = {}) =>
-    query(
-      collection(db, "users"),
-      // ★ 公開ユーザーのみ（ルールと一致させること）
-      where("privacy.showInRanking", "==", true),
-      orderBy("totalXP", "desc"),
-      ...(opts.startAfter ? [startAfter(opts.startAfter)] : []),
-      limit(PAGE_SIZE)
-    );
-
+  // 最初の読み込み
   const fetchFirst = async () => {
     setLoading(true);
     setError(null);
     try {
-      const snap = await getDocs(baseQuery());
-      const docs = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
-      setRows(docs);
+      const q = query(
+        collection(db, "users"),
+        where("privacy.showInRanking", "==", true),
+        orderBy("xpTotal", "desc"),
+        limit(PAGE_SIZE)
+      );
+      const snap = await getDocs(q);
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
+      setRows(list);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
     } catch (e) {
-      console.error(e);
-      setError(explainFirestoreError(e));
+      console.error("[Ranking] fetchFirst error", e);
+      setError("ランキングを読み込めませんでした（インデックスまたはルールを確認してください）。");
       setRows([]);
       setEnd(true);
     } finally {
@@ -71,20 +52,27 @@ export default function RankingPage() {
     }
   };
 
+  // もっと見る
   const fetchMore = async () => {
     if (end || !lastDocRef.current) return;
     setLoadingMore(true);
     setError(null);
     try {
-      const snap = await getDocs(baseQuery({ startAfter: lastDocRef.current }));
-      const docs = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
-      setRows((prev) => [...prev, ...docs]);
+      const q = query(
+        collection(db, "users"),
+        where("privacy.showInRanking", "==", true),
+        orderBy("xpTotal", "desc"),
+        startAfter(lastDocRef.current),
+        limit(PAGE_SIZE)
+      );
+      const snap = await getDocs(q);
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
+      setRows((prev) => [...prev, ...list]);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
     } catch (e) {
-      console.error(e);
-      setError(explainFirestoreError(e));
-      // ここで止めておくと連打で無限リトライしない
+      console.error("[Ranking] fetchMore error", e);
+      setError("追加のランキングを読み込めませんでした。");
       setEnd(true);
     } finally {
       setLoadingMore(false);
@@ -117,7 +105,9 @@ export default function RankingPage() {
       {loading ? (
         <div className="rk__loading">読み込み中…</div>
       ) : rows.length === 0 ? (
-        <div className="rk__empty">まだランキングに表示できるユーザーがいません。</div>
+        <div className="rk__empty">
+          まだランキングに表示できるユーザーがいません。
+        </div>
       ) : (
         <ol className="rk__list">
           {rows.map((u, idx) => (
@@ -128,8 +118,15 @@ export default function RankingPage() {
               }`}
             >
               <div className="rk__rank">
-                {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : idx + 1}
+                {idx === 0
+                  ? "🥇"
+                  : idx === 1
+                  ? "🥈"
+                  : idx === 2
+                  ? "🥉"
+                  : idx + 1}
               </div>
+
               <div className="rk__avatar">
                 {u.avatarUrl ? (
                   <img src={u.avatarUrl} alt="" />
@@ -139,6 +136,7 @@ export default function RankingPage() {
                   </div>
                 )}
               </div>
+
               <div className="rk__meta">
                 <div className="rk__name">{u.displayName || "ユーザー"}</div>
                 <div className="rk__submeta">
@@ -146,8 +144,9 @@ export default function RankingPage() {
                   {u.jlptTarget || "目標未設定"}
                 </div>
               </div>
+
               <div className="rk__xp">
-                <span className="rk__xpNum">{u.totalXP ?? 0}</span>
+                <span className="rk__xpNum">{u.xpTotal ?? 0}</span>
                 <span className="rk__xpUnit">XP</span>
               </div>
             </li>
@@ -163,7 +162,6 @@ export default function RankingPage() {
         </div>
       )}
 
-      {/* 自分の位置案内（ログイン時のみ表示） */}
       {!loading && user && myIndex === -1 && rows.length > 0 && (
         <div className="rk__mehint">
           あなたは現在このリスト外です（XPを増やすと表示されます）

@@ -1,12 +1,14 @@
 // src/firebase/firebase-config.js
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
-import { initializeFirestore } from "firebase/firestore"; // ← ここ重要
+import { initializeFirestore } from "firebase/firestore";
 
+// あなたのプロジェクトの設定
 const firebaseConfig = {
   apiKey: "AIzaSyDqin1UCPFkfFObScDR5QtJQXxzBlkg-hE",
   authDomain: "app-4db93.firebaseapp.com",
@@ -17,23 +19,26 @@ const firebaseConfig = {
   measurementId: "G-FR05H677B9",
 };
 
+// -------- initialize --------
 const app = initializeApp(firebaseConfig);
 
-// ✅ Listen 400対策（“強制ロングポーリング”のみ有効に）
+// Firestore
+// GitHub Pages / 一部回線での接続問題対策としてロングポーリング指定
 export const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
   useFetchStreams: false,
-  // experimentalAutoDetectLongPolling: true, // ← 併用禁止なので外す
 });
 
+// Auth
 export const auth = getAuth(app);
-(async () => {
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-    console.log("Auth persistence: local");
-  } catch (e) {
-    console.warn("Auth persistence error:", e);
-  }
-})();
+
+// ログイン状態をブラウザに永続化（毎回ログイン防止）
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("[Auth] persistence: local");
+  })
+  .catch((e) => {
+    console.warn("[Auth] persistence error:", e);
+  });
 
 export default app;

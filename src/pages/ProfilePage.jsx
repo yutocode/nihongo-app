@@ -23,8 +23,10 @@ export default function ProfilePage() {
 
     (async () => {
       if (!user) {
-        setProfile(null);
-        setLoading(false);
+        if (alive) {
+          setProfile(null);
+          setLoading(false);
+        }
         return;
       }
 
@@ -35,7 +37,7 @@ export default function ProfilePage() {
 
         const data = snap.exists() ? snap.data() : {};
 
-        // FirestoreにavatarKeyがあればZustandにも反映
+        // Firestore に avatarKey があれば Zustand に同期
         if (data.avatarKey) {
           setAvatarKey(data.avatarKey);
         }
@@ -54,14 +56,17 @@ export default function ProfilePage() {
     };
   }, [user, setAvatarKey]);
 
-  // プロフィール保存（名前・自己紹介など）
+  // プロフィール保存（名前・自己紹介・目標・privacy など）
   const saveProfile = useCallback(
     async (partial) => {
-      if (!user || !profile) return;
+      if (!user) return;
       setSaving(true);
       try {
         const ref = doc(db, "users", user.uid);
-        const patch = { ...partial, updatedAt: serverTimestamp() };
+        const patch = {
+          ...partial,
+          updatedAt: serverTimestamp(),
+        };
         await updateDoc(ref, patch);
         setProfile((prev) => ({ ...(prev || {}), ...partial }));
       } catch (e) {
@@ -70,14 +75,12 @@ export default function ProfilePage() {
         setSaving(false);
       }
     },
-    [user, profile]
+    [user]
   );
 
-  // アバター変更（今は Jellyfish 1種類だが将来拡張を想定）
+  // アバター変更（今は1種だが将来拡張用フック）
   const handleAvatarClick = () => {
-    // ここで将来 AvatarPicker を開くなどの処理を入れられる
-    // 今は固定なので何もしない or コメントアウト
-    // 例: setAvatarPicking(true);
+    // ここで AvatarPicker を開くなど
   };
 
   if (loading) {
@@ -93,8 +96,32 @@ export default function ProfilePage() {
   }
 
   const stats = profile.stats || {};
-  const privacy = profile.privacy || {};
-  const AvatarIcon = JellyfishLogo; // 将来 avatarKey に応じて切り替えたくなったらここを拡張
+
+  // privacy のデフォルト値:
+  // - showInRanking: true（ランキング表示ON）
+  // - showStreakPublic: true（ストリーク公開ON）
+  const privacy = {
+    showInRanking: true,
+    showStreakPublic: true,
+    ...(profile.privacy || {}),
+  };
+
+  const AvatarIcon = JellyfishLogo; // avatarKey 次第で切り替えるならここを拡張
+
+  // 合計XPは xpTotal を最優先、なければ stats.totalXP → それもなければ 0
+  const totalXP =
+    typeof profile.xpTotal === "number"
+      ? profile.xpTotal
+      : typeof stats.totalXP === "number"
+      ? stats.totalXP
+      : 0;
+
+  const streakDays =
+    typeof stats.streakDays === "number" ? stats.streakDays : 0;
+  const lessonsCompleted =
+    typeof stats.lessonsCompleted === "number"
+      ? stats.lessonsCompleted
+      : 0;
 
   return (
     <main className="profile">
@@ -114,9 +141,11 @@ export default function ProfilePage() {
           <h1 className="profile__name">
             {profile.displayName || user.displayName || "ユーザー"}
           </h1>
+
           {profile.username && (
             <div className="profile__handle">@{profile.username}</div>
           )}
+
           <div className="profile__target">
             目標: {profile.jlptTarget || "未設定"}
           </div>
@@ -132,9 +161,9 @@ export default function ProfilePage() {
 
       {/* Stats */}
       <section className="profile__stats">
-        <StatCard label="合計XP" value={stats.totalXP ?? 0} />
-        <StatCard label="連続日数" value={stats.streakDays ?? 0} />
-        <StatCard label="完了レッスン" value={stats.lessonsCompleted ?? 0} />
+        <StatCard label="合計XP" value={totalXP} />
+        <StatCard label="連続日数" value={streakDays} />
+        <StatCard label="完了レッスン" value={lessonsCompleted} />
       </section>
 
       {/* Bio */}
@@ -148,6 +177,7 @@ export default function ProfilePage() {
       {/* Privacy */}
       <section className="profile__section">
         <h2>公開設定</h2>
+
         <Toggle
           label="ランキングに表示する"
           checked={!!privacy.showInRanking}
@@ -158,6 +188,7 @@ export default function ProfilePage() {
           }
           disabled={saving}
         />
+
         <Toggle
           label="連続日数を公開する"
           checked={!!privacy.showStreakPublic}
@@ -218,15 +249,18 @@ function Toggle({ label, checked, onChange, disabled }) {
 
 function EditProfileModal({ initial, onClose, onSubmit, saving }) {
   const [form, setForm] = useState(initial);
-  const set = (k, v) =>
-    setForm((s) => ({
-      ...s,
-      [k]: v,
+
+  const set = (key, value) => {
+    setForm((prev) => ({
+      ...prev,
+      [key]: value,
     }));
+  };
 
   return (
     <div className="modal">
       <div className="modal__backdrop" onClick={onClose} />
+
       <div className="modal__body" role="dialog" aria-modal="true">
         <h3>プロフィール編集</h3>
 
