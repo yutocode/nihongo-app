@@ -206,15 +206,6 @@ export default function Settings() {
         <RowButton icon="🛡️" label={t("settings.sections.support.privacy", "プライバシー")} to="/legal/privacy" />
       </SettingSection>
 
-      {/* Danger zone */}
-      <SettingSection title={t("settings.sections.danger.title", "危険な操作")}>
-        <RowButton
-          icon="🗑️"
-          label={t("settings.sections.danger.deleteAccount", "アカウント削除")}
-          to="/settings/delete-account"
-          trailing={<span className="settings__chevron" aria-hidden>›</span>}
-        />
-      </SettingSection>
 
       {/* Footer */}
       <footer className="settings__footer">

@@ -89,10 +89,14 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
+/* ====== ゲスト常時オン（ログイン不要） ====== */
+const GUEST_MODE = true;
+
 /* ========= helpers ========= */
 function normalizeLesson(key) {
   if (!key) return "Lesson1";
-  const m = String(key).match(/lesson\\s*(\\d+)/i);
+  // ← 正規表現はリテラルでOK（バックスラッシュ二重化は不要）
+  const m = String(key).match(/lesson\s*(\d+)/i);
   return m ? `Lesson${m[1]}` : String(key);
 }
 
@@ -126,27 +130,29 @@ const App = () => (
   <Router basename={import.meta.env.BASE_URL}>
     <ScrollToTop />
     <AppInitializer />
-    <Suspense
-      fallback={<LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />}
-    >
+    <Suspense fallback={<LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />}>
       <Routes>
-        {/* ======= public ======= */}
-        <Route path="/" element={<AuthPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* ======= public（ゲスト常時オンでも一応残す） ======= */}
+        <Route path="/" element={GUEST_MODE ? <Navigate to="/home" replace /> : <AuthPage />} />
+        <Route path="/auth" element={GUEST_MODE ? <Navigate to="/home" replace /> : <AuthPage />} />
+        <Route path="/login" element={GUEST_MODE ? <Navigate to="/home" replace /> : <LoginPage />} />
+        <Route path="/register" element={GUEST_MODE ? <Navigate to="/home" replace /> : <RegisterPage />} />
 
         {/* legal */}
         <Route path="/legal/tokusho" element={<Tokusho />} />
         <Route path="/legal/terms" element={<Terms />} />
         <Route path="/legal/privacy" element={<Privacy />} />
 
-        {/* ======= protected ======= */}
+        {/* ======= アプリ本体 ======= */}
         <Route
           element={
-            <AuthGuard>
+            GUEST_MODE ? (
               <Layout />
-            </AuthGuard>
+            ) : (
+              <AuthGuard>
+                <Layout />
+              </AuthGuard>
+            )
           }
         >
           {/* home & basics */}
@@ -191,7 +197,7 @@ const App = () => (
           <Route path="/grammar/n3/concession/:lesson" element={<N3ConcessionQuizPage />} />
           <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
 
-          {/* paraphrase (共通パス) */}
+          {/* paraphrase */}
           <Route path="/grammar/:level/paraphrase/:lesson" element={<ParaphraseQuizPage />} />
 
           {/* generic grammar */}
@@ -273,8 +279,20 @@ const AppInitializer = () => {
     navigate(to, { replace: true });
   };
 
-  // Auth監視
   useEffect(() => {
+    if (GUEST_MODE) {
+      // 認証監視を完全スキップ
+      try { clearUser?.(); stopAutoSave?.(); } catch {}
+      setAuthReady?.(true);
+      // ルートなら /home へ
+      const path = location.pathname || "/";
+      if (path === "/" || path === "/auth" || path === "/login" || path === "/register") {
+        navigateOnce("/home");
+      }
+      return;
+    }
+
+    // ← ここから通常の認証フロー（ゲスト無効時のみ実行）
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       const path = location.pathname || "/";
 
@@ -308,11 +326,11 @@ const AppInitializer = () => {
 
     return () => unsubscribe && unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.pathname]);
 
-  // DEV: ?autologin=1 でテストユーザー自動ログイン
+  // DEV: ?autologin=1 （ゲスト無効の時のみ）
   useEffect(() => {
-    if (!import.meta.env.DEV) return;
+    if (GUEST_MODE || !import.meta.env.DEV) return;
     try {
       const url = new URL(window.location.href);
       if (url.searchParams.get("autologin") !== "1") return;
