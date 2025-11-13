@@ -1,7 +1,7 @@
 {
   "settings": {
     "title": "Pengaturan",
-    "subtitle": "Kelola pengaturan aplikasi",
+    "subtitle": "Atur preferensi aplikasi",
     "sections": {
       "account": {
         "title": "Akun",
@@ -14,9 +14,9 @@
         "notifications": "Notifikasi",
         "notifications_desc": "Terima pengingat belajar",
         "theme": "Mode gelap",
-        "theme_desc": "Ganti tampilan aplikasi",
+        "theme_desc": "Ubah tampilan tema",
         "language": "Bahasa",
-        "language_desc": "Pilih bahasa aplikasi"
+        "language_desc": "Pilih bahasa tampilan aplikasi"
       },
       "premium": {
         "title": "Premium",
@@ -26,13 +26,8 @@
         "title": "Dukungan",
         "help": "Bantuan & Dukungan",
         "contact": "Hubungi kami",
-        "terms": "Ketentuan penggunaan",
+        "terms": "Syarat penggunaan",
         "privacy": "Kebijakan privasi"
-      },
-      "danger": {
-        "title": "Zona berbahaya",
-        "deleteAccount": "Hapus akun",
-        "deleteConfirm": "Anda yakin? Tindakan ini tidak bisa dibatalkan."
       }
     },
     "version": "Versi",
@@ -41,24 +36,24 @@
 
   "nav": {
     "home": "Beranda",
-    "wordbook": "Kosakata",
+    "wordbook": "Kartu kata",
     "quiz": "Kuis",
     "listening": "Mendengarkan",
     "challenge": "Tantangan",
-    "grammarQuiz": "Kuis Tata Bahasa"
+    "grammarQuiz": "Kuis tata bahasa"
   },
 
   "home": {
     "menu": {
-      "wordbook": "Kosakata",
-      "grammar": "Tata Bahasa",
-      "grammarQuiz": "Kuis Tata Bahasa",
-      "text": "teks",
+      "wordbook": "Kartu kata",
+      "grammar": "Tata bahasa",
+      "grammarQuiz": "Kuis tata bahasa",
+      "text": "Teks",
       "listening": "Mendengarkan",
-      "myWordbook": "Kamus Saya",
-      "wordQuiz": "Kuis Kosakata",
+      "myWordbook": "Kartu kata saya",
+      "wordQuiz": "Kuis kosakata",
       "alphabet": "Huruf",
-      "practice": "Ujian Simulasi"
+      "practice": "Ujian latihan"
     },
     "cta": {
       "startN5": "Mulai belajar dari N5"
@@ -66,104 +61,104 @@
   },
 
   "level": {
-    "title": "Pilih Level",
+    "title": "Pilih level",
     "subtitle": "Silakan pilih level",
-    "selectLanguage": "Silakan pilih bahasa"
+    "selectLanguage": "Pilih bahasa"
   },
 
   "lesson": {
-  "selectTitle": "Pilih Pelajaran ({{level}})",
-  "title": "Pilih Pelajaran",
-  "subtitle": "Silakan pilih pelajaran",
-  "part": "Pelajaran {{num}}",
-  "lesson": "Pelajaran"
+    "selectTitle": "Pilih pelajaran ({{level}})",
+    "title": "Pilih pelajaran",
+    "subtitle": "Silakan pilih pelajaran",
+    "part": "Pelajaran {{num}}",
+    "lesson": "Pelajaran"
   },
 
   "quiz": {
     "resultTitle": "🎉 Hasil",
     "score": "Skor",
     "accuracy": "Akurasi",
-    "question": "Soal",
-    "timeLeft": "Sisa Waktu",
+    "question": "Pertanyaan",
+    "timeLeft": "Waktu tersisa",
     "correct": "Benar!",
     "wrong": "Salah"
   },
 
   "ranking": {
     "title": "Peringkat",
-    "description": "Fitur peringkat sedang dalam pengembangan"
+    "description": "Fitur peringkat sedang dikembangkan"
   },
 
   "footer": {
-    "madeWithLove": "Dibuat dengan ❤️ untuk pelajar"
+    "madeWithLove": "Dibuat dengan ❤️ untuk para pelajar"
   },
 
   "grammar": {
     "level": {
-      "title": "Pilih Level Tata Bahasa",
-      "backHome": "Kembali ke Beranda",
-      "backToLevels": "Kembali ke Level"
+      "title": "Pilih level tata bahasa",
+      "backHome": "Kembali ke beranda",
+      "backToLevels": "Kembali ke pemilihan level"
     },
     "hints": {
-      "teacher_advice": { "title": "Saran guru", "tip": "Bimbingan dari guru → “sebaiknya” (〜ほうがいい)." },
-      "doctor_advice":  { "title": "Saran dokter", "tip": "Saran dari dokter → “sebaiknya” (〜ほうがいい)." },
-      "company_rule":   { "title": "Peraturan perusahaan", "tip": "Aturan perusahaan → “harus” (〜なければならない)." },
-      "posted_notice":  { "title": "Pengumuman tertempel", "tip": "Tertulis di papan/penanda → “harus” (〜なければならない)." },
-      "deadline":       { "title": "Batas waktu", "tip": "Harus kumpul sebelum tenggat → “harus” (〜なければならない)." },
-      "optional":       { "title": "Opsional", "tip": "Sukarela/opsional → “tidak perlu” (〜なくてもいい)." },
-      "free_participation": { "title": "Partisipasi sukarela", "tip": "Boleh ikut/ tidak → “tidak perlu” (〜なくてもいい)." },
-      "situation_change": { "title": "Kondisi berubah", "tip": "Sudah tidak diperlukan → “tidak perlu” (〜なくてもいい)." },
-      "safety":         { "title": "Ketentuan keselamatan", "tip": "Keselamatan/kepatuhan → “harus” (〜なければならない)." },
-      "polite_suggestion": { "title": "Saran sopan", "tip": "Rekomendasi halus → “sebaiknya” (〜ほうがいい)." }
+      "teacher_advice": { "title": "Saran guru", "tip": "Saran dari guru → '〜ほうがいい' (sebaiknya...)." },
+      "doctor_advice":  { "title": "Saran dokter", "tip": "Saran dari dokter → '〜ほうがいい' (sebaiknya...)." },
+      "company_rule":   { "title": "Aturan perusahaan", "tip": "Peraturan internal → '〜なければならない' (harus...)." },
+      "posted_notice":  { "title": "Pengumuman", "tip": "Peraturan yang tertulis → '〜なければならない' (harus...)." },
+      "deadline":       { "title": "Batas waktu", "tip": "Harus dikumpulkan sebelum batas waktu → '〜なければならない'." },
+      "optional":       { "title": "Opsional", "tip": "Bebas atau tidak wajib → '〜なくてもいい' (tidak perlu...)." },
+      "free_participation": { "title": "Partisipasi bebas", "tip": "Ikut serta bersifat sukarela → '〜なくてもいい'." },
+      "situation_change": { "title": "Perubahan situasi", "tip": "Kondisi berubah jadi tidak perlu → '〜なくてもいい'." },
+      "safety":         { "title": "Keselamatan", "tip": "Hal-hal yang wajib demi keamanan → '〜なければならない'." },
+      "polite_suggestion": { "title": "Saran sopan", "tip": "Rekomendasi secara halus → '〜ほうがいい'." }
     },
     "categories": {
       "title": "Pilih kategori tata bahasa {{level}}",
       "particles": "Partikel",
-      "verbForms": "Bentuk Kata Kerja",
-      "adjectives": "Kata Sifat",
-      "existHave": "Ada / Punya",
-      "compare": "Perbandingan & Tingkat",
-      "intentPlan": "Niat & Rencana",
-      "askPermit": "Permintaan & Izin",
-      "basic": "Dasar Lainnya",
-      "backToLevels": "Kembali ke Level",
-      "comingSoon": "Segera Hadir"
+      "verbForms": "Bentuk kata kerja",
+      "adjectives": "Bentuk kata sifat",
+      "existHave": "Ada / Memiliki (ある・いる・持っている)",
+      "compare": "Perbandingan & tingkat (より・いちばん)",
+      "intentPlan": "Niat / Rencana / Perkiraan (〜たい・〜つもり・〜でしょう)",
+      "askPermit": "Permintaan & izin (〜てください・〜てもいい)",
+      "basic": "Tata bahasa dasar lainnya",
+      "backToLevels": "Kembali ke level",
+      "comingSoon": "Segera hadir"
     },
     "lessons": {
-      "title": "Pilih Pelajaran {{level}} ({{category}})",
-      "titleWithLabel": "Pilih Pelajaran {{level}} ({{categoryLabel}})",
-      "hint": "Pilih pelajaran untuk mulai kuis. Jika data tidak ada, akan muncul pesan 'Tidak ditemukan'.",
-      "backToCategories": "Kembali ke Kategori",
-      "backToList": "Ke Daftar Pelajaran",
+      "title": "Pilih pelajaran {{level}} ({{category}})",
+      "titleWithLabel": "Pilih pelajaran {{level}} ({{categoryLabel}})",
+      "hint": "Pilih pelajaran untuk memulai kuis. Jika data belum tersedia, akan muncul 'tidak ditemukan'.",
+      "backToCategories": "Kembali ke kategori",
+      "backToList": "Kembali ke daftar pelajaran",
       "open": "Pelajaran {{num}}",
-      "back": "← Kembali",
-      "toCategories": "Ke Daftar Kategori",
-      "toHome": "Ke Beranda"
+      "back": "Kembali",
+      "toCategories": "Ke daftar kategori",
+      "toHome": "Ke beranda"
     },
     "quiz": {
-      "title": "Tata Bahasa {{level}} {{lesson}}",
+      "title": "Tata bahasa {{level}} {{lesson}}",
       "notFound": "Data kuis untuk pelajaran ini tidak ditemukan.",
       "back": "Kembali",
-      "backToLessons": "Kembali ke Daftar Pelajaran",
+      "backToLessons": "Kembali ke daftar pelajaran",
       "retry": "Coba lagi",
       "score": "Skor: {{score}} / {{total}}",
       "counter": "{{current}} / {{total}}",
       "toolbar": {
-        "prevOne": "Soal Sebelumnya",
-        "lessonList": "Daftar Pelajaran",
+        "prevOne": "Sebelumnya",
+        "lessonList": "Daftar pelajaran",
         "home": "Beranda"
       }
     }
   },
 
   "adj": {
-    "title": "Kuis Dua Pilihan Kata Sifat {{level}}",
+    "title": "Kuis dua pilihan kata sifat {{level}}",
     "counter": "{{current}} / {{total}}",
     "i": "Kata sifat -i",
     "na": "Kata sifat -na",
-    "backOne": "← Kembali ke soal sebelumnya",
-    "toCategoryList": "Ke Daftar Kategori",
-    "toLessonList": "Ke Daftar Pelajaran",
+    "backOne": "← Kembali",
+    "toCategoryList": "Ke daftar kategori",
+    "toLessonList": "Ke daftar pelajaran",
     "score": "Skor: {{score}} / {{total}}",
     "notFound": "Data pelajaran tidak ditemukan.",
     "retry": "Coba lagi"
@@ -171,40 +166,66 @@
 
   "askPermit": {
     "instruction": {
-      "request": "Ubah kalimat ini menjadi bentuk permintaan.",
-      "permission": "Ubah kalimat ini menjadi bentuk izin.",
-      "prohibition": "Ubah kalimat ini menjadi bentuk larangan.",
-      "obligation": "Ubah kalimat ini menjadi bentuk keharusan.",
-      "unnecessary": "Ubah kalimat ini menjadi bentuk tidak perlu.",
-      "default": "Pilih bentuk yang benar."
+      "request": "Ubah kalimat ini ke bentuk permintaan.",
+      "permission": "Ubah kalimat ini ke bentuk izin.",
+      "prohibition": "Ubah kalimat ini ke bentuk larangan.",
+      "obligation": "Ubah kalimat ini ke bentuk kewajiban.",
+      "unnecessary": "Ubah kalimat ini ke bentuk 'tidak perlu'.",
+      "default": "Ubah ke bentuk yang benar."
     }
   },
 
   "text": {
     "categories": {
-      "title": "Pilih Kategori Teks N5",
+      "title": "Pilih kategori teks N5",
       "particles": "Partikel",
-      "verbForms": "Bentuk Kata Kerja",
-      "adjectives": "Kata Sifat",
-      "existHave": "Keberadaan / Kepemilikan",
-      "compare": "Perbandingan / Tingkat",
+      "verbForms": "Bentuk kata kerja",
+      "adjectives": "Kata sifat",
+      "existHave": "Ada / Memiliki",
+      "compare": "Perbandingan & tingkat",
       "intentPlan": "Niat / Rencana / Perkiraan",
       "askPermit": "Permintaan / Izin",
-      "basic": "Dasar Lainnya",
-      "comingSoon": "Segera Hadir"
+      "basic": "Dasar lainnya",
+      "comingSoon": "Segera hadir"
     }
   },
+
   "wordcard": {
     "back": "← Kembali",
-    "next": "Lanjut →",
+    "next": "Berikutnya →",
     "showMeaning": "Klik untuk melihat arti",
     "meaning": "Arti",
     "play": "🔊 Putar audio",
     "detail": "Detail",
     "add": "Tambah",
     "notFound": "❌ Terjemahan tidak ditemukan"
+  },
+
+  "ui": {
+    "labels": {
+      "meaning": "Arti",
+      "frequency": "Frekuensi kemunculan",
+      "strokes": "Jumlah goresan",
+      "examples": "Contoh kalimat",
+      "added": "Sudah ditambahkan"
+    },
+    "pos": {
+      "noun": "Kata benda",
+      "verb": "Kata kerja",
+      "iAdj": "Kata sifat -i",
+      "naAdj": "Kata sifat -na",
+      "adv": "Kata keterangan",
+      "other": "Lainnya"
+    },
+    "actions": {
+      "tapToReveal": "Klik untuk menampilkan arti"
+    }
+  },
+
+  "browse": {
+    "byPos": "Berdasarkan jenis kata",
+    "byNumber": "Urutan nomor",
+    "byFrequency": "Urutan popularitas",
+    "count": "{{count}} kata"
   }
-
-
-
 }

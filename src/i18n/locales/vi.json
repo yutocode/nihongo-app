@@ -1,0 +1,261 @@
+{
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Quản lý cài đặt ứng dụng",
+    "sections": {
+      "account": {
+        "title": "Tài khoản",
+        "profile": "Hồ sơ",
+        "password": "Mật khẩu",
+        "export": "Xuất dữ liệu"
+      },
+      "basic": {
+        "title": "Cài đặt cơ bản",
+        "notifications": "Thông báo",
+        "notifications_desc": "Nhận nhắc nhở học tập",
+        "theme": "Chế độ tối",
+        "theme_desc": "Chuyển đổi giao diện",
+        "language": "Ngôn ngữ",
+        "language_desc": "Chọn ngôn ngữ hiển thị"
+      },
+      "premium": {
+        "title": "Gói cao cấp",
+        "managePlan": "Quản lý gói"
+      },
+      "support": {
+        "title": "Hỗ trợ",
+        "help": "Trợ giúp & Hỗ trợ",
+        "contact": "Liên hệ",
+        "terms": "Điều khoản sử dụng",
+        "privacy": "Chính sách quyền riêng tư"
+      }
+    },
+    "version": "Phiên bản",
+    "logout": "Đăng xuất"
+  },
+
+  "nav": {
+    "home": "Trang chủ",
+    "wordbook": "Từ vựng",
+    "quiz": "Quiz",
+    "listening": "Nghe hiểu",
+    "challenge": "Thử thách",
+    "grammarQuiz": "Quiz ngữ pháp"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "Từ vựng",
+      "grammar": "Ngữ pháp",
+      "grammarQuiz": "Quiz ngữ pháp",
+      "text": "Đọc hiểu",
+      "listening": "Nghe hiểu",
+      "myWordbook": "Từ vựng của tôi",
+      "wordQuiz": "Quiz từ vựng",
+      "alphabet": "Chữ cái",
+      "practice": "Đề thi thử"
+    },
+    "cta": {
+      "startN5": "Bắt đầu học từ N5"
+    }
+  },
+
+  "level": {
+    "title": "Chọn trình độ",
+    "subtitle": "Hãy chọn trình độ học",
+    "selectLanguage": "Chọn ngôn ngữ"
+  },
+
+  "lesson": {
+    "selectTitle": "Chọn bài ({{level}})",
+    "title": "Chọn bài học",
+    "subtitle": "Hãy chọn bài để học",
+    "part": "Bài {{num}}",
+    "lesson": "Bài"
+  },
+
+  "quiz": {
+    "resultTitle": "🎉 Kết quả",
+    "score": "Điểm",
+    "accuracy": "Tỉ lệ đúng",
+    "question": "Câu hỏi",
+    "timeLeft": "Thời gian còn lại",
+    "correct": "Chính xác!",
+    "wrong": "Sai"
+  },
+
+  "ranking": {
+    "title": "Xếp hạng",
+    "description": "Tính năng xếp hạng đang được phát triển"
+  },
+
+  "footer": {
+    "madeWithLove": "Được tạo với ❤️ dành cho người học"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "Chọn trình độ ngữ pháp",
+      "backHome": "Về trang chủ",
+      "backToLevels": "Quay lại chọn trình độ"
+    },
+    "hints": {
+      "teacher_advice": {
+        "title": "Lời khuyên của giáo viên",
+        "tip": "Lời khuyên từ giáo viên →「〜ほうがいい」(nên ...)."
+      },
+      "doctor_advice": {
+        "title": "Lời khuyên của bác sĩ",
+        "tip": "Lời khuyên từ bác sĩ →「〜ほうがいい」(nên ...)."
+      },
+      "company_rule": {
+        "title": "Quy định công ty",
+        "tip": "Nội quy, chính sách →「〜なければならない」(phải ...)."
+      },
+      "posted_notice": {
+        "title": "Thông báo",
+        "tip": "Quy định ghi trên biển/bảng →「〜なければならない」."
+      },
+      "deadline": {
+        "title": "Hạn chót / Nộp bài",
+        "tip": "Phải nộp trước hạn →「〜なければならない」."
+      },
+      "optional": {
+        "title": "Không bắt buộc",
+        "tip": "Tùy chọn, không bắt buộc →「〜なくてもいい」(không cần ...)."
+      },
+      "free_participation": {
+        "title": "Tham gia tự do",
+        "tip": "Tham gia hay không tùy ý →「〜なくてもいい」."
+      },
+      "situation_change": {
+        "title": "Thay đổi tình huống",
+        "tip": "Hoàn cảnh thay đổi nên không cần nữa →「〜なくてもいい」."
+      },
+      "safety": {
+        "title": "An toàn",
+        "tip": "Yêu cầu vì an toàn →「〜なければならない」."
+      },
+      "polite_suggestion": {
+        "title": "Gợi ý lịch sự",
+        "tip": "Cách khuyên nhẹ nhàng →「〜ほうがいい」."
+      }
+    },
+    "categories": {
+      "title": "Chọn mục ngữ pháp {{level}}",
+      "particles": "Trợ từ",
+      "verbForms": "Chia động từ",
+      "adjectives": "Chia tính từ",
+      "existHave": "Tồn tại & Sở hữu (ある／いる／持っている)",
+      "compare": "So sánh & Mức độ (より・いちばん)",
+      "intentPlan": "Ý định・Kế hoạch・Suy đoán (〜たい・〜つもり・〜でしょう)",
+      "askPermit": "Yêu cầu & Cho phép (〜てください／〜てもいい)",
+      "basic": "Ngữ pháp cơ bản khác",
+      "backToLevels": "Quay lại trình độ",
+      "comingSoon": "Sắp ra mắt"
+    },
+    "lessons": {
+      "title": "Chọn bài {{level}} ({{category}})",
+      "titleWithLabel": "Chọn bài {{level}} ({{categoryLabel}})",
+      "hint": "Chọn bài để bắt đầu quiz. Nếu chưa có dữ liệu sẽ hiển thị 'không tìm thấy'.",
+      "backToCategories": "Quay lại mục",
+      "backToList": "Quay lại danh sách bài",
+      "open": "Mở bài {{num}}",
+      "back": "Quay lại",
+      "toCategories": "Đến danh sách mục",
+      "toHome": "Về trang chủ"
+    },
+    "quiz": {
+      "title": "Ngữ pháp {{level}} {{lesson}}",
+      "notFound": "Không tìm thấy dữ liệu quiz cho bài này.",
+      "back": "Quay lại",
+      "backToLessons": "Quay lại danh sách bài",
+      "retry": "Làm lại",
+      "score": "Điểm: {{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "Câu trước",
+        "lessonList": "Danh sách bài",
+        "home": "Trang chủ"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "Quiz tính từ hai lựa chọn {{level}}",
+    "counter": "{{current}} / {{total}}",
+    "i": "Tính từ -i",
+    "na": "Tính từ -na",
+    "backOne": "← Quay lại",
+    "toCategoryList": "Đến danh sách mục",
+    "toLessonList": "Đến danh sách bài",
+    "score": "Điểm: {{score}} / {{total}}",
+    "notFound": "Không tìm thấy dữ liệu bài học.",
+    "retry": "Làm lại"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "Hãy đổi câu này sang dạng yêu cầu.",
+      "permission": "Hãy đổi câu này sang dạng cho phép.",
+      "prohibition": "Hãy đổi câu này sang dạng cấm đoán.",
+      "obligation": "Hãy đổi câu này sang dạng bắt buộc.",
+      "unnecessary": "Hãy đổi câu này sang dạng 'không cần thiết'.",
+      "default": "Hãy đổi sang dạng đúng."
+    }
+  },
+
+  "text": {
+    "categories": {
+      "title": "Chọn mục đọc hiểu N5",
+      "particles": "Trợ từ",
+      "verbForms": "Chia động từ",
+      "adjectives": "Tính từ",
+      "existHave": "Tồn tại & Sở hữu",
+      "compare": "So sánh & Mức độ",
+      "intentPlan": "Ý định・Kế hoạch・Suy đoán",
+      "askPermit": "Yêu cầu / Cho phép",
+      "basic": "Các mục cơ bản khác",
+      "comingSoon": "Sắp có"
+    }
+  },
+
+  "wordcard": {
+    "back": "← Quay lại",
+    "next": "Tiếp theo →",
+    "showMeaning": "Nhấn để xem nghĩa",
+    "meaning": "Nghĩa",
+    "play": "🔊 Phát âm thanh",
+    "detail": "Chi tiết",
+    "add": "Thêm",
+    "notFound": "❌ Không tìm thấy bản dịch"
+  },
+
+  "ui": {
+    "labels": {
+      "meaning": "Nghĩa",
+      "frequency": "Tần suất xuất hiện",
+      "strokes": "Số nét",
+      "examples": "Câu ví dụ",
+      "added": "Đã thêm"
+    },
+    "pos": {
+      "noun": "Danh từ",
+      "verb": "Động từ",
+      "iAdj": "Tính từ -i",
+      "naAdj": "Tính từ -na",
+      "adv": "Trạng từ",
+      "other": "Khác"
+    },
+    "actions": {
+      "tapToReveal": "Nhấn để hiện nghĩa"
+    }
+  },
+
+  "browse": {
+    "byPos": "Theo loại từ",
+    "byNumber": "Theo số thứ tự",
+    "byFrequency": "Theo độ phổ biến",
+    "count": "{{count}} từ"
+  }
+}

@@ -1,5 +1,6 @@
 // src/store/useAppStore.jsx
 import { create } from "zustand";
+import { tokyoDayKey } from "@/utils/daykey"; // 追加：東京タイムゾーンの暦日キー
 
 /** localStorage 安全取得 */
 const safeGet = (key, fallback) => {
@@ -47,13 +48,9 @@ function computeProgress(total) {
   return { total, level: lvl, need, into: remain, percent, levelLabel: "N5" };
 }
 
-/** 日付キー */
-const todayKey = () => {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
-    d.getDate()
-  ).padStart(2, "0")}`;
-};
+/** 日付キー（東京基準ラッパー） */
+const todayKey = () => tokyoDayKey();
+
 const dailyKey = (uid) => `daily:${uid || "anon"}`;
 
 /** 日替わりメッセージ／トピック */

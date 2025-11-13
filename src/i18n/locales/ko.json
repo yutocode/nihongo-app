@@ -1,0 +1,261 @@
+{
+  "settings": {
+    "title": "설정",
+    "subtitle": "앱 설정 관리",
+    "sections": {
+      "account": {
+        "title": "계정",
+        "profile": "프로필",
+        "password": "비밀번호",
+        "export": "데이터 내보내기"
+      },
+      "basic": {
+        "title": "기본 설정",
+        "notifications": "알림",
+        "notifications_desc": "학습 알림을 받아보기",
+        "theme": "다크 모드",
+        "theme_desc": "앱 테마 전환",
+        "language": "언어 설정",
+        "language_desc": "앱 표시 언어 선택"
+      },
+      "premium": {
+        "title": "프리미엄",
+        "managePlan": "플랜 관리"
+      },
+      "support": {
+        "title": "지원",
+        "help": "도움말・지원",
+        "contact": "문의하기",
+        "terms": "이용 약관",
+        "privacy": "개인정보 처리방침"
+      }
+    },
+    "version": "버전",
+    "logout": "로그아웃"
+  },
+
+  "nav": {
+    "home": "홈",
+    "wordbook": "단어장",
+    "quiz": "퀴즈",
+    "listening": "리스닝",
+    "challenge": "챌린지",
+    "grammarQuiz": "문법 퀴즈"
+  },
+
+  "home": {
+    "menu": {
+      "wordbook": "단어장",
+      "grammar": "문법",
+      "grammarQuiz": "문법 퀴즈",
+      "text": "텍스트",
+      "listening": "리스닝",
+      "myWordbook": "내 단어장",
+      "wordQuiz": "단어 퀴즈",
+      "alphabet": "문자",
+      "practice": "모의 시험"
+    },
+    "cta": {
+      "startN5": "N5부터 학습을 시작하기"
+    }
+  },
+
+  "level": {
+    "title": "레벨 선택",
+    "subtitle": "레벨을 선택하세요",
+    "selectLanguage": "언어를 선택하세요"
+  },
+
+  "lesson": {
+    "selectTitle": "과 선택（{{level}}）",
+    "title": "과 선택",
+    "subtitle": "과를 선택하세요",
+    "part": "{{num}}과",
+    "lesson": "과"
+  },
+
+  "quiz": {
+    "resultTitle": "🎉 결과",
+    "score": "점수",
+    "accuracy": "정답률",
+    "question": "문제",
+    "timeLeft": "남은 시간",
+    "correct": "정답!",
+    "wrong": "오답"
+  },
+
+  "ranking": {
+    "title": "랭킹",
+    "description": "랭킹 기능은 개발 중입니다"
+  },
+
+  "footer": {
+    "madeWithLove": "학습자를 위해 ❤️ 를 담아 만들었습니다"
+  },
+
+  "grammar": {
+    "level": {
+      "title": "문법 레벨 선택",
+      "backHome": "홈으로 돌아가기",
+      "backToLevels": "레벨 선택으로 돌아가기"
+    },
+    "hints": {
+      "teacher_advice": {
+        "title": "선생님의 조언",
+        "tip": "선생님의助言 → 「〜ほうがいい」(이렇게 하는 게 좋아요)."
+      },
+      "doctor_advice": {
+        "title": "의사의 조언",
+        "tip": "의사의助言 → 「〜ほうがいい」."
+      },
+      "company_rule": {
+        "title": "사내 규칙",
+        "tip": "회사 규칙・폴리시 → 「〜なければならない」(반드시 해야 함)."
+      },
+      "posted_notice": {
+        "title": "게시",
+        "tip": "표지판・게시문에서 정한 사항 → 「〜なければならない」."
+      },
+      "deadline": {
+        "title": "마감／제출",
+        "tip": "마감까지 제출해야 함 → 「〜なければならない」."
+      },
+      "optional": {
+        "title": "임의",
+        "tip": "자유 선택 → 「〜なくてもいい」(안 해도 됨)."
+      },
+      "free_participation": {
+        "title": "자유 참가",
+        "tip": "참가 여부는 자유 → 「〜なくてもいい」."
+      },
+      "situation_change": {
+        "title": "상황 변화",
+        "tip": "조건이 바뀌어 불필요 → 「〜なくてもいい」."
+      },
+      "safety": {
+        "title": "안전 요건",
+        "tip": "안전・준수 사항 → 「〜なければならない」."
+      },
+      "polite_suggestion": {
+        "title": "공손한 제안",
+        "tip": "조심스러운 추천 → 「〜ほうがいい」."
+      }
+    },
+    "categories": {
+      "title": "{{level}} 문법 카테고리를 선택",
+      "particles": "조사",
+      "verbForms": "동사 활용",
+      "adjectives": "형용사 활용",
+      "existHave": "존재・소유（ある／いる／持っている）",
+      "compare": "비교・정도（より・いちばん）",
+      "intentPlan": "의지・계획・추측（〜たい・〜つもり・〜でしょう）",
+      "askPermit": "의뢰・허가（〜てください／〜てもいい）",
+      "basic": "기타 기초 문법",
+      "backToLevels": "레벨로 돌아가기",
+      "comingSoon": "준비 중"
+    },
+    "lessons": {
+      "title": "{{level}} 레슨 선택（{{category}}）",
+      "titleWithLabel": "{{level}} 레슨 선택（{{categoryLabel}}）",
+      "hint": "과를 선택해서 퀴즈를 시작하세요。데이터가 없으면「見つかりません」이 표시됩니다。",
+      "backToCategories": "카테고리로 돌아가기",
+      "backToList": "레슨 목록으로",
+      "open": "{{num}}과",
+      "back": "뒤로",
+      "toCategories": "카테고리 목록へ",
+      "toHome": "홈へ"
+    },
+    "quiz": {
+      "title": "{{level}} {{lesson}} 문법",
+      "notFound": "이 과의 퀴즈 데이터가 없습니다。",
+      "back": "뒤로",
+      "backToLessons": "레슨 목록으로",
+      "retry": "다시 시도",
+      "score": "점수：{{score}} / {{total}}",
+      "counter": "{{current}} / {{total}}",
+      "toolbar": {
+        "prevOne": "이전 문제",
+        "lessonList": "레슨 목록",
+        "home": "홈"
+      }
+    }
+  },
+
+  "adj": {
+    "title": "{{level}} 형용사 2지선다 퀴즈",
+    "counter": "{{current}} / {{total}}",
+    "i": "い형용사",
+    "na": "な형용사",
+    "backOne": "← 뒤로",
+    "toCategoryList": "카테고리 목록へ",
+    "toLessonList": "레슨 목록へ",
+    "score": "점수：{{score}} / {{total}}",
+    "notFound": "레슨 데이터를 찾을 수 없습니다。",
+    "retry": "다시 시도"
+  },
+
+  "askPermit": {
+    "instruction": {
+      "request": "이 문장을 의뢰형으로 바꾸세요。",
+      "permission": "이 문장을 허가형으로 바꾸세요。",
+      "prohibition": "이 문장을 금지형으로 바꾸세요。",
+      "obligation": "이 문장을 의무형으로 바꾸세요。",
+      "unnecessary": "이 문장을 ‘불필요’ 형태로 바꾸세요。",
+      "default": "올바른 형태로 바꾸세요。"
+    }
+  },
+
+  "text": {
+    "categories": {
+      "title": "N5 텍스트 분류를 선택",
+      "particles": "조사",
+      "verbForms": "동사 변화",
+      "adjectives": "형용사",
+      "existHave": "존재・소유",
+      "compare": "비교・정도",
+      "intentPlan": "의도・계획・추측",
+      "askPermit": "요청・허가",
+      "basic": "기타 기초",
+      "comingSoon": "준비 중"
+    }
+  },
+
+  "wordcard": {
+    "back": "← 뒤로",
+    "next": "다음 →",
+    "showMeaning": "클릭해서 의미 보기",
+    "meaning": "의미",
+    "play": "🔊 오디오 재생",
+    "detail": "자세히",
+    "add": "추가",
+    "notFound": "❌ 번역을 찾을 수 없습니다"
+  },
+
+  "ui": {
+    "labels": {
+      "meaning": "의미",
+      "frequency": "출현 빈도",
+      "strokes": "획수",
+      "examples": "예문",
+      "added": "추가됨"
+    },
+    "pos": {
+      "noun": "명사",
+      "verb": "동사",
+      "iAdj": "い형용사",
+      "naAdj": "な형용사",
+      "adv": "부사",
+      "other": "기타"
+    },
+    "actions": {
+      "tapToReveal": "클릭해서 의미 보기"
+    }
+  },
+
+  "browse": {
+    "byPos": "품사별",
+    "byNumber": "번호順",
+    "byFrequency": "자주 나오는順",
+    "count": "{{count}}語"
+  }
+}

@@ -1,42 +1,37 @@
 {
   "settings": {
     "title": "Settings",
-    "subtitle": "Manage your app settings",
+    "subtitle": "Manage your app preferences",
     "sections": {
       "account": {
         "title": "Account",
         "profile": "Profile",
         "password": "Password",
-        "export": "Export data"
+        "export": "Export Data"
       },
       "basic": {
-        "title": "Basic settings",
+        "title": "Basic Settings",
         "notifications": "Notifications",
         "notifications_desc": "Receive study reminders",
-        "theme": "Dark mode",
-        "theme_desc": "Switch the app appearance",
+        "theme": "Dark Mode",
+        "theme_desc": "Switch the app theme",
         "language": "Language",
-        "language_desc": "Choose the app language"
+        "language_desc": "Choose the display language"
       },
       "premium": {
         "title": "Premium",
-        "managePlan": "Manage plan"
+        "managePlan": "Manage Plan"
       },
       "support": {
         "title": "Support",
         "help": "Help & Support",
-        "contact": "Contact us",
-        "terms": "Terms of use",
-        "privacy": "Privacy policy"
-      },
-      "danger": {
-        "title": "Danger zone",
-        "deleteAccount": "Delete account",
-        "deleteConfirm": "Are you sure? This action cannot be undone."
+        "contact": "Contact Us",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy"
       }
     },
     "version": "Version",
-    "logout": "Log out"
+    "logout": "Log Out"
   },
 
   "nav": {
@@ -53,7 +48,7 @@
       "wordbook": "Wordbook",
       "grammar": "Grammar",
       "grammarQuiz": "Grammar Quiz",
-      "text": "text",
+      "text": "Text",
       "listening": "Listening",
       "myWordbook": "My Wordbook",
       "wordQuiz": "Word Quiz",
@@ -67,16 +62,16 @@
 
   "level": {
     "title": "Select Level",
-    "subtitle": "Please select a level",
-    "selectLanguage": "Please select a language"
+    "subtitle": "Please choose a level",
+    "selectLanguage": "Select a language"
   },
 
   "lesson": {
-  "selectTitle": "Select Lesson ({{level}})",
-  "title": "Select Lesson",
-  "subtitle": "Please select a lesson",
-  "part": "Lesson {{num}}",
-  "lesson": "Lesson"
+    "selectTitle": "Select Lesson ({{level}})",
+    "title": "Select Lesson",
+    "subtitle": "Choose a lesson to study",
+    "part": "Lesson {{num}}",
+    "lesson": "Lesson"
   },
 
   "quiz": {
@@ -86,12 +81,12 @@
     "question": "Question",
     "timeLeft": "Time Left",
     "correct": "Correct!",
-    "wrong": "Wrong"
+    "wrong": "Incorrect"
   },
 
   "ranking": {
     "title": "Ranking",
-    "description": "Ranking feature is under development"
+    "description": "The ranking feature is under development"
   },
 
   "footer": {
@@ -100,94 +95,94 @@
 
   "grammar": {
     "level": {
-      "title": "Select Grammar Level",
+      "title": "Choose Grammar Level",
       "backHome": "Back to Home",
-      "backToLevels": "Back to Levels"
+      "backToLevels": "Back to Level Selection"
+    },
+    "hints": {
+      "teacher_advice": { "title": "Teacher's Advice", "tip": "Advice from a teacher → '〜ほうがいい' (you should...)." },
+      "doctor_advice":  { "title": "Doctor's Advice", "tip": "Advice from a doctor → '〜ほうがいい' (you should...)." },
+      "company_rule":   { "title": "Company Rule", "tip": "Official policy or rule → '〜なければならない' (must...)." },
+      "posted_notice":  { "title": "Posted Notice", "tip": "Public notice or sign → '〜なければならない' (must...)." },
+      "deadline":       { "title": "Deadline / Submission", "tip": "Submit before the deadline → '〜なければならない'." },
+      "optional":       { "title": "Optional", "tip": "Free choice or not required → '〜なくてもいい' (don’t have to...)." },
+      "free_participation": { "title": "Free Participation", "tip": "Participation is optional → '〜なくてもいい'." },
+      "situation_change": { "title": "Situation Change", "tip": "Condition changed, so it’s unnecessary → '〜なくてもいい'." },
+      "safety":         { "title": "Safety Requirement", "tip": "Required for safety → '〜なければならない'." },
+      "polite_suggestion": { "title": "Polite Suggestion", "tip": "Soft recommendation → '〜ほうがいい'." }
     },
     "categories": {
-      "title": "Select {{level}} grammar category",
+      "title": "Select Grammar Category ({{level}})",
       "particles": "Particles",
-      "verbForms": "Verb forms",
+      "verbForms": "Verb Forms",
       "adjectives": "Adjectives",
-      "existHave": "Existence / Possession",
-      "compare": "Comparison & Degree",
-      "intentPlan": "Intention / Plan / Guess",
-      "askPermit": "Request / Permission",
-      "basic": "Other Basics",
+      "existHave": "Existence / Possession (ある・いる・持っている)",
+      "compare": "Comparison & Degree (より・いちばん)",
+      "intentPlan": "Intention / Plan / Guess (〜たい・〜つもり・〜でしょう)",
+      "askPermit": "Request & Permission (〜てください／〜てもいい)",
+      "basic": "Other Basic Grammar",
       "backToLevels": "Back to Levels",
-      "comingSoon": "Coming soon"
+      "comingSoon": "Coming Soon"
     },
     "lessons": {
       "title": "{{level}} Lesson Selection ({{category}})",
       "titleWithLabel": "{{level}} Lesson Selection ({{categoryLabel}})",
-      "hint": "Select a lesson to start the quiz. If data is not available, 'Not Found' will be shown.",
+      "hint": "Select a lesson to start the quiz. If data is not ready, 'not found' will appear.",
       "backToCategories": "Back to Categories",
       "backToList": "Back to Lesson List",
       "open": "Lesson {{num}}",
-      "back": "← Back",
+      "back": "Back",
       "toCategories": "To Category List",
       "toHome": "To Home"
     },
     "quiz": {
-      "title": "{{level}} Grammar {{lesson}}",
-      "notFound": "Quiz data for this lesson not found.",
+      "title": "{{level}} {{lesson}} Grammar",
+      "notFound": "No quiz data found for this lesson.",
       "back": "Back",
-      "backToLessons": "Back to Lesson List",
-      "retry": "Retry",
+      "backToLessons": "Back to Lessons",
+      "retry": "Try Again",
       "score": "Score: {{score}} / {{total}}",
       "counter": "{{current}} / {{total}}",
       "toolbar": {
-        "prevOne": "Previous Question",
+        "prevOne": "Previous",
         "lessonList": "Lesson List",
         "home": "Home"
       }
-    },
-    "hints": {
-      "teacher_advice": { "title": "Teacher's advice", "tip": "Guidance from a teacher → “should” (〜ほうがいい)." },
-      "doctor_advice":  { "title": "Doctor's advice",  "tip": "Advice from a doctor → “should” (〜ほうがいい)." },
-      "company_rule":   { "title": "Company rule",     "tip": "Company rule/policy → “must” (〜なければならない)." },
-      "posted_notice":  { "title": "Posted notice",    "tip": "Sign/notice says so → “must” (〜なければならない)." },
-      "deadline":       { "title": "Deadline",         "tip": "Submit by a deadline → “must” (〜なければならない)." },
-      "optional":       { "title": "Optional",         "tip": "Voluntary/optional → “not necessary” (〜なくてもいい)." },
-      "free_participation": { "title": "Optional participation", "tip": "Free to join → “not necessary” (〜なくてもいい)." },
-      "situation_change": { "title": "Condition changed", "tip": "No longer needed → “not necessary” (〜なくてもいい)." },
-      "safety":         { "title": "Safety requirement", "tip": "Safety/compliance → “must” (〜なければならない)." },
-      "polite_suggestion": { "title": "Polite suggestion", "tip": "Soft recommendation → “should” (〜ほうがいい)." }
     }
   },
 
   "adj": {
-    "title": "{{level}} Adjective Two-choice Quiz",
+    "title": "{{level}} Adjective Two-Choice Quiz",
     "counter": "{{current}} / {{total}}",
-    "i": "i-adjective",
-    "na": "na-adjective",
-    "backOne": "← Back to previous question",
+    "i": "i-Adjectives",
+    "na": "na-Adjectives",
+    "backOne": "← Back",
     "toCategoryList": "To Category List",
     "toLessonList": "To Lesson List",
     "score": "Score: {{score}} / {{total}}",
     "notFound": "Lesson data not found.",
-    "retry": "Retry"
+    "retry": "Try Again"
   },
 
   "askPermit": {
     "instruction": {
-      "request": "Change this sentence to the request form.",
-      "permission": "Change this sentence to the permission form.",
-      "prohibition": "Change this sentence to the prohibition form.",
-      "obligation": "Change this sentence to the obligation form.",
-      "unnecessary": "Change this sentence to the unnecessary form.",
-      "default": "Choose the correct form."
+      "request": "Change this sentence to a request form.",
+      "permission": "Change this sentence to a permission form.",
+      "prohibition": "Change this sentence to a prohibition form.",
+      "obligation": "Change this sentence to an obligation form.",
+      "unnecessary": "Change this sentence to an unnecessary form.",
+      "default": "Change to the correct form."
     }
   },
 
   "text": {
     "categories": {
-      "title": "Select N5 Text Categories",
+      "title": "Select N5 Text Category",
       "particles": "Particles",
       "verbForms": "Verb Forms",
       "adjectives": "Adjectives",
       "existHave": "Existence / Possession",
-      "compare": "Comparison / Degree",
+      "compare": "Comparison & Degree",
       "intentPlan": "Intention / Plan / Guess",
       "askPermit": "Request / Permission",
       "basic": "Other Basics",
@@ -200,9 +195,37 @@
     "next": "Next →",
     "showMeaning": "Click to show meaning",
     "meaning": "Meaning",
-    "play": "🔊 Play audio",
+    "play": "🔊 Play Audio",
     "detail": "Details",
     "add": "Add",
     "notFound": "❌ Translation not found"
+  },
+
+  "ui": {
+    "labels": {
+      "meaning": "Meaning",
+      "frequency": "Frequency",
+      "strokes": "Stroke Count",
+      "examples": "Example Sentences",
+      "added": "Added"
+    },
+    "pos": {
+      "noun": "Noun",
+      "verb": "Verb",
+      "iAdj": "i-Adjective",
+      "naAdj": "na-Adjective",
+      "adv": "Adverb",
+      "other": "Other"
+    },
+    "actions": {
+      "tapToReveal": "Click to reveal meaning"
+    }
+  },
+
+  "browse": {
+    "byPos": "By Part of Speech",
+    "byNumber": "By Number Order",
+    "byFrequency": "By Frequency",
+    "count": "{{count}} words"
   }
 }

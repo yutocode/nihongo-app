@@ -4,10 +4,18 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "node:url";
 
+function resolveBase(mode, env) {
+  if (env.VITE_BASE) return env.VITE_BASE;
+  if (env.VITE_DEPLOY_TARGET === "gh") {
+    const repo = env.VITE_REPO_NAME || "nihongo-app";
+    return `/${repo}/`;
+    }
+  return "/";
+}
+
 export default defineConfig(({ mode }) => {
-  // .env, .env.development, .env.production を読み込み
   const env = loadEnv(mode, process.cwd(), "");
-  const BASE = env.VITE_BASE ?? "./"; // GitHub Pagesなら "/<repo>/"、Netlify等は "./"
+  const BASE = resolveBase(mode, env);
 
   return {
     plugins: [
@@ -42,6 +50,8 @@ export default defineConfig(({ mode }) => {
       outDir: "dist",
       sourcemap: mode !== "production",
       target: "es2020",
+      cssCodeSplit: true,
+      minify: "esbuild",
       chunkSizeWarningLimit: 1200,
       rollupOptions: {
         output: {
@@ -52,6 +62,11 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+      esbuild: {
+        target: "es2020",
+        drop: mode === "production" ? ["console", "debugger"] : [],
+        legalComments: "none",
+      },
     },
 
     assetsInclude: ["**/*.mp3", "**/*.wav", "**/*.m4a"],
@@ -60,6 +75,10 @@ export default defineConfig(({ mode }) => {
       esbuildOptions: { target: "es2020" },
     },
 
-    envPrefix: "VITE_",
+    envPrefix: ["VITE_"],
+
+    define: {
+      __APP_VERSION__: JSON.stringify(process.env.npm_package_version ?? "0.0.0"),
+    },
   };
 });

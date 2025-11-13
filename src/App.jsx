@@ -89,13 +89,12 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* ====== ゲスト常時オン（ログイン不要） ====== */
-const GUEST_MODE = true;
+/* ====== ゲストモード OFF（ログイン必須） ====== */
+const GUEST_MODE = false;
 
 /* ========= helpers ========= */
 function normalizeLesson(key) {
   if (!key) return "Lesson1";
-  // ← 正規表現はリテラルでOK（バックスラッシュ二重化は不要）
   const m = String(key).match(/lesson\s*(\d+)/i);
   return m ? `Lesson${m[1]}` : String(key);
 }
@@ -130,20 +129,28 @@ const App = () => (
   <Router basename={import.meta.env.BASE_URL}>
     <ScrollToTop />
     <AppInitializer />
-    <Suspense fallback={<LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />}>
+    <Suspense
+      fallback={
+        <LoadingIllustration
+          message="画面を読み込み中…"
+          size="md"
+          showBackdrop
+        />
+      }
+    >
       <Routes>
-        {/* ======= public（ゲスト常時オンでも一応残す） ======= */}
-        <Route path="/" element={GUEST_MODE ? <Navigate to="/home" replace /> : <AuthPage />} />
-        <Route path="/auth" element={GUEST_MODE ? <Navigate to="/home" replace /> : <AuthPage />} />
-        <Route path="/login" element={GUEST_MODE ? <Navigate to="/home" replace /> : <LoginPage />} />
-        <Route path="/register" element={GUEST_MODE ? <Navigate to="/home" replace /> : <RegisterPage />} />
+        {/* public */}
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         {/* legal */}
         <Route path="/legal/tokusho" element={<Tokusho />} />
         <Route path="/legal/terms" element={<Terms />} />
         <Route path="/legal/privacy" element={<Privacy />} />
 
-        {/* ======= アプリ本体 ======= */}
+        {/* app (protected) */}
         <Route
           element={
             GUEST_MODE ? (
@@ -208,12 +215,21 @@ const App = () => (
 
           {/* N4 official */}
           <Route path="/grammar/n4/comparison/:lesson" element={<N4ComparisonBlankQuizPage />} />
-          <Route path="/grammar/n4/tense-aspect-jlpt/:lesson" element={<N4TenseAspectJLPTPage />} />
+          <Route
+            path="/grammar/n4/tense-aspect-jlpt/:lesson"
+            element={<N4TenseAspectJLPTPage />}
+          />
 
           {/* legacy redirects */}
-          <Route path="/grammar/:level/comparison/:lesson" element={<ComparisonLegacyRedirect />} />
+          <Route
+            path="/grammar/:level/comparison/:lesson"
+            element={<ComparisonLegacyRedirect />}
+          />
           <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
-          <Route path="/grammar/:level/compare/:lesson" element={<CompareLessonAliasRedirect />} />
+          <Route
+            path="/grammar/:level/compare/:lesson"
+            element={<CompareLessonAliasRedirect />}
+          />
 
           {/* adjective quiz */}
           <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
@@ -222,14 +238,29 @@ const App = () => (
 
           {/* word quizzes */}
           <Route path="/word-quiz" element={<LevelSelectPage />} />
-          <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
-          <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
+          <Route
+            path="/word-quiz/:level"
+            element={<WordQuizLessonSelectPage />}
+          />
+          <Route
+            path="/word-quiz/:level/:lesson"
+            element={<WordQuizPage />}
+          />
 
           {/* reader */}
-          <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
+          <Route
+            path="/reader"
+            element={<Navigate to="/reader/n5" replace />}
+          />
           <Route path="/reader/:level" element={<ReaderHubPage />} />
-          <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
-          <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
+          <Route
+            path="/reader/:level/:storyId"
+            element={<ReaderPage />}
+          />
+          <Route
+            path="/reader/:level/:storyId/play"
+            element={<StoryPlayer />}
+          />
         </Route>
 
         {/* fallback */}
@@ -248,7 +279,16 @@ const AppInitializer = () => {
   const clearUser = useAppStore((s) => s.clearUser);
   const setAuthReady = useAppStore((s) => s.setAuthReady);
 
-  const PUBLIC_PATHS = ["/", "/login", "/register", "/auth", "/legal/tokusho", "/legal/terms", "/legal/privacy"];
+  const PUBLIC_PATHS = [
+    "/",
+    "/login",
+    "/register",
+    "/auth",
+    "/legal/tokusho",
+    "/legal/terms",
+    "/legal/privacy",
+  ];
+
   const PRIVATE_PREFIXES = [
     "/home",
     "/quiz",
@@ -280,30 +320,23 @@ const AppInitializer = () => {
   };
 
   useEffect(() => {
-    if (GUEST_MODE) {
-      // 認証監視を完全スキップ
-      try { clearUser?.(); stopAutoSave?.(); } catch {}
-      setAuthReady?.(true);
-      // ルートなら /home へ
-      const path = location.pathname || "/";
-      if (path === "/" || path === "/auth" || path === "/login" || path === "/register") {
-        navigateOnce("/home");
-      }
-      return;
-    }
-
-    // ← ここから通常の認証フロー（ゲスト無効時のみ実行）
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       const path = location.pathname || "/";
 
       if (user) {
         setUser(user);
 
-        (async () => {
-          try { await ensureUserDoc?.(user.uid); } catch (e) { console.warn(e); }
-        })();
+        try {
+          await ensureUserDoc?.(user.uid);
+        } catch (e) {
+          console.warn("ensureUserDoc failed:", e);
+        }
 
-        try { initUserXP?.(user.uid); } catch (e) { console.warn("initUserXP failed:", e); }
+        try {
+          initUserXP?.(user.uid);
+        } catch (e) {
+          console.warn("initUserXP failed:", e);
+        }
 
         try {
           const st = useAppStore.getState?.();
@@ -313,18 +346,29 @@ const AppInitializer = () => {
           console.warn("daily restore failed:", e);
         }
 
-        if (PUBLIC_PATHS.includes(path)) navigateOnce("/home");
+        if (PUBLIC_PATHS.includes(path)) {
+          navigateOnce("/home");
+        }
       } else {
         clearUser();
-        try { stopAutoSave?.(); } catch {}
+        try {
+          stopAutoSave?.();
+        } catch (e) {
+          console.warn(e);
+        }
+
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
-        if (onPrivate) navigateOnce("/");
+        if (onPrivate) {
+          navigateOnce("/login");
+        }
       }
 
       setAuthReady?.(true);
     });
 
-    return () => unsubscribe && unsubscribe();
+    return () => {
+      unsubscribe && unsubscribe();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
@@ -338,7 +382,9 @@ const AppInitializer = () => {
       const email = import.meta.env.VITE_SHOT_EMAIL;
       const pass = import.meta.env.VITE_SHOT_PASS;
       if (!email || !pass) {
-        console.warn("VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。");
+        console.warn(
+          "VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。"
+        );
         return;
       }
 
