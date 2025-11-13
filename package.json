@@ -11,12 +11,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"const fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html');fs.writeFileSync('dist/.nojekyll','')\"",
+    "build:gh": "cross-env VITE_DEPLOY_TARGET=gh vite build && node -e \"const fs=require('fs');fs.copyFileSync('dist/index.html','dist/404.html');fs.writeFileSync('dist/.nojekyll','')\"",
+    "build:ios": "cross-env VITE_DEPLOY_TARGET=app vite build",
     "preview": "vite preview --host --port 5174",
     "lint": "eslint .",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d dist -b gh-pages",
     "clean-gh": "gh-pages-clean",
+    "ios": "npm run build:ios && npx cap copy ios && npx cap open ios",
+    "sync:ios": "npx cap sync ios",
     "vocab:collect": "node src/data/scripts/collect-vocab.mjs",
     "vocab:enrich": "node src/data/scripts/enrich-vocab.mjs",
     "vocab:emit": "node src/data/scripts/emit-enriched.mjs",
@@ -46,6 +49,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
+    "cross-env": "^7.0.3",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
@@ -57,5 +61,8 @@
     "prettier": "^3.6.2",
     "vite": "^7.0.4",
     "wanakana": "^5.3.1"
+  },
+  "engines": {
+    "node": ">=18.18"
   }
 }

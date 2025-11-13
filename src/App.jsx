@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { useEffect, useRef, Suspense } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
   Navigate,
@@ -104,29 +104,45 @@ function AdjLevelRedirect() {
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
 }
 function CompareAliasRedirect() {
-  return <Navigate to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`} replace />;
+  return (
+    <Navigate
+      to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`}
+      replace
+    />
+  );
 }
 function CompareLessonAliasRedirect() {
   const { lesson = "Lesson1" } = useParams();
-  return <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />;
+  return (
+    <Navigate
+      to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`}
+      replace
+    />
+  );
 }
 function ComparisonLegacyRedirect() {
   const { lesson = "Lesson1" } = useParams();
-  return <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />;
+  return (
+    <Navigate
+      to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`}
+      replace
+    />
+  );
 }
 
 /* ========= scroll reset ========= */
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
   useEffect(() => {
+    // topへ即時スクロール（iOS WebView含む）
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, search, hash]);
   return null;
 }
 
 /* ========= App ========= */
 const App = () => (
-  <Router basename={import.meta.env.BASE_URL}>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
     <ScrollToTop />
     <AppInitializer />
     <Suspense
@@ -180,7 +196,10 @@ const App = () => (
           <Route path="/words/:level/:lesson" element={<WordPage />} />
 
           {/* browse block */}
-          <Route path="/browse/:level/:mode/:key" element={<BrowseBlockPage />} />
+          <Route
+            path="/browse/:level/:mode/:key"
+            element={<BrowseBlockPage />}
+          />
 
           {/* my wordbook */}
           <Route path="/my-words" element={<MyWordbookPage />} />
@@ -193,28 +212,55 @@ const App = () => (
 
           {/* alphabet */}
           <Route path="/alphabet" element={<AlphabetUnitsPage />} />
-          <Route path="/alphabet/unit/:id" element={<AlphabetUnitLessonPage />} />
+          <Route
+            path="/alphabet/unit/:id"
+            element={<AlphabetUnitLessonPage />}
+          />
           <Route path="/kana" element={<Navigate to="/alphabet" replace />} />
 
           {/* grammar hub */}
-          <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
-          <Route path="/grammar/:level/:category" element={<GrammarLessonSelectPage />} />
+          <Route
+            path="/grammar/:level"
+            element={<GrammarCategorySelectPage />}
+          />
+          <Route
+            path="/grammar/:level/:category"
+            element={<GrammarLessonSelectPage />}
+          />
 
           {/* N3 dedicated routes */}
-          <Route path="/grammar/n3/concession/:lesson" element={<N3ConcessionQuizPage />} />
-          <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
+          <Route
+            path="/grammar/n3/concession/:lesson"
+            element={<N3ConcessionQuizPage />}
+          />
+          <Route
+            path="/grammar/:level/voice/:lesson"
+            element={<N3VoiceQuizPage />}
+          />
 
           {/* paraphrase */}
-          <Route path="/grammar/:level/paraphrase/:lesson" element={<ParaphraseQuizPage />} />
+          <Route
+            path="/grammar/:level/paraphrase/:lesson"
+            element={<ParaphraseQuizPage />}
+          />
 
           {/* generic grammar */}
-          <Route path="/grammar/:level/:category/:lesson" element={<GrammarQuizPage />} />
+          <Route
+            path="/grammar/:level/:category/:lesson"
+            element={<GrammarQuizPage />}
+          />
 
           {/* verb conjugation */}
-          <Route path="/grammar/:level/verb-forms/:lesson" element={<GrammarVerbQuizPage />} />
+          <Route
+            path="/grammar/:level/verb-forms/:lesson"
+            element={<GrammarVerbQuizPage />}
+          />
 
           {/* N4 official */}
-          <Route path="/grammar/n4/comparison/:lesson" element={<N4ComparisonBlankQuizPage />} />
+          <Route
+            path="/grammar/n4/comparison/:lesson"
+            element={<N4ComparisonBlankQuizPage />}
+          />
           <Route
             path="/grammar/n4/tense-aspect-jlpt/:lesson"
             element={<N4TenseAspectJLPTPage />}
@@ -238,36 +284,21 @@ const App = () => (
 
           {/* word quizzes */}
           <Route path="/word-quiz" element={<LevelSelectPage />} />
-          <Route
-            path="/word-quiz/:level"
-            element={<WordQuizLessonSelectPage />}
-          />
-          <Route
-            path="/word-quiz/:level/:lesson"
-            element={<WordQuizPage />}
-          />
+          <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
+          <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
 
           {/* reader */}
-          <Route
-            path="/reader"
-            element={<Navigate to="/reader/n5" replace />}
-          />
+          <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
           <Route path="/reader/:level" element={<ReaderHubPage />} />
-          <Route
-            path="/reader/:level/:storyId"
-            element={<ReaderPage />}
-          />
-          <Route
-            path="/reader/:level/:storyId/play"
-            element={<StoryPlayer />}
-          />
+          <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
+          <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
         </Route>
 
         {/* fallback */}
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </Suspense>
-  </Router>
+  </BrowserRouter>
 );
 
 /* ========= Auth & XP init ========= */

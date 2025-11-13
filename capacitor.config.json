@@ -1,5 +1,23 @@
 {
   "appId": "com.nihongoapp.mobile",
   "appName": "Nihongo App",
-  "webDir": "dist"
+  "webDir": "dist",
+  "loggingBehavior": "production",
+  "ios": {
+    "contentInset": "automatic",
+    "prefersStatusBarHidden": false,
+    "backgroundColor": "#ffffff"
+  },
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "launchShowDuration": 0
+    },
+    "Keyboard": {
+      "resize": "body"
+    }
+  }
 }
