@@ -228,6 +228,20 @@ const App = () => (
             element={<GrammarLessonSelectPage />}
           />
 
+          {/* N5 special quizzes */}
+          <Route
+            path="/grammar/n5/exist-have/:lesson"
+            element={<ExistHaveQuizPage />}
+          />
+          <Route
+            path="/grammar/n5/intent-plan/:lesson"
+            element={<N5IntentPlanQuizPage />}
+          />
+          <Route
+            path="/grammar/n5/ask-permit/:lesson"
+            element={<N5AskPermitQuizPage />}
+          />
+
           {/* N3 dedicated routes */}
           <Route
             path="/grammar/n3/concession/:lesson"
@@ -271,27 +285,42 @@ const App = () => (
             path="/grammar/:level/comparison/:lesson"
             element={<ComparisonLegacyRedirect />}
           />
-          <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
+          <Route
+            path="/grammar/:level/compare"
+            element={<CompareAliasRedirect />}
+          />
           <Route
             path="/grammar/:level/compare/:lesson"
             element={<CompareLessonAliasRedirect />}
           />
 
           {/* adjective quiz */}
-          <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
+          <Route
+            path="/adj"
+            element={<Navigate to="/adj/n5/lesson1" replace />}
+          />
           <Route path="/adj/:level" element={<AdjLevelRedirect />} />
           <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
 
           {/* word quizzes */}
           <Route path="/word-quiz" element={<LevelSelectPage />} />
-          <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
-          <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
+          <Route
+            path="/word-quiz/:level"
+            element={<WordQuizLessonSelectPage />}
+          />
+          <Route
+            path="/word-quiz/:level/:lesson"
+            element={<WordQuizPage />}
+          />
 
           {/* reader */}
           <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
           <Route path="/reader/:level" element={<ReaderHubPage />} />
           <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
-          <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
+          <Route
+            path="/reader/:level/:storyId/play"
+            element={<StoryPlayer />}
+          />
         </Route>
 
         {/* fallback */}
