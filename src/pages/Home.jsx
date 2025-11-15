@@ -29,10 +29,19 @@ const Home = () => {
   // 現在レベルで使う模試ID（無ければ null → タイルは準備中/CTAはレッスンへ）
   const examId = useMemo(() => AUTO_EXAM_BY_LEVEL[level] || null, [level]);
 
+  // 共通：模試スタート用ハンドラ（タイル & CTA で共用）
+  const handleStartMockExam = () => {
+    if (!examId) return;
+    navigate(`/exam/${examId}`);
+  };
+
   // CTA：模試があれば模試へ、無ければ従来どおりレッスンへ
   const handleStart = () => {
-    if (examId) navigate(`/exam/${examId}`);
-    else navigate(`/lessons/${level}`);
+    if (examId) {
+      handleStartMockExam();
+    } else {
+      navigate(`/lessons/${level}`);
+    }
   };
 
   return (
@@ -67,13 +76,15 @@ const Home = () => {
                 ? t("home.menu.mockExamDesc", `${level.toUpperCase()} 試験モード`)
                 : t("home.menu.mockExamSoon", "このレベルは準備中")
             }
-            onClick={examId ? () => navigate(`/exam/${examId}`) : undefined}
+            onClick={examId ? handleStartMockExam : undefined}
             disabled={!examId}
           />
 
           {/* リスニング：近日公開（そのまま） */}
           <FeatureTile disabled>
-            <span className="coming-soon">{t("common.comingSoon", "近日公開")}</span>
+            <span className="coming-soon">
+              {t("common.comingSoon", "近日公開")}
+            </span>
           </FeatureTile>
         </div>
       </section>

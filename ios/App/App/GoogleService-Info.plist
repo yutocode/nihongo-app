@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC4LR_4TJU7i9W5CvFjJr-965uVczTK2BI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>901561976774</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nihongoapp.mobile</string>
+	<key>PROJECT_ID</key>
+	<string>app-4db93</string>
+	<key>STORAGE_BUCKET</key>
+	<string>app-4db93.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:901561976774:ios:9872d1b5dfaa68f37654c7</string>
+</dict>
+</plist>
