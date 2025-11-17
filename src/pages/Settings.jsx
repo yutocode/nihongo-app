@@ -216,16 +216,6 @@ export default function Settings() {
             "学習のリマインダーを受け取る"
           )}
         />
-        <RowToggle
-          icon="🌙"
-          label={t("settings.sections.basic.theme", "ダークモード")}
-          checked={darkMode}
-          onChange={setDarkMode}
-          description={t(
-            "settings.sections.basic.theme_desc",
-            "見た目のテーマを切り替え"
-          )}
-        />
         <RowButton
           icon="🌐"
           label={t("settings.sections.basic.language", "言語設定")}
