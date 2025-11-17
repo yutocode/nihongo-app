@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import "../../styles/Legal.css";
 /* ========= 日本語本文 ========== */
 function PrivacyBodyJa() {
   return (

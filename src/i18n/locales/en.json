@@ -227,5 +227,11 @@
     "byNumber": "By Number Order",
     "byFrequency": "By Frequency",
     "count": "{{count}} words"
-  }
+  },
+  "terms": {
+  "title": "Terms of Service",
+  "lead": "These Terms of Service apply to the use of 'nihongo-app'. Currently, the full legal text is provided in Japanese only. If you continue to use this app, you are deemed to have agreed to the Japanese Terms of Service.",
+  "linkToJa": "View the Japanese full version"
+}
+
 }

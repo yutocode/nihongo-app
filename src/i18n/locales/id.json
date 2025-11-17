@@ -227,5 +227,11 @@
     "byNumber": "Urutan nomor",
     "byFrequency": "Urutan popularitas",
     "count": "{{count}} kata"
-  }
+  },
+  "terms": {
+  "title": "Syarat dan Ketentuan",
+  "lead": "Syarat dan ketentuan lengkap saat ini hanya tersedia dalam bahasa Jepang. Dengan terus menggunakan aplikasi ini, Anda dianggap menyetujui Syarat dan Ketentuan dalam bahasa Jepang.",
+  "linkToJa": "Lihat versi lengkap dalam bahasa Jepang"
+}
+
 }

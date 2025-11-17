@@ -40,6 +40,8 @@ import MyWordbookPage from "./pages/MyWordbookPage";
 import BrowseBlockPage from "./pages/BrowseBlockPage";
 import ExamPage from "./pages/ExamPage";
 import RankingPage from "./pages/RankingPage";
+import HelpSupportPage from "./pages/HelpSupportPage";
+import ContactPage from "./pages/ContactPage";
 
 /* alphabet */
 import AlphabetUnitsPage from "./pages/AlphabetUnitsPage";
@@ -185,6 +187,10 @@ const App = () => (
 
           {/* ranking */}
           <Route path="/ranking" element={<RankingPage />} />
+
+          {/* support */}
+          <Route path="/help" element={<HelpSupportPage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
           {/* exam */}
           <Route path="/exam/:examId" element={<ExamPage />} />
@@ -370,6 +376,8 @@ const AppInitializer = () => {
     "/exam",
     "/profile",
     "/ranking",
+    "/help",
+    "/contact",
   ];
 
   const lastNavRef = useRef("");

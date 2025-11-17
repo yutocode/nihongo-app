@@ -1,0 +1,129 @@
+/* src/styles/HelpSupportPage.css */
+
+/* ルート（クラス名いくつかまとめて対応しておく） */
+.helpSupport-page,
+.help-support-page,
+.help-page {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-6);
+  padding-bottom: calc(var(--space-10) + env(safe-area-inset-bottom));
+}
+
+/* ヘッダー（戻るボタン + タイトル） */
+.helpSupport-header,
+.help-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.helpSupport-backButton,
+.help-backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-7);
+  height: var(--space-7);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-subtle);
+  box-shadow: var(--shadow-soft);
+  font-size: 1rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+.helpSupport-backButton:active,
+.help-backButton:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.helpSupport-headerTitleBlock,
+.help-headerTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.helpSupport-title,
+.help-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.helpSupport-subtitle,
+.help-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* セクションカード（FAQ・ガイドなど） */
+.helpSupport-section,
+.help-section {
+  margin-top: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.helpSupport-sectionTitle,
+.help-sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-strong);
+}
+
+.helpSupport-list,
+.help-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.helpSupport-listItem,
+.help-listItem {
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+/* FAQ の Q/A 風ラベル想定（必要なら JSX 側で className を付ける） */
+.helpSupport-faqLabel {
+  font-weight: 600;
+  margin-right: var(--space-1);
+}
+
+.helpSupport-faqAnswer {
+  color: var(--color-text-muted);
+}
+
+/* 下部の補足 / メールリンクなど */
+.helpSupport-meta,
+.help-meta {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border-subtle);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.helpSupport-meta a,
+.help-meta a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
