@@ -8,6 +8,12 @@ import { EXAM_REGISTRY } from "@/data/exam";
 import FeatureTile from "../components/FeatureTile";
 import "../styles/Home.css";
 
+/* ==== JLPT 模試の公開フラグ ====
+   iOS 審査中は false にして完全ロック。
+   将来リリースするときだけ true に切り替える。
+*/
+const ENABLE_MOCK_EXAM = false;
+
 // EXAM_REGISTRY から自動で「各レベルの最初の模試ID」を拾う
 const LEVEL_KEYS = ["n5", "n4", "n3", "n2", "n1"];
 const AUTO_EXAM_BY_LEVEL = (() => {
@@ -25,19 +31,24 @@ const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const level = useAppStore((s) => s.level) || "n5";
+  const levelLabel = String(level).toUpperCase();
 
-  // 現在レベルで使う模試ID（無ければ null → タイルは準備中/CTAはレッスンへ）
-  const examId = useMemo(() => AUTO_EXAM_BY_LEVEL[level] || null, [level]);
+  // 現在レベルで使う模試ID（ロック中は常に null）
+  const examId = useMemo(() => {
+    if (!ENABLE_MOCK_EXAM) return null;
+    return AUTO_EXAM_BY_LEVEL[level] || null;
+  }, [level]);
 
-  // 共通：模試スタート用ハンドラ（タイル & CTA で共用）
+  const hasMockExam = ENABLE_MOCK_EXAM && !!examId;
+
   const handleStartMockExam = () => {
-    if (!examId) return;
+    if (!hasMockExam) return;
     navigate(`/exam/${examId}`);
   };
 
-  // CTA：模試があれば模試へ、無ければ従来どおりレッスンへ
+  // CTA：いまは必ずレッスンへ（模試解禁したら hasMockExam を見る）
   const handleStart = () => {
-    if (examId) {
+    if (hasMockExam) {
       handleStartMockExam();
     } else {
       navigate(`/lessons/${level}`);
@@ -50,71 +61,60 @@ const Home = () => {
       role="main"
       aria-label={t("home.title", "ホーム")}
     >
-      {/* 上段 4ボタン */}
+      {/* タイル 4×2 グリッド（全部まとめて1グリッド） */}
       <section className="section container">
         <div className="grid-four">
+          {/* 1段目 */}
           <FeatureTile
             iconName="book"
             label={t("home.menu.wordbook", "単語帳")}
-            desc={t("home.menu.wordbookDesc", "カードで暗記")}
             onClick={() => navigate(`/lessons/${level}`)}
           />
 
           <FeatureTile
             iconName="question"
             label={t("home.menu.grammarQuiz", "文法クイズ")}
-            desc={t("home.menu.grammarQuizDesc", "N5〜N1対応")}
             onClick={() => navigate(`/grammar/${level}`)}
           />
 
-          {/* JLPT 模試（レベルに応じて遷移／未対応レベルは非活性表示） */}
+          {/* JLPT 模試：今はロック */}
           <FeatureTile
             iconName="medal"
             label={t("home.menu.mockExam", "JLPT 模試")}
-            desc={
-              examId
-                ? t("home.menu.mockExamDesc", `${level.toUpperCase()} 試験モード`)
-                : t("home.menu.mockExamSoon", "このレベルは準備中")
-            }
-            onClick={examId ? handleStartMockExam : undefined}
-            disabled={!examId}
+            onClick={hasMockExam ? handleStartMockExam : undefined}
+            disabled={!hasMockExam}
           />
 
-          {/* リスニング：近日公開（そのまま） */}
-          <FeatureTile disabled>
-            <span className="coming-soon">
-              {t("common.comingSoon", "近日公開")}
-            </span>
-          </FeatureTile>
-        </div>
-      </section>
+          {/* リスニング：近日公開（ロック） */}
+          <FeatureTile
+            iconName="headphones"
+            label={t("home.menu.listeningSoon", "近日公開")}
+            disabled
+          />
 
-      {/* 下段 4ボタン */}
-      <section className="section container">
-        <div className="grid-four">
+          {/* 2段目 */}
           <FeatureTile
             iconName="target"
             label={t("home.menu.myWordbook", "My単語帳")}
-            desc={t("home.menu.myWordbookDesc", "自分だけの単語")}
             onClick={() => navigate("/my-words")}
           />
+
           <FeatureTile
             iconName="quiz"
-            label={t("home.menu.wordQuiz", "Word Quiz")}
-            desc={t("home.menu.wordQuizDesc", "語彙テスト")}
+            label={t("home.menu.wordQuiz", "単語クイズ")}
             onClick={() => navigate(`/word-quiz/${level}`)}
           />
+
           <FeatureTile
             iconName="alphabet"
-            label={t("home.menu.alphabet", "アルファベット")}
-            desc={t("home.menu.alphabetDesc", "発音・文字")}
-            onClick={() => navigate("/alphabet")}
+            label={t("home.menu.alphabetSoon", "近日公開文字")}
+            disabled
           />
+
           <FeatureTile
             iconName="book"
-            label={t("home.menu.reader", "本")}
-            desc={t("home.menu.readerDesc", "ストーリーを読む")}
-            onClick={() => navigate(`/reader/${level}`)}
+            label={t("home.menu.readerSoon", "近日公開本")}
+            disabled
           />
         </div>
       </section>
@@ -125,14 +125,14 @@ const Home = () => {
           className="cta-big btn-primary"
           onClick={handleStart}
           aria-label={
-            examId
-              ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
-              : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)
+            hasMockExam
+              ? t("home.cta.startExam", `${levelLabel} 模試を始める`)
+              : t("home.cta.start", `${levelLabel}から学習を始める`)
           }
         >
-          {examId
-            ? t("home.cta.startExam", `${level.toUpperCase()} 模試を始める`)
-            : t("home.cta.start", `${level.toUpperCase()}から学習を始める`)}
+          {hasMockExam
+            ? t("home.cta.startExam", `${levelLabel} 模試を始める`)
+            : t("home.cta.start", `${levelLabel}から学習を始める`)}
         </button>
       </div>
     </main>

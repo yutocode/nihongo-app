@@ -1,30 +1,70 @@
 // src/components/BottomNav.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FiHome,
-  FiAward,      // ← ランキング用（トロフィー/メダル）
-  FiFlag,
-  FiCreditCard,
+  FiAward,   // ランキング
+  FiFlag,    // チャレンジ（模試）
+  FiLock,    // Premium ロック中
   FiSettings,
 } from "react-icons/fi";
+import { useAppStore } from "../store/useAppStore";
+import { EXAM_REGISTRY } from "@/data/exam";
 import "@/styles/BottomNav.css";
 
 /**
- * NOTE:
- * - 2番目の「本」を「ランキング」に差し替え済み
- * - セーフエリア用の余白は bn-safezone で確保（CSS で env(safe-area-inset-bottom) を利用推奨）
- * - 44px 以上のタップ領域確保は CSS 側で .bn-link に padding を設定して対応
+ * 各レベルごとの「最初の模試ID」を取得（Home.jsx と同じロジック）
  */
-const ITEMS = [
-  { to: "/home",     label: "ホーム",      Icon: FiHome },
-  { to: "/ranking",  label: "ランキング",  Icon: FiAward },  // ← 差し替え
-  { to: "/quiz",     label: "チャレンジ",  Icon: FiFlag, accent: true },
-  { to: "/premium",  label: "Pro",        Icon: FiCreditCard },
-  { to: "/settings", label: "設定",       Icon: FiSettings },
-];
+const LEVEL_KEYS = ["n5", "n4", "n3", "n2", "n1"];
+
+// ★ iOS 審査中はここを false にして模試タブを完全ロック
+const ENABLE_EXAM_NAV = false;
+
+const AUTO_EXAM_BY_LEVEL = (() => {
+  const map = { n5: null, n4: null, n3: null, n2: null, n1: null };
+
+  for (const [examId, pack] of Object.entries(EXAM_REGISTRY)) {
+    const lv = (pack?.meta?.level || "").toLowerCase(); // "N5" → "n5"
+    if (LEVEL_KEYS.includes(lv) && !map[lv]) {
+      map[lv] = examId; // そのレベルで最初に見つかった模試を採用
+    }
+  }
+
+  return map;
+})();
 
 export default function BottomNav() {
+  const level = useAppStore((s) => s.level) || "n5";
+
+  // 現在レベルの模試IDと、その遷移先パス
+  const examId = useMemo(
+    () => AUTO_EXAM_BY_LEVEL[level] || null,
+    [level]
+  );
+  const examPath = examId ? `/exam/${examId}` : "/quiz"; // 将来用に残しておく
+
+  const items = [
+    { to: "/home",    label: "ホーム",      Icon: FiHome },
+    { to: "/ranking", label: "ランキング",  Icon: FiAward },
+    // ★ 真ん中：チャレンジ（いまは完全ロック）
+    {
+      to: examPath,
+      label: "チャレンジ",
+      Icon: FiFlag,
+      accent: true,
+      // examId があっても ENABLE_EXAM_NAV=false の間は押せない
+      disabled: !ENABLE_EXAM_NAV || !examId,
+    },
+    // ★ Premium：鍵マーク＋ロック中（近日公開）＝タップできない
+    {
+      to: "/premium",
+      label: "Premium",
+      Icon: FiLock,
+      disabled: true,
+    },
+    { to: "/settings", label: "設定", Icon: FiSettings },
+  ];
+
   return (
     <>
       <nav
@@ -33,30 +73,47 @@ export default function BottomNav() {
         aria-label="Bottom navigation"
       >
         <ul className="bn-bar" role="list">
-          {ITEMS.map(({ to, label, Icon, accent }) => (
-            <li
-              key={to}
-              className={`bn-item${accent ? " bn-item--accent" : ""}`}
-              role="listitem"
-            >
-              <NavLink
-                to={to}
-                className={({ isActive }) =>
-                  `bn-link ${isActive ? "is-active" : ""}`
-                }
-                aria-label={label}
-                title={label}
-                // アクセシビリティ: NavLink が aria-current="page" を自動付与
-              >
-                <span className="bn-icon" aria-hidden="true">
-                  <Icon />
-                </span>
-                {/* 画面読み上げにラベルを明示したい場合は下を使う（視覚的には非表示）
-                <span className="sr-only">{label}</span>
-                */}
-              </NavLink>
-            </li>
-          ))}
+          {items.map(({ to, label, Icon, accent, disabled }) => {
+            const itemClass = [
+              "bn-item",
+              accent ? "bn-item--accent" : "",
+              disabled ? "bn-item--disabled" : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+
+            const ariaLabel = disabled ? `${label}（近日公開）` : label;
+
+            return (
+              <li key={to + label} className={itemClass} role="listitem">
+                {disabled ? (
+                  // 🔒 ロック中タブ：見た目は他と同じ / クリック・フォーカス不可
+                  <span
+                    className="bn-link bn-link--disabled"
+                    aria-label={ariaLabel}
+                    aria-disabled="true"
+                  >
+                    <span className="bn-icon" aria-hidden="true">
+                      <Icon />
+                    </span>
+                  </span>
+                ) : (
+                  <NavLink
+                    to={to}
+                    className={({ isActive }) =>
+                      `bn-link ${isActive ? "is-active" : ""}`
+                    }
+                    aria-label={ariaLabel}
+                    title={label}
+                  >
+                    <span className="bn-icon" aria-hidden="true">
+                      <Icon />
+                    </span>
+                  </NavLink>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
 

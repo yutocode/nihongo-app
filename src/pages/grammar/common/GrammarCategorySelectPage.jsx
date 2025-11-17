@@ -38,7 +38,7 @@ const CATS_BY_LEVEL = {
     "exist-have",
     "intent-plan",
     "ask-permit",
-    "basic",
+    "basic",      // ← Other Basic Grammar（N5ではロック表示にする）
     "paraphrase",
     // ※N5は比較を出さない
   ],
@@ -98,17 +98,29 @@ export default function GrammarCategorySelectPage() {
       <div className="grid" role="list">
         {categories.map((cat) => {
           const label = t(cat.tkey, { defaultValue: cat.slug });
+
+          // ★ N5 の basic だけロック
+          const isLocked = normLevel === "n5" && cat.slug === "basic";
+
           return (
             <button
               key={cat.slug}
               type="button"
-              className="grammar-btn"
-              onClick={() => navigate(toCategoryPath(normLevel, cat.slug))}
-              aria-label={label}
+              className={`grammar-btn ${isLocked ? "grammar-btn--locked" : ""}`}
+              onClick={
+                isLocked
+                  ? undefined
+                  : () => navigate(toCategoryPath(normLevel, cat.slug))
+              }
+              aria-label={
+                isLocked ? `${label}（近日公開）` : label
+              }
               title={label}
               role="listitem"
+              disabled={isLocked}
             >
               {label}
+              {isLocked && <span className="grammar-btn-soon">（近日公開）</span>}
             </button>
           );
         })}

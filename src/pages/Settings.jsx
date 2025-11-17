@@ -16,21 +16,40 @@ function SettingSection({ title, children }) {
   );
 }
 
-function RowButton({ icon, label, onClick, to, trailing }) {
+function RowButton({ icon, label, onClick, to, trailing, disabled = false }) {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (disabled) return;
+    if (onClick) onClick();
+    else if (to) navigate(to);
+  };
+
   return (
     <button
       type="button"
       className="settings__row"
-      onClick={() => (onClick ? onClick() : to ? navigate(to) : null)}
+      onClick={handleClick}
       aria-label={typeof label === "string" ? label : undefined}
+      aria-disabled={disabled ? "true" : undefined}
+      disabled={disabled}
+      style={disabled ? { opacity: 0.5, pointerEvents: "none" } : undefined}
     >
       <span className="settings__rowLeft">
-        <span className="settings__icon" aria-hidden>{icon}</span>
+        <span className="settings__icon" aria-hidden>
+          {icon}
+        </span>
         <span className="settings__label">{label}</span>
       </span>
       <span className="settings__rowRight">
-        {trailing ?? <span className="settings__chevron" aria-hidden>›</span>}
+        {trailing ??
+          (disabled ? (
+            <span aria-hidden>🔒</span>
+          ) : (
+            <span className="settings__chevron" aria-hidden>
+              ›
+            </span>
+          ))}
       </span>
     </button>
   );
@@ -40,7 +59,9 @@ function RowToggle({ icon, label, checked, onChange, description }) {
   return (
     <div className="settings__row" role="group" aria-label={label}>
       <span className="settings__rowLeft">
-        <span className="settings__icon" aria-hidden>{icon}</span>
+        <span className="settings__icon" aria-hidden>
+          {icon}
+        </span>
         <span className="settings__labelBlock">
           <span className="settings__label">{label}</span>
           {description && <span className="settings__desc">{description}</span>}
@@ -77,20 +98,18 @@ export default function Settings() {
     const saved = localStorage.getItem("theme"); // "light" | "dark"
     if (saved === "dark") return true;
     if (saved === "light") return false;
-    // 既に data-theme があれば尊重
-    const attr = typeof document !== "undefined"
-      ? document.documentElement.getAttribute("data-theme")
-      : null;
+    const attr =
+      typeof document !== "undefined"
+        ? document.documentElement.getAttribute("data-theme")
+        : null;
     return attr === "dark";
   });
 
   useEffect(() => {
     const root = document.documentElement;
     const theme = darkMode ? "dark" : "light";
-    // OS側の自動適用を無効化するため、常に data-theme を上書き
     root.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-    // アドレスバー色（index.html に <meta name="theme-color"> が必要）
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", darkMode ? "#0b0f14" : "#f7f8fa");
   }, [darkMode]);
@@ -103,7 +122,12 @@ export default function Settings() {
 
   const requestNotification = async (enable) => {
     if (!("Notification" in window)) {
-      alert(t("settings.notificationsNotSupported", "この端末は通知に対応していません。"));
+      alert(
+        t(
+          "settings.notificationsNotSupported",
+          "この端末は通知に対応していません。"
+        )
+      );
       setNotifEnabled(false);
       localStorage.setItem("notificationsEnabled", "false");
       return;
@@ -150,7 +174,7 @@ export default function Settings() {
       en: "English",
       id: "Bahasa Indonesia",
       zh: "简体中文",
-      tw: "繁體中文(台灣華語)"
+      tw: "繁體中文(台灣華語)",
     };
     return map[i18n.language] || i18n.language;
   }, [i18n.language]);
@@ -159,31 +183,48 @@ export default function Settings() {
     <div className="settings-page" role="main">
       <header className="settings__header">
         <h2 className="settings__title">{t("settings.title", "設定")}</h2>
-        <p className="settings__subtitle">{t("settings.subtitle", "アプリの設定を管理")}</p>
+        <p className="settings__subtitle">
+          {t("settings.subtitle", "アプリの設定を管理")}
+        </p>
       </header>
 
       {/* Account */}
-      <SettingSection title={t("settings.sections.account.title", "アカウント")}>
-        <RowButton icon="🙋‍♂️" label={t("settings.sections.account.profile", "プロフィール")} to="/profile" />
-        <RowButton icon="🔒" label={t("settings.sections.account.password", "パスワード")} to="/settings/password" />
-        <RowButton icon="💾" label={t("settings.sections.account.export", "データの書き出し")} to="/settings/export" />
+      <SettingSection
+        title={t("settings.sections.account.title", "アカウント")}
+      >
+        <RowButton
+          icon="🙋‍♂️"
+          label={t(
+            "settings.sections.account.profile",
+            "プロフィール"
+          )}
+          to="/profile"
+        />
       </SettingSection>
 
       {/* Basic settings */}
-      <SettingSection title={t("settings.sections.basic.title", "基本設定")}>
+      <SettingSection
+        title={t("settings.sections.basic.title", "基本設定")}
+      >
         <RowToggle
           icon="🔔"
           label={t("settings.sections.basic.notifications", "通知")}
           checked={notifEnabled}
           onChange={requestNotification}
-          description={t("settings.sections.basic.notifications_desc", "学習のリマインダーを受け取る")}
+          description={t(
+            "settings.sections.basic.notifications_desc",
+            "学習のリマインダーを受け取る"
+          )}
         />
         <RowToggle
           icon="🌙"
           label={t("settings.sections.basic.theme", "ダークモード")}
           checked={darkMode}
           onChange={setDarkMode}
-          description={t("settings.sections.basic.theme_desc", "見た目のテーマを切り替え")}
+          description={t(
+            "settings.sections.basic.theme_desc",
+            "見た目のテーマを切り替え"
+          )}
         />
         <RowButton
           icon="🌐"
@@ -193,19 +234,45 @@ export default function Settings() {
         />
       </SettingSection>
 
-      {/* Premium */}
-      <SettingSection title={t("settings.sections.premium.title", "プレミアム")}>
-        <RowButton icon="💎" label={t("settings.sections.premium.managePlan", "プランを管理")} to="/premium" />
+      {/* Premium（ロック中） */}
+      <SettingSection
+        title={t("settings.sections.premium.title", "プレミアム")}
+      >
+        <RowButton
+          icon="💎"
+          label={t(
+            "settings.sections.premium.managePlan",
+            "プレミアム（準備中）"
+          )}
+          disabled
+        />
       </SettingSection>
 
       {/* Support */}
-      <SettingSection title={t("settings.sections.support.title", "サポート")}>
-        <RowButton icon="❓" label={t("settings.sections.support.help", "ヘルプ・サポート")} to="/help" />
-        <RowButton icon="📮" label={t("settings.sections.support.contact", "お問い合わせ")} to="/contact" />
-        <RowButton icon="📄" label={t("settings.sections.support.terms", "利用規約")} to="/legal/terms" />
-        <RowButton icon="🛡️" label={t("settings.sections.support.privacy", "プライバシー")} to="/legal/privacy" />
+      <SettingSection
+        title={t("settings.sections.support.title", "サポート")}
+      >
+        <RowButton
+          icon="❓"
+          label={t("settings.sections.support.help", "ヘルプ・サポート")}
+          to="/help"
+        />
+        <RowButton
+          icon="📮"
+          label={t("settings.sections.support.contact", "お問い合わせ")}
+          to="/contact"
+        />
+        <RowButton
+          icon="📄"
+          label={t("settings.sections.support.terms", "利用規約")}
+          to="/legal/terms"
+        />
+        <RowButton
+          icon="🛡️"
+          label={t("settings.sections.support.privacy", "プライバシー")}
+          to="/legal/privacy"
+        />
       </SettingSection>
-
 
       {/* Footer */}
       <footer className="settings__footer">

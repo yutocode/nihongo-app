@@ -132,8 +132,13 @@
   transform: none;
 }
 
-/* ===== 音声（スピーカーはアイコンのみ） ===== */
-.audio-area{ margin-top: 12px; }
+/* ===== 音声（スピーカー） ===== */
+/* ★ 今は音声未実装なので、エリアごと非表示にしておく */
+.audio-area{
+  display: none;
+}
+
+/* audio-button 自体のスタイルは残しておく（後で再利用できる） */
 .audio-button{
   width: 44px;
   height: 44px;
@@ -150,8 +155,6 @@
   justify-content: center;
   align-items: center;
 }
-
-/* 旧：.navigation button { padding:.. } は不要（アイコン化のため削除） */
 
 /* ===== Safari 対策：disabled でもアイコンが見えるように ===== */
 button:disabled{

@@ -6,6 +6,7 @@
   --bn-inactive: #6b7280;
   --bn-shadow: 0 -8px 24px rgba(0,0,0,.06);
   --bn-icon-size: 24px;
+  --bn-disabled-opacity: 0.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,51 +21,109 @@
 /* 画面下に固定＋Safe Area */
 .bn-wrap {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding-bottom: env(safe-area-inset-bottom, 0px);
   z-index: 1000;
 }
 
 /* バー本体 */
 .bn-bar {
-  list-style: none; margin: 0; padding: 12px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 12px 24px;
   height: var(--bn-height);
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   background: var(--bn-bg);
   border-top: 1px solid var(--bn-border);
   box-shadow: var(--bn-shadow);
 }
 
 /* 各タブ */
-.bn-item { flex: 1 1 0; display: flex; justify-content: center; }
+.bn-item {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
 
 .bn-link {
-  min-width: 44px; min-height: 44px; /* ヒット領域 */
-  display: flex; align-items: center; justify-content: center;
+  min-width: 44px;
+  min-height: 44px; /* ヒット領域 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--bn-inactive);
-  text-decoration: none; border-radius: 12px;
-  transition: color .15s ease, background .15s ease, transform .12s ease;
+  text-decoration: none;
+  border-radius: 12px;
+  transition:
+    color .15s ease,
+    background .15s ease,
+    transform .12s ease;
   outline: none;
 }
 
-.bn-link:hover { color: var(--bn-active); }
-.bn-link.is-active { color: var(--bn-active); }
+.bn-link:hover {
+  color: var(--bn-active);
+}
+
+.bn-link.is-active {
+  color: var(--bn-active);
+}
 
 .bn-link:focus-visible {
   background: rgba(37,99,235,.1);
   box-shadow: 0 0 0 2px rgba(37,99,235,.25);
 }
 
-.bn-icon { font-size: var(--bn-icon-size); line-height: 1; }
+.bn-icon {
+  font-size: var(--bn-icon-size);
+  line-height: 1;
+}
 
 /* 中央タブをわずかに強調（任意） */
-.bn-item--accent .bn-link { transform: translateY(-2px); }
-.bn-item--accent .bn-link.is-active { transform: translateY(-3px); }
+.bn-item--accent .bn-link {
+  transform: translateY(-2px);
+}
 
-.bn-safezone { height: env(safe-area-inset-bottom, 0px); }
+.bn-item--accent .bn-link.is-active {
+  transform: translateY(-3px);
+}
+
+/* 🔒 ロック中タブ：UIだけで“まだ使えない”と分かる */
+.bn-item--disabled .bn-link,
+.bn-link--disabled {
+  color: var(--bn-inactive);
+  opacity: var(--bn-disabled-opacity);
+  cursor: default;
+  pointer-events: none; /* クリック・タップ完全無効 */
+  box-shadow: none;
+  transform: none;
+}
+
+/* hover や active でも色を変えない */
+.bn-item--disabled .bn-link:hover,
+.bn-link--disabled:hover {
+  color: var(--bn-inactive);
+}
+
+/* Safe area 余白 */
+.bn-safezone {
+  height: env(safe-area-inset-bottom, 0px);
+}
 
 /* 視覚非表示ユーティリティ（必要なら） */
 .sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }

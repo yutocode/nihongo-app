@@ -1,13 +1,14 @@
+// src/components/FeatureTile.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import IconGlyph from "./IconGlyph.jsx";
 import "../styles/FeatureTile.css";
 
 /**
- * アイコン用の正方形サーフェス + 下にラベル（2行まで）
- * - 緑の箱は .tile-surface にのみ適用
- * - ラベルは箱の外、下に配置
- * - disabled の場合はクリック不可＆「近日公開」バッジ表示
+ * ホーム画面の機能タイル
+ * - 上：緑の正方形サーフェス（アイコン）
+ * - 下：ラベル（最大2行）
+ * - disabled のときはクリック不可＋鍵マーク
  */
 export default function FeatureTile({ iconName, label, onClick, disabled }) {
   const handleKeyDown = (e) => {
@@ -21,18 +22,16 @@ export default function FeatureTile({ iconName, label, onClick, disabled }) {
   return (
     <button
       type="button"
-      className={`tile ${disabled ? "is-disabled" : ""}`}
+      className="tile"
+      disabled={disabled}
       onClick={!disabled ? onClick : undefined}
       onKeyDown={handleKeyDown}
       aria-label={label}
-      aria-disabled={disabled ? "true" : "false"}
-      tabIndex={disabled ? -1 : 0}
     >
       <span className="tile-surface" aria-hidden="true">
         <span className="tile-ico">
           <IconGlyph name={iconName} />
         </span>
-        {disabled && <span className="soon-badge">近日公開</span>}
       </span>
       <span className="tile-label">{label}</span>
     </button>

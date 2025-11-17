@@ -7,12 +7,8 @@ import "../styles/LessonSelectPage.css";
 // ✅ 各レベルのデータをレジストリから取得
 import { getAllWords } from "@/data/registry/index.js";
 
-// ブロック分けユーティリティ
-import {
-  buildBlocksByNumber,
-  buildBlocksByPOS,
-  buildBlocksByFreq,
-} from "@/utils/grouping.js";
+// ブロック分けユーティリティ（freq は使わないので削除）
+import { buildBlocksByNumber, buildBlocksByPOS } from "@/utils/grouping.js";
 
 export default function LessonSelectPage() {
   const { level = "n5" } = useParams(); // /lessons/:level
@@ -22,7 +18,8 @@ export default function LessonSelectPage() {
   const normLevel = String(level).toLowerCase();
 
   // === 表示モード ===
-  const [mode, setMode] = useState("number"); // "pos" | "number" | "freq"
+  // 初期値を「品詞」でスタート
+  const [mode, setMode] = useState("pos"); // "pos" | "number"
 
   // === 全単語をレジストリから取得 ===
   const allWords = useMemo(() => getAllWords(normLevel), [normLevel]);
@@ -31,7 +28,7 @@ export default function LessonSelectPage() {
   const blocks = useMemo(() => {
     if (!allWords.length) return [];
     if (mode === "pos") return buildBlocksByPOS(allWords, normLevel);
-    if (mode === "freq") return buildBlocksByFreq(allWords);
+    // それ以外は番号順
     return buildBlocksByNumber(allWords);
   }, [mode, allWords, normLevel]);
 
@@ -55,7 +52,7 @@ export default function LessonSelectPage() {
           className={`toggle ${mode === "pos" ? "active" : ""}`}
           onClick={() => setMode("pos")}
         >
-          品詞で分ける
+          品詞
         </button>
         <button
           className={`toggle ${mode === "number" ? "active" : ""}`}
@@ -63,12 +60,7 @@ export default function LessonSelectPage() {
         >
           番号順
         </button>
-        <button
-          className={`toggle ${mode === "freq" ? "active" : ""}`}
-          onClick={() => setMode("freq")}
-        >
-          よく出る順
-        </button>
+        {/* 「よく出る順」タブは削除 */}
       </div>
 
       {/* === コンテンツ === */}

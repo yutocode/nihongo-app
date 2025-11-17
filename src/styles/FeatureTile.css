@@ -1,9 +1,17 @@
 /* =========================
    FeatureTile.css 完成版
+   （タイルの見た目だけ担当）
    ========================= */
 
 /* iOS の自動拡大抑制（index.html にも入れてある前提だけど保険で） */
-:root { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+:root {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* =========================
+   タイル本体
+   ========================= */
 
 /* ボタン自体は背景なし（クリック領域のラッパー） */
 .tile {
@@ -11,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 0;                /* 余計な高さを入れない */
+  padding: 0;
   border: none;
   background: transparent;
   color: inherit;
@@ -23,38 +31,43 @@
 /* キーボード操作の視認性 */
 .tile:focus-visible {
   outline: none;
-  box-shadow: var(--ring, 0 0 0 3px rgba(255,153,0,.35));
+  box-shadow: var(--ring, 0 0 0 3px rgba(255, 153, 0, 0.35));
   border-radius: 14px; /* ラベルとサーフェスを包む見た目用 */
 }
 
-/* 無効状態 */
+/* 無効状態（JS 側で disabled を渡したとき） */
 .tile[disabled],
 .tile:disabled {
   cursor: not-allowed;
-  opacity: .55;
 }
 
-/* ---- 正方形の“緑タイル”はここだけに適用 ---- */
+/* ---- 正方形の“緑タイル” ---- */
 .tile-surface {
-  width: clamp(68px, 18vw, 90px);  /* 端末に応じて拡縮 */
-  aspect-ratio: 1 / 1;             /* 常に正方形（スマホでも長方形化しない） */
+  width: clamp(68px, 18vw, 90px);
+  aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
-  border-radius: 18px;              /* 昔の丸み */
+  border-radius: 18px;
+
   /* 深緑グラデ & 内側の落ち影で立体感 */
   background:
     radial-gradient(100% 120% at 30% 20%, #0f3a32 0%, #0b2a25 60%, #0a2320 100%);
   box-shadow:
-    0 10px 30px rgba(0,0,0,.35),               /* 外側の影 */
-    inset 0 1px 0 rgba(255,255,255,.06);       /* ほんのり天面 */
-  /* 金色の縁（やや太め） */
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* 金色の縁 */
   outline: 2px solid #967d47;
   outline-offset: -2px;
-  border: 1px solid rgba(0,0,0,.35);
-  transition: transform .15s ease, box-shadow .2s ease, outline-color .2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    outline-color 0.2s ease;
 }
 
-/* Hover はポインタ＆hover対応デバイスでのみ */
+/* Hover（PC だけ） */
 @media (hover: hover) and (pointer: fine) {
   .tile:hover .tile-surface {
     transform: translateY(-1px);
@@ -65,21 +78,21 @@
 .tile:active .tile-surface {
   transform: translateY(0);
   box-shadow:
-    0 6px 18px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* アイコン（白・少し大きめ） */
+/* アイコン */
 .tile-ico {
   font-size: clamp(22px, 6vw, 28px);
   line-height: 1;
-  color: #eaf2ef; /* ほんのり緑がかった白 */
+  color: #eaf2ef;
 }
 
-/* ---- ラベルは“外側”に置く（最大2行・省略しない） ---- */
+/* ラベル（最大 2 行） */
 .tile-label {
   margin-top: 2px;
-  max-width: 10ch;                 /* 2行×5～6文字目安。必要なら 12ch などに調整 */
+  max-width: 10ch;
   text-align: center;
   color: #ffffff;
   font-weight: 700;
@@ -88,29 +101,65 @@
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;           /* 2行まで表示 */
-  overflow: hidden;                 /* 3行目は切る（…は出さない） */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  overflow: hidden;
   white-space: normal;
-  word-break: keep-all;             /* CJKは自然改行、英語は単語境界 */
+  word-break: keep-all;
 }
 
-/* 翻訳文字列内の <br> をそのまま改行として使う場合 */
-.tile-label br { display: inline; }
+.tile-label br {
+  display: inline;
+}
 
 /* すごく狭い端末の微調整 */
 @media (max-width: 360px) {
-  .tile-surface { width: 72px; }
-  .tile-ico     { font-size: 22px; }
-  .tile-label   { font-size: 12px; max-width: 9.5ch; }
+  .tile-surface {
+    width: 72px;
+  }
+  .tile-ico {
+    font-size: 22px;
+  }
+  .tile-label {
+    font-size: 12px;
+    max-width: 9.5ch;
+  }
 }
 
 /* 低モーション環境ではアニメ最小化 */
 @media (prefers-reduced-motion: reduce) {
-  .tile-surface { transition: none !important; }
+  .tile-surface {
+    transition: none !important;
+  }
 }
 
-/*（任意）テーマ変数と連携したい場合の置換例：
-   背景・縁色をアプリ全体のCSS変数で統一するなら以下を上書きで追加
+/* =========================
+   ロック状態（🔒アイコン）
+   ========================= */
+
+/* disabled なタイルだけトーンダウン＋鍵マーク */
+.tile[disabled] .tile-surface,
+.tile[disabled] .tile-label {
+  opacity: 0.6;
+  filter: saturate(0.6) brightness(0.96);
+}
+
+.tile[disabled] .tile-surface {
+  position: relative;
+}
+
+.tile[disabled] .tile-surface::after {
+  content: "🔒";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* （任意）テーマ変数版
    .tile-surface {
      background: var(--tile-bg, radial-gradient(...));
      outline-color: var(--tile-outline, #967d47);

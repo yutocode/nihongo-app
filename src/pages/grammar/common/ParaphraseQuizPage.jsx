@@ -45,6 +45,7 @@ export default function ParaphraseQuizPage() {
       )
       .map((q, i) => ({
         id: q.id ?? `para-${normLevel}-${normLesson}-${i}`,
+        // furigana フィールド（<ruby>付きHTML）を優先
         question: q.furigana ?? q.question ?? "",
         choices: q.choices,
         answer: q.answer,
@@ -73,10 +74,13 @@ export default function ParaphraseQuizPage() {
       onBack={quiz.backOne}
       onExit={() => navigate(`/grammar/${normLevel}`)}
       renderQuestion={(q) => (
-        <span className="jp" style={{ fontSize: 22 }}>
-          {q?.question || ""}
-        </span>
+        <div
+          className="jp"
+          style={{ fontSize: 22 }}
+          dangerouslySetInnerHTML={{ __html: q?.question || "" }}
+        />
       )}
+      // 番号ラベルは非表示
       numberLabels={[]}
     />
   );
