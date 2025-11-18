@@ -24,8 +24,6 @@ import ProfilePage from "./pages/ProfilePage";
 
 /* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 
 /* ===== protected pages ===== */
 import Home from "./pages/Home";
@@ -136,7 +134,6 @@ function ComparisonLegacyRedirect() {
 function ScrollToTop() {
   const { pathname, search, hash } = useLocation();
   useEffect(() => {
-    // topへ即時スクロール（iOS WebView含む）
     window.scrollTo(0, 0);
   }, [pathname, search, hash]);
   return null;
@@ -160,8 +157,10 @@ const App = () => (
         {/* public */}
         <Route path="/" element={<AuthPage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+
+        {/* 旧URLは全部 /auth に寄せる */}
+        <Route path="/login" element={<Navigate to="/auth" replace />} />
+        <Route path="/register" element={<Navigate to="/auth" replace />} />
 
         {/* legal */}
         <Route path="/legal/tokusho" element={<Tokusho />} />
@@ -329,8 +328,8 @@ const App = () => (
           />
         </Route>
 
-        {/* fallback */}
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        {/* fallback：どこにもマッチしなければ認証画面へ */}
+        <Route path="*" element={<Navigate to="/auth" replace />} />
       </Routes>
     </Suspense>
   </BrowserRouter>
@@ -347,9 +346,9 @@ const AppInitializer = () => {
 
   const PUBLIC_PATHS = [
     "/",
+    "/auth",
     "/login",
     "/register",
-    "/auth",
     "/legal/tokusho",
     "/legal/terms",
     "/legal/privacy",
@@ -414,6 +413,7 @@ const AppInitializer = () => {
           console.warn("daily restore failed:", e);
         }
 
+        // 認証後に /auth 系にいたらホームへ
         if (PUBLIC_PATHS.includes(path)) {
           navigateOnce("/home");
         }
@@ -427,7 +427,8 @@ const AppInitializer = () => {
 
         const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
         if (onPrivate) {
-          navigateOnce("/login");
+          // 未ログインで保護ルートなら /auth へ
+          navigateOnce("/auth");
         }
       }
 

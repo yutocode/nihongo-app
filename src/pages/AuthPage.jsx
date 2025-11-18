@@ -1,13 +1,22 @@
 // src/pages/AuthPage.jsx
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from "react";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  OAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
-import { useAppStore } from "../store/useAppStore";
 import { useTranslation } from "react-i18next";
+
+import { auth } from "../firebase/firebase-config";
+import { useAppStore } from "../store/useAppStore";
+
 import "../styles/AuthPage.css";
 
 /** Firebase エラーコード → i18n キー（なければ汎用にフォールバック） */
@@ -21,10 +30,11 @@ const FB_ERROR_I18N = {
   "auth/network-request-failed": "auth.errors.network",
 };
 
+/** 簡易メールバリデーション */
 function useEmailValidation(email) {
   return useMemo(() => {
-    if (!email) return true; // 空は許容（requiredで最終防御）
-    // 簡易バリデーション（HTML5のtype="email"と二重防御）
+    if (!email) return true; // 空は許容（requiredで最終チェック）
+    // HTML5 の type="email" と二重防御
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }, [email]);
 }
@@ -34,7 +44,7 @@ const AuthPage = () => {
   const { t, i18n } = useTranslation();
 
   const setUser = useAppStore((s) => s.setUser);
-  const selectedLanguage = useAppStore((s) => s.selectedLanguage);
+  const selectedLanguage = useAppStore((s) => s.selectedLanguage || "en");
   const setLanguage = useAppStore((s) => s.setLanguage);
   const userInStore = useAppStore((s) => s.user);
 
@@ -42,10 +52,12 @@ const AuthPage = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [mode, setMode] = useState("login"); // "login" | "register"
+
   const [showPassLogin, setShowPassLogin] = useState(false);
   const [showPassRegister, setShowPassRegister] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [errorKey, setErrorKey] = useState(""); // i18nキーを保持
+  const [errorKey, setErrorKey] = useState(""); // i18n キーを保持
 
   const isLoginEmailValid = useEmailValidation(loginEmail);
   const isRegisterEmailValid = useEmailValidation(registerEmail);
@@ -76,9 +88,14 @@ const AuthPage = () => {
       setErrorKey("auth.errors.invalid_email");
       return;
     }
+
     setBusy(true);
     try {
-      const { user } = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword,
+      );
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
@@ -102,15 +119,15 @@ const AuthPage = () => {
       setErrorKey("auth.errors.weak_password");
       return;
     }
+
     setBusy(true);
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
-        registerPassword
+        registerPassword,
       );
       setUser?.(user);
-      // t("auth.register_success") があればトースト/アラートを出す場合はここで
       navigate("/home", { replace: true });
     } catch (err) {
       setErrorKey(mapErrorKey(err?.code));
@@ -119,7 +136,40 @@ const AuthPage = () => {
     }
   }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
-  // Enterで送信（ログイン側を優先）
+  // Apple ログイン（詳細エラー表示付き）
+  const handleAppleSignIn = useCallback(async () => {
+    setErrorKey("");
+    setBusy(true);
+
+    try {
+      const provider = new OAuthProvider("apple.com");
+
+      // 必要な情報だけスコープに追加（なくても動くが一応）
+      provider.addScope("email");
+      provider.addScope("name");
+
+      const result = await signInWithPopup(auth, provider);
+      const { user } = result;
+
+      console.log("[Apple] login success:", user);
+      setUser?.(user);
+      navigate("/home", { replace: true });
+    } catch (err) {
+      console.error("[Apple] login error detail:", err);
+
+      const code = err?.code || "unknown";
+      const message = err?.message || "";
+
+      // デバッグのため一度だけアラートで中身を確認
+      alert(`Apple login error: ${code}\n${message}`);
+
+      setErrorKey("auth.errors.generic");
+    } finally {
+      setBusy(false);
+    }
+  }, [navigate, setUser]);
+
+  // Enter キーで送信（ログイン側を優先）
   const onKeyDownLogin = (e) => {
     if (e.key === "Enter") handleLogin();
   };
@@ -129,123 +179,196 @@ const AuthPage = () => {
 
   // ゲストとして続行（ログイン不要）
   const continueAsGuest = () => {
-    // 必要なら localStorage フラグ等をセットしてもOK
-    // localStorage.setItem("guest", "1");
     navigate("/home", { replace: true });
   };
 
   return (
     <div className="auth-page">
-      {/* 言語選択 */}
-      <div className="language-selector" role="group" aria-label={t("language.select")}>
-        <label htmlFor="auth-lang">{t("language.select")}:</label>
-        <select id="auth-lang" value={selectedLanguage} onChange={handleLanguageChange}>
-          <option value="en">English</option>
-          <option value="id">Bahasa Indonesia</option>
-          <option value="zh">简体中文</option>
-          <option value="tw">繁體中文</option>
-        </select>
-      </div>
+      <div className="auth-shell">
 
-      <div className="auth-container">
-        {/* ログイン */}
-        <div className="auth-box login-box">
-          <h2>{t("auth.login", "Log in")}</h2>
-
-          <input
-            type="email"
-            placeholder={t("auth.email", "Email")}
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
-            onKeyDown={onKeyDownLogin}
-            required
-            aria-invalid={!isLoginEmailValid}
-          />
-
-          <div className="password-field">
-            <input
-              type={showPassLogin ? "text" : "password"}
-              placeholder={t("auth.password", "Password")}
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              onKeyDown={onKeyDownLogin}
-              required
-              aria-label={t("auth.password", "Password")}
-            />
+        {/* メインカード */}
+        <div className="auth-card">
+          {/* タブ（ログイン / 新規登録） */}
+          <div className="auth-tabs" role="tablist">
             <button
               type="button"
-              className="toggle-pass"
-              onClick={() => setShowPassLogin((v) => !v)}
-              aria-label={showPassLogin ? t("auth.hide_password", "Hide password") : t("auth.show_password", "Show password")}
-              title={showPassLogin ? t("auth.hide_password", "Hide password") : t("auth.show_password", "Show password")}
+              className={`auth-tab ${mode === "login" ? "is-active" : ""}`}
+              onClick={() => setMode("login")}
+              role="tab"
+              aria-selected={mode === "login"}
             >
-              {showPassLogin ? "🙈" : "👁️"}
+              {t("auth.login", "Log in")}
+            </button>
+            <button
+              type="button"
+              className={`auth-tab ${mode === "register" ? "is-active" : ""}`}
+              onClick={() => setMode("register")}
+              role="tab"
+              aria-selected={mode === "register"}
+            >
+              {t("auth.register", "Create account")}
             </button>
           </div>
 
-          <button onClick={handleLogin} disabled={busy || !loginEmail || !loginPassword}>
-            {busy ? t("common.loading", "Loading…") : t("auth.login_button", "Log in")}
-          </button>
+          {/* Apple ログイン */}
+          <div className="auth-social">
+            <button
+              type="button"
+              className="auth-social__apple"
+              onClick={handleAppleSignIn}
+              disabled={busy}
+            >
+              <span className="auth-social__appleLogo" aria-hidden="true">
+                
+              </span>
+              <span>{t("auth.apple", "Sign in with Apple")}</span>
+            </button>
+          </div>
+
+          <div className="auth-divider">
+            <span>{t("auth.or_email", "or use email")}</span>
+          </div>
+
+          {/* ログインフォーム */}
+          {mode === "login" && (
+            <div className="auth-form" aria-label="login form">
+              <input
+                type="email"
+                placeholder={t("auth.email", "Email")}
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                onKeyDown={onKeyDownLogin}
+                required
+                aria-invalid={!isLoginEmailValid}
+              />
+
+              <div className="password-field">
+                <input
+                  type={showPassLogin ? "text" : "password"}
+                  placeholder={t("auth.password", "Password")}
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onKeyDown={onKeyDownLogin}
+                  required
+                  aria-label={t("auth.password", "Password")}
+                />
+                <button
+                  type="button"
+                  className="toggle-pass"
+                  onClick={() => setShowPassLogin((v) => !v)}
+                  aria-label={
+                    showPassLogin
+                      ? t("auth.hide_password", "Hide password")
+                      : t("auth.show_password", "Show password")
+                  }
+                  title={
+                    showPassLogin
+                      ? t("auth.hide_password", "Hide password")
+                      : t("auth.show_password", "Show password")
+                  }
+                >
+                  {showPassLogin ? "🙈" : "👁️"}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleLogin}
+                disabled={busy || !loginEmail || !loginPassword}
+              >
+                {busy
+                  ? t("common.loading", "Loading…")
+                  : t("auth.login_button", "Log in")}
+              </button>
+            </div>
+          )}
+
+          {/* 新規登録フォーム */}
+          {mode === "register" && (
+            <div className="auth-form" aria-label="register form">
+              <input
+                type="email"
+                placeholder={t("auth.email", "Email")}
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+                onKeyDown={onKeyDownRegister}
+                required
+                aria-invalid={!isRegisterEmailValid}
+              />
+
+              <div className="password-field">
+                <input
+                  type={showPassRegister ? "text" : "password"}
+                  placeholder={t("auth.password", "Password (6+ chars)")}
+                  value={registerPassword}
+                  onChange={(e) => setRegisterPassword(e.target.value)}
+                  onKeyDown={onKeyDownRegister}
+                  required
+                  aria-label={t("auth.password", "Password")}
+                  minLength={6}
+                />
+                <button
+                  type="button"
+                  className="toggle-pass"
+                  onClick={() => setShowPassRegister((v) => !v)}
+                  aria-label={
+                    showPassRegister
+                      ? t("auth.hide_password", "Hide password")
+                      : t("auth.show_password", "Show password")
+                  }
+                  title={
+                    showPassRegister
+                      ? t("auth.hide_password", "Hide password")
+                      : t("auth.show_password", "Show password")
+                  }
+                >
+                  {showPassRegister ? "🙈" : "👁️"}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleRegister}
+                disabled={
+                  busy ||
+                  !registerEmail ||
+                  !registerPassword ||
+                  registerPassword.length < 6
+                }
+              >
+                {busy
+                  ? t("common.loading", "Loading…")
+                  : t("auth.register_button", "Create account")}
+              </button>
+            </div>
+          )}
+
+          {/* エラー表示 */}
+          {errorKey && (
+            <div className="auth-error" role="alert" aria-live="assertive">
+              {t(
+                errorKey,
+                t(
+                  "auth.errors.generic",
+                  "Something went wrong. Please try again.",
+                ),
+              )}
+            </div>
+          )}
         </div>
 
-        {/* 新規登録 */}
-        <div className="auth-box register-box">
-          <h2>{t("auth.register", "Create account")}</h2>
-
-          <input
-            type="email"
-            placeholder={t("auth.email", "Email")}
-            value={registerEmail}
-            onChange={(e) => setRegisterEmail(e.target.value)}
-            onKeyDown={onKeyDownRegister}
-            required
-            aria-invalid={!isRegisterEmailValid}
-          />
-
-          <div className="password-field">
-            <input
-              type={showPassRegister ? "text" : "password"}
-              placeholder={t("auth.password", "Password (6+ chars)")}
-              value={registerPassword}
-              onChange={(e) => setRegisterPassword(e.target.value)}
-              onKeyDown={onKeyDownRegister}
-              required
-              aria-label={t("auth.password", "Password")}
-              minLength={6}
-            />
-            <button
-              type="button"
-              className="toggle-pass"
-              onClick={() => setShowPassRegister((v) => !v)}
-              aria-label={showPassRegister ? t("auth.hide_password", "Hide password") : t("auth.show_password", "Show password")}
-              title={showPassRegister ? t("auth.hide_password", "Hide password") : t("auth.show_password", "Show password")}
-            >
-              {showPassRegister ? "🙈" : "👁️"}
-            </button>
-          </div>
-
+        {/* ゲストで続行 */}
+        <div className="auth-guest">
           <button
-            onClick={handleRegister}
-            disabled={busy || !registerEmail || !registerPassword || registerPassword.length < 6}
+            type="button"
+            className="guest-btn"
+            onClick={continueAsGuest}
+            disabled={busy}
           >
-            {busy ? t("common.loading", "Loading…") : t("auth.register_button", "Create account")}
+            {t("auth.continue_guest", "Continue as guest")}
           </button>
         </div>
       </div>
-
-      {/* ゲストで続行 */}
-      <div className="auth-guest">
-        <button className="guest-btn" onClick={continueAsGuest} disabled={busy}>
-          {t("auth.continue_guest", "Continue as guest")}
-        </button>
-      </div>
-
-      {/* エラー表示（i18nに無ければ控えめ英語） */}
-      {errorKey && (
-        <div className="auth-error" role="alert" aria-live="assertive">
-          {t(errorKey, t("auth.errors.generic", "Something went wrong. Please try again."))}
-        </div>
-      )}
     </div>
   );
 };

@@ -1,47 +1,369 @@
 /* src/styles/AuthPage.css */
+
 .auth-page {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-  gap: 40px;
-  padding: 20px;
+  padding: var(--space-6, 24px);
+  background: var(--color-bg-page, var(--bg));
+  color: var(--color-text-primary, var(--text));
 }
 
-.auth-box {
-  background-color: #ffffff;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 400px;
+/* 中央のレイアウトラッパ */
+.auth-shell {
   width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
 }
 
-.auth-box h2 {
-  margin-bottom: 16px;
+/* ===== ヘッダー（言語セレクタ） ===== */
+
+.auth-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: 0.9rem;
 }
 
-.auth-box input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.auth-header__label {
+  opacity: 0.7;
 }
 
-.auth-box button {
-  margin-top: 12px;
-  padding: 10px 20px;
-  background-color: #4f9dff;
-  color: white;
+.auth-header select {
+  min-width: 170px;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-lg, 999px);
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.08));
+  background: var(--color-surface-elevated, #1113180d);
+  color: inherit;
+  outline: none;
+  font: inherit;
+}
+
+.auth-header select:focus-visible {
+  border-color: var(--color-accent, #0a84ff);
+  box-shadow: 0 0 0 2px
+    color-mix(
+      in srgb,
+      var(--color-accent, #0a84ff) 25%,
+      transparent
+    );
+}
+
+/* ===== メインカード ===== */
+
+.auth-card {
+  background: var(--color-surface, #ffffff);
+  border-radius: var(--radius-2xl, 24px);
+  box-shadow: var(
+      --shadow-soft,
+      0 8px 24px rgba(0, 0, 0, 0.08)
+    );
+  padding: var(--space-5, 20px) var(--space-5, 20px)
+    var(--space-6, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+/* ダークモード調整 */
+[data-theme="dark"] .auth-card {
+  background: var(--color-surface-dark, #111318);
+  box-shadow: var(
+      --shadow-soft-dark,
+      0 10px 30px rgba(0, 0, 0, 0.7)
+    );
+}
+
+/* ===== タブ（ログイン／新規登録） ===== */
+
+.auth-tabs {
+  display: flex;
+  padding: var(--space-1, 4px);
+  border-radius: var(--radius-xl, 18px);
+  background: var(--color-bg-subtle, rgba(0, 0, 0, 0.04));
+}
+
+.auth-tab {
+  flex: 1;
   border: none;
-  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 0.95rem;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-lg, 999px);
   cursor: pointer;
+  transition: background var(--motion-fast, 180ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform var(--motion-fast, 180ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.auth-box button:hover {
-  background-color: #3a88e0;
+.auth-tab.is-active {
+  background: var(--color-accent-soft, rgba(10, 132, 255, 0.12));
+  color: var(--color-accent, #0a84ff);
+}
+
+.auth-tab:focus-visible {
+  outline: 2px solid var(--color-accent, #0a84ff);
+  outline-offset: 2px;
+}
+
+/* ===== Apple ログインボタン ===== */
+
+.auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.auth-social__apple {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-lg, 999px);
+  border: 1px solid var(--color-border-strong, #000);
+  background: #000;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--motion-fast, 160ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow var(--motion-fast, 160ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] .auth-social__apple {
+  border-color: #fff;
+}
+
+.auth-social__apple:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.auth-social__apple:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.auth-social__apple:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.auth-social__appleLogo {
+  font-size: 1.2rem;
+}
+
+/* ===== 区切り線 ===== */
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-subtle, rgba(0, 0, 0, 0.08));
+}
+
+/* ===== フォーム ===== */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.auth-form input {
+  width: 100%;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.12));
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font: inherit;
+  background: var(--color-input-bg, rgba(0, 0, 0, 0.02));
+}
+
+[data-theme="dark"] .auth-form input {
+  background: var(--color-input-bg-dark, #111318);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.auth-form input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent, #0a84ff);
+  box-shadow: 0 0 0 2px
+    color-mix(
+      in srgb,
+      var(--color-accent, #0a84ff) 30%,
+      transparent
+    );
+}
+
+/* パスワード + 目アイコン */
+
+.password-field {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.12));
+  background: var(--color-input-bg, rgba(0, 0, 0, 0.02));
+  padding-inline: var(--space-1, 4px);
+}
+
+[data-theme="dark"] .password-field {
+  background: var(--color-input-bg-dark, #111318);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.password-field input {
+  border: none;
+  background: transparent;
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-2, 8px);
+}
+
+.password-field input:focus-visible {
+  outline: none;
+}
+
+.password-field:focus-within {
+  border-color: var(--color-accent, #0a84ff);
+  box-shadow: 0 0 0 2px
+    color-mix(
+      in srgb,
+      var(--color-accent, #0a84ff) 30%,
+      transparent
+    );
+}
+
+.toggle-pass {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+}
+
+/* メインボタン */
+
+.auth-form button {
+  margin-top: var(--space-2, 8px);
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--color-accent, #0a84ff);
+  color: var(--color-on-accent, #ffffff);
+  box-shadow: var(
+      --shadow-button,
+      0 4px 12px rgba(10, 132, 255, 0.4)
+    );
+  transition: transform var(--motion-fast, 160ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow var(--motion-fast, 160ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1),
+    background var(--motion-fast, 160ms)
+      cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.auth-form button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(10, 132, 255, 0.55);
+}
+
+.auth-form button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(10, 132, 255, 0.35);
+}
+
+.auth-form button:disabled {
+  opacity: 0.6;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ===== エラー表示 ===== */
+
+.auth-error {
+  margin-top: var(--space-3, 12px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-md, 10px);
+  background: color-mix(
+    in srgb,
+    var(--color-danger, #ff3b30) 10%,
+    transparent
+  );
+  color: var(--color-danger, #ff3b30);
+  font-size: 0.85rem;
+}
+
+/* ===== ゲスト ===== */
+
+.auth-guest {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2, 8px);
+}
+
+.guest-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-accent, #0a84ff);
+  cursor: pointer;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  border-radius: var(--radius-lg, 999px);
+  font-size: 0.9rem;
+}
+
+.guest-btn:hover:not(:disabled) {
+  background: color-mix(
+    in srgb,
+    var(--color-accent, #0a84ff) 10%,
+    transparent
+  );
+}
+
+.guest-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ===== レスポンシブ ===== */
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: var(--space-4, 16px);
+  }
+
+  .auth-card {
+    padding-inline: var(--space-4, 16px);
+    border-radius: var(--radius-xl, 18px);
+  }
+
+  .auth-header {
+    justify-content: center;
+  }
+
+  .auth-header select {
+    min-width: 0;
+  }
 }
