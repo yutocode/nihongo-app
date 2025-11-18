@@ -8,10 +8,6 @@ import React, {
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  OAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -36,7 +32,6 @@ const FB_ERROR_I18N = {
 function useEmailValidation(email) {
   return useMemo(() => {
     if (!email) return true; // 空は許容（requiredで最終チェック）
-    // HTML5 の type="email" と二重防御
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }, [email]);
 }
@@ -62,64 +57,18 @@ const AuthPage = () => {
   const isLoginEmailValid = useEmailValidation(loginEmail);
   const isRegisterEmailValid = useEmailValidation(registerEmail);
 
-  const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
-
-  /* ===============================
-     1. 既にログイン済みなら /home へ
-     =============================== */
+  // すでにログイン済みならホームへ
   useEffect(() => {
     if (auth.currentUser || userInStore) {
       navigate("/home", { replace: true });
     }
   }, [userInStore, navigate]);
 
-  /* ==========================================
-     2. Apple サインインの redirect 結果を取得
-        （Capacitor アプリでのみ動く）
-     ========================================== */
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const cap = window.Capacitor;
-    const isNative =
-      !!cap &&
-      (cap.isNativePlatform?.() ||
-        ["ios", "android"].includes(cap.getPlatform?.() || ""));
-
-    if (!isNative) return;
-
-    let canceled = false;
-
-    const checkRedirect = async () => {
-      try {
-        setBusy(true);
-        const result = await getRedirectResult(auth);
-        if (!canceled && result?.user) {
-          setUser?.(result.user);
-          navigate("/home", { replace: true });
-        }
-      } catch (err) {
-        console.error("Apple redirect result error:", err);
-        if (!canceled) {
-          setErrorKey("auth.errors.generic");
-        }
-      } finally {
-        if (!canceled) setBusy(false);
-      }
-    };
-
-    checkRedirect();
-
-    return () => {
-      canceled = true;
-    };
-  }, [navigate, setUser]);
-
-  /* ================
-     メール/パスワード
-     ================ */
+  const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
 
   const handleLogin = useCallback(async () => {
     setErrorKey("");
+
     if (!loginEmail || !loginPassword) {
       setErrorKey("auth.errors.required");
       return;
@@ -139,6 +88,7 @@ const AuthPage = () => {
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
+      console.error("Login error:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
@@ -147,6 +97,7 @@ const AuthPage = () => {
 
   const handleRegister = useCallback(async () => {
     setErrorKey("");
+
     if (!registerEmail || !registerPassword) {
       setErrorKey("auth.errors.required");
       return;
@@ -170,57 +121,14 @@ const AuthPage = () => {
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
+      console.error("Register error:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
     }
   }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
-  /* ================
-     Apple ログイン
-     ================ */
-  const handleAppleSignIn = useCallback(async () => {
-    setErrorKey("");
-
-    // 今どこで動いているか判定（Capacitor ネイティブかどうか）
-    const cap = typeof window !== "undefined" ? window.Capacitor : undefined;
-    const isNative =
-      !!cap &&
-      (cap.isNativePlatform?.() ||
-        ["ios", "android"].includes(cap.getPlatform?.() || ""));
-
-    setBusy(true);
-    try {
-      const provider = new OAuthProvider("apple.com");
-
-      if (isNative) {
-        // iOS / Android アプリ内では popup が使えないので redirect を使う
-        await signInWithRedirect(auth, provider);
-        // ここからは Safari → アプリに戻ったあと、
-        // 上の useEffect(getRedirectResult) で処理される
-        return;
-      }
-
-      // ブラウザ版（localhost / GitHub Pages など）は popup でOK
-      const result = await signInWithPopup(auth, provider);
-      const { user } = result;
-      setUser?.(user);
-      navigate("/home", { replace: true });
-    } catch (err) {
-      console.error("Apple sign-in failed:", err);
-      setErrorKey("auth.errors.generic");
-    } finally {
-      // redirect の場合は busy は useEffect 側で解除する
-      const shouldReleaseBusy = !isNative;
-      if (shouldReleaseBusy) {
-        setBusy(false);
-      }
-    }
-  }, [navigate, setUser]);
-
-  /* ================
-     キーボード操作
-     ================ */
+  // Enter キーで送信（ログイン側を優先）
   const onKeyDownLogin = (e) => {
     if (e.key === "Enter") handleLogin();
   };
@@ -228,9 +136,7 @@ const AuthPage = () => {
     if (e.key === "Enter") handleRegister();
   };
 
-  /* ================
-     ゲストで続行
-     ================ */
+  // ゲストとして続行（ログイン不要）
   const continueAsGuest = () => {
     navigate("/home", { replace: true });
   };
@@ -262,20 +168,7 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {/* Apple ログイン */}
-          <div className="auth-social">
-            <button
-              type="button"
-              className="auth-social__apple"
-              onClick={handleAppleSignIn}
-              disabled={busy}
-            >
-              <span className="auth-social__appleLogo" aria-hidden="true">
-                
-              </span>
-              <span>{t("auth.apple", "Sign in with Apple")}</span>
-            </button>
-          </div>
+          {/* Appleボタンは一旦なし */}
 
           <div className="auth-divider">
             <span>{t("auth.or_email", "or use email")}</span>
@@ -351,7 +244,10 @@ const AuthPage = () => {
               <div className="password-field">
                 <input
                   type={showPassRegister ? "text" : "password"}
-                  placeholder={t("auth.password_hint", "Password (6+ chars)")}
+                  placeholder={t(
+                    "auth.password_with_hint",
+                    "Password (6+ chars)",
+                  )}
                   value={registerPassword}
                   onChange={(e) => setRegisterPassword(e.target.value)}
                   onKeyDown={onKeyDownRegister}

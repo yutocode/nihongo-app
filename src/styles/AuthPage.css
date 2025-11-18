@@ -197,11 +197,19 @@
   padding: var(--space-2, 8px) var(--space-3, 12px);
   font: inherit;
   background: var(--color-input-bg, rgba(0, 0, 0, 0.02));
+  /* 入力中文字が背景と同化しないように、本文色トークンを明示 */
+  color: var(--color-text-primary, currentColor);
+  /* キャレットはアクセント色で統一 */
+  caret-color: var(--color-accent, #0a84ff);
 }
 
 [data-theme="dark"] .auth-form input {
   background: var(--color-input-bg-dark, #111318);
   border-color: rgba(255, 255, 255, 0.16);
+  color: var(
+    --color-text-on-surface,
+    var(--color-text-primary, #f5f5f7)
+  );
 }
 
 .auth-form input:focus-visible {
