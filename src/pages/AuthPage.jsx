@@ -56,7 +56,8 @@ const AuthPage = () => {
 
   const [showPassLogin, setShowPassLogin] = useState(false);
   const [showPassRegister, setShowPassRegister] = useState(false);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(false); // 画面全体 / メールログイン用
+  const [appleBusy, setAppleBusy] = useState(false); // Apple専用
   const [errorKey, setErrorKey] = useState(""); // i18n キーを保持
 
   const isLoginEmailValid = useEmailValidation(loginEmail);
@@ -189,7 +190,7 @@ const AuthPage = () => {
       (cap.isNativePlatform?.() ||
         ["ios", "android"].includes(cap.getPlatform?.() || ""));
 
-    setBusy(true);
+    setAppleBusy(true);
     try {
       const provider = new OAuthProvider("apple.com");
 
@@ -209,11 +210,12 @@ const AuthPage = () => {
     } catch (err) {
       console.error("Apple sign-in failed:", err);
       setErrorKey("auth.errors.generic");
+      setAppleBusy(false);
     } finally {
-      // redirect の場合は busy は useEffect 側で解除する
+      // redirect の場合は appleBusy はそのまま（戻ってきたときにリセット）
       const shouldReleaseBusy = !isNative;
       if (shouldReleaseBusy) {
-        setBusy(false);
+        setAppleBusy(false);
       }
     }
   }, [navigate, setUser]);
@@ -262,16 +264,13 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {/* ★ 復活させた Sign in with Apple ボタン */}
+          {/* Sign in with Apple ボタン */}
           <button
             type="button"
             className="auth-apple-btn"
             onClick={handleAppleSignIn}
-            disabled={busy}
-            aria-label={t(
-              "auth.apple_signin",
-              "Sign in with Apple",
-            )}
+            disabled={appleBusy}
+            aria-label={t("auth.apple_signin", "Sign in with Apple")}
           >
             <span className="auth-apple-icon"></span>
             <span className="auth-apple-label">
