@@ -24,6 +24,7 @@ import ProfilePage from "./pages/ProfilePage";
 
 /* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
+import AppleCallback from "./pages/AppleCallback"; // ← Apple ログイン用コールバック
 
 /* ===== protected pages ===== */
 import Home from "./pages/Home";
@@ -103,6 +104,7 @@ function AdjLevelRedirect() {
   const { level = "n5" } = useParams();
   return <Navigate to={`/adj/${level}/lesson1`} replace />;
 }
+
 function CompareAliasRedirect() {
   return (
     <Navigate
@@ -111,6 +113,7 @@ function CompareAliasRedirect() {
     />
   );
 }
+
 function CompareLessonAliasRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return (
@@ -120,6 +123,7 @@ function CompareLessonAliasRedirect() {
     />
   );
 }
+
 function ComparisonLegacyRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return (
@@ -157,6 +161,9 @@ const App = () => (
         {/* public */}
         <Route path="/" element={<AuthPage />} />
         <Route path="/auth" element={<AuthPage />} />
+
+        {/* Apple サインインのリダイレクト受け取り用 */}
+        <Route path="/callback" element={<AppleCallback />} />
 
         {/* 旧URLは全部 /auth に寄せる */}
         <Route path="/login" element={<Navigate to="/auth" replace />} />
@@ -452,7 +459,7 @@ const AppInitializer = () => {
       const pass = import.meta.env.VITE_SHOT_PASS;
       if (!email || !pass) {
         console.warn(
-          "VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。"
+          "VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。",
         );
         return;
       }
