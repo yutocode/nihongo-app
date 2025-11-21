@@ -24,7 +24,6 @@ import ProfilePage from "./pages/ProfilePage";
 
 /* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
-import AppleCallback from "./pages/AppleCallback"; // ← Apple ログイン用コールバック
 
 /* ===== protected pages ===== */
 import Home from "./pages/Home";
@@ -161,9 +160,6 @@ const App = () => (
         {/* public */}
         <Route path="/" element={<AuthPage />} />
         <Route path="/auth" element={<AuthPage />} />
-
-        {/* Apple サインインのリダイレクト受け取り用 */}
-        <Route path="/callback" element={<AppleCallback />} />
 
         {/* 旧URLは全部 /auth に寄せる */}
         <Route path="/login" element={<Navigate to="/auth" replace />} />
