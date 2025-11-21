@@ -21,7 +21,6 @@ import { useAppStore } from "../store/useAppStore";
 
 import "../styles/AuthPage.css";
 
-/** Firebase エラーコード → i18n キー（なければ汎用にフォールバック） */
 const FB_ERROR_I18N = {
   "auth/invalid-email": "auth.errors.invalid_email",
   "auth/user-not-found": "auth.errors.user_not_found",
@@ -32,10 +31,9 @@ const FB_ERROR_I18N = {
   "auth/network-request-failed": "auth.errors.network",
 };
 
-/** 簡易メールバリデーション */
 function useEmailValidation(email) {
   return useMemo(() => {
-    if (!email) return true; // 空は許容（requiredで最終チェック）
+    if (!email) return true;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }, [email]);
 }
@@ -51,35 +49,26 @@ const AuthPage = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [mode, setMode] = useState("login"); // "login" | "register"
+  const [mode, setMode] = useState("login");
 
   const [showPassLogin, setShowPassLogin] = useState(false);
   const [showPassRegister, setShowPassRegister] = useState(false);
-
-  const [busyForm, setBusyForm] = useState(false);   // メール/パスワード用
-  const [busyApple, setBusyApple] = useState(false); // Apple ログイン用
-  const [errorKey, setErrorKey] = useState(""); // i18n キーを保持
-
-  const isBusy = busyForm || busyApple;
+  const [busy, setBusy] = useState(false);
+  const [errorKey, setErrorKey] = useState("");
 
   const isLoginEmailValid = useEmailValidation(loginEmail);
   const isRegisterEmailValid = useEmailValidation(registerEmail);
 
   const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
 
-  /* ===============================
-     1. 既にログイン済みなら /home へ
-     =============================== */
+  // 既にログインしていたら /home へ
   useEffect(() => {
     if (auth.currentUser || userInStore) {
       navigate("/home", { replace: true });
     }
   }, [userInStore, navigate]);
 
-  /* ==========================================
-     2. Apple サインインの redirect 結果を取得
-        （Capacitor アプリでのみ動く）
-     ========================================== */
+  // ネイティブ(iOS/Android)の Apple リダイレクト結果を処理
   useEffect(() => {
     if (typeof window === "undefined") return;
     const cap = window.Capacitor;
@@ -90,24 +79,24 @@ const AuthPage = () => {
 
     if (!isNative) return;
 
-    let canceled = false;
+    let cancelled = false;
 
     const checkRedirect = async () => {
       try {
-        setBusyApple(true);
+        setBusy(true);
         const result = await getRedirectResult(auth);
-        if (!canceled && result?.user) {
+        if (!cancelled && result?.user) {
           setUser?.(result.user);
           navigate("/home", { replace: true });
         }
       } catch (err) {
         console.error("Apple redirect result error:", err);
-        if (!canceled) {
+        if (!cancelled) {
           setErrorKey("auth.errors.generic");
         }
       } finally {
-        if (!canceled) {
-          setBusyApple(false);
+        if (!cancelled) {
+          setBusy(false);
         }
       }
     };
@@ -115,13 +104,11 @@ const AuthPage = () => {
     checkRedirect();
 
     return () => {
-      canceled = true;
+      cancelled = true;
     };
   }, [navigate, setUser]);
 
-  /* ================
-     メール/パスワード
-     ================ */
+  /* ========= メール/パスワード ========= */
 
   const handleLogin = useCallback(async () => {
     setErrorKey("");
@@ -134,7 +121,7 @@ const AuthPage = () => {
       return;
     }
 
-    setBusyForm(true);
+    setBusy(true);
     try {
       const { user } = await signInWithEmailAndPassword(
         auth,
@@ -144,10 +131,9 @@ const AuthPage = () => {
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.error("login error:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
-      setBusyForm(false);
+      setBusy(false);
     }
   }, [loginEmail, loginPassword, isLoginEmailValid, navigate, setUser]);
 
@@ -166,7 +152,7 @@ const AuthPage = () => {
       return;
     }
 
-    setBusyForm(true);
+    setBusy(true);
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -176,17 +162,18 @@ const AuthPage = () => {
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.error("register error:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
-      setBusyForm(false);
+      setBusy(false);
     }
   }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
-  /* ================
-     Apple ログイン
-     ================ */
+  /* ========= Apple ログイン ========= */
+
   const handleAppleSignIn = useCallback(async () => {
+    // 連打防止
+    if (busy) return;
+
     setErrorKey("");
 
     const cap = typeof window !== "undefined" ? window.Capacitor : undefined;
@@ -195,33 +182,35 @@ const AuthPage = () => {
       (cap.isNativePlatform?.() ||
         ["ios", "android"].includes(cap.getPlatform?.() || ""));
 
-    setBusyApple(true);
+    setBusy(true);
     try {
       const provider = new OAuthProvider("apple.com");
 
       if (isNative) {
-        // iOS / Android アプリ内
+        // iOS / Android アプリ → Safari に飛んで戻ってくる
         await signInWithRedirect(auth, provider);
-        // ここから先の処理は、アプリに戻ったあと useEffect(getRedirectResult) が担当
-        return;
+        return; // この後は上の useEffect(getRedirectResult) で処理
       }
 
-      // ブラウザ版
+      // Web(ブラウザ) → ポップアップ
       const result = await signInWithPopup(auth, provider);
-      const { user } = result;
-      setUser?.(user);
-      navigate("/home", { replace: true });
+      if (result?.user) {
+        setUser?.(result.user);
+        navigate("/home", { replace: true });
+      }
     } catch (err) {
       console.error("Apple sign-in failed:", err);
       setErrorKey("auth.errors.generic");
-      // redirect まで行かなかった場合はここで必ず解除
-      setBusyApple(false);
+    } finally {
+      // ネイティブの場合は画面遷移してしまうので、ここでの busy 解除は Web だけにする
+      if (!isNative) {
+        setBusy(false);
+      }
     }
-  }, [navigate, setUser]);
+  }, [busy, navigate, setUser]);
 
-  /* ================
-     キーボード操作
-     ================ */
+  /* ========= キーボード ========= */
+
   const onKeyDownLogin = (e) => {
     if (e.key === "Enter") handleLogin();
   };
@@ -229,9 +218,8 @@ const AuthPage = () => {
     if (e.key === "Enter") handleRegister();
   };
 
-  /* ================
-     ゲストで続行
-     ================ */
+  /* ========= ゲスト ========= */
+
   const continueAsGuest = () => {
     navigate("/home", { replace: true });
   };
@@ -240,7 +228,7 @@ const AuthPage = () => {
     <div className="auth-page">
       <div className="auth-shell">
         <div className="auth-card">
-          {/* タブ（ログイン / 新規登録） */}
+          {/* タブ */}
           <div className="auth-tabs" role="tablist">
             <button
               type="button"
@@ -262,13 +250,12 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {/* Sign in with Apple */}
+          {/* Apple ボタン（ここが重要） */}
           <button
             type="button"
-            className="auth-apple-btn"
+            className={`auth-apple-btn ${busy ? "is-busy" : ""}`}
             onClick={handleAppleSignIn}
-            disabled={busyApple}
-            aria-label={t("auth.apple_signin", "Sign in with Apple")}
+            aria-disabled={busy}
           >
             <span className="auth-apple-icon"></span>
             <span className="auth-apple-label">
@@ -312,11 +299,6 @@ const AuthPage = () => {
                       ? t("auth.hide_password", "Hide password")
                       : t("auth.show_password", "Show password")
                   }
-                  title={
-                    showPassLogin
-                      ? t("auth.hide_password", "Hide password")
-                      : t("auth.show_password", "Show password")
-                  }
                 >
                   {showPassLogin ? "🙈" : "👁️"}
                 </button>
@@ -325,9 +307,9 @@ const AuthPage = () => {
               <button
                 type="button"
                 onClick={handleLogin}
-                disabled={isBusy || !loginEmail || !loginPassword}
+                disabled={busy || !loginEmail || !loginPassword}
               >
-                {busyForm
+                {busy
                   ? t("common.loading", "Loading…")
                   : t("auth.login_button", "Log in")}
               </button>
@@ -367,11 +349,6 @@ const AuthPage = () => {
                       ? t("auth.hide_password", "Hide password")
                       : t("auth.show_password", "Show password")
                   }
-                  title={
-                    showPassRegister
-                      ? t("auth.hide_password", "Hide password")
-                      : t("auth.show_password", "Show password")
-                  }
                 >
                   {showPassRegister ? "🙈" : "👁️"}
                 </button>
@@ -381,20 +358,19 @@ const AuthPage = () => {
                 type="button"
                 onClick={handleRegister}
                 disabled={
-                  isBusy ||
+                  busy ||
                   !registerEmail ||
                   !registerPassword ||
                   registerPassword.length < 6
                 }
               >
-                {busyForm
+                {busy
                   ? t("common.loading", "Loading…")
                   : t("auth.register_button", "Create account")}
               </button>
             </div>
           )}
 
-          {/* エラー表示 */}
           {errorKey && (
             <div className="auth-error" role="alert" aria-live="assertive">
               {t(
@@ -408,13 +384,12 @@ const AuthPage = () => {
           )}
         </div>
 
-        {/* ゲストで続行 */}
         <div className="auth-guest">
           <button
             type="button"
             className="guest-btn"
             onClick={continueAsGuest}
-            disabled={isBusy}
+            disabled={busy}
           >
             {t("auth.continue_guest", "Continue as guest")}
           </button>
