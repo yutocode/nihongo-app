@@ -19,50 +19,12 @@
   gap: var(--space-4, 16px);
 }
 
-/* ===== ヘッダー（言語セレクタ） ===== */
-
-.auth-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: var(--space-2, 8px);
-  font-size: 0.9rem;
-}
-
-.auth-header__label {
-  opacity: 0.7;
-}
-
-.auth-header select {
-  min-width: 170px;
-  padding: var(--space-2, 8px) var(--space-3, 12px);
-  border-radius: var(--radius-lg, 999px);
-  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.08));
-  background: var(--color-surface-elevated, #1113180d);
-  color: inherit;
-  outline: none;
-  font: inherit;
-}
-
-.auth-header select:focus-visible {
-  border-color: var(--color-accent, #0a84ff);
-  box-shadow: 0 0 0 2px
-    color-mix(
-      in srgb,
-      var(--color-accent, #0a84ff) 25%,
-      transparent
-    );
-}
-
 /* ===== メインカード ===== */
 
 .auth-card {
   background: var(--color-surface, #ffffff);
   border-radius: var(--radius-2xl, 24px);
-  box-shadow: var(
-      --shadow-soft,
-      0 8px 24px rgba(0, 0, 0, 0.08)
-    );
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(0, 0, 0, 0.08));
   padding: var(--space-5, 20px) var(--space-5, 20px)
     var(--space-6, 24px);
   display: flex;
@@ -73,10 +35,7 @@
 /* ダークモード調整 */
 [data-theme="dark"] .auth-card {
   background: var(--color-surface-dark, #111318);
-  box-shadow: var(
-      --shadow-soft-dark,
-      0 10px 30px rgba(0, 0, 0, 0.7)
-    );
+  box-shadow: var(--shadow-soft-dark, 0 10px 30px rgba(0, 0, 0, 0.7));
 }
 
 /* ===== タブ（ログイン／新規登録） ===== */
@@ -97,10 +56,9 @@
   padding: var(--space-2, 8px) var(--space-3, 12px);
   border-radius: var(--radius-lg, 999px);
   cursor: pointer;
-  transition: background var(--motion-fast, 180ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform var(--motion-fast, 180ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    background var(--motion-fast, 180ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform var(--motion-fast, 180ms) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .auth-tab.is-active {
@@ -115,13 +73,7 @@
 
 /* ===== Apple ログインボタン ===== */
 
-.auth-social {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3, 12px);
-}
-
-.auth-social__apple {
+.auth-apple-btn {
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -135,34 +87,35 @@
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--motion-fast, 160ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow var(--motion-fast, 160ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    transform var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-[data-theme="dark"] .auth-social__apple {
-  border-color: #fff;
-}
-
-.auth-social__apple:hover:not(:disabled) {
+.auth-apple-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
-.auth-social__apple:active:not(:disabled) {
+.auth-apple-btn:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.auth-social__apple:disabled {
-  opacity: 0.6;
+.auth-apple-btn:disabled {
+  opacity: 0.7; /* 押せない時も文字は読める明るさ */
   cursor: default;
 }
 
-.auth-social__appleLogo {
+.auth-apple-icon {
   font-size: 1.2rem;
 }
+
+.auth-apple-label {
+  letter-spacing: 0.01em;
+}
+
 
 /* ===== 区切り線 ===== */
 
@@ -197,9 +150,7 @@
   padding: var(--space-2, 8px) var(--space-3, 12px);
   font: inherit;
   background: var(--color-input-bg, rgba(0, 0, 0, 0.02));
-  /* 入力中文字が背景と同化しないように、本文色トークンを明示 */
   color: var(--color-text-primary, currentColor);
-  /* キャレットはアクセント色で統一 */
   caret-color: var(--color-accent, #0a84ff);
 }
 
@@ -285,12 +236,10 @@
       --shadow-button,
       0 4px 12px rgba(10, 132, 255, 0.4)
     );
-  transition: transform var(--motion-fast, 160ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow var(--motion-fast, 160ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1),
-    background var(--motion-fast, 160ms)
-      cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    transform var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    background var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .auth-form button:hover:not(:disabled) {
@@ -365,13 +314,5 @@
   .auth-card {
     padding-inline: var(--space-4, 16px);
     border-radius: var(--radius-xl, 18px);
-  }
-
-  .auth-header {
-    justify-content: center;
-  }
-
-  .auth-header select {
-    min-width: 0;
   }
 }
