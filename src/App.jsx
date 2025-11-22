@@ -90,8 +90,8 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* ====== ゲストモード OFF（ログイン必須） ====== */
-const GUEST_MODE = false;
+/* ====== ゲストモード ログインなしでも利用可能） ====== */
+const GUEST_MODE = true;
 
 /* ========= helpers ========= */
 function normalizeLesson(key) {
@@ -359,6 +359,7 @@ const AppInitializer = () => {
     "/legal/tokusho",
     "/legal/terms",
     "/legal/privacy",
+    "/callback",
   ];
 
   const PRIVATE_PREFIXES = [
@@ -430,12 +431,6 @@ const AppInitializer = () => {
           stopAutoSave?.();
         } catch (e) {
           console.warn(e);
-        }
-
-        const onPrivate = PRIVATE_PREFIXES.some((pre) => path.startsWith(pre));
-        if (onPrivate) {
-          // 未ログインで保護ルートなら /auth へ
-          navigateOnce("/auth");
         }
       }
 

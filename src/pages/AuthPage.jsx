@@ -1,6 +1,14 @@
 // src/pages/AuthPage.jsx
-import React, { useEffect, useMemo, useState, useCallback } from "react";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from "react";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -73,11 +81,16 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const { user } = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword,
+      );
+      console.log("[LOGIN OK]", user?.uid);
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.error("Email login failed:", err);
+      console.log("[LOGIN ERROR]", err?.code, err?.message);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
@@ -109,15 +122,22 @@ const AuthPage = () => {
         registerEmail,
         registerPassword,
       );
+      console.log("[REGISTER OK]", user?.uid);
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.error("Email register failed:", err);
+      console.log("[REGISTER ERROR]", err?.code, err?.message);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
     }
-  }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
+  }, [
+    registerEmail,
+    registerPassword,
+    isRegisterEmailValid,
+    navigate,
+    setUser,
+  ]);
 
   /* ========= キーボード Enter ========= */
 
@@ -132,6 +152,7 @@ const AuthPage = () => {
   /* ========= ゲスト ========= */
 
   const continueAsGuest = () => {
+    console.log("[GUEST] continue as guest");
     navigate("/home", { replace: true });
   };
 
@@ -152,7 +173,9 @@ const AuthPage = () => {
             </button>
             <button
               type="button"
-              className={`auth-tab ${mode === "register" ? "is-active" : ""}`}
+              className={`auth-tab ${
+                mode === "register" ? "is-active" : ""
+              }`}
               onClick={() => setMode("register")}
               role="tab"
               aria-selected={mode === "register"}
@@ -231,7 +254,10 @@ const AuthPage = () => {
               <div className="password-field">
                 <input
                   type={showPassRegister ? "text" : "password"}
-                  placeholder={t("auth.password_hint", "Password (6+ chars)")}
+                  placeholder={t(
+                    "auth.password_hint",
+                    "Password (6+ chars)",
+                  )}
                   value={registerPassword}
                   onChange={(e) => setRegisterPassword(e.target.value)}
                   onKeyDown={onKeyDownRegister}
