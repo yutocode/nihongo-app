@@ -5,10 +5,6 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -32,6 +28,100 @@ function useEmailValidation(email) {
     if (!email) return true;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }, [email]);
+}
+
+/**
+ * REST API のエラーメッセージ → i18n キーに変換
+ * @param {string} message
+ */
+function mapRestErrorToKey(message) {
+  switch (message) {
+    case "INVALID_EMAIL":
+      return "auth.errors.invalid_email";
+    case "EMAIL_NOT_FOUND":
+      return "auth.errors.user_not_found";
+    case "INVALID_PASSWORD":
+      return "auth.errors.wrong_password";
+    case "USER_DISABLED":
+      return "auth.errors.user_disabled";
+    case "EMAIL_EXISTS":
+      return "auth.errors.email_in_use";
+    case "OPERATION_NOT_ALLOWED":
+      return "auth.errors.operation_not_allowed";
+    case "TOO_MANY_ATTEMPTS_TRY_LATER":
+      return "auth.errors.too_many_requests";
+    case "WEAK_PASSWORD":
+    case "PASSWORD_LOGIN_DISABLED":
+      return "auth.errors.weak_password";
+    default:
+      return "auth.errors.generic";
+  }
+}
+
+/**
+ * Firebase Identity Toolkit: signInWithPassword (REST)
+ */
+async function restSignInWithPassword(email, password) {
+  const apiKey = auth.app?.options?.apiKey;
+  if (!apiKey) {
+    throw new Error("NO_API_KEY");
+  }
+
+  const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email,
+      password,
+      returnSecureToken: true,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    const msg = data?.error?.message || "REST_LOGIN_FAIL";
+    const err = new Error(msg);
+    err.code = `REST/${msg}`;
+    throw err;
+  }
+
+  return data;
+}
+
+/**
+ * Firebase Identity Toolkit: signUp (REST)
+ */
+async function restSignUp(email, password) {
+  const apiKey = auth.app?.options?.apiKey;
+  if (!apiKey) {
+    throw new Error("NO_API_KEY");
+  }
+
+  const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email,
+      password,
+      returnSecureToken: true,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    const msg = data?.error?.message || "REST_SIGNUP_FAIL";
+    const err = new Error(msg);
+    err.code = `REST/${msg}`;
+    throw err;
+  }
+
+  return data;
 }
 
 const AuthPage = () => {
@@ -58,9 +148,9 @@ const AuthPage = () => {
 
   const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
 
-  // 既にログインしていたら /home へ
+  // 既にログインしていたら /home へ（Zustand の user を信用）
   useEffect(() => {
-    if (auth.currentUser || userInStore) {
+    if (userInStore) {
       navigate("/home", { replace: true });
     }
   }, [userInStore, navigate]);
@@ -80,7 +170,6 @@ const AuthPage = () => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // わざと適当なユーザーを投げる。400 が返ってくれば「通信はできてる」ことが分かる
         body: JSON.stringify({
           email: "dummy@example.com",
           password: "wrong-pass",
@@ -97,7 +186,7 @@ const AuthPage = () => {
       });
   }, []);
 
-  /* ========= メール/パスワード：ログイン ========= */
+  /* ========= メール/パスワード：ログイン（REST版） ========= */
 
   const handleLogin = useCallback(async () => {
     setErrorKey("");
@@ -113,38 +202,50 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const loginPromise = signInWithEmailAndPassword(
-        auth,
+      const data = await restSignInWithPassword(
         loginEmail,
         loginPassword,
       );
 
-      // iOS WebView で Promise が返ってこない場合のために 15 秒タイムアウト
-      const result = await Promise.race([
-        loginPromise,
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("LOGIN_TIMEOUT")), 15000),
-        ),
-      ]);
+      console.log("[REST LOGIN OK]", data.localId);
 
-      const user = result.user;
-      console.log("[LOGIN OK]", user?.uid);
-      setUser?.(user);
+      // Firebase の User オブジェクトではないが、アプリで必要な最低限を保存
+      setUser?.({
+        uid: data.localId,
+        email: data.email,
+        displayName: data.displayName || "",
+        idToken: data.idToken,
+        refreshToken: data.refreshToken,
+        providerId: "password",
+      });
+
       navigate("/home", { replace: true });
     } catch (err) {
-      if (err?.message === "LOGIN_TIMEOUT") {
-        console.log("[LOGIN TIMEOUT] maybe network / webview issue");
-        setErrorKey("auth.errors.network");
+      console.log("[REST LOGIN ERROR]", err?.code, err?.message);
+
+      if (err.message === "NO_API_KEY") {
+        setErrorKey("auth.errors.generic");
+      } else if (err.code && err.code.startsWith("REST/")) {
+        const message = err.code.replace("REST/", "");
+        const key = mapRestErrorToKey(message);
+        setErrorKey(key);
+      } else if (err.code && typeof err.code === "string") {
+        setErrorKey(mapErrorKey(err.code));
       } else {
-        console.log("[LOGIN ERROR]", err?.code, err?.message);
-        setErrorKey(mapErrorKey(err?.code));
+        setErrorKey("auth.errors.network");
       }
     } finally {
       setBusy(false);
     }
-  }, [loginEmail, loginPassword, isLoginEmailValid, navigate, setUser]);
+  }, [
+    loginEmail,
+    loginPassword,
+    isLoginEmailValid,
+    navigate,
+    setUser,
+  ]);
 
-  /* ========= メール/パスワード：新規登録 ========= */
+  /* ========= メール/パスワード：新規登録（REST版） ========= */
 
   const handleRegister = useCallback(async () => {
     setErrorKey("");
@@ -164,33 +265,33 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const registerPromise = createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword,
-      );
+      const data = await restSignUp(registerEmail, registerPassword);
 
-      const result = await Promise.race([
-        registerPromise,
-        new Promise((_, reject) =>
-          setTimeout(
-            () => reject(new Error("REGISTER_TIMEOUT")),
-            15000,
-          ),
-        ),
-      ]);
+      console.log("[REST REGISTER OK]", data.localId);
 
-      const user = result.user;
-      console.log("[REGISTER OK]", user?.uid);
-      setUser?.(user);
+      setUser?.({
+        uid: data.localId,
+        email: data.email,
+        displayName: data.displayName || "",
+        idToken: data.idToken,
+        refreshToken: data.refreshToken,
+        providerId: "password",
+      });
+
       navigate("/home", { replace: true });
     } catch (err) {
-      if (err?.message === "REGISTER_TIMEOUT") {
-        console.log("[REGISTER TIMEOUT] maybe network / webview issue");
-        setErrorKey("auth.errors.network");
+      console.log("[REST REGISTER ERROR]", err?.code, err?.message);
+
+      if (err.message === "NO_API_KEY") {
+        setErrorKey("auth.errors.generic");
+      } else if (err.code && err.code.startsWith("REST/")) {
+        const message = err.code.replace("REST/", "");
+        const key = mapRestErrorToKey(message);
+        setErrorKey(key);
+      } else if (err.code && typeof err.code === "string") {
+        setErrorKey(mapErrorKey(err.code));
       } else {
-        console.log("[REGISTER ERROR]", err?.code, err?.message);
-        setErrorKey(mapErrorKey(err?.code));
+        setErrorKey("auth.errors.network");
       }
     } finally {
       setBusy(false);
