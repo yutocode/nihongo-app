@@ -28,23 +28,42 @@ export default function RankingPage() {
 
   // 最初の読み込み
   const fetchFirst = async () => {
+    console.log("[Ranking] fetchFirst start, user =", user?.uid);
     setLoading(true);
     setError(null);
+
     try {
       const q = query(
         collection(db, "users"),
         where("privacy.showInRanking", "==", true),
         orderBy("xpTotal", "desc"),
-        limit(PAGE_SIZE)
+        limit(PAGE_SIZE),
       );
+
+      console.log("[Ranking] fetchFirst query built");
+
       const snap = await getDocs(q);
-      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
+      console.log(
+        "[Ranking] fetchFirst snapshot size =",
+        snap.size,
+        "empty =",
+        snap.empty,
+      );
+
+      const list = snap.docs.map((d) => ({
+        id: d.id,
+        ...d.data(),
+        __doc: d,
+      }));
+
       setRows(list);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
     } catch (e) {
       console.error("[Ranking] fetchFirst error", e);
-      setError("ランキングを読み込めませんでした（インデックスまたはルールを確認してください）。");
+      setError(
+        "ランキングを読み込めませんでした（インデックスまたはルールを確認してください）。",
+      );
       setRows([]);
       setEnd(true);
     } finally {
@@ -54,19 +73,44 @@ export default function RankingPage() {
 
   // もっと見る
   const fetchMore = async () => {
-    if (end || !lastDocRef.current) return;
+    if (end || !lastDocRef.current) {
+      console.log(
+        "[Ranking] fetchMore skipped. end =",
+        end,
+        "lastDoc =",
+        !!lastDocRef.current,
+      );
+      return;
+    }
+
+    console.log("[Ranking] fetchMore start");
+
     setLoadingMore(true);
     setError(null);
+
     try {
       const q = query(
         collection(db, "users"),
         where("privacy.showInRanking", "==", true),
         orderBy("xpTotal", "desc"),
         startAfter(lastDocRef.current),
-        limit(PAGE_SIZE)
+        limit(PAGE_SIZE),
       );
+
       const snap = await getDocs(q);
-      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
+      console.log(
+        "[Ranking] fetchMore snapshot size =",
+        snap.size,
+        "empty =",
+        snap.empty,
+      );
+
+      const list = snap.docs.map((d) => ({
+        id: d.id,
+        ...d.data(),
+        __doc: d,
+      }));
+
       setRows((prev) => [...prev, ...list]);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
@@ -80,13 +124,14 @@ export default function RankingPage() {
   };
 
   useEffect(() => {
+    console.log("[Ranking] useEffect mount, user =", user?.uid);
     fetchFirst();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const myIndex = useMemo(
     () => rows.findIndex((r) => r.id === user?.uid),
-    [rows, user?.uid]
+    [rows, user?.uid],
   );
 
   return (

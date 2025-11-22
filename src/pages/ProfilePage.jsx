@@ -1,13 +1,16 @@
 // src/pages/ProfilePage.jsx
 import React, { useEffect, useState, useCallback } from "react";
-import { useAppStore } from "@/store/useAppStore";
+import { useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/firebase/firebase-config";
+import { signOut } from "firebase/auth";
+
+import { useAppStore } from "@/store/useAppStore";
+import { db, auth } from "@/firebase/firebase-config";
 import JellyfishLogo from "@/components/avatars/JellyfishLogo";
 import "./../styles/Profile.css";
 
 /* =======================
-   内蔵コンポーネント（props 受け取り）
+   内蔵コンポーネント
 ======================= */
 
 /** レベル概要（Lvピル + 進捗バー + 数値） */
@@ -21,9 +24,15 @@ function LevelSummary({ xp }) {
   return (
     <div className="pf__lv" role="group" aria-label="学習レベル">
       <div className="pf__lvLeft">
-        <span className="pf__lvChip" aria-label={`レベル ${level}`}>Lv {level}</span>
-        <span className="pf__lvSep" aria-hidden>•</span>
-        <span className="pf__lvLabel" aria-label={`目標級 ${label}`}>{label}</span>
+        <span className="pf__lvChip" aria-label={`レベル ${level}`}>
+          Lv {level}
+        </span>
+        <span className="pf__lvSep" aria-hidden>
+          •
+        </span>
+        <span className="pf__lvLabel" aria-label={`目標級 ${label}`}>
+          {label}
+        </span>
       </div>
 
       <div className="pf__lvRight" aria-label="進捗">
@@ -39,7 +48,10 @@ function LevelSummary({ xp }) {
             <span className="pf__lvShine" aria-hidden />
           </div>
         </div>
-        <span className="pf__lvMeta" aria-label={`次のレベルまで ${into}/${need}`}>
+        <span
+          className="pf__lvMeta"
+          aria-label={`次のレベルまで ${into}/${need}`}
+        >
           {into}/{need}（{percent}%）
         </span>
       </div>
@@ -48,12 +60,28 @@ function LevelSummary({ xp }) {
 }
 
 /** ストリーク・バッジ（🔥 + 今日済みドット） */
-function StreakBadge({ current = 0, best = 0, todayMarked = false, className = "" }) {
+function StreakBadge({
+  current = 0,
+  best = 0,
+  todayMarked = false,
+  className = "",
+}) {
   return (
-    <div className={`pf__streak ${className}`} role="status" aria-live="polite" title={`最長 ${best} 日`}>
-      <span className="pf__streakFlame" aria-hidden>🔥</span>
-      <span className="pf__streakCount" aria-label={`連続${current}日`}>{current}</span>
-      {todayMarked ? <span className="pf__streakDot" aria-label="今日カウント済み" /> : null}
+    <div
+      className={`pf__streak ${className}`}
+      role="status"
+      aria-live="polite"
+      title={`最長 ${best} 日`}
+    >
+      <span className="pf__streakFlame" aria-hidden>
+        🔥
+      </span>
+      <span className="pf__streakCount" aria-label={`連続${current}日`}>
+        {current}
+      </span>
+      {todayMarked ? (
+        <span className="pf__streakDot" aria-label="今日カウント済み" />
+      ) : null}
     </div>
   );
 }
@@ -87,14 +115,24 @@ function Toggle({ label, checked, onChange, disabled }) {
 /** 編集モーダル */
 function EditProfileModal({ initial, onClose, onSubmit, saving }) {
   const [form, setForm] = useState(initial);
+
   useEffect(() => setForm(initial), [initial]);
 
-  const set = (key, value) => setForm((prev) => ({ ...prev, [key]: value }));
+  const set = (key, value) =>
+    setForm((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
 
   return (
     <div className="modal">
       <div className="modal__backdrop" onClick={onClose} aria-hidden />
-      <div className="modal__body" role="dialog" aria-modal="true" aria-label="プロフィール編集">
+      <div
+        className="modal__body"
+        role="dialog"
+        aria-modal="true"
+        aria-label="プロフィール編集"
+      >
         <h3 className="modal__title">プロフィール編集</h3>
 
         <label className="field">
@@ -115,7 +153,9 @@ function EditProfileModal({ initial, onClose, onSubmit, saving }) {
             aria-label="目標レベル"
           >
             {["N5", "N4", "N3", "N2", "N1"].map((l) => (
-              <option key={l} value={l}>{l}</option>
+              <option key={l} value={l}>
+                {l}
+              </option>
             ))}
           </select>
         </label>
@@ -133,8 +173,14 @@ function EditProfileModal({ initial, onClose, onSubmit, saving }) {
         </label>
 
         <div className="modal__actions">
-          <button className="btn" onClick={onClose} disabled={saving}>キャンセル</button>
-          <button className="btn btn--primary" onClick={() => onSubmit?.(form)} disabled={saving}>
+          <button className="btn" onClick={onClose} disabled={saving}>
+            キャンセル
+          </button>
+          <button
+            className="btn btn--primary"
+            onClick={() => onSubmit?.(form)}
+            disabled={saving}
+          >
             {saving ? "保存中…" : "保存"}
           </button>
         </div>
@@ -144,18 +190,22 @@ function EditProfileModal({ initial, onClose, onSubmit, saving }) {
 }
 
 /* =======================
-   本体（selectorは“新規オブジェクト”を返さない）
+   本体
 ======================= */
 
 export default function ProfilePage() {
-  /* ---- Zustand（先頭で固定／新規オブジェクトを返さない） ---- */
+  const navigate = useNavigate();
+
+  /* ---- Zustand ---- */
   const user = useAppStore((s) => s.user);
   const avatarKey = useAppStore((s) => s.avatarKey || "jellyfish");
   const setAvatarKey = useAppStore((s) => s.setAvatarKey);
-
-  // まとめて購読（xp と daily は store に置かれた参照をそのまま受け取る）
   const xp = useAppStore((s) => s.xp);
   const daily = useAppStore((s) => s.daily);
+  // 全リセット系のアクションがあれば優先的に使う
+  const resetStore = useAppStore(
+    (s) => s.resetAll || s.hardReset || null,
+  );
 
   /* ---- Local state ---- */
   const [loading, setLoading] = useState(true);
@@ -183,7 +233,6 @@ export default function ProfilePage() {
 
         const data = snap.exists() ? snap.data() : {};
 
-        // Firestore の avatarKey を Zustand に同期
         if (data.avatarKey) setAvatarKey(data.avatarKey);
 
         setProfile(data);
@@ -195,7 +244,9 @@ export default function ProfilePage() {
       }
     })();
 
-    return () => { alive = false; };
+    return () => {
+      alive = false;
+    };
   }, [user, setAvatarKey]);
 
   /* ---- 部分更新保存 ---- */
@@ -214,7 +265,7 @@ export default function ProfilePage() {
         setSaving(false);
       }
     },
-    [user]
+    [user],
   );
 
   /* ---- アバター変更（将来拡張） ---- */
@@ -222,13 +273,36 @@ export default function ProfilePage() {
     console.log("avatarKey:", avatarKey);
   };
 
-  /* ---- 早期リターン（Hooksより後なので順序は崩れない） ---- */
-  if (loading) return <div className="profile__loading">読み込み中…</div>;
+  /* ---- ログアウト（iPhone対策でタイムアウト付き） ---- */
+  const handleLogout = useCallback(async () => {
+    console.log("[LOGOUT] start");
+    try {
+      await Promise.race([
+        signOut(auth),
+        new Promise((resolve) => setTimeout(resolve, 8000)),
+      ]);
+    } catch (e) {
+      console.warn("[LOGOUT ERROR]", e);
+    } finally {
+      resetStore?.();
+      navigate("/auth", { replace: true });
+      console.log("[LOGOUT] done (forced navigate)");
+    }
+  }, [navigate, resetStore]);
+
+  /* ---- 早期リターン ---- */
+  if (loading) {
+    return <div className="profile__loading">読み込み中…</div>;
+  }
   if (!user || profile === null) {
-    return <div className="profile__empty">プロフィールが見つかりません。ログイン状態を確認してください。</div>;
+    return (
+      <div className="profile__empty">
+        プロフィールが見つかりません。ログイン状態を確認してください。
+      </div>
+    );
   }
 
-  /* ---- 表示用値（プリミティブで計算：新規オブジェクトは作らない） ---- */
+  /* ---- 表示用値 ---- */
   const stats = profile.stats || {};
   const privacy = {
     showInRanking: true,
@@ -237,7 +311,6 @@ export default function ProfilePage() {
   };
   const AvatarIcon = JellyfishLogo;
 
-  // 合計XPは xpTotal → stats.totalXP → 0 の順
   const totalXP =
     typeof profile.xpTotal === "number"
       ? profile.xpTotal
@@ -245,40 +318,59 @@ export default function ProfilePage() {
       ? stats.totalXP
       : 0;
 
-  // 連続日数は store.daily.streak を採用（数値）
   const streakCurrent = Math.max(0, daily?.streak ?? 0);
   const bestStreak =
     typeof stats.bestStreak === "number" ? stats.bestStreak : streakCurrent;
 
-  // 今日の目標達成状況（完了＝ドット点灯）
   const todayMarked =
     (daily?.wordsDone ?? 0) >= (daily?.targetWords ?? Infinity) &&
     (daily?.quizzesDone ?? 0) >= (daily?.targetQuizzes ?? Infinity);
 
   const lessonsCompleted =
-    typeof stats.lessonsCompleted === "number" ? stats.lessonsCompleted : 0;
+    typeof stats.lessonsCompleted === "number"
+      ? stats.lessonsCompleted
+      : 0;
 
   /* ---- Render ---- */
   return (
     <main className="profile">
       {/* Header */}
       <section className="profile__header">
-        <button className="avatar-btn" onClick={handleAvatarClick} aria-label="プロフィール画像">
+        <button
+          className="avatar-btn"
+          onClick={handleAvatarClick}
+          aria-label="プロフィール画像"
+        >
           <div className="avatar avatar--tile">
             <AvatarIcon size={72} />
           </div>
         </button>
 
         <div className="profile__id">
-          <h1 className="profile__name">{profile.displayName || user.displayName || "ユーザー"}</h1>
-          {profile.username && <div className="profile__handle">@{profile.username}</div>}
-          <div className="profile__target">目標: {profile.jlptTarget || "未設定"}</div>
+          <h1 className="profile__name">
+            {profile.displayName || user.displayName || "ユーザー"}
+          </h1>
+          {profile.username && (
+            <div className="profile__handle">@{profile.username}</div>
+          )}
+          <div className="profile__target">
+            目標: {profile.jlptTarget || "未設定"}
+          </div>
         </div>
 
         <div className="profile__headerRight">
           <LevelSummary xp={xp} />
-          <StreakBadge current={streakCurrent} best={bestStreak} todayMarked={todayMarked} />
-          <button className="btn btn--primary" onClick={() => setEditingProfile(true)}>編集</button>
+          <StreakBadge
+            current={streakCurrent}
+            best={bestStreak}
+            todayMarked={todayMarked}
+          />
+          <button
+            className="btn btn--primary"
+            onClick={() => setEditingProfile(true)}
+          >
+            編集
+          </button>
         </div>
       </section>
 
@@ -292,7 +384,9 @@ export default function ProfilePage() {
       {/* Bio */}
       <section className="profile__section">
         <h2 className="profile__sectionTitle">自己紹介</h2>
-        <p className="profile__bio">{profile.bio || "自己紹介は未設定です。"}</p>
+        <p className="profile__bio">
+          {profile.bio || "自己紹介は未設定です。"}
+        </p>
       </section>
 
       {/* Privacy */}
@@ -302,16 +396,35 @@ export default function ProfilePage() {
           <Toggle
             label="ランキングに表示する"
             checked={!!privacy.showInRanking}
-            onChange={(v) => saveProfile({ privacy: { ...privacy, showInRanking: v } })}
+            onChange={(v) =>
+              saveProfile({
+                privacy: { ...privacy, showInRanking: v },
+              })
+            }
             disabled={saving}
           />
           <Toggle
             label="連続日数を公開する"
             checked={!!privacy.showStreakPublic}
-            onChange={(v) => saveProfile({ privacy: { ...privacy, showStreakPublic: v } })}
+            onChange={(v) =>
+              saveProfile({
+                privacy: { ...privacy, showStreakPublic: v },
+              })
+            }
             disabled={saving}
           />
         </div>
+      </section>
+
+      {/* Logout */}
+      <section className="profile__section profile__logoutSection">
+        <button
+          type="button"
+          className="btn btn--danger profile__logoutBtn"
+          onClick={handleLogout}
+        >
+          🔒 Log Out
+        </button>
       </section>
 
       {/* Edit Modal */}
