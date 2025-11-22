@@ -1,18 +1,6 @@
 // src/pages/AuthPage.jsx
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useCallback,
-} from "react";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  OAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-} from "firebase/auth";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -49,6 +37,7 @@ const AuthPage = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+
   const [mode, setMode] = useState("login");
 
   const [showPassLogin, setShowPassLogin] = useState(false);
@@ -68,50 +57,11 @@ const AuthPage = () => {
     }
   }, [userInStore, navigate]);
 
-  // ネイティブ(iOS/Android)の Apple リダイレクト結果を処理
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const cap = window.Capacitor;
-    const isNative =
-      !!cap &&
-      (cap.isNativePlatform?.() ||
-        ["ios", "android"].includes(cap.getPlatform?.() || ""));
-
-    if (!isNative) return;
-
-    let cancelled = false;
-
-    const checkRedirect = async () => {
-      try {
-        setBusy(true);
-        const result = await getRedirectResult(auth);
-        if (!cancelled && result?.user) {
-          setUser?.(result.user);
-          navigate("/home", { replace: true });
-        }
-      } catch (err) {
-        console.error("Apple redirect result error:", err);
-        if (!cancelled) {
-          setErrorKey("auth.errors.generic");
-        }
-      } finally {
-        if (!cancelled) {
-          setBusy(false);
-        }
-      }
-    };
-
-    checkRedirect();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [navigate, setUser]);
-
-  /* ========= メール/パスワード ========= */
+  /* ========= メール/パスワード：ログイン ========= */
 
   const handleLogin = useCallback(async () => {
     setErrorKey("");
+
     if (!loginEmail || !loginPassword) {
       setErrorKey("auth.errors.required");
       return;
@@ -123,22 +73,22 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const { user } = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword,
-      );
+      const { user } = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
+      console.error("Email login failed:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
     }
   }, [loginEmail, loginPassword, isLoginEmailValid, navigate, setUser]);
 
+  /* ========= メール/パスワード：新規登録 ========= */
+
   const handleRegister = useCallback(async () => {
     setErrorKey("");
+
     if (!registerEmail || !registerPassword) {
       setErrorKey("auth.errors.required");
       return;
@@ -162,52 +112,19 @@ const AuthPage = () => {
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
+      console.error("Email register failed:", err);
       setErrorKey(mapErrorKey(err?.code));
     } finally {
       setBusy(false);
     }
   }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
-  /* ========= Apple ログイン ========= */
-
-  const handleAppleSignIn = useCallback(async () => {
-    // Apple ログインは busy に依存させない（常に押せるようにする）
-    setErrorKey("");
-
-    const cap = typeof window !== "undefined" ? window.Capacitor : undefined;
-    const platform = cap?.getPlatform?.() || "";
-
-    const isNative =
-          platform === "ios" ||
-          platform === "android";
-
-    try {
-      const provider = new OAuthProvider("apple.com");
-
-      if (isNative) {
-        // iOS / Android アプリ → Safari に飛んで戻ってくる
-        await signInWithRedirect(auth, provider);
-        // 戻ってきたあとは上の useEffect(getRedirectResult) で処理
-        return;
-      }
-
-      // Web(ブラウザ) → ポップアップ
-      const result = await signInWithPopup(auth, provider);
-      if (result?.user) {
-        setUser?.(result.user);
-        navigate("/home", { replace: true });
-      }
-    } catch (err) {
-      console.error("Apple sign-in failed:", err);
-      setErrorKey("auth.errors.generic");
-    }
-  }, [navigate, setUser]);
-
-  /* ========= キーボード ========= */
+  /* ========= キーボード Enter ========= */
 
   const onKeyDownLogin = (e) => {
     if (e.key === "Enter") handleLogin();
   };
+
   const onKeyDownRegister = (e) => {
     if (e.key === "Enter") handleRegister();
   };
@@ -242,6 +159,11 @@ const AuthPage = () => {
             >
               {t("auth.register", "Create account")}
             </button>
+          </div>
+
+          {/* メールログインのみ */}
+          <div className="auth-divider">
+            <span>{t("auth.or_email", "Use email")}</span>
           </div>
 
           {/* ログインフォーム */}

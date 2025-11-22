@@ -25,13 +25,13 @@
   background: var(--color-surface, #ffffff);
   border-radius: var(--radius-2xl, 24px);
   box-shadow: var(--shadow-soft, 0 8px 24px rgba(0, 0, 0, 0.08));
-  padding: var(--space-5, 20px) var(--space-5, 20px)
-    var(--space-6, 24px);
+  padding: var(--space-5, 20px) var(--space-5, 20px) var(--space-6, 24px);
   display: flex;
   flex-direction: column;
   gap: var(--space-4, 16px);
 }
 
+/* ダークモード調整 */
 [data-theme="dark"] .auth-card {
   background: var(--color-surface-dark, #111318);
   box-shadow: var(--shadow-soft-dark, 0 10px 30px rgba(0, 0, 0, 0.7));
@@ -110,21 +110,14 @@
 [data-theme="dark"] .auth-form input {
   background: var(--color-input-bg-dark, #111318);
   border-color: rgba(255, 255, 255, 0.16);
-  color: var(
-    --color-text-on-surface,
-    var(--color-text-primary, #f5f5f7)
-  );
+  color: var(--color-text-on-surface, var(--color-text-primary, #f5f5f7));
 }
 
 .auth-form input:focus-visible {
   outline: none;
   border-color: var(--color-accent, #0a84ff);
   box-shadow: 0 0 0 2px
-    color-mix(
-      in srgb,
-      var(--color-accent, #0a84ff) 30%,
-      transparent
-    );
+    color-mix(in srgb, var(--color-accent, #0a84ff) 30%, transparent);
 }
 
 /* パスワード + 目アイコン */
@@ -157,11 +150,7 @@
 .password-field:focus-within {
   border-color: var(--color-accent, #0a84ff);
   box-shadow: 0 0 0 2px
-    color-mix(
-      in srgb,
-      var(--color-accent, #0a84ff) 30%,
-      transparent
-    );
+    color-mix(in srgb, var(--color-accent, #0a84ff) 30%, transparent);
 }
 
 .toggle-pass {
@@ -185,10 +174,7 @@
   cursor: pointer;
   background: var(--color-accent, #0a84ff);
   color: var(--color-on-accent, #ffffff);
-  box-shadow: var(
-      --shadow-button,
-      0 4px 12px rgba(10, 132, 255, 0.4)
-    );
+  box-shadow: var(--shadow-button, 0 4px 12px rgba(10, 132, 255, 0.4));
   transition:
     transform var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -245,11 +231,7 @@
 }
 
 .guest-btn:hover:not(:disabled) {
-  background: color-mix(
-    in srgb,
-    var(--color-accent, #0a84ff) 10%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-accent, #0a84ff) 10%, transparent);
 }
 
 .guest-btn:disabled {
