@@ -5,10 +5,10 @@ import {
   getAuth,
   setPersistence,
   browserLocalPersistence,
+  // inMemoryPersistence,  // 必要ならあとで使う用
 } from "firebase/auth";
 import { initializeFirestore } from "firebase/firestore";
 
-// あなたのプロジェクトの設定
 const firebaseConfig = {
   apiKey: "AIzaSyDqin1UCPFkfFObScDR5QtJQXxzBlkg-hE",
   authDomain: "app-4db93.firebaseapp.com",
@@ -19,11 +19,9 @@ const firebaseConfig = {
   measurementId: "G-FR05H677B9",
 };
 
-// -------- initialize --------
 const app = initializeApp(firebaseConfig);
 
-// Firestore
-// GitHub Pages / 一部回線での接続問題対策としてロングポーリング指定
+// Firestore（これはそのままでOK）
 export const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
   useFetchStreams: false,
@@ -32,13 +30,27 @@ export const db = initializeFirestore(app, {
 // Auth
 export const auth = getAuth(app);
 
-// ログイン状態をブラウザに永続化（毎回ログイン防止）
-setPersistence(auth, browserLocalPersistence)
-  .then(() => {
-    console.log("[Auth] persistence: local");
-  })
-  .catch((e) => {
-    console.warn("[Auth] persistence error:", e);
-  });
+/**
+ * iOS / Capacitor では browserLocalPersistence が
+ * 変な挙動をすることがあるので、
+ * 「本物のブラウザ (http / https)」でだけ使う
+ */
+const isRealBrowser =
+  typeof window !== "undefined" &&
+  (window.location.protocol === "http:" ||
+    window.location.protocol === "https:");
+
+if (isRealBrowser) {
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      console.log("[Auth] persistence: local");
+    })
+    .catch((e) => {
+      console.warn("[Auth] persistence error:", e);
+    });
+} else {
+  // capacitor://localhost, file:// などではデフォルトに任せる
+  console.log("[Auth] skip custom persistence for this environment");
+}
 
 export default app;

@@ -81,17 +81,32 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const { user } = await signInWithEmailAndPassword(
+      const loginPromise = signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword,
       );
+
+      // iOS WebView で Promise が返ってこない場合のために 15 秒タイムアウト
+      const result = await Promise.race([
+        loginPromise,
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("LOGIN_TIMEOUT")), 15000),
+        ),
+      ]);
+
+      const user = result.user;
       console.log("[LOGIN OK]", user?.uid);
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.log("[LOGIN ERROR]", err?.code, err?.message);
-      setErrorKey(mapErrorKey(err?.code));
+      if (err?.message === "LOGIN_TIMEOUT") {
+        console.log("[LOGIN TIMEOUT] maybe network / webview issue");
+        setErrorKey("auth.errors.network");
+      } else {
+        console.log("[LOGIN ERROR]", err?.code, err?.message);
+        setErrorKey(mapErrorKey(err?.code));
+      }
     } finally {
       setBusy(false);
     }
@@ -117,27 +132,35 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const { user } = await createUserWithEmailAndPassword(
+      const registerPromise = createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword,
       );
+
+      const result = await Promise.race([
+        registerPromise,
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("REGISTER_TIMEOUT")), 15000),
+        ),
+      ]);
+
+      const user = result.user;
       console.log("[REGISTER OK]", user?.uid);
       setUser?.(user);
       navigate("/home", { replace: true });
     } catch (err) {
-      console.log("[REGISTER ERROR]", err?.code, err?.message);
-      setErrorKey(mapErrorKey(err?.code));
+      if (err?.message === "REGISTER_TIMEOUT") {
+        console.log("[REGISTER TIMEOUT] maybe network / webview issue");
+        setErrorKey("auth.errors.network");
+      } else {
+        console.log("[REGISTER ERROR]", err?.code, err?.message);
+        setErrorKey(mapErrorKey(err?.code));
+      }
     } finally {
       setBusy(false);
     }
-  }, [
-    registerEmail,
-    registerPassword,
-    isRegisterEmailValid,
-    navigate,
-    setUser,
-  ]);
+  }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
   /* ========= キーボード Enter ========= */
 

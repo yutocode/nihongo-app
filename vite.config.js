@@ -91,7 +91,8 @@ export default defineConfig(({ mode }) => {
       },
       esbuild: {
         target: "es2020",
-        drop: mode === "production" ? ["console", "debugger"] : [],
+        // iOS 実機デバッグ用に console / debugger を消さない
+        drop: [],
         legalComments: "none",
       },
     },
@@ -106,7 +107,7 @@ export default defineConfig(({ mode }) => {
 
     define: {
       __APP_VERSION__: JSON.stringify(
-        process.env.npm_package_version ?? "0.0.0"
+        process.env.npm_package_version ?? "0.0.0",
       ),
     },
   };
