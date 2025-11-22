@@ -24,7 +24,7 @@ const app = initializeApp(firebaseConfig);
 // ---- Firestore ----
 // GitHub Pages / 一部ネットワークでの接続問題対策としてロングポーリング指定
 export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
+  experimentalAutoDetectLongPolling: true,
   useFetchStreams: false,
 });
 

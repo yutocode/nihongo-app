@@ -1,5 +1,5 @@
 // src/pages/RankingPage.jsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import {
   collection,
   getDocs,
@@ -14,6 +14,17 @@ import { useAppStore } from "@/store/useAppStore";
 import "@/styles/RankingPage.css";
 
 const PAGE_SIZE = 25;
+const FIRESTORE_TIMEOUT_MS = 15000; // 15秒で諦める
+
+// Promise にタイムアウトをつけるヘルパー
+function withTimeout(promise, label, ms = FIRESTORE_TIMEOUT_MS) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`${label}_TIMEOUT`)), ms),
+    ),
+  ]);
+}
 
 export default function RankingPage() {
   const user = useAppStore((s) => s.user);
@@ -26,13 +37,12 @@ export default function RankingPage() {
 
   const lastDocRef = useRef(null);
 
-  // 最初の読み込み
-  const fetchFirst = async () => {
-    console.log("[Ranking] fetchFirst start, user =", user?.uid);
+  const fetchFirst = useCallback(async () => {
     setLoading(true);
     setError(null);
-
     try {
+      console.log("[Ranking] fetchFirst start");
+
       const q = query(
         collection(db, "users"),
         where("privacy.showInRanking", "==", true),
@@ -40,55 +50,34 @@ export default function RankingPage() {
         limit(PAGE_SIZE),
       );
 
-      console.log("[Ranking] fetchFirst query built");
+      const snap = await withTimeout(getDocs(q), "RANKING_FETCH_FIRST");
+      console.log("[Ranking] fetchFirst size =", snap.size);
 
-      const snap = await getDocs(q);
-      console.log(
-        "[Ranking] fetchFirst snapshot size =",
-        snap.size,
-        "empty =",
-        snap.empty,
-      );
-
-      const list = snap.docs.map((d) => ({
-        id: d.id,
-        ...d.data(),
-        __doc: d,
-      }));
-
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
       setRows(list);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
     } catch (e) {
       console.error("[Ranking] fetchFirst error", e);
-      setError(
-        "ランキングを読み込めませんでした（インデックスまたはルールを確認してください）。",
-      );
+      if (e?.message?.includes("TIMEOUT")) {
+        setError("通信が不安定なため、ランキングを読み込めませんでした。（iOSアプリのネットワーク設定を確認してください）");
+      } else {
+        setError("ランキングを読み込めませんでした（インデックスまたはルールを確認してください）。");
+      }
       setRows([]);
       setEnd(true);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  // もっと見る
-  const fetchMore = async () => {
-    if (end || !lastDocRef.current) {
-      console.log(
-        "[Ranking] fetchMore skipped. end =",
-        end,
-        "lastDoc =",
-        !!lastDocRef.current,
-      );
-      return;
-    }
-
-    console.log("[Ranking] fetchMore start");
-
+  const fetchMore = useCallback(async () => {
+    if (end || !lastDocRef.current) return;
     setLoadingMore(true);
     setError(null);
-
     try {
+      console.log("[Ranking] fetchMore start");
+
       const q = query(
         collection(db, "users"),
         where("privacy.showInRanking", "==", true),
@@ -97,37 +86,29 @@ export default function RankingPage() {
         limit(PAGE_SIZE),
       );
 
-      const snap = await getDocs(q);
-      console.log(
-        "[Ranking] fetchMore snapshot size =",
-        snap.size,
-        "empty =",
-        snap.empty,
-      );
+      const snap = await withTimeout(getDocs(q), "RANKING_FETCH_MORE");
+      console.log("[Ranking] fetchMore size =", snap.size);
 
-      const list = snap.docs.map((d) => ({
-        id: d.id,
-        ...d.data(),
-        __doc: d,
-      }));
-
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data(), __doc: d }));
       setRows((prev) => [...prev, ...list]);
       lastDocRef.current = snap.docs.at(-1) || null;
       setEnd(snap.empty || snap.size < PAGE_SIZE);
     } catch (e) {
       console.error("[Ranking] fetchMore error", e);
-      setError("追加のランキングを読み込めませんでした。");
+      if (e?.message?.includes("TIMEOUT")) {
+        setError("通信が不安定なため、追加のランキングを読み込めませんでした。");
+      } else {
+        setError("追加のランキングを読み込めませんでした。");
+      }
       setEnd(true);
     } finally {
       setLoadingMore(false);
     }
-  };
+  }, [end]);
 
   useEffect(() => {
-    console.log("[Ranking] useEffect mount, user =", user?.uid);
     fetchFirst();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchFirst]);
 
   const myIndex = useMemo(
     () => rows.findIndex((r) => r.id === user?.uid),
