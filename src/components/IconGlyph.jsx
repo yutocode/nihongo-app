@@ -15,4 +15,3 @@ export default function IconGlyph({ name, size=26, weight="duotone" }) {
   const Cmp = map[name] ?? Trophy;
   return <Cmp size={size} weight={weight} />;
 }
-

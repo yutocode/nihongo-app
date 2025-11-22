@@ -5,32 +5,22 @@ import { useTranslation } from "react-i18next";
 import { FaCog, FaLayerGroup } from "react-icons/fa";
 
 import { useAppStore } from "../store/useAppStore";
-import JellyfishLogo from "./avatars/JellyfishLogo";
 import XPBanner from "./XPBanner";
 
 import "../styles/XPBanner.css";
 import "../styles/Header.css";
-
-// 今後アバター増やす前提のマップ
-const AVATAR_ICON_MAP = {
-  jellyfish: JellyfishLogo,
-};
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
 
-  const xp = useAppStore((s) => s.xp);
-  const avatarKey = useAppStore((s) => s.avatarKey || "jellyfish");
-
-  // avatarKey が不正でも必ず JellyfishLogo にフォールバック
-  const AvatarIcon = AVATAR_ICON_MAP[avatarKey] || JellyfishLogo;
+  const xp = useAppStore((s) => s.xp || {});
 
   // 現在パスからレベル推定（XPバナー用フォールバック）
   const currentLevel = useMemo(() => {
     const m = location.pathname.match(
-      /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i
+      /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i,
     );
     return m ? m[1].toUpperCase() : "N5";
   }, [location.pathname]);
@@ -78,7 +68,7 @@ const Header = () => {
       return { path: "/home", label: t("common.home", "ホーム") };
     }
 
-    // WordQuiz レッスン → レッスン選択
+    // WordQuiz レッスン → レッスン一覧
     m = p.match(/^\/word-quiz\/(n[1-5])\/Lesson[0-9]+$/i);
     if (m) {
       return {
@@ -104,7 +94,7 @@ const Header = () => {
 
   return (
     <header className="app-header" role="banner" data-testid="AppHeader">
-      {/* 左：戻る or アバター（白ベタなし・大きめ） */}
+      {/* 左：戻る or 何も表示しないプレースホルダ（プロフィールボタン封印） */}
       <div className="hdr-left">
         {showBack ? (
           <button
@@ -117,22 +107,12 @@ const Header = () => {
             <span className="hdr-btn-text">{backTarget.label}</span>
           </button>
         ) : (
-          <button
-            type="button"
-            className="hdr-avatar-btn"
-            aria-label={t("nav.profile", "プロフィール")}
-            title={t("nav.profile", "プロフィール")}
-            onClick={() => navigate("/profile")}
-          >
-            {/* SVG/PNGは透過推奨。サイズはCSSで枠→中身80%フィット */}
-            <span className="hdr-avatar-ico" aria-hidden="true">
-              <AvatarIcon size={40} />
-            </span>
-          </button>
+          // レイアウト用の空要素（見た目は何も出さない）
+          <div className="hdr-avatar-placeholder" aria-hidden="true" />
         )}
       </div>
 
-      {/* 中央：XPバナー（幅に合わせて縮む） */}
+      {/* 中央：XPバナー */}
       <div className="hdr-center">
         <XPBanner
           levelLabel={xp.levelLabel || currentLevel}
@@ -141,7 +121,7 @@ const Header = () => {
         />
       </div>
 
-      {/* 右：レベル選択＆設定（透明背景／統一サイズ） */}
+      {/* 右：レベル選択＆設定 */}
       <div className="hdr-right">
         <button
           type="button"
