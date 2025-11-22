@@ -65,6 +65,38 @@ const AuthPage = () => {
     }
   }, [userInStore, navigate]);
 
+  // ====== WKWebView から Google API に届くかテスト ======
+  useEffect(() => {
+    console.log("[FETCH TEST] start");
+
+    const apiKey = auth.app?.options?.apiKey;
+    if (!apiKey) {
+      console.log("[FETCH TEST] no apiKey");
+      return;
+    }
+
+    fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // わざと適当なユーザーを投げる。400 が返ってくれば「通信はできてる」ことが分かる
+        body: JSON.stringify({
+          email: "dummy@example.com",
+          password: "wrong-pass",
+          returnSecureToken: true,
+        }),
+      },
+    )
+      .then(async (res) => {
+        const text = await res.text();
+        console.log("[FETCH TEST] status =", res.status, "body =", text);
+      })
+      .catch((e) => {
+        console.log("[FETCH TEST ERROR]", e?.name, e?.message || e);
+      });
+  }, []);
+
   /* ========= メール/パスワード：ログイン ========= */
 
   const handleLogin = useCallback(async () => {
@@ -141,7 +173,10 @@ const AuthPage = () => {
       const result = await Promise.race([
         registerPromise,
         new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("REGISTER_TIMEOUT")), 15000),
+          setTimeout(
+            () => reject(new Error("REGISTER_TIMEOUT")),
+            15000,
+          ),
         ),
       ]);
 
@@ -160,7 +195,13 @@ const AuthPage = () => {
     } finally {
       setBusy(false);
     }
-  }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
+  }, [
+    registerEmail,
+    registerPassword,
+    isRegisterEmailValid,
+    navigate,
+    setUser,
+  ]);
 
   /* ========= キーボード Enter ========= */
 

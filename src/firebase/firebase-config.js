@@ -1,11 +1,10 @@
 // src/firebase/firebase-config.js
-
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
   setPersistence,
   browserLocalPersistence,
-  // inMemoryPersistence,  // 必要ならあとで使う用
+  inMemoryPersistence,
 } from "firebase/auth";
 import { initializeFirestore } from "firebase/firestore";
 
@@ -19,38 +18,39 @@ const firebaseConfig = {
   measurementId: "G-FR05H677B9",
 };
 
+// ---- App ----
 const app = initializeApp(firebaseConfig);
 
-// Firestore（これはそのままでOK）
+// ---- Firestore ----
+// GitHub Pages / 一部ネットワークでの接続問題対策としてロングポーリング指定
 export const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
   useFetchStreams: false,
 });
 
-// Auth
+// ---- Auth ----
 export const auth = getAuth(app);
 
-/**
- * iOS / Capacitor では browserLocalPersistence が
- * 変な挙動をすることがあるので、
- * 「本物のブラウザ (http / https)」でだけ使う
- */
-const isRealBrowser =
+// Capacitor(iOSアプリ) かどうか判定
+const isCapacitorWebView =
   typeof window !== "undefined" &&
-  (window.location.protocol === "http:" ||
-    window.location.protocol === "https:");
+  window.location &&
+  window.location.origin.startsWith("capacitor://");
 
-if (isRealBrowser) {
-  setPersistence(auth, browserLocalPersistence)
-    .then(() => {
-      console.log("[Auth] persistence: local");
-    })
-    .catch((e) => {
-      console.warn("[Auth] persistence error:", e);
-    });
-} else {
-  // capacitor://localhost, file:// などではデフォルトに任せる
-  console.log("[Auth] skip custom persistence for this environment");
-}
+const persistence = isCapacitorWebView
+  ? inMemoryPersistence // iOS アプリ: メモリのみ
+  : browserLocalPersistence; // Web: これまで通り localStorage
 
+setPersistence(auth, persistence)
+  .then(() => {
+    console.log(
+      "[Auth] persistence:",
+      isCapacitorWebView ? "inMemory" : "browserLocal",
+    );
+  })
+  .catch((e) => {
+    console.warn("[Auth] persistence error:", e);
+  });
+
+// デフォルトは app を返す
 export default app;
