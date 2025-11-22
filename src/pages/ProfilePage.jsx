@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { useAppStore } from "@/store/useAppStore";
 import { db, auth } from "@/firebase/firebase-config";
 import JellyfishLogo from "@/components/avatars/JellyfishLogo";
-import "./../styles/Profile.css";
+import "../styles/Profile.css";
 
 /* =======================
    内蔵コンポーネント
@@ -202,10 +202,7 @@ export default function ProfilePage() {
   const setAvatarKey = useAppStore((s) => s.setAvatarKey);
   const xp = useAppStore((s) => s.xp);
   const daily = useAppStore((s) => s.daily);
-  // 全リセット系のアクションがあれば優先的に使う
-  const resetStore = useAppStore(
-    (s) => s.resetAll || s.hardReset || null,
-  );
+  const resetStore = useAppStore((s) => s.resetAll || s.hardReset || null);
 
   /* ---- Local state ---- */
   const [loading, setLoading] = useState(true);

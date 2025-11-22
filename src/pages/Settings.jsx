@@ -93,7 +93,7 @@ export default function Settings() {
   // App version (vite env)
   const appVersion = useMemo(
     () => import.meta?.env?.VITE_APP_VERSION || "1.0.0",
-    [],
+    []
   );
 
   /* ===== Theme (OS設定は無視・ユーザー選択で固定) ===== */
@@ -128,8 +128,8 @@ export default function Settings() {
       alert(
         t(
           "settings.notificationsNotSupported",
-          "この端末は通知に対応していません。",
-        ),
+          "この端末は通知に対応していません。"
+        )
       );
       setNotifEnabled(false);
       localStorage.setItem("notificationsEnabled", "false");
@@ -148,8 +148,8 @@ export default function Settings() {
           alert(
             t(
               "settings.notificationsDenied",
-              "通知が許可されませんでした。ブラウザ設定から変更できます。",
-            ),
+              "通知が許可されませんでした。ブラウザ設定から変更できます。"
+            )
           );
         }
       }
@@ -159,38 +159,24 @@ export default function Settings() {
     }
   };
 
-  /* ===== Logout (iOS WebView 対策付き) ===== */
-  const handleLogout = async () => {
+  /* ===== Logout（即時 UI リセット版） ===== */
+  const handleLogout = () => {
     if (loggingOut) return;
     setLoggingOut(true);
     console.log(
-      "[LOGOUT] start, origin=",
-      typeof window !== "undefined" ? window.location.origin : "n/a",
+      "[LOGOUT] start (fire-and-forget)",
+      typeof window !== "undefined" ? window.location.origin : "n/a"
     );
 
-    try {
-      const signOutPromise = signOut(auth);
+    // Firebase には裏で signOut を投げるだけ（結果はログ出力）
+    signOut(auth)
+      .then(() => console.log("[LOGOUT] signOut resolved"))
+      .catch((err) => console.warn("[LOGOUT] signOut error", err));
 
-      await Promise.race([
-        signOutPromise,
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("SIGNOUT_TIMEOUT")), 8000),
-        ),
-      ]);
-
-      console.log("[LOGOUT] signOut finished");
-    } catch (err) {
-      if (err?.message === "SIGNOUT_TIMEOUT") {
-        console.warn("[LOGOUT] timeout (maybe iOS WebView issue)");
-      } else {
-        console.error("[LOGOUT ERROR]", err);
-      }
-    } finally {
-      // Firebase の挙動が怪しくても、UI と store は必ずリセットする
-      clearUser();
-      navigate("/", { replace: true });
-      setLoggingOut(false);
-    }
+    // UI と Zustand は即リセット → 体感ほぼ一瞬でログアウト
+    clearUser();
+    navigate("/", { replace: true });
+    setLoggingOut(false);
   };
 
   /* ===== Language display ===== */
@@ -236,7 +222,7 @@ export default function Settings() {
           onChange={requestNotification}
           description={t(
             "settings.sections.basic.notifications_desc",
-            "学習のリマインダーを受け取る",
+            "学習のリマインダーを受け取る"
           )}
         />
         <RowButton
@@ -255,7 +241,7 @@ export default function Settings() {
           icon="💎"
           label={t(
             "settings.sections.premium.managePlan",
-            "プレミアム（準備中）",
+            "プレミアム（準備中）"
           )}
           disabled
         />
