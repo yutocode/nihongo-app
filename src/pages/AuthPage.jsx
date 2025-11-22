@@ -171,25 +171,24 @@ const AuthPage = () => {
   /* ========= Apple ログイン ========= */
 
   const handleAppleSignIn = useCallback(async () => {
-    // 連打防止
-    if (busy) return;
-
+    // Apple ログインは busy に依存させない（常に押せるようにする）
     setErrorKey("");
 
     const cap = typeof window !== "undefined" ? window.Capacitor : undefined;
-    const isNative =
-      !!cap &&
-      (cap.isNativePlatform?.() ||
-        ["ios", "android"].includes(cap.getPlatform?.() || ""));
+    const platform = cap?.getPlatform?.() || "";
 
-    setBusy(true);
+    const isNative =
+          platform === "ios" ||
+          platform === "android";
+
     try {
       const provider = new OAuthProvider("apple.com");
 
       if (isNative) {
         // iOS / Android アプリ → Safari に飛んで戻ってくる
         await signInWithRedirect(auth, provider);
-        return; // この後は上の useEffect(getRedirectResult) で処理
+        // 戻ってきたあとは上の useEffect(getRedirectResult) で処理
+        return;
       }
 
       // Web(ブラウザ) → ポップアップ
@@ -201,13 +200,8 @@ const AuthPage = () => {
     } catch (err) {
       console.error("Apple sign-in failed:", err);
       setErrorKey("auth.errors.generic");
-    } finally {
-      // ネイティブの場合は画面遷移してしまうので、ここでの busy 解除は Web だけにする
-      if (!isNative) {
-        setBusy(false);
-      }
     }
-  }, [busy, navigate, setUser]);
+  }, [navigate, setUser]);
 
   /* ========= キーボード ========= */
 
@@ -250,12 +244,11 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {/* Apple ボタン（ここが重要） */}
+          {/* Apple ボタン */}
           <button
             type="button"
-            className={`auth-apple-btn ${busy ? "is-busy" : ""}`}
+            className="auth-apple-btn"
             onClick={handleAppleSignIn}
-            aria-disabled={busy}
           >
             <span className="auth-apple-icon"></span>
             <span className="auth-apple-label">
