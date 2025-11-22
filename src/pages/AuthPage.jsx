@@ -244,22 +244,6 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {/* Apple ボタン */}
-          <button
-            type="button"
-            className="auth-apple-btn"
-            onClick={handleAppleSignIn}
-          >
-            <span className="auth-apple-icon"></span>
-            <span className="auth-apple-label">
-              {t("auth.apple_signin", "Sign in with Apple")}
-            </span>
-          </button>
-
-          <div className="auth-divider">
-            <span>{t("auth.or_email", "or use email")}</span>
-          </div>
-
           {/* ログインフォーム */}
           {mode === "login" && (
             <div className="auth-form" aria-label="login form">

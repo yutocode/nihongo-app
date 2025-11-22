@@ -32,7 +32,6 @@
   gap: var(--space-4, 16px);
 }
 
-/* ダークモード調整 */
 [data-theme="dark"] .auth-card {
   background: var(--color-surface-dark, #111318);
   box-shadow: var(--shadow-soft-dark, 0 10px 30px rgba(0, 0, 0, 0.7));
@@ -70,55 +69,6 @@
   outline: 2px solid var(--color-accent, #0a84ff);
   outline-offset: 2px;
 }
-
-/* ===== Apple ログインボタン ===== */
-
-.auth-apple-btn {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-2, 8px) var(--space-4, 16px);
-  border-radius: var(--radius-lg, 999px);
-  border: 1px solid #000;
-  background: #000;
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  pointer-events: auto; /* 常にクリック可能にしておく */
-  transition:
-    transform var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.auth-apple-btn .auth-apple-icon {
-  font-size: 1.2rem;
-}
-
-.auth-apple-btn .auth-apple-label {
-  letter-spacing: 0.01em;
-}
-
-.auth-apple-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-.auth-apple-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* busy 中は見た目だけ薄くする（クリックは handleAppleSignIn 内で制御） */
-.auth-apple-btn.is-busy {
-  opacity: 0.6;
-}
-
-
 
 /* ===== 区切り線 ===== */
 
