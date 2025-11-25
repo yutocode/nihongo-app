@@ -3,9 +3,9 @@ import React, { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FiHome,
-  FiAward,   // ランキング
-  FiFlag,    // チャレンジ（模試）
-  FiLock,    // Premium ロック中
+  FiAward, // ランキング
+  FiFlag, // チャレンジ（模試）
+  FiLock, // Premium ロック中
   FiSettings,
 } from "react-icons/fi";
 import { useAppStore } from "../store/useAppStore";
@@ -19,6 +19,8 @@ const LEVEL_KEYS = ["n5", "n4", "n3", "n2", "n1"];
 
 // ★ iOS 審査中はここを false にして模試タブを完全ロック
 const ENABLE_EXAM_NAV = false;
+// ★ iOS 審査中はランキングもロック
+const ENABLE_RANKING_NAV = false;
 
 const AUTO_EXAM_BY_LEVEL = (() => {
   const map = { n5: null, n4: null, n3: null, n2: null, n1: null };
@@ -44,8 +46,13 @@ export default function BottomNav() {
   const examPath = examId ? `/exam/${examId}` : "/quiz"; // 将来用に残しておく
 
   const items = [
-    { to: "/home",    label: "ホーム",      Icon: FiHome },
-    { to: "/ranking", label: "ランキング",  Icon: FiAward },
+    { to: "/home", label: "ホーム", Icon: FiHome },
+    {
+      to: "/ranking",
+      label: "ランキング",
+      Icon: FiAward,
+      disabled: !ENABLE_RANKING_NAV,
+    },
     // ★ 真ん中：チャレンジ（いまは完全ロック）
     {
       to: examPath,
