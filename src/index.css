@@ -25,13 +25,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-  background-color: #242424;       /* ダーク背景固定 */
-  color: rgba(255, 255, 255, 0.87); /* テキストも固定 */
-}
+} 
 
 h1 {
   font-size: 3.2em;
