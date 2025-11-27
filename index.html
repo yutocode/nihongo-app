@@ -59,25 +59,27 @@
       body {
         min-height: 100%;
       }
+
       html {
         -webkit-text-size-adjust: 100%;
       }
+
       body {
         margin: 0;
         font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
         background: var(--bg);
         color: var(--text);
+        /* 下だけは App 側で管理するので入れない */
         padding-left: max(0px, env(safe-area-inset-left));
         padding-right: max(0px, env(safe-area-inset-right));
         padding-top: max(0px, env(safe-area-inset-top));
-        padding-bottom: max(0px, env(safe-area-inset-bottom));
         overflow-x: hidden;
       }
 
       #root {
         min-height: 100dvh;
         min-height: calc(var(--vh, 1vh) * 100);
-        display: contents;
+        /* display: contents は使わず、普通のラッパーとして扱う */
       }
 
       .app-loading {
@@ -90,6 +92,7 @@
         z-index: 9999;
         font-size: 14px;
       }
+
       [hidden] {
         display: none !important;
       }
