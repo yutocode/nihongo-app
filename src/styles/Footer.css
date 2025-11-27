@@ -1,10 +1,10 @@
 /* src/styles/Footer.css */
 
+/* ===== フッター全体 ===== */
 .footer {
   max-width: var(--layout-max-width, 1024px);
-  margin: var(--space-6, 32px) auto
-    calc(var(--space-5, 24px) + 88px + env(safe-area-inset-bottom));
-  /* ↑ 88px = BottomNav の高さ分を足して、ナビの後ろに隠れないようにする */
+  /* 👇 ふつうの下マージンだけにして、BottomNav の高さはここで足さない */
+  margin: var(--space-6, 32px) auto var(--space-5, 24px);
 
   padding: 0 var(--space-4, 16px);
   display: grid;
@@ -15,11 +15,21 @@
   line-height: 1.6;
 }
 
+/* 小さい画面では中央寄せにして読みやすく */
+@media (max-width: 480px) {
+  .footer {
+    text-align: center;
+    justify-items: center;
+  }
+}
+
+/* ===== リンク行 ===== */
 .footer__links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2, 8px);
   align-items: center;
+  justify-content: center;
 }
 
 .footer__link {
@@ -33,16 +43,19 @@
   color: var(--color-text, #374151);
 }
 
+/* 中点・区切り */
 .footer__dot,
 .footer__sep {
   color: var(--color-text-subtle, #9ca3af);
 }
 
+/* ===== コピーライト・バージョン ===== */
 .footer__meta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2, 8px);
   align-items: center;
+  justify-content: center;
 }
 
 .footer__copy,
@@ -50,12 +63,13 @@
   color: var(--color-text-muted, #6b7280);
 }
 
+/* キャッチコピー */
 .footer__tagline {
   margin: 0;
   color: var(--color-text-subtle, #9ca3af);
 }
 
-/* ダークテーマ時の上書き */
+/* ===== ダークテーマ ===== */
 .theme-dark .footer {
   color: var(--color-text-subtle, #9ca3af);
 }
