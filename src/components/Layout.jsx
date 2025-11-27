@@ -8,7 +8,7 @@ import "@/styles/Layout.css";
 
 /**
  * ここで“UIクローム（Header/BottomNav/Footer）”を隠すパスを定義。
- * 認証/初期ページでは非表示。それ以外は常に表示＆BottomNavは固定。
+ * 認証/初期ページでは非表示。それ以外は常に表示。
  */
 const HIDE_CHROME_PATHS = new Set(["/", "/login", "/register"]);
 
@@ -16,24 +16,26 @@ export default function Layout() {
   const location = useLocation();
   const hideChrome = HIDE_CHROME_PATHS.has(location.pathname);
 
-  // ルート変更時にスクロール位置をトップへ（必要なければ削除OK）
+  // ルート変更時にスクロール位置をトップへ
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname]);
 
   return (
     <div className="app-shell" data-route={location.pathname}>
+      {/* 上部ヘッダー（認証系では非表示） */}
       {!hideChrome && <Header />}
 
-      {/* コンテンツ。下にBottomNav高さぶんの余白を自動付与します */}
+      {/* メインコンテンツ（Layout.css 側で下に BottomNav 分の余白を確保） */}
       <main className="app-content" role="main">
         <Outlet />
       </main>
 
-      {/* どの画面でも固定表示（auth画面では非表示） */}
-      {!hideChrome && <BottomNav />}
-
+      {/* 👇 フッターを先に描画して、その“上”に BottomNav がかぶさる形 */}
       {!hideChrome && <Footer />}
+
+      {/* どの画面でも一番下に固定したいアンダーバー */}
+      {!hideChrome && <BottomNav />}
     </div>
   );
 }
