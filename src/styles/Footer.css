@@ -1,36 +1,81 @@
+/* src/styles/Footer.css */
+
 .footer {
-  max-width: 1024px;
-  margin: 32px auto 24px;
-  padding: 0 16px;
+  max-width: var(--layout-max-width, 1024px);
+  margin: var(--space-6, 32px) auto
+    calc(var(--space-5, 24px) + 88px + env(safe-area-inset-bottom));
+  /* ↑ 88px = BottomNav の高さ分を足して、ナビの後ろに隠れないようにする */
+
+  padding: 0 var(--space-4, 16px);
   display: grid;
-  gap: 6px;
-  color: #6B7280; /* Neutral/500 */
+  gap: var(--space-1, 6px);
+
+  color: var(--color-text-muted, #6b7280);
   font-size: 12px;
   line-height: 1.6;
 }
 
 .footer__links {
-  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  align-items: center;
 }
-.footer__link {
-  color: #6B7280; text-decoration: none;
-}
-.footer__link:hover,
-.footer__link:focus-visible { text-decoration: underline; color: #374151; }
 
-.footer__dot, .footer__sep { color: #9CA3AF; }
+.footer__link {
+  color: var(--color-text-muted, #6b7280);
+  text-decoration: none;
+}
+
+.footer__link:hover,
+.footer__link:focus-visible {
+  text-decoration: underline;
+  color: var(--color-text, #374151);
+}
+
+.footer__dot,
+.footer__sep {
+  color: var(--color-text-subtle, #9ca3af);
+}
 
 .footer__meta {
-  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  align-items: center;
 }
-.footer__copy { color: #6B7280; }
-.footer__ver { color: #6B7280; }
 
-.footer__tagline { margin: 0; color: #9CA3AF; }
+.footer__copy,
+.footer__ver {
+  color: var(--color-text-muted, #6b7280);
+}
 
-.theme-dark .footer { color: #9CA3AF; }
-.theme-dark .footer__link { color: #9CA3AF; }
+.footer__tagline {
+  margin: 0;
+  color: var(--color-text-subtle, #9ca3af);
+}
+
+/* ダークテーマ時の上書き */
+.theme-dark .footer {
+  color: var(--color-text-subtle, #9ca3af);
+}
+
+.theme-dark .footer__link {
+  color: var(--color-text-subtle, #9ca3af);
+}
+
 .theme-dark .footer__link:hover,
-.theme-dark .footer__link:focus-visible { color: #D1D5DB; }
-.theme-dark .footer__dot, .theme-dark .footer__sep { color: #6B7280; }
-.theme-dark .footer__copy, .theme-dark .footer__ver, .theme-dark .footer__tagline { color: #9CA3AF; }
+.theme-dark .footer__link:focus-visible {
+  color: var(--color-text, #d1d5db);
+}
+
+.theme-dark .footer__dot,
+.theme-dark .footer__sep {
+  color: var(--color-border-subtle, #6b7280);
+}
+
+.theme-dark .footer__copy,
+.theme-dark .footer__ver,
+.theme-dark .footer__tagline {
+  color: var(--color-text-subtle, #9ca3af);
+}

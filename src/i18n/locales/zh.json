@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "设置",
-    "subtitle": "管理应用设置",
-    "sections": {
-      "account": {
-        "title": "账户",
-        "profile": "个人资料",
-        "password": "密码",
-        "export": "导出数据"
-      },
-      "basic": {
-        "title": "基本设置",
-        "notifications": "通知",
-        "notifications_desc": "接收学习提醒",
-        "theme": "深色模式",
-        "theme_desc": "切换界面主题",
-        "language": "语言设置",
-        "language_desc": "选择应用显示语言"
-      },
-      "premium": {
-        "title": "高级版",
-        "managePlan": "管理套餐"
-      },
-      "support": {
-        "title": "支持",
-        "help": "帮助与支持",
-        "contact": "联系我们",
-        "terms": "使用条款",
-        "privacy": "隐私政策"
-      }
+  "title": "设置",
+  "subtitle": "管理应用设置",
+
+  "sections": {
+    "account": {
+      "title": "账号",
+      "profile": "个人资料",
+      "profileLocked": "个人资料（即将上线）",
+      "password": "密码",
+      "export": "导出数据"
     },
-    "version": "版本",
-    "logout": "退出登录"
+
+    "basic": {
+      "title": "基础设置",
+      "notifications": "通知",
+      "notifications_desc": "接收学习提醒",
+      "theme": "主题",
+      "theme_desc": "切换外观主题",
+      "themeLight": "亮色模式",
+      "themeDark": "深色模式",
+      "language": "语言设置",
+      "language_desc": "选择显示语言"
+    },
+
+    "premium": {
+      "title": "高级版",
+      "managePlan": "管理套餐"
+    },
+
+    "support": {
+      "title": "支持",
+      "help": "帮助中心",
+      "contact": "联系我们",
+      "terms": "使用条款",
+      "privacy": "隐私政策",
+      "deleteAccount": "删除账号",
+      "deletingAccount": "正在删除账号…"
+    }
   },
+
+  "version": "版本",
+  "logout": "退出登录",
+  "loggingOut": "正在退出…",
+
+  "notificationsNotSupported": "此设备不支持通知。",
+  "notificationsDenied": "通知被拒绝，可在浏览器设置中启用。",
+
+  "deleteAccountConfirm": "账号与学习数据将被永久删除，继续吗？",
+  "deleteAccountRequiresLogin": "为了安全，请重新登录后再删除。",
+  "deleteAccountFailed": "删除失败，请稍后再试。"
+},
 
   "nav": {
     "home": "首页",

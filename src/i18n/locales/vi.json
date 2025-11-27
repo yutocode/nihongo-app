@@ -1,37 +1,56 @@
 {
+  
   "settings": {
     "title": "Cài đặt",
-    "subtitle": "Quản lý cài đặt ứng dụng",
+    "subtitle": "Quản lý các thiết lập của ứng dụng",
+
     "sections": {
       "account": {
         "title": "Tài khoản",
         "profile": "Hồ sơ",
+        "profileLocked": "Hồ sơ (Sắp ra mắt)",
         "password": "Mật khẩu",
         "export": "Xuất dữ liệu"
       },
+
       "basic": {
         "title": "Cài đặt cơ bản",
         "notifications": "Thông báo",
         "notifications_desc": "Nhận nhắc nhở học tập",
-        "theme": "Chế độ tối",
-        "theme_desc": "Chuyển đổi giao diện",
+        "theme": "Giao diện",
+        "theme_desc": "Thay đổi chủ đề hiển thị",
+        "themeLight": "Chế độ sáng",
+        "themeDark": "Chế độ tối",
         "language": "Ngôn ngữ",
         "language_desc": "Chọn ngôn ngữ hiển thị"
       },
+
       "premium": {
-        "title": "Gói cao cấp",
+        "title": "Gói Premium",
         "managePlan": "Quản lý gói"
       },
+
       "support": {
         "title": "Hỗ trợ",
-        "help": "Trợ giúp & Hỗ trợ",
+        "help": "Trung tâm trợ giúp",
         "contact": "Liên hệ",
         "terms": "Điều khoản sử dụng",
-        "privacy": "Chính sách quyền riêng tư"
+        "privacy": "Chính sách quyền riêng tư",
+        "deleteAccount": "Xóa tài khoản",
+        "deletingAccount": "Đang xóa tài khoản…"
       }
     },
+
     "version": "Phiên bản",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "loggingOut": "Đang đăng xuất…",
+
+    "notificationsNotSupported": "Thiết bị này không hỗ trợ thông báo.",
+    "notificationsDenied": "Thông báo đã bị từ chối. Bạn có thể bật lại trong cài đặt trình duyệt.",
+
+    "deleteAccountConfirm": "Tài khoản và dữ liệu học tập của bạn sẽ bị xóa vĩnh viễn. Bạn có chắc chắn tiếp tục không?",
+    "deleteAccountRequiresLogin": "Vì lý do bảo mật, vui lòng đăng nhập lại trước khi xóa tài khoản.",
+    "deleteAccountFailed": "Xóa tài khoản thất bại. Vui lòng thử lại sau."
   },
 
   "nav": {

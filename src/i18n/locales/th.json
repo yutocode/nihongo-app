@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "การตั้งค่า",
-    "subtitle": "จัดการการตั้งค่าแอป",
-    "sections": {
-      "account": {
-        "title": "บัญชี",
-        "profile": "โปรไฟล์",
-        "password": "รหัสผ่าน",
-        "export": "ส่งออกข้อมูล"
-      },
-      "basic": {
-        "title": "การตั้งค่าพื้นฐาน",
-        "notifications": "การแจ้งเตือน",
-        "notifications_desc": "รับการแจ้งเตือนเตือนให้เรียน",
-        "theme": "โหมดมืด",
-        "theme_desc": "สลับธีมของแอป",
-        "language": "ภาษา",
-        "language_desc": "เลือกภาษาแสดงผล"
-      },
-      "premium": {
-        "title": "พรีเมียม",
-        "managePlan": "จัดการแพ็กเกจ"
-      },
-      "support": {
-        "title": "ศูนย์ช่วยเหลือ",
-        "help": "วิธีใช้ & การช่วยเหลือ",
-        "contact": "ติดต่อเรา",
-        "terms": "เงื่อนไขการใช้บริการ",
-        "privacy": "นโยบายความเป็นส่วนตัว"
-      }
+  "title": "การตั้งค่า",
+  "subtitle": "จัดการการตั้งค่าแอปของคุณ",
+
+  "sections": {
+    "account": {
+      "title": "บัญชี",
+      "profile": "โปรไฟล์",
+      "profileLocked": "โปรไฟล์ (เร็วๆ นี้)",
+      "password": "รหัสผ่าน",
+      "export": "ส่งออกข้อมูล"
     },
-    "version": "เวอร์ชัน",
-    "logout": "ออกจากระบบ"
+
+    "basic": {
+      "title": "การตั้งค่าพื้นฐาน",
+      "notifications": "การแจ้งเตือน",
+      "notifications_desc": "รับการเตือนการเรียน",
+      "theme": "ธีม",
+      "theme_desc": "สลับธีมการแสดงผล",
+      "themeLight": "โหมดสว่าง",
+      "themeDark": "โหมดมืด",
+      "language": "ภาษา",
+      "language_desc": "เลือกภาษาที่ใช้แสดง"
+    },
+
+    "premium": {
+      "title": "พรีเมียม",
+      "managePlan": "จัดการแพ็กเกจ"
+    },
+
+    "support": {
+      "title": "การสนับสนุน",
+      "help": "ศูนย์ช่วยเหลือ",
+      "contact": "ติดต่อเรา",
+      "terms": "ข้อตกลงการใช้งาน",
+      "privacy": "นโยบายความเป็นส่วนตัว",
+      "deleteAccount": "ลบบัญชี",
+      "deletingAccount": "กำลังลบบัญชี…"
+    }
   },
+
+  "version": "เวอร์ชัน",
+  "logout": "ออกจากระบบ",
+  "loggingOut": "กำลังออกจากระบบ…",
+
+  "notificationsNotSupported": "อุปกรณ์นี้ไม่รองรับการแจ้งเตือน",
+  "notificationsDenied": "ปฏิเสธการแจ้งเตือนแล้ว คุณสามารถเปิดใช้งานได้ในตั้งค่าเบราว์เซอร์",
+
+  "deleteAccountConfirm": "บัญชีและข้อมูลการเรียนจะถูกลบถาวร คุณแน่ใจหรือไม่?",
+  "deleteAccountRequiresLogin": "เพื่อความปลอดภัย โปรดเข้าสู่ระบบอีกครั้งก่อนลบ",
+  "deleteAccountFailed": "ไม่สามารถลบบัญชีได้ โปรดลองอีกครั้งภายหลัง"
+},
 
   "nav": {
     "home": "หน้าหลัก",

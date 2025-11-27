@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "設定",
-    "subtitle": "管理應用程式設定",
-    "sections": {
-      "account": {
-        "title": "帳號",
-        "profile": "個人資料",
-        "password": "密碼",
-        "export": "匯出資料"
-      },
-      "basic": {
-        "title": "基本設定",
-        "notifications": "通知",
-        "notifications_desc": "接收學習提醒",
-        "theme": "深色模式",
-        "theme_desc": "切換介面主題",
-        "language": "語言設定",
-        "language_desc": "選擇應用程式語言"
-      },
-      "premium": {
-        "title": "高級版",
-        "managePlan": "管理方案"
-      },
-      "support": {
-        "title": "支援",
-        "help": "說明與支援",
-        "contact": "聯絡我們",
-        "terms": "使用條款",
-        "privacy": "隱私權政策"
-      }
+  "title": "設定",
+  "subtitle": "管理你的應用程式設定",
+
+  "sections": {
+    "account": {
+      "title": "帳號",
+      "profile": "個人資料",
+      "profileLocked": "個人資料（即將推出）",
+      "password": "密碼",
+      "export": "匯出資料"
     },
-    "version": "版本",
-    "logout": "登出"
+
+    "basic": {
+      "title": "基本設定",
+      "notifications": "通知",
+      "notifications_desc": "接受學習提醒",
+      "theme": "主題",
+      "theme_desc": "切換外觀主題",
+      "themeLight": "淺色模式",
+      "themeDark": "深色模式",
+      "language": "語言設定",
+      "language_desc": "選擇顯示語言"
+    },
+
+    "premium": {
+      "title": "高級版",
+      "managePlan": "管理方案"
+    },
+
+    "support": {
+      "title": "支援",
+      "help": "幫助中心",
+      "contact": "聯絡我們",
+      "terms": "使用條款",
+      "privacy": "隱私權政策",
+      "deleteAccount": "刪除帳號",
+      "deletingAccount": "正在刪除帳號…"
+    }
   },
+
+  "version": "版本",
+  "logout": "登出",
+  "loggingOut": "正在登出…",
+
+  "notificationsNotSupported": "此裝置不支援通知功能。",
+  "notificationsDenied": "通知被拒絕，可在瀏覽器設定中開啟。",
+
+  "deleteAccountConfirm": "帳號與學習資料將被永久刪除，確定繼續嗎？",
+  "deleteAccountRequiresLogin": "為了安全，請重新登入後再刪除。",
+  "deleteAccountFailed": "刪除失敗，請稍後再試。"
+},
 
   "nav": {
     "home": "首頁",

@@ -1,10 +1,11 @@
 // src/pages/Settings.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
+import { signOut, deleteUser } from "firebase/auth";
 import { useAppStore } from "../store/useAppStore";
 import { useTranslation } from "react-i18next";
-import { auth } from "../firebase/firebase-config";
+import { auth, db } from "../firebase/firebase-config";
+import { doc, deleteDoc } from "firebase/firestore";
 import "../styles/Settings.css";
 
 /* ---------- UI helpers ---------- */
@@ -89,6 +90,7 @@ export default function Settings() {
   const { t, i18n } = useTranslation();
 
   const [loggingOut, setLoggingOut] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
 
   // App version (vite env)
   const appVersion = useMemo(
@@ -179,6 +181,61 @@ export default function Settings() {
     setLoggingOut(false);
   };
 
+  /* ===== Account delete ===== */
+  const handleDeleteAccount = async () => {
+    if (deletingAccount) return;
+
+    const confirmed = window.confirm(
+      t(
+        "settings.deleteAccountConfirm",
+        "アカウントと学習データを完全に削除します。よろしいですか？",
+      ),
+    );
+    // ここでブラウザ標準の Yes / No (OK / キャンセル) ダイアログが出る
+    if (!confirmed) return;
+
+    try {
+      setDeletingAccount(true);
+      const user = auth.currentUser;
+      if (!user) {
+        setDeletingAccount(false);
+        return;
+      }
+
+      // ユーザーデータ（例: users コレクション）を削除
+      try {
+        await deleteDoc(doc(db, "users", user.uid));
+      } catch (e) {
+        console.warn("[DELETE ACCOUNT] deleteDoc error (ignored)", e);
+      }
+
+      // Firebase Auth アカウント削除
+      await deleteUser(user);
+
+      // ローカル状態リセット
+      clearUser();
+      navigate("/auth", { replace: true });
+    } catch (error) {
+      console.error("[DELETE ACCOUNT] error", error);
+      if (error?.code === "auth/requires-recent-login") {
+        alert(
+          t(
+            "settings.deleteAccountRequiresLogin",
+            "セキュリティのため、もう一度ログインし直してから削除してください。",
+          ),
+        );
+      } else {
+        alert(
+          t(
+            "settings.deleteAccountFailed",
+            "アカウントを削除できませんでした。時間をおいて、もう一度お試しください。",
+          ),
+        );
+      }
+      setDeletingAccount(false);
+    }
+  };
+
   /* ===== Language display ===== */
   const langName = useMemo(() => {
     const map = {
@@ -235,9 +292,12 @@ export default function Settings() {
           trailing={<span className="settings__value">{langName}</span>}
           to="/language"
         />
+        
+      
       </SettingSection>
 
-      {/* Premium（ロック中） */}
+      {/* ★ Premium セクションは一旦削除（Apple に誤解されないように） */}
+      {/* 
       <SettingSection
         title={t("settings.sections.premium.title", "プレミアム")}
       >
@@ -250,6 +310,7 @@ export default function Settings() {
           disabled
         />
       </SettingSection>
+      */}
 
       {/* Support */}
       <SettingSection
@@ -268,12 +329,31 @@ export default function Settings() {
         <RowButton
           icon="📄"
           label={t("settings.sections.support.terms", "利用規約")}
-          to="/legal/terms"
+          to="https://yutocode.github.io/nihongo-app-support/terms.html"
         />
+
         <RowButton
           icon="🛡️"
           label={t("settings.sections.support.privacy", "プライバシー")}
-          to="/legal/privacy"
+          to="https://yutocode.github.io/nihongo-app-support/privacy.html"
+        />
+      
+        {/* アカウント削除 */}
+        <RowButton
+          icon="🗑️"
+          label={
+            deletingAccount
+              ? t(
+                  "settings.sections.support.deletingAccount",
+                  "アカウント削除中…",
+                )
+              : t(
+                  "settings.sections.support.deleteAccount",
+                  "アカウントを削除する",
+                )
+          }
+          onClick={handleDeleteAccount}
+          disabled={deletingAccount}
         />
       </SettingSection>
 

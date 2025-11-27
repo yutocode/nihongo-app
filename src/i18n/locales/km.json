@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "ការកំណត់",
-    "subtitle": "គ្រប់គ្រងការកំណត់កម្មវិធី",
-    "sections": {
-      "account": {
-        "title": "គណនី",
-        "profile": "ប្រវត្តិរូប",
-        "password": "ពាក្យសម្ងាត់",
-        "export": "នាំចេញទិន្នន័យ"
-      },
-      "basic": {
-        "title": "ការកំណត់មូលដ្ឋាន",
-        "notifications": "ការជូនដំណឹង",
-        "notifications_desc": "ទទួលបានការរំលឹកសម្រាប់ការរៀន",
-        "theme": "ម៉ូដងងឹត",
-        "theme_desc": "ប្តូរទម្រង់របស់កម្មវិធី",
-        "language": "ការកំណត់ភាសា",
-        "language_desc": "ជ្រើសរើសភាសាសម្រាប់បង្ហាញ"
-      },
-      "premium": {
-        "title": "ព្រីមៀម",
-        "managePlan": "គ្រប់គ្រងផែនការ"
-      },
-      "support": {
-        "title": "ជំនួយ",
-        "help": "ជំនួយ & ការគាំទ្រ",
-        "contact": "ទាក់ទងមកយើង",
-        "terms": "លក្ខខណ្ឌប្រើប្រាស់",
-        "privacy": "គោលការណ៍ភាពឯកជន"
-      }
+  "title": "ការកំណត់",
+  "subtitle": "គ្រប់គ្រងការកំណត់កម្មវិធី",
+
+  "sections": {
+    "account": {
+      "title": "គណនី",
+      "profile": "ប្រវត្តិរូប",
+      "profileLocked": "ប្រវត្តិរូប (ឆាប់ៗនេះ)",
+      "password": "ពាក្យសម្ងាត់",
+      "export": "នាំចេញទិន្នន័យ"
     },
-    "version": "កំណែ",
-    "logout": "ចាកចេញ"
+
+    "basic": {
+      "title": "ការកំណត់មូលដ្ឋាន",
+      "notifications": "ការជូនដំណឹង",
+      "notifications_desc": "ទទួលការជូនដំណឹងរំលឹករៀន",
+      "theme": "ប្រធានបទ",
+      "theme_desc": "ប្ដូរទ្រង់ទ្រាយ",
+      "themeLight": "ចង្ក្រានភ្លឺ",
+      "themeDark": "ចង្ក្រានងងឹត",
+      "language": "ភាសា",
+      "language_desc": "ជ្រើសរើសភាសាការបង្ហាញ"
+    },
+
+    "premium": {
+      "title": "ពិសេស",
+      "managePlan": "គ្រប់គ្រងផែនការ"
+    },
+
+    "support": {
+      "title": "ការគាំទ្រ",
+      "help": "ជំនួយ",
+      "contact": "ទាក់ទង",
+      "terms": "លក្ខខណ្ឌប្រើប្រាស់",
+      "privacy": "គោលការណ៍ឯកជនភាព",
+      "deleteAccount": "លុបគណនី",
+      "deletingAccount": "កំពុងលុបគណនី…"
+    }
   },
+
+  "version": "កំណែ",
+  "logout": "ចេញ",
+  "loggingOut": "កំពុងចេញ…",
+
+  "notificationsNotSupported": "ឧបករណ៍នេះមិនគាំទ្រការជូនដំណឹងទេ។",
+  "notificationsDenied": "ការជូនដំណឹងត្រូវបានបដិសេធ។ អាចបើកតាមការកំណត់។",
+
+  "deleteAccountConfirm": "គណនីនិងទិន្នន័យរបស់អ្នកនឹងត្រូវលុបចោលអចិន្រ្តៃយ៍។ បន្តទេ?",
+  "deleteAccountRequiresLogin": "សូមចូលឡើងវិញ មុនពេលលុបដើម្បីសុវត្ថិភាព។",
+  "deleteAccountFailed": "លុបគណនីបរាជ័យ។ សូមសាកល្បងម្ដងទៀត។"
+},
 
   "nav": {
     "home": "ទំព័រដើម",

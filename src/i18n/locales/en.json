@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "Settings",
-    "subtitle": "Manage your app preferences",
-    "sections": {
-      "account": {
-        "title": "Account",
-        "profile": "Profile",
-        "password": "Password",
-        "export": "Export Data"
-      },
-      "basic": {
-        "title": "Basic Settings",
-        "notifications": "Notifications",
-        "notifications_desc": "Receive study reminders",
-        "theme": "Dark Mode",
-        "theme_desc": "Switch the app theme",
-        "language": "Language",
-        "language_desc": "Choose the display language"
-      },
-      "premium": {
-        "title": "Premium",
-        "managePlan": "Manage Plan"
-      },
-      "support": {
-        "title": "Support",
-        "help": "Help & Support",
-        "contact": "Contact Us",
-        "terms": "Terms of Use",
-        "privacy": "Privacy Policy"
-      }
+  "title": "Settings",
+  "subtitle": "Manage your app preferences",
+
+  "sections": {
+    "account": {
+      "title": "Account",
+      "profile": "Profile",
+      "profileLocked": "Profile (Coming Soon)",
+      "password": "Password",
+      "export": "Export Data"
     },
-    "version": "Version",
-    "logout": "Log Out"
+
+    "basic": {
+      "title": "Basic Settings",
+      "notifications": "Notifications",
+      "notifications_desc": "Receive study reminders",
+      "theme": "Theme",
+      "theme_desc": "Switch appearance theme",
+      "themeLight": "Light Mode",
+      "themeDark": "Dark Mode",
+      "language": "Language",
+      "language_desc": "Choose display language"
+    },
+
+    "premium": {
+      "title": "Premium",
+      "managePlan": "Manage Plan"
+    },
+
+    "support": {
+      "title": "Support",
+      "help": "Help & Support",
+      "contact": "Contact Us",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy",
+      "deleteAccount": "Delete Account",
+      "deletingAccount": "Deleting account…"
+    }
   },
+
+  "version": "Version",
+  "logout": "Log Out",
+  "loggingOut": "Logging out…",
+
+  "notificationsNotSupported": "This device does not support notifications.",
+  "notificationsDenied": "Notifications were denied. You can enable them in browser settings.",
+
+  "deleteAccountConfirm": "Your account and study data will be permanently deleted. Continue?",
+  "deleteAccountRequiresLogin": "For security, please log in again before deleting.",
+  "deleteAccountFailed": "Account deletion failed. Please try again later."
+},
 
   "nav": {
     "home": "Home",

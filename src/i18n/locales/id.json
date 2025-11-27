@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "Pengaturan",
-    "subtitle": "Atur preferensi aplikasi",
-    "sections": {
-      "account": {
-        "title": "Akun",
-        "profile": "Profil",
-        "password": "Kata sandi",
-        "export": "Ekspor data"
-      },
-      "basic": {
-        "title": "Pengaturan dasar",
-        "notifications": "Notifikasi",
-        "notifications_desc": "Terima pengingat belajar",
-        "theme": "Mode gelap",
-        "theme_desc": "Ubah tampilan tema",
-        "language": "Bahasa",
-        "language_desc": "Pilih bahasa tampilan aplikasi"
-      },
-      "premium": {
-        "title": "Premium",
-        "managePlan": "Kelola paket"
-      },
-      "support": {
-        "title": "Dukungan",
-        "help": "Bantuan & Dukungan",
-        "contact": "Hubungi kami",
-        "terms": "Syarat penggunaan",
-        "privacy": "Kebijakan privasi"
-      }
+  "title": "Pengaturan",
+  "subtitle": "Kelola preferensi aplikasi Anda",
+
+  "sections": {
+    "account": {
+      "title": "Akun",
+      "profile": "Profil",
+      "profileLocked": "Profil (Segera Hadir)",
+      "password": "Kata Sandi",
+      "export": "Ekspor Data"
     },
-    "version": "Versi",
-    "logout": "Keluar"
+
+    "basic": {
+      "title": "Pengaturan Dasar",
+      "notifications": "Notifikasi",
+      "notifications_desc": "Terima pengingat belajar",
+      "theme": "Tema",
+      "theme_desc": "Ganti tampilan tema",
+      "themeLight": "Mode Terang",
+      "themeDark": "Mode Gelap",
+      "language": "Bahasa",
+      "language_desc": "Pilih bahasa tampilan"
+    },
+
+    "premium": {
+      "title": "Premium",
+      "managePlan": "Kelola Paket"
+    },
+
+    "support": {
+      "title": "Dukungan",
+      "help": "Bantuan",
+      "contact": "Hubungi Kami",
+      "terms": "Syarat Penggunaan",
+      "privacy": "Kebijakan Privasi",
+      "deleteAccount": "Hapus Akun",
+      "deletingAccount": "Menghapus akun…"
+    }
   },
+
+  "version": "Versi",
+  "logout": "Keluar",
+  "loggingOut": "Sedang keluar…",
+
+  "notificationsNotSupported": "Perangkat ini tidak mendukung notifikasi.",
+  "notificationsDenied": "Notifikasi ditolak. Anda dapat mengaktifkannya di pengaturan browser.",
+
+  "deleteAccountConfirm": "Akun dan data belajar Anda akan dihapus permanen. Lanjutkan?",
+  "deleteAccountRequiresLogin": "Demi keamanan, silakan masuk kembali sebelum menghapus.",
+  "deleteAccountFailed": "Gagal menghapus akun. Coba lagi nanti."
+},
 
   "nav": {
     "home": "Beranda",

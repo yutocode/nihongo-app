@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "設定",
-    "subtitle": "アプリの設定を管理",
-    "sections": {
-      "account": {
-        "title": "アカウント",
-        "profile": "プロフィール",
-        "password": "パスワード",
-        "export": "データの書き出し"
-      },
-      "basic": {
-        "title": "基本設定",
-        "notifications": "通知",
-        "notifications_desc": "学習のリマインダーを受け取る",
-        "theme": "ダークモード",
-        "theme_desc": "見た目のテーマを切り替え",
-        "language": "言語設定",
-        "language_desc": "アプリの表示言語を選ぶ"
-      },
-      "premium": {
-        "title": "プレミアム",
-        "managePlan": "プランを管理"
-      },
-      "support": {
-        "title": "サポート",
-        "help": "ヘルプ・サポート",
-        "contact": "お問い合わせ",
-        "terms": "利用規約",
-        "privacy": "プライバシー"
-      }
+  "title": "設定",
+  "subtitle": "アプリの設定を管理",
+
+  "sections": {
+    "account": {
+      "title": "アカウント",
+      "profile": "プロフィール",
+      "profileLocked": "プロフィール（準備中）",
+      "password": "パスワード",
+      "export": "データの書き出し"
     },
-    "version": "バージョン",
-    "logout": "ログアウト"
+
+    "basic": {
+      "title": "基本設定",
+      "notifications": "通知",
+      "notifications_desc": "学習のリマインダーを受け取る",
+      "theme": "テーマ",
+      "theme_desc": "見た目のテーマを切り替え",
+      "themeLight": "ライトモード",
+      "themeDark": "ダークモード",
+      "language": "言語設定",
+      "language_desc": "アプリの表示言語を選ぶ"
+    },
+
+    "premium": {
+      "title": "プレミアム",
+      "managePlan": "プランを管理"
+    },
+
+    "support": {
+      "title": "サポート",
+      "help": "ヘルプ・サポート",
+      "contact": "お問い合わせ",
+      "terms": "利用規約",
+      "privacy": "プライバシー",
+      "deleteAccount": "アカウントを削除する",
+      "deletingAccount": "アカウント削除中…"
+    }
   },
+
+  "version": "バージョン",
+  "logout": "ログアウト",
+  "loggingOut": "ログアウト中…",
+
+  "notificationsNotSupported": "この端末は通知に対応していません。",
+  "notificationsDenied": "通知が許可されませんでした。ブラウザ設定から変更できます。",
+
+  "deleteAccountConfirm": "アカウントと学習データを完全に削除します。よろしいですか？",
+  "deleteAccountRequiresLogin": "セキュリティのため、もう一度ログインし直してから削除してください。",
+  "deleteAccountFailed": "アカウントを削除できませんでした。時間をおいて、もう一度お試しください。"
+},
 
   "nav": {
     "home": "ホーム",

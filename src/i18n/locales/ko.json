@@ -1,38 +1,56 @@
 {
   "settings": {
-    "title": "설정",
-    "subtitle": "앱 설정 관리",
-    "sections": {
-      "account": {
-        "title": "계정",
-        "profile": "프로필",
-        "password": "비밀번호",
-        "export": "데이터 내보내기"
-      },
-      "basic": {
-        "title": "기본 설정",
-        "notifications": "알림",
-        "notifications_desc": "학습 알림을 받아보기",
-        "theme": "다크 모드",
-        "theme_desc": "앱 테마 전환",
-        "language": "언어 설정",
-        "language_desc": "앱 표시 언어 선택"
-      },
-      "premium": {
-        "title": "프리미엄",
-        "managePlan": "플랜 관리"
-      },
-      "support": {
-        "title": "지원",
-        "help": "도움말・지원",
-        "contact": "문의하기",
-        "terms": "이용 약관",
-        "privacy": "개인정보 처리방침"
-      }
+  "title": "설정",
+  "subtitle": "앱 설정 관리",
+
+  "sections": {
+    "account": {
+      "title": "계정",
+      "profile": "프로필",
+      "profileLocked": "프로필 (준비 중)",
+      "password": "비밀번호",
+      "export": "데이터 내보내기"
     },
-    "version": "버전",
-    "logout": "로그아웃"
+
+    "basic": {
+      "title": "기본 설정",
+      "notifications": "알림",
+      "notifications_desc": "학습 알림 받기",
+      "theme": "테마",
+      "theme_desc": "테마 변경",
+      "themeLight": "라이트 모드",
+      "themeDark": "다크 모드",
+      "language": "언어 설정",
+      "language_desc": "표시 언어 선택"
+    },
+
+    "premium": {
+      "title": "프리미엄",
+      "managePlan": "플랜 관리"
+    },
+
+    "support": {
+      "title": "지원",
+      "help": "도움말",
+      "contact": "문의하기",
+      "terms": "이용 약관",
+      "privacy": "개인정보 처리방침",
+      "deleteAccount": "계정 삭제",
+      "deletingAccount": "계정 삭제 중…"
+    }
   },
+
+  "version": "버전",
+  "logout": "로그아웃",
+  "loggingOut": "로그아웃 중…",
+
+  "notificationsNotSupported": "이 기기는 알림을 지원하지 않습니다.",
+  "notificationsDenied": "알림이 거부되었습니다. 브라우저 설정에서 변경할 수 있습니다.",
+
+  "deleteAccountConfirm": "계정과 학습 데이터가 완전히 삭제됩니다. 계속하시겠습니까?",
+  "deleteAccountRequiresLogin": "보안을 위해 다시 로그인해주세요.",
+  "deleteAccountFailed": "계정을 삭제할 수 없습니다. 나중에 다시 시도하세요."
+},
 
   "nav": {
     "home": "홈",

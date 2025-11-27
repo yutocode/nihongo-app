@@ -1,4 +1,4 @@
-// src/pages/Terms.jsx
+// src/pages/legal/Terms.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
