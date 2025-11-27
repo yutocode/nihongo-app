@@ -29,20 +29,16 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* 横方向だけはみ出し防止。縦方向はブラウザに任せる */
   overflow-x: hidden;
 
-  /* iOSノッチ等のセーフエリア */
+  /* iOSノッチ等のセーフエリア（下は AppShell 側で処理するので入れない） */
   padding-left: max(0px, env(safe-area-inset-left));
   padding-right: max(0px, env(safe-area-inset-right));
   padding-top: max(0px, env(safe-area-inset-top));
-  padding-bottom: max(0px, env(safe-area-inset-bottom));
 }
 
 /* hidden属性の明示非表示（ローディング対策） */
-[hidden] {
-  display: none !important;
-}
+[hidden],
 .app-loading[hidden] {
   display: none !important;
 }
@@ -51,7 +47,6 @@ body {
 #root {
   min-height: 100dvh;
   min-height: calc(var(--vh, 1vh) * 100);
-  display: contents;
 }
 
 /* --------------------- Design Tokens -------------------- */
@@ -88,7 +83,7 @@ body {
   --ring: 0 0 0 3px rgba(255, 153, 0, 0.35);
 }
 
-/* OSがLightのときの自動切替（任意で .light クラスでも上書き可） */
+/* OSがLightのときの自動切替 */
 @media (prefers-color-scheme: light) {
   :root {
     --color-bg: #ffffff;
@@ -98,7 +93,7 @@ body {
   }
 }
 
-/* 手動トグル用（body等に .dark / .light を付与） */
+/* 手動トグル用 */
 .light {
   --color-bg: #ffffff;
   --color-text: #111318;
@@ -248,7 +243,7 @@ button:disabled,
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-/* セーフエリア込みの内側パディング */
+/* セーフエリア込みの内側パディング（必要な画面で使用） */
 .app-wrap {
   padding: clamp(12px, 3vw, 24px);
   padding-left: max(clamp(12px, 3vw, 24px), env(safe-area-inset-left));
@@ -258,9 +253,13 @@ button:disabled,
 }
 
 /* --------------------- Bottom Navigation ---------------- */
-/* そのまま <BottomNav/> と組み合わせ可能（React側クラス名に合わせてある） */
+/* <BottomNav/> 用の共通クラス。どんな画面でも常に固定 */
+:root {
+  --bn-height: 88px; /* Layout.css と合わせる */
+}
+
 .bn {
-  position: sticky; /* fixedでもOK。SPAならsticky推奨 */
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -270,10 +269,11 @@ button:disabled,
   padding-bottom: max(env(safe-area-inset-bottom), 0px);
   z-index: 50;
 }
+
 .bn-inner {
   width: 100%;
   max-width: 480px;
-  height: 88px;
+  height: var(--bn-height);
   margin: 0 auto;
   background: var(--color-bg);
   border-radius: var(--radius-card) var(--radius-card) 0 0;
@@ -283,6 +283,7 @@ button:disabled,
   grid-template-columns: repeat(5, 1fr);
   align-items: center;
 }
+
 .bn-tab {
   position: relative;
   height: 100%;
@@ -292,16 +293,20 @@ button:disabled,
   gap: 2px;
   text-decoration: none;
 }
+
 .bn-tab svg {
   width: 24px;
   height: 24px;
 }
+
 .bn-label {
   font: 400 12px/16px "Noto Sans JP", system-ui, sans-serif;
 }
+
 .bn-tab.is-active {
   color: var(--primary-600);
 }
+
 /* 44×44 のヒット領域 */
 .bn-hit {
   position: absolute;
@@ -311,6 +316,7 @@ button:disabled,
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* キーボードフォーカス */
 .bn-tab:focus-visible {
   outline: 2px solid var(--primary-600);
