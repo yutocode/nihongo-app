@@ -26,15 +26,15 @@ export default function Layout() {
       {/* 上部ヘッダー（認証系では非表示） */}
       {!hideChrome && <Header />}
 
-      {/* メインコンテンツ（Layout.css 側で下に BottomNav 分の余白を確保） */}
+      {/* メインコンテンツ
+          - Layout.css 側で BottomNav 分の下パディングを確保
+          - Footer も main 内に含めて「ナビの直上」に表示 */}
       <main className="app-content" role="main">
         <Outlet />
+        {!hideChrome && <Footer />}
       </main>
 
-      {/* 👇 フッターを先に描画して、その“上”に BottomNav がかぶさる形 */}
-      {!hideChrome && <Footer />}
-
-      {/* どの画面でも一番下に固定したいアンダーバー */}
+      {/* どの画面でも一番下に固定したいアンダーナビ */}
       {!hideChrome && <BottomNav />}
     </div>
   );
