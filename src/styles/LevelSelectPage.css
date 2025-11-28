@@ -1,67 +1,81 @@
 /* src/styles/LevelSelectPage.css */
 
+/* レベル選択ページ全体ラッパ
+   - 高さは Layout(.app-content) に任せるので 100vh は使わない
+   - 背景色はグローバルのトークンを優先しつつフォールバックを指定
+*/
 .lvl-wrap {
   position: relative;
-  min-height: 100vh;
-  background: #f5f9f8; /* 薄い背景 */
-  padding: 40px 20px;
-  font-family: "Segoe UI", sans-serif;
+  width: 100%;
+  background: var(--color-bg-page, var(--color-bg, #f5f9f8));
+  padding: var(--space-6, 24px) var(--space-4, 16px)
+    var(--space-6, 24px);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   text-align: center;
+  box-sizing: border-box;
+  overflow: hidden; /* 背景デコがはみ出さないように */
 }
 
 /* 背景の装飾（丸や模様） */
 .bg-decor {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at top left, #d1fae5 0%, transparent 70%),
-              radial-gradient(circle at bottom right, #bfdbfe 0%, transparent 70%);
-  opacity: 0.3;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.4) 0%, transparent 70%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.4) 0%, transparent 70%);
+  opacity: 0.35;
   pointer-events: none;
+  z-index: 0;
 }
 
+/* タイトル */
 .lvl-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--space-5, 20px);
   position: relative;
   z-index: 1;
-  color: #222;
+  color: var(--color-text, #222222);
 }
 
+/* レベルリスト */
 .lvl-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--space-3, 12px);
   align-items: center;
   position: relative;
   z-index: 1;
 }
 
+/* 各レベル項目 */
 .lvl-item {
   width: 100%;
-  max-width: 350px;
-  background: #fff;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  padding: 14px 18px;
+  max-width: 360px;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3, 12px);
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform var(--motion-fast, 160ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-sizing: border-box;
 }
 
 .lvl-item:hover {
-  border-color: #10b981;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-accent, #10b981);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.16);
+  transform: translateY(-1px);
 }
 
 .lvl-item.is-checked {
-  border-color: #10b981;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  border-color: var(--color-accent, #10b981);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
 }
 
 /* 本来のラジオは隠す */
@@ -69,6 +83,7 @@
   display: none;
 }
 
+/* カスタムラジオ */
 .radio {
   width: 20px;
   height: 20px;
@@ -77,10 +92,12 @@
   display: inline-block;
   position: relative;
   flex-shrink: 0;
+  box-sizing: border-box;
+  background: var(--color-surface, #ffffff);
 }
 
 .lvl-item.is-checked .radio {
-  border-color: #10b981;
+  border-color: var(--color-accent, #10b981);
 }
 
 .lvl-item.is-checked .radio::after {
@@ -90,13 +107,50 @@
   left: 50%;
   width: 10px;
   height: 10px;
-  background: #10b981;
+  background: var(--color-accent, #10b981);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
 
+/* ラベルテキスト */
 .text {
-  font-size: 18px;
-  color: #333;
+  font-size: 1rem;
+  color: var(--color-text, #333333);
   font-weight: 500;
+  text-align: left;
+}
+
+/* ダークテーマの微調整 */
+[data-theme="dark"] .lvl-wrap {
+  background: var(--color-bg, #020617);
+}
+
+[data-theme="dark"] .lvl-item {
+  background: var(--color-surface-dark, #020617);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+[data-theme="dark"] .lvl-title,
+[data-theme="dark"] .text {
+  color: var(--color-text, #e5e7eb);
+}
+
+[data-theme="dark"] .radio {
+  background: var(--color-surface-dark, #020617);
+  border-color: #64748b;
+}
+
+/* モバイル向け微調整 */
+@media (max-width: 480px) {
+  .lvl-wrap {
+    padding-inline: var(--space-3, 12px);
+  }
+
+  .lvl-title {
+    font-size: 1.3rem;
+  }
+
+  .text {
+    font-size: 0.95rem;
+  }
 }

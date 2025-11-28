@@ -1,119 +1,214 @@
-:root{
-  --teal:#35b4a6;          /* ヘッダー/CTAの色 */
-  --teal-dark:#2f997f;     /* セグメント右側 */
-  --bg:#f3f4f6;            /* ページ背景 */
-  --card:#ffffff;          /* カード背景 */
-  --text:#2b2b2b;          /* 見出しの文字 */
-  --muted:#9aa0a6;         /* サブ文字 */
-  --shadow:0 6px 16px rgba(0,0,0,.08);
+/* =========================
+   AlphabetUnitsPages.css 完成版
+   - アルファベットユニット一覧ページ専用
+   - 高さは Layout/app-content に任せる
+   - BottomNav とかぶらないように、下パディングは控えめ
+   ========================= */
+
+/* このページ専用のアクセントカラー（グローバルと被らない名前にしておく） */
+:root {
+  --alpha-teal: var(--color-alpha-teal, #35b4a6);
+  --alpha-teal-dark: var(--color-alpha-teal-dark, #2f997f);
+  --alpha-bg: var(--color-alpha-bg, #f3f4f6);
+  --alpha-card: var(--color-alpha-card, #ffffff);
+  --alpha-text-main: var(--color-alpha-text-main, #2b2b2b);
+  --alpha-text-muted: var(--color-alpha-text-muted, #9aa0a6);
+  --alpha-shadow: var(
+    --shadow-alpha,
+    0 6px 16px rgba(0, 0, 0, 0.08)
+  );
 }
 
-.alpha-page{
-  background: var(--bg);
-  min-height: 100vh;
-  padding: 12px 14px 80px;
+/* ページ全体のラッパー
+   高さは app-content に任せるので min-height は付けない */
+.alpha-page {
+  background: var(--alpha-bg);
+  color: var(--alpha-text-main);
+  padding: var(--space-3, 12px) var(--space-3, 14px) var(--space-5, 24px);
   box-sizing: border-box;
+  max-width: var(--layout-max-width, 1024px);
+  margin: 0 auto;
 }
 
-/* ヘッダー */
-.alpha-header{
-  display:flex;
+/* =========================
+   ヘッダー
+   ========================= */
+.alpha-header {
+  display: flex;
   justify-content: space-between;
-  align-items:center;
-  margin: 6px 4px 12px;
-}
-.alpha-header h1{
-  font-size: 20px;
-  color: #fff;
-  background: var(--teal);
-  padding: 6px 12px;
-  border-radius: 12px;
+  align-items: center;
+  margin: var(--space-1, 6px) var(--space-1, 4px) var(--space-3, 12px);
 }
 
-/* セグメント切替 */
-.segment{
-  background: var(--teal-dark);
-  border-radius: 999px;
-  padding: 3px;
-  display:flex;
-  gap: 4px;
+.alpha-header h1 {
+  font-size: var(--fs-lg, 20px);
+  color: var(--color-on-accent, #ffffff);
+  background: var(--alpha-teal);
+  padding: var(--space-1_5, 6px) var(--space-3, 12px);
+  border-radius: var(--radius-lg, 12px);
 }
-.seg-btn{
+
+/* =========================
+   セグメント（タブ切り替え）
+   ========================= */
+.segment {
+  background: var(--alpha-teal-dark);
+  border-radius: var(--radius-full, 999px);
+  padding: var(--space-0_5, 3px);
+  display: flex;
+  gap: var(--space-1, 4px);
+}
+
+.seg-btn {
   min-width: 66px;
-  padding: 8px 12px;
-  border:0;
-  border-radius: 999px;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border: 0;
+  border-radius: var(--radius-full, 999px);
   background: transparent;
   color: #e9fffb;
   font-weight: 600;
-  cursor:pointer;
-}
-.seg-btn.active{
-  background:#e7fbf7;
-  color: var(--teal-dark);
+  cursor: pointer;
+  font-size: var(--fs-sm, 13px);
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* ユニットカード */
-.unit-list{ display:flex; flex-direction:column; gap: 12px; }
-.unit-card{
-  background: var(--card);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 14px 16px;
-  display:flex;
+.seg-btn.active {
+  background: #e7fbf7;
+  color: var(--alpha-teal-dark);
+}
+
+/* =========================
+   ユニットカード一覧
+   ========================= */
+.unit-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  margin-top: var(--space-3, 12px);
+}
+
+.unit-card {
+  background: var(--alpha-card);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--alpha-shadow);
+  padding: var(--space-3_5, 14px) var(--space-4, 16px);
+  display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
 }
-.unit-card.locked{ opacity:.72; }
-.unit-card:active{ transform: translateY(1px); }
 
-.unit-left{ display:flex; flex-direction:column; gap: 6px; }
-.unit-title{
+.unit-card.locked {
+  opacity: 0.72;
+}
+
+.unit-card:active {
+  transform: translateY(1px);
+}
+
+/* 左側：テキスト */
+.unit-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1_5, 6px);
+}
+
+.unit-title {
   color: #7a7f85;
   font-weight: 700;
   margin-bottom: 2px;
-}
-.row{ font-size: 16px; letter-spacing: .08em; }
-.row.primary{ color: var(--text); }
-.row.secondary{ color: var(--muted); }
-
-.unit-right{ display:flex; align-items:center; }
-.unit-icon{ font-size: 20px; color:#b9c0c5; }
-
-.go-btn{
-  width: 38px; height: 38px;
-  display:grid; place-items:center;
-  background: var(--teal);
-  color:#fff; border-radius: 999px;
-  box-shadow: var(--shadow);
+  font-size: var(--fs-sm, 13px);
 }
 
-/* 大きい丸いCTA */
-.cta-wrap{
-  position: sticky; bottom: 68px; /* リスト中ほどに重なる感じ */
-  display:flex; justify-content:center;
-  margin-top: 10px; margin-bottom: 6px;
-}
-.cta-pill{
-  border:0; cursor:pointer;
-  background: var(--teal);
-  color:#fff; font-weight: 800; letter-spacing:.08em;
-  padding: 14px 22px;
-  border-radius: 999px;
-  box-shadow: var(--shadow);
+.row {
+  font-size: var(--fs-md, 16px);
+  letter-spacing: 0.08em;
 }
 
-/* 画面下広告のダミー */
-.ad-slot{
+.row.primary {
+  color: var(--alpha-text-main);
+}
+
+.row.secondary {
+  color: var(--alpha-text-muted);
+}
+
+/* 右側：アイコン＆ボタン */
+.unit-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.unit-icon {
+  font-size: 20px;
+  color: #b9c0c5;
+}
+
+/* 丸い GO ボタン */
+.go-btn {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: var(--alpha-teal);
+  color: #ffffff;
+  border-radius: var(--radius-full, 999px);
+  box-shadow: var(--alpha-shadow);
+  border: none;
+  cursor: pointer;
+}
+
+/* =========================
+   下部 CTA & 広告ダミー
+   ========================= */
+
+/* リストの中ほどでふわっと止まる感じに */
+.cta-wrap {
+  position: sticky;
+  bottom: calc(
+    var(--bn-height, 88px) + env(safe-area-inset-bottom, 0px) +
+      var(--space-2, 8px)
+  );
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2_5, 10px);
+  margin-bottom: var(--space-1_5, 6px);
+}
+
+.cta-pill {
+  border: 0;
+  cursor: pointer;
+  background: var(--alpha-teal);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: var(--space-3_5, 14px) var(--space-5_5, 22px);
+  border-radius: var(--radius-full, 999px);
+  box-shadow: var(--alpha-shadow);
+}
+
+/* 画面下の広告ダミー（必要なら表示） */
+.ad-slot {
   height: 64px;
-  background:#e8eaed;
-  border-radius: 12px;
-  margin-top: 8px;
+  background: #e8eaed;
+  border-radius: var(--radius-lg, 12px);
+  margin-top: var(--space-2, 8px);
 }
 
-/* スマホ最適化（基本モバイル前提） */
-@media (min-width: 768px){
-  .alpha-page{ padding: 16px 24px 120px; }
-  .row{ font-size: 18px; }
-  .unit-card{ padding: 16px 20px; }
+/* =========================
+   レスポンシブ（タブレット以上）
+   ========================= */
+@media (min-width: 768px) {
+  .alpha-page {
+    padding: var(--space-4, 16px) var(--space-5, 24px)
+      var(--space-6, 32px);
+  }
+
+  .row {
+    font-size: var(--fs-lg, 18px);
+  }
+
+  .unit-card {
+    padding: var(--space-4, 16px) var(--space-5, 20px);
+  }
 }

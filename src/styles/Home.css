@@ -4,18 +4,23 @@
    ========================= */
 
 .home-wrap {
+  /* 上: セーフエリア込みの余白 */
   padding: calc(20px + env(safe-area-inset-top)) 20px 20px;
   padding-top: max(28px, calc(20px + env(safe-area-inset-top)));
+
   max-width: 1100px;
   margin: 0 auto;
-  min-height: 100vh;
   box-sizing: border-box;
   overscroll-behavior-y: contain;
 
-  --bottom-nav-h: 64px;
-  padding-bottom: calc(
-    20px + env(safe-area-inset-bottom) + var(--bottom-nav-h)
-  );
+  /* ⛔ ここは削除：
+     min-height: 100vh;
+     --bottom-nav-h: 64px;
+     padding-bottom: calc(20px + env(safe-area-inset-bottom) + var(--bottom-nav-h));
+  */
+
+  /* 下は「ちょっとだけ」余白をつけたいなら追加してOK */
+  padding-bottom: 24px;
 
   background: var(--bg);
   color: var(--text);

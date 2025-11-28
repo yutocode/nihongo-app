@@ -1,18 +1,22 @@
+/* =========================
+   StoryPlayer.css 完成版
+   - 画面の高さは Layout 側に任せる
+   - BottomNav 用の余白は .app-content に任せる
+   ========================= */
+
 /* StoryPlayer 全体のラッパ */
 .story-wrap {
-  background: #0b0c0d;       /* 背景は黒 */
-  min-height: 100vh;
+  background: var(--color-reader-bg, #0b0c0d); /* ダーク背景（トークン優先） */
   display: flex;
   flex-direction: column;
-  padding-bottom: 120px;     /* 下の操作バー分の余白 */
   box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: var(--space-3, 12px) var(--space-4, 16px) var(--space-5, 20px);
 }
 
-/* 上部ヘッダー（ReaderHeaderが入る） */
+/* 上部ヘッダー（ReaderHeader が入る） */
 .story-header {
-  background: #0b0c0d;
-  padding: 8px 12px;
+  background: var(--color-reader-bg, #0b0c0d);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
   display: flex;
   align-items: center;
 }
@@ -24,7 +28,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: var(--space-4, 16px);
 }
 
 /* ページ番号 */
@@ -32,20 +36,28 @@
   text-align: center;
   font-size: 16px;
   font-weight: 600;
-  color: #e9f0ee;
-  margin-top: 12px;
-  margin-bottom: 20px;
+  color: var(--color-reader-pager, #e9f0ee);
+  margin-top: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 20px);
 }
 
-/* ふりがな/翻訳トグル（必要なら表示） */
+/* ふりがな / 翻訳トグル */
 .toggles {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin: 10px 0;
-  color: #cfd8dc;
+  gap: var(--space-3, 16px);
+  margin: var(--space-3, 10px) 0;
+  color: var(--color-reader-toggle, #cfd8dc);
   font-size: 14px;
 }
+
 .toggles input {
   margin-right: 4px;
+}
+
+/* 画面がすごく狭いときの微調整（任意） */
+@media (max-width: 360px) {
+  .story-wrap {
+    padding-inline: var(--space-3, 12px);
+  }
 }
