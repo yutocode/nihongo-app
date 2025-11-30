@@ -6,6 +6,7 @@ import "../styles/WordQuiz.css";
 
 import useMCQQuiz from "@/utils/useMCQQuiz";
 import MCQQuizShell from "@/components/quiz/MCQQuizShell";
+import WordProgressBar from "@/components/WordProgressBar.jsx";
 
 // ===== データ（各レベル）=====
 import { n1WordSets } from "@/data/wordquiz/n1";
@@ -33,6 +34,7 @@ function flattenFromParts(wordSetsObj) {
   for (const [partKey, part] of Object.entries(wordSetsObj)) {
     if (!part) continue;
 
+    // そのまま配列
     if (Array.isArray(part)) {
       for (const w of part) {
         if (!w || typeof w !== "object") continue;
@@ -40,53 +42,95 @@ function flattenFromParts(wordSetsObj) {
       }
       continue;
     }
+
+    // { LessonX: [...] } 形式
     if (typeof part === "object") {
       for (const [k, list] of Object.entries(part)) {
         if (!/^Lesson\d+$/i.test(k) || !Array.isArray(list)) continue;
         for (const w of list) {
           if (!w || typeof w !== "object") continue;
-          out.push({ ...w, _partKey: partKey, _lessonKey: k, id: Number(w.id) });
+          out.push({
+            ...w,
+            _partKey: partKey,
+            _lessonKey: k,
+            id: Number(w.id),
+          });
         }
       }
     }
   }
-  return out.filter(w => Number.isFinite(w.id)).sort((a, b) => a.id - b.id);
+
+  return out
+    .filter((w) => Number.isFinite(w.id))
+    .sort((a, b) => a.id - b.id);
 }
 
 // :lesson を解釈（pos/num/rand/all/自由語）
 function parseKey(raw) {
   const s = String(raw || "");
+
+  // pos:名詞:1-50[:offset]
   {
     const m = s.match(/^pos:([^:]+)(?::(\d+)-(\d+))?(?::(\d+))?$/i);
-    if (m) return { kind: "pos", pos: m[1], from: m[2] ? +m[2] : null, to: m[3] ? +m[3] : null, offset: m[4] ? +m[4] : 0 };
+    if (m) {
+      return {
+        kind: "pos",
+        pos: m[1],
+        from: m[2] ? +m[2] : null,
+        to: m[3] ? +m[3] : null,
+        offset: m[4] ? +m[4] : 0,
+      };
+    }
   }
+
+  // num:1-100
   {
     const m = s.match(/^num:(\d+)-(\d+)$/i);
     if (m) return { kind: "num", from: +m[1], to: +m[2] };
   }
+
+  // rand:all
   if (s === "rand:all") return { kind: "rand", all: true };
+
+  // rand:1-300
   {
     const m = s.match(/^rand:(\d+)-(\d+)$/i);
     if (m) return { kind: "rand", from: +m[1], to: +m[2] };
   }
+
+  // all
   if (s.toLowerCase() === "all") return { kind: "all" };
+
+  // それ以外はテキスト検索
   return { kind: "text", q: s };
 }
 
 // 品詞ゆる判定（partKey/posに対応）
-const pk = x => String(x?._partKey || "").toLowerCase();
-const isVerbLike  = x => /verbs?/.test(pk(x))   || /動詞/.test(String(x?.pos||""));
-const isNounLike  = x => /nouns?/.test(pk(x))   || /名詞/.test(String(x?.pos||""));
-const isAdjILike  = x => /iadjectives?/.test(pk(x)) || /い形|形容詞/.test(String(x?.pos||""));
-const isAdjNaLike = x => /naadjectives?/.test(pk(x))|| /な形|形容動詞/.test(String(x?.pos||""));
-const isAdvLike   = x => /adverbs?/.test(pk(x))  || /副詞/.test(String(x?.pos||""));
+const pk = (x) => String(x?._partKey || "").toLowerCase();
+const isVerbLike = (x) =>
+  /verbs?/.test(pk(x)) || /動詞/.test(String(x?.pos || ""));
+const isNounLike = (x) =>
+  /nouns?/.test(pk(x)) || /名詞/.test(String(x?.pos || ""));
+const isAdjILike = (x) =>
+  /iadjectives?/.test(pk(x)) || /い形|形容詞/.test(String(x?.pos || ""));
+const isAdjNaLike = (x) =>
+  /naadjectives?/.test(pk(x)) || /な形|形容動詞/.test(String(x?.pos || ""));
+const isAdvLike = (x) =>
+  /adverbs?/.test(pk(x)) || /副詞/.test(String(x?.pos || ""));
 
 // データ → MCQ形式
 function toMCQItems(sourceItems) {
   return sourceItems.map((it, i) => {
-    if (it?.question_ja && Array.isArray(it?.choices_ja) && Number.isFinite(it?.correct)) {
+    if (
+      it?.question_ja &&
+      Array.isArray(it?.choices_ja) &&
+      Number.isFinite(it?.correct)
+    ) {
       const choices = it.choices_ja.map(String);
-      const ansIdx = Math.max(0, Math.min(choices.length - 1, Number(it.correct)));
+      const ansIdx = Math.max(
+        0,
+        Math.min(choices.length - 1, Number(it.correct)),
+      );
       return {
         id: it.id ?? i,
         question: String(it.question_ja), // HTML（<ruby>, <u> 等）OK
@@ -95,6 +139,7 @@ function toMCQItems(sourceItems) {
         payload: it,
       };
     }
+
     const dump = JSON.stringify(it).slice(0, 40);
     return {
       id: it.id ?? i,
@@ -118,8 +163,11 @@ export default function WordQuizPage() {
   const sets = WORDSETS_BY_LEVEL[normLevel] || {};
 
   const decoded = useMemo(() => {
-    try { return decodeURIComponent(String(rawLesson || "all")); }
-    catch { return String(rawLesson || "all"); }
+    try {
+      return decodeURIComponent(String(rawLesson || "all"));
+    } catch {
+      return String(rawLesson || "all");
+    }
   }, [rawLesson]);
 
   const key = useMemo(() => parseKey(decoded), [decoded]);
@@ -135,33 +183,44 @@ export default function WordQuizPage() {
 
       case "num": {
         const { from, to } = key;
-        return all.filter(w => w.id >= from && w.id <= to);
+        return all.filter((w) => w.id >= from && w.id <= to);
       }
 
       case "rand": {
         return key.all
           ? all
-          : all.filter(w => w.id >= (key.from || -Infinity) && w.id <= (key.to || Infinity));
+          : all.filter(
+              (w) =>
+                w.id >= (key.from || -Infinity) &&
+                w.id <= (key.to || Infinity),
+            );
       }
 
       case "pos": {
         const { pos, from, to, offset } = key;
         let arr = all;
+
         if (pos.includes("動詞")) arr = arr.filter(isVerbLike);
         else if (pos.includes("名詞")) arr = arr.filter(isNounLike);
         else if (pos.includes("い形")) arr = arr.filter(isAdjILike);
         else if (pos.includes("な形")) arr = arr.filter(isAdjNaLike);
         else if (pos.includes("副詞")) arr = arr.filter(isAdvLike);
-        if (Number.isFinite(from) && Number.isFinite(to)) arr = arr.filter(w => w.id >= from && w.id <= to);
-        if (Number.isFinite(offset) && offset > 0) arr = arr.slice(offset);
+
+        if (Number.isFinite(from) && Number.isFinite(to)) {
+          arr = arr.filter((w) => w.id >= from && w.id <= to);
+        }
+        if (Number.isFinite(offset) && offset > 0) {
+          arr = arr.slice(offset);
+        }
         return arr;
       }
 
       case "text": {
         const q = key.q.toLowerCase();
-        return all.filter(w =>
-          String(w._partKey || "").toLowerCase().includes(q) ||
-          String(w._lessonKey || "").toLowerCase().includes(q)
+        return all.filter(
+          (w) =>
+            String(w._partKey || "").toLowerCase().includes(q) ||
+            String(w._lessonKey || "").toLowerCase().includes(q),
         );
       }
 
@@ -184,7 +243,9 @@ export default function WordQuizPage() {
         <p className="counter">0 / 0</p>
         <div className="question">該当データが見つかりませんでした。</div>
         <div className="wq-actions">
-          <button className="result-back" onClick={() => navigate(-1)}>レッスン一覧へ戻る</button>
+          <button className="result-back" onClick={() => navigate(-1)}>
+            レッスン一覧へ戻る
+          </button>
         </div>
       </div>
     );
@@ -197,29 +258,38 @@ export default function WordQuizPage() {
   });
 
   return (
-    <MCQQuizShell
-      title={`${t("wordquiz.title", { defaultValue: "単語クイズ" })}（${level.toUpperCase()} / ${decoded}）`}
-      questions={quiz.questions}
-      current={quiz.current}
-      index={quiz.index}
-      total={quiz.total}
-      score={quiz.score}
-      selected={quiz.selected}
-      judge={quiz.judge}
-      finished={quiz.finished}
-      onPick={quiz.pick}
-      onRestart={quiz.restart}
-      onBack={quiz.backOne}
-      onExit={() => navigate(`/word-quiz/${normLevel}`)}
-      renderQuestion={(q) => (
-        // HTML（<u>, <ruby> など）をそのまま表示
-        <span
-          className="jp"
-          style={{ fontSize: 22 }}
-          dangerouslySetInnerHTML={{ __html: String(q?.question || "") }}
-        />
-      )}
-      numberLabels={[]}
-    />
+    <div className="wq-page">
+      {/* ★ 単語帳と同じプログレスバー */}
+      <div className="wq-progress">
+        <WordProgressBar currentIndex={quiz.index} total={quiz.total} />
+      </div>
+
+      <MCQQuizShell
+        title={`${t("wordquiz.title", {
+          defaultValue: "単語クイズ",
+        })}（${level.toUpperCase()} / ${decoded}）`}
+        questions={quiz.questions}
+        current={quiz.current}
+        index={quiz.index}
+        total={quiz.total}
+        score={quiz.score}
+        selected={quiz.selected}
+        judge={quiz.judge}
+        finished={quiz.finished}
+        onPick={quiz.pick}
+        onRestart={quiz.restart}
+        onBack={quiz.backOne}
+        onExit={() => navigate(`/word-quiz/${normLevel}`)}
+        renderQuestion={(q) => (
+          // HTML（<u>, <ruby> など）をそのまま表示
+          <span
+            className="jp"
+            style={{ fontSize: 22 }}
+            dangerouslySetInnerHTML={{ __html: String(q?.question || "") }}
+          />
+        )}
+        numberLabels={[]}
+      />
+    </div>
   );
 }

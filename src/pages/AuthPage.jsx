@@ -148,9 +148,22 @@ const AuthPage = () => {
 
   const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
 
-  // 既にログインしていたら /home へ（Zustand の user を信用）
+  // 既にログインしていたら /home or /onboarding へ
+  // needsOnboarding が "1" のときだけオンボーディングに飛ばす
   useEffect(() => {
-    if (userInStore) {
+    if (!userInStore) return;
+
+    let needsOnboarding = false;
+    try {
+      needsOnboarding =
+        window.localStorage.getItem("needsOnboarding") === "1";
+    } catch (e) {
+      console.warn("needsOnboarding 読み込み失敗:", e);
+    }
+
+    if (needsOnboarding) {
+      navigate("/onboarding", { replace: true });
+    } else {
       navigate("/home", { replace: true });
     }
   }, [userInStore, navigate]);
@@ -219,6 +232,13 @@ const AuthPage = () => {
         providerId: "password",
       });
 
+      // 既存ユーザーのログインなのでオンボーディングは不要
+      try {
+        window.localStorage.removeItem("needsOnboarding");
+      } catch (e) {
+        console.warn("needsOnboarding 削除失敗:", e);
+      }
+
       navigate("/home", { replace: true });
     } catch (err) {
       console.log("[REST LOGIN ERROR]", err?.code, err?.message);
@@ -278,7 +298,14 @@ const AuthPage = () => {
         providerId: "password",
       });
 
-      navigate("/home", { replace: true });
+      // 新規アカウント作成時だけオンボーディングを強制
+      try {
+        window.localStorage.setItem("needsOnboarding", "1");
+      } catch (e) {
+        console.warn("needsOnboarding 保存失敗:", e);
+      }
+
+      navigate("/onboarding", { replace: true });
     } catch (err) {
       console.log("[REST REGISTER ERROR]", err?.code, err?.message);
 
@@ -318,6 +345,12 @@ const AuthPage = () => {
 
   const continueAsGuest = () => {
     console.log("[GUEST] continue as guest");
+    try {
+      // ゲストのときも念のためフラグをクリア
+      window.localStorage.removeItem("needsOnboarding");
+    } catch (e) {
+      console.warn("needsOnboarding 削除失敗:", e);
+    }
     navigate("/home", { replace: true });
   };
 

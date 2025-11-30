@@ -1,0 +1,511 @@
+/* src/styles/Onboarding.css */
+/* =========================================
+   Onboarding — Duolingo風 5ステップフロー
+   ========================================= */
+
+.onb-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-6, 24px);
+  background: radial-gradient(
+    circle at top,
+    var(--color-onb-bg-highlight, #1b2140) 0%,
+    var(--color-onb-bg, #050919) 55%,
+    var(--color-onb-bg-deep, #02030c) 100%
+  );
+  color: var(--color-onb-text, #f7f9ff);
+}
+
+.onb-shell {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  justify-content: center;
+}
+
+/* “デバイス枠”部分 */
+.onb-device {
+  width: 100%;
+  max-width: 360px;
+  border-radius: var(--radius-3xl, 32px);
+  padding: var(--space-4, 16px);
+  background: linear-gradient(
+    145deg,
+    var(--color-onb-device-top, #111833),
+    var(--color-onb-device-bottom, #050818)
+  );
+  box-shadow: var(--shadow-onb-device, 0 24px 60px rgba(0, 0, 0, 0.65));
+  display: flex;
+  flex-direction: column;
+  /* 端末っぽく上下に余裕を持たせる */
+  min-height: 640px;
+  gap: 0;
+  position: relative;
+  overflow: hidden; /* ← 中身のスクロールを onb-content に限定 */
+}
+
+
+/* notch（今回は非表示） */
+.onb-notch {
+  display: none;
+}
+
+/* 上部のプログレスバー */
+.onb-progress {
+  height: 8px;
+  margin: var(--space-4, 16px) var(--space-4, 16px) 0;
+  border-radius: var(--radius-full, 999px);
+  background: var(--color-onb-progress-track, rgba(255, 255, 255, 0.06));
+  overflow: hidden;
+}
+
+.onb-progress__bar {
+  height: 100%;
+  width: var(--onb-progress, 20%);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-onb-progress, #3df58c),
+    var(--color-onb-progress2, #26ff6a)
+  );
+  transition: width var(--motion-medium, 220ms ease-out);
+}
+
+/* コンテンツ本体 */
+.onb-content {
+  flex: 1;
+  padding: var(--space-6, 24px) var(--space-4, 16px) var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+  overflow-y: auto; /* ← ここだけスクロールさせる */
+}
+
+
+.onb-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.onb-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.onb-title {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.onb-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.78;
+}
+
+/* オプションリスト */
+
+.onb-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.onb-options--stack {
+  flex-direction: column;
+}
+
+.onb-options--grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.onb-options--grid3 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: var(--space-3, 12px);
+}
+
+/* カード本体（クリックアニメーション付き） */
+
+.onb-option {
+  border-radius: var(--radius-2xl, 24px);
+  background: radial-gradient(
+    circle at top left,
+    var(--color-onb-card-highlight, rgba(255, 255, 255, 0.06)),
+    var(--color-onb-card, rgba(9, 16, 42, 0.95))
+  );
+  border: 1px solid var(--color-onb-card-border, rgba(255, 255, 255, 0.08));
+  padding: var(--space-3, 12px) var(--space-3, 12px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  outline: none;
+  box-shadow: var(--shadow-onb-card, 0 10px 28px rgba(0, 0, 0, 0.4));
+  transform: translateY(0);
+  transition:
+    transform var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    box-shadow var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    background var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    border-color var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.onb-option--level {
+  min-height: 64px;
+}
+
+/* クリック時の“ギュッ”っと縮むアニメーション */
+.onb-option:active {
+  transform: scale(0.96);
+  box-shadow: var(
+    --shadow-onb-card-pressed,
+    0 6px 18px rgba(0, 0, 0, 0.55)
+  );
+}
+
+.onb-option--active {
+  background: radial-gradient(
+    circle at top left,
+    var(--color-onb-card-active-highlight, rgba(46, 255, 146, 0.25)),
+    var(--color-onb-card-active, rgba(9, 38, 32, 0.98))
+  );
+  border-color: var(--color-onb-card-active-border, #3df58c);
+  transform: translateY(-1px);
+  box-shadow: var(
+    --shadow-onb-card-active,
+    0 18px 36px rgba(0, 0, 0, 0.7)
+  );
+}
+
+/* アイコン部分 */
+.onb-option__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-xl, 20px);
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.14),
+    rgba(6, 12, 35, 0.98)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* テキスト部分 */
+.onb-option__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.onb-option__label {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.onb-option__desc {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+/* チェックマーク（フェードイン） */
+.onb-option__check {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full, 999px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--motion-medium, 220ms ease-out),
+    transform var(--motion-medium, 220ms ease-out),
+    background var(--motion-medium, 220ms ease-out),
+    border-color var(--motion-medium, 220ms ease-out);
+}
+
+.onb-option__check--visible {
+  opacity: 1;
+  transform: scale(1);
+  background: var(--color-onb-check-bg, #2df573);
+  border-color: transparent;
+}
+
+/* Recommended チップ */
+.onb-chip {
+  padding: 2px 8px;
+  border-radius: var(--radius-full, 999px);
+  background: var(--color-onb-chip-bg, #1bff8a);
+  color: var(--color-onb-chip-text, #04100b);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* 下部メモ */
+.onb-note {
+  margin-top: var(--space-2, 8px);
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* メインのContinueボタン */
+
+.onb-primary {
+  padding: 0 var(--space-3, 12px);
+  padding-bottom: var(--space-3, 12px);
+}
+
+.onb-primary-btn {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-2xl, 24px);
+  padding: var(--space-3, 12px);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-onb-primary-text, #04100b);
+  background: var(--color-onb-primary-bg, #3df58c);
+  box-shadow: var(--shadow-onb-primary, 0 18px 36px rgba(0, 0, 0, 0.7));
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    box-shadow var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    filter var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.onb-primary-btn:active {
+  transform: scale(0.97);
+  box-shadow: var(
+    --shadow-onb-primary-pressed,
+    0 12px 24px rgba(0, 0, 0, 0.7)
+  );
+  filter: brightness(0.96);
+}
+
+/* 色バリエーション（ステップごと） */
+.onb-primary-btn--green {
+  background: linear-gradient(135deg, #3df58c, #1fca60);
+}
+
+.onb-primary-btn--purple {
+  background: linear-gradient(135deg, #f268ff, #b43cff);
+  color: #fff;
+}
+
+.onb-primary-btn--blue {
+  background: linear-gradient(135deg, #3aa8ff, #286bff);
+  color: #fff;
+}
+
+.onb-primary-btn--orange {
+  background: linear-gradient(135deg, #ffb84c, #ff7a1f);
+  color: #2a1400;
+}
+
+.onb-primary-btn--pink {
+  background: linear-gradient(135deg, #ff7ce3, #ff48a5);
+  color: #fff;
+}
+
+/* 下部フッター */
+
+.onb-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-3, 12px);
+  padding-bottom: var(--space-2, 8px);
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.onb-footer-btn {
+  min-width: 80px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  font: inherit;
+  cursor: pointer;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  border-radius: var(--radius-full, 999px);
+  transition: background var(--motion-fast, 160ms ease-out);
+}
+
+.onb-footer-btn--ghost {
+  opacity: 0.7;
+}
+
+.onb-footer-btn[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.onb-footer-btn:not([disabled]):active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.onb-footer-page {
+  opacity: 0.7;
+}
+
+/* Step5: time card + slider */
+
+.onb-time-card {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2, 8px);
+}
+
+.onb-time-card__circle {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius-full, 999px);
+  background: radial-gradient(circle at top, #ff7ae0, #7c1f9f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+}
+
+.onb-time-card__emoji {
+  font-size: 1.6rem;
+}
+
+.onb-time-card__time {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.onb-time-card__label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.onb-slider-block {
+  margin-top: var(--space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+/* range スライダー */
+.onb-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  outline: none;
+}
+
+.onb-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff7ce3;
+  box-shadow: 0 0 0 4px rgba(255, 124, 227, 0.35);
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    box-shadow var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.onb-slider:active::-webkit-slider-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 6px rgba(255, 124, 227, 0.5);
+}
+
+.onb-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff7ce3;
+  border: none;
+  box-shadow: 0 0 0 4px rgba(255, 124, 227, 0.35);
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1)),
+    box-shadow var(--motion-fast, 160ms cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+.onb-slider:active::-moz-range-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 6px rgba(255, 124, 227, 0.5);
+}
+
+
+.onb-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.onb-slider-label--active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* 通知カード */
+
+.onb-reminder {
+  margin-top: var(--space-4, 16px);
+  border-radius: var(--radius-2xl, 24px);
+  padding: var(--space-3, 12px);
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.12),
+    rgba(7, 11, 32, 0.98)
+  );
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.onb-reminder__icon {
+  font-size: 1.3rem;
+}
+
+.onb-reminder__text {
+  font-size: 0.86rem;
+  opacity: 0.9;
+}
+
+/* モバイル対応 */
+
+@media (max-width: 414px) {
+  .onb-device {
+    max-width: 100%;
+    border-radius: var(--radius-2xl, 24px);
+  }
+
+  .onb-content {
+    padding-inline: var(--space-3, 12px);
+  }
+
+  .onb-options--grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

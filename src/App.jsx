@@ -42,6 +42,9 @@ import RankingPage from "./pages/RankingPage";
 import HelpSupportPage from "./pages/HelpSupportPage";
 import ContactPage from "./pages/ContactPage";
 
+/* onboarding */
+import Onboarding from "./pages/Onboarding";
+
 /* alphabet */
 import AlphabetUnitsPage from "./pages/AlphabetUnitsPage";
 import AlphabetUnitLessonPage from "./pages/AlphabetUnitLessonPage";
@@ -90,7 +93,7 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* ====== ゲストモード ログインなしでも利用可能） ====== */
+/* ====== ゲストモード（ログインなしでも利用可能） ====== */
 const GUEST_MODE = true;
 
 /* ========= helpers ========= */
@@ -162,6 +165,9 @@ const App = () => (
         <Route path="/" element={<AuthPage />} />
         <Route path="/auth" element={<AuthPage />} />
 
+        {/* onboarding */}
+        <Route path="/onboarding" element={<Onboarding />} />
+
         {/* Apple サインインのリダイレクト受け取り用 */}
         <Route path="/callback" element={<AppleCallback />} />
 
@@ -205,7 +211,8 @@ const App = () => (
           <Route path="/level" element={<LevelSelectPage />} />
           <Route path="/levels" element={<LevelSelectPage />} />
           <Route path="/lessons/:level" element={<LessonSelectPage />} />
-          <Route path="/words/:level/:lesson" element={<WordPage />} />
+          {/* 単語カードページ: /browse/:level/:lesson に統一 */}
+          <Route path="/browse/:level/:lesson" element={<WordPage />} />
 
           {/* browse block */}
           <Route
@@ -360,6 +367,7 @@ const AppInitializer = () => {
     "/legal/terms",
     "/legal/privacy",
     "/callback",
+    "/onboarding",
   ];
 
   const PRIVATE_PREFIXES = [
@@ -421,9 +429,26 @@ const AppInitializer = () => {
           console.warn("daily restore failed:", e);
         }
 
-        // 認証後に /auth 系にいたらホームへ
+        // 🔽 ここで「新規作成直後かどうか」のフラグを確認する
+        let forceOnboarding = false;
+        try {
+          const flag = window.localStorage.getItem("needsOnboarding");
+          if (flag === "1") {
+            forceOnboarding = true;
+            // 1回だけ使うフラグなので消しておく
+            window.localStorage.removeItem("needsOnboarding");
+          }
+        } catch (e) {
+          console.warn("needsOnboarding 読み込み失敗:", e);
+        }
+
+        // 認証後に public なURLにいた場合 → 新規作成なら /onboarding、そうでなければ /home
         if (PUBLIC_PATHS.includes(path)) {
-          navigateOnce("/home");
+          if (forceOnboarding) {
+            navigateOnce("/onboarding");
+          } else {
+            navigateOnce("/home");
+          }
         }
       } else {
         clearUser();

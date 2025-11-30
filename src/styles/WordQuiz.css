@@ -1,127 +1,319 @@
-
-/* ============================================================
-   結果画面：目にやさしい学習トーン（中明度・低彩度・十分な行間）
-   - ダーク/ライト自動対応（prefers-color-scheme）
-   - ブルーライト強めの色を避け、すこし暖色寄りグレイ
-   ============================================================ */
-
-/* 基本トークン */
 /* ============================
-   WordCard.css（テーマ統一版）
+   WordCard.css  完成版
+   - 単語カード本体
+   - 上部 ProgressBar
+   - 下部 Challenge ボタン
    ============================ */
 
-/* ページ専用トークンをグローバルに接続 */
-:root {
-  --wc-bg: var(--bg);
-  --wc-card: var(--surface);
-  --wc-border: var(--border);
-  --wc-text: var(--text);
-  --wc-muted: var(--text-muted);
-  --wc-shadow: var(--shadow);
-
-  --wc-accent: var(--accent); /* 例：発音ボタン/プライマリ */
-  --wc-info: var(--info);     /* 例：ふりがな見出し等 */
-  --wc-danger: var(--danger); /* お気に入り削除や誤りUIに使うなら */
-}
-
-/* カード本体 */
-.wordcard {
-  background: var(--wc-card);
-  color: var(--wc-text);
-  border: 1px solid var(--wc-border);
+/* カード全体 */
+.word-card {
+  width: min(92vw, 360px);
+  margin: 20px auto;
+  padding: 18px 16px 36px; /* 下を少し広めにして Challenge の影を逃がす */
+  background: var(--color-surface-card, #f9f9f9);
+  color: var(--color-text-primary, #000);
+  border: 2px solid #d9b45e;
   border-radius: 14px;
-  box-shadow: var(--wc-shadow);
-  padding: 16px 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-/* ヘッダー（品詞・レベル等） */
-.wordcard__meta {
-  display: flex; gap: 10px; align-items: center; margin-bottom: 8px;
-  color: var(--wc-muted);                 /* opacityは使わない */
-  font-size: .92rem; line-height: 1.5;
+/* ============ Progress 行 ============ */
+/* カード上部の ProgressBar ラッパー */
+.wc-progress-row {
+  margin-bottom: 10px;
 }
-.wordcard__tag {
-  border: 1px solid var(--wc-border);
+
+/* ============ ヘッダー（詳しく / 品詞+番号 / 追加） ============ */
+
+.wc-head {
+  position: relative;
+  height: 36px;
+  margin-bottom: 8px;
+}
+
+/* 中央：「品詞バッジ + No.x」 */
+.wc-head-title {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #4b5563;
+  letter-spacing: 0.2px;
+}
+
+.id-badge {
+  padding: 4px 10px;
   border-radius: 999px;
-  padding: 3px 8px;
-  background: transparent;
-}
-
-/* 単語表示（漢字 + ふりがな） */
-.wordcard__kanji {
-  font-size: 1.6rem; line-height: 1.2; font-weight: 700;
-  color: var(--wc-text);
-}
-.wordcard__reading {
-  margin-top: 4px;
-  color: var(--wc-muted);
-}
-.wordcard__reading .label {
-  color: var(--wc-info); font-weight: 600; margin-right: 6px;
-}
-
-/* 意味エリア */
-.wordcard__meanings {
-  margin-top: 10px;
-  color: var(--wc-text);
-}
-.wordcard__meanings .lang {
-  color: var(--wc-muted);
-  font-size: .92rem;
-}
-
-/* アクション群（音声・お気に入り・次へ等） */
-.wordcard__actions {
-  display: flex; gap: 10px; align-items: center; margin-top: 14px;
-}
-
-.button {
-  border: 1px solid var(--wc-border);
-  background: var(--wc-card);
-  color: var(--wc-text);
-  border-radius: 10px;
-  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.8rem;
   font-weight: 600;
-  transition: background .2s ease, transform .08s ease, box-shadow .2s ease;
-}
-.button:hover { background: color-mix(in oklab, var(--wc-text) 6%, var(--wc-card)); }
-.button:active { transform: translateY(1px); }
-
-.button--primary {
-  background: var(--wc-accent);
-  color: #fff;
-  border-color: transparent;
-}
-.button--danger {
-  background: color-mix(in oklab, var(--wc-danger) 85%, #0000);
-  color: #fff;
-  border-color: transparent;
+  background: #f9fafb;
 }
 
-/* アイコン（SVGは currentColor を使う） */
+/* 角丸ボタン（詳しく / 追加） */
+.wc-head-btn {
+  position: absolute;
+  top: 0;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #1111;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  line-height: 34px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    filter 0.15s ease,
+    background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wc-head-btn:hover {
+  transform: translateY(-1px);
+}
+
+.wc-head-btn:active {
+  transform: translateY(0);
+}
+
+.wc-head-btn.left {
+  left: 0;
+}
+
+.wc-head-btn.right {
+  right: 0;
+}
+
+/* 追加済みの見た目 */
+.wc-head-btn.right.is-added {
+  background: #0f5132;
+  border-color: #0f5132;
+  box-shadow: 0 0 0 2px #b6e3c6 inset;
+}
+
+/* ============ 品詞バッジ ============ */
+
+.pos-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  border: 1px solid transparent;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.06) inset,
+    0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.pos-badge.noun {
+  background: #81c784;
+  border-color: #6bbd72;
+}
+.pos-badge.verb {
+  background: #64b5f6;
+  border-color: #52a6ec;
+}
+.pos-badge.adj {
+  background: #ffb74d;
+  border-color: #f2a73a;
+}
+.pos-badge.adv {
+  background: #ba68c8;
+  border-color: #ab59bb;
+}
+.pos-badge.particle {
+  background: #4db6ac;
+  border-color: #44a79e;
+}
+.pos-badge.counter {
+  background: #f06292;
+  border-color: #e65587;
+}
+.pos-badge.default {
+  background: #90a4ae;
+  border-color: #8296a0;
+}
+
+/* ============ 本文（単語・読み） ============ */
+
+.kanji {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #222;
+  margin: 6px 0 2px;
+}
+
+.reading {
+  font-size: 1.3rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* ============ 意味ボックス ============ */
+
+.meaning-box {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px dashed #aaa;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.meaning-box:hover {
+  background: #f1f1f1;
+}
+
+/* ============ アイコンボタン共通 ============ */
+
 .icon-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--wc-text);
-}
-.icon-btn svg { width: 20px; height: 20px; fill: currentColor; }
-
-/* 進捗や下部情報（必要なら） */
-.wordcard__footer {
-  margin-top: 10px;
-  color: var(--wc-muted);
-}
-.progress {
-  height: 6px; border-radius: 999px;
-  background: color-mix(in oklab, var(--wc-text) 10%, transparent);
-  overflow: hidden;
-}
-.progress > span {
-  display: block; height: 100%;
-  background: var(--wc-accent);
-  border-radius: inherit;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  color: #111;
+  cursor: pointer;
+  transition:
+    transform 0.08s ease,
+    background 0.15s ease,
+    opacity 0.2s ease;
 }
 
-/* 小さめ端末 */
-@media (max-width: 420px) {
-  .wordcard { padding: 14px 12px; }
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.icon-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.icon-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============ 音声エリア（今は非表示） ============ */
+
+.audio-area {
+  display: none;
+}
+
+.audio-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.audio-button:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ============ ナビゲーション（← →） ============ */
+
+.navigation {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Safari 対策：disabled でもアイコンが見えるように */
+button:disabled {
+  opacity: 0.55;
+  color: #222 !important;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ============ Challenge ボタン（カード外の下中央） ============ */
+
+.wc-challenge-btn {
+  position: absolute;
+  left: 50%;
+  bottom: -20px; /* カードの下に少しはみ出させる */
+  transform: translateX(-50%);
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wc-challenge-btn:hover {
+  background: #f3f4f6;
+}
+
+.wc-challenge-btn:active {
+  transform: translate(-50%, 1px);
+}
+
+/* ============ 小さい端末の微調整 ============ */
+
+@media (max-width: 360px) {
+  .word-card {
+    padding: 16px 12px 32px;
+  }
+
+  .wc-head {
+    height: 34px;
+  }
+
+  .wc-head-title {
+    gap: 6px;
+  }
+
+  .wc-head-btn {
+    height: 34px;
+    line-height: 32px;
+    padding: 0 10px;
+  }
+
+  .pos-badge {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+
+  .kanji {
+    font-size: 2rem;
+  }
+
+  .reading {
+    font-size: 1.1rem;
+  }
+
+  /* 単語クイズ上部の ProgressBar 行 */
+.wq-progress-wrap {
+  max-width: calc(100% - 48px); /* 両サイド 24px ずつ空ける */
+  margin: 0 auto var(--space-3, 12px);
+}
+
 }

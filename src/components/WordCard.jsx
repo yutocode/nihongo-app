@@ -1,6 +1,13 @@
 // src/components/WordCard.jsx
-import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useAppStore } from "../store/useAppStore";
 import { useMyWordsStore } from "../store/useMyWordsStore";
 import { getPosById } from "../utils/posById";
@@ -8,6 +15,7 @@ import { loadDetail } from "@/data/wordDetails/loader";
 import DetailModal from "@/components/DetailModal.jsx";
 import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi";
 import "../styles/WordCard.css";
+import WordProgressBar from "./WordProgressBar.jsx";
 
 // 複合キー
 const buildKey = (w) => {
@@ -20,6 +28,7 @@ export default function WordCard({
   wordList = [],
   level = "n5",
   lesson = "Lesson1",
+  quizLessonKey,          // ★ 追加：クイズ用の本当のキー
   category = "nouns",
   audioBase = "/audio",
   onIndexChange,
@@ -29,6 +38,9 @@ export default function WordCard({
   onRemove,
 }) {
   const isMy = mode === "my";
+
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   // === 状態 ===
   const [index, setIndex] = useState(0);
@@ -41,7 +53,6 @@ export default function WordCard({
   const [detailData, setDetailData] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
 
-  const { t, i18n } = useTranslation();
   const addXP = useAppStore((s) => s.addXP);
   const awardedRef = useRef(new Set());
 
@@ -74,6 +85,7 @@ export default function WordCard({
       remove: t("mywb.remove", "削除"),
       notFound: t("wordcard.notFound", "❌ 翻訳が見つかりません"),
       loading: t("common.loading", "読み込み中…"),
+      challenge: t("wordcard.challenge", "Challenge"),
     }),
     [t]
   );
@@ -126,7 +138,9 @@ export default function WordCard({
     if (audioRef.current) {
       try {
         audioRef.current.pause();
-      } catch {}
+      } catch {
+        // ignore
+      }
       audioRef.current.src = "";
     }
     setIsPlaying(false);
@@ -192,14 +206,15 @@ export default function WordCard({
     setShowMeaning(true);
   };
 
-  // === 品詞とID表示（ここがポイント） ===
+  // === 品詞とID表示 ===
   const pos = getPosById(level, word?.id, word?.pos || "—"); // 例: "名詞"
   const idLabel = word?.id ? `No.${word.id}` : `No.${index + 1}`;
 
   const posClass = (p) => {
     if ((p || "").includes("名詞")) return "noun";
     if ((p || "").includes("動詞")) return "verb";
-    if ((p || "").includes("い形容詞") || (p || "").includes("な形容詞")) return "adj";
+    if ((p || "").includes("い形容詞") || (p || "").includes("な形容詞"))
+      return "adj";
     if ((p || "").includes("副詞")) return "adv";
     if ((p || "").includes("助詞")) return "particle";
     if ((p || "").includes("助数詞")) return "counter";
@@ -223,7 +238,7 @@ export default function WordCard({
     setDetailLoading(true);
     try {
       const base = {
-        id: word?.id, // ← 重要：IDを必ず渡す
+        id: word?.id,
         kanji: word?.kanji ?? "",
         reading: word?.reading ?? "",
         pos: word?.pos || pos || "—",
@@ -234,7 +249,9 @@ export default function WordCard({
       let extra = null;
       try {
         extra = await loadDetail(level, category, lesson, word?.id);
-      } catch {}
+      } catch {
+        // optional
+      }
       const payload = { ...base, ...(extra || {}) };
       setDetailData(payload);
       onDetail?.({ ...payload, idx: index });
@@ -246,12 +263,41 @@ export default function WordCard({
 
   const closeDetail = () => setDetailOpen(false);
 
+  // === 同じレッスンのクイズへジャンプ ===
+  const quizKey = quizLessonKey || lesson; // ★ 表示名と別に、クイズ用キーを優先
+
+  const handleChallengeClick = useCallback(() => {
+    if (!level || !quizKey) return;
+    const encoded = encodeURIComponent(quizKey);
+    navigate(`/word-quiz/${level}/${encoded}`);
+  }, [navigate, level, quizKey]);
+
+  const showChallenge = Boolean(level && quizKey);
+
   // === 出力 ===
   return (
     <div className="word-card" role="group" aria-label="Word card">
+      {/* 進捗バー + チャレンジボタン */}
+      <div className="wc-progress-row">
+        <WordProgressBar currentIndex={index} total={wordList.length || 0} />
+        {showChallenge && (
+          <button
+            type="button"
+            className="wc-challenge-btn"
+            onClick={handleChallengeClick}
+          >
+            {L.challenge}
+          </button>
+        )}
+      </div>
+
       {/* ヘッダー：左「詳しく」 / 中央「名詞 No.x」 / 右「追加」 */}
       <div className="wc-head">
-        <button type="button" className="wc-head-btn left" onClick={openDetail}>
+        <button
+          type="button"
+          className="wc-head-btn left"
+          onClick={openDetail}
+        >
           {detailLoading ? L.loading : L.detail}
         </button>
 
@@ -262,7 +308,9 @@ export default function WordCard({
 
         <button
           type="button"
-          className={`wc-head-btn right ${!isMy && isAdded ? "is-added" : ""}`}
+          className={`wc-head-btn right ${
+            !isMy && isAdded ? "is-added" : ""
+          }`}
           onClick={handleRight}
           aria-pressed={!isMy && isAdded}
         >

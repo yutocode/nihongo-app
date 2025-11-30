@@ -1,7 +1,8 @@
 /* ===== WordCard ===== */
 .word-card{
   width: min(92vw, 360px);
-  margin: 20px auto;
+  /* 下にチャレンジボタンを出すので、下マージンを少し大きめに */
+  margin: 20px auto 52px;
   padding: 18px 16px 20px;
   background: #f9f9f9;
   color: #000;
@@ -9,8 +10,46 @@
   border-radius: 14px;
   box-shadow: 0 6px 16px rgba(0,0,0,.15);
   text-align: center;
-  position: relative;
+  position: relative; /* ★ Challenge を絶対配置する基準 */
   font-family: "Noto Sans JP", system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+/* 進捗バー行（上部にバーだけ置く） */
+.wc-progress-row{
+  margin-bottom: 10px;
+}
+
+/* カードの下・枠外に出す Challenge ボタン */
+.wc-challenge-btn{
+  position: absolute;
+  bottom: -26px;            /* 枠の外に少しはみ出させる */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #d0d0d0;
+  background: #ffffff;
+  color: #111;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background .18s ease,
+    transform .12s ease,
+    box-shadow .18s ease;
+}
+
+.wc-challenge-btn:hover{
+  background: #f3f3f3;
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.16);
+}
+
+.wc-challenge-btn:active{
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 3px 8px rgba(0,0,0,.14);
 }
 
 /* ===== Header（左=詳しく / 中央=品詞+Lesson / 右=追加） ===== */
