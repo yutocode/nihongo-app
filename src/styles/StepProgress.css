@@ -1,0 +1,46 @@
+/* 例: src/styles/StepProgress.css */
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stepper__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.stepper__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stepper__dot {
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-soft);
+  background: var(--color-surface-subtle);
+  font-size: var(--font-size-xs);
+  transition:
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast);
+}
+
+/* 状態ごとの色だけトークンで切り替え */
+.stepper__dot[data-state="current"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.stepper__dot[data-state="done"] {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-on-success);
+}

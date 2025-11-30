@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppStore } from "../store/useAppStore";
 import { EXAM_REGISTRY } from "@/data/exam";
-
+import { StepProgress } from "@/components/ui/StepProgress";
 import FeatureTile from "../components/FeatureTile";
 import "../styles/Home.css";
 
@@ -54,6 +54,8 @@ const Home = () => {
       navigate(`/lessons/${level}`);
     }
   };
+
+  
 
   return (
     <main
