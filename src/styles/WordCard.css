@@ -1,66 +1,96 @@
+/* =========================
+   WordCard.css 完成版
+   ========================= */
+
 /* ===== WordCard ===== */
-.word-card{
+.word-card {
   width: min(92vw, 360px);
   /* 下にチャレンジボタンを出すので、下マージンを少し大きめに */
-  margin: 20px auto 52px;
-  padding: 18px 16px 20px;
-  background: #f9f9f9;
-  color: #000;
-  border: 2px solid #d9b45e;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  margin: var(--space-4, 16px) auto var(--space-10, 40px);
+  padding: var(--space-4, 16px) var(--space-4, 16px) var(--space-5, 20px);
+  background: var(--color-surface, #f9f9f9);
+  color: var(--color-text-primary, #000);
+  border: 2px solid var(--color-accent-gold, #d9b45e);
+  border-radius: var(--radius-xl, 14px);
+  box-shadow: var(--shadow-card, 0 6px 16px rgba(0, 0, 0, 0.15));
   text-align: center;
   position: relative; /* ★ Challenge を絶対配置する基準 */
-  font-family: "Noto Sans JP", system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family: var(
+    --font-sans,
+    "Noto Sans JP",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+
+  /* スワイプ時のアニメーション */
+  transition:
+    transform var(--motion-fast, 220ms) cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity var(--motion-fast, 220ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* 縦スクロール優先にしつつ横スワイプを取りこぼさないため */
+  touch-action: pan-y;
+}
+
+/* スワイプ方向ごとのアニメーション状態 */
+.word-card.word-card--swipe-left {
+  transform: translateX(-40%);
+  opacity: 0;
+}
+
+.word-card.word-card--swipe-right {
+  transform: translateX(40%);
+  opacity: 0;
 }
 
 /* 進捗バー行（上部にバーだけ置く） */
-.wc-progress-row{
-  margin-bottom: 10px;
+.wc-progress-row {
+  margin-bottom: var(--space-2, 8px);
 }
 
 /* カードの下・枠外に出す Challenge ボタン */
-.wc-challenge-btn{
+.wc-challenge-btn {
   position: absolute;
-  bottom: -26px;            /* 枠の外に少しはみ出させる */
+  bottom: -26px; /* 枠の外に少しはみ出させる */
   left: 50%;
   transform: translateX(-50%);
   padding: 6px 16px;
   border-radius: 999px;
-  border: 1px solid #d0d0d0;
-  background: #ffffff;
-  color: #111;
-  font-size: .9rem;
+  border: 1px solid var(--color-border-subtle, #d0d0d0);
+  background: var(--color-elevated, #ffffff);
+  color: var(--color-text-primary, #111);
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  box-shadow: var(--shadow-soft, 0 4px 10px rgba(0, 0, 0, 0.12));
   -webkit-tap-highlight-color: transparent;
   transition:
-    background .18s ease,
-    transform .12s ease,
-    box-shadow .18s ease;
+    background 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 120ms ease,
+    box-shadow 180ms ease;
 }
 
-.wc-challenge-btn:hover{
-  background: #f3f3f3;
+.wc-challenge-btn:hover {
+  background: var(--color-surface-alt, #f3f3f3);
   transform: translateX(-50%) translateY(-1px);
-  box-shadow: 0 6px 14px rgba(0,0,0,.16);
+  box-shadow: var(--shadow-soft-lg, 0 6px 14px rgba(0, 0, 0, 0.16));
 }
 
-.wc-challenge-btn:active{
+.wc-challenge-btn:active {
   transform: translateX(-50%) translateY(0);
-  box-shadow: 0 3px 8px rgba(0,0,0,.14);
+  box-shadow: var(--shadow-soft, 0 3px 8px rgba(0, 0, 0, 0.14));
 }
 
 /* ===== Header（左=詳しく / 中央=品詞+Lesson / 右=追加） ===== */
-.wc-head{
+.wc-head {
   position: relative;
   height: 36px;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2, 8px);
 }
 
 /* 中央のタイトル行を「品詞バッジ + Lesson」で横並び */
-.wc-head-title{
+.wc-head-title {
   position: absolute;
   left: 50%;
   top: 0;
@@ -68,148 +98,221 @@
   height: 36px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2, 8px);
   font-weight: 700;
-  color: #4b5563;
-  letter-spacing: .2px;
+  color: var(--color-text-muted, #4b5563);
+  letter-spacing: 0.2px;
 }
-.lesson-title{ line-height: 36px; }
+
+.lesson-title {
+  line-height: 36px;
+}
 
 /* 角丸ボタン（詳しく / 追加） */
-.wc-head-btn{
+.wc-head-btn {
   position: absolute;
   top: 0;
   height: 36px;
   padding: 0 12px;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   border: 1px solid #1111;
-  background: #111;
+  background: var(--color-accent, #111111);
   color: #fff;
   font-weight: 700;
   line-height: 34px;
   cursor: pointer;
-  transition: transform .12s ease, filter .15s ease, background .2s ease;
+  transition:
+    transform 120ms ease,
+    filter 150ms ease,
+    background 200ms ease;
   -webkit-tap-highlight-color: transparent;
 }
-.wc-head-btn:hover{ transform: translateY(-1px); }
-.wc-head-btn:active{ transform: translateY(0); }
-.wc-head-btn.left{ left: 0; }
-.wc-head-btn.right{ right: 0; }
+
+.wc-head-btn:hover {
+  transform: translateY(-1px);
+}
+
+.wc-head-btn:active {
+  transform: translateY(0);
+}
+
+.wc-head-btn.left {
+  left: 0;
+}
+
+.wc-head-btn.right {
+  right: 0;
+}
 
 /* 追加済みの見た目 */
-.wc-head-btn.right.is-added{
-  background: #0f5132;
-  border-color: #0f5132;
-  box-shadow: 0 0 0 2px #b6e3c6 inset;
+.wc-head-btn.right.is-added {
+  background: var(--color-success, #0f5132);
+  border-color: var(--color-success, #0f5132);
+  box-shadow: 0 0 0 2px var(--color-success-soft, #b6e3c6) inset;
 }
 
 /* ===== 品詞バッジ ===== */
-.pos-badge{
+.pos-badge {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 12px;
-  font-size: .85rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: #fff;
   line-height: 1;
   border: 1px solid transparent;
-  box-shadow: 0 1px 0 rgba(0,0,0,.06) inset, 0 1px 6px rgba(0,0,0,.06);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.06) inset,
+    0 1px 6px rgba(0, 0, 0, 0.06);
 }
-.pos-badge.noun{      background: #81c784; border-color: #6bbd72; }
-.pos-badge.verb{      background: #64b5f6; border-color: #52a6ec; }
-.pos-badge.adj{       background: #ffb74d; border-color: #f2a73a; }
-.pos-badge.adv{       background: #ba68c8; border-color: #ab59bb; }
-.pos-badge.particle{  background: #4db6ac; border-color: #44a79e; }
-.pos-badge.counter{   background: #f06292; border-color: #e65587; }
-.pos-badge.default{   background: #90a4ae; border-color: #8296a0; }
+.pos-badge.noun {
+  background: #81c784;
+  border-color: #6bbd72;
+}
+.pos-badge.verb {
+  background: #64b5f6;
+  border-color: #52a6ec;
+}
+.pos-badge.adj {
+  background: #ffb74d;
+  border-color: #f2a73a;
+}
+.pos-badge.adv {
+  background: #ba68c8;
+  border-color: #ab59bb;
+}
+.pos-badge.particle {
+  background: #4db6ac;
+  border-color: #44a79e;
+}
+.pos-badge.counter {
+  background: #f06292;
+  border-color: #e65587;
+}
+.pos-badge.default {
+  background: #90a4ae;
+  border-color: #8296a0;
+}
 
 /* ===== Body ===== */
-.kanji{
+.kanji {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #222;
+  color: var(--color-text-primary, #222);
   margin: 6px 0 2px;
 }
-.reading{
+
+.reading {
   font-size: 1.3rem;
-  color: #444;
+  color: var(--color-text-secondary, #444);
   margin-bottom: 10px;
 }
 
 /* 意味ボックス */
-.meaning-box{
+.meaning-box {
   margin-top: 14px;
   padding: 12px;
-  border: 1px dashed #aaa;
-  background: #fff;
-  color: #333;
-  border-radius: 8px;
+  border: 1px dashed var(--color-border-subtle, #aaaaaa);
+  background: var(--color-surface-alt, #ffffff);
+  color: var(--color-text-primary, #333333);
+  border-radius: var(--radius-md, 8px);
   cursor: pointer;
-  transition: background .2s ease, border-color .2s ease;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
 }
-.meaning-box:hover{ background: #f1f1f1; }
+
+.meaning-box:hover {
+  background: #f1f1f1;
+}
 
 /* ===== アイコンのみボタン（共通） ===== */
-.icon-btn{
+.icon-btn {
   display: inline-grid;
   place-items: center;
   width: 40px;
   height: 40px;
   padding: 0;
   border: none;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.08);
-  color: #111;
+  border-radius: var(--radius-md, 10px);
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-text-primary, #111111);
   cursor: pointer;
-  transition: transform .08s ease, background .15s ease, opacity .2s ease;
+  transition:
+    transform 80ms ease,
+    background 150ms ease,
+    opacity 200ms ease;
 }
-.icon-btn:hover{ background: rgba(0,0,0,0.12); }
-.icon-btn:active{ transform: translateY(1px) scale(0.98); }
-.icon-btn:disabled{
-  opacity: .55;
+
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.icon-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.icon-btn:disabled {
+  opacity: 0.55;
   cursor: not-allowed;
   transform: none;
 }
 
 /* ===== 音声（スピーカー） ===== */
 /* ★ 今は音声未実装なので、エリアごと非表示にしておく */
-.audio-area{
+.audio-area {
   display: none;
 }
 
 /* audio-button 自体のスタイルは残しておく（後で再利用できる） */
-.audio-button{
+.audio-button {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background: rgba(0,0,0,0.06);
+  border-radius: var(--radius-lg, 12px);
+  background: rgba(0, 0, 0, 0.06);
 }
-.audio-button:hover{ background: rgba(0,0,0,0.12); }
 
-/* ===== ナビゲーション（戻る/次はアイコンのみ） ===== */
-.navigation{
-  margin-top: 18px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
+.audio-button:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ===== 旧ナビゲーション（ボタン UI）は残すが未使用 ===== */
+.navigation {
+  display: none;
 }
 
 /* ===== Safari 対策：disabled でもアイコンが見えるように ===== */
-button:disabled{
-  opacity: .55;
+button:disabled {
+  opacity: 0.55;
   color: #222 !important;
   cursor: not-allowed;
   transform: none !important;
 }
 
 /* ===== 小さい端末の微調整 ===== */
-@media (max-width: 360px){
-  .word-card{ padding: 16px 12px 18px; }
-  .wc-head{ height: 34px; }
-  .wc-head-title{ gap: 6px; }
-  .wc-head-btn{ height: 34px; line-height: 32px; padding: 0 10px; }
-  .pos-badge{ padding: 3px 8px; font-size: .8rem; }
-  .kanji{ font-size: 2rem; }
-  .reading{ font-size: 1.1rem; }
+@media (max-width: 360px) {
+  .word-card {
+    padding: 16px 12px 18px;
+  }
+  .wc-head {
+    height: 34px;
+  }
+  .wc-head-title {
+    gap: 6px;
+  }
+  .wc-head-btn {
+    height: 34px;
+    line-height: 32px;
+    padding: 0 10px;
+  }
+  .pos-badge {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+  .kanji {
+    font-size: 2rem;
+  }
+  .reading {
+    font-size: 1.1rem;
+  }
 }

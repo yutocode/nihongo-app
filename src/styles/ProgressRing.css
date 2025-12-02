@@ -1,0 +1,42 @@
+/* src/styles/ProgressRing.css */
+
+.pr-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+/* SVG 全体を -90deg 回転させて、上からスタートさせる */
+.pr-svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.pr-ring-track,
+.pr-ring-progress {
+  fill: none;
+}
+
+/* 目に優しい淡い青のトラック */
+.pr-ring-track {
+  stroke: var(--color-progress-track, rgba(10, 132, 255, 0.18));
+}
+
+/* 濃い目の青で進捗 */
+.pr-ring-progress {
+  stroke: var(--color-progress-fill, rgba(10, 132, 255, 0.95));
+  transition: stroke-dashoffset 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 中央のパーセント表示 */
+.pr-label {
+  position: relative;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-progress-text, #374151);
+  /* 数字がつぶれないように */
+  line-height: 1;
+}

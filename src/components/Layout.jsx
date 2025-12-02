@@ -7,8 +7,8 @@ import BottomNav from "@/components/BottomNav";
 import "@/styles/Layout.css";
 
 /**
- * ここで“UIクローム（Header/BottomNav/Footer）”を隠すパスを定義。
- * 認証/初期ページでは非表示。それ以外は常に表示。
+ * このパスでは Header / BottomNav / Footer を隠す
+ * （ログイン周りだけフルスクリーン）
  */
 const HIDE_CHROME_PATHS = new Set(["/", "/login", "/register"]);
 
@@ -16,26 +16,32 @@ export default function Layout() {
   const location = useLocation();
   const hideChrome = HIDE_CHROME_PATHS.has(location.pathname);
 
-  // ルート変更時にスクロール位置をトップへ
+  // ルート変更時に一番上へ
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname]);
 
   return (
     <div className="app-shell" data-route={location.pathname}>
-      {/* 上部ヘッダー（認証系では非表示） */}
-      {!hideChrome && <Header />}
+      {/* ===== 固定ヘッダー ===== */}
+      {!hideChrome && (
+        <header className="app-shell-header" aria-label="App header">
+          <Header />
+        </header>
+      )}
 
-      {/* メインコンテンツ
-          - Layout.css 側で BottomNav 分の下パディングを確保
-          - Footer も main 内に含めて「ナビの直上」に表示 */}
+      {/* ===== コンテンツエリア（ここだけスクロール） ===== */}
       <main className="app-content" role="main">
         <Outlet />
         {!hideChrome && <Footer />}
       </main>
 
-      {/* どの画面でも一番下に固定したいアンダーナビ */}
-      {!hideChrome && <BottomNav />}
+      {/* ===== 固定ボトムナビ（<BottomNav/> は .bn で fixed） ===== */}
+      {!hideChrome && (
+        <nav className="app-shell-bottom" aria-label="Bottom navigation">
+          <BottomNav />
+        </nav>
+      )}
     </div>
   );
 }

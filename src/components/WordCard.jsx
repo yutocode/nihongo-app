@@ -8,12 +8,14 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
+
 import { useAppStore } from "../store/useAppStore";
 import { useMyWordsStore } from "../store/useMyWordsStore";
 import { getPosById } from "../utils/posById";
 import { loadDetail } from "@/data/wordDetails/loader";
 import DetailModal from "@/components/DetailModal.jsx";
-import { FiChevronLeft, FiChevronRight, FiVolume2 } from "react-icons/fi";
+import { FiVolume2 } from "react-icons/fi";
 import "../styles/WordCard.css";
 import WordProgressBar from "./WordProgressBar.jsx";
 
@@ -28,7 +30,7 @@ export default function WordCard({
   wordList = [],
   level = "n5",
   lesson = "Lesson1",
-  quizLessonKey,          // ★ 追加：クイズ用の本当のキー
+  quizLessonKey, // ★ 追加：クイズ用の本当のキー
   category = "nouns",
   audioBase = "/audio",
   onIndexChange,
@@ -46,6 +48,8 @@ export default function WordCard({
   const [index, setIndex] = useState(0);
   const [showMeaning, setShowMeaning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [swipeDir, setSwipeDir] = useState(null); // "left" | "right" | null
+
   const audioRef = useRef(null);
 
   // 詳細モーダル
@@ -146,7 +150,7 @@ export default function WordCard({
     setIsPlaying(false);
   }, []);
 
-  // === 送り・戻し ===
+  // === 送り・戻し（共通） ===
   const goto = useCallback(
     (next) => {
       stopAudio();
@@ -168,6 +172,31 @@ export default function WordCard({
   const handlePrev = useCallback(() => {
     if (index > 0) goto(index - 1);
   }, [index, goto]);
+
+  // === スワイプ設定 ===
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (index < wordList.length - 1) {
+        setSwipeDir("left");
+        // アニメーション後に実際にページ送り
+        setTimeout(() => {
+          handleNext();
+          setSwipeDir(null);
+        }, 220);
+      }
+    },
+    onSwipedRight: () => {
+      if (index > 0) {
+        setSwipeDir("right");
+        setTimeout(() => {
+          handlePrev();
+          setSwipeDir(null);
+        }, 220);
+      }
+    },
+    trackMouse: true, // PCブラウザでもマウスドラッグでテスト可能
+    preventScrollOnSwipe: true,
+  });
 
   // === 再生 ===
   const playAudio = useCallback(async () => {
@@ -264,7 +293,7 @@ export default function WordCard({
   const closeDetail = () => setDetailOpen(false);
 
   // === 同じレッスンのクイズへジャンプ ===
-  const quizKey = quizLessonKey || lesson; // ★ 表示名と別に、クイズ用キーを優先
+  const quizKey = quizLessonKey || lesson; // 表示名と別に、クイズ用キーを優先
 
   const handleChallengeClick = useCallback(() => {
     if (!level || !quizKey) return;
@@ -275,8 +304,20 @@ export default function WordCard({
   const showChallenge = Boolean(level && quizKey);
 
   // === 出力 ===
+  const swipeClass =
+    swipeDir === "left"
+      ? " word-card--swipe-left"
+      : swipeDir === "right"
+      ? " word-card--swipe-right"
+      : "";
+
   return (
-    <div className="word-card" role="group" aria-label="Word card">
+    <div
+      className={`word-card${swipeClass}`}
+      role="group"
+      aria-label="Word card"
+      {...swipeHandlers}
+    >
       {/* 進捗バー + チャレンジボタン */}
       <div className="wc-progress-row">
         <WordProgressBar currentIndex={index} total={wordList.length || 0} />
@@ -352,29 +393,7 @@ export default function WordCard({
         </button>
       </div>
 
-      {/* ナビゲーション */}
-      <div className="navigation">
-        <button
-          type="button"
-          className="icon-btn nav-btn"
-          onClick={handlePrev}
-          disabled={index === 0}
-          aria-label="戻る"
-          title="戻る"
-        >
-          <FiChevronLeft size={22} />
-        </button>
-        <button
-          type="button"
-          className="icon-btn nav-btn"
-          onClick={handleNext}
-          disabled={index === wordList.length - 1}
-          aria-label="次へ"
-          title="次へ"
-        >
-          <FiChevronRight size={22} />
-        </button>
-      </div>
+      {/* ←→ ナビボタンは削除：スワイプのみで移動 */}
 
       {/* 詳細モーダル */}
       <DetailModal open={detailOpen} onClose={closeDetail} data={detailData} />
