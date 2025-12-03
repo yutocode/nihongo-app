@@ -1,3 +1,4 @@
+/* src/styles/Global.css */
 @import "./Theme.css";
 /* Global.css */
 
@@ -8,9 +9,10 @@
   box-sizing: border-box;
 }
 
-/* 高さは min-height にして、縦スクロールを殺さない */
+/* 高さは 100% にして、#root に閉じ込める */
 html,
 body {
+  height: 100%;
   min-height: 100%;
 }
 
@@ -28,8 +30,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  /* ★ ページ全体はスクロールさせない（中身だけスクロール） */
+  overflow-y: hidden;
 
-  /* iOSノッチ等のセーフエリア（下は AppShell 側で処理するので入れない） */
+  /* iOS ノッチ等のセーフエリア（下は AppShell 側で処理するので入れない） */
   padding-left: max(0px, env(safe-area-inset-left));
   padding-right: max(0px, env(safe-area-inset-right));
   padding-top: max(0px, env(safe-area-inset-top));
@@ -41,10 +45,14 @@ body {
   display: none !important;
 }
 
-/* 画面高の安定化（index.htmlで --vh 設定推奨） */
+/* 画面高の安定化：
+   - #root 自体を 100dvh に固定して overflow: hidden
+   - スクロールは Layout の .app-content だけにする
+*/
 #root {
+  height: 100dvh;
   min-height: 100dvh;
-  min-height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
 }
 
 /* --------------------- Design Tokens -------------------- */
@@ -116,6 +124,7 @@ body {
 body {
   font-size: var(--fs-md);
 }
+
 h1,
 h2,
 h3,
@@ -251,79 +260,9 @@ button:disabled,
 }
 
 /* --------------------- Bottom Navigation ---------------- */
-/* <BottomNav/> 用の共通クラス。どんな画面でも常に固定 */
-:root {
-  --bn-height: 88px; /* Layout.css と合わせる */
-}
-
-.bn {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background: transparent;
-  padding-bottom: max(env(safe-area-inset-bottom), 0px);
-  z-index: 50;
-}
-
-.bn-inner {
-  width: 100%;
-  max-width: 480px;
-  height: var(--bn-height);
-  margin: 0 auto;
-  background: var(--color-bg);
-  border-radius: var(--radius-card) var(--radius-card) 0 0;
-  box-shadow: var(--shadow-elev1);
-  border-top: 1px solid var(--neutral-200);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-}
-
-.bn-tab {
-  position: relative;
-  height: 100%;
-  color: var(--neutral-500);
-  display: grid;
-  place-items: center;
-  gap: 2px;
-  text-decoration: none;
-}
-
-.bn-tab svg {
-  width: 24px;
-  height: 24px;
-}
-
-.bn-label {
-  font: 400 12px/16px "Noto Sans JP", system-ui, sans-serif;
-}
-
-.bn-tab.is-active {
-  color: var(--primary-600);
-}
-
-/* 44×44 のヒット領域 */
-.bn-hit {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* キーボードフォーカス */
-.bn-tab:focus-visible {
-  outline: 2px solid var(--primary-600);
-  outline-offset: -2px;
-  border-radius: 8px;
-}
+/* 高さトークンは Theme.css の --bn-height / --layout-bottom-h を利用 */
 
 /* --------------------- Responsive ----------------------- */
-/* iPhone幅の段階分け（目安） */
 @media (max-width: 374px) {
   .grid.cols {
     grid-template-columns: 1fr;

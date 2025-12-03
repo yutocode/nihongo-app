@@ -1,5 +1,5 @@
 /* ============================================================
-   Theme.css 100点版
+   Theme.css 100点版（BottomNav / Layout トークン統合版）
    - OSのライト/ダークに追従しつつ data-theme="light|dark" で強制上書き
    - 可読性(コントラスト)、アクセシビリティ(フォーカス/選択色/強制ハイコントラスト)対応
    ============================================================ */
@@ -37,6 +37,17 @@
   --card-bg: var(--surface);
   --progress-bg: rgba(2, 6, 23, .08);
   --progress-fill: var(--accent);
+
+  /* ===== Layout / BottomNav 共通トークン ===== */
+  --layout-header-h: 64px;                /* Header 高さ */
+  --bn-height: 72px;                      /* BottomNav 見た目の高さ */
+  --layout-bottom-h: var(--bn-height);    /* Layout が確保する下余白 */
+
+  --color-bottom-nav-bg: #05060a;         /* ボトムバー本体の背景 */
+  --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
+  --color-bottom-nav-border: rgba(15, 23, 42, 0.8); /* 上ボーダー */
+  --color-bottom-nav-icon-active: #0a84ff;
+  --color-bottom-nav-icon-inactive: #9ca3af;
 }
 
 /* ===== System Dark (ユーザー指定が無いときの初期値) ===== */
@@ -64,6 +75,18 @@
     --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
 
     --progress-bg: rgba(255,255,255,.12);
+    --progress-fill: var(--accent);
+
+    /* Layout / BottomNav（ダーク時のデフォルト） */
+    --layout-header-h: 64px;
+    --bn-height: 72px;
+    --layout-bottom-h: var(--bn-height);
+
+    --color-bottom-nav-bg: #05060a;
+    --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
+    --color-bottom-nav-border: rgba(15, 23, 42, 0.9);
+    --color-bottom-nav-icon-active: #0a84ff;
+    --color-bottom-nav-icon-inactive: #9ca3af;
   }
 }
 
@@ -95,6 +118,17 @@
   --card-bg: var(--surface);
   --progress-bg: rgba(2, 6, 23, .08);
   --progress-fill: var(--accent);
+
+  /* Layout / BottomNav（ライト強制） */
+  --layout-header-h: 64px;
+  --bn-height: 72px;
+  --layout-bottom-h: var(--bn-height);
+
+  --color-bottom-nav-bg: #05060a;              /* ライトでも黒バーのまま */
+  --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
+  --color-bottom-nav-border: rgba(15, 23, 42, 0.8);
+  --color-bottom-nav-icon-active: #0a84ff;
+  --color-bottom-nav-icon-inactive: #6b7280;
 }
 :root[data-theme="dark"] {
   --bg: #0b0f14;
@@ -123,12 +157,32 @@
   --card-bg: var(--surface);
   --progress-bg: rgba(255,255,255,.12);
   --progress-fill: var(--accent);
+
+  /* Layout / BottomNav（ダーク強制） */
+  --layout-header-h: 64px;
+  --bn-height: 72px;
+  --layout-bottom-h: var(--bn-height);
+
+  --color-bottom-nav-bg: #05060a;
+  --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
+  --color-bottom-nav-border: rgba(15, 23, 42, 0.9);
+  --color-bottom-nav-icon-active: #0a84ff;
+  --color-bottom-nav-icon-inactive: #9ca3af;
 }
 
 /* ===== ベース適用 ===== */
-html, body { background: var(--bg); color: var(--text); }
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; }
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 
 /* フォーカス（キーボード操作の視認性） */
 :where(button, [role="button"], a, input, select, textarea):focus-visible {
@@ -138,41 +192,76 @@ a:hover { text-decoration: underline; }
 }
 
 /* 選択色（テキストドラッグ時） */
-::selection { background: color-mix(in oklab, var(--accent) 28%, transparent); color: var(--text); }
+::selection {
+  background: color-mix(in oklab, var(--accent) 28%, transparent);
+  color: var(--text);
+}
 
 /* 微アニメ（ユーザーが許可した場合のみ） */
 @media (prefers-reduced-motion: no-preference) {
-  * { transition: background-color .15s linear, color .15s linear, border-color .15s linear; }
+  * {
+    transition:
+      background-color 0.15s linear,
+      color 0.15s linear,
+      border-color 0.15s linear;
+  }
 }
 
 /* WebKit スクロールバー（控えめ） */
-*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 *::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--text) 20%, transparent);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 /* 強制ハイコントラスト環境の配慮 */
 @media (forced-colors: active) {
-  :root { --shadow: none; }
+  :root {
+    --shadow: none;
+  }
   :where(button, [role="button"], a, input, select, textarea):focus-visible {
     outline: 2px solid CanvasText;
   }
 }
 
 /* ===== ユーティリティ ===== */
-.app-surface { background: var(--surface); box-shadow: var(--shadow); }
-.app-border { border: 1px solid var(--border); }
-.text-muted { color: var(--text-muted); }
-.icon { color: var(--icon); fill: currentColor; }
+.app-surface {
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.app-border {
+  border: 1px solid var(--border);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.icon {
+  color: var(--icon);
+  fill: currentColor;
+}
 
 /* Tabs */
-.tabs { background: var(--tab-bg); border-radius: 16px; padding: 6px; }
-.tab { color: var(--text-muted); }
-.tab.is-active { color: var(--text); background: var(--tab-active-bg); box-shadow: var(--shadow); }
+.tabs {
+  background: var(--tab-bg);
+  border-radius: 16px;
+  padding: 6px;
+}
+.tab {
+  color: var(--text-muted);
+}
+.tab.is-active {
+  color: var(--text);
+  background: var(--tab-active-bg);
+  box-shadow: var(--shadow);
+}
 
 /* Cards（レッスン枠） */
 .lesson-card {
@@ -181,11 +270,26 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow);
   color: var(--text);
 }
-.lesson-card .count { color: var(--text-muted); }
+.lesson-card .count {
+  color: var(--text-muted);
+}
 
 /* Progress */
-.progress { height: 8px; border-radius: 999px; background: var(--progress-bg); overflow: hidden; }
-.progress > span { display: block; height: 100%; border-radius: inherit; background: var(--progress-fill); }
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--progress-bg);
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress-fill);
+}
 
 /* 小さな改善 */
-html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

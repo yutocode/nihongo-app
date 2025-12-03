@@ -3,9 +3,7 @@
 /* ===== フッター全体 ===== */
 .footer {
   max-width: var(--layout-max-width, 1024px);
-  /* 👇 ふつうの下マージンだけにして、BottomNav の高さはここで足さない */
   margin: var(--space-6, 32px) auto var(--space-5, 24px);
-
   padding: 0 var(--space-4, 16px);
   display: grid;
   gap: var(--space-1, 6px);

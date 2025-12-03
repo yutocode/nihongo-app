@@ -1,53 +1,80 @@
 /* src/styles/Layout.css */
 
-/* ヘッダー高さと BottomNav 高さ用トークン
-   BottomNav 本体は Global.css の --bn-height と合わせる */
+/* Header / BottomNav の高さを一元管理 */
 :root {
-  --header-height: 64px;
+  --layout-header-h: 64px;  /* Header の実高さ */
+  --layout-bottom-h: 72px;  /* BottomNav の高さ（Global の --bn-height と合わせる） */
 }
 
-/* 画面全体のシェル */
+/* アプリ全体の外枠（全ページ共通） */
 .app-shell {
+  height: 100%;
   min-height: 100dvh;
-  min-height: calc(var(--vh, 1vh) * 100);
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-bg, var(--bg));
+  color: var(--color-text, var(--text));
+  box-sizing: border-box;
+
+  /* ヘッダー分だけ上に余白をあける（少し下げたいので +8px） */
+  padding-top: calc(var(--layout-header-h) + 8px);
+
+  /* 中身を縦に並べて、真ん中だけスクロールさせる */
+  display: flex;
+  flex-direction: column;
 }
 
-/* ===== 固定ヘッダー ===== */
+/* 固定ヘッダーのラッパー */
 .app-shell-header {
-  position: sticky;               /* スクロールしても上に張り付く */
-  top: 0;
+  position: fixed;
+  inset-inline: 0;
+  top: 8px; /* 画面の一番上から 8px 下げる */
+  height: var(--layout-header-h);
   z-index: 40;
-  /* セーフエリア上部を考慮 */
-  padding-top: max(env(safe-area-inset-top), 0px);
-  background: var(--color-bg);
 }
 
-/* ===== コンテンツ ===== */
+/* メインコンテンツ：ここ「だけ」スクロールさせる */
 .app-content {
-  /* 中身は普通に縦スクロールさせる */
-  min-height: calc(100dvh - var(--header-height));
-  padding: clamp(12px, 3vw, 24px);
-  padding-left: max(clamp(12px, 3vw, 24px), env(safe-area-inset-left));
-  padding-right: max(clamp(12px, 3vw, 24px), env(safe-area-inset-right));
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
 
-  /* 下に固定 BottomNav があるぶん余白を確保 */
-  padding-bottom: calc(var(--bn-height) + 24px);
+  /* BottomNav + 余白 40px + セーフエリア分 をスクロール領域の中に含める */
+  padding-bottom: calc(
+    var(--layout-bottom-h) + 40px + env(safe-area-inset-bottom, 0px)
+  );
 
-  /* iPhone 1列レイアウト用の横幅制限 */
-  max-width: 480px;
-  margin-inline: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* BottomNav 用のラッパー（中身の .bn 自体が fixed なので
-   ここでは特にレイアウトを変えない） */
+/* 固定ボトムナビのラッパー */
 .app-shell-bottom {
-  pointer-events: auto; /* クリックは .bn にだけ届けばいい */
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  height: calc(
+    var(--layout-bottom-h) + env(safe-area-inset-bottom, 0px)
+  );
+  z-index: 40;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  /* 画面下を全て BottomNav と同じ色で塗る */
+  background: var(
+    --color-bottom-nav-shell-bg,
+    var(--color-bottom-nav-bg, #05060a)
+  );
+
+  /* 中の BottomNav 以外はクリックさせない */
+  pointer-events: none;
 }
 
-/* .bn を包む nav が pointer-events:none だとクリックできなくなるので
-   .bn 側で上書き（既存の .bn に追加してOK） */
-.bn {
+/* 中の BottomNav 本体（クリック可） */
+.app-shell-bottom > * {
   pointer-events: auto;
+  width: 100%;
+  max-width: 480px;
 }

@@ -24,7 +24,7 @@ import ProfilePage from "./pages/ProfilePage";
 
 /* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
-import AppleCallback from "./pages/AppleCallback"; // ← Apple ログイン用コールバック
+import AppleCallback from "./pages/AppleCallback";
 
 /* ===== protected pages ===== */
 import Home from "./pages/Home";
@@ -146,6 +146,37 @@ function ScrollToTop() {
   return null;
 }
 
+/* ========= ルート用リダイレクト =========
+   - GUEST_MODE のときは authReady を待たずに /home へ
+   - 通常モードのときだけ authReady を待って判定
+*/
+function RootRedirect() {
+  const user = useAppStore((s) => s.user);
+  const authReady = useAppStore((s) => s.authReady);
+
+  // ゲストモード → 常に /home へ飛ばす
+  if (GUEST_MODE) {
+    if (user) {
+      return <Navigate to="/home" replace />;
+    }
+    // 未ログインでもとりあえずホーム（ホームから「ログイン」導線を用意）
+    return <Navigate to="/home" replace />;
+  }
+
+  // ここから下は「ゲストモード OFF」の場合だけ使われる
+  if (!authReady) {
+    return (
+      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
+    );
+  }
+
+  if (user) {
+    return <Navigate to="/home" replace />;
+  }
+
+  return <Navigate to="/auth" replace />;
+}
+
 /* ========= App ========= */
 const App = () => (
   <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -162,7 +193,8 @@ const App = () => (
     >
       <Routes>
         {/* public */}
-        <Route path="/" element={<AuthPage />} />
+        {/* / はログイン状況で /home or /auth へ */}
+        <Route path="/" element={<RootRedirect />} />
         <Route path="/auth" element={<AuthPage />} />
 
         {/* onboarding */}
@@ -342,8 +374,8 @@ const App = () => (
           />
         </Route>
 
-        {/* fallback：どこにもマッチしなければ認証画面へ */}
-        <Route path="*" element={<Navigate to="/auth" replace />} />
+        {/* fallback：どこにもマッチしなければ / に戻す */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   </BrowserRouter>
@@ -405,6 +437,12 @@ const AppInitializer = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       const path = location.pathname || "/";
+      console.log(
+        "[Auth] onAuthStateChanged:",
+        user ? user.uid : "null",
+        "path:",
+        path,
+      );
 
       if (user) {
         setUser(user);
@@ -429,20 +467,17 @@ const AppInitializer = () => {
           console.warn("daily restore failed:", e);
         }
 
-        // 🔽 ここで「新規作成直後かどうか」のフラグを確認する
         let forceOnboarding = false;
         try {
           const flag = window.localStorage.getItem("needsOnboarding");
           if (flag === "1") {
             forceOnboarding = true;
-            // 1回だけ使うフラグなので消しておく
             window.localStorage.removeItem("needsOnboarding");
           }
         } catch (e) {
           console.warn("needsOnboarding 読み込み失敗:", e);
         }
 
-        // 認証後に public なURLにいた場合 → 新規作成なら /onboarding、そうでなければ /home
         if (PUBLIC_PATHS.includes(path)) {
           if (forceOnboarding) {
             navigateOnce("/onboarding");
@@ -456,6 +491,13 @@ const AppInitializer = () => {
           stopAutoSave?.();
         } catch (e) {
           console.warn(e);
+        }
+
+        if (
+          PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
+          !PUBLIC_PATHS.includes(path)
+        ) {
+          navigateOnce("/auth");
         }
       }
 

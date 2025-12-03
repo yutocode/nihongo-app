@@ -1,16 +1,36 @@
-/* ====== Header.css ====== */
+/* src/styles/Header.css */
+
+/* ====== Header 共通 ====== */
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  position: relative;
+
+  height: var(--layout-header-h, 64px);
+  position: relative; /* ← sticky / fixed はここでは使わない */
   z-index: 100;
+
+  background-color: rgba(11, 12, 15, 0.92);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.09),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* 左・中央・右 */
-.hdr-left { flex: 0 0 auto; display: flex; align-items: center; }
-.hdr-center { flex: 1 1 auto; display: flex; justify-content: center; align-items: center; }
+.hdr-left {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+.hdr-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .hdr-right {
   flex: 0 0 auto;
   display: flex;
@@ -19,18 +39,22 @@
   justify-content: flex-end;
 }
 
-/* 汎用ボタン */
+/* ボタン類（見た目は今まで通り） */
 .hdr-btn.is-ghost,
 .hdr-icon-btn {
-  background: #fff;
-  border: 1px solid #d0d0d0;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
   padding: 6px 10px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: box-shadow .15s ease, transform .05s ease;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.05s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 .hdr-icon-btn {
   border-radius: 50%;
@@ -38,88 +62,63 @@
   height: 36px;
   justify-content: center;
 }
-.hdr-icon-btn:active { transform: translateY(1px); }
-
-/* ===== 視認性アップ用オーバーライド ===== */
-
-/* 1) 少し濃い下地 + 明るい境界線 */
-.app-header {
-  background-color: rgba(11,12,15,.92);               /* 0.85 → 0.92 */
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.09),
-    0 6px 20px rgba(0,0,0,.35);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+.hdr-icon-btn:active {
+  transform: translateY(1px);
 }
 
-/* 2) 右上ボタンのコントラスト底上げ */
-.hdr-right .hdr-btn.is-ghost,
-.hdr-right .hdr-icon-btn {
-  border-color: rgba(255,255,255,.18);
-  background: rgba(255,255,255,.06);
-}
+/* ホバー */
 .hdr-right .hdr-btn.is-ghost:hover,
 .hdr-right .hdr-icon-btn:hover {
-  background: rgba(255,255,255,.12);
-  border-color: rgba(255,255,255,.28);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
   filter: saturate(1.1);
 }
 
-/* 3) アイコンサイズ＆濃さアップ */
+/* アイコン */
 .hdr-right .hdr-ic {
-  font-size: 18px;   /* 16 → 18 */
-  color: #fff;
-  opacity: .95;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0.95;
 }
 
-/* 4) フォーカスリング */
+/* フォーカスリング */
 .hdr-btn.is-ghost:focus-visible,
-.hdr-btn.is-primary:focus-visible,
 .hdr-icon-btn:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 3px var(--ring),
-    0 0 0 1px rgba(255,255,255,.25) inset;
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
 }
 
-/* 5) スマホ最適化（タップ領域確保） */
-@media (max-width:480px) {
+/* スマホ最適化 */
+@media (max-width: 480px) {
   .hdr-right .hdr-btn,
   .hdr-right .hdr-icon-btn {
     min-width: 44px;
     height: 40px;
   }
-  .hdr-right .hdr-ic { font-size: 19px; }
+  .hdr-right .hdr-ic {
+    font-size: 19px;
+  }
 }
 
-/* 6) レベル表示ボタン（ピル風） */
+/* レベルボタンなど（ここは今のままでOK） */
 .hdr-right .level-btn {
   font-weight: 700;
-  letter-spacing: .2px;
-  border-color: rgba(124,58,237,.45);
-  background: linear-gradient(180deg, rgba(124,58,237,.18), rgba(124,58,237,.10));
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  letter-spacing: 0.2px;
+  border-color: rgba(124, 58, 237, 0.45);
+  background: linear-gradient(
+    180deg,
+    rgba(124, 58, 237, 0.18),
+    rgba(124, 58, 237, 0.1)
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 .hdr-right .level-btn:hover {
-  background: linear-gradient(180deg, rgba(124,58,237,.26), rgba(124,58,237,.16));
-  border-color: rgba(124,58,237,.65);
-}
-
-/* 7) レベル選択モーダル */
-.level-select-modal {
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(20,22,27,.96);
-  color: var(--text);
-  box-shadow: 0 14px 40px rgba(0,0,0,.45);
-}
-.level-select-modal h3 {
-  color: #fff;
-  opacity: .95;
-}
-.level-select-modal li {
-  border-radius: 10px;
-  padding: 8px 10px;
-}
-.level-select-modal li:hover {
-  background: rgba(255,255,255,.08);
+  background: linear-gradient(
+    180deg,
+    rgba(124, 58, 237, 0.26),
+    rgba(124, 58, 237, 0.16)
+  );
+  border-color: rgba(124, 58, 237, 0.65);
 }

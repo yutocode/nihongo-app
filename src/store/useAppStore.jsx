@@ -1,6 +1,6 @@
 // src/store/useAppStore.jsx
 import { create } from "zustand";
-import { tokyoDayKey } from "@/utils/daykey"; // 追加：東京タイムゾーンの暦日キー
+import { tokyoDayKey } from "@/utils/daykey"; // 東京タイムゾーンの暦日キー
 
 /** localStorage 安全取得 */
 const safeGet = (key, fallback) => {
@@ -101,7 +101,6 @@ export const useAppStore = create((set, get) => ({
   },
 
   /* ===== アバター（プロフィールアイコン） ===== */
-  // avatarKey は "panda" | "cat" | "dog" | "penguin" ... を想定
   avatarKey: safeGet("avatarKey", "panda"),
   setAvatarKey: (key) => {
     const k = key || "panda";
@@ -166,7 +165,6 @@ export const useAppStore = create((set, get) => ({
       get().resetDaily(uid, d);
     }
   },
-  // 互換用: 旧関数名を残しておく
   ensureToday: (uid) => {
     const d = get().daily;
     if (d.dateKey !== todayKey()) {

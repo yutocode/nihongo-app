@@ -18,39 +18,54 @@ const firebaseConfig = {
   measurementId: "G-FR05H677B9",
 };
 
-// ---- App ----
+// =====================
+// Firebase App
+// =====================
 const app = initializeApp(firebaseConfig);
 
-// ---- Firestore ----
-// GitHub Pages / 一部ネットワークでの接続問題対策としてロングポーリング指定
+// =====================
+// Firestore
+// =====================
+// GitHub Pages や一部のネットワーク環境向けにロングポーリングを有効化
 export const db = initializeFirestore(app, {
   experimentalAutoDetectLongPolling: true,
   useFetchStreams: false,
 });
 
-// ---- Auth ----
+// =====================
+// Auth
+// =====================
 export const auth = getAuth(app);
 
-// Capacitor(iOSアプリ) かどうか判定
+// 実行環境チェック
+const isBrowser = typeof window !== "undefined";
+
+// Capacitor(iOSアプリ) かどうか判定（ログ用）
 const isCapacitorWebView =
-  typeof window !== "undefined" &&
-  window.location &&
+  isBrowser &&
+  typeof window.location?.origin === "string" &&
   window.location.origin.startsWith("capacitor://");
 
-const persistence = isCapacitorWebView
-  ? inMemoryPersistence // iOS アプリ: メモリのみ
-  : browserLocalPersistence; // Web: これまで通り localStorage
+// 基本は「端末を閉じてもログイン状態を保持」したいので local を使う
+const primaryPersistence = browserLocalPersistence;
 
-setPersistence(auth, persistence)
-  .then(() => {
+// ===== 永続化設定（エラー時は inMemory にフォールバック） =====
+(async () => {
+  try {
+    await setPersistence(auth, primaryPersistence);
     console.log(
-      "[Auth] persistence:",
-      isCapacitorWebView ? "inMemory" : "browserLocal",
+      "[Auth] persistence set:",
+      isCapacitorWebView ? "browserLocal (Capacitor)" : "browserLocal (Web)",
     );
-  })
-  .catch((e) => {
-    console.warn("[Auth] persistence error:", e);
-  });
+  } catch (e) {
+    console.warn("[Auth] persistence error, fallback to inMemory:", e);
+    try {
+      await setPersistence(auth, inMemoryPersistence);
+      console.log("[Auth] persistence set: inMemory (fallback)");
+    } catch (err) {
+      console.error("[Auth] failed to set inMemory persistence", err);
+    }
+  }
+})();
 
-// デフォルトは app を返す
 export default app;

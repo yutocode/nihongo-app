@@ -23,7 +23,7 @@ export default function Layout() {
 
   return (
     <div className="app-shell" data-route={location.pathname}>
-      {/* ===== 固定ヘッダー ===== */}
+      {/* ===== 固定ヘッダー（位置決めだけ Layout 側でやる） ===== */}
       {!hideChrome && (
         <header className="app-shell-header" aria-label="App header">
           <Header />
@@ -36,7 +36,7 @@ export default function Layout() {
         {!hideChrome && <Footer />}
       </main>
 
-      {/* ===== 固定ボトムナビ（<BottomNav/> は .bn で fixed） ===== */}
+      {/* ===== 固定ボトムナビ ===== */}
       {!hideChrome && (
         <nav className="app-shell-bottom" aria-label="Bottom navigation">
           <BottomNav />

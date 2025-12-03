@@ -4,8 +4,13 @@
 .settings-page {
   background: var(--bg);
   color: var(--text);
-  min-height: 100%;
-  padding-bottom: 64px;
+
+  /* 👇 高さはコンテンツに任せる（vh 固定しない） */
+  min-height: auto;
+
+  /* 👇 固定 BottomNav 分 + ちょっと余白をあけて、隠れないようにする */
+  padding-bottom: calc(var(--layout-bottom-h) + var(--space-8, 32px));
+  box-sizing: border-box;
 }
 
 /* ヘッダー */
@@ -21,12 +26,12 @@
 }
 .settings__subtitle {
   margin: 0;
-  color: var(--text-muted);    /* ← opacity で薄くしない */
+  color: var(--text-muted); /* ← opacity で薄くしない */
 }
 
 /* セクション */
 .settings__section {
-  background: var(--surface);   /* 以前の #fff を置き換え */
+  background: var(--surface); /* 以前の #fff を置き換え */
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -35,7 +40,7 @@
 }
 .settings__sectionTitle {
   font-size: 14px;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin: 12px 16px 8px;
@@ -90,25 +95,33 @@
   gap: 8px;
   color: var(--text-muted);
 }
-.settings__chevron { color: var(--text-muted); }
-.settings__value   { color: var(--text-muted); }
+.settings__chevron {
+  color: var(--text-muted);
+}
+.settings__value {
+  color: var(--text-muted);
+}
 
-/* スイッチ（ダーク/ライトで自然に見える色へ） */
+/* スイッチ */
 .switch {
   position: relative;
   display: inline-block;
   width: 52px;
   height: 30px;
 }
-.switch input { display: none; }
+.switch input {
+  display: none;
+}
 
 .slider {
   position: absolute;
   inset: 0;
-  background: var(--surface-2);           /* トラックの未ON */
+  background: var(--surface-2); /* トラック OFF */
   border: 1px solid var(--border);
   border-radius: 999px;
-  transition: background .2s, border-color .2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 .slider::before {
   content: "";
@@ -121,7 +134,7 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 50%;
-  transition: transform .2s;
+  transition: transform 0.2s;
   box-shadow: var(--shadow);
 }
 
@@ -132,7 +145,7 @@
 }
 .switch input:checked + .slider::before {
   transform: translate(22px, -50%);
-  background: #fff; /* つまみは白のままが視認良 */
+  background: #fff; /* つまみは白で視認性キープ */
 }
 
 /* フッター */
@@ -141,7 +154,9 @@
   color: var(--text-muted);
   text-align: center;
 }
-.settings__version { margin-bottom: 12px; }
+.settings__version {
+  margin-bottom: 12px;
+}
 .settings__logout {
   display: inline-flex;
   align-items: center;
@@ -152,9 +167,11 @@
   color: var(--text);
   border: 1px solid var(--border);
 }
-.settings__logout:active { transform: translateY(1px); }
+.settings__logout:active {
+  transform: translateY(1px);
+}
 
 /* iOS のタップハイライト軽減 */
 .settings-page * {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
