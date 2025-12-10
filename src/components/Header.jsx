@@ -20,7 +20,7 @@ const Header = () => {
   // 現在パスからレベル推定（XPバナー用フォールバック）
   const currentLevel = useMemo(() => {
     const m = location.pathname.match(
-      /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i,
+      /^\/(?:lessons|words|grammar|adj|word-quiz)\/(n[1-5])/i
     );
     return m ? m[1].toUpperCase() : "N5";
   }, [location.pathname]);
@@ -29,15 +29,9 @@ const Header = () => {
   const backTarget = useMemo(() => {
     const p = location.pathname;
 
-    // 単語レッスン → レッスン一覧
+    // ★ WordPage (/words/n1〜n5/...) はページ内の戻るボタンを使うのでヘッダーの戻るは出さない
     if (/^\/words\/n[1-5]\//i.test(p)) {
-      const m = p.match(/^\/words\/(n[1-5])/i);
-      if (m) {
-        return {
-          path: `/lessons/${m[1]}`,
-          label: t("nav.toLessonSelect", "レッスン選択"),
-        };
-      }
+      return null;
     }
 
     // レッスン選択 → ホーム
@@ -94,7 +88,7 @@ const Header = () => {
 
   return (
     <header className="app-header" role="banner" data-testid="AppHeader">
-      {/* 左：戻る or 何も表示しないプレースホルダ（プロフィールボタン封印） */}
+      {/* 左：戻る or ダミー */}
       <div className="hdr-left">
         {showBack ? (
           <button
@@ -107,7 +101,6 @@ const Header = () => {
             <span className="hdr-btn-text">{backTarget.label}</span>
           </button>
         ) : (
-          // レイアウト用の空要素（見た目は何も出さない）
           <div className="hdr-avatar-placeholder" aria-hidden="true" />
         )}
       </div>
@@ -132,6 +125,7 @@ const Header = () => {
         >
           <FaLayerGroup className="hdr-ic" aria-hidden="true" />
         </button>
+
         <button
           type="button"
           className="hdr-icon-btn settings-icon-btn"

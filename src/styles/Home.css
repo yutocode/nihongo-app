@@ -1,3 +1,4 @@
+/* src/styles/Home.css */
 /* =========================
    Home.css
    ホーム画面レイアウト
@@ -13,17 +14,27 @@
   box-sizing: border-box;
   overscroll-behavior-y: contain;
 
-  /* ⛔ ここは削除：
-     min-height: 100vh;
-     --bottom-nav-h: 64px;
-     padding-bottom: calc(20px + env(safe-area-inset-bottom) + var(--bottom-nav-h));
-  */
-
-  /* 下は「ちょっとだけ」余白をつけたいなら追加してOK */
+  /* 下は「ちょっとだけ」余白をつける */
   padding-bottom: 24px;
 
-  background: var(--bg);
-  color: var(--text);
+  /* ★ 画面全体を真っ黒系にする（BottomNav と揃える） */
+  background: var(
+    --color-bottom-nav-shell-bg,
+    var(--color-bottom-nav-bg, #05060a)
+  );
+  color: var(--color-text);
+}
+
+/* 内側シェル：縦方向に詰める */
+.home-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HelloTalk っぽい上の余白 */
+.home-safe-top {
+  height: 4px;
 }
 
 /* ---- セクション ---- */
@@ -50,7 +61,6 @@
   }
 }
 
-
 /* ==============================
    CTA ボタン
    ============================== */
@@ -69,9 +79,11 @@
   border-radius: 16px;
   cursor: pointer;
 
+  /* 共通の .btn-primary の上に重ねて使う */
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -96,4 +108,10 @@
   .cta-big {
     transition: none;
   }
+}
+
+/* ここだけ追記 or 置き換え（他はいじらない） */
+.home-wrap {
+  background: var(--color-bg);
+  color: var(--color-text);
 }

@@ -1,6 +1,7 @@
+// src/components/XPBanner.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useAppStore } from "../store/useAppStore";
-import "../styles/XPBanner.css";
+import { useAppStore } from "@/store/useAppStore"; // エイリアス版
+import "@/styles/XPBanner.css";
 
 /** 数値をなめらかにカウントアップ表示するフック */
 function useCountUp(value, duration = 600) {
@@ -30,8 +31,8 @@ function useCountUp(value, duration = 600) {
 
 /**
  * XPBanner（ミニマル版）
- * - トロフィー/ラベルは出さない（Lvピル＋バー＋数値のみ）
- * - モバイル優先、デザイントークンのみ使用
+ * - Lvピル＋バー＋数値のみ
+ * - モバイル優先、デザイントークン前提のCSSとセットで使用
  */
 export default function XPBanner({ compact = false }) {
   const xp = useAppStore((s) => s.xp); // { total, level, need, into, percent, levelLabel }
@@ -39,21 +40,22 @@ export default function XPBanner({ compact = false }) {
   const prevLevel = useRef(xp.level);
   const prevPercent = useRef(xp.percent);
 
-  // 数字アニメ
+  // 数字アニメーション
   const animPercent = useCountUp(xp.percent ?? 0, 600);
-  const animLevel   = useCountUp(xp.level ?? 1, 700);
-  const animInto    = useCountUp(xp.into ?? 0, 600);
-  const animNeed    = useMemo(() => xp.need ?? 0, [xp.need]);
+  const animLevel = useCountUp(xp.level ?? 1, 700);
+  const animInto = useCountUp(xp.into ?? 0, 600);
+  const animNeed = useMemo(() => xp.need ?? 0, [xp.need]);
 
   // レベルアップ演出
   useEffect(() => {
-    if ((xp.level ?? 1) > (prevLevel.current ?? 1)) {
+    const currentLevel = xp.level ?? 1;
+    if (currentLevel > (prevLevel.current ?? 1)) {
       setLevelUp(true);
       const t = setTimeout(() => setLevelUp(false), 1400);
-      prevLevel.current = xp.level;
+      prevLevel.current = currentLevel;
       return () => clearTimeout(t);
     }
-    prevLevel.current = xp.level;
+    prevLevel.current = currentLevel;
   }, [xp.level]);
 
   // バー幅（％）
@@ -62,19 +64,30 @@ export default function XPBanner({ compact = false }) {
   // 変化量に応じてアニメ時間を可変（1%あたり12ms、最小150ms、最大250ms）
   const delta = Math.abs(width - (prevPercent.current ?? 0));
   const durMs = Math.max(150, Math.min(250, Math.round(delta * 12)));
-  useEffect(() => { prevPercent.current = width; }, [width]);
+
+  useEffect(() => {
+    prevPercent.current = width;
+  }, [width]);
 
   return (
     <div
-      className={`xp-banner ${compact ? "is-compact" : ""} ${levelUp ? "is-levelup" : ""}`}
+      className={`xp-banner ${compact ? "is-compact" : ""} ${
+        levelUp ? "is-levelup" : ""
+      }`}
       role="region"
       aria-label="Level progress"
     >
       <div className="xp-main">
         <div className="xp-row">
           <div className="xp-title">
-            <span className="xp-levelchip" aria-label={`レベル ${animLevel}`}>Lv {animLevel}</span>
+            <span
+              className="xp-levelchip"
+              aria-label={`レベル ${animLevel}`}
+            >
+              Lv&nbsp;{animLevel}
+            </span>
           </div>
+
           <div className="xp-numbers" aria-live="polite">
             <span className="xp-num">{animInto}</span>
             <span className="xp-split">/</span>
@@ -91,15 +104,25 @@ export default function XPBanner({ compact = false }) {
           aria-valuenow={Math.round(width)}
           aria-label="経験値バー"
         >
-          {/* 可変durationをCSS変数で渡す */}
-          <div className="xp-fill" style={{ width: `${width}%`, ["--dur"]: `${durMs}ms` }}>
+          {/* 可変 duration を CSS 変数で渡す */}
+          <div
+            className="xp-fill"
+            style={{
+              width: `${width}%`,
+              "--dur": `${durMs}ms`,
+            }}
+          >
             <span className="xp-shine" aria-hidden />
           </div>
         </div>
       </div>
 
-      {/* レベルアップ時のポップ（控えめ） */}
-      {levelUp && <div className="levelup-pop" aria-hidden>Level Up!</div>}
+      {/* レベルアップ時の控えめポップ */}
+      {levelUp && (
+        <div className="levelup-pop" aria-hidden>
+          Level Up!
+        </div>
+      )}
     </div>
   );
 }

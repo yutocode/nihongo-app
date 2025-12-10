@@ -1,6 +1,6 @@
 // src/pages/WordPage.jsx
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import WordCard from "../components/WordCard";
 import "../styles/WordPage.css";
 
@@ -21,7 +21,8 @@ const flattenLessons = (obj) => (obj ? Object.values(obj).flat() : []);
 
 export default function WordPage() {
   const { level = "", lesson = "" } = useParams();
-  const selectedLanguage = useAppStore((s) => s.language); // いずれ意味の出し分けに使う想定
+  const navigate = useNavigate();
+  const selectedLanguage = useAppStore((s) => s.language);
   const { t } = useTranslation();
 
   const normLevel = String(level).toLowerCase();
@@ -77,11 +78,33 @@ export default function WordPage() {
     }
   }
 
+  // 戻るボタン：レベルが分かるときは /lessons/:level に戻す
+  const handleBack = () => {
+    if (normLevel && /^n[1-5]$/.test(normLevel)) {
+      navigate(`/lessons/${normLevel}`);
+    } else {
+      navigate("/home");
+    }
+  };
+
   return (
     <div className="word-page">
       {wordList ? (
         <>
           <header className="word-page-head">
+            {/* ← 戻るボタン */}
+            <button
+              type="button"
+              className="word-page-back"
+              onClick={handleBack}
+              aria-label={t("nav.toLessonSelect", "レッスン一覧に戻る")}
+            >
+              <span className="word-page-back-icon">←</span>
+              <span className="word-page-back-text">
+                {t("nav.toLessonSelect", "レッスン一覧に戻る")}
+              </span>
+            </button>
+
             <h2 className="word-page-title">
               {t("lesson.lesson", { defaultValue: "課" })} {titleRight}
             </h2>

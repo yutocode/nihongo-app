@@ -1,9 +1,10 @@
 /* src/styles/Layout.css */
 
-/* Header / BottomNav の高さを一元管理 */
+/* Header / BottomNav / Ad の高さを一元管理 */
 :root {
-  --layout-header-h: 64px;  /* Header の実高さ */
-  --layout-bottom-h: 72px;  /* BottomNav の高さ（Global の --bn-height と合わせる） */
+  --layout-header-h: 64px;        /* Header の実高さ */
+  --layout-bottom-h: 72px;        /* BottomNav の高さ（Theme の --bn-height と合わせる） */
+  --layout-ad-banner-h: 56px;     /* AdMob バナー想定の高さ（だいたい 50〜60px） */
 }
 
 /* アプリ全体の外枠（全ページ共通） */
@@ -39,9 +40,15 @@
   width: 100%;
   margin: 0 auto;
 
-  /* BottomNav + 余白 40px + セーフエリア分 をスクロール領域の中に含める */
+  /*
+    通常ページ用：
+    BottomNav + Ad バナー + 余白 16px + セーフエリアぶん
+  */
   padding-bottom: calc(
-    var(--layout-bottom-h) + 40px + env(safe-area-inset-bottom, 0px)
+    var(--layout-bottom-h)
+    + var(--layout-ad-banner-h)
+    + 16px
+    + env(safe-area-inset-bottom, 0px)
   );
 
   overflow-y: auto;
@@ -52,7 +59,13 @@
 .app-shell-bottom {
   position: fixed;
   inset-inline: 0;
-  bottom: 0;
+
+  /*
+    AdMob バナーが最下部に来る前提で、
+    BottomNav はその上に 56px 浮かせて配置
+  */
+  bottom: var(--layout-ad-banner-h);
+
   height: calc(
     var(--layout-bottom-h) + env(safe-area-inset-bottom, 0px)
   );
@@ -77,4 +90,25 @@
   pointer-events: auto;
   width: 100%;
   max-width: 480px;
+}
+
+/* =========================================================
+   Ad デバッグ用オーバーレイ
+   - Layout.jsx 側で .app-shell に app-shell--ad-debug を
+     付けたときだけ、バナーエリアをうっすら可視化
+   ========================================================= */
+.app-shell.app-shell--ad-debug::after {
+  content: "AD BANNER AREA";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--layout-ad-banner-h);
+  background: rgba(255, 255, 0, 0.08); /* うっすら黄帯 */
+  border-top: 1px dashed rgba(255, 220, 0, 0.9);
+  font-size: 10px;
+  text-align: center;
+  line-height: var(--layout-ad-banner-h);
+  pointer-events: none; /* クリックは下に通す */
+  z-index: 39; /* BottomNav(40) より一段下 */
 }

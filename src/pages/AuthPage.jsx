@@ -32,7 +32,6 @@ function useEmailValidation(email) {
 
 /**
  * REST API のエラーメッセージ → i18n キーに変換
- * @param {string} message
  */
 function mapRestErrorToKey(message) {
   switch (message) {
@@ -129,7 +128,6 @@ const AuthPage = () => {
   const { t } = useTranslation();
 
   const setUser = useAppStore((s) => s.setUser);
-  const userInStore = useAppStore((s) => s.user);
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -146,29 +144,10 @@ const AuthPage = () => {
   const isLoginEmailValid = useEmailValidation(loginEmail);
   const isRegisterEmailValid = useEmailValidation(registerEmail);
 
-  const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
+  const mapErrorKey = (code) =>
+    FB_ERROR_I18N[code] || "auth.errors.generic";
 
-  // 既にログインしていたら /home or /onboarding へ
-  // needsOnboarding が "1" のときだけオンボーディングに飛ばす
-  useEffect(() => {
-    if (!userInStore) return;
-
-    let needsOnboarding = false;
-    try {
-      needsOnboarding =
-        window.localStorage.getItem("needsOnboarding") === "1";
-    } catch (e) {
-      console.warn("needsOnboarding 読み込み失敗:", e);
-    }
-
-    if (needsOnboarding) {
-      navigate("/onboarding", { replace: true });
-    } else {
-      navigate("/home", { replace: true });
-    }
-  }, [userInStore, navigate]);
-
-  // ====== WKWebView から Google API に届くかテスト ======
+  // ====== WKWebView から Google API に届くかテスト（デバッグ用） ======
   useEffect(() => {
     console.log("[FETCH TEST] start");
 
@@ -195,7 +174,11 @@ const AuthPage = () => {
         console.log("[FETCH TEST] status =", res.status, "body =", text);
       })
       .catch((e) => {
-        console.log("[FETCH TEST ERROR]", e?.name, e?.message || e);
+        console.log(
+          "[FETCH TEST ERROR]",
+          e?.name,
+          e?.message || e,
+        );
       });
   }, []);
 
@@ -222,7 +205,6 @@ const AuthPage = () => {
 
       console.log("[REST LOGIN OK]", data.localId);
 
-      // Firebase の User オブジェクトではないが、アプリで必要な最低限を保存
       setUser?.({
         uid: data.localId,
         email: data.email,
@@ -232,7 +214,7 @@ const AuthPage = () => {
         providerId: "password",
       });
 
-      // 既存ユーザーのログインなのでオンボーディングは不要
+      // ログイン時はオンボーディング不要
       try {
         window.localStorage.removeItem("needsOnboarding");
       } catch (e) {
@@ -285,7 +267,10 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const data = await restSignUp(registerEmail, registerPassword);
+      const data = await restSignUp(
+        registerEmail,
+        registerPassword,
+      );
 
       console.log("[REST REGISTER OK]", data.localId);
 
@@ -305,6 +290,7 @@ const AuthPage = () => {
         console.warn("needsOnboarding 保存失敗:", e);
       }
 
+      // ここで必ずオンボーディングへ
       navigate("/onboarding", { replace: true });
     } catch (err) {
       console.log("[REST REGISTER ERROR]", err?.code, err?.message);
@@ -346,7 +332,6 @@ const AuthPage = () => {
   const continueAsGuest = () => {
     console.log("[GUEST] continue as guest");
     try {
-      // ゲストのときも念のためフラグをクリア
       window.localStorage.removeItem("needsOnboarding");
     } catch (e) {
       console.warn("needsOnboarding 削除失敗:", e);
@@ -362,7 +347,9 @@ const AuthPage = () => {
           <div className="auth-tabs" role="tablist">
             <button
               type="button"
-              className={`auth-tab ${mode === "login" ? "is-active" : ""}`}
+              className={`auth-tab ${
+                mode === "login" ? "is-active" : ""
+              }`}
               onClick={() => setMode("login")}
               role="tab"
               aria-selected={mode === "login"}
@@ -405,7 +392,9 @@ const AuthPage = () => {
                   type={showPassLogin ? "text" : "password"}
                   placeholder={t("auth.password", "Password")}
                   value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onChange={(e) =>
+                    setLoginPassword(e.target.value)
+                  }
                   onKeyDown={onKeyDownLogin}
                   required
                   aria-label={t("auth.password", "Password")}
@@ -443,7 +432,9 @@ const AuthPage = () => {
                 type="email"
                 placeholder={t("auth.email", "Email")}
                 value={registerEmail}
-                onChange={(e) => setRegisterEmail(e.target.value)}
+                onChange={(e) =>
+                  setRegisterEmail(e.target.value)
+                }
                 onKeyDown={onKeyDownRegister}
                 required
                 aria-invalid={!isRegisterEmailValid}
@@ -457,7 +448,9 @@ const AuthPage = () => {
                     "Password (6+ chars)",
                   )}
                   value={registerPassword}
-                  onChange={(e) => setRegisterPassword(e.target.value)}
+                  onChange={(e) =>
+                    setRegisterPassword(e.target.value)
+                  }
                   onKeyDown={onKeyDownRegister}
                   required
                   aria-label={t("auth.password", "Password")}
@@ -466,7 +459,9 @@ const AuthPage = () => {
                 <button
                   type="button"
                   className="toggle-pass"
-                  onClick={() => setShowPassRegister((v) => !v)}
+                  onClick={() =>
+                    setShowPassRegister((v) => !v)
+                  }
                   aria-label={
                     showPassRegister
                       ? t("auth.hide_password", "Hide password")
@@ -495,7 +490,11 @@ const AuthPage = () => {
           )}
 
           {errorKey && (
-            <div className="auth-error" role="alert" aria-live="assertive">
+            <div
+              className="auth-error"
+              role="alert"
+              aria-live="assertive"
+            >
               {t(
                 errorKey,
                 t(

@@ -30,7 +30,7 @@ export default function WordCard({
   wordList = [],
   level = "n5",
   lesson = "Lesson1",
-  quizLessonKey, // ★ 追加：クイズ用の本当のキー
+  quizLessonKey, // クイズ用の本当のキー（なければ lesson を使う）
   category = "nouns",
   audioBase = "/audio",
   onIndexChange,
@@ -194,7 +194,7 @@ export default function WordCard({
         }, 220);
       }
     },
-    trackMouse: true, // PCブラウザでもマウスドラッグでテスト可能
+    trackMouse: true,
     preventScrollOnSwipe: true,
   });
 
@@ -236,7 +236,7 @@ export default function WordCard({
   };
 
   // === 品詞とID表示 ===
-  const pos = getPosById(level, word?.id, word?.pos || "—"); // 例: "名詞"
+  const pos = getPosById(level, word?.id, word?.pos || "—");
   const idLabel = word?.id ? `No.${word.id}` : `No.${index + 1}`;
 
   const posClass = (p) => {
@@ -293,7 +293,7 @@ export default function WordCard({
   const closeDetail = () => setDetailOpen(false);
 
   // === 同じレッスンのクイズへジャンプ ===
-  const quizKey = quizLessonKey || lesson; // 表示名と別に、クイズ用キーを優先
+  const quizKey = quizLessonKey || lesson;
 
   const handleChallengeClick = useCallback(() => {
     if (!level || !quizKey) return;
@@ -393,10 +393,13 @@ export default function WordCard({
         </button>
       </div>
 
-      {/* ←→ ナビボタンは削除：スワイプのみで移動 */}
-
-      {/* 詳細モーダル */}
-      <DetailModal open={detailOpen} onClose={closeDetail} data={detailData} />
+      {/* 詳細モーダル（ここで level を渡すのがポイント） */}
+      <DetailModal
+        open={detailOpen}
+        onClose={closeDetail}
+        data={detailData}
+        level={level}
+      />
     </div>
   );
 }

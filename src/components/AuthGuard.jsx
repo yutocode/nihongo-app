@@ -1,7 +1,7 @@
 // src/components/AuthGuard.jsx
 import React, { useEffect, useRef } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAppStore } from "../store/useAppStore";         // ← 相対パスに調整してね（@未設定なら）
+import { useAppStore } from "../store/useAppStore";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 import LoadingIllustration from "../components/LoadingIllustration";
@@ -18,7 +18,7 @@ export default function AuthGuard({
   const setXPTotal = useAppStore((s) => s.setXPTotal);
   const setAuthReady = useAppStore((s) => s.setAuthReady);
 
-  // ★ 型記法を削除（JSXでは useRef(null)）
+  // どの uid で XP を読み込んだかを記録して、無駄な再読込を防ぐ
   const fetchedForUidRef = useRef(null);
 
   useEffect(() => {
@@ -26,10 +26,13 @@ export default function AuthGuard({
 
     const loadUserXP = async () => {
       if (!user) {
+        // ログアウト状態なら XP は 0 扱いにして authReady だけ true
+        setXPTotal?.(0);
         setAuthReady?.(true);
         return;
       }
 
+      // 同じ uid に対しては 1 回だけ読み込み
       if (fetchedForUidRef.current === user.uid) {
         setAuthReady?.(true);
         return;
@@ -41,24 +44,36 @@ export default function AuthGuard({
 
         if (snap.exists()) {
           const data = snap.data();
-          if (typeof data?.totalXP === "number") {
-            setXPTotal?.(data.totalXP);
-          } else {
-            setXPTotal?.(0);
-          }
+
+          // いろんなフィールド名に対応して XP を取得
+          const xp =
+            typeof data?.totalXP === "number"
+              ? data.totalXP
+              : typeof data?.xpTotal === "number"
+              ? data.xpTotal
+              : typeof data?.xp === "number"
+              ? data.xp
+              : 0;
+
+          console.log("[AuthGuard] loaded XP from Firestore:", xp, data);
+          setXPTotal?.(xp);
         } else {
+          console.log("[AuthGuard] no user doc, XP = 0");
           setXPTotal?.(0);
         }
 
         fetchedForUidRef.current = user.uid;
       } catch (e) {
         console.warn("XPデータ読み込み失敗:", e);
+        setXPTotal?.(0);
       } finally {
         setAuthReady?.(true);
       }
     };
 
+    // まだ authReady が false のときだけ読み込む
     if (!authReady) {
+      console.log("[AuthGuard] start loadUserXP, user:", user?.uid);
       loadUserXP();
     }
 
@@ -67,16 +82,41 @@ export default function AuthGuard({
     };
   }, [user, authReady, setAuthReady, setXPTotal]);
 
+  // ===== ここからガード処理 =====
+
   if (!authReady) {
-    return <LoadingIllustration message={loadingMessage} size="md" showBackdrop />;
+    return (
+      <LoadingIllustration
+        message={loadingMessage}
+        size="md"
+        showBackdrop
+      />
+    );
   }
 
+  // 未ログイン → /auth へ
   if (!user) {
-    return <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />;
+    return (
+      <Navigate
+        to="/auth"
+        replace
+        state={{ from: location.pathname + location.search }}
+      />
+    );
   }
 
+  // メール確認が必須 & 未確認 → settings へ
   if (requireEmailVerified && user.emailVerified === false) {
-    return <Navigate to="/settings" replace state={{ reason: "email_not_verified", from: location.pathname }} />;
+    return (
+      <Navigate
+        to="/settings"
+        replace
+        state={{
+          reason: "email_not_verified",
+          from: location.pathname,
+        }}
+      />
+    );
   }
 
   return <>{children}</>;

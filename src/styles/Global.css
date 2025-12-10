@@ -87,6 +87,9 @@ body {
 
   /* Focus Ring */
   --ring: 0 0 0 3px rgba(255, 153, 0, 0.35);
+
+  /* ▼ 追加：AdMob バナーの高さ（レイアウト用） */
+  --layout-ad-banner-h: 56px;
 }
 
 /* OSがLightのときの自動切替 */

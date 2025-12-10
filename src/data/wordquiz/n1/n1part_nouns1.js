@@ -1,3 +1,4 @@
+//src/data/wordquiz/n1/n1part_nouns1.js
 export const n1part_nouns1 = [
   { id: 1,
     question_ja: "フィルムの <u>現像</u> を<ruby>依頼<rt>いらい</rt></ruby>する。",

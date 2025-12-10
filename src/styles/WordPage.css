@@ -1,24 +1,65 @@
 /* src/styles/WordPage.css */
+
 .word-page {
   max-width: 700px;
   margin: 2rem auto;
   padding: 1rem;
   text-align: center;
-  color: var(--text, #eaeaea);
+  color: var(--color-text, #eaeaea);
+}
+
+/* ヘッダーエリア（戻るボタン + タイトル） */
+.word-page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-bottom: var(--space-3, 0.75rem);
+}
+
+/* 戻るボタン */
+.word-page-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-soft, rgba(255, 255, 255, 0.18));
+  background: var(--color-surface-soft, rgba(0, 0, 0, 0.4));
+  color: var(--color-text, #f9fafb);
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast, 180ms) cubic-bezier(.2, .8, .2, 1),
+    transform var(--motion-fast, 180ms) cubic-bezier(.2, .8, .2, 1);
+}
+
+.word-page-back:hover {
+  transform: translateX(-1px);
+  background: var(--color-surface-strong, rgba(0, 0, 0, 0.6));
+}
+
+.word-page-back:focus-visible {
+  outline: 2px solid var(--color-accent, #0a84ff);
+  outline-offset: 2px;
+}
+
+.word-page-back-icon {
+  font-size: 0.9rem;
 }
 
 /* タイトル部分 */
 .word-page-title {
   font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--accent, #f5d97a); /* ゴールド系で映える */
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: var(--color-accent-soft, #f5d97a);
 }
 
 /* エラー表示 */
 .error-text {
-  color: #e74c3c;
+  color: var(--color-danger, #e74c3c);
   font-size: 1rem;
   margin-top: 2rem;
 }
@@ -28,12 +69,18 @@
   margin: 0 auto;
 }
 
-/* スマホ対応（幅が狭い時に文字が潰れないように） */
+/* スマホ対応 */
 @media (max-width: 480px) {
   .word-page {
     padding: 0.5rem;
   }
+  .word-page-head {
+    align-items: stretch;
+  }
+  .word-page-back {
+    margin-bottom: 0.25rem;
+  }
   .word-page-title {
-    font-size: 1.4rem;
+    text-align: center;
   }
 }

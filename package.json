@@ -26,6 +26,7 @@
     "vocab:all": "npm run vocab:collect && npm run vocab:enrich && npm run vocab:emit"
   },
   "dependencies": {
+    "@capacitor-community/admob": "^7.2.0",
     "@capacitor/cli": "^7.4.4",
     "@capacitor/core": "^7.4.4",
     "@capacitor/ios": "^7.4.4",

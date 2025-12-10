@@ -1,97 +1,182 @@
-.xp-banner{
-  display:flex;
-  align-items:center;
-  gap:var(--space-3);
-  padding:var(--space-3);
-  border:1px solid var(--color-border-subtle);
-  border-radius:var(--radius-4);
-  background:var(--color-bg-elev);
-  box-shadow:var(--shadow-1);
+/* src/styles/XPBanner.css */
+
+.xp-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-raised, var(--color-surface));
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border-subtle);
+  transition:
+    transform var(--motion-fast, 180ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1)),
+    box-shadow var(--motion-fast, 180ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1));
 }
 
-.xp-banner.is-compact{
-  padding:var(--space-2);
-  border-radius:var(--radius-3);
+.xp-banner.is-compact {
+  padding: var(--space-2);
 }
 
-.xp-main{display:flex; flex-direction:column; gap:var(--space-2); width:100%;}
-.xp-row{display:flex; align-items:center; gap:var(--space-3);}
-
-.xp-title{display:flex; align-items:center; gap:var(--space-2); min-width:0;}
-.xp-levelchip{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:0 var(--space-2);
-  height:calc(var(--space-6));
-  border:1px solid var(--color-border-subtle);
-  border-radius:var(--radius-2);
-  font-weight:700;
-  line-height:1;
+.xp-banner.is-levelup {
+  transform: translateY(calc(var(--space-0_5, 0.125rem) * -1));
+  box-shadow: var(--shadow-strong, var(--shadow-soft));
 }
 
-.xp-numbers{
-  margin-left:auto;
-  display:inline-flex; align-items:baseline; gap:var(--space-1);
-  font-variant-numeric: tabular-nums;
+.xp-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.xp-num, .xp-den{font-weight:700;}
-.xp-per{opacity:.8;}
-.xp-split{opacity:.7;}
-
-.xp-rail{
-  position:relative;
-  width:100%;
-  height:calc(var(--space-2));
-  border-radius:9999px;
-  background:var(--color-surface-1);
-  border:1px solid var(--color-border-subtle);
-  overflow:hidden;
+.xp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
 }
 
-.xp-fill{
-  height:100%;
-  border-radius:inherit;
-  background:var(--color-accent, var(--color-primary));
-  transform:translateZ(0);
-  transition:width var(--dur, 180ms) cubic-bezier(.2,.8,.2,1);
-  position:relative;
+/* 左側：Lv ピル */
+.xp-title {
+  flex-shrink: 0;
 }
 
-.xp-shine{
-  position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-  mix-blend-mode:overlay;
-  animation:xpShine var(--motion-normal, 1800ms) linear infinite;
-  opacity:.25;
+.xp-levelchip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-on, var(--color-primary));
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
-@keyframes xpShine{
-  0%{ transform:translateX(-100%); }
-  100%{ transform:translateX(100%); }
+/* 右側：数値 */
+.xp-numbers {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-0_5);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
 }
 
-/* LevelUp ポップ（控えめ） */
-.levelup-pop{
-  margin-left:auto;
-  padding:0 var(--space-2);
-  height:calc(var(--space-6));
-  display:flex; align-items:center; justify-content:center;
-  border-radius:var(--radius-2);
-  border:1px solid var(--color-border-subtle);
-  background:var(--color-surface-1);
-  box-shadow:var(--shadow-1);
-  font-weight:700;
-  animation:popIn var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1);
+.xp-num {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong, var(--color-text));
 }
 
-@keyframes popIn{
-  from{ transform:scale(.96); opacity:0; }
-  to{ transform:scale(1); opacity:1; }
+.xp-den {
+  font-size: var(--font-size-xs);
 }
 
-[data-theme="dark"] .xp-banner{
-  border-color:var(--color-border);
+.xp-per {
+  font-size: var(--font-size-xs);
+  opacity: 0.85;
 }
-[data-theme="dark"] .levelup-pop{
-  border-color:var(--color-border);
+
+.xp-split {
+  opacity: 0.65;
+}
+
+/* プログレスバー本体 */
+.xp-rail {
+  position: relative;
+  inline-size: 100%;
+  min-inline-size: 0;
+  block-size: var(--space-3);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background-color: var(--color-surface-elevated-subtle, var(--color-bg-subtle));
+}
+
+.xp-fill {
+  position: relative;
+  inline-size: 0;
+  block-size: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-soft),
+    var(--color-primary)
+  );
+  transition:
+    width var(--dur, 200ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1)),
+    inline-size var(--dur, 200ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1));
+}
+
+/* JSX 側では width を指定しているので両方とも反応するようにしておく */
+.xp-fill {
+  width: inherit;
+}
+
+/* さりげないハイライト */
+.xp-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-surface-raised, var(--color-surface)),
+    transparent
+  );
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* レベルアップのポップ */
+.levelup-pop {
+  align-self: flex-end;
+  margin-top: calc(var(--space-1) * -1);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-on, var(--color-primary));
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  animation: xp-levelup-pop var(--motion-medium, 220ms)
+      var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1))
+      forwards,
+    xp-levelup-fade 900ms ease-out 260ms forwards;
+  opacity: 0;
+}
+
+@keyframes xp-levelup-pop {
+  from {
+    transform: translateY(var(--space-1));
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes xp-levelup-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 小さい画面では余白を少し詰める */
+@media (max-width: 26rem) {
+  .xp-banner {
+    padding: var(--space-2);
+  }
+
+  .xp-row {
+    gap: var(--space-1_5, 0.375rem);
+  }
+
+  .xp-numbers {
+    font-size: var(--font-size-2xs, 0.75rem);
+  }
 }

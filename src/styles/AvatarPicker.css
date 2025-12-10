@@ -1,51 +1,58 @@
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
+/* src/styles/AvatarPicker.css */
 
-.modal-panel {
-  background: #111318;
-  color: #fff;
-  padding: 16px 18px;
-  border-radius: 14px;
-  width: min(360px, 92vw);
-}
-
-.avatar-grid {
+.avp {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin: 12px 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
 }
 
-.avatar-choice {
-  padding: 4px;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  background: #1b1e24;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.avatar-choice.is-active {
-  border-color: #22c55e;
-  background: #111318;
-}
-
-.avatar-close {
-  margin-top: 4px;
-  padding: 6px 10px;
-  border-radius: 8px;
+.avp-item {
   border: none;
-  background: #22c55e;
-  color: #000;
-  font-weight: 600;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: var(--radius-xl);
+}
+
+.avp-item:focus-visible {
+  outline: var(--border-focus, var(--border-hairline)) solid var(--color-primary);
+  outline-offset: var(--space-1);
+}
+
+.avp-ring {
+  display: grid;
+  place-items: center;
+  inline-size: var(--space-14);
+  block-size: var(--space-14);
+  margin-inline: auto;
+
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: var(--border-hairline) solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.avp-img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avp-item.is-selected .avp-ring {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 30rem) {
+  .avp {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .avp-ring {
+    inline-size: var(--space-13);
+    block-size: var(--space-13);
+  }
 }

@@ -1,3 +1,4 @@
+//src/data/n1WordSets/n1part_nouns1.js
 export const n1part_nouns1 = {
   "Lesson1": [
     {

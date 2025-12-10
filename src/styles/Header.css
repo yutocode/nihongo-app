@@ -1,17 +1,31 @@
 /* src/styles/Header.css */
 
-/* ====== Header 共通 ====== */
+/* =========================
+   App Header
+   ========================= */
 .app-header {
+  position: relative;
+  z-index: var(--z-header, 40);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
 
-  height: var(--layout-header-h, 64px);
-  position: relative; /* ← sticky / fixed はここでは使わない */
-  z-index: 100;
+  /* ⚠ もう margin-top は使わない（上に行き過ぎるので） */
+  margin-top: 0;
 
-  background-color: rgba(11, 12, 15, 0.92);
+  /* ノッチぶん + 少し余白を足して下げる */
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--space-2, 8px));
+  padding-right: var(--space-4, 16px);
+  padding-bottom: var(--space-2, 8px);
+  padding-left: var(--space-4, 16px);
+
+  box-sizing: border-box;
+
+  background-color: var(
+    --color-header-bg,
+    rgba(11, 12, 15, 0.92)
+  );
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.09),
     0 6px 20px rgba(0, 0, 0, 0.35);
@@ -19,49 +33,114 @@
   -webkit-backdrop-filter: blur(14px);
 }
 
-/* 左・中央・右 */
+/* ✅ 上の safe-area をヘッダーと同じ色で塗る */
+.app-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * env(safe-area-inset-top, 0px));
+  height: env(safe-area-inset-top, 0px);
+  background-color: inherit;
+}
+
+/* 左・中央・右のエリア */
 .hdr-left {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
 }
+
 .hdr-center {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0;
 }
+
 .hdr-right {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 8px;
   justify-content: flex-end;
+  gap: var(--space-2, 8px);
 }
 
-/* ボタン類（見た目は今まで通り） */
-.hdr-btn.is-ghost,
-.hdr-icon-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+/* 戻るボタンが無いときのダミー（レイアウト崩れ防止） */
+.hdr-avatar-placeholder {
+  width: 88px;
+  height: 32px;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.hdr-btn {
   border-radius: 999px;
   padding: 6px 10px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #ffffff;
+
   transition:
     box-shadow 0.15s ease,
     transform 0.05s ease,
     background 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    filter 0.15s ease;
 }
+
+.hdr-btn.is-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* プライマリ（戻るボタン） */
+.hdr-btn.is-primary {
+  background: linear-gradient(
+    180deg,
+    rgba(124, 58, 237, 0.26),
+    rgba(124, 58, 237, 0.16)
+  );
+  border-color: rgba(124, 58, 237, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.hdr-btn:active {
+  transform: translateY(1px);
+}
+
+/* アイコンボタン（右上の丸ボタン） */
 .hdr-icon-btn {
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0;
+
   width: 36px;
   height: 36px;
+
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
+
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.05s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    filter 0.15s ease;
 }
+
 .hdr-icon-btn:active {
   transform: translateY(1px);
 }
@@ -75,18 +154,18 @@
 }
 
 /* アイコン */
-.hdr-right .hdr-ic {
+.hdr-ic {
   font-size: 18px;
   color: #ffffff;
   opacity: 0.95;
 }
 
 /* フォーカスリング */
-.hdr-btn.is-ghost:focus-visible,
+.hdr-btn:focus-visible,
 .hdr-icon-btn:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px var(--ring),
+    0 0 0 3px var(--ring, rgba(10, 132, 255, 0.65)),
     0 0 0 1px rgba(255, 255, 255, 0.25) inset;
 }
 
@@ -97,12 +176,12 @@
     min-width: 44px;
     height: 40px;
   }
-  .hdr-right .hdr-ic {
+  .hdr-ic {
     font-size: 19px;
   }
 }
 
-/* レベルボタンなど（ここは今のままでOK） */
+/* レベルボタン */
 .hdr-right .level-btn {
   font-weight: 700;
   letter-spacing: 0.2px;
@@ -114,6 +193,7 @@
   );
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
+
 .hdr-right .level-btn:hover {
   background: linear-gradient(
     180deg,

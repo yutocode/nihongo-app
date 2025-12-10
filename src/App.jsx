@@ -93,8 +93,11 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* ====== ゲストモード（ログインなしでも利用可能） ====== */
-const GUEST_MODE = true;
+/* AdMob */
+import { initAdMob } from "@/utils/admobClient";
+
+/* ====== ゲストモード（本番は false） ====== */
+const GUEST_MODE = false;
 
 /* ========= helpers ========= */
 function normalizeLesson(key) {
@@ -146,27 +149,39 @@ function ScrollToTop() {
   return null;
 }
 
-/* ========= ルート用リダイレクト =========
-   - GUEST_MODE のときは authReady を待たずに /home へ
-   - 通常モードのときだけ authReady を待って判定
-*/
+/* ========= ルート用リダイレクト ========= */
 function RootRedirect() {
   const user = useAppStore((s) => s.user);
   const authReady = useAppStore((s) => s.authReady);
 
-  // ゲストモード → 常に /home へ飛ばす
-  if (GUEST_MODE) {
-    if (user) {
-      return <Navigate to="/home" replace />;
-    }
-    // 未ログインでもとりあえずホーム（ホームから「ログイン」導線を用意）
-    return <Navigate to="/home" replace />;
-  }
-
-  // ここから下は「ゲストモード OFF」の場合だけ使われる
   if (!authReady) {
     return (
-      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
+      <LoadingIllustration
+        message="起動中です…"
+        size="md"
+        showBackdrop
+      />
+    );
+  }
+
+  if (user) {
+    return <Navigate to="/home" replace />;
+  }
+  return <Navigate to="/auth" replace />;
+}
+
+/* ========= /auth 用のガード付きエントリ ========= */
+function AuthEntry() {
+  const user = useAppStore((s) => s.user);
+  const authReady = useAppStore((s) => s.authReady);
+
+  if (!authReady) {
+    return (
+      <LoadingIllustration
+        message="起動中です…"
+        size="md"
+        showBackdrop
+      />
     );
   }
 
@@ -174,7 +189,7 @@ function RootRedirect() {
     return <Navigate to="/home" replace />;
   }
 
-  return <Navigate to="/auth" replace />;
+  return <AuthPage />;
 }
 
 /* ========= App ========= */
@@ -193,9 +208,8 @@ const App = () => (
     >
       <Routes>
         {/* public */}
-        {/* / はログイン状況で /home or /auth へ */}
         <Route path="/" element={<RootRedirect />} />
-        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthEntry />} />
 
         {/* onboarding */}
         <Route path="/onboarding" element={<Onboarding />} />
@@ -243,10 +257,7 @@ const App = () => (
           <Route path="/level" element={<LevelSelectPage />} />
           <Route path="/levels" element={<LevelSelectPage />} />
           <Route path="/lessons/:level" element={<LessonSelectPage />} />
-          {/* 単語カードページ: /browse/:level/:lesson に統一 */}
           <Route path="/browse/:level/:lesson" element={<WordPage />} />
-
-          {/* browse block */}
           <Route
             path="/browse/:level/:mode/:key"
             element={<BrowseBlockPage />}
@@ -374,7 +385,7 @@ const App = () => (
           />
         </Route>
 
-        {/* fallback：どこにもマッチしなければ / に戻す */}
+        {/* fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
@@ -382,6 +393,9 @@ const App = () => (
 );
 
 /* ========= Auth & XP init ========= */
+
+const SESSION_USER_STORAGE_KEY = "nihongoapp_session_user";
+
 const AppInitializer = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -434,39 +448,122 @@ const AppInitializer = () => {
     navigate(to, { replace: true });
   };
 
+  // ① 起動時に localStorage のセッションから復元
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = window.localStorage.getItem(SESSION_USER_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.uid) {
+        console.log("[Auth] restore sessionUser from storage:", parsed.uid);
+        setUser?.(parsed);
+      }
+    } catch (e) {
+      console.warn("[Auth] restore sessionUser failed:", e);
+    }
+  }, [setUser]);
+
+  // ② Firebase Auth の状態監視（ただし「セッションユーザー優先」で判定）
+  useEffect(() => {
+    let isMounted = true;
+
+    // Firebaseから何も返ってこないとき用のタイムアウト
+    const timeoutId = window.setTimeout(() => {
+      if (!isMounted) return;
+      console.warn(
+        "[Auth] init timeout, set authReady & check sessionUser only",
+      );
+
+      const st = useAppStore.getState?.();
+      const sessionUser = st?.user;
+      const path = location.pathname || "/";
+
+      if (sessionUser && sessionUser.uid) {
+        setAuthReady?.(true);
+        return;
+      }
+
+      setAuthReady?.(true);
+      if (
+        PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
+        !PUBLIC_PATHS.includes(path)
+      ) {
+        navigateOnce("/auth");
+      }
+    }, 3000);
+
+    console.log("[log] - [Auth] init effect, path:", location.pathname);
+
+    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
+      if (!isMounted) return;
+      window.clearTimeout(timeoutId);
+
       const path = location.pathname || "/";
       console.log(
-        "[Auth] onAuthStateChanged:",
-        user ? user.uid : "null",
+        "[log] - [Auth] onAuthStateChanged:",
+        !!fbUser,
         "path:",
         path,
       );
 
-      if (user) {
-        setUser(user);
+      if (fbUser) {
+        // ★ Apple 等で Firebase 側がログインしたとき用
 
+        let idToken;
         try {
-          await ensureUserDoc?.(user.uid);
+          idToken = await fbUser.getIdToken();
+        } catch (e) {
+          console.warn("[Auth] getIdToken failed:", e);
+        }
+
+        const sessionUser = {
+          uid: fbUser.uid,
+          email: fbUser.email || "",
+          displayName: fbUser.displayName || "",
+          providerId:
+            fbUser.providerData?.[0]?.providerId ||
+            fbUser.providerId ||
+            "firebase",
+          idToken,
+          refreshToken: fbUser.stsTokenManager?.refreshToken,
+        };
+
+        // Zustand & localStorage に保存
+        setUser?.(sessionUser);
+        try {
+          window.localStorage.setItem(
+            SESSION_USER_STORAGE_KEY,
+            JSON.stringify(sessionUser),
+          );
+        } catch (e) {
+          console.warn("[Auth] sessionUser 保存失敗:", e);
+        }
+
+        // XP / Daily
+        try {
+          await ensureUserDoc?.(fbUser.uid);
         } catch (e) {
           console.warn("ensureUserDoc failed:", e);
         }
 
         try {
-          initUserXP?.(user.uid);
-        } catch (e) {
-          console.warn("initUserXP failed:", e);
-        }
-
-        try {
           const st = useAppStore.getState?.();
-          st?.loadDailyForUser?.(user.uid);
-          st?.ensureDailyToday?.(user.uid);
+          st?.loadDailyForUser?.(fbUser.uid);
+          st?.ensureDailyToday?.(fbUser.uid);
         } catch (e) {
           console.warn("daily restore failed:", e);
         }
 
+        try {
+          initUserXP?.(fbUser.uid);
+        } catch (e) {
+          console.warn("initUserXP failed:", e);
+        }
+
+        setAuthReady?.(true);
+
+        // public ページにいるときだけ、/home or /onboarding に送る
         let forceOnboarding = false;
         try {
           const flag = window.localStorage.getItem("needsOnboarding");
@@ -486,12 +583,26 @@ const AppInitializer = () => {
           }
         }
       } else {
+        // ★ Firebase 的にはログアウト
+        const st = useAppStore.getState?.();
+        const sessionUser = st?.user;
+
+        if (sessionUser && sessionUser.uid) {
+          console.log(
+            "[Auth] Firebase user is null but sessionUser exists → keep logged in",
+          );
+          setAuthReady?.(true);
+          return;
+        }
+
         clearUser();
         try {
           stopAutoSave?.();
         } catch (e) {
           console.warn(e);
         }
+
+        setAuthReady?.(true);
 
         if (
           PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
@@ -500,19 +611,34 @@ const AppInitializer = () => {
           navigateOnce("/auth");
         }
       }
-
-      setAuthReady?.(true);
     });
 
     return () => {
+      isMounted = false;
+      window.clearTimeout(timeoutId);
       unsubscribe && unsubscribe();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  // DEV: ?autologin=1 （ゲスト無効の時のみ）
+  // AdMob 初期化（iOS ネイティブアプリのときだけ）
   useEffect(() => {
-    if (GUEST_MODE || !import.meta.env.DEV) return;
+    if (typeof window === "undefined") return;
+
+    const ua = window.navigator?.userAgent || "";
+    const isIOS = /iphone|ipad|ipod/i.test(ua);
+    const isNative = !!window.Capacitor?.isNativePlatform;
+    const isAppBuild =
+      import.meta.env.VITE_DEPLOY_TARGET === "app";
+
+    if (isIOS && isNative && isAppBuild) {
+      initAdMob?.();
+    }
+  }, []);
+
+  // DEV autologin
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
     try {
       const url = new URL(window.location.href);
       if (url.searchParams.get("autologin") !== "1") return;
