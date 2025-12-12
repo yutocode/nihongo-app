@@ -90,6 +90,9 @@ import Tokusho from "./pages/legal/Tokusho";
 import Terms from "./pages/legal/Terms";
 import Privacy from "./pages/legal/Privacy";
 
+/* Kanji trainer */
+import KanjiTrainerPage from "./pages/KanjiPage";
+
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
@@ -156,11 +159,7 @@ function RootRedirect() {
 
   if (!authReady) {
     return (
-      <LoadingIllustration
-        message="起動中です…"
-        size="md"
-        showBackdrop
-      />
+      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
     );
   }
 
@@ -177,11 +176,7 @@ function AuthEntry() {
 
   if (!authReady) {
     return (
-      <LoadingIllustration
-        message="起動中です…"
-        size="md"
-        showBackdrop
-      />
+      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
     );
   }
 
@@ -370,10 +365,7 @@ const App = () => (
             path="/word-quiz/:level"
             element={<WordQuizLessonSelectPage />}
           />
-          <Route
-            path="/word-quiz/:level/:lesson"
-            element={<WordQuizPage />}
-          />
+          <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
 
           {/* reader */}
           <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
@@ -383,6 +375,10 @@ const App = () => (
             path="/reader/:level/:storyId/play"
             element={<StoryPlayer />}
           />
+
+          {/* kanji trainer */}
+          <Route path="/kanji" element={<Navigate to="/kanji/n5" replace />} />
+          <Route path="/kanji/:level" element={<KanjiTrainerPage />} />
         </Route>
 
         {/* fallback */}
@@ -439,6 +435,7 @@ const AppInitializer = () => {
     "/ranking",
     "/help",
     "/contact",
+    "/kanji",
   ];
 
   const lastNavRef = useRef("");
@@ -464,11 +461,10 @@ const AppInitializer = () => {
     }
   }, [setUser]);
 
-  // ② Firebase Auth の状態監視（ただし「セッションユーザー優先」で判定）
+  // ② Firebase Auth の状態監視
   useEffect(() => {
     let isMounted = true;
 
-    // Firebaseから何も返ってこないとき用のタイムアウト
     const timeoutId = window.setTimeout(() => {
       if (!isMounted) return;
       console.warn(
@@ -508,8 +504,6 @@ const AppInitializer = () => {
       );
 
       if (fbUser) {
-        // ★ Apple 等で Firebase 側がログインしたとき用
-
         let idToken;
         try {
           idToken = await fbUser.getIdToken();
@@ -529,7 +523,6 @@ const AppInitializer = () => {
           refreshToken: fbUser.stsTokenManager?.refreshToken,
         };
 
-        // Zustand & localStorage に保存
         setUser?.(sessionUser);
         try {
           window.localStorage.setItem(
@@ -540,7 +533,6 @@ const AppInitializer = () => {
           console.warn("[Auth] sessionUser 保存失敗:", e);
         }
 
-        // XP / Daily
         try {
           await ensureUserDoc?.(fbUser.uid);
         } catch (e) {
@@ -563,7 +555,6 @@ const AppInitializer = () => {
 
         setAuthReady?.(true);
 
-        // public ページにいるときだけ、/home or /onboarding に送る
         let forceOnboarding = false;
         try {
           const flag = window.localStorage.getItem("needsOnboarding");
@@ -583,7 +574,6 @@ const AppInitializer = () => {
           }
         }
       } else {
-        // ★ Firebase 的にはログアウト
         const st = useAppStore.getState?.();
         const sessionUser = st?.user;
 
@@ -604,9 +594,10 @@ const AppInitializer = () => {
 
         setAuthReady?.(true);
 
+        const pathNow = location.pathname || "/";
         if (
-          PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
-          !PUBLIC_PATHS.includes(path)
+          PRIVATE_PREFIXES.some((prefix) => pathNow.startsWith(prefix)) &&
+          !PUBLIC_PATHS.includes(pathNow)
         ) {
           navigateOnce("/auth");
         }
@@ -628,8 +619,7 @@ const AppInitializer = () => {
     const ua = window.navigator?.userAgent || "";
     const isIOS = /iphone|ipad|ipod/i.test(ua);
     const isNative = !!window.Capacitor?.isNativePlatform;
-    const isAppBuild =
-      import.meta.env.VITE_DEPLOY_TARGET === "app";
+    const isAppBuild = import.meta.env.VITE_DEPLOY_TARGET === "app";
 
     if (isIOS && isNative && isAppBuild) {
       initAdMob?.();

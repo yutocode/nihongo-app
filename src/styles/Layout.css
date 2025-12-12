@@ -21,6 +21,36 @@
   /* 中身を縦に並べて、真ん中だけスクロールさせる */
   display: flex;
   flex-direction: column;
+
+  /* 黒いプレートを敷くために relative にしておく */
+  position: relative;
+}
+
+/* 画面の一番下をまるごと BottomNav と同じ色で塗る黒い板 */
+.app-shell::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* BottomNav + Ad バナー + セーフエリアぶん */
+  height: calc(
+    var(--layout-bottom-h)
+    + var(--layout-ad-banner-h)
+    + env(safe-area-inset-bottom, 0px)
+  );
+
+  background: var(
+    --color-bottom-nav-shell-bg,
+    var(--color-bottom-nav-bg, #05060a)
+  );
+
+  /* ★ここがポイント：コンテンツ(z=10)より上、BottomNav(z=40)より下 */
+  z-index: 30;
+
+  /* タップは下に通す */
+  pointer-events: none;
 }
 
 /* 固定ヘッダーのラッパー */
@@ -53,6 +83,11 @@
 
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  /* 中身は普通に白背景のまま */
+  background: var(--color-bg, var(--bg));
+  position: relative;
+  z-index: 10;
 }
 
 /* 固定ボトムナビのラッパー */
@@ -75,14 +110,8 @@
   justify-content: center;
   align-items: flex-end;
 
-  /* 画面下を全て BottomNav と同じ色で塗る */
-  background: var(
-    --color-bottom-nav-shell-bg,
-    var(--color-bottom-nav-bg, #05060a)
-  );
-
-  /* 中の BottomNav 以外はクリックさせない */
-  pointer-events: none;
+  /* 黒い板は ::before が塗っているのでここは透明でOK */
+  background: transparent;
 }
 
 /* 中の BottomNav 本体（クリック可） */
@@ -93,9 +122,9 @@
 }
 
 /* =========================================================
-   Ad デバッグ用オーバーレイ
-   - Layout.jsx 側で .app-shell に app-shell--ad-debug を
-     付けたときだけ、バナーエリアをうっすら可視化
+   （必要なら）Ad デバッグ用オーバーレイ
+   app-shell に app-shell--ad-debug を付けると、
+   下のバナーエリアを線で表示
    ========================================================= */
 .app-shell.app-shell--ad-debug::after {
   content: "AD BANNER AREA";
@@ -104,11 +133,11 @@
   right: 0;
   bottom: 0;
   height: var(--layout-ad-banner-h);
-  background: rgba(255, 255, 0, 0.08); /* うっすら黄帯 */
+  background: rgba(255, 255, 0, 0.06);
   border-top: 1px dashed rgba(255, 220, 0, 0.9);
   font-size: 10px;
   text-align: center;
   line-height: var(--layout-ad-banner-h);
-  pointer-events: none; /* クリックは下に通す */
-  z-index: 39; /* BottomNav(40) より一段下 */
+  pointer-events: none;
+  z-index: 41; /* BottomNav(40) より少し上に出したいとき用 */
 }

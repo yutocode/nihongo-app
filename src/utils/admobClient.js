@@ -1,50 +1,82 @@
 // src/utils/admobClient.js
+import { Capacitor } from "@capacitor/core";
 import {
   AdMob,
   BannerAdSize,
   BannerAdPosition,
 } from "@capacitor-community/admob";
 
-const BANNER_AD_ID = import.meta.env.VITE_ADMOB_IOS_BANNER_ID;
+// .env から取れればそれを使う。なければ固定値。
+const BANNER_AD_ID =
+  import.meta.env.VITE_ADMOB_BANNER_ID ||
+  "ca-app-pub-2912474145038156/5506252748";
 
-console.log("[AdMob] BANNER_AD_ID at import =", BANNER_AD_ID);
+let initialized = false;
 
-/** アプリ起動時に1回だけ呼ぶ（App.jsx から） */
-export async function initAdMob() {
-  try {
-    await AdMob.initialize({
-      requestTrackingAuthorization: true,        // ATT ダイアログ
-      initializeForTesting: import.meta.env.DEV // 開発中はテストモード
-    });
-  } catch (e) {
-    console.warn("[AdMob] initialize failed", e);
-  }
+function isNativeIOS() {
+  if (typeof window === "undefined") return false;
+  const ua = window.navigator?.userAgent || "";
+  const isIOS = /iphone|ipad|ipod/i.test(ua);
+  const isNative = Capacitor.isNativePlatform();
+  return isIOS && isNative;
 }
 
-/** Home画面用バナーを表示 */
-export async function showHomeBanner() {
-  if (!BANNER_AD_ID) {
-    console.warn("[AdMob] banner ad id not set");
+export async function initAdMob() {
+  if (initialized) return;
+  if (!isNativeIOS()) {
+    console.log("[AdMob] initAdMob skipped (not native iOS)");
     return;
   }
 
   try {
+    console.log("[AdMob] initAdMob start");
+    await AdMob.initialize({
+      requestTrackingAuthorization: true,
+      initializationOptions: {},
+    });
+    initialized = true;
+    console.log("[AdMob] initAdMob success");
+  } catch (err) {
+    console.error("[AdMob] initAdMob error", err);
+  }
+}
+
+export async function showHomeBanner() {
+  // まず初期化
+  await initAdMob();
+  if (!initialized) {
+    console.warn("[AdMob] showHomeBanner: not initialized, abort");
+    return;
+  }
+  if (!isNativeIOS()) {
+    console.log("[AdMob] showHomeBanner skipped (not native iOS)");
+    return;
+  }
+
+  try {
+    console.log("[AdMob] showHomeBanner: calling AdMob.showBanner", {
+      adId: BANNER_AD_ID,
+    });
+
     await AdMob.showBanner({
       adId: BANNER_AD_ID,
       adSize: BannerAdSize.BANNER,
       position: BannerAdPosition.BOTTOM_CENTER,
       margin: 0,
     });
-  } catch (e) {
-    console.warn("[AdMob] showBanner failed", e);
+
+    console.log("[AdMob] showHomeBanner: showBanner success");
+  } catch (err) {
+    console.error("[AdMob] showHomeBanner: showBanner error", err);
   }
 }
 
-/** バナーを隠す */
 export async function hideBanner() {
+  if (!isNativeIOS()) return;
   try {
+    console.log("[AdMob] hideBanner");
     await AdMob.hideBanner();
-  } catch (e) {
-    console.warn("[AdMob] hideBanner failed", e);
+  } catch (err) {
+    console.error("[AdMob] hideBanner error", err);
   }
 }

@@ -66,6 +66,7 @@ const Home = () => {
         {/* タイル 4×2 グリッド */}
         <section className="section container">
           <div className="grid-four">
+            {/* 1 行目 */}
             <FeatureTile
               iconName="book"
               label={t("home.menu.wordbook", "単語帳")}
@@ -91,6 +92,7 @@ const Home = () => {
               disabled
             />
 
+            {/* 2 行目 */}
             <FeatureTile
               iconName="target"
               label={t("home.menu.myWordbook", "My単語帳")}
@@ -109,10 +111,11 @@ const Home = () => {
               disabled
             />
 
+            {/* 右下：漢字専用タイル */}
             <FeatureTile
-              iconName="book"
-              label={t("home.menu.readerSoon", "近日公開本")}
-              disabled
+              iconName="book" // いったん本アイコンを流用（あとで漢字アイコンを追加してもOK）
+              label={t("home.menu.kanji", "漢字")}
+              onClick={() => navigate(`/kanji/${level}`)}
             />
           </div>
         </section>

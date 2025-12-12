@@ -6,7 +6,7 @@
   /* ダークモード固定 */
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87); /* 明るい文字色 */
-  background-color: #242424;        /* ダーク背景 */
+  background-color: #242424;        /* ダーク背景（アプリ外周） */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,19 +14,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 🔽 ここで画面全体を「アプリキャンバス」にする */
+html,
+body,
+#root {
+  height: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
+/* 画面の「地の色」を BottomNav と同じ色に合わせる */
 body {
   margin: 0;
   min-width: 320px;
-} 
+  background: var(--color-bottom-nav-bg, #05060a);
+}
 
 h1 {
   font-size: 3.2em;
@@ -45,9 +55,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,10 +71,13 @@ button:focus-visible {
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
   }
+
+  /* ライトモード時も下地は BottomNav と同じ色にする */
   body {
-    background-color: #242424;
+    background: var(--color-bottom-nav-bg, #05060a);
     color: rgba(255, 255, 255, 0.87);
   }
+
   button {
     background-color: #1a1a1a;
     color: rgba(255, 255, 255, 0.87);

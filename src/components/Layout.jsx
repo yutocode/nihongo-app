@@ -29,12 +29,24 @@ export default function Layout() {
 
     const ua = window.navigator?.userAgent || "";
     const isIOS = /iphone|ipad|ipod/i.test(ua);
-    const isNative = !!window.Capacitor?.isNativePlatform;
+
+    // ★ 判定をゆるめ：Capacitor があればネイティブとみなす
+    const isNative = !!window.Capacitor;
 
     if (!isIOS || !isNative) return;
 
+    // ★ ログを出して、本番でも呼ばれているか確認する
+    console.log("[AdMob] Layout effect -> showHomeBanner", {
+      path: location.pathname,
+      isIOS,
+      isNative,
+      hideChrome,
+    });
+
     // AdMob 側は同じ adId なら再利用してくれるので毎回呼んで OK
-    showHomeBanner?.();
+    if (typeof showHomeBanner === "function") {
+      showHomeBanner();
+    }
   }, [hideChrome, location.pathname]);
 
   return (
