@@ -78,6 +78,10 @@ import ReaderPage from "./pages/ReaderPage";
 import ReaderHubPage from "./pages/ReaderHubPage";
 import StoryPlayer from "./pages/StoryPlayer.jsx";
 
+/* kanji */
+import KanjiHomePage from "./pages/KanjiHomePage";
+import KanjiStrokePage from "./pages/KanjiStrokePage";
+
 /* verb conjugation */
 import GrammarVerbQuizPage from "./pages/GrammarVerbQuizPage";
 
@@ -89,9 +93,6 @@ import N3ConcessionQuizPage from "./pages/grammar/n3/N3ConcessionQuizPage";
 import Tokusho from "./pages/legal/Tokusho";
 import Terms from "./pages/legal/Terms";
 import Privacy from "./pages/legal/Privacy";
-
-/* Kanji trainer */
-import KanjiTrainerPage from "./pages/KanjiPage";
 
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
@@ -143,6 +144,16 @@ function ComparisonLegacyRedirect() {
   );
 }
 
+/* kanji stroke default redirect */
+function KanjiStrokeRootRedirect() {
+  // デフォルトは N4 の「一」から開始
+  return <Navigate to="/kanji/stroke/N4/一" replace />;
+}
+function KanjiStrokeLevelRedirect() {
+  const { level = "N4" } = useParams();
+  return <Navigate to={`/kanji/stroke/${level}/一`} replace />;
+}
+
 /* ========= scroll reset ========= */
 function ScrollToTop() {
   const { pathname, search, hash } = useLocation();
@@ -163,9 +174,7 @@ function RootRedirect() {
     );
   }
 
-  if (user) {
-    return <Navigate to="/home" replace />;
-  }
+  if (user) return <Navigate to="/home" replace />;
   return <Navigate to="/auth" replace />;
 }
 
@@ -180,10 +189,7 @@ function AuthEntry() {
     );
   }
 
-  if (user) {
-    return <Navigate to="/home" replace />;
-  }
-
+  if (user) return <Navigate to="/home" replace />;
   return <AuthPage />;
 }
 
@@ -253,10 +259,7 @@ const App = () => (
           <Route path="/levels" element={<LevelSelectPage />} />
           <Route path="/lessons/:level" element={<LessonSelectPage />} />
           <Route path="/browse/:level/:lesson" element={<WordPage />} />
-          <Route
-            path="/browse/:level/:mode/:key"
-            element={<BrowseBlockPage />}
-          />
+          <Route path="/browse/:level/:mode/:key" element={<BrowseBlockPage />} />
 
           {/* my wordbook */}
           <Route path="/my-words" element={<MyWordbookPage />} />
@@ -269,17 +272,11 @@ const App = () => (
 
           {/* alphabet */}
           <Route path="/alphabet" element={<AlphabetUnitsPage />} />
-          <Route
-            path="/alphabet/unit/:id"
-            element={<AlphabetUnitLessonPage />}
-          />
+          <Route path="/alphabet/unit/:id" element={<AlphabetUnitLessonPage />} />
           <Route path="/kana" element={<Navigate to="/alphabet" replace />} />
 
           {/* grammar hub */}
-          <Route
-            path="/grammar/:level"
-            element={<GrammarCategorySelectPage />}
-          />
+          <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
           <Route
             path="/grammar/:level/:category"
             element={<GrammarLessonSelectPage />}
@@ -304,10 +301,7 @@ const App = () => (
             path="/grammar/n3/concession/:lesson"
             element={<N3ConcessionQuizPage />}
           />
-          <Route
-            path="/grammar/:level/voice/:lesson"
-            element={<N3VoiceQuizPage />}
-          />
+          <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
 
           {/* paraphrase */}
           <Route
@@ -342,43 +336,33 @@ const App = () => (
             path="/grammar/:level/comparison/:lesson"
             element={<ComparisonLegacyRedirect />}
           />
-          <Route
-            path="/grammar/:level/compare"
-            element={<CompareAliasRedirect />}
-          />
+          <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
           <Route
             path="/grammar/:level/compare/:lesson"
             element={<CompareLessonAliasRedirect />}
           />
 
           {/* adjective quiz */}
-          <Route
-            path="/adj"
-            element={<Navigate to="/adj/n5/lesson1" replace />}
-          />
+          <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
           <Route path="/adj/:level" element={<AdjLevelRedirect />} />
           <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
 
           {/* word quizzes */}
           <Route path="/word-quiz" element={<LevelSelectPage />} />
-          <Route
-            path="/word-quiz/:level"
-            element={<WordQuizLessonSelectPage />}
-          />
+          <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
           <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
 
           {/* reader */}
           <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
           <Route path="/reader/:level" element={<ReaderHubPage />} />
           <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
-          <Route
-            path="/reader/:level/:storyId/play"
-            element={<StoryPlayer />}
-          />
+          <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
 
-          {/* kanji trainer */}
-          <Route path="/kanji" element={<Navigate to="/kanji/n5" replace />} />
-          <Route path="/kanji/:level" element={<KanjiTrainerPage />} />
+          {/* kanji */}
+          <Route path="/kanji" element={<KanjiHomePage />} />
+          <Route path="/kanji/stroke" element={<KanjiStrokeRootRedirect />} />
+          <Route path="/kanji/stroke/:level" element={<KanjiStrokeLevelRedirect />} />
+          <Route path="/kanji/stroke/:level/:char" element={<KanjiStrokePage />} />
         </Route>
 
         {/* fallback */}
@@ -453,23 +437,19 @@ const AppInitializer = () => {
       if (!raw) return;
       const parsed = JSON.parse(raw);
       if (parsed && parsed.uid) {
-        console.log("[Auth] restore sessionUser from storage:", parsed.uid);
         setUser?.(parsed);
       }
-    } catch (e) {
-      console.warn("[Auth] restore sessionUser failed:", e);
+    } catch {
+      // noop
     }
   }, [setUser]);
 
-  // ② Firebase Auth の状態監視
+  // ② Firebase Auth の状態監視（ただし「セッションユーザー優先」で判定）
   useEffect(() => {
     let isMounted = true;
 
     const timeoutId = window.setTimeout(() => {
       if (!isMounted) return;
-      console.warn(
-        "[Auth] init timeout, set authReady & check sessionUser only",
-      );
 
       const st = useAppStore.getState?.();
       const sessionUser = st?.user;
@@ -489,26 +469,18 @@ const AppInitializer = () => {
       }
     }, 3000);
 
-    console.log("[log] - [Auth] init effect, path:", location.pathname);
-
     const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
       if (!isMounted) return;
       window.clearTimeout(timeoutId);
 
       const path = location.pathname || "/";
-      console.log(
-        "[log] - [Auth] onAuthStateChanged:",
-        !!fbUser,
-        "path:",
-        path,
-      );
 
       if (fbUser) {
-        let idToken;
+        let idToken = "";
         try {
           idToken = await fbUser.getIdToken();
-        } catch (e) {
-          console.warn("[Auth] getIdToken failed:", e);
+        } catch {
+          // noop
         }
 
         const sessionUser = {
@@ -529,28 +501,28 @@ const AppInitializer = () => {
             SESSION_USER_STORAGE_KEY,
             JSON.stringify(sessionUser),
           );
-        } catch (e) {
-          console.warn("[Auth] sessionUser 保存失敗:", e);
+        } catch {
+          // noop
         }
 
         try {
           await ensureUserDoc?.(fbUser.uid);
-        } catch (e) {
-          console.warn("ensureUserDoc failed:", e);
+        } catch {
+          // noop
         }
 
         try {
           const st = useAppStore.getState?.();
           st?.loadDailyForUser?.(fbUser.uid);
           st?.ensureDailyToday?.(fbUser.uid);
-        } catch (e) {
-          console.warn("daily restore failed:", e);
+        } catch {
+          // noop
         }
 
         try {
           initUserXP?.(fbUser.uid);
-        } catch (e) {
-          console.warn("initUserXP failed:", e);
+        } catch {
+          // noop
         }
 
         setAuthReady?.(true);
@@ -562,42 +534,34 @@ const AppInitializer = () => {
             forceOnboarding = true;
             window.localStorage.removeItem("needsOnboarding");
           }
-        } catch (e) {
-          console.warn("needsOnboarding 読み込み失敗:", e);
+        } catch {
+          // noop
         }
 
         if (PUBLIC_PATHS.includes(path)) {
-          if (forceOnboarding) {
-            navigateOnce("/onboarding");
-          } else {
-            navigateOnce("/home");
-          }
+          navigateOnce(forceOnboarding ? "/onboarding" : "/home");
         }
       } else {
         const st = useAppStore.getState?.();
         const sessionUser = st?.user;
 
         if (sessionUser && sessionUser.uid) {
-          console.log(
-            "[Auth] Firebase user is null but sessionUser exists → keep logged in",
-          );
           setAuthReady?.(true);
           return;
         }
 
-        clearUser();
+        clearUser?.();
         try {
           stopAutoSave?.();
-        } catch (e) {
-          console.warn(e);
+        } catch {
+          // noop
         }
 
         setAuthReady?.(true);
 
-        const pathNow = location.pathname || "/";
         if (
-          PRIVATE_PREFIXES.some((prefix) => pathNow.startsWith(prefix)) &&
-          !PUBLIC_PATHS.includes(pathNow)
+          PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
+          !PUBLIC_PATHS.includes(path)
         ) {
           navigateOnce("/auth");
         }
@@ -607,7 +571,7 @@ const AppInitializer = () => {
     return () => {
       isMounted = false;
       window.clearTimeout(timeoutId);
-      unsubscribe && unsubscribe();
+      unsubscribe?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
@@ -635,12 +599,7 @@ const AppInitializer = () => {
 
       const email = import.meta.env.VITE_SHOT_EMAIL;
       const pass = import.meta.env.VITE_SHOT_PASS;
-      if (!email || !pass) {
-        console.warn(
-          "VITE_SHOT_EMAIL / VITE_SHOT_PASS が未設定です (.env.local)。",
-        );
-        return;
-      }
+      if (!email || !pass) return;
 
       const unsub = auth.onAuthStateChanged((u) => {
         if (!u) {
@@ -648,8 +607,8 @@ const AppInitializer = () => {
         }
         unsub?.();
       });
-    } catch (e) {
-      console.warn("autologin init failed:", e);
+    } catch {
+      // noop
     }
   }, []);
 

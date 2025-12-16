@@ -13,15 +13,15 @@ import "@/styles/Home.css";
 /* ==== JLPT 模試の公開フラグ ==== */
 const ENABLE_MOCK_EXAM = false;
 
-// EXAM_REGISTRY から自動で「各レベルの最初の模試ID」を拾う
+/* ==== 漢字の公開フラグ（false の間はロック表示） ==== */
+const ENABLE_KANJI = false;
+
 const LEVEL_KEYS = ["n5", "n4", "n3", "n2", "n1"];
 const AUTO_EXAM_BY_LEVEL = (() => {
   const map = { n5: null, n4: null, n3: null, n2: null, n1: null };
   for (const [examId, pack] of Object.entries(EXAM_REGISTRY)) {
-    const lv = (pack?.meta?.level || "").toLowerCase();
-    if (LEVEL_KEYS.includes(lv) && !map[lv]) {
-      map[lv] = examId;
-    }
+    const lv = String(pack?.meta?.level || "").toLowerCase();
+    if (LEVEL_KEYS.includes(lv) && !map[lv]) map[lv] = examId;
   }
   return map;
 })();
@@ -46,27 +46,23 @@ const Home = () => {
   };
 
   const handleStart = () => {
-    if (hasMockExam) {
-      handleStartMockExam();
-    } else {
-      navigate(`/lessons/${level}`);
-    }
+    if (hasMockExam) handleStartMockExam();
+    else navigate(`/lessons/${level}`);
   };
 
   return (
     <main
-      className="app-wrap home-wrap"
+      className="app-wrap home-page"
       role="main"
       aria-label={t("home.title", "ホーム")}
     >
       <div className="home-shell">
-        {/* 上の余白（ステータスバー分） */}
+        {/* （以前のズレ対策の名残。非表示CSSなので置いといてOK） */}
         <div className="home-safe-top" aria-hidden="true" />
 
-        {/* タイル 4×2 グリッド */}
-        <section className="section container">
-          <div className="grid-four">
-            {/* 1 行目 */}
+        {/* タイル */}
+        <section className="home-section home-container">
+          <div className="home-gridFour">
             <FeatureTile
               iconName="book"
               label={t("home.menu.wordbook", "単語帳")}
@@ -92,7 +88,6 @@ const Home = () => {
               disabled
             />
 
-            {/* 2 行目 */}
             <FeatureTile
               iconName="target"
               label={t("home.menu.myWordbook", "My単語帳")}
@@ -111,19 +106,19 @@ const Home = () => {
               disabled
             />
 
-            {/* 右下：漢字専用タイル */}
             <FeatureTile
-              iconName="book" // いったん本アイコンを流用（あとで漢字アイコンを追加してもOK）
+              iconName="book"
               label={t("home.menu.kanji", "漢字")}
-              onClick={() => navigate(`/kanji/${level}`)}
+              onClick={ENABLE_KANJI ? () => navigate("/kanji") : undefined}
+              disabled={!ENABLE_KANJI}
             />
           </div>
         </section>
 
-        {/* CTA */}
-        <div className="container cta-wrap">
+        {/* CTA（固定しない＝スクロールに乗る） */}
+        <div className="home-container home-ctaWrap">
           <button
-            className="cta-big btn-primary"
+            className="home-ctaBig btn-primary"
             onClick={handleStart}
             aria-label={
               hasMockExam

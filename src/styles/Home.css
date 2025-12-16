@@ -1,117 +1,81 @@
 /* src/styles/Home.css */
-/* =========================
-   Home.css
-   ホーム画面レイアウト
-   ========================= */
 
-.home-wrap {
-  /* 上: セーフエリア込みの余白 */
-  padding: calc(20px + env(safe-area-inset-top)) 20px 20px;
-  padding-top: max(28px, calc(20px + env(safe-area-inset-top)));
-
-  max-width: 1100px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  overscroll-behavior-y: contain;
-
-  /* 下は「ちょっとだけ」余白をつける */
-  padding-bottom: 24px;
-
-  /* ★ 画面全体を真っ黒系にする（BottomNav と揃える） */
-  background: var(
-    --color-bottom-nav-shell-bg,
-    var(--color-bottom-nav-bg, #05060a)
-  );
-  color: var(--color-text);
+.home-page {
+  width: 100%;
 }
 
-/* 内側シェル：縦方向に詰める */
 .home-shell {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--space-6);
+  min-height: 100%;
 }
 
-/* HelloTalk っぽい上の余白 */
+/* 既存で固定/ズレの原因になってたら無効化（保険） */
 .home-safe-top {
-  height: 4px;
+  display: none;
 }
 
-/* ---- セクション ---- */
-.section {
-  margin-bottom: 20px;
+/* ✅ Home専用：他ページと衝突させない（container/section等を使わない） */
+.home-container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
 }
 
-/* ==============================
-   タイルグリッド（横4 × 縦2）
-   ============================== */
+.home-section {
+  padding-top: var(--space-2);
+}
 
-.grid-four {
+/* 4×2 グリッド（モバイル優先） */
+.home-gridFour {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  padding: 8px 0 12px;
-  justify-items: center;
+  gap: var(--space-3);
 }
 
-/* 狭いスマホでも 4列のままにする */
-@media (max-width: 480px) {
-  .grid-four {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+/* CTA：固定しない（スクロールに乗せる） */
+.home-ctaWrap {
+  position: static;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
-/* ==============================
-   CTA ボタン
-   ============================== */
-
-.cta-wrap {
-  margin-top: 8px;
-}
-
-.cta-big {
+/* 大きい緑ボタン */
+.home-ctaBig {
   width: 100%;
-  margin: 24px 0 calc(8vh + env(safe-area-inset-bottom));
-  padding: 18px 22px;
-  font-weight: 800;
-  font-size: 1rem;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
+  min-height: calc(var(--space-10) * 1.5);
+  border-radius: var(--radius-16);
+  border: var(--line-1) solid var(--color-border);
+  box-shadow: var(--shadow-1);
 
-  /* 共通の .btn-primary の上に重ねて使う */
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  background: var(--color-xp-accent);
+  color: var(--color-header-fg);
+
+  font-weight: 800;
+  letter-spacing: 0.2px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
+    transform var(--motion-200) var(--motion-ease),
+    filter var(--motion-200) var(--motion-ease);
 }
 
-.cta-big:hover {
-  transform: translateY(-1px);
+.home-ctaBig:active {
+  transform: translateY(calc(var(--line-1) * 2));
+  filter: brightness(0.98);
 }
 
-.cta-big:active {
-  transform: translateY(0);
-}
-
-/* ---- タップ改善 ---- */
-.section button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ---- 低モーション ---- */
-@media (prefers-reduced-motion: reduce) {
-  .cta-big {
-    transition: none;
+/* タブレット以降：余白だけ少し増やす */
+@media (min-width: 768px) {
+  .home-container {
+    padding-inline: var(--space-6);
   }
-}
-
-/* ここだけ追記 or 置き換え（他はいじらない） */
-.home-wrap {
-  background: var(--color-bg);
-  color: var(--color-text);
+  .home-gridFour {
+    gap: var(--space-4);
+  }
 }

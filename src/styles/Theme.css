@@ -1,7 +1,10 @@
+/* src/styles/Theme.css */
+
 /* ============================================================
-   Theme.css 100点版（BottomNav / Layout トークン統合版）
-   - OSのライト/ダークに追従しつつ data-theme="light|dark" で強制上書き
-   - 可読性(コントラスト)、アクセシビリティ(フォーカス/選択色/強制ハイコントラスト)対応
+   Theme.css（BottomNav / Layout トークン統合 + 互換トークン）
+   - data-theme="light|dark" が最優先
+   - Header は不透明背景（2重に見えるのを防止）
+   - ✅ color-mix が無い環境でも border が黒線化しない fallback 付き
    ============================================================ */
 
 :root {
@@ -10,7 +13,7 @@
   /* ===== Base tokens (Light) ===== */
   --bg: #f7f8fa;
   --surface: #ffffff;
-  --surface-2: #f1f5f9;           /* タブ背景などの一段低い面 */
+  --surface-2: #f1f5f9;
   --border: #e5e7eb;
 
   --text: #121417;
@@ -18,39 +21,105 @@
   --icon: var(--text);
 
   /* Semantic accents */
-  --accent: #16a34a;              /* 成功/プライマリ */
-  --danger: #ef4444;              /* エラー */
-  --warn: #f59e0b;                /* 警告 */
-  --info: #0ea5e9;                /* 情報/リンク */
+  --accent: #16a34a; /* success / primary */
+  --danger: #ef4444;
+  --warn: #f59e0b;
+  --info: #0ea5e9;
   --link: var(--info);
 
   /* UI helpers */
-  --focus-ring: #60a5fa;          /* フォーカス外枠色 */
-  --overlay: rgba(2, 6, 23, .4);  /* モーダルの背面 */
-  --disabled: rgba(0,0,0,.35);
+  --focus-ring: #60a5fa;
+  --overlay: rgba(2, 6, 23, 0.4);
+  --disabled: rgba(0, 0, 0, 0.35);
 
-  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
+    0 8px 24px rgba(16, 24, 40, 0.06);
 
   /* Components */
   --tab-bg: var(--surface-2);
   --tab-active-bg: var(--surface);
   --card-bg: var(--surface);
-  --progress-bg: rgba(2, 6, 23, .08);
+  --progress-bg: rgba(2, 6, 23, 0.08);
   --progress-fill: var(--accent);
 
   /* ===== Layout / BottomNav 共通トークン ===== */
-  --layout-header-h: 64px;                /* Header 高さ */
-  --bn-height: 72px;                      /* BottomNav 見た目の高さ */
-  --layout-bottom-h: var(--bn-height);    /* Layout が確保する下余白 */
+  --layout-header-h: 5rem; /* ←ここはいじらない */
+  --bn-height: 4.5rem;
+  --layout-bottom-h: var(--bn-height);
 
-  --color-bottom-nav-bg: #05060a;         /* ボトムバー本体の背景 */
+  --color-bottom-nav-bg: #05060a;
   --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
-  --color-bottom-nav-border: rgba(15, 23, 42, 0.8); /* 上ボーダー */
+  --color-bottom-nav-border: rgba(15, 23, 42, 0.8);
   --color-bottom-nav-icon-active: #0a84ff;
   --color-bottom-nav-icon-inactive: #9ca3af;
+
+  /* ===== Spacing（8pt grid / rem） ===== */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+
+  /* Radius */
+  --radius-12: 0.75rem;
+  --radius-16: 1rem;
+  --radius-pill: 999px;
+
+  /* Lines / Shadow */
+  --line-1: 0.0625rem;
+  --shadow-1: var(--shadow);
+
+  /* Motion */
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-150: 150ms;
+  --motion-200: 200ms;
+  --motion-250: 250ms;
+
+  /* ============================================================
+     ✅ 互換トークン（既存CSS互換）
+     ============================================================ */
+
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+
+  /* ✅ fallback: まず確実な色 → 対応環境だけ color-mix で上書き */
+  --color-border: var(--border);
+
+  /* ✅ 旧CSSが参照しても黒線にならないように（最重要） */
+  --border-color: var(--color-border);
+  --divider-color: var(--color-border);
+  --card-border: var(--color-border);
+  --color-divider: var(--color-border);
+  --color-separator: var(--color-border);
+
+  --color-surface: var(--surface);
+  --color-card: var(--card-bg);
+
+  /* ✅ Header aliases（不透明で固定） */
+  --color-header-bg: var(--color-bottom-nav-bg);
+  --color-header-fg: #ffffff;
+  --color-header-border: rgba(255, 255, 255, 0.08);
+
+  /* XP */
+  --color-xp-accent: var(--accent);
+
+  /* XP / Panel */
+  --color-panel-bg: rgba(17, 18, 21, 0.88);
+  --color-panel-border: rgba(255, 255, 255, 0.14);
+  --color-panel-rail: rgba(255, 255, 255, 0.14);
 }
 
-/* ===== System Dark (ユーザー指定が無いときの初期値) ===== */
+/* ✅ color-mix 対応環境だけ “綺麗なborder” に上書き */
+@supports (color: color-mix(in oklab, white, black)) {
+  :root {
+    --color-border: color-mix(in oklab, var(--border) 92%, transparent);
+  }
+}
+
+/* ===== System Dark ===== */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0b0f14;
@@ -69,28 +138,54 @@
     --link: var(--info);
 
     --focus-ring: #93c5fd;
-    --overlay: rgba(0,0,0,.55);
-    --disabled: rgba(255,255,255,.38);
+    --overlay: rgba(0, 0, 0, 0.55);
+    --disabled: rgba(255, 255, 255, 0.38);
 
-    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35),
+      0 12px 28px rgba(0, 0, 0, 0.45);
 
-    --progress-bg: rgba(255,255,255,.12);
+    --progress-bg: rgba(255, 255, 255, 0.12);
     --progress-fill: var(--accent);
-
-    /* Layout / BottomNav（ダーク時のデフォルト） */
-    --layout-header-h: 64px;
-    --bn-height: 72px;
-    --layout-bottom-h: var(--bn-height);
 
     --color-bottom-nav-bg: #05060a;
     --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
     --color-bottom-nav-border: rgba(15, 23, 42, 0.9);
     --color-bottom-nav-icon-active: #0a84ff;
     --color-bottom-nav-icon-inactive: #9ca3af;
+
+    /* aliases */
+    --color-bg: var(--bg);
+    --color-text: var(--text);
+    --color-border: var(--border);
+    --border-color: var(--color-border);
+    --divider-color: var(--color-border);
+    --card-border: var(--color-border);
+    --color-divider: var(--color-border);
+    --color-separator: var(--color-border);
+
+    --color-surface: var(--surface);
+    --color-card: var(--card-bg);
+    --color-xp-accent: var(--accent);
+
+    /* header (solid) */
+    --color-header-bg: var(--color-bottom-nav-bg);
+    --color-header-fg: #ffffff;
+    --color-header-border: rgba(255, 255, 255, 0.08);
+
+    /* panel */
+    --color-panel-bg: rgba(17, 18, 21, 0.88);
+    --color-panel-border: rgba(255, 255, 255, 0.14);
+    --color-panel-rail: rgba(255, 255, 255, 0.14);
+  }
+
+  @supports (color: color-mix(in oklab, white, black)) {
+    :root {
+      --color-border: color-mix(in oklab, var(--border) 92%, transparent);
+    }
   }
 }
 
-/* ===== 明示切替（data-themeが最優先） ===== */
+/* ===== 明示切替（最優先） ===== */
 :root[data-theme="light"] {
   --bg: #f7f8fa;
   --surface: #ffffff;
@@ -108,28 +203,49 @@
   --link: var(--info);
 
   --focus-ring: #60a5fa;
-  --overlay: rgba(2, 6, 23, .4);
-  --disabled: rgba(0,0,0,.35);
+  --overlay: rgba(2, 6, 23, 0.4);
+  --disabled: rgba(0, 0, 0, 0.35);
 
-  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
+    0 8px 24px rgba(16, 24, 40, 0.06);
 
   --tab-bg: var(--surface-2);
   --tab-active-bg: var(--surface);
   --card-bg: var(--surface);
-  --progress-bg: rgba(2, 6, 23, .08);
+  --progress-bg: rgba(2, 6, 23, 0.08);
   --progress-fill: var(--accent);
 
-  /* Layout / BottomNav（ライト強制） */
-  --layout-header-h: 64px;
-  --bn-height: 72px;
-  --layout-bottom-h: var(--bn-height);
-
-  --color-bottom-nav-bg: #05060a;              /* ライトでも黒バーのまま */
+  --color-bottom-nav-bg: #05060a;
   --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
   --color-bottom-nav-border: rgba(15, 23, 42, 0.8);
   --color-bottom-nav-icon-active: #0a84ff;
   --color-bottom-nav-icon-inactive: #6b7280;
+
+  /* aliases */
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-border: var(--border);
+  --border-color: var(--color-border);
+  --divider-color: var(--color-border);
+  --card-border: var(--color-border);
+  --color-divider: var(--color-border);
+  --color-separator: var(--color-border);
+
+  --color-surface: var(--surface);
+  --color-card: var(--card-bg);
+  --color-xp-accent: var(--accent);
+
+  /* header (solid) */
+  --color-header-bg: var(--color-bottom-nav-bg);
+  --color-header-fg: #ffffff;
+  --color-header-border: rgba(255, 255, 255, 0.08);
+
+  /* panel */
+  --color-panel-bg: rgba(17, 18, 21, 0.88);
+  --color-panel-border: rgba(255, 255, 255, 0.14);
+  --color-panel-rail: rgba(255, 255, 255, 0.14);
 }
+
 :root[data-theme="dark"] {
   --bg: #0b0f14;
   --surface: #121821;
@@ -147,35 +263,64 @@
   --link: var(--info);
 
   --focus-ring: #93c5fd;
-  --overlay: rgba(0,0,0,.55);
-  --disabled: rgba(255,255,255,.38);
+  --overlay: rgba(0, 0, 0, 0.55);
+  --disabled: rgba(255, 255, 255, 0.38);
 
-  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.45);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 12px 28px rgba(0, 0, 0, 0.45);
 
   --tab-bg: var(--surface-2);
   --tab-active-bg: var(--surface);
   --card-bg: var(--surface);
-  --progress-bg: rgba(255,255,255,.12);
+  --progress-bg: rgba(255, 255, 255, 0.12);
   --progress-fill: var(--accent);
-
-  /* Layout / BottomNav（ダーク強制） */
-  --layout-header-h: 64px;
-  --bn-height: 72px;
-  --layout-bottom-h: var(--bn-height);
 
   --color-bottom-nav-bg: #05060a;
   --color-bottom-nav-shell-bg: var(--color-bottom-nav-bg);
   --color-bottom-nav-border: rgba(15, 23, 42, 0.9);
   --color-bottom-nav-icon-active: #0a84ff;
   --color-bottom-nav-icon-inactive: #9ca3af;
+
+  /* aliases */
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-border: var(--border);
+  --border-color: var(--color-border);
+  --divider-color: var(--color-border);
+  --card-border: var(--color-border);
+  --color-divider: var(--color-border);
+  --color-separator: var(--color-border);
+
+  --color-surface: var(--surface);
+  --color-card: var(--card-bg);
+  --color-xp-accent: var(--accent);
+
+  /* header (solid) */
+  --color-header-bg: var(--color-bottom-nav-bg);
+  --color-header-fg: #ffffff;
+  --color-header-border: rgba(255, 255, 255, 0.08);
+
+  /* panel */
+  --color-panel-bg: rgba(17, 18, 21, 0.88);
+  --color-panel-border: rgba(255, 255, 255, 0.14);
+  --color-panel-rail: rgba(255, 255, 255, 0.14);
 }
 
-/* ===== ベース適用 ===== */
+/* ✅ 明示切替にも color-mix 対応環境は上書き */
+@supports (color: color-mix(in oklab, white, black)) {
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    --color-border: color-mix(in oklab, var(--border) 92%, transparent);
+  }
+}
+
+/* ===== Base apply ===== */
 html,
 body {
   background: var(--bg);
   color: var(--text);
 }
+
 a {
   color: var(--link);
   text-decoration: none;
@@ -184,61 +329,61 @@ a:hover {
   text-decoration: underline;
 }
 
-/* フォーカス（キーボード操作の視認性） */
+/* Focus */
 :where(button, [role="button"], a, input, select, textarea):focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 0 calc(var(--line-1) * 3)
+    color-mix(in oklab, var(--focus-ring) 55%, transparent);
+  border-radius: var(--radius-12);
 }
 
-/* 選択色（テキストドラッグ時） */
+/* Selection */
 ::selection {
   background: color-mix(in oklab, var(--accent) 28%, transparent);
   color: var(--text);
 }
 
-/* 微アニメ（ユーザーが許可した場合のみ） */
+/* Motion */
 @media (prefers-reduced-motion: no-preference) {
   * {
-    transition:
-      background-color 0.15s linear,
-      color 0.15s linear,
-      border-color 0.15s linear;
+    transition: background-color var(--motion-150) linear,
+      color var(--motion-150) linear, border-color var(--motion-150) linear;
   }
 }
 
-/* WebKit スクロールバー（控えめ） */
+/* Scrollbar */
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: var(--space-2);
+  height: var(--space-2);
 }
 *::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--text) 20%, transparent);
-  border-radius: 999px;
-  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  border: calc(var(--line-1) * 2) solid transparent;
   background-clip: padding-box;
 }
 *::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* 強制ハイコントラスト環境の配慮 */
+/* Forced colors */
 @media (forced-colors: active) {
   :root {
     --shadow: none;
   }
   :where(button, [role="button"], a, input, select, textarea):focus-visible {
+    box-shadow: none;
     outline: 2px solid CanvasText;
   }
 }
 
-/* ===== ユーティリティ ===== */
+/* Utilities */
 .app-surface {
   background: var(--surface);
   box-shadow: var(--shadow);
 }
 .app-border {
-  border: 1px solid var(--border);
+  border: var(--line-1) solid var(--border);
 }
 .text-muted {
   color: var(--text-muted);
@@ -251,8 +396,8 @@ a:hover {
 /* Tabs */
 .tabs {
   background: var(--tab-bg);
-  border-radius: 16px;
-  padding: 6px;
+  border-radius: var(--radius-16);
+  padding: var(--space-2);
 }
 .tab {
   color: var(--text-muted);
@@ -263,10 +408,10 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
-/* Cards（レッスン枠） */
+/* Cards */
 .lesson-card {
   background: var(--card-bg);
-  border: 1px solid var(--border);
+  border: var(--line-1) solid var(--border);
   box-shadow: var(--shadow);
   color: var(--text);
 }
@@ -276,8 +421,8 @@ a:hover {
 
 /* Progress */
 .progress {
-  height: 8px;
-  border-radius: 999px;
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
   background: var(--progress-bg);
   overflow: hidden;
 }
@@ -288,7 +433,7 @@ a:hover {
   background: var(--progress-fill);
 }
 
-/* 小さな改善 */
+/* Small improve */
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

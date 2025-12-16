@@ -1,177 +1,300 @@
 /* src/styles/Settings.css */
 
-/* 画面ベース */
+/* =========================
+   Settings Page
+   - iOS/Safari の button デフォ枠線（黒線）を完全除去
+   - tokenベース（px/生色なし）
+   ========================= */
+
 .settings-page {
-  background: var(--bg);
-  color: var(--text);
-
-  /* 👇 高さはコンテンツに任せる（vh 固定しない） */
-  min-height: auto;
-
-  /* 👇 固定 BottomNav 分 + ちょっと余白をあけて、隠れないようにする */
-  padding-bottom: calc(var(--layout-bottom-h) + var(--space-8, 32px));
+  background: var(--color-bg);
+  color: var(--color-text);
+  width: 100%;
   box-sizing: border-box;
+
+  /* 下の固定UIに隠れないように余白（Layout側にもあるが保険で足す） */
+  padding-bottom: calc(
+    var(--layout-bottom-h)
+    + var(--layout-ad-banner-h, 0rem)
+    + var(--space-8)
+    + env(safe-area-inset-bottom, 0px)
+  );
 }
 
-/* ヘッダー */
+/* Header */
 .settings__header {
-  padding: 20px 16px 8px;
+  padding: var(--space-6) var(--space-4) var(--space-2);
 }
+
 .settings__title {
-  font-size: 28px;
+  margin: 0 0 var(--space-1);
+  font-size: 1.75rem;
   font-weight: 800;
-  line-height: 1.2;
-  color: var(--text);
-  margin: 0 0 6px;
+  line-height: 1.15;
+  color: var(--color-text);
 }
+
 .settings__subtitle {
   margin: 0;
-  color: var(--text-muted); /* ← opacity で薄くしない */
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--text-muted);
 }
 
-/* セクション */
+/* Section card */
 .settings__section {
-  background: var(--surface); /* 以前の #fff を置き換え */
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  margin: 16px;
+  margin: var(--space-4);
+  border-radius: var(--radius-16);
+  background: var(--color-surface);
+  border: var(--line-1) solid var(--color-border);
+  box-shadow: var(--shadow-1);
   overflow: hidden;
 }
+
 .settings__sectionTitle {
-  font-size: 14px;
+  margin: var(--space-4) var(--space-4) var(--space-2);
+  font-size: 0.875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 12px 16px 8px;
-}
-.settings__group {
-  margin: 8px 0 12px;
 }
 
-/* 行共通 */
+.settings__group {
+  margin: 0;
+}
+
+/* Row (button / div 共通の見た目) */
 .settings__row {
+  /* ✅ iOS/Safari のデフォ button 枠線を殺す（黒線の原因） */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  font: inherit;
+  text-align: left;
+
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 14px 16px;
-  background: var(--surface);
-  color: var(--text);
-  border-top: 1px solid var(--border);
+  gap: var(--space-3);
+
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+
+  /* 行の区切り線（外枠は section が担当） */
+  border-top: var(--line-1) solid var(--color-border);
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+
+  transition:
+    transform var(--motion-200) var(--motion-ease),
+    filter var(--motion-200) var(--motion-ease),
+    background-color var(--motion-150) linear;
 }
+
 .settings__row:first-child {
   border-top: none;
 }
-.settings__row:hover {
-  background: var(--surface-2);
+
+@media (hover: hover) and (pointer: fine) {
+  .settings__row:hover {
+    background: var(--surface-2);
+  }
 }
+
+.settings__row:active {
+  transform: translateY(calc(var(--line-1) * 1));
+  filter: brightness(0.99);
+}
+
+/* disabled */
+.settings__row:disabled,
+.settings__row[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Left */
 .settings__rowLeft {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
+  min-width: 0;
 }
+
 .settings__icon {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1;
-  color: var(--text);
+  color: var(--color-text);
+  flex: 0 0 auto;
 }
+
 .settings__labelBlock {
   display: flex;
   flex-direction: column;
-}
-.settings__label {
-  font-size: 16px;
-  color: var(--text);
-}
-.settings__desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-.settings__rowRight {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted);
-}
-.settings__chevron {
-  color: var(--text-muted);
-}
-.settings__value {
-  color: var(--text-muted);
+  min-width: 0;
 }
 
-/* スイッチ */
+.settings__label {
+  font-size: 1rem;
+  line-height: 1.2;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings__desc {
+  margin-top: var(--space-1);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right */
+.settings__rowRight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  flex: 0 0 auto;
+}
+
+.settings__value {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.settings__chevron {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Switch */
 .switch {
   position: relative;
   display: inline-block;
-  width: 52px;
-  height: 30px;
+
+  width: 3.25rem;
+  height: 1.875rem;
+  flex: 0 0 auto;
 }
+
 .switch input {
-  display: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .slider {
   position: absolute;
   inset: 0;
-  background: var(--surface-2); /* トラック OFF */
-  border: 1px solid var(--border);
-  border-radius: 999px;
+
+  background: var(--surface-2);
+  border: var(--line-1) solid var(--color-border);
+  border-radius: var(--radius-pill);
+
   transition:
-    background 0.2s,
-    border-color 0.2s;
+    background-color var(--motion-200) var(--motion-ease),
+    border-color var(--motion-200) var(--motion-ease);
 }
+
 .slider::before {
   content: "";
   position: absolute;
-  width: 22px;
-  height: 22px;
-  left: 4px;
+
+  width: 1.375rem;
+  height: 1.375rem;
+  left: var(--space-1);
   top: 50%;
   transform: translateY(-50%);
-  background: var(--surface);
-  border: 1px solid var(--border);
+
+  background: var(--color-surface);
+  border: var(--line-1) solid var(--color-border);
   border-radius: 50%;
-  transition: transform 0.2s;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-1);
+
+  transition: transform var(--motion-200) var(--motion-ease);
 }
 
-/* ON 時 */
+/* ✅ fallback（color-mix 非対応でも破綻しない） */
 .switch input:checked + .slider {
-  background: color-mix(in oklab, var(--accent) 18%, transparent);
-  border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+  background: var(--accent);
+  border-color: var(--accent);
 }
 .switch input:checked + .slider::before {
-  transform: translate(22px, -50%);
-  background: #fff; /* つまみは白で視認性キープ */
+  transform: translate(1.375rem, -50%);
+  background: var(--color-surface);
 }
 
-/* フッター */
+/* ✅ 対応環境だけ “淡いON色” に上書き */
+@supports (color: color-mix(in oklab, white, black)) {
+  .switch input:checked + .slider {
+    background: color-mix(in oklab, var(--accent) 18%, transparent);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--color-border));
+  }
+}
+
+/* Footer */
 .settings__footer {
-  padding: 24px 16px 40px;
-  color: var(--text-muted);
+  padding: var(--space-8) var(--space-4) var(--space-10);
   text-align: center;
+  color: var(--text-muted);
 }
+
 .settings__version {
-  margin-bottom: 12px;
+  margin-bottom: var(--space-4);
 }
+
 .settings__logout {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  outline: none;
+
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  border-radius: 12px;
+  justify-content: center;
+  gap: var(--space-2);
+
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-12);
+
   background: var(--surface-2);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.settings__logout:active {
-  transform: translateY(1px);
+  color: var(--color-text);
+
+  border: var(--line-1) solid var(--color-border);
+  box-shadow: var(--shadow-1);
+
+  cursor: pointer;
+
+  transition:
+    transform var(--motion-200) var(--motion-ease),
+    filter var(--motion-200) var(--motion-ease);
 }
 
-/* iOS のタップハイライト軽減 */
+.settings__logout:active {
+  transform: translateY(calc(var(--line-1) * 1));
+  filter: brightness(0.99);
+}
+
+.settings__logout:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* iOS tap highlight */
 .settings-page * {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }

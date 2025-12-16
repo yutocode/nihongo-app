@@ -1,0 +1,322 @@
+/* =========================
+   Kanji Home Page (Complete)
+   ========================= */
+
+.kanji-wrap {
+  min-height: 100vh;
+  background: var(--color-bg, #f6f7f6);
+  padding-bottom: 96px; /* CTA 分 */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===== Header ===== */
+.kanji-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.kanji-back,
+.kanji-info {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  background: #f2f3f2;
+  font-size: 16px;
+}
+
+.kanji-title {
+  text-align: center;
+}
+
+.kanji-title h1 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.kanji-title p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+/* ===== Level Tabs ===== */
+.kanji-levels {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.kanji-level {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: #eef0ef;
+  color: #6b6b6b;
+}
+
+.kanji-level.active {
+  background: #3aa87a;
+  color: #fff;
+}
+
+/* ===== Mode Cards ===== */
+.kanji-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 8px 16px 16px;
+}
+
+.kanji-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.kanji-card .icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 8px;
+  border-radius: 999px;
+  background: #eaf5ef;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: #3aa87a;
+}
+
+.kanji-card h3 {
+  margin: 4px 0 2px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kanji-card p {
+  margin: 0;
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+.kanji-card.disabled {
+  opacity: 0.45;
+  position: relative;
+}
+
+.kanji-card .soon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e6f0eb;
+  color: #3aa87a;
+}
+
+/* ===== Today Kanji ===== */
+.kanji-today {
+  padding: 0 16px 16px;
+}
+
+.today-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.today-kanji {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #eaf5ef;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.today-info strong {
+  display: block;
+  font-size: 16px;
+}
+
+.today-info span {
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+.progress {
+  margin-top: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #eef0ef;
+  overflow: hidden;
+}
+
+.progress .bar {
+  height: 100%;
+  background: #3aa87a;
+}
+
+.today-info small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+.xp {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e6f0eb;
+  color: #3aa87a;
+  font-weight: 600;
+}
+
+/* ===== Kanji List (2 columns) ===== */
+.kanji-list {
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+
+.kanji-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  grid-column: 1 / -1;
+}
+
+.kanji-list-header h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.filter {
+  border: none;
+  background: #f2f3f2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.kanji-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 28px;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  min-width: 0;
+  cursor: pointer;
+}
+
+.kanji-char {
+  width: 44px;
+  height: 44px;
+
+  /* ✅ アプリアイコン風：角丸四角 */
+  border-radius: 14px;
+
+  /* ✅ 点々やめて、前の通常ボーダーに */
+  border: 2px solid #e0e0e0;
+
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.kanji-meta strong {
+  display: block;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kanji-meta span {
+  font-size: 12px;
+  color: #8e8e93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookmark {
+  border: none;
+  background: none;
+  font-size: 18px;
+  color: #c7c7cc;
+}
+
+.bookmark.active {
+  color: #3aa87a;
+}
+
+/* ===== Bottom CTA ===== */
+.kanji-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px 20px;
+  background: linear-gradient(to top, #ffffff 80%, rgba(255, 255, 255, 0));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-outline {
+  border-radius: 14px;
+  border: 2px solid #3aa87a;
+  background: #fff;
+  color: #3aa87a;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 0;
+}
+
+.btn-primary {
+  border-radius: 14px;
+  border: none;
+  background: #3aa87a;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 360px) {
+  .kanji-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,6 +1,4 @@
 /* src/styles/Global.css */
-@import "./Theme.css";
-/* Global.css */
 
 /* --------------------- Reset & Base --------------------- */
 *,
@@ -9,7 +7,6 @@
   box-sizing: border-box;
 }
 
-/* 高さは 100% にして、#root に閉じ込める */
 html,
 body {
   height: 100%;
@@ -18,279 +15,57 @@ body {
 
 html {
   -webkit-text-size-adjust: 100%;
-  color-scheme: light dark; /* OSのテーマ通知 */
+  color-scheme: light dark;
 }
 
 body {
   margin: 0;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: system-ui, -apple-system, "Noto Sans JP", "Roboto", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ja-sans, system-ui, -apple-system, "Noto Sans JP",
+      "Roboto", sans-serif);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  /* ★ ページ全体はスクロールさせない（中身だけスクロール） */
-  overflow-y: hidden;
 
-  /* iOS ノッチ等のセーフエリア（下は AppShell 側で処理するので入れない） */
+  overflow-x: hidden;
+
+  /* ✅ safe-area top は Layout/Header 側で処理（ここでは入れない） */
   padding-left: max(0px, env(safe-area-inset-left));
   padding-right: max(0px, env(safe-area-inset-right));
-  padding-top: max(0px, env(safe-area-inset-top));
+
+  /* 画面全体はスクロールさせない（中身スクロールは Layout で） */
+  overflow-y: hidden;
 }
 
-/* hidden属性の明示非表示（ローディング対策） */
 [hidden],
 .app-loading[hidden] {
   display: none !important;
 }
 
-/* 画面高の安定化：
-   - #root 自体を 100dvh に固定して overflow: hidden
-   - スクロールは Layout の .app-content だけにする
-*/
+/* root を固定して Layout 内だけスクロール */
 #root {
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
 }
 
-/* --------------------- Design Tokens -------------------- */
-/* 既定（Dark基準）。.light / .dark のクラスで切替も可 */
-:root {
-  /* Palette */
-  --primary-600: #2563eb; /* 青：アクティブ */
-  --neutral-900: #111318;
-  --neutral-700: #1c1f26;
-  --neutral-500: #6b7280;
-  --neutral-200: #e5e7eb;
-
-  /* Brand accent（オレンジ演出用） */
-  --accent: #ff9900;
-  --accent-2: #ffcc00;
-
-  /* Semantic */
-  --success: #2ecc71;
-  --danger: #ef4444;
-
-  /* Surfaces & text（Dark既定） */
-  --color-bg: #111318;
-  --color-text: #f5f5f5;
-  --color-card: #1c1f26;
-  --color-border: rgba(255, 255, 255, 0.1);
-
-  /* Radii & Shadow */
-  --radius-card: 16px;
-  --radius-button: 50px;
-  --shadow-elev1: 0 1px 2px rgba(0, 0, 0, 0.08),
-    0 1px 1px rgba(0, 0, 0, 0.06);
-
-  /* Focus Ring */
-  --ring: 0 0 0 3px rgba(255, 153, 0, 0.35);
-
-  /* ▼ 追加：AdMob バナーの高さ（レイアウト用） */
-  --layout-ad-banner-h: 56px;
-}
-
-/* OSがLightのときの自動切替 */
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-bg: #ffffff;
-    --color-text: #111318;
-    --color-card: #f5f6f8;
-    --color-border: rgba(0, 0, 0, 0.08);
-  }
-}
-
-/* 手動トグル用 */
-.light {
-  --color-bg: #ffffff;
-  --color-text: #111318;
-  --color-card: #f5f6f8;
-  --color-border: rgba(0, 0, 0, 0.08);
-}
-.dark {
-  --color-bg: #111318;
-  --color-text: #f5f5f5;
-  --color-card: #1c1f26;
-  --color-border: rgba(255, 255, 255, 0.1);
-}
-
-/* --------------------- Typography ----------------------- */
-:root {
-  --fs-sm: clamp(12px, 1.6vw, 14px);
-  --fs-md: clamp(14px, 1.9vw, 16px);
-  --fs-lg: clamp(16px, 2.3vw, 20px);
-  --fs-xl: clamp(20px, 4.5vw, 28px);
-}
-
-body {
-  font-size: var(--fs-md);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0 0 0.6em;
-  line-height: 1.25;
-}
-h1 {
-  font-size: var(--fs-xl);
-}
-h2 {
-  font-size: clamp(18px, 3.6vw, 24px);
-}
-p {
-  font-size: var(--fs-md);
-  margin: 0 0 1em;
-}
-
-/* ルビ（文法ページ用） */
-ruby {
-  ruby-position: over;
-}
-rt {
-  font-size: 0.6em;
-  opacity: 0.9;
-  letter-spacing: 0.02em;
-}
-
-/* --------------------- Cards ---------------------------- */
-.card {
-  background-color: var(--color-card);
-  border-radius: 20px;
-  padding: clamp(12px, 3.5vw, 24px);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
-  }
-}
-
-/* 画像の伸縮安定 */
+/* images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
+  border-radius: var(--radius-12);
 }
 
-/* --------------------- Buttons (Common) ----------------- */
-button,
-.btn-primary,
-.btn-success {
-  display: inline-block;
-  text-align: center;
-  font-weight: 700;
-  border: none;
-  border-radius: var(--radius-button);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 44px;
-  padding: 0.8rem 1.6rem;
-  font-size: var(--fs-md);
-  color: var(--color-text);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #000;
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn-primary:hover {
-    background: linear-gradient(135deg, var(--accent-2), var(--accent));
-    transform: scale(1.05);
-  }
-}
-
-.btn-success {
-  background-color: var(--success);
-  color: #fff;
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn-success:hover {
-    background-color: #27ae60;
-    transform: scale(1.05);
-  }
-}
-
-/* フォーカスアクセシビリティ */
-button:focus-visible,
-.btn-primary:focus-visible,
-.btn-success:focus-visible {
+/* a11y focus（Themeの focus-ring を使用） */
+:where(button, [role="button"], a, input, select, textarea):focus-visible {
   outline: none;
-  box-shadow: var(--ring);
+  box-shadow: 0 0 0 calc(var(--line-1) * 3)
+    color-mix(in oklab, var(--focus-ring) 55%, transparent);
+  border-radius: var(--radius-12);
 }
 
-/* 無効状態 */
-button:disabled,
-.btn-primary:disabled,
-.btn-success:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* --------------------- Layout Utilities ----------------- */
-.container {
-  width: min(100% - 32px, 960px);
-  margin-inline: auto;
-}
-
-.grid {
-  display: grid;
-  gap: clamp(10px, 2.8vw, 16px);
-}
-
-/* 自動段組（カード一覧など） */
-.grid.auto {
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-}
-
-/* セーフエリア込みの内側パディング（必要な画面で使用） */
-.app-wrap {
-  padding: clamp(12px, 3vw, 24px);
-  padding-left: max(clamp(12px, 3vw, 24px), env(safe-area-inset-left));
-  padding-right: max(clamp(12px, 3vw, 24px), env(safe-area-inset-right));
-  padding-top: max(clamp(12px, 3vw, 24px), env(safe-area-inset-top));
-  padding-bottom: max(clamp(12px, 3vw, 24px), env(safe-area-inset-bottom));
-}
-
-/* --------------------- Bottom Navigation ---------------- */
-/* 高さトークンは Theme.css の --bn-height / --layout-bottom-h を利用 */
-
-/* --------------------- Responsive ----------------------- */
-@media (max-width: 374px) {
-  .grid.cols {
-    grid-template-columns: 1fr;
-  }
-}
-@media (min-width: 375px) and (max-width: 399px) {
-  .grid.cols {
-    grid-template-columns: 1fr;
-  }
-}
-@media (min-width: 400px) and (max-width: 429px) {
-  .grid.cols {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (min-width: 430px) {
-  .grid.cols {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .container {
-    width: min(100% - 40px, 1000px);
-  }
-}
-
-/* --------------------- Motion Preferences --------------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

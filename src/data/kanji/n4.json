@@ -1,0 +1,2214 @@
+{
+  "一": {
+    "char": "一",
+    "strokes": 1,
+    "onyomi": [
+      "イチ",
+      "イツ"
+    ],
+    "kunyomi": [
+      "ひと-",
+      "ひと.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "七": {
+    "char": "七",
+    "strokes": 2,
+    "onyomi": [
+      "シチ"
+    ],
+    "kunyomi": [
+      "なな",
+      "なな.つ",
+      "なの"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "万": {
+    "char": "万",
+    "strokes": 3,
+    "onyomi": [
+      "マン",
+      "バン"
+    ],
+    "kunyomi": [
+      "よろず"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "三": {
+    "char": "三",
+    "strokes": 3,
+    "onyomi": [
+      "サン",
+      "ゾウ"
+    ],
+    "kunyomi": [
+      "み",
+      "み.つ",
+      "みっ.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "上": {
+    "char": "上",
+    "strokes": 3,
+    "onyomi": [
+      "ジョウ",
+      "ショウ",
+      "シャン"
+    ],
+    "kunyomi": [
+      "うえ",
+      "-うえ",
+      "うわ-",
+      "かみ",
+      "あ.げる",
+      "-あ.げる",
+      "あ.がる",
+      "-あ.がる",
+      "あ.がり",
+      "-あ.がり",
+      "のぼ.る",
+      "のぼ.り",
+      "のぼ.せる",
+      "のぼ.す",
+      "たてまつ.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "下": {
+    "char": "下",
+    "strokes": 3,
+    "onyomi": [
+      "カ",
+      "ゲ"
+    ],
+    "kunyomi": [
+      "した",
+      "しも",
+      "もと",
+      "さ.げる",
+      "さ.がる",
+      "くだ.る",
+      "くだ.り",
+      "くだ.す",
+      "-くだ.す",
+      "くだ.さる",
+      "お.ろす",
+      "お.りる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "中": {
+    "char": "中",
+    "strokes": 4,
+    "onyomi": [
+      "チュウ"
+    ],
+    "kunyomi": [
+      "なか",
+      "うち",
+      "あた.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "九": {
+    "char": "九",
+    "strokes": 2,
+    "onyomi": [
+      "キュウ",
+      "ク"
+    ],
+    "kunyomi": [
+      "ここの",
+      "ここの.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "二": {
+    "char": "二",
+    "strokes": 2,
+    "onyomi": [
+      "ニ",
+      "ジ"
+    ],
+    "kunyomi": [
+      "ふた",
+      "ふた.つ",
+      "ふたたび"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "五": {
+    "char": "五",
+    "strokes": 4,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "いつ",
+      "いつ.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "人": {
+    "char": "人",
+    "strokes": 2,
+    "onyomi": [
+      "ジン",
+      "ニン"
+    ],
+    "kunyomi": [
+      "ひと",
+      "-り",
+      "-と"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "今": {
+    "char": "今",
+    "strokes": 4,
+    "onyomi": [
+      "コン",
+      "キン"
+    ],
+    "kunyomi": [
+      "いま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "休": {
+    "char": "休",
+    "strokes": 6,
+    "onyomi": [
+      "キュウ"
+    ],
+    "kunyomi": [
+      "やす.む",
+      "やす.まる",
+      "やす.める"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "会": {
+    "char": "会",
+    "strokes": 6,
+    "onyomi": [
+      "カイ",
+      "エ"
+    ],
+    "kunyomi": [
+      "あ.う",
+      "あ.わせる",
+      "あつ.まる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "何": {
+    "char": "何",
+    "strokes": 7,
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "なに",
+      "なん",
+      "なに-",
+      "なん-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "先": {
+    "char": "先",
+    "strokes": 6,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "さき",
+      "ま.ず"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "入": {
+    "char": "入",
+    "strokes": 2,
+    "onyomi": [
+      "ニュウ",
+      "ジュ"
+    ],
+    "kunyomi": [
+      "い.る",
+      "-い.る",
+      "-い.り",
+      "い.れる",
+      "-い.れ",
+      "はい.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "八": {
+    "char": "八",
+    "strokes": 2,
+    "onyomi": [
+      "ハチ",
+      "ハツ"
+    ],
+    "kunyomi": [
+      "や",
+      "や.つ",
+      "やっ.つ",
+      "よう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "六": {
+    "char": "六",
+    "strokes": 4,
+    "onyomi": [
+      "ロク",
+      "リク"
+    ],
+    "kunyomi": [
+      "む",
+      "む.つ",
+      "むっ.つ",
+      "むい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "円": {
+    "char": "円",
+    "strokes": 4,
+    "onyomi": [
+      "エン"
+    ],
+    "kunyomi": [
+      "まる.い",
+      "まる",
+      "まど",
+      "まど.か",
+      "まろ.やか"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "出": {
+    "char": "出",
+    "strokes": 5,
+    "onyomi": [
+      "シュツ",
+      "スイ"
+    ],
+    "kunyomi": [
+      "で.る",
+      "-で",
+      "だ.す",
+      "-だ.す",
+      "い.でる",
+      "い.だす"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "分": {
+    "char": "分",
+    "strokes": 4,
+    "onyomi": [
+      "ブン",
+      "フン",
+      "ブ"
+    ],
+    "kunyomi": [
+      "わ.ける",
+      "わ.け",
+      "わ.かれる",
+      "わ.かる",
+      "わ.かつ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "前": {
+    "char": "前",
+    "strokes": 9,
+    "onyomi": [
+      "ゼン"
+    ],
+    "kunyomi": [
+      "まえ",
+      "-まえ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "北": {
+    "char": "北",
+    "strokes": 5,
+    "onyomi": [
+      "ホク"
+    ],
+    "kunyomi": [
+      "きた"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "十": {
+    "char": "十",
+    "strokes": 2,
+    "onyomi": [
+      "ジュウ",
+      "ジッ",
+      "ジュッ"
+    ],
+    "kunyomi": [
+      "とお",
+      "と",
+      "そ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "千": {
+    "char": "千",
+    "strokes": 3,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "ち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "午": {
+    "char": "午",
+    "strokes": 4,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "うま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "半": {
+    "char": "半",
+    "strokes": 5,
+    "onyomi": [
+      "ハン"
+    ],
+    "kunyomi": [
+      "なか.ば"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "南": {
+    "char": "南",
+    "strokes": 9,
+    "onyomi": [
+      "ナン",
+      "ナ"
+    ],
+    "kunyomi": [
+      "みなみ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "友": {
+    "char": "友",
+    "strokes": 4,
+    "onyomi": [
+      "ユウ"
+    ],
+    "kunyomi": [
+      "とも"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "口": {
+    "char": "口",
+    "strokes": 3,
+    "onyomi": [
+      "コウ",
+      "ク"
+    ],
+    "kunyomi": [
+      "くち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "古": {
+    "char": "古",
+    "strokes": 5,
+    "onyomi": [
+      "コ"
+    ],
+    "kunyomi": [
+      "ふる.い",
+      "ふる-",
+      "-ふる.す"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "右": {
+    "char": "右",
+    "strokes": 5,
+    "onyomi": [
+      "ウ",
+      "ユウ"
+    ],
+    "kunyomi": [
+      "みぎ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "名": {
+    "char": "名",
+    "strokes": 6,
+    "onyomi": [
+      "メイ",
+      "ミョウ"
+    ],
+    "kunyomi": [
+      "な",
+      "-な"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "四": {
+    "char": "四",
+    "strokes": 5,
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "よ",
+      "よ.つ",
+      "よっ.つ",
+      "よん"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "国": {
+    "char": "国",
+    "strokes": 8,
+    "onyomi": [
+      "コク"
+    ],
+    "kunyomi": [
+      "くに"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "土": {
+    "char": "土",
+    "strokes": 3,
+    "onyomi": [
+      "ド",
+      "ト"
+    ],
+    "kunyomi": [
+      "つち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "外": {
+    "char": "外",
+    "strokes": 5,
+    "onyomi": [
+      "ガイ",
+      "ゲ"
+    ],
+    "kunyomi": [
+      "そと",
+      "ほか",
+      "はず.す",
+      "はず.れる",
+      "と-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "多": {
+    "char": "多",
+    "strokes": 6,
+    "onyomi": [
+      "タ"
+    ],
+    "kunyomi": [
+      "おお.い",
+      "まさ.に",
+      "まさ.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "大": {
+    "char": "大",
+    "strokes": 3,
+    "onyomi": [
+      "ダイ",
+      "タイ"
+    ],
+    "kunyomi": [
+      "おお-",
+      "おお.きい",
+      "-おお.いに"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "天": {
+    "char": "天",
+    "strokes": 4,
+    "onyomi": [
+      "テン"
+    ],
+    "kunyomi": [
+      "あまつ",
+      "あめ",
+      "あま-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "女": {
+    "char": "女",
+    "strokes": 3,
+    "onyomi": [
+      "ジョ",
+      "ニョ",
+      "ニョウ"
+    ],
+    "kunyomi": [
+      "おんな",
+      "め"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "子": {
+    "char": "子",
+    "strokes": 3,
+    "onyomi": [
+      "シ",
+      "ス",
+      "ツ"
+    ],
+    "kunyomi": [
+      "こ",
+      "-こ",
+      "ね"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "学": {
+    "char": "学",
+    "strokes": 8,
+    "onyomi": [
+      "ガク"
+    ],
+    "kunyomi": [
+      "まな.ぶ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "安": {
+    "char": "安",
+    "strokes": 6,
+    "onyomi": [
+      "アン"
+    ],
+    "kunyomi": [
+      "やす.い",
+      "やす.まる",
+      "やす",
+      "やす.らか"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "小": {
+    "char": "小",
+    "strokes": 3,
+    "onyomi": [
+      "ショウ"
+    ],
+    "kunyomi": [
+      "ちい.さい",
+      "こ-",
+      "お-",
+      "さ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "少": {
+    "char": "少",
+    "strokes": 4,
+    "onyomi": [
+      "ショウ"
+    ],
+    "kunyomi": [
+      "すく.ない",
+      "すこ.し"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "山": {
+    "char": "山",
+    "strokes": 3,
+    "onyomi": [
+      "サン",
+      "セン"
+    ],
+    "kunyomi": [
+      "やま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "川": {
+    "char": "川",
+    "strokes": 3,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "かわ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "左": {
+    "char": "左",
+    "strokes": 5,
+    "onyomi": [
+      "サ",
+      "シャ"
+    ],
+    "kunyomi": [
+      "ひだり"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "年": {
+    "char": "年",
+    "strokes": 6,
+    "onyomi": [
+      "ネン"
+    ],
+    "kunyomi": [
+      "とし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "店": {
+    "char": "店",
+    "strokes": 8,
+    "onyomi": [
+      "テン"
+    ],
+    "kunyomi": [
+      "みせ",
+      "たな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "後": {
+    "char": "後",
+    "strokes": 9,
+    "onyomi": [
+      "ゴ",
+      "コウ"
+    ],
+    "kunyomi": [
+      "のち",
+      "うし.ろ",
+      "うしろ",
+      "あと",
+      "おく.れる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "手": {
+    "char": "手",
+    "strokes": 4,
+    "onyomi": [
+      "シュ",
+      "ズ"
+    ],
+    "kunyomi": [
+      "て",
+      "て-",
+      "-て",
+      "た-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "新": {
+    "char": "新",
+    "strokes": 13,
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "あたら.しい",
+      "あら.た",
+      "あら-",
+      "にい-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "日": {
+    "char": "日",
+    "strokes": 4,
+    "onyomi": [
+      "ニチ",
+      "ジツ"
+    ],
+    "kunyomi": [
+      "ひ",
+      "-び",
+      "-か"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "時": {
+    "char": "時",
+    "strokes": 10,
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "とき",
+      "-どき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "書": {
+    "char": "書",
+    "strokes": 10,
+    "onyomi": [
+      "ショ"
+    ],
+    "kunyomi": [
+      "か.く",
+      "-が.き",
+      "-がき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "月": {
+    "char": "月",
+    "strokes": 4,
+    "onyomi": [
+      "ゲツ",
+      "ガツ"
+    ],
+    "kunyomi": [
+      "つき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "木": {
+    "char": "木",
+    "strokes": 4,
+    "onyomi": [
+      "ボク",
+      "モク"
+    ],
+    "kunyomi": [
+      "き",
+      "こ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "本": {
+    "char": "本",
+    "strokes": 5,
+    "onyomi": [
+      "ホン"
+    ],
+    "kunyomi": [
+      "もと"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "来": {
+    "char": "来",
+    "strokes": 7,
+    "onyomi": [
+      "ライ",
+      "タイ"
+    ],
+    "kunyomi": [
+      "く.る",
+      "きた.る",
+      "きた.す",
+      "き.たす",
+      "き.たる",
+      "き",
+      "こ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "東": {
+    "char": "東",
+    "strokes": 8,
+    "onyomi": [
+      "トウ"
+    ],
+    "kunyomi": [
+      "ひがし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "校": {
+    "char": "校",
+    "strokes": 10,
+    "onyomi": [
+      "コウ",
+      "キョウ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "母": {
+    "char": "母",
+    "strokes": 5,
+    "onyomi": [
+      "ボ"
+    ],
+    "kunyomi": [
+      "はは",
+      "も"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "毎": {
+    "char": "毎",
+    "strokes": 6,
+    "onyomi": [
+      "マイ"
+    ],
+    "kunyomi": [
+      "ごと",
+      "-ごと.に"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "気": {
+    "char": "気",
+    "strokes": 6,
+    "onyomi": [
+      "キ",
+      "ケ"
+    ],
+    "kunyomi": [
+      "いき",
+      "き"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "水": {
+    "char": "水",
+    "strokes": 4,
+    "onyomi": [
+      "スイ"
+    ],
+    "kunyomi": [
+      "みず",
+      "みず-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "火": {
+    "char": "火",
+    "strokes": 4,
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "ひ",
+      "-び",
+      "ほ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "父": {
+    "char": "父",
+    "strokes": 4,
+    "onyomi": [
+      "フ"
+    ],
+    "kunyomi": [
+      "ちち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "生": {
+    "char": "生",
+    "strokes": 5,
+    "onyomi": [
+      "セイ",
+      "ショウ"
+    ],
+    "kunyomi": [
+      "い.きる",
+      "い.かす",
+      "い.ける",
+      "う.まれる",
+      "うま.れる",
+      "う.まれ",
+      "うまれ",
+      "う.む",
+      "お.う",
+      "は.える",
+      "は.やす",
+      "き",
+      "なま",
+      "なま-",
+      "な.る",
+      "な.す",
+      "む.す",
+      "-う"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "男": {
+    "char": "男",
+    "strokes": 7,
+    "onyomi": [
+      "ダン",
+      "ナン"
+    ],
+    "kunyomi": [
+      "おとこ",
+      "お"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "白": {
+    "char": "白",
+    "strokes": 5,
+    "onyomi": [
+      "ハク",
+      "ビャク"
+    ],
+    "kunyomi": [
+      "しろ",
+      "しら-",
+      "しろ.い"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "百": {
+    "char": "百",
+    "strokes": 6,
+    "onyomi": [
+      "ヒャク",
+      "ビャク"
+    ],
+    "kunyomi": [
+      "もも"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "目": {
+    "char": "目",
+    "strokes": 5,
+    "onyomi": [
+      "モク",
+      "ボク"
+    ],
+    "kunyomi": [
+      "め",
+      "-め",
+      "ま-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "社": {
+    "char": "社",
+    "strokes": 7,
+    "onyomi": [
+      "シャ"
+    ],
+    "kunyomi": [
+      "やしろ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "空": {
+    "char": "空",
+    "strokes": 8,
+    "onyomi": [
+      "クウ"
+    ],
+    "kunyomi": [
+      "そら",
+      "あ.く",
+      "あ.き",
+      "あ.ける",
+      "から",
+      "す.く",
+      "す.かす",
+      "むな.しい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "立": {
+    "char": "立",
+    "strokes": 5,
+    "onyomi": [
+      "リツ",
+      "リュウ",
+      "リットル"
+    ],
+    "kunyomi": [
+      "た.つ",
+      "-た.つ",
+      "た.ち-",
+      "た.てる",
+      "-た.てる",
+      "た.て-",
+      "たて-",
+      "-た.て",
+      "-だ.て",
+      "-だ.てる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "耳": {
+    "char": "耳",
+    "strokes": 6,
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "みみ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "聞": {
+    "char": "聞",
+    "strokes": 14,
+    "onyomi": [
+      "ブン",
+      "モン"
+    ],
+    "kunyomi": [
+      "き.く",
+      "き.こえる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "花": {
+    "char": "花",
+    "strokes": 7,
+    "onyomi": [
+      "カ",
+      "ケ"
+    ],
+    "kunyomi": [
+      "はな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "行": {
+    "char": "行",
+    "strokes": 6,
+    "onyomi": [
+      "コウ",
+      "ギョウ",
+      "アン"
+    ],
+    "kunyomi": [
+      "い.く",
+      "ゆ.く",
+      "-ゆ.き",
+      "-ゆき",
+      "-い.き",
+      "-いき",
+      "おこな.う",
+      "おこ.なう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "西": {
+    "char": "西",
+    "strokes": 6,
+    "onyomi": [
+      "セイ",
+      "サイ",
+      "ス"
+    ],
+    "kunyomi": [
+      "にし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "見": {
+    "char": "見",
+    "strokes": 7,
+    "onyomi": [
+      "ケン"
+    ],
+    "kunyomi": [
+      "み.る",
+      "み.える",
+      "み.せる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "言": {
+    "char": "言",
+    "strokes": 7,
+    "onyomi": [
+      "ゲン",
+      "ゴン"
+    ],
+    "kunyomi": [
+      "い.う",
+      "こと"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "話": {
+    "char": "話",
+    "strokes": 13,
+    "onyomi": [
+      "ワ"
+    ],
+    "kunyomi": [
+      "はな.す",
+      "はなし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "語": {
+    "char": "語",
+    "strokes": 14,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "かた.る",
+      "かた.らう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "読": {
+    "char": "読",
+    "strokes": 14,
+    "onyomi": [
+      "ドク",
+      "トク",
+      "トウ"
+    ],
+    "kunyomi": [
+      "よ.む",
+      "-よ.み"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "買": {
+    "char": "買",
+    "strokes": 12,
+    "onyomi": [
+      "バイ"
+    ],
+    "kunyomi": [
+      "か.う"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "足": {
+    "char": "足",
+    "strokes": 7,
+    "onyomi": [
+      "ソク"
+    ],
+    "kunyomi": [
+      "あし",
+      "た.りる",
+      "た.る",
+      "た.す"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "車": {
+    "char": "車",
+    "strokes": 7,
+    "onyomi": [
+      "シャ"
+    ],
+    "kunyomi": [
+      "くるま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "週": {
+    "char": "週",
+    "strokes": 11,
+    "onyomi": [
+      "シュウ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "道": {
+    "char": "道",
+    "strokes": 12,
+    "onyomi": [
+      "ドウ",
+      "トウ"
+    ],
+    "kunyomi": [
+      "みち",
+      "いう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "金": {
+    "char": "金",
+    "strokes": 8,
+    "onyomi": [
+      "キン",
+      "コン",
+      "ゴン"
+    ],
+    "kunyomi": [
+      "かね",
+      "かな-",
+      "-がね"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "長": {
+    "char": "長",
+    "strokes": 8,
+    "onyomi": [
+      "チョウ"
+    ],
+    "kunyomi": [
+      "なが.い",
+      "おさ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "間": {
+    "char": "間",
+    "strokes": 12,
+    "onyomi": [
+      "カン",
+      "ケン"
+    ],
+    "kunyomi": [
+      "あいだ",
+      "ま",
+      "あい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "雨": {
+    "char": "雨",
+    "strokes": 8,
+    "onyomi": [
+      "ウ"
+    ],
+    "kunyomi": [
+      "あめ",
+      "あま-",
+      "-さめ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "電": {
+    "char": "電",
+    "strokes": 13,
+    "onyomi": [
+      "デン"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "食": {
+    "char": "食",
+    "strokes": 9,
+    "onyomi": [
+      "ショク",
+      "ジキ"
+    ],
+    "kunyomi": [
+      "く.う",
+      "く.らう",
+      "た.べる",
+      "は.む"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "飲": {
+    "char": "飲",
+    "strokes": 12,
+    "onyomi": [
+      "イン",
+      "オン"
+    ],
+    "kunyomi": [
+      "の.む",
+      "-の.み"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "駅": {
+    "char": "駅",
+    "strokes": 14,
+    "onyomi": [
+      "エキ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "高": {
+    "char": "高",
+    "strokes": 10,
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "たか.い",
+      "たか",
+      "-だか",
+      "たか.まる",
+      "たか.める"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  },
+  "魚": {
+    "char": "魚",
+    "strokes": 11,
+    "onyomi": [
+      "ギョ"
+    ],
+    "kunyomi": [
+      "うお",
+      "さかな",
+      "-ざかな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": ""
+  }
+}

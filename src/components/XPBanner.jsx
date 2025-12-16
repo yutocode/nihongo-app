@@ -1,128 +1,45 @@
-// src/components/XPBanner.jsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useAppStore } from "@/store/useAppStore"; // エイリアス版
+import React, { useMemo } from "react";
+import { useAppStore } from "@/store/useAppStore";
 import "@/styles/XPBanner.css";
 
-/** 数値をなめらかにカウントアップ表示するフック */
-function useCountUp(value, duration = 600) {
-  const [display, setDisplay] = useState(value);
-  const prevRef = useRef(value);
+const toInt = (v, fallback = 0) => {
+  const n = typeof v === "string" ? Number(v) : v;
+  if (!Number.isFinite(n)) return fallback;
+  return Math.trunc(n);
+};
 
-  useEffect(() => {
-    const start = performance.now();
-    const from = prevRef.current;
-    const to = value;
-    if (from === to) return;
-
-    let raf;
-    const tick = (t) => {
-      const p = Math.min(1, (t - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-      setDisplay(Math.round(from + (to - from) * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    prevRef.current = value;
-    return () => cancelAnimationFrame(raf);
-  }, [value, duration]);
-
-  return display;
-}
-
-/**
- * XPBanner（ミニマル版）
- * - Lvピル＋バー＋数値のみ
- * - モバイル優先、デザイントークン前提のCSSとセットで使用
- */
 export default function XPBanner({ compact = false }) {
-  const xp = useAppStore((s) => s.xp); // { total, level, need, into, percent, levelLabel }
-  const [levelUp, setLevelUp] = useState(false);
-  const prevLevel = useRef(xp.level);
-  const prevPercent = useRef(xp.percent);
+  const xp = useAppStore((s) => s.xp);
 
-  // 数字アニメーション
-  const animPercent = useCountUp(xp.percent ?? 0, 600);
-  const animLevel = useCountUp(xp.level ?? 1, 700);
-  const animInto = useCountUp(xp.into ?? 0, 600);
-  const animNeed = useMemo(() => xp.need ?? 0, [xp.need]);
+  // storeの形：xp = { total, level, need, into, percent, levelLabel }
+  const levelNum = toInt(xp?.level, 1);
+  const cur = Math.max(0, toInt(xp?.into, 0));
+  const max = Math.max(1, toInt(xp?.need, 1));
 
-  // レベルアップ演出
-  useEffect(() => {
-    const currentLevel = xp.level ?? 1;
-    if (currentLevel > (prevLevel.current ?? 1)) {
-      setLevelUp(true);
-      const t = setTimeout(() => setLevelUp(false), 1400);
-      prevLevel.current = currentLevel;
-      return () => clearTimeout(t);
-    }
-    prevLevel.current = currentLevel;
-  }, [xp.level]);
-
-  // バー幅（％）
-  const width = Math.max(0, Math.min(100, xp.percent ?? 0));
-
-  // 変化量に応じてアニメ時間を可変（1%あたり12ms、最小150ms、最大250ms）
-  const delta = Math.abs(width - (prevPercent.current ?? 0));
-  const durMs = Math.max(150, Math.min(250, Math.round(delta * 12)));
-
-  useEffect(() => {
-    prevPercent.current = width;
-  }, [width]);
+  const pct = useMemo(() => {
+    const p = toInt(xp?.percent, -1);
+    if (p >= 0 && p <= 100) return p;
+    return Math.max(0, Math.min(100, Math.round((cur / max) * 100)));
+  }, [xp?.percent, cur, max]);
 
   return (
-    <div
-      className={`xp-banner ${compact ? "is-compact" : ""} ${
-        levelUp ? "is-levelup" : ""
-      }`}
-      role="region"
-      aria-label="Level progress"
-    >
-      <div className="xp-main">
-        <div className="xp-row">
-          <div className="xp-title">
-            <span
-              className="xp-levelchip"
-              aria-label={`レベル ${animLevel}`}
-            >
-              Lv&nbsp;{animLevel}
-            </span>
-          </div>
+    <div className={`xpbar ${compact ? "is-compact" : ""}`}>
+      <div className="xpbar-panel" role="status" aria-label="XP progress">
+        <div className="xpbar-row">
+          <span className="xpbar-lvPill">Lv {levelNum}</span>
 
-          <div className="xp-numbers" aria-live="polite">
-            <span className="xp-num">{animInto}</span>
-            <span className="xp-split">/</span>
-            <span className="xp-den">{animNeed}</span>
-            <span className="xp-per">({animPercent}%)</span>
+          <div className="xpbar-metrics" aria-label="progress numbers">
+            <span className="xpbar-num">{cur}</span>
+            <span className="xpbar-slash">/</span>
+            <span className="xpbar-den">{max}</span>
+            <span className="xpbar-per">({pct}%)</span>
           </div>
         </div>
 
-        <div
-          className="xp-rail"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(width)}
-          aria-label="経験値バー"
-        >
-          {/* 可変 duration を CSS 変数で渡す */}
-          <div
-            className="xp-fill"
-            style={{
-              width: `${width}%`,
-              "--dur": `${durMs}ms`,
-            }}
-          >
-            <span className="xp-shine" aria-hidden />
-          </div>
+        <div className="xpbar-rail" aria-hidden="true">
+          <span className="xpbar-fill" style={{ width: `${pct}%` }} />
         </div>
       </div>
-
-      {/* レベルアップ時の控えめポップ */}
-      {levelUp && (
-        <div className="levelup-pop" aria-hidden>
-          Level Up!
-        </div>
-      )}
     </div>
   );
 }

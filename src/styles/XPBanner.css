@@ -1,182 +1,74 @@
 /* src/styles/XPBanner.css */
 
-.xp-banner {
+.xpbar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xpbar.is-compact .xpbar-panel {
+  width: min(100%, 560px);
+}
+
+.xpbar-panel {
+  width: min(100%, 620px);
+  border-radius: var(--radius-16);
+  padding: var(--space-2) var(--space-3);
+
+  background: rgba(17, 18, 21, 0.88);
+  border: var(--line-1) solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow-1);
+  color: #fff;
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-surface-raised, var(--color-surface));
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--color-border-subtle);
-  transition:
-    transform var(--motion-fast, 180ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1)),
-    box-shadow var(--motion-fast, 180ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1));
-}
-
-.xp-banner.is-compact {
-  padding: var(--space-2);
-}
-
-.xp-banner.is-levelup {
-  transform: translateY(calc(var(--space-0_5, 0.125rem) * -1));
-  box-shadow: var(--shadow-strong, var(--shadow-soft));
-}
-
-.xp-main {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: var(--space-2);
 }
 
-.xp-row {
+.xpbar-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
+  min-width: 0;
 }
 
-/* 左側：Lv ピル */
-.xp-title {
-  flex-shrink: 0;
-}
-
-.xp-levelchip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-1);
-  padding-inline: var(--space-2);
-  padding-block: var(--space-1);
+.xpbar-lvPill {
+  padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-pill);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary-on, var(--color-primary));
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+  background: rgba(34, 197, 94, 0.16);
+  border: var(--line-1) solid rgba(34, 197, 94, 0.28);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  flex: 0 0 auto;
 }
 
-/* 右側：数値 */
-.xp-numbers {
+.xpbar-metrics {
   display: inline-flex;
   align-items: baseline;
-  gap: var(--space-0_5);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-subtle);
+  gap: var(--space-1);
+  font-weight: 800;
+  min-width: 0;
 }
 
-.xp-num {
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-strong, var(--color-text));
+.xpbar-per {
+  color: rgba(34, 197, 94, 0.95);
 }
 
-.xp-den {
-  font-size: var(--font-size-xs);
-}
-
-.xp-per {
-  font-size: var(--font-size-xs);
-  opacity: 0.85;
-}
-
-.xp-split {
-  opacity: 0.65;
-}
-
-/* プログレスバー本体 */
-.xp-rail {
-  position: relative;
-  inline-size: 100%;
-  min-inline-size: 0;
-  block-size: var(--space-3);
+.xpbar-rail {
+  height: var(--space-2);
   border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.14);
   overflow: hidden;
-  background-color: var(--color-surface-elevated-subtle, var(--color-bg-subtle));
 }
 
-.xp-fill {
-  position: relative;
-  inline-size: 0;
-  block-size: 100%;
+.xpbar-fill {
+  display: block;
+  height: 100%;
   border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-soft),
-    var(--color-primary)
-  );
-  transition:
-    width var(--dur, 200ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1)),
-    inline-size var(--dur, 200ms) var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1));
-}
-
-/* JSX 側では width を指定しているので両方とも反応するようにしておく */
-.xp-fill {
-  width: inherit;
-}
-
-/* さりげないハイライト */
-.xp-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-surface-raised, var(--color-surface)),
-    transparent
-  );
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-/* レベルアップのポップ */
-.levelup-pop {
-  align-self: flex-end;
-  margin-top: calc(var(--space-1) * -1);
-  padding-inline: var(--space-2);
-  padding-block: var(--space-1);
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary-on, var(--color-primary));
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  animation: xp-levelup-pop var(--motion-medium, 220ms)
-      var(--motion-ease-out, cubic-bezier(.2, .8, .2, 1))
-      forwards,
-    xp-levelup-fade 900ms ease-out 260ms forwards;
-  opacity: 0;
-}
-
-@keyframes xp-levelup-pop {
-  from {
-    transform: translateY(var(--space-1));
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes xp-levelup-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* 小さい画面では余白を少し詰める */
-@media (max-width: 26rem) {
-  .xp-banner {
-    padding: var(--space-2);
-  }
-
-  .xp-row {
-    gap: var(--space-1_5, 0.375rem);
-  }
-
-  .xp-numbers {
-    font-size: var(--font-size-2xs, 0.75rem);
-  }
+  background: rgba(34, 197, 94, 0.95);
+  transition: width var(--motion-200) var(--motion-ease);
 }

@@ -1,204 +1,69 @@
 /* src/styles/Header.css */
 
-/* =========================
-   App Header
-   ========================= */
 .app-header {
-  position: relative;
-  z-index: var(--z-header, 40);
-
+  height: var(--layout-header-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  /* ⚠ もう margin-top は使わない（上に行き過ぎるので） */
-  margin-top: 0;
-
-  /* ノッチぶん + 少し余白を足して下げる */
-  padding-top: calc(env(safe-area-inset-top, 0px) + var(--space-2, 8px));
-  padding-right: var(--space-4, 16px);
-  padding-bottom: var(--space-2, 8px);
-  padding-left: var(--space-4, 16px);
-
-  box-sizing: border-box;
-
-  background-color: var(
-    --color-header-bg,
-    rgba(11, 12, 15, 0.92)
-  );
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.09),
-    0 6px 20px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
-/* ✅ 上の safe-area をヘッダーと同じ色で塗る */
-.app-header::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(-1 * env(safe-area-inset-top, 0px));
-  height: env(safe-area-inset-top, 0px);
-  background-color: inherit;
+.app-header__inner {
+  width: 100%;
+  height: 100%;
+
+  /* ✅ 中央を 1fr にして“伸びる余地”を作る */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+
+  align-items: center;
+  gap: var(--space-3);
+  padding-inline: var(--space-3);
 }
 
-/* 左・中央・右のエリア */
 .hdr-left {
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+}
+
+.hdr-placeholder {
+  width: calc(var(--space-10));
+  height: calc(var(--space-10));
 }
 
 .hdr-center {
-  flex: 1 1 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  /* ✅ ここが大事：中央セルいっぱいを使わせる */
   min-width: 0;
+  width: 100%;
 }
 
 .hdr-right {
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-2, 8px);
 }
 
-/* 戻るボタンが無いときのダミー（レイアウト崩れ防止） */
-.hdr-avatar-placeholder {
-  width: 88px;
-  height: 32px;
-}
-
-/* =========================
-   Buttons
-   ========================= */
-.hdr-btn {
-  border-radius: 999px;
-  padding: 6px 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  background: transparent;
-
-  font-size: 0.9rem;
-  line-height: 1.2;
-  color: #ffffff;
-
-  transition:
-    box-shadow 0.15s ease,
-    transform 0.05s ease,
-    background 0.15s ease,
-    border-color 0.15s ease,
-    filter 0.15s ease;
-}
-
-.hdr-btn.is-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-/* プライマリ（戻るボタン） */
-.hdr-btn.is-primary {
-  background: linear-gradient(
-    180deg,
-    rgba(124, 58, 237, 0.26),
-    rgba(124, 58, 237, 0.16)
-  );
-  border-color: rgba(124, 58, 237, 0.65);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-}
-
-.hdr-btn:active {
-  transform: translateY(1px);
-}
-
-/* アイコンボタン（右上の丸ボタン） */
 .hdr-icon-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  padding: 0;
+  width: calc(var(--space-10));
+  height: calc(var(--space-10));
+  border-radius: var(--radius-pill);
 
-  width: 36px;
-  height: 36px;
+  background: color-mix(in oklab, var(--color-header-fg) 10%, transparent);
+  border: var(--line-1) solid
+    color-mix(in oklab, var(--color-header-fg) 14%, transparent);
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+
+  color: var(--color-header-fg);
   cursor: pointer;
-
-  transition:
-    box-shadow 0.15s ease,
-    transform 0.05s ease,
-    background 0.15s ease,
-    border-color 0.15s ease,
-    filter 0.15s ease;
 }
 
-.hdr-icon-btn:active {
-  transform: translateY(1px);
-}
-
-/* ホバー */
-.hdr-right .hdr-btn.is-ghost:hover,
-.hdr-right .hdr-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.28);
-  filter: saturate(1.1);
-}
-
-/* アイコン */
 .hdr-ic {
-  font-size: 18px;
-  color: #ffffff;
-  opacity: 0.95;
-}
-
-/* フォーカスリング */
-.hdr-btn:focus-visible,
-.hdr-icon-btn:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 3px var(--ring, rgba(10, 132, 255, 0.65)),
-    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
-}
-
-/* スマホ最適化 */
-@media (max-width: 480px) {
-  .hdr-right .hdr-btn,
-  .hdr-right .hdr-icon-btn {
-    min-width: 44px;
-    height: 40px;
-  }
-  .hdr-ic {
-    font-size: 19px;
-  }
-}
-
-/* レベルボタン */
-.hdr-right .level-btn {
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  border-color: rgba(124, 58, 237, 0.45);
-  background: linear-gradient(
-    180deg,
-    rgba(124, 58, 237, 0.18),
-    rgba(124, 58, 237, 0.1)
-  );
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-}
-
-.hdr-right .level-btn:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(124, 58, 237, 0.26),
-    rgba(124, 58, 237, 0.16)
-  );
-  border-color: rgba(124, 58, 237, 0.65);
+  width: calc(var(--space-6));
+  height: calc(var(--space-6));
+  color: currentColor;
 }

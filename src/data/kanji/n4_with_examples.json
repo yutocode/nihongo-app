@@ -1,0 +1,2832 @@
+{
+  "一": {
+    "char": "一",
+    "strokes": 1,
+    "onyomi": [
+      "イチ",
+      "イツ"
+    ],
+    "kunyomi": [
+      "ひと-",
+      "ひと.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は法律を一生の職業にしたいと思っていた。\tHe wanted to follow law as a career.#ID=303660_100037",
+      "彼は保守党一辺倒で押し通した。\tHe has remained pro-conservative throughout.#ID=303605_100092",
+      "彼は弁護士になるために、一生懸命勉強している。\tHe is studying hard so that he may become a lawyer.#ID=303591_100106",
+      "彼は片手でハンドルを握り、もう一方の手を私のほうに振った。\tHe held the wheel with one hand and waved to me with the other.#ID=303559_100138"
+    ]
+  },
+  "七": {
+    "char": "七",
+    "strokes": 2,
+    "onyomi": [
+      "シチ"
+    ],
+    "kunyomi": [
+      "なな",
+      "なな.つ",
+      "なの"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は十七歳で高校を退学した。\tHe left high school at seventeen.#ID=299329_104362",
+      "彼は十時七分過ぎに来た。\tHe came at seven minutes after ten.#ID=299328_104363",
+      "彼は七十歳まで生きた。\tHe lived to be seventy years old.#ID=298924_104766",
+      "彼はいつも七時に家を出ます。\tHe always leaves home at seven.#ID=289042_114517"
+    ]
+  },
+  "万": {
+    "char": "万",
+    "strokes": 3,
+    "onyomi": [
+      "マン",
+      "バン"
+    ],
+    "kunyomi": [
+      "よろず"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は百万長者であるようなふりをした。\tHe made believe that he was a millionaire.#ID=303078_100620",
+      "彼は難民救済基金に１万ドルを寄付した。\tHe donated $10000 to the refugee fund.#ID=302145_101549",
+      "彼は貯金の目標を３００万に決めた。\tHe set as his goal, the deposit of three million yen.#ID=301572_102122",
+      "彼は損害を５００万円と見積もった。\tHe estimated the loss at five million yen.#ID=301035_102659"
+    ]
+  },
+  "三": {
+    "char": "三",
+    "strokes": 3,
+    "onyomi": [
+      "サン",
+      "ゾウ"
+    ],
+    "kunyomi": [
+      "み",
+      "み.つ",
+      "みっ.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は二言三言述べると行ってしまった。\tHe said two or three words and left.#ID=302154_101541",
+      "彼は頭をのせるため二三のクッションを持ってきた。\tHe fetched a few cushions to prop up her head.#ID=302002_101691",
+      "彼は懲役十年で、女房には三年の刑が下った。\tHe was given ten years and his wife three.#ID=301576_102118",
+      "彼は水をコップで三杯も飲んだ。\tHe drank three glasses of water.#ID=300197_103496"
+    ]
+  },
+  "上": {
+    "char": "上",
+    "strokes": 3,
+    "onyomi": [
+      "ジョウ",
+      "ショウ",
+      "シャン"
+    ],
+    "kunyomi": [
+      "うえ",
+      "-うえ",
+      "うわ-",
+      "かみ",
+      "あ.げる",
+      "-あ.げる",
+      "あ.がる",
+      "-あ.がる",
+      "あ.がり",
+      "-あ.がり",
+      "のぼ.る",
+      "のぼ.り",
+      "のぼ.せる",
+      "のぼ.す",
+      "たてまつ.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子を取り上げて、似合うかどうか見るためにかぶってみた。\tHe picked up a hat and put it on to see how it would look.#ID=303683_100014",
+      "彼は帽子を持ち上げて私に会釈した。\tHe acknowledged me by raising his hat.#ID=303679_100018",
+      "彼は母親と同様ピアノが上手だった。\tHe was as good a pianist as his mother.#ID=303627_100070",
+      "彼は片手に帽子を持って立ち上がった。\tHe stood up with his hat in his hand.#ID=303561_100136"
+    ]
+  },
+  "下": {
+    "char": "下",
+    "strokes": 3,
+    "onyomi": [
+      "カ",
+      "ゲ"
+    ],
+    "kunyomi": [
+      "した",
+      "しも",
+      "もと",
+      "さ.げる",
+      "さ.がる",
+      "くだ.る",
+      "くだ.り",
+      "くだ.す",
+      "-くだ.す",
+      "くだ.さる",
+      "お.ろす",
+      "お.りる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は聞き上手だが、話すのは下手だ。\tHe is a good listener but a poor speaker.#ID=303509_100188",
+      "彼は部下の不始末を見つけた。\tHe detected his men's misconduct.#ID=303423_100274",
+      "彼は部下に当たり散らした。\tHe damned his men right and left.#ID=303422_100275",
+      "彼は部下に対する権威がない、部下に対して睨みがきかない。\tHe has no authority over his staff members.#ID=303421_100276"
+    ]
+  },
+  "中": {
+    "char": "中",
+    "strokes": 4,
+    "onyomi": [
+      "チュウ"
+    ],
+    "kunyomi": [
+      "なか",
+      "うち",
+      "あた.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい生活の中で家族と会うことがない。\tHe doesn't see his family in his busy life.#ID=303697_100000",
+      "彼は帽子をかぶり、外套を着たままで部屋の中に飛び込んできた。\tHe ran into the room with his hat and overcoat on.#ID=303676_100021",
+      "彼は勉強中です。\tHe is doing his work.#ID=303583_100113",
+      "彼は勉強中に寝入ってしまった。\tWhile he was studying, he fell asleep.#ID=303584_100114"
+    ]
+  },
+  "九": {
+    "char": "九",
+    "strokes": 2,
+    "onyomi": [
+      "キュウ",
+      "ク"
+    ],
+    "kunyomi": [
+      "ここの",
+      "ここの.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は十中八九来るだろう。\tHe will come nine times out of ten.#ID=299331_104360",
+      "彼は十中八九会議に遅れる。\tHe is late for meetings nine times out of ten.#ID=299330_104361",
+      "彼は私が自転車で九州へ行くなんてばかげてると思った。\tHe thought it foolish of me to go to Kyushu by bike.#ID=297293_106393",
+      "彼は交通事故で九死に一生を得た。\tHe had a narrow escape in the traffic accident.#ID=296221_107465"
+    ]
+  },
+  "二": {
+    "char": "二",
+    "strokes": 2,
+    "onyomi": [
+      "ニ",
+      "ジ"
+    ],
+    "kunyomi": [
+      "ふた",
+      "ふた.つ",
+      "ふたたび"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は兵士として中国に渡ったが、二度とかえってこなかった。\tHe went to China as a soldier, never to come back.#ID=303514_100183",
+      "彼は彼女にはもう二度と話し掛けたくないとまで言った。\tHe went to the length of saying that he would never speak to her again.#ID=302667_101030",
+      "彼は猫を二匹飼っている。一匹は黒でもう一匹は白だ。\tHe keeps two cats: one is black, and the other white.#ID=288511_101395",
+      "彼は日本を去り二度と帰ってこなかった。\tHe left Japan never to come back.#ID=302235_101460"
+    ]
+  },
+  "五": {
+    "char": "五",
+    "strokes": 4,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "いつ",
+      "いつ.つ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は続けざまに五時間以上働かされた。\tHe was forced to work more than five hours on end.#ID=288600_102665",
+      "彼は今までのところ本を五冊書いている。\tHe has written five books so far.#ID=296516_107170",
+      "彼は五年前よりもいい暮らしをしています。\tHe is far better off now than he was five years ago.#ID=288609_107495",
+      "彼は五年前よりずっと暮し向きがよい。\tHe is far better off than he was five years ago.#ID=296190_107496"
+    ]
+  },
+  "人": {
+    "char": "人",
+    "strokes": 2,
+    "onyomi": [
+      "ジン",
+      "ニン"
+    ],
+    "kunyomi": [
+      "ひと",
+      "-り",
+      "-と"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい人だから、電話でなければ連絡をとれないですよ。\tHe is a busy man, so you can only get in touch with him by telephone.#ID=303696_100001",
+      "彼はアメリカ人にちがいない。\tHe must be an American.#ID=303541_100156",
+      "彼は文句無しの巨人だ。\tHe is altogether a giant.#ID=303501_100196",
+      "彼は分厚いめがねをかけた小柄な老人だった。\tHe was a little old man with thick glasses.#ID=303491_100206"
+    ]
+  },
+  "今": {
+    "char": "今",
+    "strokes": 4,
+    "onyomi": [
+      "コン",
+      "キン"
+    ],
+    "kunyomi": [
+      "いま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は不養生がたたって今入院している。\tHe neglected his health and now he's sick in bed.#ID=303252_100446",
+      "彼は彼女を騙したが、今でも彼女は彼を愛している。\tHe deceived her, but even now she loves him.#ID=302915_100782",
+      "彼は彼の今度の劇の原稿を私に見せてくれた。\tHe showed me the manuscript of his new play.#ID=302502_101194",
+      "彼は長年の経験で今の地位についた。\tHe got his present position by virtue of his long experience.#ID=301648_102046"
+    ]
+  },
+  "休": {
+    "char": "休",
+    "strokes": 6,
+    "onyomi": [
+      "キュウ"
+    ],
+    "kunyomi": [
+      "やす.む",
+      "やす.まる",
+      "やす.める"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は不眠不休でその作品を仕上げた。\tHe finished his work without sleep or rest.#ID=303248_100450",
+      "来週の月火と連休です。\tNext Monday and Tuesday are holidays.#ID=4483901_1005365",
+      "彼は病気のため、学校を休んだ。\tHe was absent from school because of illness.#ID=303143_100555",
+      "彼は病気なので休んだ。\tHe was absent because of illness.#ID=303133_100565"
+    ]
+  },
+  "会": {
+    "char": "会",
+    "strokes": 6,
+    "onyomi": [
+      "カイ",
+      "エ"
+    ],
+    "kunyomi": [
+      "あ.う",
+      "あ.わせる",
+      "あつ.まる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい生活の中で家族と会うことがない。\tHe doesn't see his family in his busy life.#ID=303697_100000",
+      "彼は忙しいので、君に会えない。\tIn as much as he is busy, he can't meet you.#ID=303695_100002",
+      "彼は帽子を持ち上げて私に会釈した。\tHe acknowledged me by raising his hat.#ID=303679_100018",
+      "彼は母に会いたくてやきもきしていた。\tHe was in a hurry to see his mother.#ID=303619_100078"
+    ]
+  },
+  "何": {
+    "char": "何",
+    "strokes": 7,
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "なに",
+      "なん",
+      "なに-",
+      "なん-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は訪ねてくるたびに、きっと何かしら忘れていく。\tWhenever he calls on me, he leaves something behind.#ID=303667_100030",
+      "彼は幅を利かせて何でも自分の思うようにさせる。\tHe gets his way by throwing his weight around.#ID=303446_100251",
+      "彼は父親の前では何もものが言えない。\tHe can't say anything to his father's face.#ID=303357_100340",
+      "彼は貧乏を何とも思わない。\tHe thinks nothing of poverty.#ID=303207_100491"
+    ]
+  },
+  "先": {
+    "char": "先",
+    "strokes": 6,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "さき",
+      "ま.ず"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は物理の先生ですが数学も教えられます。\tHe's a teacher of physics, but can also teach math.#ID=303485_100212",
+      "彼は父親の犯罪の手先であった。\tHe was the instrument of his father's crimes.#ID=303362_100335",
+      "私たちの先生は、たびたび名簿にある名前を見落とした。\tOur teacher frequently overlooked the names of people on the list.#ID=247596_1010606",
+      "彼は彼女と先週会ったことを否定した。\tHe denied having met her last week.#ID=302629_101068"
+    ]
+  },
+  "入": {
+    "char": "入",
+    "strokes": 2,
+    "onyomi": [
+      "ニュウ",
+      "ジュ"
+    ],
+    "kunyomi": [
+      "い.る",
+      "-い.る",
+      "-い.り",
+      "い.れる",
+      "-い.れ",
+      "はい.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子をぬいで部屋に入った。\tHe entered the room with his hat off.#ID=303678_100020",
+      "彼は勉強中に寝入ってしまった。\tWhile he was studying, he fell asleep.#ID=303584_100114",
+      "彼は物事をあるがままに受け入れなさいと教わってきた。\tHe's been taught to accept things as they are.#ID=303479_100218",
+      "彼は風呂に入り、テレビをつけた。\tHe took a hot bath and turned on the TV.#ID=303442_100255"
+    ]
+  },
+  "八": {
+    "char": "八",
+    "strokes": 2,
+    "onyomi": [
+      "ハチ",
+      "ハツ"
+    ],
+    "kunyomi": [
+      "や",
+      "や.つ",
+      "やっ.つ",
+      "よう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は八方美人だ。\tHe's everybody's friend.#ID=302445_101251",
+      "彼は十中八九来るだろう。\tHe will come nine times out of ten.#ID=299331_104360",
+      "彼は十中八九会議に遅れる。\tHe is late for meetings nine times out of ten.#ID=299330_104361",
+      "彼は手八丁口八丁だ。\tHe is as ready to talk as to work.#ID=299243_104448"
+    ]
+  },
+  "六": {
+    "char": "六",
+    "strokes": 4,
+    "onyomi": [
+      "ロク",
+      "リク"
+    ],
+    "kunyomi": [
+      "む",
+      "む.つ",
+      "むっ.つ",
+      "むい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は四六時中勉強している。\tHe studies day and night.#ID=299724_103968",
+      "彼は辞書を六冊以上持っている。\tHe has more than five dictionaries.#ID=298912_104775",
+      "六時ごろ来るって言ってたよ。\tShe told me she would be here about six.#ID=309900_11241491",
+      "梅雨は六月の終わり頃に始まる。\tThe rainy season sets in about the end of June.#ID=282493_121512"
+    ]
+  },
+  "円": {
+    "char": "円",
+    "strokes": 4,
+    "onyomi": [
+      "エン"
+    ],
+    "kunyomi": [
+      "まる.い",
+      "まる",
+      "まど",
+      "まど.か",
+      "まろ.やか"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は百円しか持ち合わせていなかった。\tHe had no more than one hundred yen with him.#ID=288344_100621",
+      "彼が髪を刈ってもらうのに３，０００円かかった。\tIt cost him 3,000 yen to get a haircut.#ID=302452_101244",
+      "彼は二千円も持っている。\tHe has no less than two thousand yen with him.#ID=302161_101534",
+      "彼は駐車違反で５千円の罰金を科せられた。\tThey fined him 5,000 yen for illegal parking.#ID=301567_102127"
+    ]
+  },
+  "出": {
+    "char": "出",
+    "strokes": 5,
+    "onyomi": [
+      "シュツ",
+      "スイ"
+    ],
+    "kunyomi": [
+      "で.る",
+      "-で",
+      "だ.す",
+      "-だ.す",
+      "い.でる",
+      "い.だす"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子をかぶらずに出かけた。\tHe went out without a hat.#ID=303675_100022",
+      "彼は蜂がお互いに意思伝達をする事が出来ると言う証拠を見つけた。\tHe found the evidence that bees can communicate with each other.#ID=303666_100031",
+      "彼は法廷へ出頭を命じられた。\tHe was summoned to appear in court.#ID=303657_100040",
+      "彼は勉強の機会を出来るだけ利用したいと思った。\tHe wanted to make the most of his chance to learn.#ID=303579_100118"
+    ]
+  },
+  "分": {
+    "char": "分",
+    "strokes": 4,
+    "onyomi": [
+      "ブン",
+      "フン",
+      "ブ"
+    ],
+    "kunyomi": [
+      "わ.ける",
+      "わ.け",
+      "わ.かれる",
+      "わ.かる",
+      "わ.かつ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は放校処分にされた。\tHe was expelled from school.#ID=303648_100049",
+      "彼は分別があるからそんな馬鹿なことは言わない。\tHe has more sense than to say such a foolish thing.#ID=303493_100204",
+      "彼は分別ある年齢に達した。\tHe has attained to years of discretion.#ID=303492_100205",
+      "彼は分厚いめがねをかけた小柄な老人だった。\tHe was a little old man with thick glasses.#ID=303491_100206"
+    ]
+  },
+  "前": {
+    "char": "前",
+    "strokes": 9,
+    "onyomi": [
+      "ゼン"
+    ],
+    "kunyomi": [
+      "まえ",
+      "-まえ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は米国に発つ前に東京にいる上司に会いたいと思った。\tHe wanted to see his boss in Tokyo before leaving for America.#ID=303539_100158",
+      "彼は部下たちの前を歩いた。\tHe walked in front of his men.#ID=303417_100281",
+      "彼は父親の前では何もものが言えない。\tHe can't say anything to his father's face.#ID=303357_100340",
+      "彼は父親の前では落ち着かなかった。\tHe felt uneasy in his father's presence.#ID=287426_100352"
+    ]
+  },
+  "北": {
+    "char": "北",
+    "strokes": 5,
+    "onyomi": [
+      "ホク"
+    ],
+    "kunyomi": [
+      "きた"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は南北戦争の歴史書を書いた。\tHe wrote a book about the American Civil War.#ID=302140_101554",
+      "彼は昨年北海道にいましたか。\tWas he in Hokkaido last year?#ID=296932_106754",
+      "彼は今年の夏、東北地方を旅行した。\tHe traveled through the Tohoku district this summer.#ID=289883_107061",
+      "彼は決して敗北を認めないだろう。\tHe will on no account accept defeat.#ID=295840_107845"
+    ]
+  },
+  "十": {
+    "char": "十",
+    "strokes": 2,
+    "onyomi": [
+      "ジュウ",
+      "ジッ",
+      "ジュッ"
+    ],
+    "kunyomi": [
+      "とお",
+      "と",
+      "そ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は風呂敷を十分に活用した。\tHe took full advantage of the wrapper.#ID=303443_100254",
+      "彼は年こそ若いが十分その仕事をやっていける。\tYoung as he is, he is equal to the task.#ID=299094_101380",
+      "彼は日に平均十時間は勉強した。\tHe studied ten hours a day on average.#ID=302199_101496",
+      "彼は二十年間先生をしている。\tHe has been teaching for 20 years.#ID=302159_101536"
+    ]
+  },
+  "千": {
+    "char": "千",
+    "strokes": 3,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "ち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は二千円も持っている。\tHe has no less than two thousand yen with him.#ID=302161_101534",
+      "彼は駐車違反で５千円の罰金を科せられた。\tThey fined him 5,000 yen for illegal parking.#ID=301567_102127",
+      "彼は千葉の事務所に転勤した。\tHe transferred to the office in Chiba.#ID=300666_103026",
+      "彼は千円札を財布から取り出した。\tHe took out a 1,000-yen note from his wallet.#ID=300665_103028"
+    ]
+  },
+  "午": {
+    "char": "午",
+    "strokes": 4,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "うま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は早く床に就いたが午前２時近くまで寝入れなかった。\tHe went to bed early but did not go to sleep until almost 2 in the morning.#ID=300828_102866",
+      "彼は正午前にここに来た。\tHe came here before noon.#ID=300388_103305",
+      "彼は正午までで５時間ずっと働いていることになるだろう。\tHe will have been working for five hours by noon.#ID=300387_103306",
+      "彼は正午まで来なかった。\tHe did not come till noon.#ID=300386_103307"
+    ]
+  },
+  "半": {
+    "char": "半",
+    "strokes": 5,
+    "onyomi": [
+      "ハン"
+    ],
+    "kunyomi": [
+      "なか.ば"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は半分行った所でレースから脱落してしまった。\tHe dropped out halfway into the race.#ID=302470_101226",
+      "彼は半身不随です。\tHe is paralyzed down one side.#ID=302469_101227",
+      "彼は半時間で２マイル歩いた。\tHe walked two miles in half an hour.#ID=302468_101228",
+      "彼は投機に手を出して財産の大半を失った。\tHe lost the greater part of his fortune in speculation.#ID=301910_101783"
+    ]
+  },
+  "南": {
+    "char": "南",
+    "strokes": 9,
+    "onyomi": [
+      "ナン",
+      "ナ"
+    ],
+    "kunyomi": [
+      "みなみ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は南北戦争の歴史書を書いた。\tHe wrote a book about the American Civil War.#ID=302140_101554",
+      "彼は南部出身に違いない。\tHe must be from the South.#ID=302139_101555",
+      "彼は南極周辺の地域を探検した。\tHe explored the region around the South Pole.#ID=302138_101556",
+      "彼は市の南部に住んでいます。\tHe lives in the southern part of the city.#ID=297165_106522"
+    ]
+  },
+  "友": {
+    "char": "友",
+    "strokes": 4,
+    "onyomi": [
+      "ユウ"
+    ],
+    "kunyomi": [
+      "とも"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は病気の友を毎日見舞いに来る。\tHe comes to see his sick friend day after day.#ID=303156_100542",
+      "彼は必ず友人との約束を守る。\tHe never fails to keep his word with his friends.#ID=303069_100629",
+      "彼は彼女の友達です。\tHe is her friend.#ID=528006_100852",
+      "彼は彼女の秘密を彼の友人に漏らした。\tHe betrayed her secret to his friends.#ID=302828_100869"
+    ]
+  },
+  "口": {
+    "char": "口",
+    "strokes": 3,
+    "onyomi": [
+      "コウ",
+      "ク"
+    ],
+    "kunyomi": [
+      "くち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼はクラスのどの少年にも劣らず利口だ。\tHe is as smart as any other boy in the class.#ID=289737_100081",
+      "彼は歩きながら口笛を吹いた。\tHe whistled as he went along.#ID=303612_100085",
+      "彼は父親に劣らず利口だ。\tHe is no less clever than his father is.#ID=303339_100359",
+      "彼は父親にも負けず利口だ。\tHe is not less clever than his father is.#ID=303331_100367"
+    ]
+  },
+  "古": {
+    "char": "古",
+    "strokes": 5,
+    "onyomi": [
+      "コ"
+    ],
+    "kunyomi": [
+      "ふる.い",
+      "ふる-",
+      "-ふる.す"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は物置の中で偶然いくつかの古文書を見つけた。\tHe came across some old documents in the closet.#ID=303482_100215",
+      "彼は彼女の古い電話番号を線を引いて抹消した。\tHe crossed off her old telephone number.#ID=302785_100911",
+      "彼は珍しい古書を見つけた。\tHe hit on a rare old book.#ID=301667_102027",
+      "彼は中古車を買ったばかりです。\tHe has just bought a used car.#ID=301532_102162"
+    ]
+  },
+  "右": {
+    "char": "右",
+    "strokes": 5,
+    "onyomi": [
+      "ウ",
+      "ユウ"
+    ],
+    "kunyomi": [
+      "みぎ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は怒って首を左右に振った。\tHe gave an angry shake of his head.#ID=301869_101824",
+      "彼は左右交互に手を上げた。\tHe raised his hands one after the other.#ID=296676_107010",
+      "彼は左右を見回した。\tHe looked around.#ID=296675_107011",
+      "彼は鏡の中に自分の姿を見ようと体を左右に回した。\tHe turned round from side to side to look at himself in the mirror.#ID=295381_108305"
+    ]
+  },
+  "名": {
+    "char": "名",
+    "strokes": 6,
+    "onyomi": [
+      "メイ",
+      "ミョウ"
+    ],
+    "kunyomi": [
+      "な",
+      "-な"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は母親の力で有名になった。\tHe became famous thanks to his mother.#ID=303635_100062",
+      "彼は物思いにふけっていると、名を呼ばれた。\tWhile he was lost in thought, he heard his name called.#ID=303478_100219",
+      "彼は父親の名をとってロバートと名付けた。\tHe was named Robert after his father.#ID=303364_100333",
+      "彼は不名誉な称号を得た。\tHe got a shameful title.#ID=303249_100449"
+    ]
+  },
+  "四": {
+    "char": "四",
+    "strokes": 5,
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "よ",
+      "よ.つ",
+      "よっ.つ",
+      "よん"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は四六時中勉強している。\tHe studies day and night.#ID=299724_103968",
+      "彼は四年前に州知事選挙に立候補した。\tHe ran for Governor of the state four years ago.#ID=297103_106583",
+      "彼は四年刑期のところを二年で釈放された。\tHe was let out after serving just two years of his four-year prison sentence.#ID=297102_106584",
+      "彼は四人の警官によって深夜拉致された。\tHe was spirited away by four police officers in the middle of the night.#ID=297101_106585"
+    ]
+  },
+  "国": {
+    "char": "国",
+    "strokes": 8,
+    "onyomi": [
+      "コク"
+    ],
+    "kunyomi": [
+      "くに"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は母国を追放された。\tHe was exiled from his country.#ID=303625_100072",
+      "彼は米国の市民権を得た。\tHe acquired American citizenship.#ID=303540_100157",
+      "彼は米国に発つ前に東京にいる上司に会いたいと思った。\tHe wanted to see his boss in Tokyo before leaving for America.#ID=303539_100158",
+      "彼は兵士として中国に渡ったが、二度とかえってこなかった。\tHe went to China as a soldier, never to come back.#ID=303514_100183"
+    ]
+  },
+  "土": {
+    "char": "土",
+    "strokes": 3,
+    "onyomi": [
+      "ド",
+      "ト"
+    ],
+    "kunyomi": [
+      "つち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は父親の大きな土地を相続した。\tHe succeeded to his father's large property.#ID=303360_100337",
+      "彼は彼女に土曜日ごとに会っている。\tHe meets his girlfriend Saturdays.#ID=302725_100972",
+      "彼は粘土を火に入れて固めた。\tHe hardened clay by putting it into a fire.#ID=302366_101330",
+      "彼は粘土で鉢をつくった。\tHe formed the clay into a bowl.#ID=302365_101331"
+    ]
+  },
+  "外": {
+    "char": "外",
+    "strokes": 5,
+    "onyomi": [
+      "ガイ",
+      "ゲ"
+    ],
+    "kunyomi": [
+      "そと",
+      "ほか",
+      "はず.す",
+      "はず.れる",
+      "と-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子をかぶり、外套を着たままで部屋の中に飛び込んできた。\tHe ran into the room with his hat and overcoat on.#ID=303676_100021",
+      "彼は並外れて優秀とは言わないでも優れている。\tHe is good, not to say exceptional.#ID=303536_100161",
+      "彼は並外れた数学の才能を持っている。\tHe has an extraordinary faculty for mathematics.#ID=303535_100162",
+      "彼は父親のすぐあとから外国に行った。\tHe went abroad soon after his father.#ID=303344_100353"
+    ]
+  },
+  "多": {
+    "char": "多",
+    "strokes": 6,
+    "onyomi": [
+      "タ"
+    ],
+    "kunyomi": [
+      "おお.い",
+      "まさ.に",
+      "まさ.る"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は扶養家族が多い。\tHe has a large family.#ID=301226_100425",
+      "彼は貧民救済に多額のお金を寄付した。\tHe contributed much money to relieving the poor.#ID=303208_100490",
+      "彼は貧しい人のために多くのことをしてきた。\tHe has done many things for poor people.#ID=303181_100517",
+      "彼は非常に多くの金を本に使う。\tHe spends a great deal of money on books.#ID=302989_100708"
+    ]
+  },
+  "大": {
+    "char": "大",
+    "strokes": 3,
+    "onyomi": [
+      "ダイ",
+      "タイ"
+    ],
+    "kunyomi": [
+      "おお-",
+      "おお.きい",
+      "-おお.いに"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は法を守ることがいかに大切かを指摘した。\tHe pointed out how important it is to observe the law.#ID=303652_100045",
+      "彼は保険金として大金を受け取った。\tHe received a large sum in insurance benefit.#ID=303603_100095",
+      "彼は並みの大学生より一段上だ。\tHe is a cut above the average college student.#ID=303534_100163",
+      "彼は平和の大切さを強調した。\tHe emphasized the importance of peace.#ID=303529_100168"
+    ]
+  },
+  "天": {
+    "char": "天",
+    "strokes": 4,
+    "onyomi": [
+      "テン"
+    ],
+    "kunyomi": [
+      "あまつ",
+      "あめ",
+      "あま-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は父の天才を幾分受け継いでいる。\tHe has some share of his father's genius.#ID=303310_100388",
+      "彼は天文学の専門家だ。\tHe is an expert in astronomy.#ID=301773_101919",
+      "彼は天文学、即ち天文の学問の偉大な権威であった。\tHe was a great authority on astronomy, or the science of the heavenly bodies.#ID=301771_101921",
+      "彼は天文学に興味があるようだ。\tIt seems that he is interested in astronomy.#ID=301772_101922"
+    ]
+  },
+  "女": {
+    "char": "女",
+    "strokes": 3,
+    "onyomi": [
+      "ジョ",
+      "ニョ",
+      "ニョウ"
+    ],
+    "kunyomi": [
+      "おんな",
+      "め"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼女は別れた夫に赤ちゃんを任せた。\tShe entrusted her baby to her divorced husband.#ID=316899_100143",
+      "彼は腹立たしげに彼女を見た。\tHe looked at her angrily.#ID=303467_100230",
+      "彼は婦人警官の扮装をして彼女に近づいた。\tHe approached her in the disguise of a policewoman.#ID=303262_100436",
+      "彼女がその本を読み始めたと思ったらすぐに、誰かがドアをノックした。\tShe had hardly begun to read the book before someone knocked at the door.#ID=308067_10056980"
+    ]
+  },
+  "子": {
+    "char": "子",
+    "strokes": 3,
+    "onyomi": [
+      "シ",
+      "ス",
+      "ツ"
+    ],
+    "kunyomi": [
+      "こ",
+      "-こ",
+      "ね"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子を頭に載せた。\tHe put a cap on his head.#ID=303685_100012",
+      "彼は帽子を脱いだ。\tHe took off his hat.#ID=288288_100013",
+      "彼は帽子を取り上げて、似合うかどうか見るためにかぶってみた。\tHe picked up a hat and put it on to see how it would look.#ID=303683_100014",
+      "彼は帽子を取りに帰った。\tHe went back to get his hat.#ID=303682_100015"
+    ]
+  },
+  "学": {
+    "char": "学",
+    "strokes": 8,
+    "onyomi": [
+      "ガク"
+    ],
+    "kunyomi": [
+      "まな.ぶ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は法学修士の学位を得た。\tHe got a master's degree in law.#ID=303656_100041",
+      "彼は法科の学生だ。\tHe is an undergraduate in the law department.#ID=303655_100042",
+      "彼は歩いて通学する。\tHe walks to school.#ID=303609_100086",
+      "彼は歩いて学校へ行く。\tHe walks to school.#ID=303609_100088"
+    ]
+  },
+  "安": {
+    "char": "安",
+    "strokes": 6,
+    "onyomi": [
+      "アン"
+    ],
+    "kunyomi": [
+      "やす.い",
+      "やす.まる",
+      "やす",
+      "やす.らか"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は不安を払いのけようとした。\tHe tried to banish his anxiety.#ID=303214_100484",
+      "彼は不安になった。\tHe felt uneasy.#ID=303213_100485",
+      "彼は不安な気持ちだった。\tHe felt ill at ease.#ID=303212_100486",
+      "彼は不安そうにあたりをきょときょと見回した。\tHe looked around uneasily.#ID=303211_100487"
+    ]
+  },
+  "小": {
+    "char": "小",
+    "strokes": 3,
+    "onyomi": [
+      "ショウ"
+    ],
+    "kunyomi": [
+      "ちい.さい",
+      "こ-",
+      "お-",
+      "さ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は包みを小脇に抱えていた。\tHe held a package under his arm.#ID=303636_100061",
+      "彼は分厚いめがねをかけた小柄な老人だった。\tHe was a little old man with thick glasses.#ID=303491_100206",
+      "彼は部屋が小さすぎるとこぼしていた。\tHe complained of the room being too small.#ID=303391_100306",
+      "彼は貧しくして小さな小屋に住んでいた。\tHe was poor and lived in a small cabin.#ID=303187_100511"
+    ]
+  },
+  "少": {
+    "char": "少",
+    "strokes": 4,
+    "onyomi": [
+      "ショウ"
+    ],
+    "kunyomi": [
+      "すく.ない",
+      "すこ.し"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼はクラスのどの少年にも劣らず利口だ。\tHe is as smart as any other boy in the class.#ID=289737_100081",
+      "彼は不動産屋にもう少し値引きするよう交渉した。\tHe bargained with the house agent for a lower price.#ID=303243_100455",
+      "彼は非常に不注意な少年なので、よく誤りをする。\tHe is such a careless boy that he often makes mistakes.#ID=303002_100695",
+      "彼は彼の命を犠牲にしてその少女を助けた。\tHe rescued the little girl at the cost of his life.#ID=302519_101176"
+    ]
+  },
+  "山": {
+    "char": "山",
+    "strokes": 3,
+    "onyomi": [
+      "サン",
+      "セン"
+    ],
+    "kunyomi": [
+      "やま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は閉会式には沢山の客を招待することを計画するでしょう。\tHe is planning on inviting a lot of guests to the closing ceremony.#ID=6608920_100160",
+      "彼は部下と馬を引き連れ雪山を越え暑い谷へといった。\tHe led his men and horses over snowy mountains and down into hot valleys.#ID=303418_100279",
+      "彼は日が暮れないうちに山頂に到達した。\tHe attained the top of the mountain before dark.#ID=302194_101501",
+      "彼は冬に富士山に登った最初の人でした。\tHe was the first man to climb Mt. Fuji in winter.#ID=301906_101787"
+    ]
+  },
+  "川": {
+    "char": "川",
+    "strokes": 3,
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "かわ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は村の近くの川に釣りに出かけた。\tHe went fishing in a river near the village.#ID=301042_102652",
+      "彼は川を横切った。\tHe got across the river.#ID=300680_103013",
+      "彼は川を泳いで渡った。\tHe swam across the river.#ID=291092_103014",
+      "彼は川へ釣りに行った。\tHe went fishing in the river.#ID=273217_103015"
+    ]
+  },
+  "左": {
+    "char": "左",
+    "strokes": 5,
+    "onyomi": [
+      "サ",
+      "シャ"
+    ],
+    "kunyomi": [
+      "ひだり"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は倒れた時左足をけがした。\tHe hurt his left foot when he fell.#ID=301898_101794",
+      "彼は倒れたときに左足をけがした。\tHe hurt his left foot when he fell.#ID=301898_101795",
+      "彼は怒って首を左右に振った。\tHe gave an angry shake of his head.#ID=301869_101824",
+      "彼は左腕を骨折した。\tHe broke his left arm.#ID=296680_107005"
+    ]
+  },
+  "年": {
+    "char": "年",
+    "strokes": 6,
+    "onyomi": [
+      "ネン"
+    ],
+    "kunyomi": [
+      "とし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は法律事務所に６年勤務していた。\tHe had worked for the law firm for six years.#ID=303665_100032",
+      "彼はクラスのどの少年にも劣らず利口だ。\tHe is as smart as any other boy in the class.#ID=289737_100081",
+      "彼は分別ある年齢に達した。\tHe has attained to years of discretion.#ID=303492_100205",
+      "彼は非常に不注意な少年なので、よく誤りをする。\tHe is such a careless boy that he often makes mistakes.#ID=303002_100695"
+    ]
+  },
+  "店": {
+    "char": "店",
+    "strokes": 8,
+    "onyomi": [
+      "テン"
+    ],
+    "kunyomi": [
+      "みせ",
+      "たな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は父の店を手伝っている。\tHe helps out in his father's store.#ID=303311_100387",
+      "彼は父に、その店へつれていってくれるように頼んだ。\tHe asked his father to take him to the store.#ID=303292_100406",
+      "彼は背の高い人を呼びとめてレコード店への道を尋ねました。\tHe stopped a tall man and asked him the way to the record shop.#ID=302416_101280",
+      "彼は東京に店を持っている。\tHe keeps a store in Tokyo.#ID=301920_101773"
+    ]
+  },
+  "後": {
+    "char": "後",
+    "strokes": 9,
+    "onyomi": [
+      "ゴ",
+      "コウ"
+    ],
+    "kunyomi": [
+      "のち",
+      "うし.ろ",
+      "うしろ",
+      "あと",
+      "おく.れる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は放課後野球をしました。\tHe played baseball after school.#ID=303647_100050",
+      "彼は父親の死後、家業を引き受けた。\tHe took charge of the family business after his father died.#ID=303354_100343",
+      "彼は父親の後を継いだ。\tHe took over the business from his father.#ID=303283_100347",
+      "彼は父の死後、母の世話をした。\tHe cared for his mother after his father died.#ID=303302_100396"
+    ]
+  },
+  "手": {
+    "char": "手",
+    "strokes": 4,
+    "onyomi": [
+      "シュ",
+      "ズ"
+    ],
+    "kunyomi": [
+      "て",
+      "て-",
+      "-て",
+      "た-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は報告書のタイプで手がふさがっています。\tHe is busy typing the reports.#ID=303639_100058",
+      "彼は母親に手紙を書く。\tHe writes letters to his mother.#ID=303630_100067",
+      "彼は母親と同様ピアノが上手だった。\tHe was as good a pianist as his mother.#ID=303627_100070",
+      "彼は片手に帽子を持って立ち上がった。\tHe stood up with his hat in his hand.#ID=303561_100136"
+    ]
+  },
+  "新": {
+    "char": "新",
+    "strokes": 13,
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "あたら.しい",
+      "あら.た",
+      "あら-",
+      "にい-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は奮発して新車を買った。\tHe treated himself to a new car.#ID=303494_100203",
+      "彼は父にねだってとうとう新車を買ってもらった。\tHe finally talked his father into buying a new car.#ID=303293_100405",
+      "彼は彼女に新しいコートを作ってあげた。\tHe made her a new coat.#ID=302711_100986",
+      "彼は農場主達に新しい種を使ってみるように説得した。\tHe prevailed on the farmers to try the new seeds.#ID=302380_101316"
+    ]
+  },
+  "日": {
+    "char": "日",
+    "strokes": 4,
+    "onyomi": [
+      "ニチ",
+      "ジツ"
+    ],
+    "kunyomi": [
+      "ひ",
+      "-び",
+      "-か"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は母の誕生日には必ず電話をかける。\tHe never fails to call his mother on her birthday.#ID=303624_100073",
+      "彼は弁護士になるために日夜勉強に励んだ。\tHe studied day and night with a view to becoming a lawyer.#ID=303593_100104",
+      "彼は病気の友を毎日見舞いに来る。\tHe comes to see his sick friend day after day.#ID=303156_100542",
+      "彼は病気だったので、１日中床についていた。\tHe was ill, so he lay in bed all day long.#ID=303099_100599"
+    ]
+  },
+  "時": {
+    "char": "時",
+    "strokes": 10,
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "とき",
+      "-どき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は報酬として金の時計をもらった。\tHe was given a gold watch as a reward.#ID=303643_100054",
+      "彼は勉学に使わぬ時間は無駄にしたように考えた。\tHe looked upon any time not spent in study as so much lost time.#ID=303571_100126",
+      "彼は父親からもらった時計をなくしてしまった。\tHe has lost the watch given by his father.#ID=303318_100380",
+      "彼は不愉快な話を２時間もした。\tHe dwelt on an unpleasant subject for two hours.#ID=303251_100447"
+    ]
+  },
+  "書": {
+    "char": "書",
+    "strokes": 10,
+    "onyomi": [
+      "ショ"
+    ],
+    "kunyomi": [
+      "か.く",
+      "-が.き",
+      "-がき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忘れるといけないので私の電話番号を書き留めた。\tHe wrote down my phone number in case he should forget it.#ID=303689_100008",
+      "彼は報告書を秘書にタイプさせた。\tHe had his secretary type the report.#ID=303642_100055",
+      "彼は報告書を作文した。\tHe wrote the report.#ID=520064_100056",
+      "彼は報告書の材料を集めるのに忙しかった。\tHe was busy collecting stuff for his report.#ID=303640_100057"
+    ]
+  },
+  "月": {
+    "char": "月",
+    "strokes": 4,
+    "onyomi": [
+      "ゲツ",
+      "ガツ"
+    ],
+    "kunyomi": [
+      "つき"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "来週の月火と連休です。\tNext Monday and Tuesday are holidays.#ID=4483901_1005365",
+      "彼は必ず月に一度両親に手紙を書く。\tHe never fails write to his parents once a month.#ID=303054_100644",
+      "毎週、月火はピアノ、水金はダンスを習ってるの。\tEvery week I study piano on Monday and Tuesday, and dancing on Wednesday and Friday.#ID=1006455_1006454",
+      "彼は必ず一度月に一回両親に手紙を書く。\tHe never fails to write to his parents once a month.#ID=303052_100646"
+    ]
+  },
+  "木": {
+    "char": "木",
+    "strokes": 4,
+    "onyomi": [
+      "ボク",
+      "モク"
+    ],
+    "kunyomi": [
+      "き",
+      "こ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は木から仏像を彫った。\tHe carved a Buddhist image out of wood.#ID=303472_100225",
+      "彼は縄で木に縛り付けられた。\tHe was tied to the tree with a rope.#ID=302137_101557",
+      "彼は倒れた木の下敷きになってうごけなかった。\tHe was pinned down by a fallen tree.#ID=301900_101793",
+      "彼は庭木を一本切り倒した。\tHe cut down a tree in his garden.#ID=301709_101983"
+    ]
+  },
+  "本": {
+    "char": "本",
+    "strokes": 5,
+    "onyomi": [
+      "ホン"
+    ],
+    "kunyomi": [
+      "もと"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は壁に本棚を取り付けた。\tHe fixed the bookshelf to the wall.#ID=303549_100148",
+      "彼は文学評論の本を読んでいる。\tHe is reading a book of literary criticism.#ID=303500_100197",
+      "彼は父親と同じぐらいたくさんの本を持っている。\tHe has as many books as his father does.#ID=303325_100373",
+      "彼は父と同じくらいたくさんの本を持っている。\tHe has just as many books as his father does.#ID=303291_100407"
+    ]
+  },
+  "来": {
+    "char": "来",
+    "strokes": 7,
+    "onyomi": [
+      "ライ",
+      "タイ"
+    ],
+    "kunyomi": [
+      "く.る",
+      "きた.る",
+      "きた.す",
+      "き.たす",
+      "き.たる",
+      "き",
+      "こ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は蜂がお互いに意思伝達をする事が出来ると言う証拠を見つけた。\tHe found the evidence that bees can communicate with each other.#ID=303666_100031",
+      "彼は勉強の機会を出来るだけ利用したいと思った。\tHe wanted to make the most of his chance to learn.#ID=303579_100118",
+      "彼は部屋の中を行ったり来たりしていた。\tHe kept walking up and down the room.#ID=303406_100291",
+      "彼は父親との約束を果たすことが出来なかった。\tHe couldn't make good on a promise he had made to his father.#ID=303324_100374"
+    ]
+  },
+  "東": {
+    "char": "東",
+    "strokes": 8,
+    "onyomi": [
+      "トウ"
+    ],
+    "kunyomi": [
+      "ひがし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は米国に発つ前に東京にいる上司に会いたいと思った。\tHe wanted to see his boss in Tokyo before leaving for America.#ID=303539_100158",
+      "彼は飛行機で東京から大阪へ行った。\tHe went from Tokyo to Osaka by plane.#ID=303019_100678",
+      "彼は東洋芸術のかなりの専門家だ。\tHe is something of an expert on oriental art.#ID=301936_101757",
+      "彼は東洋の神秘に興味を持っていた。\tHe was interested in the mysteries of the Orient.#ID=301935_101758"
+    ]
+  },
+  "校": {
+    "char": "校",
+    "strokes": 10,
+    "onyomi": [
+      "コウ",
+      "キョウ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は放校処分にされた。\tHe was expelled from school.#ID=303648_100049",
+      "彼は歩いて学校へ行く。\tHe walks to school.#ID=303609_100088",
+      "彼は歩いて学校に行きますか、それとも自転車ですか。\tDoes he go to school on foot or by bicycle?#ID=303608_100089",
+      "彼は貧乏だったので学校を辞めざるを得なかった。\tHe had no choice but to give up school because of poverty.#ID=303195_100503"
+    ]
+  },
+  "母": {
+    "char": "母",
+    "strokes": 5,
+    "onyomi": [
+      "ボ"
+    ],
+    "kunyomi": [
+      "はは",
+      "も"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は母親の力で有名になった。\tHe became famous thanks to his mother.#ID=303635_100062",
+      "彼は母親の到着を喜んだ。\tHe rejoiced at his mother's arrival.#ID=303634_100063",
+      "彼は母親の死の知らせを聞くと、ただ泣くばかりだった。\tHe did nothing but weep when he heard of his mother's death.#ID=303622_100064",
+      "彼は母親の健康を心配している。\tHe is anxious about his mother's health.#ID=303632_100065"
+    ]
+  },
+  "毎": {
+    "char": "毎",
+    "strokes": 6,
+    "onyomi": [
+      "マイ"
+    ],
+    "kunyomi": [
+      "ごと",
+      "-ごと.に"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は病気の友を毎日見舞いに来る。\tHe comes to see his sick friend day after day.#ID=303156_100542",
+      "毎週、月火はピアノ、水金はダンスを習ってるの。\tEvery week I study piano on Monday and Tuesday, and dancing on Wednesday and Friday.#ID=1006455_1006454",
+      "彼は日曜日以外は毎日働きます。\tHe works every day except Sunday.#ID=302274_101421",
+      "彼は日曜日を除いて毎日働いている。\tHe works every day save Sundays.#ID=302273_101422"
+    ]
+  },
+  "気": {
+    "char": "気",
+    "strokes": 6,
+    "onyomi": [
+      "キ",
+      "ケ"
+    ],
+    "kunyomi": [
+      "いき",
+      "き"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は勉強を始めるとどうして眠気を催すのだろうか。\tWhy should he feel drowsy whenever he begins to study?#ID=303580_100117",
+      "彼は平気でこの企てを試みた。\tNo scruple held him back from making this attempt.#ID=303522_100175",
+      "彼は平気でうそをつく。\tHe has no scruples about lying.#ID=303521_100177",
+      "彼は部下に人気がある。\tHe is popular with his men.#ID=303420_100277"
+    ]
+  },
+  "水": {
+    "char": "水",
+    "strokes": 4,
+    "onyomi": [
+      "スイ"
+    ],
+    "kunyomi": [
+      "みず",
+      "みず-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は片手に火、片手に水を運ぶ。\tHe carries fire in one hand and water in the other.#ID=303560_100137",
+      "彼は服ごと水に飛び込んだ。\tHe jumped into the water clothes and all.#ID=303448_100249",
+      "彼は瓶に水をいっぱい入れた。\tHe filled the bottle with water.#ID=292573_100489",
+      "彼は浜辺へ行き、海上はるか彼方の水平線を眺めた。\tHe went to the beach, and looked far across the sea toward the horizon.#ID=303169_100529"
+    ]
+  },
+  "火": {
+    "char": "火",
+    "strokes": 4,
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "ひ",
+      "-び",
+      "ほ-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は片手に火、片手に水を運ぶ。\tHe carries fire in one hand and water in the other.#ID=303560_100137",
+      "来週の月火と連休です。\tNext Monday and Tuesday are holidays.#ID=4483901_1005365",
+      "毎週、月火はピアノ、水金はダンスを習ってるの。\tEvery week I study piano on Monday and Tuesday, and dancing on Wednesday and Friday.#ID=1006455_1006454",
+      "彼は粘土を火に入れて固めた。\tHe hardened clay by putting it into a fire.#ID=302366_101330"
+    ]
+  },
+  "父": {
+    "char": "父",
+    "strokes": 4,
+    "onyomi": [
+      "フ"
+    ],
+    "kunyomi": [
+      "ちち"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "これは亡くなった父の肖像画です。\tThis is a portrait of my late father.#ID=55402_100028",
+      "彼は父親似だ。\tHe takes after his father.#ID=303368_100329",
+      "彼は父親を絶えず恐れている。\tHe is in constant dread of his father.#ID=303367_100330",
+      "彼は父親よりも考え方が人間的である。\tHe is more human in thinking than his father.#ID=303366_100331"
+    ]
+  },
+  "生": {
+    "char": "生",
+    "strokes": 5,
+    "onyomi": [
+      "セイ",
+      "ショウ"
+    ],
+    "kunyomi": [
+      "い.きる",
+      "い.かす",
+      "い.ける",
+      "う.まれる",
+      "うま.れる",
+      "う.まれ",
+      "うまれ",
+      "う.む",
+      "お.う",
+      "は.える",
+      "は.やす",
+      "き",
+      "なま",
+      "なま-",
+      "な.る",
+      "な.す",
+      "む.す",
+      "-う"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい生活の中で家族と会うことがない。\tHe doesn't see his family in his busy life.#ID=303697_100000",
+      "彼は法律を生涯の仕事に選んだ。\tHe made law his life career.#ID=303662_100035",
+      "彼は法律を一生の職業にしたいと思っていた。\tHe wanted to follow law as a career.#ID=303660_100037",
+      "彼は法科の学生だ。\tHe is an undergraduate in the law department.#ID=303655_100042"
+    ]
+  },
+  "男": {
+    "char": "男",
+    "strokes": 7,
+    "onyomi": [
+      "ダン",
+      "ナン"
+    ],
+    "kunyomi": [
+      "おとこ",
+      "お"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は頼りになる男だ。\tHe's a man you can rely on.#ID=1190310_100127",
+      "彼は付き合いにくい男だ。\tHe is hard to get along with.#ID=303256_100442",
+      "彼は不道徳な男だ。\tHe is an evil man.#ID=303244_100454",
+      "彼は不始末をしでかすような男ではない。\tHe is the last man to commit an irregularity.#ID=303224_100474"
+    ]
+  },
+  "白": {
+    "char": "白",
+    "strokes": 5,
+    "onyomi": [
+      "ハク",
+      "ビャク"
+    ],
+    "kunyomi": [
+      "しろ",
+      "しら-",
+      "しろ.い"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は付き合っていて面白くない。\tHe is not very good company.#ID=303257_100441",
+      "心理学を勉強すればするほど面白いと思えてきたんだ。\tThe more I studied psychology, the more interesting it seemed to me.#ID=9870590_10047178",
+      "彼は彼らに自分の潔白を信じさせようとしたがだめだった。\tHe tried to convince them of his innocence in vain.#ID=302537_101159",
+      "彼は犯した罪を悔いて、白状した。\tHe repented and confessed his crime.#ID=302476_101220"
+    ]
+  },
+  "百": {
+    "char": "百",
+    "strokes": 6,
+    "onyomi": [
+      "ヒャク",
+      "ビャク"
+    ],
+    "kunyomi": [
+      "もも"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は百万長者であるようなふりをした。\tHe made believe that he was a millionaire.#ID=303078_100620",
+      "彼は百円しか持ち合わせていなかった。\tHe had no more than one hundred yen with him.#ID=288344_100621",
+      "彼は生まれは貧乏だったが、死ぬときは百万長者だった。\tHe was born poor, but died a millionaire.#ID=300467_103226",
+      "彼は口座から百ドル下ろした。\tHe drew $100 from his account.#ID=296274_107412"
+    ]
+  },
+  "目": {
+    "char": "目",
+    "strokes": 5,
+    "onyomi": [
+      "モク",
+      "ボク"
+    ],
+    "kunyomi": [
+      "め",
+      "-め",
+      "ま-"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は宝石の鑑定には目がきく。\tHe has a sharp eye for jewels.#ID=303644_100053",
+      "彼は報告書にざっと目を通した。\tHe skimmed through the report.#ID=303638_100059",
+      "彼は片目が見えない。\tHe is blind in one eye.#ID=303564_100131",
+      "彼は片方の目が不自由だ。\tHe is blind in one eye.#ID=303564_100133"
+    ]
+  },
+  "社": {
+    "char": "社",
+    "strokes": 7,
+    "onyomi": [
+      "シャ"
+    ],
+    "kunyomi": [
+      "やしろ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は保険会社の重役である。\tHe is an executive in an insurance company.#ID=303602_100094",
+      "彼は保険会社に就職した。\tHe took a job with an insurance company.#ID=303601_100096",
+      "彼は父親の会社の経営を引き継いだ。\tHe has taken charge of his father's company.#ID=303346_100350",
+      "彼は父親の会社の営業を引き継いだ。\tHe has taken charge of his father's company.#ID=303346_100351"
+    ]
+  },
+  "空": {
+    "char": "空",
+    "strokes": 8,
+    "onyomi": [
+      "クウ"
+    ],
+    "kunyomi": [
+      "そら",
+      "あ.く",
+      "あ.き",
+      "あ.ける",
+      "から",
+      "す.く",
+      "す.かす",
+      "むな.しい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は彼女を見送りに空港へ行った。\tHe went to the airport to see her off.#ID=302890_100807",
+      "彼は道で空き缶をひろった。\tHe picked up cans in the street.#ID=302059_101634",
+      "彼は電車で老人のために席を空けた。\tHe made room for an old man in the train.#ID=301800_101892",
+      "彼は星空を見上げた。\tHe looked up at the stars.#ID=300369_103324"
+    ]
+  },
+  "立": {
+    "char": "立",
+    "strokes": 5,
+    "onyomi": [
+      "リツ",
+      "リュウ",
+      "リットル"
+    ],
+    "kunyomi": [
+      "た.つ",
+      "-た.つ",
+      "た.ち-",
+      "た.てる",
+      "-た.てる",
+      "た.て-",
+      "たて-",
+      "-た.て",
+      "-だ.て",
+      "-だ.てる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子をかぶったままでそこに立っていた。\tHe stood there with his hat on.#ID=303672_100025",
+      "彼は片手に帽子を持って立ち上がった。\tHe stood up with his hat in his hand.#ID=303561_100136",
+      "彼は壁にもたれかかって、片足で立っていた。\tHe stood on one leg, leaning against the wall.#ID=303543_100154",
+      "彼は腹立ちまぎれにテーブルをたたいた。\tHe pounded the table in a fit of anger.#ID=303468_100229"
+    ]
+  },
+  "耳": {
+    "char": "耳",
+    "strokes": 6,
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "みみ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は壁に耳を押しあてた。\tHe pressed his ear against the wall.#ID=303548_100149",
+      "彼は風の音に耳を澄ましながら、長い間座っていた。\tHe sat for a long time, listening to the sound of the wind.#ID=303427_100270",
+      "彼は彼らの頼みに耳を貸さなかった。\tHe turned a deaf ear to their request.#ID=302566_101130",
+      "彼は彼らの不平に耳をかそうとしなかった。\tHe turned a deaf ear to their complaints.#ID=302565_101131"
+    ]
+  },
+  "聞": {
+    "char": "聞",
+    "strokes": 14,
+    "onyomi": [
+      "ブン",
+      "モン"
+    ],
+    "kunyomi": [
+      "き.く",
+      "き.こえる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は母親の死の知らせを聞くと、ただ泣くばかりだった。\tHe did nothing but weep when he heard of his mother's death.#ID=303622_100064",
+      "彼は母の死の知らせを聞くと、ただ泣くばかりだった。\tHe did nothing but weep when he heard of his mother's death.#ID=303622_100075",
+      "彼は勉強に熱中していて私の呼ぶ声が聞こえなかった。\tHe was too intent on studying to hear my call.#ID=303577_100120",
+      "彼は別の仕事を探し始めたと聞いています。\tI hear he's just begun looking for another job.#ID=303553_100144"
+    ]
+  },
+  "花": {
+    "char": "花",
+    "strokes": 7,
+    "onyomi": [
+      "カ",
+      "ケ"
+    ],
+    "kunyomi": [
+      "はな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は非常に美しい花が好きだ。\tHe likes a most beautiful flower.#ID=302998_100699",
+      "彼は彼女に花を摘んでやった。\tHe picked flowers for her.#ID=302680_101017",
+      "彼は大きな花束を抱えてやって来た。\tHe came bearing a large bunch of flowers.#ID=301207_102487",
+      "彼は数学の才能を開花した。\tHe has shown an apt for mathematics.#ID=300243_103450"
+    ]
+  },
+  "行": {
+    "char": "行",
+    "strokes": 6,
+    "onyomi": [
+      "コウ",
+      "ギョウ",
+      "アン"
+    ],
+    "kunyomi": [
+      "い.く",
+      "ゆ.く",
+      "-ゆ.き",
+      "-ゆき",
+      "-い.き",
+      "-いき",
+      "おこな.う",
+      "おこ.なう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は歩いて学校へ行く。\tHe walks to school.#ID=303609_100088",
+      "彼は歩いて学校に行きますか、それとも自転車ですか。\tDoes he go to school on foot or by bicycle?#ID=303608_100089",
+      "彼は文学研究の目的でイタリアへ行った。\tHe went to Italy with a view to studying literature.#ID=303497_100199",
+      "彼は文学を勉強するつもりでイタリアに行った。\tHe went to Italy with a view to studying literature.#ID=303497_100200"
+    ]
+  },
+  "西": {
+    "char": "西",
+    "strokes": 6,
+    "onyomi": [
+      "セイ",
+      "サイ",
+      "ス"
+    ],
+    "kunyomi": [
+      "にし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は町の西部に住んでいる。\tHe lives in the western part of town.#ID=301605_102089",
+      "彼は西洋文化が好きだ。\tHe likes Western culture.#ID=300528_103165",
+      "彼は小さなヨットで大西洋を横断した。\tHe came across the Atlantic in a small sailboat.#ID=299540_104151",
+      "彼はアリゾナで何本か西部劇を撮っている。\tHe has shot some Westerns in Arizona.#ID=288891_114780"
+    ]
+  },
+  "見": {
+    "char": "見",
+    "strokes": 7,
+    "onyomi": [
+      "ケン"
+    ],
+    "kunyomi": [
+      "み.る",
+      "み.える",
+      "み.せる"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は帽子を取り上げて、似合うかどうか見るためにかぶってみた。\tHe picked up a hat and put it on to see how it would look.#ID=303683_100014",
+      "彼は蜂がお互いに意思伝達をする事が出来ると言う証拠を見つけた。\tHe found the evidence that bees can communicate with each other.#ID=303666_100031",
+      "彼は辺りを見回したが誰もいなかった。\tHe looked around, but he saw no one.#ID=288716_100130",
+      "彼は片目が見えない。\tHe is blind in one eye.#ID=303564_100131"
+    ]
+  },
+  "言": {
+    "char": "言",
+    "strokes": 7,
+    "onyomi": [
+      "ゲン",
+      "ゴン"
+    ],
+    "kunyomi": [
+      "い.う",
+      "こと"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しいと言いました。\tHe said he was busy.#ID=303693_100004",
+      "彼は蜂がお互いに意思伝達をする事が出来ると言う証拠を見つけた。\tHe found the evidence that bees can communicate with each other.#ID=303666_100031",
+      "彼は母の助言を馬鹿にした。\tHe flouted his mother's advice.#ID=303623_100074",
+      "彼は並外れて優秀とは言わないでも優れている。\tHe is good, not to say exceptional.#ID=303536_100161"
+    ]
+  },
+  "話": {
+    "char": "話",
+    "strokes": 13,
+    "onyomi": [
+      "ワ"
+    ],
+    "kunyomi": [
+      "はな.す",
+      "はなし"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい人だから、電話でなければ連絡をとれないですよ。\tHe is a busy man, so you can only get in touch with him by telephone.#ID=303696_100001",
+      "彼は忘れるといけないので私の電話番号を書き留めた。\tHe wrote down my phone number in case he should forget it.#ID=303689_100008",
+      "彼は母の誕生日には必ず電話をかける。\tHe never fails to call his mother on her birthday.#ID=303624_100073",
+      "彼は聞き上手だが話すのは苦手だ。\tHe is a good listener but a poor speaker.#ID=303509_100187"
+    ]
+  },
+  "語": {
+    "char": "語",
+    "strokes": 14,
+    "onyomi": [
+      "ゴ"
+    ],
+    "kunyomi": [
+      "かた.る",
+      "かた.らう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は非常に英語に熟達してきた。\tHe has increased his proficiency in English greatly.#ID=302973_100724",
+      "彼は秘書にその手紙を英語に翻訳させた。\tHe had his secretary translate the letter into English.#ID=302953_100744",
+      "名詞を修飾するものは、形容詞または形容詞相当語句です。\tThings that modify nouns are adjectives or equivalent to adjectives.#ID=10109654_10109643",
+      "彼は熱心に日本語を勉強した。\tHe studied Japanese eagerly.#ID=302311_101386"
+    ]
+  },
+  "読": {
+    "char": "読",
+    "strokes": 14,
+    "onyomi": [
+      "ドク",
+      "トク",
+      "トウ"
+    ],
+    "kunyomi": [
+      "よ.む",
+      "-よ.み"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は文学評論の本を読んでいる。\tHe is reading a book of literary criticism.#ID=303500_100197",
+      "彼女がその本を読み始めたと思ったらすぐに、誰かがドアをノックした。\tShe had hardly begun to read the book before someone knocked at the door.#ID=308067_10056980",
+      "彼は彼女が入ってきたとき２時間読書をしていた。\tHe had been reading for two hours when she came in.#ID=284186_101094",
+      "彼は読書をし、その傍らで妻が手袋を編んでいた。\tHe sat reading, with his wife knitting a pair of gloves beside him.#ID=302110_101583"
+    ]
+  },
+  "買": {
+    "char": "買",
+    "strokes": 12,
+    "onyomi": [
+      "バイ"
+    ],
+    "kunyomi": [
+      "か.う"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は奮発して新車を買った。\tHe treated himself to a new car.#ID=303494_100203",
+      "彼は父親に自転車を買ってくれとせがんだ。\tHe begged his father to buy him a bicycle.#ID=303335_100363",
+      "彼は父にねだってとうとう新車を買ってもらった。\tHe finally talked his father into buying a new car.#ID=303293_100405",
+      "彼は貧しくて、コートが買えなかった。\tHe's poor, and couldn't buy himself a coat.#ID=303188_100510"
+    ]
+  },
+  "足": {
+    "char": "足",
+    "strokes": 7,
+    "onyomi": [
+      "ソク"
+    ],
+    "kunyomi": [
+      "あし",
+      "た.りる",
+      "た.る",
+      "た.す"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は片足を引きずってあるいた。\tHe walked with a limp.#ID=303562_100135",
+      "彼は壁にもたれかかって、片足で立っていた。\tHe stood on one leg, leaning against the wall.#ID=303543_100154",
+      "彼は不注意のせいで、足の骨を折った。\tHis carelessness cost him a broken leg.#ID=303239_100459",
+      "彼は疲れた手足を休ませた。\tHe rested his tired limbs.#ID=302936_100761"
+    ]
+  },
+  "車": {
+    "char": "車",
+    "strokes": 7,
+    "onyomi": [
+      "シャ"
+    ],
+    "kunyomi": [
+      "くるま"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は歩いて学校に行きますか、それとも自転車ですか。\tDoes he go to school on foot or by bicycle?#ID=303608_100089",
+      "彼は奮発して新車を買った。\tHe treated himself to a new car.#ID=303494_100203",
+      "彼は父親に自転車を買ってくれとせがんだ。\tHe begged his father to buy him a bicycle.#ID=303335_100363",
+      "彼は父にねだってとうとう新車を買ってもらった。\tHe finally talked his father into buying a new car.#ID=303293_100405"
+    ]
+  },
+  "週": {
+    "char": "週",
+    "strokes": 11,
+    "onyomi": [
+      "シュウ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "来週の月火と連休です。\tNext Monday and Tuesday are holidays.#ID=4483901_1005365",
+      "毎週、月火はピアノ、水金はダンスを習ってるの。\tEvery week I study piano on Monday and Tuesday, and dancing on Wednesday and Friday.#ID=1006455_1006454",
+      "彼は彼女に１週間前に会ったといった。\tHe said that he had met her a week before.#ID=302643_101054",
+      "彼は彼女と先週会ったことを否定した。\tHe denied having met her last week.#ID=302629_101068"
+    ]
+  },
+  "道": {
+    "char": "道",
+    "strokes": 12,
+    "onyomi": [
+      "ドウ",
+      "トウ"
+    ],
+    "kunyomi": [
+      "みち",
+      "いう"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は不道徳な男だ。\tHe is an evil man.#ID=303244_100454",
+      "彼は博物館へ行く道を私に聞いた。\tHe asked me the way to the museum.#ID=302433_101263",
+      "彼は背の高い人を呼びとめてレコード店への道を尋ねました。\tHe stopped a tall man and asked him the way to the record shop.#ID=302416_101280",
+      "彼は道路を渡りつつあった。\tHe was crossing the street.#ID=302068_101625"
+    ]
+  },
+  "金": {
+    "char": "金",
+    "strokes": 8,
+    "onyomi": [
+      "キン",
+      "コン",
+      "ゴン"
+    ],
+    "kunyomi": [
+      "かね",
+      "かな-",
+      "-がね"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は報酬として金の時計をもらった。\tHe was given a gold watch as a reward.#ID=303643_100054",
+      "彼は保険金として大金を受け取った。\tHe received a large sum in insurance benefit.#ID=303603_100095",
+      "彼は父親の手伝いをしに行ったのではなくお金を借りに行った。\tHe went not to help his father but to borrow money from him.#ID=303355_100342",
+      "彼は父親が金持ちである事を自慢している。\tHe is proud of his father being rich.#ID=303319_100379"
+    ]
+  },
+  "長": {
+    "char": "長",
+    "strokes": 8,
+    "onyomi": [
+      "チョウ"
+    ],
+    "kunyomi": [
+      "なが.い",
+      "おさ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は風の音に耳を澄ましながら、長い間座っていた。\tHe sat for a long time, listening to the sound of the wind.#ID=303427_100270",
+      "彼は百万長者であるようなふりをした。\tHe made believe that he was a millionaire.#ID=303078_100620",
+      "彼は彼女に長い手紙を書いたが、出さなかった。\tHe wrote her a long letter, which he didn't mail.#ID=302721_100976",
+      "彼は彼女と同じ身長だ。\tHe is as tall as she.#ID=302634_101063"
+    ]
+  },
+  "間": {
+    "char": "間",
+    "strokes": 12,
+    "onyomi": [
+      "カン",
+      "ケン"
+    ],
+    "kunyomi": [
+      "あいだ",
+      "ま",
+      "あい"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は勉学に使わぬ時間は無駄にしたように考えた。\tHe looked upon any time not spent in study as so much lost time.#ID=303571_100126",
+      "彼は風の音に耳を澄ましながら、長い間座っていた。\tHe sat for a long time, listening to the sound of the wind.#ID=303427_100270",
+      "彼は父親よりも考え方が人間的である。\tHe is more human in thinking than his father.#ID=303366_100331",
+      "彼は普通の人間です。\tHe's just an ordinary man.#ID=303277_100421"
+    ]
+  },
+  "雨": {
+    "char": "雨",
+    "strokes": 8,
+    "onyomi": [
+      "ウ"
+    ],
+    "kunyomi": [
+      "あめ",
+      "あま-",
+      "-さめ"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は私の息子にどうして雨が降るのかを説明した。\tHe explained to my son why it rains.#ID=297935_105752",
+      "彼は顔に雨があたるのを感じた。\tHe felt the rain on his face.#ID=294995_108694",
+      "彼は雨を利用した。\tHe availed himself of the rain.#ID=293875_109814",
+      "彼は雨具を用意して出かけた。\tHe went out prepared for rain.#ID=293876_109815"
+    ]
+  },
+  "電": {
+    "char": "電",
+    "strokes": 13,
+    "onyomi": [
+      "デン"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は忙しい人だから、電話でなければ連絡をとれないですよ。\tHe is a busy man, so you can only get in touch with him by telephone.#ID=303696_100001",
+      "彼は忘れるといけないので私の電話番号を書き留めた。\tHe wrote down my phone number in case he should forget it.#ID=303689_100008",
+      "彼は母親が死亡したという電報を受け取った。\tHe received a telegram saying that his mother had died.#ID=303626_100071",
+      "彼は母の誕生日には必ず電話をかける。\tHe never fails to call his mother on her birthday.#ID=303624_100073"
+    ]
+  },
+  "食": {
+    "char": "食",
+    "strokes": 9,
+    "onyomi": [
+      "ショク",
+      "ジキ"
+    ],
+    "kunyomi": [
+      "く.う",
+      "く.らう",
+      "た.べる",
+      "は.む"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は腹いっぱい食べる。\tHe eats till he is full.#ID=303458_100239",
+      "彼は彼女を昼食に誘おうと言い出した。\tHe proposed asking her to lunch.#ID=302904_100793",
+      "彼は彼らに食料を与えた。\tHe provided them with food.#ID=302541_101154",
+      "彼は彼らに食べ物と金を支給した。\tHe supplied food and money to them.#ID=302540_101155"
+    ]
+  },
+  "飲": {
+    "char": "飲",
+    "strokes": 12,
+    "onyomi": [
+      "イン",
+      "オン"
+    ],
+    "kunyomi": [
+      "の.む",
+      "-の.み"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は彼女に飲酒をやめるようにと忠告した。\tHe advised her to stop drinking.#ID=302677_101020",
+      "彼は彼の飲む癖を直した。\tHe was cured of his drinking habit.#ID=293856_101201",
+      "彼は濃い緑茶を飲みすぎた。\tHe drank too much strong green tea.#ID=302368_101328",
+      "彼は毒を飲んで自殺した。\tHe killed himself by taking poison.#ID=302080_101613"
+    ]
+  },
+  "駅": {
+    "char": "駅",
+    "strokes": 14,
+    "onyomi": [
+      "エキ"
+    ],
+    "kunyomi": [],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は彼女を見送りに駅まで行って来たところです。\tHe has been to the station to see her off.#ID=294101_100808",
+      "彼は東京駅までタクシーで行った。\tHe went to the Tokyo station by taxi.#ID=301927_101766",
+      "彼は息を切らして駅に着いた。\tHe arrived at the station out of breath.#ID=300926_102760",
+      "彼は仙台駅で列車を乗り換えた。\tHe changed trains at Sendai Station.#ID=300620_103073"
+    ]
+  },
+  "高": {
+    "char": "高",
+    "strokes": 10,
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "たか.い",
+      "たか",
+      "-だか",
+      "たか.まる",
+      "たか.める"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は父よりずっと背が高い。\tHe is far taller than his father is.#ID=303312_100386",
+      "彼は父さんほど背が高くない。\tHe is not as tall as his father.#ID=303288_100410",
+      "彼は不快な甲高い声の持ち主だ。\tHe had an unpleasant screechy voice.#ID=303215_100483",
+      "彼は貧乏であるが、気位が高くて援助を求めない。\tHe is poor but is too proud to ask for help.#ID=303196_100502"
+    ]
+  },
+  "魚": {
+    "char": "魚",
+    "strokes": 11,
+    "onyomi": [
+      "ギョ"
+    ],
+    "kunyomi": [
+      "うお",
+      "さかな",
+      "-ざかな"
+    ],
+    "meaning": "",
+    "jlpt": "N4",
+    "grade": null,
+    "frequency": null,
+    "radical": "",
+    "radicals": [],
+    "note": "",
+    "hint": "",
+    "aiNote": "",
+    "examples": [
+      "彼は熱帯魚を飼っている。\tHe is raising tropical fishes.#ID=302314_101382",
+      "彼は川へ魚釣りに行った。\tHe went fishing in the river.#ID=273217_103016",
+      "彼は生の魚を食べない。\tHe doesn't eat raw fish.#ID=295273_103257",
+      "彼は魚屋です。\tHe is a fish dealer.#ID=295275_108411"
+    ]
+  }
+}
