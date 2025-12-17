@@ -14,6 +14,14 @@ import { auth } from "./firebase/firebase-config";
 import { useAppStore } from "./store/useAppStore";
 import "./styles/Global.css";
 
+/* ===== Capacitor / AdMob ===== */
+import { Capacitor } from "@capacitor/core";
+import {
+  AdMob,
+  BannerAdSize,
+  BannerAdPosition,
+} from "@capacitor-community/admob";
+
 /* ===== Layout / Guards ===== */
 import Layout from "./components/Layout";
 import AuthGuard from "./components/AuthGuard";
@@ -97,7 +105,7 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* AdMob */
+/* AdMob (既存クライアントがあるなら温存) */
 import { initAdMob } from "@/utils/admobClient";
 
 /* ====== ゲストモード（本番は false） ====== */
@@ -117,36 +125,26 @@ function AdjLevelRedirect() {
 
 function CompareAliasRedirect() {
   return (
-    <Navigate
-      to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`}
-      replace
-    />
+    <Navigate to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`} replace />
   );
 }
 
 function CompareLessonAliasRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return (
-    <Navigate
-      to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`}
-      replace
-    />
+    <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />
   );
 }
 
 function ComparisonLegacyRedirect() {
   const { lesson = "Lesson1" } = useParams();
   return (
-    <Navigate
-      to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`}
-      replace
-    />
+    <Navigate to={`/grammar/n4/comparison/${normalizeLesson(lesson)}`} replace />
   );
 }
 
 /* kanji stroke default redirect */
 function KanjiStrokeRootRedirect() {
-  // デフォルトは N4 の「一」から開始
   return <Navigate to="/kanji/stroke/N4/一" replace />;
 }
 function KanjiStrokeLevelRedirect() {
@@ -169,9 +167,7 @@ function RootRedirect() {
   const authReady = useAppStore((s) => s.authReady);
 
   if (!authReady) {
-    return (
-      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
-    );
+    return <LoadingIllustration message="起動中です…" size="md" showBackdrop />;
   }
 
   if (user) return <Navigate to="/home" replace />;
@@ -184,9 +180,7 @@ function AuthEntry() {
   const authReady = useAppStore((s) => s.authReady);
 
   if (!authReady) {
-    return (
-      <LoadingIllustration message="起動中です…" size="md" showBackdrop />
-    );
+    return <LoadingIllustration message="起動中です…" size="md" showBackdrop />;
   }
 
   if (user) return <Navigate to="/home" replace />;
@@ -200,11 +194,7 @@ const App = () => (
     <AppInitializer />
     <Suspense
       fallback={
-        <LoadingIllustration
-          message="画面を読み込み中…"
-          size="md"
-          showBackdrop
-        />
+        <LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />
       }
     >
       <Routes>
@@ -301,7 +291,10 @@ const App = () => (
             path="/grammar/n3/concession/:lesson"
             element={<N3ConcessionQuizPage />}
           />
-          <Route path="/grammar/:level/voice/:lesson" element={<N3VoiceQuizPage />} />
+          <Route
+            path="/grammar/:level/voice/:lesson"
+            element={<N3VoiceQuizPage />}
+          />
 
           {/* paraphrase */}
           <Route
@@ -576,18 +569,62 @@ const AppInitializer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  // AdMob 初期化（iOS ネイティブアプリのときだけ）
+  // AdMob 初期化 & バナー表示（Android/iOS ネイティブアプリのときだけ）
+  const admobBootedRef = useRef(false);
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const ua = window.navigator?.userAgent || "";
-    const isIOS = /iphone|ipad|ipod/i.test(ua);
-    const isNative = !!window.Capacitor?.isNativePlatform;
+    const isNative = Capacitor.isNativePlatform();
     const isAppBuild = import.meta.env.VITE_DEPLOY_TARGET === "app";
 
-    if (isIOS && isNative && isAppBuild) {
-      initAdMob?.();
-    }
+    if (!isNative || !isAppBuild) return;
+    if (admobBootedRef.current) return;
+    admobBootedRef.current = true;
+
+    (async () => {
+      try {
+        await initAdMob?.();
+      } catch {
+        // noop
+      }
+
+      try {
+        await AdMob.initialize();
+
+        const platform = Capacitor.getPlatform(); // "android" | "ios" | "web"
+
+        // env が無いならテストIDを使う
+        const bannerAndroid =
+          import.meta.env.VITE_ADMOB_BANNER_ANDROID ||
+          "ca-app-pub-3940256099942544/6300978111";
+        const bannerIOS =
+          import.meta.env.VITE_ADMOB_BANNER_IOS ||
+          "ca-app-pub-3940256099942544/2934735716";
+
+        const adId =
+          platform === "android"
+            ? bannerAndroid
+            : platform === "ios"
+              ? bannerIOS
+              : "";
+
+        if (!adId) return;
+
+        // eslint-disable-next-line no-console
+        console.log("[AdMob] showBanner platform=", platform, "adId=", adId);
+
+        await AdMob.showBanner({
+          adId,
+          adSize: BannerAdSize.BANNER,
+          position: BannerAdPosition.BOTTOM_CENTER,
+          margin: 0,
+        });
+
+        // eslint-disable-next-line no-console
+        console.log("[AdMob] showBanner OK");
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn("[AdMob] banner failed:", e);
+      }
+    })();
   }, []);
 
   // DEV autologin

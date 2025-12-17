@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Nihongo App</string>
+  <string name="title_activity_main">Nihongo App</string>
+
+  <!-- AdMob App ID（Android）: 〜 のやつ -->
+  <string name="admob_app_id">ca-app-pub-2912474145038156~7066205795</string>
+</resources>
