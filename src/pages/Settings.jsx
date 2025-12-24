@@ -18,13 +18,28 @@ function SettingSection({ title, children }) {
   );
 }
 
+function isExternalUrl(to) {
+  return typeof to === "string" && /^https?:\/\//i.test(to);
+}
+
 function RowButton({ icon, label, onClick, to, trailing, disabled = false }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (disabled) return;
-    if (onClick) onClick();
-    else if (to) navigate(to);
+
+    if (onClick) {
+      onClick();
+      return;
+    }
+
+    if (to) {
+      if (isExternalUrl(to)) {
+        window.open(to, "_blank", "noopener,noreferrer");
+      } else {
+        navigate(to);
+      }
+    }
   };
 
   return (
@@ -44,14 +59,11 @@ function RowButton({ icon, label, onClick, to, trailing, disabled = false }) {
         <span className="settings__label">{label}</span>
       </span>
       <span className="settings__rowRight">
-        {trailing ??
-          (disabled ? (
-            <span aria-hidden>🔒</span>
-          ) : (
-            <span className="settings__chevron" aria-hidden>
-              ›
-            </span>
-          ))}
+        {trailing ?? (
+          <span className="settings__chevron" aria-hidden>
+            ›
+          </span>
+        )}
       </span>
     </button>
   );
@@ -69,6 +81,7 @@ function RowToggle({ icon, label, checked, onChange, description }) {
           {description && <span className="settings__desc">{description}</span>}
         </span>
       </span>
+
       <label className="switch">
         <input
           type="checkbox"
@@ -115,6 +128,7 @@ export default function Settings() {
     const theme = darkMode ? "dark" : "light";
     root.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", darkMode ? "#0b0f14" : "#f7f8fa");
   }, [darkMode]);
@@ -137,6 +151,7 @@ export default function Settings() {
       localStorage.setItem("notificationsEnabled", "false");
       return;
     }
+
     if (enable) {
       if (Notification.permission === "granted") {
         setNotifEnabled(true);
@@ -165,17 +180,11 @@ export default function Settings() {
   const handleLogout = () => {
     if (loggingOut) return;
     setLoggingOut(true);
-    console.log(
-      "[LOGOUT] start (fire-and-forget)",
-      typeof window !== "undefined" ? window.location.origin : "n/a",
-    );
 
-    // Firebase には裏で signOut を投げるだけ
     signOut(auth)
       .then(() => console.log("[LOGOUT] signOut resolved"))
       .catch((err) => console.warn("[LOGOUT] signOut error", err));
 
-    // UI と Zustand は即リセット
     clearUser();
     navigate("/", { replace: true });
     setLoggingOut(false);
@@ -191,7 +200,6 @@ export default function Settings() {
         "アカウントと学習データを完全に削除します。よろしいですか？",
       ),
     );
-    // ここでブラウザ標準の Yes / No (OK / キャンセル) ダイアログが出る
     if (!confirmed) return;
 
     try {
@@ -202,17 +210,14 @@ export default function Settings() {
         return;
       }
 
-      // ユーザーデータ（例: users コレクション）を削除
       try {
         await deleteDoc(doc(db, "users", user.uid));
       } catch (e) {
         console.warn("[DELETE ACCOUNT] deleteDoc error (ignored)", e);
       }
 
-      // Firebase Auth アカウント削除
       await deleteUser(user);
 
-      // ローカル状態リセット
       clearUser();
       navigate("/auth", { replace: true });
     } catch (error) {
@@ -258,24 +263,17 @@ export default function Settings() {
       </header>
 
       {/* Account */}
-      <SettingSection
-        title={t("settings.sections.account.title", "アカウント")}
-      >
+      <SettingSection title={t("settings.sections.account.title", "アカウント")}>
+        {/* ✅ プロフィール開放 */}
         <RowButton
           icon="🙋‍♂️"
-          label={t(
-            "settings.sections.account.profileLocked",
-            "プロフィール（準備中）",
-          )}
+          label={t("settings.sections.account.profile", "プロフィール")}
           to="/profile"
-          disabled
         />
       </SettingSection>
 
       {/* Basic settings */}
-      <SettingSection
-        title={t("settings.sections.basic.title", "基本設定")}
-      >
+      <SettingSection title={t("settings.sections.basic.title", "基本設定")}>
         <RowToggle
           icon="🔔"
           label={t("settings.sections.basic.notifications", "通知")}
@@ -286,36 +284,17 @@ export default function Settings() {
             "学習のリマインダーを受け取る",
           )}
         />
+
         <RowButton
           icon="🌐"
           label={t("settings.sections.basic.language", "言語設定")}
           trailing={<span className="settings__value">{langName}</span>}
           to="/language"
         />
-        
-      
       </SettingSection>
-
-      {/* ★ Premium セクションは一旦削除（Apple に誤解されないように） */}
-      {/* 
-      <SettingSection
-        title={t("settings.sections.premium.title", "プレミアム")}
-      >
-        <RowButton
-          icon="💎"
-          label={t(
-            "settings.sections.premium.managePlan",
-            "プレミアム（準備中）",
-          )}
-          disabled
-        />
-      </SettingSection>
-      */}
 
       {/* Support */}
-      <SettingSection
-        title={t("settings.sections.support.title", "サポート")}
-      >
+      <SettingSection title={t("settings.sections.support.title", "サポート")}>
         <RowButton
           icon="❓"
           label={t("settings.sections.support.help", "ヘルプ・サポート")}
@@ -326,31 +305,21 @@ export default function Settings() {
           label={t("settings.sections.support.contact", "お問い合わせ")}
           to="/contact"
         />
-        <RowButton
-          icon="📄"
-          label={t("settings.sections.support.terms", "利用規約")}
-          to="https://yutocode.github.io/nihongo-app-support/terms.html"
-        />
+
+        {/* ✅ Terms of use は削除 */}
 
         <RowButton
           icon="🛡️"
           label={t("settings.sections.support.privacy", "プライバシー")}
           to="https://yutocode.github.io/nihongo-app-support/privacy.html"
         />
-      
-        {/* アカウント削除 */}
+
         <RowButton
           icon="🗑️"
           label={
             deletingAccount
-              ? t(
-                  "settings.sections.support.deletingAccount",
-                  "アカウント削除中…",
-                )
-              : t(
-                  "settings.sections.support.deleteAccount",
-                  "アカウントを削除する",
-                )
+              ? t("settings.sections.support.deletingAccount", "アカウント削除中…")
+              : t("settings.sections.support.deleteAccount", "アカウントを削除する")
           }
           onClick={handleDeleteAccount}
           disabled={deletingAccount}
@@ -362,6 +331,7 @@ export default function Settings() {
         <div className="settings__version">
           {t("settings.version", "バージョン")} {appVersion}
         </div>
+
         <button
           type="button"
           className="settings__logout"

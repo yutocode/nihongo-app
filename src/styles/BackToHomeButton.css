@@ -1,6 +1,43 @@
 /* src/styles/BackToHomeButton.css */
-.back-home{
-  display:inline-flex; align-items:center; gap:8px;
-  background:#fff; border:1px solid #ccc; border-radius:22px;
-  padding:8px 14px; cursor:pointer;
+
+.bth {
+  height: calc(var(--space-8) * 5);
+  padding: 0 calc(var(--space-8) * 1.5);
+  border-radius: calc(var(--radius-16) * 999);
+  border: var(--space-1) solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-1);
+
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--space-8) * 0.75);
+
+  cursor: pointer;
+  transition: transform var(--motion-200) cubic-bezier(.2, .8, .2, 1);
+  font-weight: 900;
+}
+
+.bth:active {
+  transform: scale(0.99);
+}
+
+.bth:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-2);
+}
+
+.bth__icon {
+  width: calc(var(--space-8) * 2.6);
+  height: calc(var(--space-8) * 2.6);
+}
+
+.bth__text {
+  font-size: calc(var(--space-8) * 1.5);
+}
+
+@media (max-width: 374px) {
+  .bth__text {
+    display: none;
+  }
 }

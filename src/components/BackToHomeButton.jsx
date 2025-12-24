@@ -1,40 +1,39 @@
-// src/components/AvatarPicker.jsx
+// src/components/BackToHomeButton.jsx
 import React from "react";
-import PropTypes from "prop-types";
-import { AVATAR_ICONS } from "@/data/avatarIcons";
-import "@/styles/AvatarPicker.css";
+import { useNavigate } from "react-router-dom";
+import "@/styles/BackToHomeButton.css";
 
-export default function AvatarPicker({ value, onChange, ariaLabel = "Choose an avatar" }) {
+function IconBack(props) {
   return (
-    <div className="avp" role="radiogroup" aria-label={ariaLabel}>
-      {AVATAR_ICONS.map((a) => {
-        const selected = a.key === value;
-        return (
-          <button
-            key={a.key}
-            type="button"
-            className={`avp-item ${selected ? "is-selected" : ""}`}
-            onClick={() => onChange?.(a.key)}
-            role="radio"
-            aria-checked={selected}
-            aria-label={a.label}
-          >
-            <span className="avp-ring" aria-hidden="true">
-              <img className="avp-img" src={a.src} alt="" />
-            </span>
-          </button>
-        );
-      })}
-    </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M15 18l-6-6 6-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
-AvatarPicker.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  ariaLabel: PropTypes.string,
-};
+export default function BackToHomeButton({
+  to = "/",
+  label = "ホームへ戻る",
+  className = "",
+}) {
+  const navigate = useNavigate();
 
-AvatarPicker.defaultProps = {
-  ariaLabel: "Choose an avatar",
-};
+  return (
+    <button
+      type="button"
+      className={["bth", className].join(" ")}
+      onClick={() => navigate(to)}
+      aria-label={label}
+    >
+      <IconBack className="bth__icon" />
+      <span className="bth__text">{label}</span>
+    </button>
+  );
+}

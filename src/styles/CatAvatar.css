@@ -1,0 +1,25 @@
+/* src/styles/CatAvatar.css */
+.catPng {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+  display: block;
+}
+
+.catPng__head,
+.catPng__body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.catPng--head .catPng__body {
+  display: none;
+}

@@ -14,6 +14,9 @@ import { auth } from "./firebase/firebase-config";
 import { useAppStore } from "./store/useAppStore";
 import "./styles/Global.css";
 
+/* ✅ ランキング同期（1回だけ描画する） */
+import RankingSync from "@/components/RankingSync";
+
 /* ===== Capacitor / AdMob ===== */
 import { Capacitor } from "@capacitor/core";
 import {
@@ -29,6 +32,7 @@ import LoadingIllustration from "./components/LoadingIllustration";
 
 /* ===== Optional pages ===== */
 import ProfilePage from "./pages/ProfilePage";
+import ProfileEditPage from "./pages/ProfileEditPage";
 
 /* ===== public pages ===== */
 import AuthPage from "./pages/AuthPage";
@@ -125,7 +129,10 @@ function AdjLevelRedirect() {
 
 function CompareAliasRedirect() {
   return (
-    <Navigate to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`} replace />
+    <Navigate
+      to={`/grammar/n4/comparison/${normalizeLesson("Lesson1")}`}
+      replace
+    />
   );
 }
 
@@ -192,6 +199,10 @@ const App = () => (
   <BrowserRouter basename={import.meta.env.BASE_URL}>
     <ScrollToTop />
     <AppInitializer />
+
+    {/* ✅ ランキング同期（ここで1回だけ） */}
+    <RankingSync />
+
     <Suspense
       fallback={
         <LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />
@@ -259,6 +270,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="/language" element={<LanguageSettings />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
 
           {/* alphabet */}
           <Route path="/alphabet" element={<AlphabetUnitsPage />} />
@@ -329,7 +341,10 @@ const App = () => (
             path="/grammar/:level/comparison/:lesson"
             element={<ComparisonLegacyRedirect />}
           />
-          <Route path="/grammar/:level/compare" element={<CompareAliasRedirect />} />
+          <Route
+            path="/grammar/:level/compare"
+            element={<CompareAliasRedirect />}
+          />
           <Route
             path="/grammar/:level/compare/:lesson"
             element={<CompareLessonAliasRedirect />}
@@ -354,8 +369,14 @@ const App = () => (
           {/* kanji */}
           <Route path="/kanji" element={<KanjiHomePage />} />
           <Route path="/kanji/stroke" element={<KanjiStrokeRootRedirect />} />
-          <Route path="/kanji/stroke/:level" element={<KanjiStrokeLevelRedirect />} />
-          <Route path="/kanji/stroke/:level/:char" element={<KanjiStrokePage />} />
+          <Route
+            path="/kanji/stroke/:level"
+            element={<KanjiStrokeLevelRedirect />}
+          />
+          <Route
+            path="/kanji/stroke/:level/:char"
+            element={<KanjiStrokePage />}
+          />
         </Route>
 
         {/* fallback */}
@@ -627,9 +648,12 @@ const AppInitializer = () => {
     })();
   }, []);
 
-  // DEV autologin
+  // ✅ DEV autologin（ReferenceError対策の完成版）
   useEffect(() => {
     if (!import.meta.env.DEV) return;
+
+    let unsubscribe = null;
+
     try {
       const url = new URL(window.location.href);
       if (url.searchParams.get("autologin") !== "1") return;
@@ -638,15 +662,36 @@ const AppInitializer = () => {
       const pass = import.meta.env.VITE_SHOT_PASS;
       if (!email || !pass) return;
 
-      const unsub = auth.onAuthStateChanged((u) => {
+      let fired = false;
+
+      unsubscribe = onAuthStateChanged(auth, (u) => {
+        if (fired) return;
+        fired = true;
+
         if (!u) {
           signInWithEmailAndPassword(auth, email, pass).catch(() => {});
         }
-        unsub?.();
+
+        // ✅ unsubscribe が確実に代入された後に解除
+        window.setTimeout(() => {
+          try {
+            unsubscribe?.();
+          } catch {
+            // noop
+          }
+        }, 0);
       });
     } catch {
       // noop
     }
+
+    return () => {
+      try {
+        unsubscribe?.();
+      } catch {
+        // noop
+      }
+    };
   }, []);
 
   return null;

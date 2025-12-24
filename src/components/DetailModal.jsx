@@ -1,12 +1,12 @@
 // src/components/DetailModal.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import "../styles/DetailModal.css";
 
 /* =========================================
    1) JLPT 各レベルの WordSets をまとめる
    ========================================= */
-
 const setsModules =
   import.meta?.glob?.("../data/*WordSets/index.js", { eager: true }) || {};
 
@@ -33,7 +33,6 @@ function gatherAllWordsByLevel(levelKey = "n5") {
 /* =========================================
    2) enriched.jsonl（on/kun/画数 など）読み込み
    ========================================= */
-
 import enrichedRaw from "../../data/cache/enriched.jsonl?raw";
 
 const ENRICHED_BY_ID = new Map();
@@ -55,10 +54,7 @@ if (typeof enrichedRaw === "string" && enrichedRaw.length) {
 
 /* =========================================
    3) JLPT 各レベルのクイズデータ（n1〜n5）
-      - @ エイリアス経由で glob
-      - nouns1 を fallback で直 import
    ========================================= */
-
 // fallback: 各レベルの nouns1（必ず存在する前提）
 import * as FallbackN1Nouns1 from "@/data/wordquiz/n1/n1part_nouns1.js";
 import * as FallbackN2Nouns1 from "@/data/wordquiz/n2/n2part_nouns1.js";
@@ -73,7 +69,6 @@ function pickAnyArray(obj) {
   return Array.isArray(arr) ? arr : [];
 }
 
-// 各レベルごとに alias 経由で glob
 const quizModulesByLevel = {
   n1:
     import.meta?.glob?.("@/data/wordquiz/n1/**/*.js", { eager: true }) || {},
@@ -103,13 +98,11 @@ QUIZ_BY_LEVEL.n3.push(...pickAnyArray(FallbackN3Nouns1));
 QUIZ_BY_LEVEL.n4.push(...pickAnyArray(FallbackN4Nouns1));
 QUIZ_BY_LEVEL.n5.push(...pickAnyArray(FallbackN5Nouns1));
 
-// 念のため全レベルまとめたもの（フォールバック検索用）
 const ALL_QUIZZES = Object.values(QUIZ_BY_LEVEL).flat();
 
 /* =========================================
    4) grammar hints
    ========================================= */
-
 const hintModules =
   import.meta?.glob?.("../data/grammar/hints/index.js", { eager: true }) || {};
 
@@ -120,7 +113,6 @@ const HINTS_BY_TARGET =
 /* =========================================
    5) 言語・テキストヘルパ
    ========================================= */
-
 function getLangKey(i18n) {
   const lower = String(i18n.language || "ja").toLowerCase();
   if (lower.includes("tw")) return "tw";
@@ -152,7 +144,6 @@ function pickText(obj, preferred = "tw") {
 /* =========================================
    6) 出現頻度 ★★★★★（ざっくり推定）
    ========================================= */
-
 const clamp5 = (n) => Math.max(1, Math.min(5, Math.round(n)));
 
 function getFrequencyStars(item) {
@@ -175,16 +166,12 @@ function getFrequencyStars(item) {
 
 /* =========================================
    7) <u>…</u> を <ruby>…</ruby> に変換
-      語彙読み → 訓 → 音 の順で優先
    ========================================= */
-
 function decorateQuizSentence(html, word) {
   const k0 = (word?.kanjiInfo && word.kanjiInfo[0]) || {};
-
   const readingFirst = word?.reading || "";
   const kunFirst = (k0.kun && k0.kun[0]) || "";
   const onFirst = (k0.on && k0.on[0]) || "";
-
   const rt = readingFirst || kunFirst || onFirst || "";
 
   return html.replace(
@@ -196,23 +183,18 @@ function decorateQuizSentence(html, word) {
 /* =========================================
    8) 例文取得
    ========================================= */
-
 function searchSentencesInPool(pool, { id, kanji, reading }) {
   if (!pool || !pool.length) return [];
   const out = [];
   const key = id != null ? String(id) : null;
 
-  // 1) id 完全一致
   if (key) {
     for (const q of pool) {
-      if (String(q?.id) === key && q?.question_ja) {
-        out.push(q.question_ja);
-      }
+      if (String(q?.id) === key && q?.question_ja) out.push(q.question_ja);
     }
     if (out.length) return out;
   }
 
-  // 2) 漢字（<u>現像</u> or "現像"）で検索
   if (kanji) {
     const needle = `<u>${kanji}</u>`;
     for (const q of pool) {
@@ -223,7 +205,6 @@ function searchSentencesInPool(pool, { id, kanji, reading }) {
     if (out.length) return out;
   }
 
-  // 3) 読みで検索
   if (reading) {
     for (const q of pool) {
       const s = q?.question_ja || "";
@@ -237,99 +218,62 @@ function searchSentencesInPool(pool, { id, kanji, reading }) {
 
 function getQuizSentences(levelKey, { id, kanji, reading }) {
   const lv = (levelKey || "n5").toLowerCase();
-
-  // まずそのレベルだけ
-  const primary = searchSentencesInPool(QUIZ_BY_LEVEL[lv], {
-    id,
-    kanji,
-    reading,
-  });
+  const primary = searchSentencesInPool(QUIZ_BY_LEVEL[lv], { id, kanji, reading });
   if (primary.length) return primary;
-
-  // 見つからなければ全レベル横断
   return searchSentencesInPool(ALL_QUIZZES, { id, kanji, reading });
 }
 
 /* =========================================
    9) 本体コンポーネント
    ========================================= */
-
 export default function DetailModal({ open, onClose, data, level = "n5" }) {
   const { i18n } = useTranslation();
   const langKey = getLangKey(i18n);
 
+  const overlayRef = useRef(null);
+  const scrollRef = useRef(null);
+  const lastActiveElRef = useRef(null);
+
   const safeData = data || {};
   const levelKey = String(level || safeData.level || "n5").toLowerCase();
 
-  const ALL_WORDS = useMemo(
-    () => gatherAllWordsByLevel(levelKey),
-    [levelKey]
-  );
+  const ALL_WORDS = useMemo(() => gatherAllWordsByLevel(levelKey), [levelKey]);
 
-  const BY_ID = useMemo(
-    () => new Map(ALL_WORDS.map((w) => [String(w.id), w])),
-    [ALL_WORDS]
-  );
+  const BY_ID = useMemo(() => new Map(ALL_WORDS.map((w) => [String(w.id), w])), [ALL_WORDS]);
   const BY_KANJI = useMemo(
-    () =>
-      new Map(
-        ALL_WORDS.filter((w) => w?.kanji).map((w) => [String(w.kanji), w])
-      ),
+    () => new Map(ALL_WORDS.filter((w) => w?.kanji).map((w) => [String(w.kanji), w])),
     [ALL_WORDS]
   );
   const BY_READING = useMemo(
-    () =>
-      new Map(
-        ALL_WORDS.filter((w) => w?.reading).map((w) => [String(w.reading), w])
-      ),
+    () => new Map(ALL_WORDS.filter((w) => w?.reading).map((w) => [String(w.reading), w])),
     [ALL_WORDS]
   );
 
   const word = useMemo(() => {
     const idStr = safeData?.id != null ? String(safeData.id) : null;
     const byId = idStr ? BY_ID.get(idStr) : null;
-    const byKanji =
-      !byId && safeData?.kanji ? BY_KANJI.get(String(safeData.kanji)) : null;
+    const byKanji = !byId && safeData?.kanji ? BY_KANJI.get(String(safeData.kanji)) : null;
     const byReading =
-      !byId && !byKanji && safeData?.reading
-        ? BY_READING.get(String(safeData.reading))
-        : null;
+      !byId && !byKanji && safeData?.reading ? BY_READING.get(String(safeData.reading)) : null;
 
     const resolved = byId || byKanji || byReading || {};
     const finalId = safeData?.id ?? resolved?.id ?? null;
 
     let enriched = null;
-    if (finalId != null) {
-      enriched = ENRICHED_BY_ID.get(String(finalId)) || null;
-    }
+    if (finalId != null) enriched = ENRICHED_BY_ID.get(String(finalId)) || null;
     if (!enriched && (safeData?.kanji || resolved?.kanji)) {
       const keyKanji = String(safeData?.kanji || resolved?.kanji);
       enriched = ENRICHED_BY_KANJI.get(keyKanji) || null;
     }
 
-    return {
-      ...(enriched || {}),
-      ...resolved,
-      ...safeData,
-      id: finalId,
-      level: levelKey,
-    };
+    return { ...(enriched || {}), ...resolved, ...safeData, id: finalId, level: levelKey };
   }, [safeData, BY_ID, BY_KANJI, BY_READING, levelKey]);
 
-  const meaningText = useMemo(
-    () => pickText(word.meanings, langKey),
-    [word.meanings, langKey]
-  );
+  const meaningText = useMemo(() => pickText(word.meanings, langKey), [word.meanings, langKey]);
 
   const k0 = useMemo(() => word?.kanjiInfo?.[0] || {}, [word]);
-  const onList = useMemo(
-    () => (Array.isArray(k0.on) ? k0.on : []).join("・"),
-    [k0]
-  );
-  const kunList = useMemo(
-    () => (Array.isArray(k0.kun) ? k0.kun : []).join("・"),
-    [k0]
-  );
+  const onList = useMemo(() => (Array.isArray(k0.on) ? k0.on : []).join("・"), [k0]);
+  const kunList = useMemo(() => (Array.isArray(k0.kun) ? k0.kun : []).join("・"), [k0]);
 
   const inlineReading = useMemo(() => {
     const kunFirst = (k0.kun && k0.kun[0]) || word.reading || "";
@@ -338,11 +282,7 @@ export default function DetailModal({ open, onClose, data, level = "n5" }) {
   }, [k0, word.reading]);
 
   const sentences = useMemo(() => {
-    const raw = getQuizSentences(levelKey, {
-      id: word.id,
-      kanji: word.kanji,
-      reading: word.reading,
-    });
+    const raw = getQuizSentences(levelKey, { id: word.id, kanji: word.kanji, reading: word.reading });
     return raw.map((h) => decorateQuizSentence(h, word));
   }, [word.id, word.kanji, word.reading, levelKey]);
 
@@ -360,30 +300,58 @@ export default function DetailModal({ open, onClose, data, level = "n5" }) {
     };
   }, [langKey]);
 
-  // ★ ここで「漢字2文字以上か」を判定（Hook ではないので安全）
   const kanjiStr = String(word.kanji || "");
   const isMultiKanji = kanjiStr.length >= 2;
 
+  // ✅ open中：背景(.app-content)のスクロールをロック + ESCで閉じる + スクロール位置リセット
+  useEffect(() => {
+    if (!open) return;
+
+    lastActiveElRef.current = document.activeElement;
+
+    document.documentElement.classList.add("is-modal-open");
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    // 先頭へ（「下まで行くと戻る」系の体感も減る）
+    requestAnimationFrame(() => {
+      if (scrollRef.current) scrollRef.current.scrollTop = 0;
+    });
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.documentElement.classList.remove("is-modal-open");
+
+      // フォーカスを戻す
+      const last = lastActiveElRef.current;
+      if (last && typeof last.focus === "function") last.focus();
+    };
+  }, [open, onClose]);
+
   if (!open || !data) return null;
 
-  return (
+  const modalUi = (
     <div
+      ref={overlayRef}
       className="detail-overlay"
-      onClick={onClose}
       role="dialog"
       aria-modal="true"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose?.();
+      }}
+      onTouchStart={(e) => {
+        if (e.target === e.currentTarget) onClose?.();
+      }}
     >
-      <div className="detail-modal" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="detail-close"
-          onClick={onClose}
-          aria-label="閉じる"
-        >
-          ×
-        </button>
-
-        {/* 見出し */}
+      <div className="detail-modal" role="document">
         <div className="detail-header">
+          <button className="detail-close" onClick={onClose} aria-label="閉じる">
+            ×
+          </button>
+
           <div className="detail-kanji" lang="ja" aria-label="見出し語">
             {word.kanji || "—"}
           </div>
@@ -398,90 +366,85 @@ export default function DetailModal({ open, onClose, data, level = "n5" }) {
           {word.pos && <div className="detail-pos">{word.pos}</div>}
         </div>
 
-        {/* メタ情報 */}
-        <div className="detail-meta">
-          <div>
-            <div className="meta__label">意味</div>
-            <div className="meta__value" lang={langKey}>
-              {meaningText || "-"}
+        {/* ✅ ここが “唯一のスクロール領域” */}
+        <div ref={scrollRef} className="detail-scroll" aria-label="詳細内容">
+          <div className="detail-meta">
+            <div>
+              <div className="meta__label">意味</div>
+              <div className="meta__value" lang={langKey}>
+                {meaningText || "-"}
+              </div>
+            </div>
+
+            {!isMultiKanji && (
+              <>
+                <div>
+                  <div className="meta__label">on</div>
+                  <div className="meta__value" lang="ja">
+                    {onList || "-"}
+                  </div>
+                </div>
+                <div>
+                  <div className="meta__label">kun</div>
+                  <div className="meta__value" lang="ja">
+                    {kunList || word.reading || "-"}
+                  </div>
+                </div>
+              </>
+            )}
+
+            <div>
+              <div className="meta__label">画数</div>
+              <div className="meta__value">{k0.strokes ?? "-"}</div>
+            </div>
+
+            <div>
+              <div className="meta__label">出現頻度</div>
+              <div className="meta__value stars" aria-label={`出現頻度 ${freqStars}/5`}>
+                {"★".repeat(freqStars)}
+                {"☆".repeat(5 - freqStars)}
+              </div>
             </div>
           </div>
 
-          {/* ★ 漢字が1文字のときだけ on / kun を表示 */}
-          {!isMultiKanji && (
-            <>
-              <div>
-                <div className="meta__label">on</div>
-                <div className="meta__value" lang="ja">
-                  {onList || "-"}
+          <div className="detail-examples" aria-label="例文">
+            <h3>例文</h3>
+            {sentences.length > 0 ? (
+              sentences.slice(0, 3).map((html, i) => (
+                <div key={i} className="example-block">
+                  <p className="example-ja" dangerouslySetInnerHTML={{ __html: html }} />
                 </div>
+              ))
+            ) : (
+              <div className="example-block">
+                <p className="example-ja">
+                  例文は準備中です。<code>src/data/wordquiz/{levelKey}/**</code> に
+                  <code>question_ja</code> を追加すると自動表示されます。
+                </p>
               </div>
-              <div>
-                <div className="meta__label">kun</div>
-                <div className="meta__value" lang="ja">
-                  {kunList || word.reading || "-"}
-                </div>
-              </div>
-            </>
+            )}
+          </div>
+
+          {Array.isArray(word.conjugations) || word.conjugations ? (
+            <div className="detail-conjugations">
+              <h3>活用</h3>
+              <div className="conj-empty">活用データがあります（描画は形式に合わせて差し込み）</div>
+            </div>
+          ) : null}
+
+          {hintFor("ます形") && (
+            <div className="detail-hints">
+              <h3>学習ヒント</h3>
+              <p className="hint-line">{hintFor("ます形")}</p>
+            </div>
           )}
 
-          <div>
-            <div className="meta__label">画数</div>
-            <div className="meta__value">{k0.strokes ?? "-"}</div>
-          </div>
-          <div>
-            <div className="meta__label">出現頻度</div>
-            <div
-              className="meta__value stars"
-              aria-label={`出現頻度 ${freqStars}/5`}
-            >
-              {"★".repeat(freqStars)}
-              {"☆".repeat(5 - freqStars)}
-            </div>
-          </div>
+          <div className="detail-bottomSpace" aria-hidden="true" />
         </div>
-
-        {/* 例文 */}
-        <div className="detail-examples" aria-label="例文">
-          <h3>例文</h3>
-          {sentences.length > 0 ? (
-            sentences.slice(0, 3).map((html, i) => (
-              <div key={i} className="example-block">
-                <p
-                  className="example-ja"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                />
-              </div>
-            ))
-          ) : (
-            <div className="example-block">
-              <p className="example-ja">
-                例文は準備中です。
-                <code>src/data/wordquiz/{levelKey}/**</code> に
-                <code>question_ja</code> を追加すると自動表示されます。
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* 活用（必要時） */}
-        {Array.isArray(word.conjugations) || word.conjugations ? (
-          <div className="detail-conjugations">
-            <h3>活用</h3>
-            <div className="conj-empty">
-              活用データがあります（描画はプロジェクト形式に合わせて差し込み）
-            </div>
-          </div>
-        ) : null}
-
-        {/* ヒント（任意） */}
-        {hintFor("ます形") && (
-          <div className="detail-hints">
-            <h3>学習ヒント</h3>
-            <p className="hint-line">{hintFor("ます形")}</p>
-          </div>
-        )}
       </div>
     </div>
   );
+
+  // ✅ 重要：app-content の中じゃなく body 直下へ
+  return createPortal(modalUi, document.body);
 }

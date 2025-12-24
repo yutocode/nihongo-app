@@ -1,10 +1,5 @@
 // src/pages/AuthPage.jsx
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useCallback,
-} from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -144,8 +139,7 @@ const AuthPage = () => {
   const isLoginEmailValid = useEmailValidation(loginEmail);
   const isRegisterEmailValid = useEmailValidation(registerEmail);
 
-  const mapErrorKey = (code) =>
-    FB_ERROR_I18N[code] || "auth.errors.generic";
+  const mapErrorKey = (code) => FB_ERROR_I18N[code] || "auth.errors.generic";
 
   // ====== WKWebView から Google API に届くかテスト（デバッグ用） ======
   useEffect(() => {
@@ -174,11 +168,7 @@ const AuthPage = () => {
         console.log("[FETCH TEST] status =", res.status, "body =", text);
       })
       .catch((e) => {
-        console.log(
-          "[FETCH TEST ERROR]",
-          e?.name,
-          e?.message || e,
-        );
+        console.log("[FETCH TEST ERROR]", e?.name, e?.message || e);
       });
   }, []);
 
@@ -198,10 +188,7 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const data = await restSignInWithPassword(
-        loginEmail,
-        loginPassword,
-      );
+      const data = await restSignInWithPassword(loginEmail, loginPassword);
 
       console.log("[REST LOGIN OK]", data.localId);
 
@@ -239,13 +226,7 @@ const AuthPage = () => {
     } finally {
       setBusy(false);
     }
-  }, [
-    loginEmail,
-    loginPassword,
-    isLoginEmailValid,
-    navigate,
-    setUser,
-  ]);
+  }, [loginEmail, loginPassword, isLoginEmailValid, navigate, setUser]);
 
   /* ========= メール/パスワード：新規登録（REST版） ========= */
 
@@ -267,10 +248,7 @@ const AuthPage = () => {
 
     setBusy(true);
     try {
-      const data = await restSignUp(
-        registerEmail,
-        registerPassword,
-      );
+      const data = await restSignUp(registerEmail, registerPassword);
 
       console.log("[REST REGISTER OK]", data.localId);
 
@@ -309,13 +287,7 @@ const AuthPage = () => {
     } finally {
       setBusy(false);
     }
-  }, [
-    registerEmail,
-    registerPassword,
-    isRegisterEmailValid,
-    navigate,
-    setUser,
-  ]);
+  }, [registerEmail, registerPassword, isRegisterEmailValid, navigate, setUser]);
 
   /* ========= キーボード Enter ========= */
 
@@ -327,18 +299,6 @@ const AuthPage = () => {
     if (e.key === "Enter") handleRegister();
   };
 
-  /* ========= ゲスト ========= */
-
-  const continueAsGuest = () => {
-    console.log("[GUEST] continue as guest");
-    try {
-      window.localStorage.removeItem("needsOnboarding");
-    } catch (e) {
-      console.warn("needsOnboarding 削除失敗:", e);
-    }
-    navigate("/home", { replace: true });
-  };
-
   return (
     <div className="auth-page">
       <div className="auth-shell">
@@ -347,9 +307,7 @@ const AuthPage = () => {
           <div className="auth-tabs" role="tablist">
             <button
               type="button"
-              className={`auth-tab ${
-                mode === "login" ? "is-active" : ""
-              }`}
+              className={`auth-tab ${mode === "login" ? "is-active" : ""}`}
               onClick={() => setMode("login")}
               role="tab"
               aria-selected={mode === "login"}
@@ -358,9 +316,7 @@ const AuthPage = () => {
             </button>
             <button
               type="button"
-              className={`auth-tab ${
-                mode === "register" ? "is-active" : ""
-              }`}
+              className={`auth-tab ${mode === "register" ? "is-active" : ""}`}
               onClick={() => setMode("register")}
               role="tab"
               aria-selected={mode === "register"}
@@ -392,9 +348,7 @@ const AuthPage = () => {
                   type={showPassLogin ? "text" : "password"}
                   placeholder={t("auth.password", "Password")}
                   value={loginPassword}
-                  onChange={(e) =>
-                    setLoginPassword(e.target.value)
-                  }
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   onKeyDown={onKeyDownLogin}
                   required
                   aria-label={t("auth.password", "Password")}
@@ -418,9 +372,7 @@ const AuthPage = () => {
                 onClick={handleLogin}
                 disabled={busy || !loginEmail || !loginPassword}
               >
-                {busy
-                  ? t("common.loading", "Loading…")
-                  : t("auth.login_button", "Log in")}
+                {busy ? t("common.loading", "Loading…") : t("auth.login_button", "Log in")}
               </button>
             </div>
           )}
@@ -432,9 +384,7 @@ const AuthPage = () => {
                 type="email"
                 placeholder={t("auth.email", "Email")}
                 value={registerEmail}
-                onChange={(e) =>
-                  setRegisterEmail(e.target.value)
-                }
+                onChange={(e) => setRegisterEmail(e.target.value)}
                 onKeyDown={onKeyDownRegister}
                 required
                 aria-invalid={!isRegisterEmailValid}
@@ -443,14 +393,9 @@ const AuthPage = () => {
               <div className="password-field">
                 <input
                   type={showPassRegister ? "text" : "password"}
-                  placeholder={t(
-                    "auth.password_hint",
-                    "Password (6+ chars)",
-                  )}
+                  placeholder={t("auth.password_hint", "Password (6+ chars)")}
                   value={registerPassword}
-                  onChange={(e) =>
-                    setRegisterPassword(e.target.value)
-                  }
+                  onChange={(e) => setRegisterPassword(e.target.value)}
                   onKeyDown={onKeyDownRegister}
                   required
                   aria-label={t("auth.password", "Password")}
@@ -459,9 +404,7 @@ const AuthPage = () => {
                 <button
                   type="button"
                   className="toggle-pass"
-                  onClick={() =>
-                    setShowPassRegister((v) => !v)
-                  }
+                  onClick={() => setShowPassRegister((v) => !v)}
                   aria-label={
                     showPassRegister
                       ? t("auth.hide_password", "Hide password")
@@ -490,32 +433,16 @@ const AuthPage = () => {
           )}
 
           {errorKey && (
-            <div
-              className="auth-error"
-              role="alert"
-              aria-live="assertive"
-            >
+            <div className="auth-error" role="alert" aria-live="assertive">
               {t(
                 errorKey,
-                t(
-                  "auth.errors.generic",
-                  "Something went wrong. Please try again.",
-                ),
+                t("auth.errors.generic", "Something went wrong. Please try again."),
               )}
             </div>
           )}
         </div>
 
-        <div className="auth-guest">
-          <button
-            type="button"
-            className="guest-btn"
-            onClick={continueAsGuest}
-            disabled={busy}
-          >
-            {t("auth.continue_guest", "Continue as guest")}
-          </button>
-        </div>
+        {/* ✅ guest mode は削除（表示もしない） */}
       </div>
     </div>
   );

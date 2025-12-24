@@ -1,5 +1,86 @@
 /* src/styles/Global.css */
 
+/* --------------------- Tokens (MUST) --------------------- */
+:root {
+  /* 8pt grid */
+  --space-8: 0.5rem; /* 8px相当（基準） */
+  --space-1: calc(var(--space-8) / 8);
+
+  --radius-12: calc(var(--space-8) * 1.5);
+  --radius-16: calc(var(--space-8) * 2);
+
+  --line-1: var(--space-1);
+
+  --motion-200: 200ms;
+
+  --shadow-1: 0 calc(var(--space-1) * 2) calc(var(--space-8) * 1)
+    color-mix(in oklab, #000 10%, transparent);
+  --shadow-2: 0 calc(var(--space-1) * 3) calc(var(--space-8) * 1.5)
+    color-mix(in oklab, #000 14%, transparent);
+
+  /* colors */
+  --color-bg: #ffffff;
+  --color-text: #0b0b0f;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f4f6;
+  --color-surface-3: #e7e9ee;
+  --color-border: color-mix(in oklab, var(--color-text) 12%, transparent);
+  --color-ink: #0b0b0f;
+  --color-shadow: #000000;
+
+  --color-success-surface: #34c759;
+  --color-danger-surface: #ff3b30;
+  --color-warning-surface: #ffcc00;
+  --color-info-surface: #0a84ff;
+
+  --focus-ring: var(--color-info-surface);
+
+  /* backward-compat (あなたの既存CSSが --bg / --text を参照するため保持) */
+  --bg: var(--color-bg);
+  --text: var(--color-text);
+
+  /* --------------------- Avatar palette (SVG fill/stroke -> CSS vars) --------------------- */
+  /* cat-wizard.svg などで検出された色（必要なら増やしてOK） */
+  --color-avatar-fbf1e7: #fbf1e7;
+  --color-avatar-e8c9a2: #e8c9a2;
+  --color-avatar-e4b193: #e4b193;
+  --color-avatar-acb557: #acb557;
+  --color-avatar-5c65a5: #5c65a5;
+  --color-avatar-67a134: #67a134;
+  --color-avatar-b44339: #b44339;
+  --color-avatar-615b5a: #615b5a;
+  --color-avatar-644c35: #644c35;
+  --color-avatar-573025: #573025;
+  --color-avatar-292725: #292725;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0b0b0f;
+  --color-text: #f5f7ff;
+  --color-surface: #14151b;
+  --color-surface-2: #1b1c24;
+  --color-surface-3: #242635;
+  --color-border: color-mix(in oklab, var(--color-text) 16%, transparent);
+  --color-shadow: #000000;
+
+  --bg: var(--color-bg);
+  --text: var(--color-text);
+
+  /* avatar palette（暗色テーマでも同じ色を使うならこのままでOK）
+     もし暗くしたいなら、ここで上書きする */
+  --color-avatar-fbf1e7: #fbf1e7;
+  --color-avatar-e8c9a2: #e8c9a2;
+  --color-avatar-e4b193: #e4b193;
+  --color-avatar-acb557: #acb557;
+  --color-avatar-5c65a5: #5c65a5;
+  --color-avatar-67a134: #67a134;
+  --color-avatar-b44339: #b44339;
+  --color-avatar-615b5a: #615b5a;
+  --color-avatar-644c35: #644c35;
+  --color-avatar-573025: #573025;
+  --color-avatar-292725: #292725;
+}
+
 /* --------------------- Reset & Base --------------------- */
 *,
 *::before,
@@ -22,8 +103,14 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-ja-sans, system-ui, -apple-system, "Noto Sans JP",
-      "Roboto", sans-serif);
+  font-family: var(
+    --font-ja-sans,
+    system-ui,
+    -apple-system,
+    "Noto Sans JP",
+    "Roboto",
+    sans-serif
+  );
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

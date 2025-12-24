@@ -1,417 +1,299 @@
-/* =========================================
-   Profile Page — 100/100 CSS
-   Apple HIG × Duolingo / Token-Only
-   - uses: --color/* --space/* --radius/* --shadow/* --motion/*
-   - mobile-first (375 / 768 / 1024)
-   - AA contrast, focus-visible, reduced motion
-========================================= */
+/* src/styles/Profile.css */
 
-/* ---------- Page ---------- */
-.profile {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  padding: var(--space-5);
-  color: var(--color-fg);
+.pf {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  padding: calc(var(--space-8) * 2);
   background: var(--color-bg);
+  color: var(--color-text);
+
+  /* ✅ 目に優しい“薄い緑” */
+  --pf-accent-bg: color-mix(
+    in oklab,
+    var(--color-success-surface) 26%,
+    var(--color-surface)
+  );
+  --pf-accent-fg: color-mix(
+    in oklab,
+    var(--color-text) 78%,
+    var(--color-success-surface)
+  );
+
+  --pf-card-bg: color-mix(
+    in oklab,
+    var(--color-surface) 92%,
+    var(--color-surface-2)
+  );
+  --pf-card-border: color-mix(in oklab, var(--color-border) 72%, transparent);
 }
 
-/* ---------- Header Card ---------- */
-.profile__header {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-5);
-  background: var(--color-bg-elev);
-  box-shadow: var(--shadow-1);
-}
-
-/* Avatar button */
-.avatar-btn {
-  appearance: none;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  border-radius: var(--radius-5);
-  outline: none;
-}
-.avatar-btn:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-accent);
-}
-
-/* Avatar tile */
-.avatar {
-  inline-size: calc(var(--space-11)); /* token-based ~88 */
-  aspect-ratio: 1;
-  border-radius: var(--radius-5);
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-surface-1);
-  box-shadow: var(--shadow-1);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-.avatar--tile svg,
-.avatar--tile img {
-  inline-size: 70%;
-  block-size: 70%;
-}
-
-/* ID block */
-.profile__id {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  min-inline-size: 0;
-}
-.profile__name {
-  font-weight: 800;
-  font-size: 1.125rem; /* type scale OK */
-  line-height: 1.2;
-}
-.profile__handle { opacity: .75; }
-.profile__target { opacity: .9; }
-
-/* Header right cluster */
-.profile__headerRight {
-  grid-column: 1 / -1; /* mobile: wrap under */
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-/* ---------- Level Summary ---------- */
-.pf__lv {
+/* ---------------- top row ---------------- */
+.pf__top {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-4);
-  background: var(--color-bg-elev);
+  gap: calc(var(--space-8) * 2);
+}
+
+/* ✅ spacerは使わない（ここが右の空きを生む原因） */
+.pf__topSpacer {
+  display: none;
+}
+
+/* icon button */
+.pf__iconBtn {
+  width: calc(var(--space-8) * 5);
+  height: calc(var(--space-8) * 5);
+  border-radius: calc(var(--radius-16) * 999);
+  border: var(--space-1) solid var(--pf-card-border);
+  background: var(--pf-card-bg);
   box-shadow: var(--shadow-1);
-}
-.pf__lvLeft {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-weight: 800;
-}
-.pf__lvChip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  block-size: calc(var(--space-6));
-  padding-inline: var(--space-2);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-2);
-  line-height: 1;
+  cursor: pointer;
+  transition: transform var(--motion-200) cubic-bezier(.2,.8,.2,1);
 }
-.pf__lvSep { opacity: .6; }
-.pf__lvLabel { opacity: .95; }
 
-.pf__lvRight {
-  display: inline-flex;
+.pf__iconBtn:active {
+  transform: scale(0.98);
+}
+
+.pf__iconBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-2);
+}
+
+.pf__iconSvg {
+  width: calc(var(--space-8) * 3);
+  height: calc(var(--space-8) * 3);
+  color: var(--color-text);
+}
+
+/* identity（田中太郎ブロックを横長に） */
+.pf__identity {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  display: flex;
   align-items: center;
-  gap: var(--space-2);
-  margin-inline-start: auto;
+  gap: calc(var(--space-8) * 2);
+
+  padding: calc(var(--space-8) * 1.5);
+  border-radius: var(--radius-16);
+  border: var(--space-1) solid var(--pf-card-border);
+  background: var(--pf-card-bg);
+  box-shadow: var(--shadow-1);
 }
-.pf__lvBar {
-  inline-size: min(42vw, 18rem);
-  block-size: calc(var(--space-2));
-  border-radius: 9999px;
-  background: var(--color-surface-1);
-  border: 1px solid var(--color-border-subtle);
+
+/* avatar */
+.pf__avatar {
+  width: calc(var(--space-8) * 6);
+  height: calc(var(--space-8) * 6);
+  border-radius: var(--radius-16);
   overflow: hidden;
+  background: var(--color-surface-2);
+  border: var(--space-1) solid var(--pf-card-border);
+  box-shadow: var(--shadow-1);
   position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
 }
-.pf__lvFill {
-  block-size: 100%;
-  border-radius: inherit;
-  background: var(--color-accent);
-  transition: inline-size var(--motion-normal, 200ms) cubic-bezier(.2,.8,.2,1);
-  position: relative;
+
+.pf__catAvatar {
+  width: 100%;
+  height: 100%;
 }
-.pf__lvShine {
+
+.pf__avatarFallback {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-  mix-blend-mode: overlay;
-  animation: pfShine var(--motion-slow, 1800ms) linear infinite;
-  pointer-events: none;
-  opacity: .25;
-}
-.pf__lvMeta {
-  font-size: .9em;
-  font-variant-numeric: tabular-nums;
-  opacity: .9;
-}
-@keyframes pfShine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* ---------- Streak Badge ---------- */
-.pf__streak {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: calc(var(--space-2) - 1px) var(--space-3);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-3);
-  background: var(--color-bg-elev);
-  box-shadow: var(--shadow-1);
-  font-weight: 700;
-  line-height: 1;
-}
-.pf__streakFlame { font-size: 1.1em; }
-.pf__streakCount { min-inline-size: 1.5em; text-align: end; font-variant-numeric: tabular-nums; }
-.pf__streakDot {
-  inline-size: .5em;
-  block-size: .5em;
-  border-radius: 999px;
-  background: var(--color-accent);
-  display: inline-block;
-}
-
-/* ---------- Stats ---------- */
-.profile__stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-}
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-4);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-4);
-  background: var(--color-bg-elev);
-  box-shadow: var(--shadow-1);
-}
-.stat__value {
-  font-weight: 900;
-  font-size: 1.4rem;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.stat__label { opacity: .8; }
-
-/* ---------- Sections ---------- */
-.profile__section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-4);
-  background: var(--color-bg-elev);
-  box-shadow: var(--shadow-1);
-}
-.profile__sectionTitle { font-weight: 800; }
-.profile__bio {
-  padding: var(--space-4);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-3);
-  background: var(--color-surface-1);
-}
-
-/* ---------- Toggles (iOS-like) ---------- */
-.profile__toggles { display: grid; gap: var(--space-2); }
-
-.toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-4);
-  background: var(--color-bg-elev);
-}
-.toggle input {
-  position: absolute;
+  place-items: center;
+  font-weight: 800;
+  color: var(--color-text);
   opacity: 0;
   pointer-events: none;
 }
-.toggle__label { user-select: none; }
-.toggle__switch {
-  inline-size: calc(var(--space-9));           /* token ~72 */
-  block-size: calc(var(--space-5));            /* token ~40 */
-  border-radius: 9999px;
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-surface-1);
-  position: relative;
-  box-shadow: var(--shadow-1);
-  transition:
-    background var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1),
-    border-color var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1);
-}
-.toggle__switch::after {
-  content: "";
-  position: absolute;
-  inset: calc(var(--space-1));
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  background: var(--color-bg);
-  transform: translateX(0);
-  transition:
-    transform var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1),
-    background var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1);
-}
-.toggle input:checked + .toggle__switch {
-  background: var(--color-accent);
-  border-color: transparent;
-}
-.toggle input:checked + .toggle__switch::after {
-  background: var(--color-bg);
-  transform: translateX(calc(100% - var(--space-2)));
-}
 
-/* ---------- Buttons ---------- */
-.btn {
-  appearance: none;
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-surface-1);
-  color: var(--color-fg);
-  padding-inline: var(--space-3);
-  block-size: calc(var(--space-6));
-  border-radius: var(--radius-3);
-  box-shadow: var(--shadow-1);
-  cursor: pointer;
-  transition:
-    transform var(--motion-fast, 150ms) cubic-bezier(.2,.8,.2,1),
-    background var(--motion-fast, 150ms),
-    border-color var(--motion-fast, 150ms);
-}
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
-.btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-accent); }
-
-.btn--primary {
-  background: var(--color-accent);
-  color: var(--color-on-accent);
-  border-color: transparent;
-}
-
-/* ---------- Modal ---------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-}
-.modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: color-mix(in oklab, var(--color-bg) 60%, black 40%);
-  backdrop-filter: blur(4px);
-}
-.modal__body {
-  position: relative;
-  margin-block-start: 10vh;
-  margin-inline: auto;
-  inline-size: min(92vw, 40rem);
+/* name/email */
+.pf__who {
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-5);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-5);
-  background: var(--color-bg-elev);
-  box-shadow: var(--shadow-2);
-  animation: modalIn var(--motion-fast, 180ms) cubic-bezier(.2,.8,.2,1);
-}
-.modal__title { font-weight: 800; }
-.modal__actions {
-  display: flex;
-  gap: var(--space-2);
-  justify-content: flex-end;
+  gap: calc(var(--space-8) * 0.5);
 }
 
-/* Fields */
-.field {
+.pf__name {
+  font-weight: 900;
+  font-size: calc(var(--space-8) * 2);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pf__email {
+  font-size: calc(var(--space-8) * 1.5);
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------- stats grid ---------------- */
+.pf__stats {
+  margin-top: calc(var(--space-8) * 2);
   display: grid;
-  gap: var(--space-2);
-}
-.field input,
-.field select,
-.field textarea {
-  inline-size: 100%;
-  padding: var(--space-3);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-3);
-  background: var(--color-bg);
-  color: var(--color-fg);
-  transition:
-    border-color var(--motion-fast, 150ms) cubic-bezier(.2,.8,.2,1),
-    box-shadow var(--motion-fast, 150ms) cubic-bezier(.2,.8,.2,1);
-}
-.field input:focus-visible,
-.field select:focus-visible,
-.field textarea:focus-visible {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-accent) 40%, transparent);
-}
-.hint { opacity: .7; font-size: .9em; text-align: end; }
-
-@keyframes modalIn {
-  from { transform: translateY(var(--space-1)); opacity: 0; }
-  to   { transform: translateY(0);              opacity: 1; }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--space-8) * 2);
 }
 
-/* ---------- Empty / Loading ---------- */
-.profile__loading,
-.profile__empty {
-  padding: var(--space-5);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-4);
-  background: var(--color-bg-elev);
+.pf__statCard {
+  position: relative;
+  border-radius: var(--radius-16);
+  border: var(--space-1) solid var(--pf-card-border);
+  background: var(--pf-card-bg);
   box-shadow: var(--shadow-1);
-  text-align: center;
+
+  padding: calc(var(--space-8) * 2.5) calc(var(--space-8) * 2);
+  min-height: calc(var(--space-8) * 15);
+  min-width: 0;
+
+  display: grid;
+  align-content: start;
+  gap: calc(var(--space-8) * 1);
 }
 
-/* ---------- Global Focus Reinforcement ---------- */
-.profile :focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-accent) 70%, transparent);
+/* ✅ JSXが wrap を作ってない場合でも同じ位置に固定できるように吸収 */
+.pf__statCard > .pf__statBadge,
+.pf__statBadgeWrap {
+  position: absolute;
+  top: calc(var(--space-8) * 2);
+  left: calc(var(--space-8) * 2);
 }
 
-/* ---------- Dark tweaks ---------- */
-[data-theme="dark"] .profile__header,
-[data-theme="dark"] .profile__stats .stat,
-[data-theme="dark"] .profile__section,
-[data-theme="dark"] .profile__bio,
-[data-theme="dark"] .toggle,
-[data-theme="dark"] .pf__lv,
-[data-theme="dark"] .pf__streak {
-  border-color: var(--color-border);
+.pf__statBadge {
+  width: calc(var(--space-8) * 5);
+  height: calc(var(--space-8) * 5);
+  border-radius: calc(var(--radius-16) * 999);
+  display: grid;
+  place-items: center;
+  border: var(--space-1) solid var(--pf-card-border);
+  box-shadow: var(--shadow-1);
 }
 
-/* ---------- Reduced Motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .pf__lvFill,
-  .pf__lvShine,
-  .btn,
-  .modal__body {
-    transition: none !important;
-    animation: none !important;
+.pf__statBadge--success {
+  background: var(--pf-accent-bg);
+  color: var(--pf-accent-fg);
+}
+
+.pf__statBadge--neutral {
+  background: color-mix(in oklab, var(--color-surface-2) 70%, var(--pf-card-bg));
+  color: color-mix(in oklab, var(--color-text) 88%, var(--color-surface-2));
+}
+
+.pf__badgeSvg {
+  width: calc(var(--space-8) * 2.5);
+  height: calc(var(--space-8) * 2.5);
+}
+
+.pf__statValue {
+  margin-top: calc(var(--space-8) * 4.5);
+  font-weight: 900;
+  font-size: calc(var(--space-8) * 4);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.pf__statLabel {
+  font-size: calc(var(--space-8) * 1.5);
+  opacity: 0.7;
+}
+
+/* ---------------- JLPT ---------------- */
+.pf__jlpt {
+  margin-top: calc(var(--space-8) * 2);
+  padding: calc(var(--space-8) * 2);
+  border-radius: var(--radius-16);
+  border: var(--space-1) solid var(--pf-card-border);
+  background: var(--pf-card-bg);
+  box-shadow: var(--shadow-1);
+}
+
+.pf__jlptTitle {
+  margin: 0 0 calc(var(--space-8) * 1.5);
+  font-size: calc(var(--space-8) * 2);
+  font-weight: 900;
+}
+
+.pf__jlptList {
+  display: grid;
+  gap: calc(var(--space-8) * 1.5);
+}
+
+.pf__jlptRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: calc(var(--space-8) * 1.5);
+  min-width: 0;
+}
+
+.pf__jlptLeft {
+  display: flex;
+  gap: calc(var(--space-8) * 1);
+  align-items: baseline;
+  min-width: 0;
+}
+
+.pf__jlptLevel {
+  font-weight: 900;
+}
+
+.pf__jlptLabel {
+  opacity: 0.7;
+  font-size: calc(var(--space-8) * 1.5);
+}
+
+.pf__jlptBarTrack {
+  height: calc(var(--space-8) * 1.25);
+  border-radius: calc(var(--radius-16) * 999);
+  background: color-mix(in oklab, var(--color-surface-2) 70%, var(--pf-card-bg));
+  overflow: hidden;
+  border: var(--space-1) solid var(--pf-card-border);
+}
+
+.pf__jlptBarFill {
+  height: 100%;
+  border-radius: calc(var(--radius-16) * 999);
+  background: color-mix(
+    in oklab,
+    var(--color-success-surface) 70%,
+    var(--color-surface)
+  );
+  transition: width var(--motion-200) cubic-bezier(.2,.8,.2,1);
+}
+
+.pf__jlptPct {
+  font-weight: 800;
+  opacity: 0.8;
+}
+
+/* 320幅でも崩れない */
+@media (max-width: 374px) {
+  .pf__stats {
+    grid-template-columns: 1fr;
   }
-}
 
-/* ---------- Responsive ---------- */
-@media (min-width: 48rem) {
-  .profile { padding: var(--space-6); }
-  .profile__header { grid-template-columns: auto 1fr auto; }
-  .profile__headerRight { grid-column: auto; }
-}
-@media (min-width: 64rem) {
-  .pf__lvBar { inline-size: 20rem; }
+  .pf__jlptRow {
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-8) * 1);
+  }
+
+  .pf__jlptPct {
+    justify-self: end;
+  }
 }

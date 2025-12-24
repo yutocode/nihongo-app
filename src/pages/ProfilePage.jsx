@@ -1,694 +1,309 @@
 // src/pages/ProfilePage.jsx
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp,
-} from "firebase/firestore";
-import { signOut } from "firebase/auth";
-
 import { useAppStore } from "@/store/useAppStore";
-import { db, auth } from "@/firebase/firebase-config";
+import CatAvatar from "@/components/ui/CatAvatar/CatAvatar";
 import "@/styles/Profile.css";
 
-/* =======================
-   内蔵アバター（写真なし）
-   - 追加したいときは AVATAR_LIST に1行足すだけ
-======================= */
-const AVATAR_LIST = [
-  { key: "panda", label: "Panda" },
-  { key: "jellyfish", label: "Jellyfish" },
-  { key: "cat", label: "Cat" },
-  { key: "dog", label: "Dog" },
-  { key: "rabbit", label: "Rabbit" },
-  { key: "fox", label: "Fox" },
-  { key: "bear", label: "Bear" },
-  { key: "koala", label: "Koala" },
-  { key: "penguin", label: "Penguin" },
-  { key: "lion", label: "Lion" },
-  { key: "tiger", label: "Tiger" },
-  { key: "owl", label: "Owl" },
-];
-
-function AvatarGlyph({ name = "panda", size = 72 }) {
-  const n = String(name || "panda").toLowerCase();
-
-  // 共通スタイル（線の太さ・角丸）
-  const common = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 8,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  };
-
-  // ざっくりでも “統一感” 重視のミニマルSVG
-  // ※必要なら後で各アイコンを同じテイストで描き直して増やせる
-  const render = () => {
-    switch (n) {
-      case "jellyfish":
-        return (
-          <>
-            <path {...common} d="M64 86c0-28 22-50 48-50s48 22 48 50" />
-            <path {...common} d="M64 86c10 16 30 26 48 26s38-10 48-26" />
-            <path {...common} d="M84 120c0 22-8 36-8 52" />
-            <path {...common} d="M104 122c0 24-6 38-6 56" />
-            <path {...common} d="M120 122c0 26 0 40 0 58" />
-            <path {...common} d="M136 122c0 24 6 38 6 56" />
-            <path {...common} d="M156 120c0 22 8 36 8 52" />
-          </>
-        );
-      case "cat":
-        return (
-          <>
-            <path {...common} d="M72 90l12-20 18 14" />
-            <path {...common} d="M168 90l-12-20-18 14" />
-            <path {...common} d="M72 94c0-22 22-40 48-40s48 18 48 40" />
-            <path {...common} d="M72 94c0 34 20 56 48 56s48-22 48-56" />
-            <path {...common} d="M100 114h0" />
-            <path {...common} d="M140 114h0" />
-            <path {...common} d="M116 132c4 4 20 4 24 0" />
-            <path {...common} d="M86 128l-18 6" />
-            <path {...common} d="M86 136l-18 10" />
-            <path {...common} d="M170 128l18 6" />
-            <path {...common} d="M170 136l18 10" />
-          </>
-        );
-      case "dog":
-        return (
-          <>
-            <path {...common} d="M80 92c-16 8-22 22-22 40" />
-            <path {...common} d="M160 92c16 8 22 22 22 40" />
-            <path {...common} d="M74 98c6-26 26-44 46-44s40 18 46 44" />
-            <path {...common} d="M74 98c0 40 18 62 46 62s46-22 46-62" />
-            <path {...common} d="M108 118h0" />
-            <path {...common} d="M132 118h0" />
-            <path {...common} d="M112 138c8 6 16 6 24 0" />
-            <path {...common} d="M120 140v10" />
-          </>
-        );
-      case "rabbit":
-        return (
-          <>
-            <path {...common} d="M96 52c-10 14-10 34 0 48" />
-            <path {...common} d="M144 52c10 14 10 34 0 48" />
-            <path {...common} d="M76 104c8-28 28-46 44-46s36 18 44 46" />
-            <path {...common} d="M76 104c0 34 18 54 44 54s44-20 44-54" />
-            <path {...common} d="M106 118h0" />
-            <path {...common} d="M134 118h0" />
-            <path {...common} d="M116 136c4 4 20 4 24 0" />
-          </>
-        );
-      case "fox":
-        return (
-          <>
-            <path {...common} d="M70 108c8-30 30-50 50-50s42 20 50 50" />
-            <path {...common} d="M70 108c0 34 20 54 50 54s50-20 50-54" />
-            <path {...common} d="M88 92l-14-18" />
-            <path {...common} d="M168 92l14-18" />
-            <path {...common} d="M104 120h0" />
-            <path {...common} d="M152 120h0" />
-            <path {...common} d="M118 140c10 6 20 6 30 0" />
-          </>
-        );
-      case "bear":
-        return (
-          <>
-            <path {...common} d="M92 66c-10 0-18 8-18 18" />
-            <path {...common} d="M164 66c10 0 18 8 18 18" />
-            <path {...common} d="M78 104c6-30 28-50 50-50s44 20 50 50" />
-            <path {...common} d="M78 104c0 36 18 58 50 58s50-22 50-58" />
-            <path {...common} d="M106 120h0" />
-            <path {...common} d="M150 120h0" />
-            <path {...common} d="M116 142c8 6 16 6 24 0" />
-          </>
-        );
-      case "koala":
-        return (
-          <>
-            <path {...common} d="M86 82c-10 0-18 8-18 18s8 18 18 18" />
-            <path {...common} d="M170 82c10 0 18 8 18 18s-8 18-18 18" />
-            <path {...common} d="M84 108c6-30 26-50 44-50s38 20 44 50" />
-            <path {...common} d="M84 108c0 32 16 52 44 52s44-20 44-52" />
-            <path {...common} d="M112 120h0" />
-            <path {...common} d="M140 120h0" />
-            <path {...common} d="M120 130c0 10 16 10 16 0s-16-10-16 0z" />
-          </>
-        );
-      case "penguin":
-        return (
-          <>
-            <path {...common} d="M92 78c10-16 26-24 36-24s26 8 36 24" />
-            <path {...common} d="M92 78c-8 14-12 30-12 48 0 32 18 54 48 54s48-22 48-54c0-18-4-34-12-48" />
-            <path {...common} d="M106 128h0" />
-            <path {...common} d="M150 128h0" />
-            <path {...common} d="M124 150c6 4 12 4 18 0" />
-          </>
-        );
-      case "lion":
-        return (
-          <>
-            <path {...common} d="M74 110c6-34 30-54 54-54s48 20 54 54" />
-            <path {...common} d="M74 110c0 34 22 54 54 54s54-20 54-54" />
-            <path {...common} d="M96 86c10-10 20-16 32-16s22 6 32 16" />
-            <path {...common} d="M108 122h0" />
-            <path {...common} d="M148 122h0" />
-            <path {...common} d="M118 142c10 6 20 6 30 0" />
-          </>
-        );
-      case "tiger":
-        return (
-          <>
-            <path {...common} d="M78 108c8-32 30-52 50-52s42 20 50 52" />
-            <path {...common} d="M78 108c0 34 20 54 50 54s50-20 50-54" />
-            <path {...common} d="M96 96l-10-12" />
-            <path {...common} d="M160 96l10-12" />
-            <path {...common} d="M106 120h0" />
-            <path {...common} d="M150 120h0" />
-            <path {...common} d="M120 142c8 6 16 6 24 0" />
-            <path {...common} d="M92 132l-16 8" />
-            <path {...common} d="M164 132l16 8" />
-          </>
-        );
-      case "owl":
-        return (
-          <>
-            <path {...common} d="M88 96c8-22 22-38 40-38s32 16 40 38" />
-            <path {...common} d="M88 96c0 38 14 64 40 64s40-26 40-64" />
-            <path {...common} d="M106 114c0 10 16 10 16 0s-16-10-16 0z" />
-            <path {...common} d="M134 114c0 10 16 10 16 0s-16-10-16 0z" />
-            <path {...common} d="M128 138c6 4 12 4 18 0" />
-          </>
-        );
-      case "panda":
-      default:
-        return (
-          <>
-            <path {...common} d="M86 86c-12 0-22 10-22 22" />
-            <path {...common} d="M170 86c12 0 22 10 22 22" />
-            <path {...common} d="M74 108c6-30 28-50 54-50s48 20 54 50" />
-            <path {...common} d="M74 108c0 34 18 56 54 56s54-22 54-56" />
-            <path {...common} d="M104 120c0 10 16 10 16 0s-16-10-16 0z" />
-            <path {...common} d="M136 120c0 10 16 10 16 0s-16-10-16 0z" />
-            <path {...common} d="M118 142c10 6 20 6 30 0" />
-          </>
-        );
-    }
-  };
-
+/* ---------- Icons (original SVG set) ---------- */
+function IconBack(props) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 240 240"
-      role="img"
-      aria-label={n}
-      className="pf__avatarSvg"
-    >
-      {/* 背景円 */}
-      <circle cx="120" cy="120" r="112" className="pf__avatarBg" />
-      <g transform="translate(0,0)">{render()}</g>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M15 18l-6-6 6-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-/* =======================
-   内蔵コンポーネント
-======================= */
-
-/** レベル概要（Lvピル + 進捗バー + 数値） */
-function LevelSummary({ xp }) {
-  const level = xp?.level ?? 1;
-  const label = xp?.levelLabel ?? "N5";
-  const percent = Math.max(0, Math.min(100, xp?.percent ?? 0));
-  const into = xp?.into ?? 0;
-  const need = xp?.need ?? 0;
-
+function IconPencil(props) {
   return (
-    <div className="pf__lv" role="group" aria-label="学習レベル">
-      <div className="pf__lvLeft">
-        <span className="pf__lvChip" aria-label={`レベル ${level}`}>
-          Lv {level}
-        </span>
-        <span className="pf__lvSep" aria-hidden>
-          •
-        </span>
-        <span className="pf__lvLabel" aria-label={`目標級 ${label}`}>
-          {label}
-        </span>
-      </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M4 20h4l10.5-10.5a2 2 0 0 0 0-3L16.5 4a2 2 0 0 0-3 0L3 14.5V20z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 6.5l4 4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
-      <div className="pf__lvRight" aria-label="進捗">
-        <div
-          className="pf__lvBar"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(percent)}
-          aria-label="レベル進捗"
-        >
-          <div className="pf__lvFill" style={{ width: `${percent}%` }}>
-            <span className="pf__lvShine" aria-hidden />
-          </div>
-        </div>
-        <span className="pf__lvMeta" aria-label={`次のレベルまで ${into}/${need}`}>
-          {into}/{need}（{percent}%）
-        </span>
-      </div>
+function IconRibbon(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M8 3h8l-1.2 6H9.2L8 3z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 9l-2.5 10 4-2 2.5 2L12 9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 9l2.5 10-4-2-2.5 2L12 9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        opacity="0.001"
+      />
+    </svg>
+  );
+}
+
+function IconBolt(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M13 2L4 14h7l-1 8 10-14h-7l0-6z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconFlame(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M12 22c4 0 7-2.9 7-7 0-3-2-5.2-3.6-6.9-.9-1-1.6-2-1.8-3.2C11.2 6 10 7.7 9.5 9c-.6 1.5-2.5 2.7-2.5 6 0 4.1 3 7 5 7z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 22c2.5 0 4.5-1.9 4.5-4.6 0-1.8-1.1-3-2-4.1-.4-.5-.8-1-1-1.6-.9.8-1.7 2-2 3-.4 1.2-1.5 1.9-1.5 3.8 0 2.6 1.8 3.5 2 3.5z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        opacity="0.5"
+      />
+    </svg>
+  );
+}
+
+function IconMedal(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
+      <path
+        d="M8 3h3l1 3 1-3h3l-2 6H10L8 3z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <circle
+        cx="12"
+        cy="15"
+        r="5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M12 12.5l.9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3.9-1.8z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* ---------- UI parts ---------- */
+function StatBadge({ tone = "neutral", icon }) {
+  return (
+    <div className={`pf__statBadge pf__statBadge--${tone}`} aria-hidden="true">
+      {icon}
     </div>
   );
 }
 
-/** ストリーク・バッジ（🔥 + 今日済みドット） */
-function StreakBadge({
-  current = 0,
-  best = 0,
-  todayMarked = false,
-  className = "",
-}) {
+function StatCard({ badge, value, label }) {
+  return (
+    <div className="pf__statCard" role="group" aria-label={label}>
+      <div className="pf__statBadgeWrap">{badge}</div>
+      <div className="pf__statValue">{value}</div>
+      <div className="pf__statLabel">{label}</div>
+    </div>
+  );
+}
+
+function JlptRow({ level, label, value }) {
   return (
     <div
-      className={`pf__streak ${className}`}
-      role="status"
-      aria-live="polite"
-      title={`最長 ${best} 日`}
+      className="pf__jlptRow"
+      role="group"
+      aria-label={`${level} ${label} ${value}%`}
     >
-      <span className="pf__streakFlame" aria-hidden>
-        🔥
-      </span>
-      <span className="pf__streakCount" aria-label={`連続${current}日`}>
-        {current}
-      </span>
-      {todayMarked ? <span className="pf__streakDot" aria-label="今日カウント済み" /> : null}
-    </div>
-  );
-}
+      <div className="pf__jlptLeft">
+        <div className="pf__jlptLevel">{level}</div>
+        <div className="pf__jlptLabel">{label}</div>
+      </div>
 
-/** 統計カード */
-function StatCard({ label, value, aria }) {
-  return (
-    <div className="stat" role="group" aria-label={aria || label}>
-      <div className="stat__value">{value}</div>
-      <div className="stat__label">{label}</div>
-    </div>
-  );
-}
-
-/** iOS風トグル */
-function Toggle({ label, checked, onChange, disabled }) {
-  return (
-    <label className="toggle" aria-label={label}>
-      <input
-        type="checkbox"
-        checked={!!checked}
-        onChange={(e) => onChange?.(e.target.checked)}
-        disabled={disabled}
-      />
-      <span className="toggle__label">{label}</span>
-      <span className="toggle__switch" aria-hidden />
-    </label>
-  );
-}
-
-/** 編集モーダル */
-function EditProfileModal({ initial, onClose, onSubmit, saving }) {
-  const [form, setForm] = useState(initial);
-
-  useEffect(() => setForm(initial), [initial]);
-
-  const set = (key, value) =>
-    setForm((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-
-  return (
-    <div className="modal">
-      <div className="modal__backdrop" onClick={onClose} aria-hidden />
-      <div
-        className="modal__body"
-        role="dialog"
-        aria-modal="true"
-        aria-label="プロフィール編集"
-      >
-        <h3 className="modal__title">プロフィール編集</h3>
-
-        <label className="field">
-          <span>表示名</span>
-          <input
-            value={form.displayName}
-            onChange={(e) => set("displayName", e.target.value.slice(0, 32))}
-            placeholder="例: まい"
-            aria-label="表示名"
-          />
-        </label>
-
-        <label className="field">
-          <span>目標レベル</span>
-          <select
-            value={form.jlptTarget}
-            onChange={(e) => set("jlptTarget", e.target.value)}
-            aria-label="目標レベル"
-          >
-            {["N5", "N4", "N3", "N2", "N1"].map((l) => (
-              <option key={l} value={l}>
-                {l}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="field">
-          <span>自己紹介（140字）</span>
-          <textarea
-            value={form.bio}
-            onChange={(e) => set("bio", e.target.value.slice(0, 140))}
-            rows={3}
-            placeholder="学習の目標や自己紹介を書いてね"
-            aria-label="自己紹介"
-          />
-          <div className="hint">{(form.bio || "").length}/140</div>
-        </label>
-
-        <div className="modal__actions">
-          <button className="btn" onClick={onClose} disabled={saving}>
-            キャンセル
-          </button>
-          <button
-            className="btn btn--primary"
-            onClick={() => onSubmit?.(form)}
-            disabled={saving}
-          >
-            {saving ? "保存中…" : "保存"}
-          </button>
+      <div className="pf__jlptBarWrap" aria-hidden="true">
+        <div className="pf__jlptBarTrack">
+          <div className="pf__jlptBarFill" style={{ width: `${value}%` }} />
         </div>
       </div>
+
+      <div className="pf__jlptPct">{value}%</div>
     </div>
   );
 }
-
-/** アバター選択モーダル（写真なし） */
-function AvatarPickerModal({ currentKey, onClose, onPick, saving }) {
-  return (
-    <div className="modal">
-      <div className="modal__backdrop" onClick={onClose} aria-hidden />
-      <div
-        className="modal__body"
-        role="dialog"
-        aria-modal="true"
-        aria-label="アバターを選択"
-      >
-        <h3 className="modal__title">アイコンを選ぶ</h3>
-
-        <div className="pf__avatarGrid" role="radiogroup" aria-label="アイコン一覧">
-          {AVATAR_LIST.map((a) => {
-            const selected = a.key === currentKey;
-            return (
-              <button
-                key={a.key}
-                type="button"
-                className={`pf__avatarItem ${selected ? "is-selected" : ""}`}
-                onClick={() => onPick?.(a.key)}
-                disabled={saving}
-                role="radio"
-                aria-checked={selected}
-                aria-label={a.label}
-              >
-                <span className="pf__avatarRing" aria-hidden="true">
-                  <AvatarGlyph name={a.key} size={56} />
-                </span>
-                <span className="pf__avatarLabel">{a.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="modal__actions">
-          <button className="btn" onClick={onClose} disabled={saving}>
-            閉じる
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* =======================
-   本体
-======================= */
 
 export default function ProfilePage() {
   const navigate = useNavigate();
 
-  /* ---- Zustand ---- */
   const user = useAppStore((s) => s.user);
-  const avatarKey = useAppStore((s) => s.avatarKey || "panda");
-  const setAvatarKey = useAppStore((s) => s.setAvatarKey);
   const xp = useAppStore((s) => s.xp);
   const daily = useAppStore((s) => s.daily);
-  const resetStore = useAppStore((s) => s.resetAll || s.hardReset || null);
+  const ranking = useAppStore((s) => s.ranking);
+  const profile = useAppStore((s) => s.profile);
 
-  /* ---- Local state ---- */
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState(null);
-  const [editingProfile, setEditingProfile] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [avatarOpen, setAvatarOpen] = useState(false);
+  const name = profile?.displayName || user?.displayName || "田中太郎";
+  const email = user?.email || profile?.email || "tanaka.taro@example.com";
 
-  /* ---- Firestoreからプロフィール読込 ---- */
-  useEffect(() => {
-    let alive = true;
+  const level = xp?.level ?? profile?.level ?? 12;
+  const xpTotal = xp?.totalXP ?? xp?.totalXp ?? profile?.xpTotal ?? 8450;
+  const streak = daily?.streak ?? profile?.streak ?? 47;
+  const rank = ranking?.myRank ?? profile?.rank ?? 156;
 
-    (async () => {
-      if (!user) {
-        if (alive) {
-          setProfile(null);
-          setLoading(false);
-        }
-        return;
-      }
+  const avatarVariant = profile?.avatarVariant || user?.avatarVariant || "cream";
 
-      setLoading(true);
-      try {
-        const ref = doc(db, "users", user.uid);
-        const snap = await getDoc(ref);
-        if (!alive) return;
+  const avatarText = useMemo(() => {
+    const s = String(name || " ").trim();
+    if (!s) return "田";
+    return s.slice(0, 1);
+  }, [name]);
 
-        const data = snap.exists() ? snap.data() : {};
-
-        if (data.avatarKey) setAvatarKey(data.avatarKey);
-
-        setProfile(data);
-      } catch (e) {
-        console.error("Failed to load profile:", e);
-        if (alive) setProfile({});
-      } finally {
-        if (alive) setLoading(false);
-      }
-    })();
-
-    return () => {
-      alive = false;
-    };
-  }, [user, setAvatarKey]);
-
-  /* ---- 部分更新保存（未作成でもOK） ---- */
-  const saveProfile = useCallback(
-    async (partial) => {
-      if (!user) return;
-      setSaving(true);
-      try {
-        const ref = doc(db, "users", user.uid);
-        const patch = { ...partial, updatedAt: serverTimestamp() };
-        await setDoc(ref, patch, { merge: true });
-        setProfile((prev) => ({ ...(prev || {}), ...partial }));
-      } catch (e) {
-        console.error("Failed to save profile:", e);
-      } finally {
-        setSaving(false);
-      }
-    },
-    [user],
-  );
-
-  /* ---- アバター変更 ---- */
-  const handleAvatarClick = () => {
-    setAvatarOpen(true);
-  };
-
-  const handlePickAvatar = async (key) => {
-    const next = String(key || "panda");
-    setAvatarKey?.(next);
-    await saveProfile({ avatarKey: next });
-    setAvatarOpen(false);
-  };
-
-  /* ---- ログアウト（iPhone対策でタイムアウト付き） ---- */
-  const handleLogout = useCallback(async () => {
-    try {
-      await Promise.race([
-        signOut(auth),
-        new Promise((resolve) => setTimeout(resolve, 8000)),
-      ]);
-    } catch (e) {
-      console.warn("[LOGOUT ERROR]", e);
-    } finally {
-      resetStore?.();
-      navigate("/auth", { replace: true });
-    }
-  }, [navigate, resetStore]);
-
-  /* ---- 早期リターン ---- */
-  if (loading) {
-    return <div className="profile__loading">読み込み中…</div>;
-  }
-  if (!user || profile === null) {
-    return (
-      <div className="profile__empty">
-        プロフィールが見つかりません。ログイン状態を確認してください。
-      </div>
-    );
-  }
-
-  /* ---- 表示用値 ---- */
-  const stats = profile.stats || {};
-  const privacy = {
-    showInRanking: true,
-    showStreakPublic: true,
-    ...(profile.privacy || {}),
-  };
-
-  const totalXP =
-    typeof profile.xpTotal === "number"
-      ? profile.xpTotal
-      : typeof stats.totalXP === "number"
-      ? stats.totalXP
-      : 0;
-
-  const streakCurrent = Math.max(0, daily?.streak ?? 0);
-  const bestStreak =
-    typeof stats.bestStreak === "number" ? stats.bestStreak : streakCurrent;
-
-  const todayMarked =
-    (daily?.wordsDone ?? 0) >= (daily?.targetWords ?? Infinity) &&
-    (daily?.quizzesDone ?? 0) >= (daily?.targetQuizzes ?? Infinity);
-
-  const lessonsCompleted =
-    typeof stats.lessonsCompleted === "number" ? stats.lessonsCompleted : 0;
-
-  /* ---- Render ---- */
   return (
-    <main className="profile">
-      {/* Header */}
-      <section className="profile__header">
+    <main className="pf" role="main" aria-label="プロフィール">
+      <header className="pf__top" aria-label="プロフィール上部">
         <button
           type="button"
-          className="avatar-btn"
-          onClick={handleAvatarClick}
-          aria-label="プロフィール画像（変更）"
-          aria-haspopup="dialog"
-          aria-expanded={avatarOpen ? "true" : "false"}
+          className="pf__iconBtn"
+          onClick={() => navigate(-1)}
+          aria-label="戻る"
         >
-          <div className="avatar avatar--tile">
-            <AvatarGlyph name={avatarKey} size={72} />
-          </div>
+          <IconBack className="pf__iconSvg" />
         </button>
 
-        <div className="profile__id">
-          <h1 className="profile__name">
-            {profile.displayName || user.displayName || "ユーザー"}
-          </h1>
-          {profile.username && (
-            <div className="profile__handle">@{profile.username}</div>
-          )}
-          <div className="profile__target">目標: {profile.jlptTarget || "未設定"}</div>
-        </div>
+        <div className="pf__identity" aria-label="ユーザー情報">
+          <div className="pf__avatar" aria-label="プロフィール画像">
+            <CatAvatar
+              variant={avatarVariant}
+              size="fill"
+              title={`${name} avatar`}
+              className="pf__catAvatar"
+              aria-label="プロフィールアバター"
+            />
+            <span className="pf__avatarFallback" aria-hidden="true">
+              {avatarText}
+            </span>
+          </div>
 
-        <div className="profile__headerRight">
-          <LevelSummary xp={xp} />
-          <StreakBadge current={streakCurrent} best={bestStreak} todayMarked={todayMarked} />
+          <div className="pf__who">
+            <div className="pf__name" title={name}>
+              {name}
+            </div>
+            <div className="pf__email" title={email}>
+              {email}
+            </div>
+          </div>
+
           <button
             type="button"
-            className="btn btn--primary"
-            onClick={() => setEditingProfile(true)}
-            disabled={saving}
+            className="pf__editBtn"
+            onClick={() => navigate("/profile/edit")}
+            aria-label="プロフィールを編集"
           >
-            編集
+            <IconPencil className="pf__editSvg" />
+            <span className="pf__editText">編集</span>
           </button>
         </div>
+      </header>
+
+      <section className="pf__stats" aria-label="ステータス">
+        <StatCard
+          badge={
+            <StatBadge
+              tone="success"
+              icon={<IconRibbon className="pf__badgeSvg" />}
+            />
+          }
+          value={`Lv ${level}`}
+          label="レベル"
+        />
+        <StatCard
+          badge={
+            <StatBadge
+              tone="neutral"
+              icon={<IconBolt className="pf__badgeSvg" />}
+            />
+          }
+          value={Number(xpTotal).toLocaleString()}
+          label="XP"
+        />
+        <StatCard
+          badge={
+            <StatBadge
+              tone="success"
+              icon={<IconFlame className="pf__badgeSvg" />}
+            />
+          }
+          value={`${streak}日`}
+          label="連続学習"
+        />
+        <StatCard
+          badge={
+            <StatBadge
+              tone="neutral"
+              icon={<IconMedal className="pf__badgeSvg" />}
+            />
+          }
+          value={`${rank}位`}
+          label="ランキング"
+        />
       </section>
 
-      {/* Stats */}
-      <section className="profile__stats" aria-label="学習統計">
-        <StatCard label="合計XP" value={totalXP} />
-        <StatCard label="連続日数" value={streakCurrent} />
-        <StatCard label="完了レッスン" value={lessonsCompleted} />
-      </section>
+      <section className="pf__jlpt" aria-label="JLPT進捗">
+        <h2 className="pf__jlptTitle">JLPT進捗</h2>
 
-      {/* Bio */}
-      <section className="profile__section">
-        <h2 className="profile__sectionTitle">自己紹介</h2>
-        <p className="profile__bio">{profile.bio || "自己紹介は未設定です。"}</p>
-      </section>
-
-      {/* Privacy */}
-      <section className="profile__section">
-        <h2 className="profile__sectionTitle">公開設定</h2>
-        <div className="profile__toggles">
-          <Toggle
-            label="ランキングに表示する"
-            checked={!!privacy.showInRanking}
-            onChange={(v) => saveProfile({ privacy: { ...privacy, showInRanking: v } })}
-            disabled={saving}
-          />
-          <Toggle
-            label="連続日数を公開する"
-            checked={!!privacy.showStreakPublic}
-            onChange={(v) => saveProfile({ privacy: { ...privacy, showStreakPublic: v } })}
-            disabled={saving}
-          />
+        <div className="pf__jlptList" role="list">
+          <JlptRow level="N5" label="初級" value={100} />
+          <JlptRow level="N4" label="初中級" value={85} />
+          <JlptRow level="N3" label="中級" value={52} />
+          <JlptRow level="N2" label="中上級" value={18} />
+          <JlptRow level="N1" label="上級" value={0} />
         </div>
       </section>
-
-      {/* Logout */}
-      <section className="profile__section profile__logoutSection">
-        <button
-          type="button"
-          className="btn btn--danger profile__logoutBtn"
-          onClick={handleLogout}
-        >
-          🔒 Log Out
-        </button>
-      </section>
-
-      {/* Avatar Modal */}
-      {avatarOpen && (
-        <AvatarPickerModal
-          currentKey={avatarKey}
-          saving={saving}
-          onClose={() => setAvatarOpen(false)}
-          onPick={handlePickAvatar}
-        />
-      )}
-
-      {/* Edit Modal */}
-      {editingProfile && (
-        <EditProfileModal
-          initial={{
-            displayName: profile.displayName || user.displayName || "",
-            bio: profile.bio || "",
-            jlptTarget: profile.jlptTarget || "N5",
-          }}
-          saving={saving}
-          onClose={() => setEditingProfile(false)}
-          onSubmit={async (vals) => {
-            await saveProfile(vals);
-            setEditingProfile(false);
-          }}
-        />
-      )}
     </main>
   );
 }
