@@ -10,20 +10,19 @@ import {
   useParams,
 } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase/firebase-config";
-import { useAppStore } from "./store/useAppStore";
-import "./styles/Global.css";
-
-/* ✅ ランキング同期（1回だけ描画する） */
-import RankingSync from "@/components/RankingSync";
-
-/* ===== Capacitor / AdMob ===== */
 import { Capacitor } from "@capacitor/core";
 import {
   AdMob,
   BannerAdSize,
   BannerAdPosition,
 } from "@capacitor-community/admob";
+
+import { auth } from "./firebase/firebase-config";
+import { useAppStore } from "./store/useAppStore";
+import "./styles/Global.css";
+
+/* ✅ ランキング同期（1回だけ描画する） */
+import RankingSync from "@/components/RankingSync";
 
 /* ===== Layout / Guards ===== */
 import Layout from "./components/Layout";
@@ -109,7 +108,7 @@ import Privacy from "./pages/legal/Privacy";
 /* XP persistence */
 import { initUserXP, stopAutoSave, ensureUserDoc } from "./utils/xpPersistence";
 
-/* AdMob (既存クライアントがあるなら温存) */
+/* AdMob client */
 import { initAdMob } from "@/utils/admobClient";
 
 /* ====== ゲストモード（本番は false） ====== */
@@ -176,7 +175,6 @@ function RootRedirect() {
   if (!authReady) {
     return <LoadingIllustration message="起動中です…" size="md" showBackdrop />;
   }
-
   if (user) return <Navigate to="/home" replace />;
   return <Navigate to="/auth" replace />;
 }
@@ -189,208 +187,14 @@ function AuthEntry() {
   if (!authReady) {
     return <LoadingIllustration message="起動中です…" size="md" showBackdrop />;
   }
-
   if (user) return <Navigate to="/home" replace />;
   return <AuthPage />;
 }
 
-/* ========= App ========= */
-const App = () => (
-  <BrowserRouter basename={import.meta.env.BASE_URL}>
-    <ScrollToTop />
-    <AppInitializer />
-
-    {/* ✅ ランキング同期（ここで1回だけ） */}
-    <RankingSync />
-
-    <Suspense
-      fallback={
-        <LoadingIllustration message="画面を読み込み中…" size="md" showBackdrop />
-      }
-    >
-      <Routes>
-        {/* public */}
-        <Route path="/" element={<RootRedirect />} />
-        <Route path="/auth" element={<AuthEntry />} />
-
-        {/* onboarding */}
-        <Route path="/onboarding" element={<Onboarding />} />
-
-        {/* Apple サインインのリダイレクト受け取り用 */}
-        <Route path="/callback" element={<AppleCallback />} />
-
-        {/* 旧URLは全部 /auth に寄せる */}
-        <Route path="/login" element={<Navigate to="/auth" replace />} />
-        <Route path="/register" element={<Navigate to="/auth" replace />} />
-
-        {/* legal */}
-        <Route path="/legal/tokusho" element={<Tokusho />} />
-        <Route path="/legal/terms" element={<Terms />} />
-        <Route path="/legal/privacy" element={<Privacy />} />
-
-        {/* app (protected) */}
-        <Route
-          element={
-            GUEST_MODE ? (
-              <Layout />
-            ) : (
-              <AuthGuard>
-                <Layout />
-              </AuthGuard>
-            )
-          }
-        >
-          {/* home & basics */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/result" element={<ResultPage />} />
-
-          {/* ranking */}
-          <Route path="/ranking" element={<RankingPage />} />
-
-          {/* support */}
-          <Route path="/help" element={<HelpSupportPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-
-          {/* exam */}
-          <Route path="/exam/:examId" element={<ExamPage />} />
-
-          {/* lessons & words */}
-          <Route path="/level" element={<LevelSelectPage />} />
-          <Route path="/levels" element={<LevelSelectPage />} />
-          <Route path="/lessons/:level" element={<LessonSelectPage />} />
-          <Route path="/browse/:level/:lesson" element={<WordPage />} />
-          <Route path="/browse/:level/:mode/:key" element={<BrowseBlockPage />} />
-
-          {/* my wordbook */}
-          <Route path="/my-words" element={<MyWordbookPage />} />
-          <Route path="/my" element={<Navigate to="/my-words" replace />} />
-
-          {/* settings */}
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/language" element={<LanguageSettings />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/edit" element={<ProfileEditPage />} />
-
-          {/* alphabet */}
-          <Route path="/alphabet" element={<AlphabetUnitsPage />} />
-          <Route path="/alphabet/unit/:id" element={<AlphabetUnitLessonPage />} />
-          <Route path="/kana" element={<Navigate to="/alphabet" replace />} />
-
-          {/* grammar hub */}
-          <Route path="/grammar/:level" element={<GrammarCategorySelectPage />} />
-          <Route
-            path="/grammar/:level/:category"
-            element={<GrammarLessonSelectPage />}
-          />
-
-          {/* N5 special quizzes */}
-          <Route
-            path="/grammar/n5/exist-have/:lesson"
-            element={<ExistHaveQuizPage />}
-          />
-          <Route
-            path="/grammar/n5/intent-plan/:lesson"
-            element={<N5IntentPlanQuizPage />}
-          />
-          <Route
-            path="/grammar/n5/ask-permit/:lesson"
-            element={<N5AskPermitQuizPage />}
-          />
-
-          {/* N3 dedicated routes */}
-          <Route
-            path="/grammar/n3/concession/:lesson"
-            element={<N3ConcessionQuizPage />}
-          />
-          <Route
-            path="/grammar/:level/voice/:lesson"
-            element={<N3VoiceQuizPage />}
-          />
-
-          {/* paraphrase */}
-          <Route
-            path="/grammar/:level/paraphrase/:lesson"
-            element={<ParaphraseQuizPage />}
-          />
-
-          {/* generic grammar */}
-          <Route
-            path="/grammar/:level/:category/:lesson"
-            element={<GrammarQuizPage />}
-          />
-
-          {/* verb conjugation */}
-          <Route
-            path="/grammar/:level/verb-forms/:lesson"
-            element={<GrammarVerbQuizPage />}
-          />
-
-          {/* N4 official */}
-          <Route
-            path="/grammar/n4/comparison/:lesson"
-            element={<N4ComparisonBlankQuizPage />}
-          />
-          <Route
-            path="/grammar/n4/tense-aspect-jlpt/:lesson"
-            element={<N4TenseAspectJLPTPage />}
-          />
-
-          {/* legacy redirects */}
-          <Route
-            path="/grammar/:level/comparison/:lesson"
-            element={<ComparisonLegacyRedirect />}
-          />
-          <Route
-            path="/grammar/:level/compare"
-            element={<CompareAliasRedirect />}
-          />
-          <Route
-            path="/grammar/:level/compare/:lesson"
-            element={<CompareLessonAliasRedirect />}
-          />
-
-          {/* adjective quiz */}
-          <Route path="/adj" element={<Navigate to="/adj/n5/lesson1" replace />} />
-          <Route path="/adj/:level" element={<AdjLevelRedirect />} />
-          <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
-
-          {/* word quizzes */}
-          <Route path="/word-quiz" element={<LevelSelectPage />} />
-          <Route path="/word-quiz/:level" element={<WordQuizLessonSelectPage />} />
-          <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
-
-          {/* reader */}
-          <Route path="/reader" element={<Navigate to="/reader/n5" replace />} />
-          <Route path="/reader/:level" element={<ReaderHubPage />} />
-          <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
-          <Route path="/reader/:level/:storyId/play" element={<StoryPlayer />} />
-
-          {/* kanji */}
-          <Route path="/kanji" element={<KanjiHomePage />} />
-          <Route path="/kanji/stroke" element={<KanjiStrokeRootRedirect />} />
-          <Route
-            path="/kanji/stroke/:level"
-            element={<KanjiStrokeLevelRedirect />}
-          />
-          <Route
-            path="/kanji/stroke/:level/:char"
-            element={<KanjiStrokePage />}
-          />
-        </Route>
-
-        {/* fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
-  </BrowserRouter>
-);
-
 /* ========= Auth & XP init ========= */
-
 const SESSION_USER_STORAGE_KEY = "nihongoapp_session_user";
 
-const AppInitializer = () => {
+function AppInitializer() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -443,7 +247,7 @@ const AppInitializer = () => {
     navigate(to, { replace: true });
   };
 
-  // ① 起動時に localStorage のセッションから復元
+  // ① 起動時に localStorage のセッションから復元（※あくまでUI用）
   useEffect(() => {
     if (typeof window === "undefined") return;
     try {
@@ -458,7 +262,7 @@ const AppInitializer = () => {
     }
   }, [setUser]);
 
-  // ② Firebase Auth の状態監視（ただし「セッションユーザー優先」で判定）
+  // ② Firebase Auth の状態監視（最終的には Firebase を正にする）
   useEffect(() => {
     let isMounted = true;
 
@@ -469,17 +273,16 @@ const AppInitializer = () => {
       const sessionUser = st?.user;
       const path = location.pathname || "/";
 
-      if (sessionUser && sessionUser.uid) {
-        setAuthReady?.(true);
-        return;
-      }
-
+      // セッション復元があるなら、とりあえず起動は通す（AuthGuard側で守る）
       setAuthReady?.(true);
-      if (
-        PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
-        !PUBLIC_PATHS.includes(path)
-      ) {
-        navigateOnce("/auth");
+
+      if (!sessionUser?.uid) {
+        if (
+          PRIVATE_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
+          !PUBLIC_PATHS.includes(path)
+        ) {
+          navigateOnce("/auth");
+        }
       }
     }, 3000);
 
@@ -510,6 +313,7 @@ const AppInitializer = () => {
         };
 
         setUser?.(sessionUser);
+
         try {
           window.localStorage.setItem(
             SESSION_USER_STORAGE_KEY,
@@ -559,6 +363,7 @@ const AppInitializer = () => {
         const st = useAppStore.getState?.();
         const sessionUser = st?.user;
 
+        // 既にセッション復元されてるなら、いったん起動は通す（AuthGuard側に寄せる）
         if (sessionUser && sessionUser.uid) {
           setAuthReady?.(true);
           return;
@@ -610,9 +415,7 @@ const AppInitializer = () => {
       try {
         await AdMob.initialize();
 
-        const platform = Capacitor.getPlatform(); // "android" | "ios" | "web"
-
-        // env が無いならテストIDを使う
+        const platform = Capacitor.getPlatform();
         const bannerAndroid =
           import.meta.env.VITE_ADMOB_BANNER_ANDROID ||
           "ca-app-pub-3940256099942544/6300978111";
@@ -629,26 +432,19 @@ const AppInitializer = () => {
 
         if (!adId) return;
 
-        // eslint-disable-next-line no-console
-        console.log("[AdMob] showBanner platform=", platform, "adId=", adId);
-
         await AdMob.showBanner({
           adId,
           adSize: BannerAdSize.BANNER,
           position: BannerAdPosition.BOTTOM_CENTER,
           margin: 0,
         });
-
-        // eslint-disable-next-line no-console
-        console.log("[AdMob] showBanner OK");
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn("[AdMob] banner failed:", e);
+      } catch {
+        // noop
       }
     })();
   }, []);
 
-  // ✅ DEV autologin（ReferenceError対策の完成版）
+  // DEV autologin
   useEffect(() => {
     if (!import.meta.env.DEV) return;
 
@@ -672,7 +468,6 @@ const AppInitializer = () => {
           signInWithEmailAndPassword(auth, email, pass).catch(() => {});
         }
 
-        // ✅ unsubscribe が確実に代入された後に解除
         window.setTimeout(() => {
           try {
             unsubscribe?.();
@@ -695,6 +490,223 @@ const AppInitializer = () => {
   }, []);
 
   return null;
-};
+}
 
-export default App;
+/* ========= App ========= */
+export default function App() {
+  return (
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
+      <AppInitializer />
+
+      {/* ✅ ランキング同期（ここで1回だけ） */}
+      <RankingSync />
+
+      <Suspense
+        fallback={
+          <LoadingIllustration
+            message="画面を読み込み中…"
+            size="md"
+            showBackdrop
+          />
+        }
+      >
+        <Routes>
+          {/* public */}
+          <Route path="/" element={<RootRedirect />} />
+          <Route path="/auth" element={<AuthEntry />} />
+
+          {/* onboarding */}
+          <Route path="/onboarding" element={<Onboarding />} />
+
+          {/* Apple サインインのリダイレクト受け取り用 */}
+          <Route path="/callback" element={<AppleCallback />} />
+
+          {/* 旧URLは全部 /auth に寄せる */}
+          <Route path="/login" element={<Navigate to="/auth" replace />} />
+          <Route path="/register" element={<Navigate to="/auth" replace />} />
+
+          {/* legal */}
+          <Route path="/legal/tokusho" element={<Tokusho />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/legal/privacy" element={<Privacy />} />
+
+          {/* app (protected) */}
+          <Route
+            element={
+              GUEST_MODE ? (
+                <Layout />
+              ) : (
+                <AuthGuard>
+                  <Layout />
+                </AuthGuard>
+              )
+            }
+          >
+            {/* home & basics */}
+            <Route path="/home" element={<Home />} />
+            <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/result" element={<ResultPage />} />
+
+            {/* ranking */}
+            <Route path="/ranking" element={<RankingPage />} />
+
+            {/* support */}
+            <Route path="/help" element={<HelpSupportPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+
+            {/* exam */}
+            <Route path="/exam/:examId" element={<ExamPage />} />
+
+            {/* lessons & words */}
+            <Route path="/level" element={<LevelSelectPage />} />
+            <Route path="/levels" element={<LevelSelectPage />} />
+            <Route path="/lessons/:level" element={<LessonSelectPage />} />
+            <Route path="/browse/:level/:lesson" element={<WordPage />} />
+            <Route
+              path="/browse/:level/:mode/:key"
+              element={<BrowseBlockPage />}
+            />
+
+            {/* my wordbook */}
+            <Route path="/my-words" element={<MyWordbookPage />} />
+            <Route path="/my" element={<Navigate to="/my-words" replace />} />
+
+            {/* settings */}
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/language" element={<LanguageSettings />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/edit" element={<ProfileEditPage />} />
+
+            {/* alphabet */}
+            <Route path="/alphabet" element={<AlphabetUnitsPage />} />
+            <Route
+              path="/alphabet/unit/:id"
+              element={<AlphabetUnitLessonPage />}
+            />
+            <Route path="/kana" element={<Navigate to="/alphabet" replace />} />
+
+            {/* grammar hub */}
+            <Route
+              path="/grammar/:level"
+              element={<GrammarCategorySelectPage />}
+            />
+            <Route
+              path="/grammar/:level/:category"
+              element={<GrammarLessonSelectPage />}
+            />
+
+            {/* N5 special quizzes */}
+            <Route
+              path="/grammar/n5/exist-have/:lesson"
+              element={<ExistHaveQuizPage />}
+            />
+            <Route
+              path="/grammar/n5/intent-plan/:lesson"
+              element={<N5IntentPlanQuizPage />}
+            />
+            <Route
+              path="/grammar/n5/ask-permit/:lesson"
+              element={<N5AskPermitQuizPage />}
+            />
+
+            {/* N3 dedicated routes */}
+            <Route
+              path="/grammar/n3/concession/:lesson"
+              element={<N3ConcessionQuizPage />}
+            />
+            <Route
+              path="/grammar/:level/voice/:lesson"
+              element={<N3VoiceQuizPage />}
+            />
+
+            {/* paraphrase */}
+            <Route
+              path="/grammar/:level/paraphrase/:lesson"
+              element={<ParaphraseQuizPage />}
+            />
+
+            {/* generic grammar */}
+            <Route
+              path="/grammar/:level/:category/:lesson"
+              element={<GrammarQuizPage />}
+            />
+
+            {/* verb conjugation */}
+            <Route
+              path="/grammar/:level/verb-forms/:lesson"
+              element={<GrammarVerbQuizPage />}
+            />
+
+            {/* N4 official */}
+            <Route
+              path="/grammar/n4/comparison/:lesson"
+              element={<N4ComparisonBlankQuizPage />}
+            />
+            <Route
+              path="/grammar/n4/tense-aspect-jlpt/:lesson"
+              element={<N4TenseAspectJLPTPage />}
+            />
+
+            {/* legacy redirects */}
+            <Route
+              path="/grammar/:level/comparison/:lesson"
+              element={<ComparisonLegacyRedirect />}
+            />
+            <Route
+              path="/grammar/:level/compare"
+              element={<CompareAliasRedirect />}
+            />
+            <Route
+              path="/grammar/:level/compare/:lesson"
+              element={<CompareLessonAliasRedirect />}
+            />
+
+            {/* adjective quiz */}
+            <Route
+              path="/adj"
+              element={<Navigate to="/adj/n5/lesson1" replace />}
+            />
+            <Route path="/adj/:level" element={<AdjLevelRedirect />} />
+            <Route path="/adj/:level/:lesson" element={<AdjTypeQuizPage />} />
+
+            {/* word quizzes */}
+            <Route path="/word-quiz" element={<LevelSelectPage />} />
+            <Route
+              path="/word-quiz/:level"
+              element={<WordQuizLessonSelectPage />}
+            />
+            <Route path="/word-quiz/:level/:lesson" element={<WordQuizPage />} />
+
+            {/* reader */}
+            <Route
+              path="/reader"
+              element={<Navigate to="/reader/n5" replace />}
+            />
+            <Route path="/reader/:level" element={<ReaderHubPage />} />
+            <Route path="/reader/:level/:storyId" element={<ReaderPage />} />
+            <Route
+              path="/reader/:level/:storyId/play"
+              element={<StoryPlayer />}
+            />
+
+            {/* kanji */}
+            <Route path="/kanji" element={<KanjiHomePage />} />
+            <Route path="/kanji/stroke" element={<KanjiStrokeRootRedirect />} />
+            <Route
+              path="/kanji/stroke/:level"
+              element={<KanjiStrokeLevelRedirect />}
+            />
+            <Route
+              path="/kanji/stroke/:level/:char"
+              element={<KanjiStrokePage />}
+            />
+          </Route>
+
+          {/* fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}

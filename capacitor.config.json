@@ -9,6 +9,8 @@
     "backgroundColor": "#ffffff"
   },
   "server": {
+    "hostname": "localhost",
+    "iosScheme": "https",
     "androidScheme": "https"
   },
   "plugins": {

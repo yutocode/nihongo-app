@@ -1,8 +1,10 @@
 // src/firebase/firebase-config.js
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { initializeFirestore } from "firebase/firestore";
+import { getFirestore as getFirestoreLite } from "firebase/firestore/lite";
 import {
-  initializeAuth,
+  getAuth,
+  setPersistence,
   indexedDBLocalPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
@@ -30,41 +32,87 @@ const firebaseConfig = {
     import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-FR05H677B9",
 };
 
-/** 1) Firebase App */
-const app = initializeApp(firebaseConfig);
+/** 1) Firebase App（多重初期化防止） */
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-/**
- * iOS/WKWebView 判定
- * - Listen/channel が不安定になりやすいので iOS は long polling を強制すると安定しやすい
- */
+/** 実行環境判定 */
 const isBrowser = typeof window !== "undefined";
 const ua = isBrowser ? navigator.userAgent || "" : "";
-const isIOS = /iPad|iPhone|iPod/.test(ua);
 
-/** 2) Firestore（安定化） */
+const isIOSUA = /iPad|iPhone|iPod/.test(ua);
+const isIPadOS13Plus =
+  isBrowser && /Macintosh/.test(ua) && "ontouchend" in window;
+
+const isCapacitor =
+  isBrowser &&
+  (globalThis.Capacitor?.isNativePlatform?.() ||
+    !!globalThis.Capacitor ||
+    !!globalThis.cordova);
+
+const isIOS = isIOSUA || isIPadOS13Plus;
+
+/**
+ * 2) Firestore（通常SDK）
+ * - iOS/Capacitor では long polling 固定（AutoDetectは切る）
+ */
 export const db = initializeFirestore(app, {
-  // iOS は強制 long polling、それ以外は自動検出
-  experimentalForceLongPolling: isIOS,
-  experimentalAutoDetectLongPolling: !isIOS,
-
-  // fetch streams は切っておく（WKWebViewでコケやすい時がある）
+  experimentalForceLongPolling: isIOS || isCapacitor,
+  experimentalAutoDetectLongPolling: false,
   useFetchStreams: false,
-
-  // undefined を入れても落とさない
   ignoreUndefinedProperties: true,
 });
 
 /**
- * 3) Auth（永続ログイン）
- * - 「配列で渡す」は環境によって不安定なので、確実な1つを選んで渡す
+ * 2.5) Firestore Lite（REST）
+ * - “読み取りだけ” で安定性を優先したい画面用（例: RankingPage）
  */
-let persistenceForAuth = browserLocalPersistence;
-if (isBrowser && "indexedDB" in window) {
-  persistenceForAuth = indexedDBLocalPersistence;
+export const dbLite = getFirestoreLite(app);
+
+/** 3) Auth */
+export const auth = getAuth(app);
+
+function canUseIndexedDB() {
+  if (!isBrowser) return false;
+  try {
+    return typeof indexedDB !== "undefined" && indexedDB !== null;
+  } catch {
+    return false;
+  }
 }
 
-export const auth = initializeAuth(app, {
-  persistence: persistenceForAuth,
-});
+/**
+ * 4) 永続化（重要）
+ * - 多重実行しない
+ */
+let persistencePromise = null;
+
+export function ensureAuthPersistence() {
+  if (!isBrowser) return Promise.resolve();
+  if (persistencePromise) return persistencePromise;
+
+  persistencePromise = (async () => {
+    // iOS/Capacitorは IndexedDB が死ぬことがあるので try → fallback
+    if (canUseIndexedDB()) {
+      try {
+        await setPersistence(auth, indexedDBLocalPersistence);
+        // eslint-disable-next-line no-console
+        console.log("[Auth] persistence -> indexedDB");
+        return;
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn("[Auth] indexedDB persistence failed, fallback", e);
+      }
+    }
+
+    await setPersistence(auth, browserLocalPersistence);
+    // eslint-disable-next-line no-console
+    console.log("[Auth] persistence -> localStorage");
+  })();
+
+  return persistencePromise;
+}
+
+// モジュール読み込み時点で1回だけ仕込む（signInより先に走りやすい）
+ensureAuthPersistence().catch(() => {});
 
 export default app;

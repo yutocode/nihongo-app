@@ -63,6 +63,7 @@
     "globby": "^15.0.0",
     "prettier": "^3.6.2",
     "svgo": "^4.0.0",
+    "typescript": "^5.9.3",
     "vite": "^7.0.4",
     "wanakana": "^5.3.1"
   },
