@@ -1,3 +1,4 @@
+//src/components/XPBanner.jsx
 import React, { useMemo } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import "@/styles/XPBanner.css";
